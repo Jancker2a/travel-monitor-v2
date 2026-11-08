@@ -21,6 +21,7 @@ class SearchTravelers(BaseModel):
 
 class SearchRequest(BaseModel):
     destination: str = Field(description="Country or region slug, e.g. 'egypt', 'turkey', 'greece'")
+    filter_id: Optional[str] = None
     dates: SearchDates
     duration: SearchDuration = Field(default_factory=SearchDuration)
     travelers: SearchTravelers = Field(default_factory=SearchTravelers)

@@ -41,8 +41,11 @@ async def test_search_api_endpoint(setup_test_db):
             assert data["total_found"] == 2
             assert len(data["results"]) == 2
 
-            hotel1 = data["results"][0]
-            assert hotel1["hotel_name"] == "Pickalbatros Aqua Blu Resort"
+            hotel_names = [h["hotel_name"] for h in data["results"]]
+            assert "Pickalbatros Aqua Blu Resort" in hotel_names
+            assert "Jaz Aquaviva" in hotel_names
+
+            hotel1 = next(h for h in data["results"] if h["hotel_name"] == "Pickalbatros Aqua Blu Resort")
             assert hotel1["stars"] == 5
             assert hotel1["current_offer"]["total_price_pln"] == 4250.0
             assert hotel1["intelligence"]["hopper_verdict"] in ["BUY NOW", "WAIT", "OVERPRICED"]

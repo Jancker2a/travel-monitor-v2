@@ -1,7 +1,8 @@
 import uuid
 import logging
-from typing import List, Optional
+from typing import List, Optional, Dict
 from datetime import datetime, date
+from collections import defaultdict
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_, or_, func, desc
 
@@ -36,7 +37,7 @@ class SearchService:
         if not req.force_live_refresh:
             cached_items = await cls._lookup_cached_cohorts(db, req)
             if cached_items:
-                logger.info(f"Search {search_id}: cache HIT ({len(cached_items)} hotels found)")
+                logger.info(f"Search {search_id}: cache HIT ({len(cached_items)} unique hotels found)")
                 return SearchResponse(
                     search_id=search_id,
                     cached=True,
@@ -53,11 +54,18 @@ class SearchService:
         
         if raw_offers:
             live_items = await LiveScraperService.process_and_persist_offers(db, req, raw_offers)
+            # Deduplicate by hotel_id
+            best_by_hotel: Dict[str, SearchHotelItem] = {}
+            for item in live_items:
+                hid = item.hotel_id
+                if hid not in best_by_hotel or item.current_offer.total_price_pln < best_by_hotel[hid].current_offer.total_price_pln:
+                    best_by_hotel[hid] = item
+            deduped = sorted(list(best_by_hotel.values()), key=lambda x: x.current_offer.total_price_pln)
             return SearchResponse(
                 search_id=search_id,
                 cached=False,
-                total_found=len(live_items),
-                results=live_items,
+                total_found=len(deduped),
+                results=deduped,
             )
 
         # 3. Fallback: return best available cached records if live scraping was empty
@@ -71,74 +79,87 @@ class SearchService:
 
     @classmethod
     async def _lookup_cached_cohorts(
-        cls, db: AsyncSession, req: SearchRequest, limit: int = 50
+        cls, db: AsyncSession, req: SearchRequest, limit: int = 500
     ) -> List[SearchHotelItem]:
-        dest_keyword = req.destination.lower()
+        dest_keyword = req.destination.lower() if req.destination else ""
         country_name = (
             "Египет" if "egypt" in dest_keyword
             else "Турция" if "turkey" in dest_keyword
             else "Греция" if "greece" in dest_keyword
             else "Кипр" if "cyprus" in dest_keyword
             else "Испания" if "spain" in dest_keyword
-            else req.destination.capitalize()
+            else req.destination.capitalize() if req.destination else ""
         )
 
-        # Query cohorts matching criteria
-        conditions = [
-            OfferCohort.duration_nights.between(req.duration.min_nights, req.duration.max_nights),
-            or_(
-                OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
-                Hotel.country == country_name,
-            ),
-        ]
+        conditions = []
 
-        # Flexible date range filter
-        if req.dates.start_date_min and req.dates.start_date_max:
-            min_d = req.dates.start_date_min
-            max_d = req.dates.start_date_max
-            if isinstance(min_d, str):
-                min_d = datetime.strptime(min_d[:10], "%Y-%m-%d").date()
-            if isinstance(max_d, str):
-                max_d = datetime.strptime(max_d[:10], "%Y-%m-%d").date()
-            conditions.append(OfferCohort.checkin_date.between(min_d, max_d))
+        # If specific canonical filter_id is supplied, target it directly
+        if req.filter_id:
+            clean_fid = req.filter_id.replace("filter_", "")
+            conditions.append(
+                or_(
+                    OfferCohort.destination_code.ilike(f"%{clean_fid}%"),
+                    OfferCohort.destination_code == req.filter_id,
+                )
+            )
+        else:
+            if req.duration and req.duration.min_nights:
+                conditions.append(
+                    OfferCohort.duration_nights.between(req.duration.min_nights, req.duration.max_nights)
+                )
+            if dest_keyword:
+                conditions.append(
+                    or_(
+                        OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
+                        Hotel.country == country_name,
+                    )
+                )
 
         stmt = (
             select(OfferCohort, Hotel)
             .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
-            .where(and_(*conditions))
-            .limit(limit)
         )
+        if conditions:
+            stmt = stmt.where(and_(*conditions))
+        stmt = stmt.limit(limit)
+
         result = await db.execute(stmt)
         cohort_rows = result.all()
 
-        if not cohort_rows:
-            # Broaden filter slightly to return matching destination & duration if dates are outside sample range
+        if not cohort_rows and dest_keyword:
+            # Broad fallback by country
             broad_stmt = (
                 select(OfferCohort, Hotel)
                 .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
                 .where(
-                    and_(
-                        OfferCohort.duration_nights.between(req.duration.min_nights, req.duration.max_nights),
-                        or_(
-                            OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
-                            Hotel.country == country_name,
-                        ),
+                    or_(
+                        OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
+                        Hotel.country == country_name,
                     )
                 )
                 .limit(limit)
             )
             cohort_rows = (await db.execute(broad_stmt)).all()
 
+        if not cohort_rows:
+            return []
+
+        # Batched retrieval of price snapshots to eliminate N+1 latency
+        cohort_hashes = [c.cohort_hash for c, _ in cohort_rows]
+        snaps_by_cohort = defaultdict(list)
+        snap_stmt = (
+            select(PriceSnapshot)
+            .where(PriceSnapshot.cohort_hash.in_(cohort_hashes))
+            .order_by(PriceSnapshot.recorded_at.desc())
+        )
+        all_snaps = (await db.execute(snap_stmt)).scalars().all()
+        for s in all_snaps:
+            if len(snaps_by_cohort[s.cohort_hash]) < 20:
+                snaps_by_cohort[s.cohort_hash].append(s)
+
         items: List[SearchHotelItem] = []
         for cohort, hotel in cohort_rows:
-            # Fetch latest price snapshot for this cohort
-            snap_stmt = (
-                select(PriceSnapshot)
-                .where(PriceSnapshot.cohort_hash == cohort.cohort_hash)
-                .order_by(PriceSnapshot.recorded_at.desc())
-                .limit(20)
-            )
-            snaps = (await db.execute(snap_stmt)).scalars().all()
+            snaps = snaps_by_cohort.get(cohort.cohort_hash, [])
             if not snaps:
                 continue
 
@@ -186,8 +207,10 @@ class SearchService:
             )
 
             checkin_d = (
-                datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
-                if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
+                cohort.checkin_date
+                if isinstance(cohort.checkin_date, date)
+                else datetime.strptime(str(cohort.checkin_date)[:10], "%Y-%m-%d").date()
+                if cohort.checkin_date
                 else datetime.utcnow().date()
             )
 
@@ -235,7 +258,13 @@ class SearchService:
             )
             items.append(item)
 
-        # Sort by total price ascending
-        items.sort(key=lambda x: x.current_offer.total_price_pln)
-        return items
+        # Group by hotel_id so each hotel appears ONCE with its lowest price offer
+        best_by_hotel: Dict[str, SearchHotelItem] = {}
+        for item in items:
+            hid = item.hotel_id
+            if hid not in best_by_hotel or item.current_offer.total_price_pln < best_by_hotel[hid].current_offer.total_price_pln:
+                best_by_hotel[hid] = item
 
+        unique_hotels = list(best_by_hotel.values())
+        unique_hotels.sort(key=lambda x: x.current_offer.total_price_pln)
+        return unique_hotels

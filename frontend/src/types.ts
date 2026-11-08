@@ -16,6 +16,7 @@ export interface SearchTravelers {
 
 export interface SearchRequest {
   destination: string;
+  filter_id?: string;
   dates: SearchDates;
   duration: SearchDuration;
   travelers: SearchTravelers;
