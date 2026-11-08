@@ -329,3 +329,4 @@ class WatchlistService:
             active_cohorts_count=len(cohorts_set),
             history_points=history_points,
         )
+

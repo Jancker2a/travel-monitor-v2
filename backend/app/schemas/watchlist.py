@@ -49,3 +49,4 @@ class WatchlistAlertPayload(BaseModel):
     target_price_pln: Optional[float] = None
     booking_url: Optional[str] = None
     message_text: str
+

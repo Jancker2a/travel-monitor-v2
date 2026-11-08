@@ -44,6 +44,12 @@ ENV/
 data/
 *.log
 
+# Node & Frontend
+node_modules/
+dist/
+frontend/dist/
+.npm
+
 # Docker
 .dockerignore
 

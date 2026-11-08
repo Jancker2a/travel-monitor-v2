@@ -28,3 +28,4 @@ async def setup_test_db():
     app.dependency_overrides.clear()
     async with _engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
+

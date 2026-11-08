@@ -26,3 +26,4 @@ class HotelPassportResponse(BaseModel):
     typical_median_pln: float
     active_cohorts_count: int
     history_points: List[HotelHistoryPoint] = Field(default_factory=list)
+
