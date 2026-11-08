@@ -5,6 +5,8 @@ import { HotelPassportModal } from "./components/HotelPassportModal";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
 import { TopDropsCarousel } from "./components/TopDropsCarousel";
 import { AirportComparisonWidget } from "./components/AirportComparisonWidget";
+import { FilterMonitorsView } from "./components/FilterMonitorsView";
+import { GermanArbitrageView } from "./components/GermanArbitrageView";
 import { SearchRequest, SearchHotelItem, WatchlistItem, PriceDropItem, AirportStat } from "./types";
 import {
   searchTours,
@@ -14,7 +16,7 @@ import {
   getTopPriceDrops,
   getAirportComparison,
 } from "./services/api";
-import { Bell, Flame, SlidersHorizontal, Sparkles } from "lucide-react";
+import { Bell, Flame, SlidersHorizontal, Sparkles, Radio, Search } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
 
@@ -28,6 +30,7 @@ export const App: React.FC = () => {
   const [topDrops, setTopDrops] = useState<PriceDropItem[]>([]);
   const [airportStats, setAirportStats] = useState<AirportStat[]>([]);
   const [sortBy, setSortBy] = useState<"price" | "deal_score">("price");
+  const [activeTab, setActiveTab] = useState<"search" | "monitors" | "arbitrage">("monitors");
 
   // Initial load: fetch watchlist, top drops, airport stats & run default search for Turkey
   useEffect(() => {
@@ -105,6 +108,17 @@ export const App: React.FC = () => {
     setWatchlistItems((prev) => prev.filter((w) => w.watch_id !== watchId));
   };
 
+  const handleSelectPreset = (monitor: any) => {
+    setActiveTab("search");
+    handleSearch({
+      destination: monitor.destination || "turkey",
+      dates: { start_date_min: "2027-05-25", start_date_max: "2027-06-25" },
+      duration: { min_nights: 7, max_nights: 11 },
+      travelers: { adults: 2, children: 1, children_ages: [6] },
+      airports: ["WAW"],
+    });
+  };
+
   // Sorted items
   const sortedResults = [...results].sort((a, b) => {
     if (sortBy === "deal_score") {
@@ -136,6 +150,47 @@ export const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
+            {/* Navigation Tabs */}
+            <nav className="hidden md:flex items-center gap-1 bg-slate-800/90 p-1 rounded-2xl border border-slate-700">
+              <button
+                type="button"
+                onClick={() => setActiveTab("monitors")}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  activeTab === "monitors"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
+                }`}
+              >
+                <Radio className="w-3.5 h-3.5 text-emerald-400" />
+                <span>📡 Радар фильтров (v1 24/7)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("search")}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  activeTab === "search"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
+                }`}
+              >
+                <Search className="w-3.5 h-3.5 text-blue-400" />
+                <span>🔍 Интерактивный поиск</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab("arbitrage")}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  activeTab === "arbitrage"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
+                }`}
+              >
+                <span>🇩🇪 Немецкий арбитраж</span>
+              </button>
+            </nav>
+
             <button
               onClick={() => setIsWatchlistOpen(true)}
               className="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700"
@@ -152,102 +207,147 @@ export const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero Search Controls Header */}
-      <SearchHeader onSearch={handleSearch} isLoading={isLoading} />
+      {/* Mobile Nav Tabs */}
+      <div className="flex md:hidden bg-slate-900 border-b border-slate-800 px-4 py-2 gap-1 overflow-x-auto scrollbar-none">
+        <button
+          type="button"
+          onClick={() => setActiveTab("monitors")}
+          className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap ${
+            activeTab === "monitors" ? "bg-blue-600 text-white" : "text-slate-400"
+          }`}
+        >
+          📡 Радар фильтров (24/7)
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("search")}
+          className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap ${
+            activeTab === "search" ? "bg-blue-600 text-white" : "text-slate-400"
+          }`}
+        >
+          🔍 Метапоиск
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveTab("arbitrage")}
+          className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap ${
+            activeTab === "arbitrage" ? "bg-blue-600 text-white" : "text-slate-400"
+          }`}
+        >
+          🇩🇪 Арбитраж
+        </button>
+      </div>
+
+      {/* Hero Search Controls Header (shown when on search tab) */}
+      {activeTab === "search" && (
+        <SearchHeader onSearch={handleSearch} isLoading={isLoading} />
+      )}
 
       {/* Main Results View */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
-        {/* Market Analytics & Top Drops (V1 Intelligence Integration) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <TopDropsCarousel drops={topDrops} onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)} />
-          </div>
-          <div className="lg:col-span-1">
-            <AirportComparisonWidget stats={airportStats} />
-          </div>
-        </div>
+        {activeTab === "monitors" && (
+          <FilterMonitorsView onSelectMonitor={handleSelectPreset} />
+        )}
 
-        {/* Results Toolbar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 gap-3">
-          <div>
-            <h1 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-              <span>Предложения по турам</span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">
-                {results.length} найдено
-              </span>
-              {isCached && (
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-emerald-600" />
-                  Мгновенно из кэша (43K+ база)
-                </span>
-              )}
-            </h1>
-          </div>
+        {activeTab === "arbitrage" && (
+          <GermanArbitrageView />
+        )}
 
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-slate-400 flex items-center gap-1 font-medium">
-              <SlidersHorizontal className="w-3.5 h-3.5" /> Сортировка:
-            </span>
-            <button
-              onClick={() => setSortBy("price")}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
-                sortBy === "price"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              Сначала дешевле
-            </button>
-            <button
-              onClick={() => setSortBy("deal_score")}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1 ${
-                sortBy === "deal_score"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              <Flame className="w-3.5 h-3.5 text-amber-500 fill-current" />
-              По Deal Score (Hopper)
-            </button>
-          </div>
-        </div>
-
-        {/* Results List */}
-        {isLoading ? (
-          <div className="space-y-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-44 bg-white rounded-2xl border border-slate-200 p-6 animate-pulse flex gap-5">
-                <div className="w-64 h-full bg-slate-200 rounded-xl shrink-0" />
-                <div className="flex-1 space-y-3 py-2">
-                  <div className="h-4 bg-slate-200 rounded w-1/4" />
-                  <div className="h-6 bg-slate-200 rounded w-1/2" />
-                  <div className="h-4 bg-slate-100 rounded w-1/3" />
-                </div>
+        {activeTab === "search" && (
+          <>
+            {/* Market Analytics & Top Drops (V1 Intelligence Integration) */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
+                <TopDropsCarousel drops={topDrops} onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)} />
               </div>
-            ))}
-          </div>
-        ) : sortedResults.length > 0 ? (
-          <div className="space-y-4">
-            {sortedResults.map((hotel) => (
-              <HotelCard
-                key={hotel.current_offer.cohort_hash}
-                hotel={hotel}
-                onOpenPassport={(id) => setActiveHotelPassport(id)}
-                onToggleWatchlist={handleToggleWatchlist}
-                isWatched={watchlistItems.some(
-                  (w) => w.cohort_hash === hotel.current_offer.cohort_hash
-                )}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center text-slate-500 max-w-lg mx-auto mt-8">
-            <div className="text-4xl mb-3">🔍</div>
-            <h3 className="text-lg font-bold text-slate-800">Предложения не найдены</h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Попробуйте включить галочку «Принудительный live-добор с Fly.pl» в строке поиска или расширить диапазон дат.
-            </p>
-          </div>
+              <div className="lg:col-span-1">
+                <AirportComparisonWidget stats={airportStats} />
+              </div>
+            </div>
+
+            {/* Results Toolbar */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 gap-3">
+              <div>
+                <h1 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                  <span>Предложения по турам</span>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">
+                    {results.length} найдено
+                  </span>
+                  {isCached && (
+                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-emerald-600" />
+                      Мгновенно из кэша (43K+ база)
+                    </span>
+                  )}
+                </h1>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-slate-400 flex items-center gap-1 font-medium">
+                  <SlidersHorizontal className="w-3.5 h-3.5" /> Сортировка:
+                </span>
+                <button
+                  onClick={() => setSortBy("price")}
+                  className={`px-3 py-1.5 rounded-lg font-semibold transition-colors ${
+                    sortBy === "price"
+                      ? "bg-blue-600 text-white shadow-sm"
+                      : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100"
+                  }`}
+                >
+                  Сначала дешевле
+                </button>
+                <button
+                  onClick={() => setSortBy("deal_score")}
+                  className={`px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1 ${
+                    sortBy === "deal_score"
+                      ? "bg-blue-600 text-white shadow-sm"
+                      : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100"
+                  }`}
+                >
+                  <Flame className="w-3.5 h-3.5 text-amber-500 fill-current" />
+                  По Deal Score (Hopper)
+                </button>
+              </div>
+            </div>
+
+            {/* Results List */}
+            {isLoading ? (
+              <div className="space-y-4">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="h-44 bg-white rounded-2xl border border-slate-200 p-6 animate-pulse flex gap-5">
+                    <div className="w-64 h-full bg-slate-200 rounded-xl shrink-0" />
+                    <div className="flex-1 space-y-3 py-2">
+                      <div className="h-4 bg-slate-200 rounded w-1/4" />
+                      <div className="h-6 bg-slate-200 rounded w-1/2" />
+                      <div className="h-4 bg-slate-100 rounded w-1/3" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : sortedResults.length > 0 ? (
+              <div className="space-y-4">
+                {sortedResults.map((hotel) => (
+                  <HotelCard
+                    key={hotel.current_offer.cohort_hash}
+                    hotel={hotel}
+                    onOpenPassport={(id) => setActiveHotelPassport(id)}
+                    onToggleWatchlist={handleToggleWatchlist}
+                    isWatched={watchlistItems.some(
+                      (w) => w.cohort_hash === hotel.current_offer.cohort_hash
+                    )}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center text-slate-500 max-w-lg mx-auto mt-8">
+                <div className="text-4xl mb-3">🔍</div>
+                <h3 className="text-lg font-bold text-slate-800">Предложения не найдены</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Попробуйте включить галочку «Принудительный live-добор с Fly.pl» в строке поиска или расширить диапазон дат.
+                </p>
+              </div>
+            )}
+          </>
         )}
       </main>
 

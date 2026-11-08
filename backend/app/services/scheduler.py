@@ -76,15 +76,21 @@ class BackgroundScheduler:
         async with AsyncSessionLocal() as db:
             alerts = await WatchlistService.check_watchlist_triggers(db)
 
-        if not alerts:
+        if alerts:
+            logger.info(f"Scheduler: {len(alerts)} alerts triggered! Dispatching notifications...")
+            for alert in alerts:
+                await self._dispatch_telegram_alert(alert)
+        else:
             logger.info("Scheduler: 0 alert triggers detected.")
-            return 0
 
-        logger.info(f"Scheduler: {len(alerts)} alerts triggered! Dispatching notifications...")
-        for alert in alerts:
-            await self._dispatch_telegram_alert(alert)
+        # Run hourly pass for active filter monitors
+        try:
+            from app.services.filter_monitor_service import FilterMonitorService
+            await FilterMonitorService.run_all_hourly_monitors()
+        except Exception as e:
+            logger.error(f"Error during hourly filter monitoring: {e}")
 
-        return len(alerts)
+        return len(alerts) if alerts else 0
 
     async def _dispatch_telegram_alert(self, alert):
         token = settings.TELEGRAM_BOT_TOKEN

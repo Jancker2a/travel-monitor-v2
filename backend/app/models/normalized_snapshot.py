@@ -45,3 +45,4 @@ class NormalizedPriceSnapshot(Base):
 
     def __repr__(self) -> str:
         return f"<NormalizedSnapshot {self.hotel_id}: {self.normalized_price_1p_8n:.0f} zł (1p/8n)>"
+

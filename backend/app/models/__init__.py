@@ -3,6 +3,7 @@ from app.models.cohort import OfferCohort, compute_cohort_hash
 from app.models.price_snapshot import PriceSnapshot
 from app.models.watchlist import WatchlistItem
 from app.models.normalized_snapshot import NormalizedPriceSnapshot
+from app.models.filter_monitor import FilterMonitor
 
 __all__ = [
     "Hotel",
@@ -11,5 +12,6 @@ __all__ = [
     "PriceSnapshot",
     "WatchlistItem",
     "NormalizedPriceSnapshot",
+    "FilterMonitor",
 ]
 

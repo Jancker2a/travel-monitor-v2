@@ -164,3 +164,4 @@ def re_normalize():
 
 if __name__ == "__main__":
     re_normalize()
+

@@ -8,7 +8,7 @@ from sqlalchemy import text, select
 
 import uuid
 from app.config import settings
-from app.database import engine, Base, get_db
+from app.database import engine, Base, get_db, AsyncSessionLocal
 from app.schemas.search import SearchRequest, SearchResponse
 from app.schemas.watchlist import (
     WatchlistCreateRequest,
@@ -33,6 +33,11 @@ async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     logger.info("Database schema initialized successfully.")
+
+    # Seed canonical v1 filter monitors
+    async with AsyncSessionLocal() as db:
+        from app.services.filter_monitor_service import FilterMonitorService
+        await FilterMonitorService.init_default_monitors(db)
 
     # Start background scheduler
     await scheduler.start()
@@ -193,6 +198,43 @@ async def get_airports_comparison(db: AsyncSession = Depends(get_db), destinatio
 async def get_market_overview(db: AsyncSession = Depends(get_db)):
     """High-level platform market counters (total hotels, cohorts, snapshots)."""
     return await AnalyticsService.get_market_overview(db)
+
+
+from app.services.filter_monitor_service import FilterMonitorService
+from app.services.arbitrage_service import ArbitrageService
+
+
+@app.get("/api/v2/monitors")
+async def list_monitors(db: AsyncSession = Depends(get_db)):
+    """Returns all 24/7 filter monitors with live status, offer counts, and last scrape time."""
+    return await FilterMonitorService.get_all_monitors(db)
+
+
+@app.post("/api/v2/monitors/{monitor_id}/run-now")
+async def run_single_monitor_now(monitor_id: str, db: AsyncSession = Depends(get_db)):
+    """Manually triggers an immediate scrape for a given filter monitor."""
+    return await FilterMonitorService.run_single_monitor(db, monitor_id)
+
+
+@app.post("/api/v2/monitors")
+async def create_custom_monitor(data: dict, db: AsyncSession = Depends(get_db)):
+    """Registers a new user-defined filter for hourly monitoring."""
+    m = await FilterMonitorService.create_custom_monitor(
+        db,
+        monitor_id=data.get("id") or f"custom_{uuid.uuid4().hex[:8]}",
+        title=data["title"],
+        subtitle=data.get("subtitle", "Пользовательский фильтр"),
+        destination=data.get("destination", "turkey"),
+        target_url=data["target_url"],
+        user_id=data.get("user_id", "user_demo_01"),
+    )
+    return {"status": "ok", "monitor_id": m.id, "title": m.title}
+
+
+@app.get("/api/v2/arbitrage")
+async def get_arbitrage_deals(db: AsyncSession = Depends(get_db), min_savings: float = 300.0):
+    """Compares German departures (Berlin BER) against Polish airports to find cross-border arbitrage."""
+    return await ArbitrageService.get_arbitrage_deals(db, min_savings_pln=min_savings)
 
 
 # Mount built React SPA frontend if dist exists

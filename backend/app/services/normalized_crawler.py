@@ -186,3 +186,4 @@ class NormalizedCrawlerService:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     asyncio.run(NormalizedCrawlerService.run_crawler_cycle(max_offers_per_dest=10))
+
