@@ -27,6 +27,7 @@ if "sqlite" in db_url:
     connect_args["check_same_thread"] = False
 else:
     # PostgreSQL / Supabase connection pool tuning
+    connect_args["statement_cache_size"] = 0
     engine_kwargs["pool_size"] = 10
     engine_kwargs["max_overflow"] = 20
 

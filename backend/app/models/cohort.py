@@ -37,7 +37,7 @@ class OfferCohort(Base):
     checkin_date = Column(Date, nullable=False, index=True)
     checkout_date = Column(Date, nullable=True)
     duration_nights = Column(Integer, nullable=False, index=True)
-    airport_code = Column(String(16), nullable=False, index=True)
+    airport_code = Column(String(64), nullable=False, index=True)
     board_basis = Column(String(64), default="All Inclusive")
     room_type = Column(String(128), nullable=True)
     adults = Column(Integer, default=2)

@@ -22,7 +22,7 @@ class NormalizedPriceSnapshot(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     hotel_id = Column(String(128), ForeignKey("hotels.hotel_id", ondelete="CASCADE"), nullable=False, index=True)
-    destination_code = Column(String(32), nullable=True, index=True)
+    destination_code = Column(String(64), nullable=True, index=True)
     recorded_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
 
     # Standardized metrics
@@ -31,8 +31,8 @@ class NormalizedPriceSnapshot(Base):
     flight_estimate_seat = Column(Float, nullable=False)                # F (estimated flight benchmark)
 
     # Provenance tracking
-    source_type = Column(String(32), default="renormalized_v1_cohort", index=True)  # 'renormalized_v1_cohort' or 'crawler_1p_8n'
-    source_cohort_hash = Column(String(32), nullable=True)
+    source_type = Column(String(64), default="renormalized_v1_cohort", index=True)  # 'renormalized_v1_cohort' or 'crawler_1p_8n'
+    source_cohort_hash = Column(String(64), nullable=True)
     is_crawler_standard = Column(Boolean, default=False)
 
     # Relationship
