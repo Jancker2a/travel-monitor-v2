@@ -7,6 +7,7 @@ from sqlalchemy import (
     ForeignKey,
     func,
 )
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 
@@ -20,6 +21,9 @@ class WatchlistItem(Base):
     notify_any_drop = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_notified_at = Column(DateTime(timezone=True), nullable=True)
+
+    # Relationships
+    cohort = relationship("OfferCohort", back_populates="watchlists")
 
     def __repr__(self) -> str:
         return f"<Watchlist {self.watch_id}: User {self.user_chat_id} -> Cohort {self.cohort_hash[:8]}>"

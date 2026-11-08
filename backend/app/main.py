@@ -9,7 +9,15 @@ import uuid
 from app.config import settings
 from app.database import engine, Base, get_db
 from app.schemas.search import SearchRequest, SearchResponse
+from app.schemas.watchlist import (
+    WatchlistCreateRequest,
+    WatchlistItemResponse,
+    WatchlistListResponse,
+)
+from app.schemas.hotel import HotelPassportResponse
 from app.services.search_service import SearchService
+from app.services.watchlist_service import WatchlistService
+from app.services.scheduler import scheduler
 
 logging.basicConfig(
     level=logging.INFO,
@@ -24,7 +32,14 @@ async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     logger.info("Database schema initialized successfully.")
+
+    # Start background scheduler
+    await scheduler.start()
+
     yield
+
+    # Stop background scheduler
+    await scheduler.stop()
     logger.info("Shutting down database connection pool...")
     await engine.dispose()
 
@@ -63,4 +78,40 @@ async def universal_search(req: SearchRequest, db: AsyncSession = Depends(get_db
     powered by Dual-Engine architecture (DB cache + on-demand live scraper).
     """
     return await SearchService.search(db, req)
+
+
+@app.post("/api/v2/watchlist", response_model=WatchlistItemResponse)
+async def create_or_update_watchlist(
+    req: WatchlistCreateRequest, db: AsyncSession = Depends(get_db)
+):
+    """Subscribes user to price drops on a specific tour cohort."""
+    return await WatchlistService.add_to_watchlist(db, req)
+
+
+@app.get("/api/v2/watchlist/{user_chat_id}", response_model=WatchlistListResponse)
+async def get_user_watchlist(user_chat_id: str, db: AsyncSession = Depends(get_db)):
+    """Retrieves all active alerts for a user/chat ID."""
+    return await WatchlistService.get_user_watchlist(db, user_chat_id)
+
+
+@app.delete("/api/v2/watchlist/{watch_id}")
+async def delete_watchlist_item(watch_id: str, db: AsyncSession = Depends(get_db)):
+    """Unsubscribes / removes a tour cohort from user watchlist."""
+    deleted = await WatchlistService.delete_watchlist_item(db, watch_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Watchlist item not found")
+    return {"status": "ok", "deleted_watch_id": watch_id}
+
+
+@app.post("/api/v2/watchlist/trigger-check")
+async def trigger_watchlist_check():
+    """Manual / webhook trigger for the background alert worker."""
+    alerts_count = await scheduler.run_check_cycle()
+    return {"status": "ok", "alerts_dispatched": alerts_count}
+
+
+@app.get("/api/v2/hotels/{hotel_id}/history", response_model=HotelPassportResponse)
+async def get_hotel_history_passport(hotel_id: str, db: AsyncSession = Depends(get_db)):
+    """Retrieves complete Hotel Passport with all-time price history points and stats."""
+    return await WatchlistService.get_hotel_passport(db, hotel_id)
 

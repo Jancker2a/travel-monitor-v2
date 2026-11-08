@@ -1,29 +1,12 @@
 import pytest
 from unittest.mock import patch
 from httpx import AsyncClient, ASGITransport
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from app.main import app
-from app.database import Base, get_db
 from tests.test_live_scraper import SAMPLE_HTML
-
-# Test SQLite in-memory DB
-_engine = create_async_engine("sqlite+aiosqlite:///:memory:", echo=False)
-_session_factory = async_sessionmaker(_engine, expire_on_commit=False)
-
-
-async def override_get_db():
-    async with _session_factory() as session:
-        yield session
-
-
-app.dependency_overrides[get_db] = override_get_db
 
 
 @pytest.mark.asyncio
-async def test_search_api_endpoint():
-    async with _engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
+async def test_search_api_endpoint(setup_test_db):
     # Mock live HTML fetch to return SAMPLE_HTML
     with patch(
         "app.services.live_scraper.LiveScraperService.fetch_page_html",
@@ -48,6 +31,7 @@ async def test_search_api_endpoint():
                         "children": 0,
                     },
                     "airports": ["WAW", "KTW"],
+                    "force_live_refresh": True,
                 },
             )
 
@@ -63,5 +47,3 @@ async def test_search_api_endpoint():
             assert hotel1["current_offer"]["total_price_pln"] == 4250.0
             assert hotel1["intelligence"]["hopper_verdict"] in ["BUY NOW", "WAIT", "OVERPRICED"]
             assert isinstance(hotel1["history_sparkline"], list)
-
-    await _engine.dispose()

@@ -51,6 +51,7 @@ class OfferCohort(Base):
     # Relationships
     hotel = relationship("Hotel", back_populates="cohorts")
     snapshots = relationship("PriceSnapshot", back_populates="cohort", cascade="all, delete-orphan", order_by="PriceSnapshot.recorded_at")
+    watchlists = relationship("WatchlistItem", back_populates="cohort", cascade="all, delete-orphan")
 
     __table_args__ = (
         Index("idx_cohort_search", "hotel_id", "checkin_date", "duration_nights", "airport_code"),
