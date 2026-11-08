@@ -144,3 +144,19 @@ export async function getArbitrageDeals(minSavings: number = 300): Promise<any[]
   return resp.json();
 }
 
+export async function getOffersCountTimeline(): Promise<{ day: string; count: number }[]> {
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/offers-count-timeline`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки таймлайна предложений (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getEarlyBookingAnalytics(): Promise<any> {
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/early-booking`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки раннего бронирования (${resp.status})`);
+  }
+  return resp.json();
+}
+

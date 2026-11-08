@@ -200,6 +200,18 @@ async def get_top10_timeline(db: AsyncSession = Depends(get_db), destination: st
     return await AnalyticsService.get_top10_timeline(db, destination=destination)
 
 
+@app.get("/api/v2/analytics/offers-count-timeline")
+async def get_offers_count_timeline(db: AsyncSession = Depends(get_db)):
+    """Daily offers count timeline for market depth chart."""
+    return await AnalyticsService.get_offers_count_timeline(db)
+
+
+@app.get("/api/v2/analytics/early-booking")
+async def get_early_booking(db: AsyncSession = Depends(get_db)):
+    """Early Booking Advantage Score (EBAS), trajectory, and survival curves."""
+    return await AnalyticsService.get_early_booking_analytics(db)
+
+
 @app.get("/api/v2/analytics/overview")
 async def get_market_overview(db: AsyncSession = Depends(get_db)):
     """High-level platform market counters (total hotels, cohorts, snapshots)."""
