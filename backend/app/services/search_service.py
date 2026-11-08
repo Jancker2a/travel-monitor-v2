@@ -1,7 +1,7 @@
 import uuid
 import logging
 from typing import List, Optional
-from datetime import datetime
+from datetime import datetime, date
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_, or_, func, desc
 
@@ -94,12 +94,13 @@ class SearchService:
 
         # Flexible date range filter
         if req.dates.start_date_min and req.dates.start_date_max:
-            conditions.append(
-                OfferCohort.checkin_date.between(
-                    req.dates.start_date_min.isoformat(),
-                    req.dates.start_date_max.isoformat(),
-                )
-            )
+            min_d = req.dates.start_date_min
+            max_d = req.dates.start_date_max
+            if isinstance(min_d, str):
+                min_d = datetime.strptime(min_d[:10], "%Y-%m-%d").date()
+            if isinstance(max_d, str):
+                max_d = datetime.strptime(max_d[:10], "%Y-%m-%d").date()
+            conditions.append(OfferCohort.checkin_date.between(min_d, max_d))
 
         stmt = (
             select(OfferCohort, Hotel)
