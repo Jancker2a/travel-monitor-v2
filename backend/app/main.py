@@ -5,10 +5,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
+import uuid
 from app.config import settings
 from app.database import engine, Base, get_db
 from app.schemas.search import SearchRequest, SearchResponse
-from app.services.query_builder import UniversalQueryBuilder
+from app.services.search_service import SearchService
 
 logging.basicConfig(
     level=logging.INFO,
@@ -58,16 +59,8 @@ async def healthcheck(db: AsyncSession = Depends(get_db)):
 
 @app.post("/api/v2/search", response_model=SearchResponse)
 async def universal_search(req: SearchRequest, db: AsyncSession = Depends(get_db)):
-    """Universal search across all destinations, dates, and pax combinations."""
-    # Generate provider URL
-    flypl_url = UniversalQueryBuilder.build_flypl_url(req)
-    logger.info(f"Generated universal search query: {flypl_url}")
-    
-    # Placeholder response demonstrating the schema contract
-    return SearchResponse(
-        search_id="demo_search_001",
-        cached=False,
-        total_found=0,
-        results=[],
-    )
+    """Universal search across all destinations, dates, and pax combinations
+    powered by Dual-Engine architecture (DB cache + on-demand live scraper).
+    """
+    return await SearchService.search(db, req)
 

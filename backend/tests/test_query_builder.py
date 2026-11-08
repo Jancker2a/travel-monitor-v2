@@ -19,7 +19,7 @@ class TestUniversalQueryBuilder(unittest.TestCase):
             price_max_pln=9500,
         )
         url = UniversalQueryBuilder.build_flypl_url(req)
-        self.assertIn("destinationLocation=1%3A1", url)
+        self.assertIn("destinationLocation=11_154", url)
         self.assertIn("departureLocation=Warszawa%2CKatowice", url)
         self.assertIn("startDateMin=20-12-2026", url)
         self.assertIn("adults=2", url)

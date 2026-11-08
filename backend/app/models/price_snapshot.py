@@ -1,6 +1,6 @@
 from sqlalchemy import (
     Column,
-    BigInteger,
+    Integer,
     String,
     Float,
     DateTime,
@@ -15,7 +15,7 @@ from app.database import Base
 class PriceSnapshot(Base):
     __tablename__ = "price_snapshots"
 
-    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     cohort_hash = Column(String(32), ForeignKey("offer_cohorts.cohort_hash", ondelete="CASCADE"), nullable=False, index=True)
     recorded_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
     total_price_pln = Column(Float, nullable=False)

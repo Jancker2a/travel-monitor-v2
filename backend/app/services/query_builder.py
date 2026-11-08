@@ -4,18 +4,18 @@ from typing import Dict, Any, List
 from app.schemas.search import SearchRequest
 
 DESTINATION_CODES: Dict[str, str] = {
-    "egypt": "1:",
-    "egypt_sharm": "1:1",
-    "egypt_hurghada": "1:2",
-    "egypt_marsa": "1:3",
-    "turkey": "2:",
-    "turkey_antalya": "2:1",
-    "turkey_aegean": "2:2",
-    "greece": "3:",
-    "greece_crete": "3:1",
-    "greece_rhodes": "3:2",
-    "spain": "4:",
-    "cyprus": "6:",
+    "egypt": "11:",
+    "egypt_sharm": "11_154",
+    "egypt_hurghada": "11_155",
+    "egypt_marsa": "11_156",
+    "turkey": "39:",
+    "turkey_antalya": "39_3",
+    "turkey_aegean": "39_14",
+    "greece": "14:",
+    "greece_crete": "14_1",
+    "greece_rhodes": "14_2",
+    "spain": "18:",
+    "cyprus": "10:",
 }
 
 AIRPORT_NAMES: Dict[str, str] = {
