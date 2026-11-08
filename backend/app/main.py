@@ -161,10 +161,14 @@ async def get_hotel_normalized_history(hotel_id: str, db: AsyncSession = Depends
 
     prices = [p["normalized_price_1p_8n"] for p in points if p["normalized_price_1p_8n"] > 0]
     import statistics
+    current_norm = prices[-1] if prices else 0.0
+    latest_pure = points[-1]["pure_hotel_night_rate"] if points else 0.0
     stats = {
-        "min_normalized_pln": min(prices) if prices else 0.0,
-        "median_normalized_pln": statistics.median(prices) if prices else 0.0,
-        "max_normalized_pln": max(prices) if prices else 0.0,
+        "current_normalized_pln": round(current_norm, 0),
+        "pure_hotel_night_rate": round(latest_pure, 0),
+        "min_normalized_pln": round(min(prices), 0) if prices else 0.0,
+        "median_normalized_pln": round(statistics.median(prices), 0) if prices else 0.0,
+        "max_normalized_pln": round(max(prices), 0) if prices else 0.0,
         "total_snapshots": len(points),
     }
 
@@ -178,6 +182,7 @@ async def get_hotel_normalized_history(hotel_id: str, db: AsyncSession = Depends
             "Вычисляется как: Фиксированный чартерный перелёт + (8 ночей × Чистая посуточная ставка отеля × Single Factor)."
         ),
         "stats": stats,
+        "points": points,
         "history": points,
     }
 

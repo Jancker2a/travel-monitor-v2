@@ -8,7 +8,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { HotelPassport } from "../types";
-import { getHotelPassport } from "../services/api";
+import { getHotelPassport, getHotelNormalizedHistory } from "../services/api";
 
 declare global {
   interface Window {
@@ -26,32 +26,34 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   onClose,
 }) => {
   const [passport, setPassport] = useState<HotelPassport | null>(null);
+  const [normalizedData, setNormalizedData] = useState<any>(null);
+  const [historyMode, setHistoryMode] = useState<"original" | "normalized">("original");
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"ai" | "history" | "infra" | "packages">("ai");
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
-  // Fetch passport data
+  // Fetch passport data & normalized history
   useEffect(() => {
     if (!hotelId) {
       setPassport(null);
+      setNormalizedData(null);
       return;
     }
     setIsLoading(true);
     setActivePhotoIdx(0);
     setActiveTab("ai");
+    setHistoryMode("original");
 
     getHotelPassport(hotelId)
-      .then((data) => {
-        setPassport(data);
-      })
-      .catch((err) => {
-        console.error("Failed to load hotel passport:", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .then((data) => setPassport(data))
+      .catch((err) => console.error("Failed to load hotel passport:", err))
+      .finally(() => setIsLoading(false));
+
+    getHotelNormalizedHistory(hotelId)
+      .then((data) => setNormalizedData(data))
+      .catch(() => setNormalizedData(null));
   }, [hotelId]);
 
   // Render Plotly Price History Chart when history tab is activated
@@ -60,6 +62,48 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       return;
     }
 
+    if (historyMode === "normalized" && normalizedData?.points?.length) {
+      // Normalized Benchmark Series (1 pax, 8 nights)
+      const xVals = normalizedData.points.map((p: any) => p.recorded_at);
+      const yVals = normalizedData.points.map((p: any) => p.normalized_price_1p_8n);
+      const minP = normalizedData.stats.min_normalized_pln;
+      const medP = normalizedData.stats.median_normalized_pln;
+
+      const trace = {
+        x: xVals,
+        y: yVals,
+        type: "scatter",
+        mode: "lines+markers",
+        name: "Эталон 1p / 8n (PLN)",
+        line: { color: "#0891b2", width: 2.5, shape: "linear" },
+        marker: { size: 5, color: "#0e7490" },
+        hovertemplate: "<b>%{y:,.0f} zł</b> (1 чел / 8н)<br>%{x|%d.%m %H:%M}<extra></extra>",
+      };
+
+      const layout = {
+        title: {
+          text: "Нормализованный эталон цен (1 человек • 8 ночей, PLN)",
+          font: { size: 13, family: "Inter, sans-serif", color: "#0f172a" },
+          x: 0.05,
+        },
+        margin: { l: 55, r: 25, t: 40, b: 40 },
+        height: 320,
+        paper_bgcolor: "transparent",
+        plot_bgcolor: "transparent",
+        xaxis: { gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
+        yaxis: { title: "Эталон (PLN)", gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
+        shapes: [
+          { type: "line", y0: minP, y1: minP, x0: 0, x1: 1, xref: "paper", line: { color: "#10b981", width: 1.5, dash: "dot" } },
+          { type: "line", y0: medP, y1: medP, x0: 0, x1: 1, xref: "paper", line: { color: "#f59e0b", width: 1.5, dash: "dot" } },
+        ],
+        font: { family: "Inter, sans-serif", size: 11 },
+      };
+
+      window.Plotly.react(chartContainerRef.current, [trace], layout, { responsive: true, displayModeBar: false });
+      return;
+    }
+
+    // Original Tour History (2+1 / Custom)
     const history = passport.history_points || [];
     if (!history.length) return;
 
@@ -145,7 +189,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     };
 
     window.Plotly.react(chartContainerRef.current, [trace], layout, config);
-  }, [activeTab, passport]);
+  }, [activeTab, passport, historyMode, normalizedData]);
 
   if (!hotelId) return null;
 
@@ -531,11 +575,34 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           {/* TAB 2: График Plotly и Аналитика */}
           {activeTab === "history" && (
             <div className="drawer-tab-panel active" id="tabPanel-history">
-              <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+              <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
+                <div className="mode-switch-box">
+                  <button
+                    type="button"
+                    className={`mode-btn ${historyMode === "original" ? "active" : ""}`}
+                    onClick={() => setHistoryMode("original")}
+                  >
+                    Пакетный тур ({passport?.active_cohorts_count || 1} напр.)
+                  </button>
+                  <button
+                    type="button"
+                    className={`mode-btn ${historyMode === "normalized" ? "active" : ""}`}
+                    onClick={() => setHistoryMode("normalized")}
+                  >
+                    🏷️ Эталон (1 чел / 8 ночей)
+                  </button>
+                </div>
+
                 <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700 }}>
-                  🟢 Исторически низкая цена
+                  {historyMode === "normalized" ? "📊 Нормализованная база" : "🟢 Исторически низкая цена"}
                 </div>
               </div>
+
+              {historyMode === "normalized" && (
+                <div style={{ background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: "10px", padding: "10px 14px", marginBottom: "12px", fontSize: "11px", color: "#0369a1" }}>
+                  💡 <strong>Эталон 1p / 8n:</strong> исключает искажения состава семьи и дат. Выделена чистая себестоимость ночи в отеле (~<strong>{normalizedData?.stats?.pure_hotel_night_rate || 450} zł/ночь</strong>) и стандартный перелёт.
+                </div>
+              )}
 
               <div className="chart-container-box" style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "10px", marginBottom: "16px" }}>
                 <div ref={chartContainerRef} id="drawerPlotlyChart" style={{ width: "100%", height: "320px" }} />
@@ -543,30 +610,46 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
               <div className="benchmarks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "16px" }}>
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
-                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Текущая цена</div>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
+                    {historyMode === "normalized" ? "Текущий эталон" : "Текущая цена"}
+                  </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginTop: "2px" }}>
-                    {currentPrice.toLocaleString("ru-RU")} zł
+                    {historyMode === "normalized" && normalizedData?.stats?.current_normalized_pln != null
+                      ? `${Number(normalizedData.stats.current_normalized_pln).toLocaleString("ru-RU")} zł`
+                      : `${currentPrice.toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
-                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Минимум истории</div>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
+                    {historyMode === "normalized" ? "Мин. эталон" : "Минимум истории"}
+                  </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a", marginTop: "2px" }}>
-                    {minPrice.toLocaleString("ru-RU")} zł
+                    {historyMode === "normalized" && normalizedData?.stats?.min_normalized_pln != null
+                      ? `${Number(normalizedData.stats.min_normalized_pln).toLocaleString("ru-RU")} zł`
+                      : `${minPrice.toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
-                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Максимум цен</div>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
+                    {historyMode === "normalized" ? "Макс. эталон" : "Максимум цен"}
+                  </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
-                    {maxPrice.toLocaleString("ru-RU")} zł
+                    {historyMode === "normalized" && normalizedData?.stats?.max_normalized_pln != null
+                      ? `${Number(normalizedData.stats.max_normalized_pln).toLocaleString("ru-RU")} zł`
+                      : `${maxPrice.toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
-                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Экономия от пика</div>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
+                    {historyMode === "normalized" ? "Чистая ночь" : "Экономия от пика"}
+                  </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#2563eb", marginTop: "2px" }}>
-                    {savings > 0 ? `-${savings.toLocaleString("ru-RU")} zł` : "0 zł"}
+                    {historyMode === "normalized" && normalizedData?.stats?.pure_hotel_night_rate != null
+                      ? `~${normalizedData.stats.pure_hotel_night_rate} zł/н`
+                      : savings > 0 ? `-${savings.toLocaleString("ru-RU")} zł` : "0 zł"}
                   </div>
                 </div>
               </div>
