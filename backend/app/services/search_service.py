@@ -19,6 +19,7 @@ from app.schemas.search import (
 from app.services.live_scraper import LiveScraperService
 from app.services.query_builder import UniversalQueryBuilder
 from app.services.cost_decomposer import CostDecomposer
+from app.services.canonical_filters import resolve_filter_spec
 
 logger = logging.getLogger("travel_monitor_2.search")
 
@@ -93,20 +94,24 @@ class SearchService:
 
         conditions = []
 
-        # If specific canonical filter_id is supplied, target it directly
-        if req.filter_id:
-            clean_fid = req.filter_id.replace("filter_", "")
-            conditions.append(
-                or_(
-                    OfferCohort.destination_code.ilike(f"%{clean_fid}%"),
-                    OfferCohort.destination_code == req.filter_id,
-                )
-            )
+        # 1. Target canonical filter if specified
+        spec = resolve_filter_spec(req.filter_id)
+        if spec:
+            conditions.append(OfferCohort.destination_code.in_(spec["destination_codes"]))
+            conditions.append(OfferCohort.adults == spec["adults"])
+            conditions.append(OfferCohort.children == spec["children"])
+            if spec.get("airports"):
+                airport_conds = [OfferCohort.airport_code.ilike(f"%{a}%") for a in spec["airports"]]
+                conditions.append(or_(*airport_conds))
         else:
+            # Custom / interactive search mode
             if req.duration and req.duration.min_nights:
                 conditions.append(
                     OfferCohort.duration_nights.between(req.duration.min_nights, req.duration.max_nights)
                 )
+            if req.travelers:
+                conditions.append(OfferCohort.adults == req.travelers.adults)
+                conditions.append(OfferCohort.children == req.travelers.children)
             if dest_keyword:
                 conditions.append(
                     or_(
@@ -114,6 +119,21 @@ class SearchService:
                         Hotel.country == country_name,
                     )
                 )
+            if req.airports:
+                airport_conds = []
+                for a in req.airports:
+                    a_lower = a.lower()
+                    if a_lower in ["waw", "wmi", "rdo", "warszawa", "warsaw"]:
+                        airport_conds.extend([
+                            OfferCohort.airport_code.ilike("%warszawa%"),
+                            OfferCohort.airport_code.ilike("%radom%"),
+                            OfferCohort.airport_code.ilike("%modlin%"),
+                            OfferCohort.airport_code.ilike("%okęcie%"),
+                        ])
+                    else:
+                        airport_conds.append(OfferCohort.airport_code.ilike(f"%{a}%"))
+                if airport_conds:
+                    conditions.append(or_(*airport_conds))
 
         stmt = (
             select(OfferCohort, Hotel)
@@ -126,15 +146,19 @@ class SearchService:
         result = await db.execute(stmt)
         cohort_rows = result.all()
 
-        if not cohort_rows and dest_keyword:
-            # Broad fallback by country
+        if not cohort_rows and not spec and dest_keyword:
+            # Only broad fallback for free-text search when no canonical spec is matched
             broad_stmt = (
                 select(OfferCohort, Hotel)
                 .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
                 .where(
-                    or_(
-                        OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
-                        Hotel.country == country_name,
+                    and_(
+                        OfferCohort.adults == (req.travelers.adults if req.travelers else 2),
+                        OfferCohort.children == (req.travelers.children if req.travelers else 0),
+                        or_(
+                            OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
+                            Hotel.country == country_name,
+                        ),
                     )
                 )
                 .limit(limit)

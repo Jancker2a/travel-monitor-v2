@@ -18,11 +18,13 @@ declare global {
 
 interface HotelPassportDrawerProps {
   hotelId: string | null;
+  filterId?: string | null;
   onClose: () => void;
 }
 
 export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   hotelId,
+  filterId,
   onClose,
 }) => {
   const [passport, setPassport] = useState<HotelPassport | null>(null);
@@ -46,7 +48,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActiveTab("ai");
     setHistoryMode("original");
 
-    getHotelPassport(hotelId)
+    getHotelPassport(hotelId, filterId || undefined)
       .then((data) => setPassport(data))
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
@@ -54,7 +56,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     getHotelNormalizedHistory(hotelId)
       .then((data) => setNormalizedData(data))
       .catch(() => setNormalizedData(null));
-  }, [hotelId]);
+  }, [hotelId, filterId]);
 
   // Render Plotly Price History Chart when history tab is activated
   useEffect(() => {

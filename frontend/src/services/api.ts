@@ -22,8 +22,9 @@ export async function searchTours(req: SearchRequest): Promise<SearchResponse> {
   return resp.json();
 }
 
-export async function getHotelPassport(hotelId: string): Promise<HotelPassport> {
-  const resp = await fetch(`${API_BASE}/api/v2/hotels/${hotelId}/history`);
+export async function getHotelPassport(hotelId: string, filterId?: string): Promise<HotelPassport> {
+  const q = filterId ? `?filter_id=${encodeURIComponent(filterId)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/hotels/${encodeURIComponent(hotelId)}/history${q}`);
   if (!resp.ok) {
     throw new Error(`Ошибка получения паспорта отеля (${resp.status})`);
   }
@@ -72,8 +73,14 @@ export async function getTopPriceDrops(limit: number = 12): Promise<PriceDropIte
   return resp.json();
 }
 
-export async function getTop10Timeline(destination?: string): Promise<{ date: string; avg_price: number; min_price: number; max_price: number }[]> {
-  const q = destination ? `?destination=${encodeURIComponent(destination)}` : "";
+export async function getTop10Timeline(
+  filterId?: string,
+  destination?: string
+): Promise<{ date: string; avg_price: number; min_price: number; max_price: number }[]> {
+  const params = new URLSearchParams();
+  if (filterId) params.append("filter_id", filterId);
+  if (destination) params.append("destination", destination);
+  const q = params.toString() ? `?${params.toString()}` : "";
   const resp = await fetch(`${API_BASE}/api/v2/analytics/top10-timeline${q}`);
   if (!resp.ok) {
     throw new Error(`Ошибка загрузки таймлайна ТОП-10 (${resp.status})`);

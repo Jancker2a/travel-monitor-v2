@@ -8,22 +8,23 @@ declare global {
 }
 
 interface Top10TimelineChartProps {
+  filterId?: string;
   destination?: string;
 }
 
-export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({ destination }) => {
+export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({ filterId, destination }) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const [dataPoints, setDataPoints] = useState<
     { date: string; avg_price: number; min_price: number; max_price: number }[]
   >([]);
 
   useEffect(() => {
-    getTop10Timeline(destination)
+    getTop10Timeline(filterId, destination)
       .then((pts) => {
         setDataPoints(pts);
       })
       .catch((err) => console.warn("Failed to load timeline:", err));
-  }, [destination]);
+  }, [filterId, destination]);
 
   useEffect(() => {
     if (!chartRef.current || !window.Plotly || !dataPoints.length) return;

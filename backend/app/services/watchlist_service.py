@@ -263,67 +263,124 @@ class WatchlistService:
 
     @classmethod
     async def get_hotel_passport(
-        cls, db: AsyncSession, hotel_id: str
+        cls, db: AsyncSession, hotel_id: str, filter_id: Optional[str] = None
     ) -> HotelPassportResponse:
         from app.services.hotel_knowledge_service import HotelKnowledgeService
+        from app.services.canonical_filters import resolve_filter_spec
 
-        # Fetch Hotel
+        # 1. Fetch Hotel
         h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
         hotel = (await db.execute(h_stmt)).scalar_one_or_none()
         if not hotel:
             raise HTTPException(status_code=404, detail="Hotel not found")
 
-        # Fetch all snapshots for this hotel across all cohorts
-        snap_stmt = (
-            select(PriceSnapshot, OfferCohort)
-            .join(OfferCohort, PriceSnapshot.cohort_hash == OfferCohort.cohort_hash)
-            .where(OfferCohort.hotel_id == hotel_id)
+        # 2. Fetch all cohorts for this hotel
+        cohort_stmt = select(OfferCohort).where(OfferCohort.hotel_id == hotel_id)
+        all_cohorts = (await db.execute(cohort_stmt)).scalars().all()
+        if not all_cohorts:
+            raise HTTPException(status_code=404, detail="No cohorts found for this hotel")
+
+        # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
+        scoped_cohorts = []
+        spec = resolve_filter_spec(filter_id)
+        if spec:
+            dest_codes = set(spec.get("destination_codes", []))
+            scoped_cohorts = [c for c in all_cohorts if c.destination_code in dest_codes]
+            if not scoped_cohorts:
+                # Fallback to party composition
+                scoped_cohorts = [c for c in all_cohorts if c.adults == spec.get("adults", 2) and c.children == spec.get("children", 1)]
+
+        # If still no scoped cohorts or no filter_id provided, pick the destination_code group with the most snapshots
+        if not scoped_cohorts:
+            # Group cohorts by destination_code and pick the largest one
+            from collections import Counter
+            dest_counter = Counter([c.destination_code for c in all_cohorts])
+            top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
+            scoped_cohorts = [c for c in all_cohorts if c.destination_code == top_dest] if top_dest else all_cohorts
+
+        scoped_hashes = {c.cohort_hash for c in scoped_cohorts}
+        cohort_by_hash = {c.cohort_hash: c for c in all_cohorts}
+
+        # 4. Fetch all snapshots for all cohorts (to populate packages_map)
+        all_hashes = [c.cohort_hash for c in all_cohorts]
+        from sqlalchemy import bindparam
+        snap_query = (
+            select(PriceSnapshot)
+            .where(PriceSnapshot.cohort_hash.in_(all_hashes))
             .order_by(PriceSnapshot.recorded_at.asc())
         )
-        snap_rows = (await db.execute(snap_stmt)).all()
+        snap_rows = (await db.execute(snap_query)).scalars().all()
 
-        history_points: List[HotelHistoryPoint] = []
-        prices: List[float] = []
         packages_map: Dict[str, Dict[str, Any]] = {}
-
-        cohorts_set = set()
-        for snap, cohort in snap_rows:
-            cohorts_set.add(cohort.cohort_hash)
-            prices.append(snap.total_price_pln)
-
-            rec_dt = (
-                datetime.fromisoformat(snap.recorded_at)
-                if isinstance(snap.recorded_at, str)
-                else snap.recorded_at or datetime.utcnow()
-            )
+        # Keep latest snapshot for each cohort package
+        for snap in snap_rows:
+            cohort = cohort_by_hash.get(snap.cohort_hash)
+            if not cohort:
+                continue
             checkin_d = (
                 datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
                 if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
                 else datetime.utcnow().date()
             )
-
-            history_points.append(
-                HotelHistoryPoint(
-                    recorded_at=rec_dt,
-                    total_price_pln=snap.total_price_pln,
-                    price_per_night_per_pax=snap.price_per_night_per_pax,
-                    departure_date=checkin_d,
-                    duration_nights=cohort.duration_nights,
-                    airport=cohort.airport_code,
-                )
-            )
-
-            # Keep latest price for each package
             packages_map[cohort.cohort_hash] = {
                 "cohort_hash": cohort.cohort_hash,
+                "destination_code": cohort.destination_code,
                 "airport": cohort.airport_code,
                 "departure_date": str(checkin_d),
                 "duration_nights": cohort.duration_nights,
+                "adults": cohort.adults,
+                "children": cohort.children,
                 "total_price_pln": snap.total_price_pln,
                 "price_per_night_pax": round(snap.price_per_night_per_pax, 1),
                 "operator": cohort.operator or "Touroperator",
                 "booking_url": cohort.offer_url,
             }
+
+        # 5. Build clean, non-oscillating history points for scoped cohorts
+        # Group snapshots by hourly bucket and take MIN price per bucket
+        hourly_map: Dict[str, Dict[str, Any]] = {}
+        for snap in snap_rows:
+            if snap.cohort_hash not in scoped_hashes:
+                continue
+            rec_dt = (
+                datetime.fromisoformat(snap.recorded_at)
+                if isinstance(snap.recorded_at, str)
+                else snap.recorded_at or datetime.utcnow()
+            )
+            bucket_key = rec_dt.strftime("%Y-%m-%d %H:00")
+            cohort = cohort_by_hash[snap.cohort_hash]
+            checkin_d = (
+                datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
+                if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
+                else datetime.utcnow().date()
+            )
+            if bucket_key not in hourly_map or snap.total_price_pln < hourly_map[bucket_key]["price"]:
+                hourly_map[bucket_key] = {
+                    "recorded_at": rec_dt,
+                    "price": snap.total_price_pln,
+                    "price_per_night_pax": snap.price_per_night_per_pax,
+                    "departure_date": checkin_d,
+                    "duration_nights": cohort.duration_nights,
+                    "airport": cohort.airport_code,
+                }
+
+        sorted_buckets = sorted(hourly_map.keys())
+        history_points: List[HotelHistoryPoint] = []
+        prices: List[float] = []
+
+        for b_key in sorted_buckets:
+            item = hourly_map[b_key]
+            prices.append(item["price"])
+            history_points.append(
+                HotelHistoryPoint(
+                    recorded_at=item["recorded_at"],
+                    total_price_pln=item["price"],
+                    price_per_night_per_pax=item["price_per_night_pax"],
+                    departure_date=item["departure_date"],
+                    duration_nights=item["duration_nights"],
+                    airport=item["airport"],
+                )
+            )
 
         min_p = min(prices) if prices else 0.0
         max_p = max(prices) if prices else 0.0
@@ -389,7 +446,7 @@ class WatchlistService:
             all_time_max_pln=max_p,
             typical_median_pln=med_p,
             current_price_pln=curr_p,
-            active_cohorts_count=len(cohorts_set),
+            active_cohorts_count=len(all_cohorts),
             deal_score=deal_score,
             deal_badge=deal_badge,
             hopper_verdict=verdict,

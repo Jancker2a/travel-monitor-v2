@@ -1,4 +1,5 @@
 import logging
+from typing import Optional, List, Dict, Any
 from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
@@ -123,9 +124,9 @@ from app.services.analytics_service import AnalyticsService
 
 
 @app.get("/api/v2/hotels/{hotel_id}/history", response_model=HotelPassportResponse)
-async def get_hotel_history_passport(hotel_id: str, db: AsyncSession = Depends(get_db)):
+async def get_hotel_history_passport(hotel_id: str, filter_id: Optional[str] = None, db: AsyncSession = Depends(get_db)):
     """Retrieves complete Hotel Passport with all-time price history points and stats (Raw exact cohorts)."""
-    return await WatchlistService.get_hotel_passport(db, hotel_id)
+    return await WatchlistService.get_hotel_passport(db, hotel_id, filter_id=filter_id)
 
 
 @app.get("/api/v2/hotels/{hotel_id}/normalized-history")
@@ -203,9 +204,9 @@ async def get_airports_comparison(db: AsyncSession = Depends(get_db), destinatio
 
 
 @app.get("/api/v2/analytics/top10-timeline")
-async def get_top10_timeline(db: AsyncSession = Depends(get_db), destination: str = None):
+async def get_top10_timeline(filter_id: Optional[str] = None, destination: Optional[str] = None, db: AsyncSession = Depends(get_db)):
     """Time-series of top 10 cheapest offers (avg, min, max) across historical scrape runs."""
-    return await AnalyticsService.get_top10_timeline(db, destination=destination)
+    return await AnalyticsService.get_top10_timeline(db, filter_id=filter_id, destination=destination)
 
 
 @app.get("/api/v2/analytics/offers-count-timeline")

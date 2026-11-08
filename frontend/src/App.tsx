@@ -895,7 +895,10 @@ export const App: React.FC = () => {
         />
 
         {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
-        <Top10TimelineChart destination={currentPreset.destination} />
+        <Top10TimelineChart
+          filterId={activeTab === "filter" ? activeFilterId : undefined}
+          destination={currentPreset.destination}
+        />
 
         {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
         <AnalyticsFold
@@ -950,6 +953,7 @@ export const App: React.FC = () => {
       {/* 7. Hotel AI Passport Drawer (Slides out from RIGHT) */}
       <HotelPassportDrawer
         hotelId={activeHotelPassport}
+        filterId={activeTab === "filter" ? activeFilterId : undefined}
         onClose={() => setActiveHotelPassport(null)}
       />
 
