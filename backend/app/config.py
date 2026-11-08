@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     # Live Crawler settings
     SCRAPER_TIMEOUT_SECONDS: float = 12.0
     CACHE_SEARCH_TTL_SECONDS: int = 7200  # 2 hours
+    ENABLE_BACKGROUND_SCHEDULER: bool = False  # Disabled on web servers; scraping is handled by GitHub Actions cron
 
     model_config = SettingsConfigDict(
         env_file=str(ENV_FILE) if ENV_FILE.is_file() else ".env",

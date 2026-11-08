@@ -39,13 +39,16 @@ async def lifespan(app: FastAPI):
         from app.services.filter_monitor_service import FilterMonitorService
         await FilterMonitorService.init_default_monitors(db)
 
-    # Start background scheduler
-    await scheduler.start()
+    # Start background scheduler only if explicitly enabled (e.g. standalone worker)
+    if settings.ENABLE_BACKGROUND_SCHEDULER:
+        logger.info("Starting background scheduler...")
+        await scheduler.start()
 
     yield
 
-    # Stop background scheduler
-    await scheduler.stop()
+    # Stop background scheduler if running
+    if settings.ENABLE_BACKGROUND_SCHEDULER:
+        await scheduler.stop()
     logger.info("Shutting down database connection pool...")
     await engine.dispose()
 
