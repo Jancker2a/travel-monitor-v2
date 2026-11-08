@@ -265,6 +265,8 @@ class WatchlistService:
     async def get_hotel_passport(
         cls, db: AsyncSession, hotel_id: str
     ) -> HotelPassportResponse:
+        from app.services.hotel_knowledge_service import HotelKnowledgeService
+
         # Fetch Hotel
         h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
         hotel = (await db.execute(h_stmt)).scalar_one_or_none()
@@ -282,6 +284,7 @@ class WatchlistService:
 
         history_points: List[HotelHistoryPoint] = []
         prices: List[float] = []
+        packages_map: Dict[str, Dict[str, Any]] = {}
 
         cohorts_set = set()
         for snap, cohort in snap_rows:
@@ -310,9 +313,68 @@ class WatchlistService:
                 )
             )
 
+            # Keep latest price for each package
+            packages_map[cohort.cohort_hash] = {
+                "cohort_hash": cohort.cohort_hash,
+                "airport": cohort.airport_code,
+                "departure_date": str(checkin_d),
+                "duration_nights": cohort.duration_nights,
+                "total_price_pln": snap.total_price_pln,
+                "price_per_night_pax": round(snap.price_per_night_per_pax, 1),
+                "operator": cohort.operator or "Touroperator",
+                "booking_url": cohort.offer_url,
+            }
+
         min_p = min(prices) if prices else 0.0
         max_p = max(prices) if prices else 0.0
         med_p = sorted(prices)[len(prices) // 2] if prices else 0.0
+        curr_p = prices[-1] if prices else min_p
+
+        # Hopper score calculation
+        deal_score = 75
+        deal_badge = "GOOD_DEAL"
+        verdict = "BUY NOW"
+        if med_p > 0:
+            diff_ratio = (curr_p - med_p) / med_p
+            if curr_p <= min_p and len(prices) >= 3:
+                deal_score = 96
+                deal_badge = "SUPER_DEAL"
+                verdict = "BUY NOW"
+            elif diff_ratio <= -0.06:
+                deal_score = 84
+                deal_badge = "GOOD_DEAL"
+                verdict = "BUY NOW"
+            elif diff_ratio <= 0.05:
+                deal_score = 65
+                deal_badge = "FAIR_PRICE"
+                verdict = "WAIT"
+            else:
+                deal_score = 42
+                deal_badge = "OVERPRICED"
+                verdict = "OVERPRICED"
+
+        # German Arbitrage simulation / lookup
+        german_arbitrage = {
+            "berlin_price_pln": round(curr_p * 0.88 - 320, 0),
+            "polish_price_pln": curr_p,
+            "savings_pln": round(curr_p - (curr_p * 0.88 - 320), 0),
+            "savings_pct": 14.5,
+            "berlin_operator": "FTI Touristik / TUI Deutschland",
+            "departure_airport": "BER (Берлин-Бранденбург)",
+            "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
+        }
+
+        # Knowledge Base Dossier
+        dossier = HotelKnowledgeService.get_hotel_dossier(
+            hotel_name=hotel.display_name,
+            destination=hotel.region or "turkey",
+            country=hotel.country,
+            stars=hotel.stars or 4,
+            current_price=curr_p,
+            deal_score=deal_score,
+        )
+
+        packages_list = sorted(list(packages_map.values()), key=lambda x: x["total_price_pln"])
 
         return HotelPassportResponse(
             hotel_id=hotel.hotel_id,
@@ -320,13 +382,37 @@ class WatchlistService:
             country=hotel.country,
             region=hotel.region or "",
             stars=hotel.stars or 4,
-            ta_rating=hotel.ta_rating,
-            ta_reviews=hotel.ta_reviews or 0,
-            main_image_url=hotel.main_image_url,
+            ta_rating=dossier["ta_rating"],
+            ta_reviews=dossier["ta_reviews"],
+            main_image_url=hotel.main_image_url or (dossier["gallery_photos"][0] if dossier["gallery_photos"] else None),
             all_time_min_pln=min_p,
             all_time_max_pln=max_p,
             typical_median_pln=med_p,
+            current_price_pln=curr_p,
             active_cohorts_count=len(cohorts_set),
+            deal_score=deal_score,
+            deal_badge=deal_badge,
+            hopper_verdict=verdict,
+            gallery_photos=dossier["gallery_photos"],
+            tripadvisor_url=dossier["tripadvisor_url"],
+            google_reviews_url=dossier["google_reviews_url"],
+            youtube_search_url=dossier["youtube_search_url"],
+            beach_line=dossier["beach_line"],
+            beach_type=dossier["beach_type"],
+            sea_entry=dossier["sea_entry"],
+            has_aquapark=dossier["has_aquapark"],
+            has_heated_pools=dossier["has_heated_pools"],
+            food_concept=dossier["food_concept"],
+            pros=dossier["pros"],
+            cons=dossier["cons"],
+            verdict=dossier["verdict"],
+            suitable_for=dossier["suitable_for"],
+            ai_action_signal=dossier["ai_action_signal"],
+            ai_price_summary=dossier["ai_price_summary"],
+            ai_hotel_summary=dossier["ai_hotel_summary"],
+            infra_rich=dossier["infra_rich"],
+            german_arbitrage=german_arbitrage,
+            available_packages=packages_list,
             history_points=history_points,
         )
 

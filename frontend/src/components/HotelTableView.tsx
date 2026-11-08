@@ -441,3 +441,4 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
     </div>
   );
 };
+

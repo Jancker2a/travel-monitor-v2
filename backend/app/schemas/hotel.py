@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from typing import Optional, List
+from typing import Optional, List, Any, Dict
 from pydantic import BaseModel, Field
 
 
@@ -24,6 +24,36 @@ class HotelPassportResponse(BaseModel):
     all_time_min_pln: float
     all_time_max_pln: float
     typical_median_pln: float
+    current_price_pln: float = 0.0
     active_cohorts_count: int
-    history_points: List[HotelHistoryPoint] = Field(default_factory=list)
+    deal_score: int = 70
+    deal_badge: str = "GOOD_DEAL"
+    hopper_verdict: str = "BUY NOW"
 
+    # Rich V1 Knowledge Base Profile & AI Dossier
+    gallery_photos: List[str] = Field(default_factory=list)
+    tripadvisor_url: Optional[str] = None
+    google_reviews_url: Optional[str] = None
+    youtube_search_url: Optional[str] = None
+
+    beach_line: int = 1
+    beach_type: str = "песчано-галечный пляж"
+    sea_entry: str = "пологий вход"
+    has_aquapark: bool = False
+    has_heated_pools: bool = False
+    food_concept: str = "All Inclusive"
+
+    pros: List[str] = Field(default_factory=list)
+    cons: List[str] = Field(default_factory=list)
+    verdict: str = ""
+    suitable_for: str = ""
+
+    ai_action_signal: str = ""
+    ai_price_summary: str = ""
+    ai_hotel_summary: str = ""
+
+    infra_rich: Optional[Dict[str, Any]] = None
+    german_arbitrage: Optional[Dict[str, Any]] = None
+    available_packages: List[Dict[str, Any]] = Field(default_factory=list)
+
+    history_points: List[HotelHistoryPoint] = Field(default_factory=list)

@@ -227,3 +227,4 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
     </details>
   );
 };
+

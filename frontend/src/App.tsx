@@ -4,7 +4,7 @@ import { HeroTerminal } from "./components/HeroTerminal";
 import { AnalyticsFold } from "./components/AnalyticsFold";
 import { HotelTableView } from "./components/HotelTableView";
 import { HotelCard } from "./components/HotelCard";
-import { HotelPassportModal } from "./components/HotelPassportModal";
+import { HotelPassportDrawer } from "./components/HotelPassportDrawer";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
 import { SearchHeader } from "./components/SearchHeader";
 import { GermanArbitrageView } from "./components/GermanArbitrageView";
@@ -644,8 +644,8 @@ export const App: React.FC = () => {
         )}
       </main>
 
-      {/* Hotel AI Passport Modal */}
-      <HotelPassportModal
+      {/* Hotel AI Passport Drawer (780px Slide-Over Panel) */}
+      <HotelPassportDrawer
         hotelId={activeHotelPassport}
         onClose={() => setActiveHotelPassport(null)}
       />

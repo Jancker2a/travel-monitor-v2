@@ -100,6 +100,27 @@ export interface HotelHistoryPoint {
   airport: string;
 }
 
+export interface AvailablePackage {
+  cohort_hash: string;
+  airport: string;
+  departure_date: string;
+  duration_nights: number;
+  total_price_pln: number;
+  price_per_night_pax: number;
+  operator?: string;
+  booking_url?: string;
+}
+
+export interface GermanArbitrageData {
+  berlin_price_pln: number;
+  polish_price_pln: number;
+  savings_pln: number;
+  savings_pct: number;
+  berlin_operator: string;
+  departure_airport: string;
+  train_transfer_from_pl: string;
+}
+
 export interface HotelPassport {
   hotel_id: string;
   display_name: string;
@@ -112,7 +133,36 @@ export interface HotelPassport {
   all_time_min_pln: number;
   all_time_max_pln: number;
   typical_median_pln: number;
+  current_price_pln: number;
   active_cohorts_count: number;
+  deal_score: number;
+  deal_badge: string;
+  hopper_verdict: string;
+
+  gallery_photos: string[];
+  tripadvisor_url?: string;
+  google_reviews_url?: string;
+  youtube_search_url?: string;
+
+  beach_line: number;
+  beach_type: string;
+  sea_entry: string;
+  has_aquapark: boolean;
+  has_heated_pools: boolean;
+  food_concept: string;
+
+  pros: string[];
+  cons: string[];
+  verdict: string;
+  suitable_for: string;
+
+  ai_action_signal: string;
+  ai_price_summary: string;
+  ai_hotel_summary: string;
+
+  infra_rich?: Record<string, any>;
+  german_arbitrage?: GermanArbitrageData;
+  available_packages?: AvailablePackage[];
   history_points: HotelHistoryPoint[];
 }
 
