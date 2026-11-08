@@ -44,4 +44,5 @@ echo "Press Ctrl+C to stop the platform."
 echo ""
 
 cd "$PROJECT_ROOT/backend"
-exec python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+exec python run.py 8000
+
