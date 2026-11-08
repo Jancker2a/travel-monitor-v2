@@ -11,15 +11,29 @@ from app.config import settings
 logger = logging.getLogger("travel_monitor_2")
 
 # Database engine initialization
+db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql+asyncpg://", 1)
+elif db_url.startswith("postgresql://") and not db_url.startswith("postgresql+"):
+    db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+
 connect_args = {}
-if "sqlite" in settings.DATABASE_URL:
+engine_kwargs = {
+    "echo": (settings.APP_ENV == "development"),
+    "pool_pre_ping": True,
+}
+
+if "sqlite" in db_url:
     connect_args["check_same_thread"] = False
+else:
+    # PostgreSQL / Supabase connection pool tuning
+    engine_kwargs["pool_size"] = 10
+    engine_kwargs["max_overflow"] = 20
 
 engine = create_async_engine(
-    settings.DATABASE_URL,
-    echo=(settings.APP_ENV == "development"),
+    db_url,
     connect_args=connect_args,
-    pool_pre_ping=True,
+    **engine_kwargs,
 )
 
 AsyncSessionLocal = async_sessionmaker(

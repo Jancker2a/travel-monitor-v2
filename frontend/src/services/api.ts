@@ -8,7 +8,7 @@ import {
   MarketOverview,
 } from "../types";
 
-const API_BASE = "";
+const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || "";
 
 export async function searchTours(req: SearchRequest): Promise<SearchResponse> {
   const resp = await fetch(`${API_BASE}/api/v2/search`, {

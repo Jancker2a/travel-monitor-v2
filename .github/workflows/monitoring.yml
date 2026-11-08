@@ -25,6 +25,7 @@ jobs:
     timeout-minutes: 45
     env:
       PYTHONUNBUFFERED: "1"
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -105,3 +106,4 @@ jobs:
           echo "- **Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Execution Time:** $(date -u)" >> $GITHUB_STEP_SUMMARY
           echo "- **Database:** \`travel_monitor_v2.db\` synchronized" >> $GITHUB_STEP_SUMMARY
+
