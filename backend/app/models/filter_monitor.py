@@ -31,3 +31,4 @@ class FilterMonitor(Base):
 
     def __repr__(self) -> str:
         return f"<FilterMonitor {self.id}: {self.title} ({self.last_offers_count} offers)>"
+

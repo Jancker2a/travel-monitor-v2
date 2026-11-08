@@ -59,6 +59,9 @@ class SearchHotelItem(BaseModel):
     region: Optional[str] = None
     country: str
     main_image_url: Optional[str] = None
+    ta_rating: Optional[float] = None
+    ta_reviews: Optional[int] = None
+    specs: Optional[dict] = None
     current_offer: OfferSummary
     intelligence: HotelIntelligence
     history_sparkline: List[float] = Field(default_factory=list)

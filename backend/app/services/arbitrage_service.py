@@ -119,3 +119,4 @@ class ArbitrageService:
 
         deals.sort(key=lambda x: x["savings_pln"], reverse=True)
         return deals[:limit]
+

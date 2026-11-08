@@ -54,6 +54,9 @@ export interface SearchHotelItem {
   region?: string;
   country: string;
   main_image_url?: string;
+  ta_rating?: number;
+  ta_reviews?: number;
+  specs?: Record<string, any>;
   current_offer: OfferSummary;
   intelligence: HotelIntelligence;
   history_sparkline: number[];

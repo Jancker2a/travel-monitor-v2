@@ -290,3 +290,4 @@ class FilterMonitorService:
         await db.refresh(m)
         logger.info(f"User '{user_id}' registered new custom monitor: {m.title} ({m.id})")
         return m
+
