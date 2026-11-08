@@ -1,0 +1,11 @@
+{
+  "url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=20-09-2025&startDateMax=07-10-2025&returnDate=15-10-2025&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=8&durationTo=8&priceFrom=0&priceTo=8100&order=price",
+  "max_price_threshold": 8100,
+  "wait_timeout": 30000,
+  "max_retries": 3,
+  "max_offers": 200,
+  "retry_delay": 5,
+  "data_dir": "data_runs/egypt_8_days",
+  "output_data_file": "egypt_travel_prices.csv",
+  "description": "Египет • 8 дней • чистый набор данных для новых наблюдений"
+}

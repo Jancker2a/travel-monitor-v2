@@ -51,9 +51,10 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /app/backend/requirements.txt && \
     playwright install chromium
 
-# Copy Backend and Scripts
+# Copy Backend, Scripts, Site, and Database
 COPY backend /app/backend
 COPY scripts /app/scripts
+COPY site /app/site
 COPY travel_monitor_v2.db /app/travel_monitor_v2.db
 
 # Copy Built Frontend Assets from Stage 1 into /app/frontend/dist

@@ -264,10 +264,16 @@ async def get_arbitrage_deals(db: AsyncSession = Depends(get_db), min_savings: f
     return await ArbitrageService.get_arbitrage_deals(db, min_savings_pln=min_savings)
 
 
-# Mount built React SPA frontend if dist exists
+# Mount static site (V1 dashboard & landing) or fallback to React frontend
+site_dir = Path(__file__).resolve().parents[2] / "site"
 dist_dir = Path(__file__).resolve().parents[2] / "frontend" / "dist"
-if dist_dir.is_dir():
-    from fastapi.staticfiles import StaticFiles
+
+from fastapi.staticfiles import StaticFiles
+if site_dir.is_dir():
+    logger.info(f"Mounting production static site from {site_dir} to /")
+    app.mount("/", StaticFiles(directory=str(site_dir), html=True), name="site")
+elif dist_dir.is_dir():
     logger.info(f"Mounting production frontend build from {dist_dir} to /")
     app.mount("/", StaticFiles(directory=str(dist_dir), html=True), name="frontend")
+
 

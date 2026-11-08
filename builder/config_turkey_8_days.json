@@ -1,0 +1,11 @@
+{
+  "url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=28-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4766&priceTo=9000&order=price",
+  "max_price_threshold": 9000,
+  "wait_timeout": 30000,
+  "max_retries": 3,
+  "max_offers": 200,
+  "retry_delay": 5,
+  "data_dir": "data_runs/turkey_8_days",
+  "output_data_file": "turkey_travel_prices.csv",
+  "description": "Фильтр • 7-10 дней • 4766-9000 PLN • чистый набор данных для новых наблюдений"
+}

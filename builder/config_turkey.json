@@ -1,0 +1,13 @@
+{
+  "url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=39_3,39_14,39_23,39_25,39_73,39_196&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=20-09-2025&startDateMax=08-10-2025&returnDate=15-10-2025&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=15&priceFrom=0&priceTo=8100&order=price",
+  "max_price_threshold": 8100,
+  "wait_timeout": 30000,
+  "max_retries": 3,
+  "max_offers": 200,
+  "retry_delay": 5,
+  "data_dir": "data",
+  "output_data_file": "turkey_travel_prices.csv",
+  "charts_dir": "data/charts",
+  "report_file": "data/price_report.txt",
+  "description": "Конфигурация для мониторинга цен на путешествия в Турцию"
+}

@@ -1,0 +1,24 @@
+{
+  "allow_empty_offers": true,
+  "url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-01-2026&startDateMax=22-01-2026&returnDate=31-01-2026&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=9&durationTo=11&priceFrom=4610&priceTo=20000&order=price",
+  "max_price_threshold": 20000,
+  "min_price_threshold": 4610,
+  "required_offer_url_contains": [
+    "/wycieczka/turcja",
+    "transport=accommodation_flight"
+  ],
+  "excluded_offer_url_contains": [
+    "/wycieczka/polska",
+    "/wycieczka/czechy",
+    "transport=accommodation&"
+  ],
+  "wait_timeout": 30000,
+  "max_retries": 3,
+  "max_offers": 0,
+  "max_pages": 10,
+  "display_price_ceiling": 10000,
+  "retry_delay": 5,
+  "data_dir": "data/filters/filter_turkey_9_11_days",
+  "output_data_file": "travel_prices.csv",
+  "description": "CI filter • Турция • 9-11 дней • окно сегодня+30д • сбор 4610-20000 PLN, показ ≤10000 • WAW/WMI/RDO • с питанием"
+}

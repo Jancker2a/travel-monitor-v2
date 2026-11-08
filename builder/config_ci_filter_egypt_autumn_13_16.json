@@ -1,0 +1,27 @@
+{
+  "archived": true,
+  "allow_empty_offers": true,
+  "dynamic_search_dates": false,
+  "retire_after": "2026-11-06",
+  "url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Radom,Warszawa,Warszawa+-+Modlin&startDateMin=10-10-2026&startDateMax=23-10-2026&returnDate=05-11-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=0&priceTo=11000&order=price",
+  "max_price_threshold": 11000,
+  "min_price_threshold": 0,
+  "required_offer_url_contains": [
+    "/wycieczka/egipt",
+    "transport=accommodation_flight"
+  ],
+  "excluded_offer_url_contains": [
+    "/wycieczka/polska",
+    "/wycieczka/czechy",
+    "transport=accommodation&"
+  ],
+  "wait_timeout": 30000,
+  "max_retries": 3,
+  "max_offers": 0,
+  "max_pages": 10,
+  "display_price_ceiling": 11000,
+  "retry_delay": 5,
+  "data_dir": "data/filters/filter_egypt_autumn_2026_13_16_days",
+  "output_data_file": "travel_prices.csv",
+  "description": "CI filter • Египет • осень 10.10–05.11.2026 • 13–16 дн. • WAW/WMI/RDO • 2+1 • с питанием • сбор/показ ≤11k"
+}
