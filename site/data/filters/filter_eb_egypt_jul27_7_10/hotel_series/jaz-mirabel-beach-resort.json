@@ -4,9 +4,6 @@
   "slug": "jaz-mirabel-beach-resort",
   "hotel_name": "Jaz Mirabel Beach Resort",
   "x": [
-    "2026-10-29 15:50:04",
-    "2026-11-01 08:54:17",
-    "2026-11-02 00:45:30",
     "2026-11-02 13:09:23",
     "2026-11-03 06:36:04",
     "2026-11-03 19:40:10",
@@ -17,9 +14,6 @@
     "2026-11-07 01:13:10"
   ],
   "y": [
-    8647.0,
-    8467.0,
-    8467.0,
     8087.0,
     8087.0,
     8087.0,
@@ -30,9 +24,6 @@
     8087.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 06.07.2027 - 13.07.2027",
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 08.07.2027 - 15.07.2027",
-    "Проверка: 02.11.2026 00:45<br>Даты поездки: 08.07.2027 - 15.07.2027",
     "Проверка: 02.11.2026 13:09<br>Даты поездки: 01.07.2027 - 08.07.2027",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 08.07.2027 - 15.07.2027",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 08.07.2027 - 15.07.2027",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-beach-resort/pIH5Fw1WKcH6x6Qh3WRdhAAAogjC8jwAeUt8lR4AWD8RZBcw3G2kEVfwDJY31xh4TnAewqBEVYSU0wnNq51wZIlz9QAVjHLWACagJBSXIhHBG-yAe5BK69TqsEYBvgzUUYlfNKAYSD0KkOAgBjAQIMEi55-g/?operator=EXIM&adults=2&children=2020-08-12&objectId=2821&durationFrom=7&durationTo=10&departureDate=2027-07-08&returnDate=2027-07-15&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701100/plain/cms/fileadmin/config_img/objects/2821/Jaz-Mirabel-Beach-Resort-fly-pl.jpg@webp"
   },
-  "deal_score": 60,
+  "deal_score": 50,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "+0.0%",
-  "delta_avg": "-1.4%",
+  "delta_avg": "+0.0%",
   "confidence": "Medium",
-  "median_p": 8198.134305026288,
+  "median_p": 8087.0,
   "min_p": 8087.0,
-  "max_p": 8647.0,
-  "samples": 11,
+  "max_p": 8087.0,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "08.07.2027 - 15.07.2027",
   "display_price_ceiling": 12000.0,

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "rixos-radamis-sharm-el-sheikh",
+  "hotel_name": "Rixos Radamis Sharm El Sheikh",
+  "x": [
+    "2026-09-13 08:21:19",
+    "2026-09-13 11:27:51",
+    "2026-09-13 14:49:16"
+  ],
+  "y": [
+    9882.0,
+    9882.0,
+    9882.0
+  ],
+  "hover": [
+    "Проверка: 13.09.2026 08:21<br>Даты поездки: 24.10.2026 - 31.10.2026",
+    "Проверка: 13.09.2026 11:27<br>Даты поездки: 24.10.2026 - 31.10.2026",
+    "Проверка: 13.09.2026 14:49<br>Даты поездки: 24.10.2026 - 31.10.2026"
+  ],
+  "meta": {
+    "dates": "24.10.2026 - 31.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/rixos-radamis-sharm-13/pOAgQCazM9HwDmEJylk7o7AAogccD2CeN3JCIb18V3WPP0wgAAAACbhAQAuIQEAAcAEgAqBFdFWlkw2Lea1QZImk1QQVjLB2ADaglFbnRlciBBaXJqBDA4MDByRJ4BlQEfAAIBFgAcABcGEu0DGKEEE7ECFMkEQJJyT6CiAUwAS8cjUAARr7QBHeSNDiAdG93kQg2L4_8IARJjAQxjAQILqjiGdA/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://datacfstatic.merlinx.pl/WEZY/IMG/64951/2f080c2637f6afe8b5573936c5cfd8cc1e84fa1dcefbb37859fd991753515489.webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9882.0,
+  "min_p": 9882.0,
+  "max_p": 9882.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.10.2026 - 31.10.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

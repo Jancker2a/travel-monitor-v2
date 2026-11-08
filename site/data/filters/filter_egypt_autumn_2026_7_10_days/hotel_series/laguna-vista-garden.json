@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "laguna-vista-garden",
+  "hotel_name": "Laguna Vista Garden",
+  "x": [
+    "2026-09-16 19:09:55",
+    "2026-09-16 22:17:00",
+    "2026-09-17 01:04:48",
+    "2026-09-17 03:34:32",
+    "2026-09-17 09:50:22",
+    "2026-09-17 15:37:54"
+  ],
+  "y": [
+    10052.0,
+    10052.0,
+    10052.0,
+    10052.0,
+    10052.0,
+    10052.0
+  ],
+  "hover": [
+    "Проверка: 16.09.2026 19:09<br>Даты поездки: 11.10.2026 - 18.10.2026",
+    "Проверка: 16.09.2026 22:17<br>Даты поездки: 11.10.2026 - 18.10.2026",
+    "Проверка: 17.09.2026 01:04<br>Даты поездки: 11.10.2026 - 18.10.2026",
+    "Проверка: 17.09.2026 03:34<br>Даты поездки: 11.10.2026 - 18.10.2026",
+    "Проверка: 17.09.2026 09:50<br>Даты поездки: 11.10.2026 - 18.10.2026",
+    "Проверка: 17.09.2026 15:37<br>Даты поездки: 11.10.2026 - 18.10.2026"
+  ],
+  "meta": {
+    "dates": "11.10.2026 - 18.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/laguna-vista-garden/pDaxSbBM13ICvdIiMVLm8OAAogpigNr-OMX6g4syzE-BbCTQiPgYhrkVrHHSR3tH9QMnYqBEpPSVAwt9qv1QZIxE5QQViyBGACagNDR21yQpsBFAEVBhcAXANYBVYCQMoGT-IBXQARgcwBXt0uUqYgUwBLxyNhAEzljDoNpv2XCSAAAbzBkPnSiMygMAINYwEADL9mii8/ofertasv/?filter[tourOperator]=JOIP&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Laguna-Vista-Garden.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10052.0,
+  "min_p": 10052.0,
+  "max_p": 10052.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "11.10.2026 - 18.10.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

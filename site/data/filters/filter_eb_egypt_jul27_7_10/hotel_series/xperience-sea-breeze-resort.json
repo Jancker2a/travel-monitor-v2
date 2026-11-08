@@ -4,9 +4,6 @@
   "slug": "xperience-sea-breeze-resort",
   "hotel_name": "Xperience Sea Breeze Resort",
   "x": [
-    "2026-10-29 15:50:04",
-    "2026-11-01 08:54:17",
-    "2026-11-02 00:45:30",
     "2026-11-02 13:09:23",
     "2026-11-03 06:36:04",
     "2026-11-03 19:40:10",
@@ -17,9 +14,6 @@
     "2026-11-07 01:13:10"
   ],
   "y": [
-    8427.0,
-    8477.0,
-    8477.0,
     8477.0,
     8477.0,
     8477.0,
@@ -30,9 +24,6 @@
     8457.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 13.07.2027 - 20.07.2027",
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 13.07.2027 - 20.07.2027",
-    "Проверка: 02.11.2026 00:45<br>Даты поездки: 13.07.2027 - 20.07.2027",
     "Проверка: 02.11.2026 13:09<br>Даты поездки: 17.07.2027 - 24.07.2027",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 24.07.2027 - 31.07.2027",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 24.07.2027 - 31.07.2027",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-sea-breeze/puZhqrp_rymES65dXIh1Y7AAogICyGj-EPzYLEFU1xZBDwEoZaYUs_Pv9Y5cgrpnQwXlEqBFZJVFgwnNq51wZIiUJQQVjHMGACagpBRUdTU0gyMExLagpSTVNEREJHUDAwagxXTUlTU0hEUDcwMDdqDFNTSFdNSURQNzAwN3I0kQGbAZ0BjwEaABcHFQBcA1gFQI8DXv3_AVOmIFIAS-kmYQBM7oQ4IOzNmgkNAAIMYwECC673O3k/?operator=VITX&adults=2&children=2020-08-12&objectId=37427&durationFrom=7&durationTo=10&departureDate=2027-07-24&returnDate=2027-07-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701107/plain/cms/fileadmin/config_img/objects/37427/XPERIENCE-SEA-BREEZE-RESORT.webp@webp"
   },
-  "deal_score": 54,
+  "deal_score": 53,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "-0.2%",
-  "delta_avg": "+0.5%",
+  "delta_avg": "+0.7%",
   "confidence": "Medium",
-  "median_p": 8413.87402088513,
+  "median_p": 8397.685355322905,
   "min_p": 8071.0,
   "max_p": 8477.0,
-  "samples": 11,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.07.2027 - 31.07.2027",
   "display_price_ceiling": 12000.0,

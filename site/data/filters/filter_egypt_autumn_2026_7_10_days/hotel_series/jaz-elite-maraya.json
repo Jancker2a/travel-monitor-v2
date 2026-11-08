@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "jaz-elite-maraya",
+  "hotel_name": "Jaz Elite Maraya",
+  "x": [
+    "2026-09-24 21:21:47",
+    "2026-09-25 01:18:35",
+    "2026-09-25 03:41:16"
+  ],
+  "y": [
+    8638.0,
+    8638.0,
+    8638.0
+  ],
+  "hover": [
+    "Проверка: 24.09.2026 21:21<br>Даты поездки: 26.10.2026 - 02.11.2026",
+    "Проверка: 25.09.2026 01:18<br>Даты поездки: 26.10.2026 - 02.11.2026",
+    "Проверка: 25.09.2026 03:41<br>Даты поездки: 26.10.2026 - 02.11.2026"
+  ],
+  "meta": {
+    "dates": "26.10.2026 - 02.11.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/jaz-maraya/ppKdb_yxGjB72S1kcTf7HnAAogL7pk7vyb7zrMcP2UR1x153lDAFk0ntAPIzZOjviWBAsqBEVYSU0wwKLX1QZIvkNQAVjmBWADagJBSXIkHBHX_wa5BKmrS6sEaBvEskAYj_BHAfDL0awNARJjAQxjAQIL6sUQgA/ofertasv/?filter[tourOperator]=EXIM&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2019/08/Jaz-Maraya.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8638.0,
+  "min_p": 8638.0,
+  "max_p": 8638.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "26.10.2026 - 02.11.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

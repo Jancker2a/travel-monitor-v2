@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "charmillion-club-aqua-park-ex-sea-club-aqua-park",
+  "hotel_name": "Charmillion Club Aqua Park (ex Sea Club Aqua Park)",
+  "x": [
+    "2026-10-20 03:58:04",
+    "2026-10-20 09:46:15",
+    "2026-10-20 09:55:15"
+  ],
+  "y": [
+    8199.0,
+    8199.0,
+    8199.0
+  ],
+  "hover": [
+    "Проверка: 20.10.2026 03:58<br>Даты поездки: 27.10.2026 - 03.11.2026",
+    "Проверка: 20.10.2026 09:46<br>Даты поездки: 27.10.2026 - 03.11.2026",
+    "Проверка: 20.10.2026 09:55<br>Даты поездки: 27.10.2026 - 03.11.2026"
+  ],
+  "meta": {
+    "dates": "27.10.2026 - 03.11.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pqQOhA24qzB4vo61DKxVhEAAogv47aQFzKleo4BmQRilBzBHb6-M-63DqmxRqPbNTEi2wqBE9SRVgw47zc1gZIh0BQQVigAWACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaINXcELTyRLkrMBYQBepzBSpiBTAEyssDoNtv2XCSAAAhJjAQIMIbQ5aQ/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Charmillion-Club-Aqua-Park.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8199.0,
+  "min_p": 8199.0,
+  "max_p": 8199.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.10.2026 - 03.11.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

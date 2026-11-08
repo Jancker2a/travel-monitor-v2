@@ -4,17 +4,14 @@
   "slug": "the-v-luxury-resort",
   "hotel_name": "The V Luxury Resort",
   "x": [
-    "2026-11-01 08:54:18",
     "2026-11-03 06:36:03",
     "2026-11-03 19:40:10"
   ],
   "y": [
-    8722.0,
     9451.0,
     9451.0
   ],
   "hover": [
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 05.10.2026 - 13.10.2026",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 05.10.2026 - 13.10.2026",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 02.10.2026 - 10.10.2026"
   ],
@@ -24,16 +21,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/the-v-luxury-resort-13/pMpQnl9pabDUgt_gViE9hoAAog35nF4ok398iAL4rtL8YILYa-GxSuJ2uHaqzGFvX8CjkqBE9BU0kwtNWo1wZI60lQAVilPmACagNVQUlyIRwR848BqwSpoBG5BAkboq8PGLPnEwG18pC0AgIAYwECCwCFSd4/?operator=OASI&adults=2&children=2020-08-12&objectId=224316&durationFrom=7&durationTo=10&departureDate=2027-10-02&returnDate=2027-10-09&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/OASI/IMG/18419/f7bafe7e94ad6340d75df07d48932f2b3031a0f0ecd0ef5ce46464c95acfb93a.webp@webp"
   },
-  "deal_score": 48,
+  "deal_score": 50,
   "deal_label": "Warm-up",
   "deal_class": "warm",
   "delta48": "—",
   "delta_avg": "—",
   "confidence": "Low",
-  "median_p": 9208.0,
-  "min_p": 8722.0,
+  "median_p": 9451.0,
+  "min_p": 9451.0,
   "max_p": 9451.0,
-  "samples": 3,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "02.10.2026 - 10.10.2026",
   "display_price_ceiling": 12000.0,

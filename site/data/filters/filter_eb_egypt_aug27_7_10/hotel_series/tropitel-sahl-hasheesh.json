@@ -4,9 +4,6 @@
   "slug": "tropitel-sahl-hasheesh",
   "hotel_name": "Tropitel Sahl Hasheesh",
   "x": [
-    "2026-10-29 15:50:04",
-    "2026-11-01 08:54:18",
-    "2026-11-02 00:45:29",
     "2026-11-02 13:09:23",
     "2026-11-03 06:36:04",
     "2026-11-03 19:40:11",
@@ -16,9 +13,6 @@
     "2026-11-07 01:13:10"
   ],
   "y": [
-    8507.0,
-    8507.0,
-    8507.0,
     8607.0,
     8607.0,
     8607.0,
@@ -28,9 +22,6 @@
     8554.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 31.08.2027 - 08.09.2027",
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 31.08.2027 - 08.09.2027",
-    "Проверка: 02.11.2026 00:45<br>Даты поездки: 31.08.2027 - 08.09.2027",
     "Проверка: 02.11.2026 13:09<br>Даты поездки: 31.08.2027 - 08.09.2027",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 31.08.2027 - 08.09.2027",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 31.08.2027 - 08.09.2027",
@@ -45,16 +36,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/tropitel-sahl-hasheesh/pzGk0QMWCppyDgke4Xa_SNAAog69gNX23GEW21VB4z1P-CTATQJLG4vC5DeemCVKDmfNUqBE9BU0kwnNq51wZI6kJQAVjXN2ACagNVQUlyIRwR9o8BqwSs3RC5BBobkf8PGMrEFAHO1sC1AgIAYwECC5f6CrY/?operator=OASI&adults=2&children=2020-08-12&objectId=35931&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702670/plain/cms/fileadmin/config_img/objects/35931/Tropitel-Sahl-Hasheesh.webp@webp"
   },
-  "deal_score": 50,
-  "deal_label": "Normal",
-  "deal_class": "normal",
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
   "delta48": "+0.0%",
-  "delta_avg": "+0.2%",
-  "confidence": "Medium",
-  "median_p": 8536.390399885559,
+  "delta_avg": "-0.1%",
+  "confidence": "Low",
+  "median_p": 8559.033291495183,
   "min_p": 8483.0,
   "max_p": 8607.0,
-  "samples": 10,
+  "samples": 7,
   "alert_threshold": 8.0,
   "trip_dates_label": "31.08.2027 - 08.09.2027",
   "display_price_ceiling": 12000.0,

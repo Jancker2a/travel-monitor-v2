@@ -24,8 +24,7 @@
     "2026-11-06 20:38:54",
     "2026-11-07 01:19:42",
     "2026-11-07 08:47:07",
-    "2026-11-07 11:27:35",
-    "2026-11-07 13:09:13"
+    "2026-11-07 11:27:35"
   ],
   "y": [
     2879.0,
@@ -41,7 +40,6 @@
     2899.0,
     2899.0,
     2899.0,
-    2939.0,
     2939.0,
     2939.0,
     2939.0,
@@ -72,13 +70,12 @@
     "Проверка: 06.11.2026 20:38<br>Даты поездки: 20.12.2026 - 27.12.2026",
     "Проверка: 07.11.2026 01:19<br>Даты поездки: 20.12.2026 - 27.12.2026",
     "Проверка: 07.11.2026 08:47<br>Даты поездки: 20.12.2026 - 27.12.2026",
-    "Проверка: 07.11.2026 11:27<br>Даты поездки: 20.12.2026 - 27.12.2026",
-    "Проверка: 07.11.2026 13:09<br>Даты поездки: 20.12.2026 - 27.12.2026"
+    "Проверка: 07.11.2026 11:27<br>Даты поездки: 20.12.2026 - 27.12.2026"
   ],
   "meta": {
     "dates": "20.12.2026 - 27.12.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,agios-georgios/top-set/pIeYWC90VhiFXv4zqGI_XUAAogesM1FKh0qZqkqKwT2BtLcR9fe9I6G2s1Yx8EMpn0WvgqBEVYSU0w7am81wZI-xZQAVj7B2ABagJCQnIeHBH5zwerBK2NSLkEFxva900Y2I9NAbyK8NQOAQBjfOBm2w/?operator=EXIM&adults=1&objectId=7328&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Warszawa+-+Radom&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,agios-georgios/top-set/pIeYWC90VhiFXv4zqGI_XUAAogesM1FKh0qZqkqKwT2BtLcR9fe9I6G2s1Yx8EMpn0WvgqBEVYSU0wnfq71wZI-xZQAVj9B2ABagJCQnIeHBH5zwerBK2NSLkEFxva900Y2I9NAbyK8NQOAQBj1KgtTg/?operator=EXIM&adults=1&objectId=7328&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Warszawa+-+Radom&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705167/plain/cms/fileadmin/config_img/objects/7328/Top-Set-fly-pl-3.jpg@webp"
   },
   "deal_score": 42,
@@ -87,10 +84,10 @@
   "delta48": "+1.4%",
   "delta_avg": "+1.1%",
   "confidence": "High",
-  "median_p": 2906.2113330037437,
+  "median_p": 2905.6371821422895,
   "min_p": 2879.0,
   "max_p": 2939.0,
-  "samples": 22,
+  "samples": 21,
   "alert_threshold": 8.0,
   "trip_dates_label": "20.12.2026 - 27.12.2026",
   "display_price_ceiling": 6000.0,

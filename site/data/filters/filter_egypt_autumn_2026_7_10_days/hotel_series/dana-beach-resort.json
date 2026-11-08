@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "dana-beach-resort",
+  "hotel_name": "Dana Beach Resort",
+  "x": [
+    "2026-10-14 20:46:41"
+  ],
+  "y": [
+    9818.0
+  ],
+  "hover": [
+    "Проверка: 14.10.2026 20:46<br>Даты поездки: 15.10.2026 - 22.10.2026"
+  ],
+  "meta": {
+    "dates": "15.10.2026 - 22.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/dana-beach/pjh-3rGbdvWPJSiyBhG5XcAAog6VYgC2k7I4Jw6SrBwE7OPHtSPmV23xm-knI_LWzeiDcqBFJOQlcwo5y_1gZI2kxQQVgFYAJqBENBZ1FqDUFMTF9JTkNMVVNJVkVqFzI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1cjufAZYBngEVBxcAWAgKFkCyBxGnJhnGLkyeNhCmElPkDlIAS5yTAWEAHejyPw85IO6WkgkNAAINYwECDDEfFuU/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/10/Dana-Beach-Resort-fly-pl-1.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9818.0,
+  "min_p": 9818.0,
+  "max_p": 9818.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.10.2026 - 22.10.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

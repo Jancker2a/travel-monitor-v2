@@ -4,9 +4,6 @@
   "slug": "santa-marina-pearl",
   "hotel_name": "Santa Marina Pearl",
   "x": [
-    "2026-10-29 12:47:27",
-    "2026-11-01 08:55:28",
-    "2026-11-02 00:46:38",
     "2026-11-02 13:10:35",
     "2026-11-03 06:37:49",
     "2026-11-03 19:42:13",
@@ -17,9 +14,6 @@
     "2026-11-07 01:14:10"
   ],
   "y": [
-    10297.0,
-    10637.0,
-    10637.0,
     10637.0,
     10637.0,
     10637.0,
@@ -30,9 +24,6 @@
     10637.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 12:47<br>Даты поездки: 25.08.2027 - 01.09.2027",
-    "Проверка: 01.11.2026 08:55<br>Даты поездки: 25.08.2027 - 01.09.2027",
-    "Проверка: 02.11.2026 00:46<br>Даты поездки: 25.08.2027 - 01.09.2027",
     "Проверка: 02.11.2026 13:10<br>Даты поездки: 25.08.2027 - 01.09.2027",
     "Проверка: 03.11.2026 06:37<br>Даты поездки: 25.08.2027 - 01.09.2027",
     "Проверка: 03.11.2026 19:42<br>Даты поездки: 25.08.2027 - 01.09.2027",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,agia-marina/santa-marina-pearl-14/pHk1_0NI2-i6LK6hQXQTqIAAoggrbHvON2LUoheBSztstq-go4QAKESEx4mLQ-8XgRIqcqBFZJVFgw19q51wZIjVNQQVjHNmACcj8aABUHFwBcA1gFQI8DU6B7UgBbhwte1nlL7UNhAEyc-kQNxdyNCSAAUZSoy51lT6S0C12Y3_nRoAECDGMBAgsfeVB7/?operator=VITX&adults=2&children=2020-08-12&objectId=186313&durationFrom=7&durationTo=10&departureDate=2027-08-25&returnDate=2027-09-01&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707606/plain/cms/fileadmin/config_img/objects/186313/santa-marina-pearl.webp@webp"
   },
-  "deal_score": 49,
+  "deal_score": 50,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "+0.0%",
-  "delta_avg": "+0.3%",
+  "delta_avg": "+0.0%",
   "confidence": "Medium",
-  "median_p": 10609.639214753455,
-  "min_p": 10297.0,
+  "median_p": 10637.0,
+  "min_p": 10637.0,
   "max_p": 10637.0,
-  "samples": 11,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "25.08.2027 - 01.09.2027",
   "display_price_ceiling": 12000.0,

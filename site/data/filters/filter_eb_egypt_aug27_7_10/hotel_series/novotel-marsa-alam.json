@@ -4,9 +4,6 @@
   "slug": "novotel-marsa-alam",
   "hotel_name": "Novotel Marsa Alam",
   "x": [
-    "2026-10-29 15:50:04",
-    "2026-11-01 08:54:18",
-    "2026-11-02 00:45:29",
     "2026-11-02 13:09:23",
     "2026-11-03 06:36:04",
     "2026-11-03 19:40:11",
@@ -14,9 +11,6 @@
     "2026-11-05 23:46:45"
   ],
   "y": [
-    8337.0,
-    7846.0,
-    8357.0,
     8357.0,
     8357.0,
     8357.0,
@@ -24,9 +18,6 @@
     8577.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 30.08.2027 - 06.09.2027",
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 30.08.2027 - 06.09.2027",
-    "Проверка: 02.11.2026 00:45<br>Даты поездки: 30.08.2027 - 06.09.2027",
     "Проверка: 02.11.2026 13:09<br>Даты поездки: 30.08.2027 - 06.09.2027",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 30.08.2027 - 06.09.2027",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 30.08.2027 - 06.09.2027",
@@ -39,16 +30,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/novotel-marsa-alam/pbfJXefah8eP9B_JFVXw8EAAogFlnEc4S3uea3RzctTz9XAMY4HCfYlId11VXcXaPSC0UqBEVYSU0w24601wZIgUNQAVjZN2ACagJBSXIhHBHTwge5BLi4TqsEQBvn80QY1dJLAY6M5akOAhJjAQYL1Vgbdg/?operator=EXIM&adults=2&children=2020-08-12&objectId=174947&durationFrom=7&durationTo=10&departureDate=2027-08-30&returnDate=2027-09-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704376/plain/cms/fileadmin/config_img/objects/174947/Novotel-Marsa-Alam.webp@webp"
   },
-  "deal_score": 45,
-  "deal_label": "Normal",
-  "deal_class": "normal",
+  "deal_score": 49,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
   "delta48": "—",
   "delta_avg": "—",
-  "confidence": "Medium",
-  "median_p": 8369.32409399608,
-  "min_p": 7846.0,
+  "confidence": "Low",
+  "median_p": 8462.18230996568,
+  "min_p": 8357.0,
   "max_p": 8577.0,
-  "samples": 8,
+  "samples": 5,
   "alert_threshold": 8.0,
   "trip_dates_label": "30.08.2027 - 06.09.2027",
   "display_price_ceiling": 12000.0,

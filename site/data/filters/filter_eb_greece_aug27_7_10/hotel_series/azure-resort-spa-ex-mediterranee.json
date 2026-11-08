@@ -4,9 +4,6 @@
   "slug": "azure-resort-spa-ex-mediterranee",
   "hotel_name": "Azure Resort & Spa (ex. Mediterranee)",
   "x": [
-    "2026-10-29 12:47:27",
-    "2026-11-01 08:55:28",
-    "2026-11-02 00:46:38",
     "2026-11-02 13:10:35",
     "2026-11-03 06:37:49",
     "2026-11-03 19:42:13",
@@ -17,9 +14,6 @@
     "2026-11-07 01:14:10"
   ],
   "y": [
-    9317.0,
-    9517.0,
-    9517.0,
     9517.0,
     9517.0,
     9517.0,
@@ -30,9 +24,6 @@
     9517.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 12:47<br>Даты поездки: 31.08.2027 - 07.09.2027",
-    "Проверка: 01.11.2026 08:55<br>Даты поездки: 31.08.2027 - 07.09.2027",
-    "Проверка: 02.11.2026 00:46<br>Даты поездки: 31.08.2027 - 07.09.2027",
     "Проверка: 02.11.2026 13:10<br>Даты поездки: 31.08.2027 - 07.09.2027",
     "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
     "Проверка: 03.11.2026 19:42<br>Даты поездки: 31.08.2027 - 07.09.2027",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,planos/mediterranee-planos/p55vlBeaTi-azhmKhC9WSuAAoguM9q5qfceEKQmp9eGs5waDr9TdmhjGqi2RY6B0IakScqBFZJVFgw19q51wZIrUpQQVjXN2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMq9ZEDe_cjQkgAF2H8pLwhQJRtLfDwRxP-KAOAg5jAQINAh8bZw/?operator=VITX&adults=2&children=2020-08-12&objectId=2427&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702373/plain/cms/fileadmin/config_img/objects/2427/Azure-Resort-Spa-ex.-Mediterranee-fly-pl.jpg@webp"
   },
-  "deal_score": 49,
+  "deal_score": 50,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "+0.0%",
-  "delta_avg": "+0.2%",
+  "delta_avg": "+0.0%",
   "confidence": "Medium",
-  "median_p": 9500.905420443209,
-  "min_p": 9317.0,
+  "median_p": 9517.0,
+  "min_p": 9517.0,
   "max_p": 9517.0,
-  "samples": 11,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "31.08.2027 - 07.09.2027",
   "display_price_ceiling": 12000.0,

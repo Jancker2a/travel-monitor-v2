@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "royal-albatros-moderna",
+  "hotel_name": "Royal Albatros Moderna",
+  "x": [
+    "2026-10-20 09:46:04",
+    "2026-10-20 09:55:01"
+  ],
+  "y": [
+    10542.0,
+    10542.0
+  ],
+  "hover": [
+    "Проверка: 20.10.2026 09:46<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 20.10.2026 09:55<br>Даты поездки: 29.10.2026 - 05.11.2026"
+  ],
+  "meta": {
+    "dates": "29.10.2026 - 05.11.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/royal-albatros-moderna/pXcHY-tLrN4MQYU4OCynVmAAogPLLS68p42BQFOjvTxNM6zxstrgoMttrZgZAvN8rfQ44qBEtPTVQw2Lzc1gZIrlJQAVjQAWACagJBSXIfHBHBG7kEp-IBqwQDGN6nBBv4qSQBtNTZHgIAYwEEDE3nANc/ofertasv/?filter[tourOperator]=KOMT&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2009/08/Royal-Albatros-Moderna1708.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10542.0,
+  "min_p": 10542.0,
+  "max_p": 10542.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.10.2026 - 05.11.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

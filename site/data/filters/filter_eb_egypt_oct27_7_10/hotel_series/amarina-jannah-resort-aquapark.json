@@ -4,7 +4,6 @@
   "slug": "amarina-jannah-resort-aquapark",
   "hotel_name": "Amarina Jannah Resort Aquapark",
   "x": [
-    "2026-10-29 15:50:03",
     "2026-11-03 06:36:03",
     "2026-11-03 19:40:10",
     "2026-11-04 17:22:53",
@@ -14,7 +13,6 @@
     "2026-11-07 01:13:11"
   ],
   "y": [
-    7562.0,
     10305.0,
     10305.0,
     7644.0,
@@ -24,7 +22,6 @@
     7713.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 01.10.2026 - 08.10.2026",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 02.10.2026 - 09.10.2026",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 02.10.2026 - 09.10.2026",
     "Проверка: 04.11.2026 17:22<br>Даты поездки: 01.10.2026 - 08.10.2026",
@@ -39,16 +36,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/amarina-jannah-resort-aquapark-15/pp-J9C0Zgb_Lgesvyz-bJwAAog_yh3beSzRxK55vY13Dmg2dLmEev_ovrtW8pjgaN0-1oqBE9BU0kwndq51wZIoTxQAViHPmACagNBSWxyIRwR4K0BuQTqghGrBAEbwrASGJ-sEwGkxfLDAgIAYwECDIGt6Qw/?operator=OASI&adults=2&children=2020-08-12&objectId=224141&durationFrom=7&durationTo=10&departureDate=2027-10-04&returnDate=2027-10-11&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707780/plain/cms/fileadmin/config_img/objects/224141/amarina-jannah-resort-aquapark.webp@webp"
   },
-  "deal_score": 56,
-  "deal_label": "Normal",
-  "deal_class": "normal",
+  "deal_score": 57,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
   "delta48": "+0.0%",
-  "delta_avg": "-8.8%",
-  "confidence": "Medium",
-  "median_p": 8458.98109684156,
-  "min_p": 7562.0,
+  "delta_avg": "-10.0%",
+  "confidence": "Low",
+  "median_p": 8572.036246102129,
+  "min_p": 7644.0,
   "max_p": 10305.0,
-  "samples": 8,
+  "samples": 7,
   "alert_threshold": 8.0,
   "trip_dates_label": "04.10.2026 - 11.10.2026",
   "display_price_ceiling": 12000.0,

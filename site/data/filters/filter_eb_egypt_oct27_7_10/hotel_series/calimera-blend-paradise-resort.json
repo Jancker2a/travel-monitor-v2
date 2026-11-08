@@ -4,9 +4,6 @@
   "slug": "calimera-blend-paradise-resort",
   "hotel_name": "Calimera Blend Paradise Resort",
   "x": [
-    "2026-10-29 15:50:03",
-    "2026-11-01 08:54:18",
-    "2026-11-02 00:45:29",
     "2026-11-02 13:09:23",
     "2026-11-03 06:36:03",
     "2026-11-03 19:40:10",
@@ -17,9 +14,6 @@
     "2026-11-07 01:13:11"
   ],
   "y": [
-    8167.0,
-    8187.0,
-    7857.0,
     7857.0,
     7857.0,
     7957.0,
@@ -30,9 +24,6 @@
     7957.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 02.10.2026 - 10.10.2026",
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 19.10.2026 - 27.10.2026",
-    "Проверка: 02.11.2026 00:45<br>Даты поездки: 21.10.2026 - 29.10.2026",
     "Проверка: 02.11.2026 13:09<br>Даты поездки: 21.10.2026 - 29.10.2026",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 21.10.2026 - 29.10.2026",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 23.10.2026 - 31.10.2026",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/calimera-blend-paradise-12/pHYJL_AlPRWOw1eFeM3iBFAAogUm5FKqiDPtzxcYA8OiOixpV2JaEVRcz6aLvlzo6XIAIqBEVYSU0wndq51wZIlT5QAVjPQWACagJBSXIhHBGfxwerBJmxTrkEIBvDukUY4bBNAcvp0r0OAgBjAQIMlAwbwQ/?operator=EXIM&adults=2&children=2020-08-12&objectId=221253&durationFrom=7&durationTo=10&departureDate=2027-10-23&returnDate=2027-10-30&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707665/plain/cms/fileadmin/config_img/objects/221253/calimera-blend-paradise.webp@webp"
   },
-  "deal_score": 51,
+  "deal_score": 49,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "+0.0%",
-  "delta_avg": "-0.2%",
+  "delta_avg": "+0.3%",
   "confidence": "Medium",
-  "median_p": 7969.923709206956,
+  "median_p": 7931.810011751285,
   "min_p": 7857.0,
-  "max_p": 8187.0,
-  "samples": 11,
+  "max_p": 7957.0,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "23.10.2026 - 31.10.2026",
   "display_price_ceiling": 12000.0,

@@ -4,9 +4,6 @@
   "slug": "serita-beach",
   "hotel_name": "Serita Beach",
   "x": [
-    "2026-10-29 12:47:27",
-    "2026-11-01 08:55:28",
-    "2026-11-02 00:46:38",
     "2026-11-02 13:10:35",
     "2026-11-03 06:37:49",
     "2026-11-03 19:42:13",
@@ -17,9 +14,6 @@
     "2026-11-07 01:14:10"
   ],
   "y": [
-    11175.0,
-    10645.0,
-    10645.0,
     10645.0,
     10645.0,
     10645.0,
@@ -30,9 +24,6 @@
     10645.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 12:47<br>Даты поездки: 29.08.2027 - 05.09.2027",
-    "Проверка: 01.11.2026 08:55<br>Даты поездки: 29.08.2027 - 05.09.2027",
-    "Проверка: 02.11.2026 00:46<br>Даты поездки: 29.08.2027 - 05.09.2027",
     "Проверка: 02.11.2026 13:10<br>Даты поездки: 29.08.2027 - 05.09.2027",
     "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
     "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/mitsis-serita-beach/pgSY160i4xAUkYAaMP-FLhAAogiJZtgkoptgvU_fF-xxjNtmzVHbGvozwiKP096ftEgCUqBFJOQlcw19q51wZIlVNQQVinN2ACagRCd2NEcjifARUHFwBWA1gFCgRAxAcR8TcZ0idTiUlSABDVBEy6GkvWd2EAD7z8Rx1HIOLZigkNAAIMYwECC3xFa9I/?operator=RNBW&adults=2&children=2020-08-12&objectId=2433&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703348/plain/cms/fileadmin/config_img/objects/2433/Mitsis-Serita-Beach-fly-pl.jpg@webp"
   },
-  "deal_score": 52,
+  "deal_score": 50,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "+0.0%",
-  "delta_avg": "-0.4%",
+  "delta_avg": "+0.0%",
   "confidence": "Medium",
-  "median_p": 10687.650635825496,
+  "median_p": 10645.0,
   "min_p": 10645.0,
-  "max_p": 11175.0,
-  "samples": 11,
+  "max_p": 10645.0,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.08.2027 - 05.09.2027",
   "display_price_ceiling": 12000.0,

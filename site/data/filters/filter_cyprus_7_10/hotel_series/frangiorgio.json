@@ -20,8 +20,7 @@
     "2026-11-06 20:38:54",
     "2026-11-07 01:19:42",
     "2026-11-07 08:47:07",
-    "2026-11-07 11:27:35",
-    "2026-11-07 13:09:13"
+    "2026-11-07 11:27:35"
   ],
   "y": [
     4143.0,
@@ -40,7 +39,6 @@
     4131.0,
     4131.0,
     4151.0,
-    4131.0,
     4131.0
   ],
   "hover": [
@@ -60,13 +58,12 @@
     "Проверка: 06.11.2026 20:38<br>Даты поездки: 20.12.2026 - 27.12.2026",
     "Проверка: 07.11.2026 01:19<br>Даты поездки: 20.12.2026 - 27.12.2026",
     "Проверка: 07.11.2026 08:47<br>Даты поездки: 20.12.2026 - 27.12.2026",
-    "Проверка: 07.11.2026 11:27<br>Даты поездки: 20.12.2026 - 27.12.2026",
-    "Проверка: 07.11.2026 13:09<br>Даты поездки: 20.12.2026 - 27.12.2026"
+    "Проверка: 07.11.2026 11:27<br>Даты поездки: 20.12.2026 - 27.12.2026"
   ],
   "meta": {
     "dates": "20.12.2026 - 27.12.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,larnaca/frangiorgio-14/pgcBz6FQg-na6ruJJ916DoAAogo8f5K-z2hQcRk4z97qXiawStt432lQdFv4xInV3sVksqBEJWQlgw7am81wZIoyBQAVj7B2ABagJCQnIeHBHL4QEbxKVAGJbeIasEg6ohuQRAAfyBy-MEARJjPf88IA/?operator=BVBX&adults=1&objectId=226411&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Warszawa+-+Radom&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,larnaca/frangiorgio-14/pgcBz6FQg-na6ruJJ916DoAAogo8f5K-z2hQcRk4z97qXiawStt432lQdFv4xInV3sVksqBEJWQlgwnfq71wZIoyBQAVj9B2ABagJCQnIeHBHL4QEbxKVAGJbeIasEg6ohuQRAAfyBy-MEARJjy71Bww/?operator=BVBX&adults=1&objectId=226411&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Warszawa+-+Radom&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707853/plain/cms/fileadmin/config_img/objects/226411/frangiorgio.webp@webp"
   },
   "deal_score": 42,
@@ -75,10 +72,10 @@
   "delta48": "+0.5%",
   "delta_avg": "+0.6%",
   "confidence": "Medium",
-  "median_p": 4105.629376256123,
+  "median_p": 4105.093310763682,
   "min_p": 4068.0,
   "max_p": 4151.0,
-  "samples": 18,
+  "samples": 17,
   "alert_threshold": 8.0,
   "trip_dates_label": "20.12.2026 - 27.12.2026",
   "display_price_ceiling": 6000.0,

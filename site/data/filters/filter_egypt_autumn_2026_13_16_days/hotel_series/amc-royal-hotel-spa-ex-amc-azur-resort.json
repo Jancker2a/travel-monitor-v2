@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_13_16_days",
+  "slug": "amc-royal-hotel-spa-ex-amc-azur-resort",
+  "hotel_name": "AMC Royal Hotel & Spa (ex. AMC Azur Resort)",
+  "x": [
+    "2026-10-06 02:56:34",
+    "2026-10-06 09:42:52",
+    "2026-10-06 17:21:46",
+    "2026-10-06 22:29:22",
+    "2026-10-07 02:51:54",
+    "2026-10-07 09:23:12",
+    "2026-10-07 17:41:47",
+    "2026-10-07 23:26:37",
+    "2026-10-08 04:06:52"
+  ],
+  "y": [
+    9873.0,
+    9873.0,
+    9873.0,
+    10116.0,
+    10116.0,
+    10359.0,
+    10359.0,
+    10359.0,
+    10359.0
+  ],
+  "hover": [
+    "Проверка: 06.10.2026 02:56<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 06.10.2026 09:42<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 06.10.2026 17:21<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 06.10.2026 22:29<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 07.10.2026 02:51<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 07.10.2026 09:23<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 07.10.2026 17:41<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 07.10.2026 23:26<br>Даты поездки: 22.10.2026 - 04.11.2026",
+    "Проверка: 08.10.2026 04:06<br>Даты поездки: 22.10.2026 - 04.11.2026"
+  ],
+  "meta": {
+    "dates": "22.10.2026 - 04.11.2026",
+    "duration": "15 dni/13 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/amc-royal-ex-amc-azur-resort/pMTjAXWORU6o1t7ghoVc7PAAogEeD8sdM0_6YSeso2VpnVR-3IUR6Whhsb3k4gjIxxOeEqBE9SRVgwvPWb1gZI91BQQVjNAmACagVFLjIuMXI1mwFcChUDFwBYAlYCEQRAxgZdiw5PbFKangFTAGGIH0sAXqcwTNLQOiCx_ZcJDQACEmMBAgyhtp_g/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/AMC-Royal-Resort.jpg"
+  },
+  "deal_score": 45,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 10135.27770118364,
+  "min_p": 9873.0,
+  "max_p": 10359.0,
+  "samples": 9,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.10.2026 - 04.11.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_13_16_days.html"
+}

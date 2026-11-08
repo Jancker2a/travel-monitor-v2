@@ -4,9 +4,6 @@
   "slug": "movenpick-waterpark-resort-spa-soma-bay",
   "hotel_name": "Movenpick Waterpark Resort & Spa Soma Bay",
   "x": [
-    "2026-10-29 15:50:03",
-    "2026-11-01 08:54:18",
-    "2026-11-02 00:45:29",
     "2026-11-02 13:09:23",
     "2026-11-03 06:36:03",
     "2026-11-03 19:40:10",
@@ -17,9 +14,6 @@
     "2026-11-07 01:13:11"
   ],
   "y": [
-    8305.0,
-    8405.0,
-    8405.0,
     8405.0,
     8405.0,
     8405.0,
@@ -30,9 +24,6 @@
     8454.0
   ],
   "hover": [
-    "Проверка: 29.10.2026 15:50<br>Даты поездки: 02.10.2026 - 10.10.2026",
-    "Проверка: 01.11.2026 08:54<br>Даты поездки: 02.10.2026 - 10.10.2026",
-    "Проверка: 02.11.2026 00:45<br>Даты поездки: 02.10.2026 - 10.10.2026",
     "Проверка: 02.11.2026 13:09<br>Даты поездки: 05.10.2026 - 13.10.2026",
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 05.10.2026 - 13.10.2026",
     "Проверка: 03.11.2026 19:40<br>Даты поездки: 02.10.2026 - 10.10.2026",
@@ -48,16 +39,16 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/movenpick-soma-bay/p3A50s7T7hVqbVLT2wklt4AAogq22YbiWUL-zk2I9LfyzL7oD7GPwGYmq2_L--vsl0tUYqBE9BU0kwndq51wZIhkJQAVifPmACagNBSWxyIRwRv8UBqwTW6hC5BAYbjMcPGK_bEwGrr6K0AgIAYwECC3PYfQs/?operator=OASI&adults=2&children=2020-08-12&objectId=118549&durationFrom=7&durationTo=10&departureDate=2027-10-05&returnDate=2027-10-12&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702388/plain/cms/fileadmin/config_img/objects/118549/Movenpick-Soma-Bay2539.jpg@webp"
   },
-  "deal_score": 43,
+  "deal_score": 49,
   "deal_label": "Normal",
   "deal_class": "normal",
   "delta48": "+0.0%",
-  "delta_avg": "+0.5%",
+  "delta_avg": "+0.4%",
   "confidence": "Medium",
-  "median_p": 8410.900109093955,
-  "min_p": 8305.0,
+  "median_p": 8423.701579416002,
+  "min_p": 8383.0,
   "max_p": 8454.0,
-  "samples": 11,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "05.10.2026 - 13.10.2026",
   "display_price_ceiling": 12000.0,
