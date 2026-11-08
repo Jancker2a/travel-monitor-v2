@@ -21,7 +21,7 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PORT=8000
+    PORT=8080
 
 # Install system dependencies for Playwright & build tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -59,8 +59,8 @@ COPY travel_monitor_v2.db /app/travel_monitor_v2.db
 # Copy Built Frontend Assets from Stage 1 into /app/frontend/dist
 COPY --from=frontend-builder /build/dist /app/frontend/dist
 
-EXPOSE 8000
+EXPOSE 8080
 
 WORKDIR /app/backend
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
 
