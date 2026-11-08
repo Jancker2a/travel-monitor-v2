@@ -193,3 +193,4 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
     </div>
   );
 };
+

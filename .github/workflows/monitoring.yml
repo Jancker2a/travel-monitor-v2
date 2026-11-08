@@ -1,0 +1,107 @@
+name: Hourly Travel Monitor & Crawler
+
+on:
+  schedule:
+    # Runs every hour at minute 17 (offset from the global :00 peak)
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      crawler_max_offers:
+        description: "Max benchmark offers to scrape per destination"
+        required: false
+        default: "25"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: travel-monitor-hourly-cron
+  cancel-in-progress: false
+
+jobs:
+  scrape-and-persist:
+    name: Run Scrapers & Persist Snapshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: "1"
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: "backend/requirements.txt"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Cache Playwright browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('backend/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Chromium
+        run: |
+          playwright install chromium
+
+      - name: Execute Hourly Scrapers & Normalization Crawler
+        run: |
+          echo "🚀 Starting Travel Monitor 2.0 hourly execution at $(date -u)"
+          python scripts/run_hourly_cron.py
+
+      - name: Commit and push database changes
+        run: |
+          echo "📝 Checking for database updates..."
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          git fetch origin ${CURRENT_BRANCH} || true
+          git stash push -u -m "ci-stash" || true
+          git pull --rebase origin ${CURRENT_BRANCH} || true
+          if ! git stash pop; then
+            echo "⚠️ Stash pop had conflicts, preserving scraped database..."
+            git reset 2>/dev/null || true
+            git stash drop 2>/dev/null || true
+          fi
+
+          git add travel_monitor_v2.db
+          if git diff --staged --quiet; then
+            echo "ℹ️ No database changes detected. Nothing to commit."
+          else
+            TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+            COMMIT_MSG="🔄 Hourly crawl & snapshot update - ${TIMESTAMP} [skip ci]
+
+🤖 Automated by GitHub Actions Travel Monitor 2.0"
+            git commit -m "$COMMIT_MSG"
+            git push origin HEAD:${CURRENT_BRANCH}
+            echo "✅ travel_monitor_v2.db successfully committed and pushed to ${CURRENT_BRANCH}."
+          fi
+
+      - name: Summary report
+        if: always()
+        run: |
+          echo "## 🚀 Travel Monitor 2.0 Cron Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run ID:** ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Execution Time:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Database:** \`travel_monitor_v2.db\` synchronized" >> $GITHUB_STEP_SUMMARY

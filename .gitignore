@@ -39,6 +39,7 @@ ENV/
 *.sqlite
 *.sqlite3
 *.db
+!travel_monitor_v2.db
 *.db-journal
 *.db-wal
 data/

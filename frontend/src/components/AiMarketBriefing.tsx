@@ -84,3 +84,4 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
     </details>
   );
 };
+

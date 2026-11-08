@@ -119,3 +119,4 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({ destinat
     </section>
   );
 };
+
