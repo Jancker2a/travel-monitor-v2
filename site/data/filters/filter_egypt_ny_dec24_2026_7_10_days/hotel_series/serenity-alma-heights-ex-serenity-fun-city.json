@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "serenity-alma-heights-ex-serenity-fun-city",
+  "hotel_name": "Serenity Alma Heights (ex. Serenity Fun City)",
+  "x": [
+    "2026-11-04 17:26:43",
+    "2026-11-04 19:47:16",
+    "2026-11-05 01:30:39",
+    "2026-11-05 09:05:45",
+    "2026-11-05 09:40:11"
+  ],
+  "y": [
+    10797.0,
+    10797.0,
+    10790.0,
+    10797.0,
+    10797.0
+  ],
+  "hover": [
+    "Проверка: 04.11.2026 17:26<br>Даты поездки: 12.26.2026 - 01.01.2027",
+    "Проверка: 04.11.2026 19:47<br>Даты поездки: 12.26.2026 - 01.01.2027",
+    "Проверка: 05.11.2026 01:30<br>Даты поездки: 12.26.2026 - 01.01.2027",
+    "Проверка: 05.11.2026 09:05<br>Даты поездки: 12.26.2026 - 01.01.2027",
+    "Проверка: 05.11.2026 09:40<br>Даты поездки: 12.26.2026 - 01.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 01.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-fun-city/pWFXh4-wTNvzS5dkx80FAuAAogncgofO5e1ViX0suGoNqpyL26M4lZ0TmK_1aTPorq4NMqBEVYSU0w74Gx1wZIrVRQAViPCWACagNVQUlyIRwR-8kHqwTl3kq5BEQb5aZJGMeYUQGEs7jtDgIAYwECDN7Zt1U/?operator=EXIM&adults=2&children=2020-12-10&objectId=35935&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702380/plain/cms/fileadmin/config_img/objects/35935/Serenity-Alma-Heights.webp@webp"
+  },
+  "deal_score": 49,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10795.769352192714,
+  "min_p": 10790.0,
+  "max_p": 10797.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 01.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

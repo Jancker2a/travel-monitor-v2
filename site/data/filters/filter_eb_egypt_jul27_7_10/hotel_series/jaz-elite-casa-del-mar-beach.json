@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "jaz-elite-casa-del-mar-beach",
+  "hotel_name": "Jaz Elite Casa Del Mar Beach",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    12937.0,
+    12937.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 15.07.2027 - 23.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 15.07.2027 - 23.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 23.07.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/jaz-casa-del-mar-beach-10/p-lxKCmsshpj4k1DWdeUIMAAogPjCUUhTFEwl7Izlv7uAnY4SVDwZdE9GrzcTl1rX-PnsqBEVYSU0w29Wo1wZIiWVQAVi9L2ACagNVQUlyIRwRzcEHqwSdtk65BB8bs-REGM7LSgHZisKYDgISYwECC1RbWJw/?operator=EXIM&adults=2&children=2020-08-12&objectId=205503&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707353/plain/cms/fileadmin/config_img/objects/205503/Jaz-Casa-Del-Mar-Beach.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12936.999999999998,
+  "min_p": 12937.0,
+  "max_p": 12937.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 23.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

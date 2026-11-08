@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "arin-resort-ex-sundance-resort",
+  "hotel_name": "Arin Resort (ex. Sundance Resort)",
+  "x": [
+    "2026-10-20 09:46:29",
+    "2026-10-20 09:55:30"
+  ],
+  "y": [
+    5614.0,
+    5614.0
+  ],
+  "hover": [
+    "Проверка: 20.10.2026 09:46<br>Даты поездки: 25.10.2026 - 01.11.2026",
+    "Проверка: 20.10.2026 09:55<br>Даты поездки: 25.10.2026 - 01.11.2026"
+  ],
+  "meta": {
+    "dates": "25.10.2026 - 01.11.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,turgutreis/aegean-dreams/pytfX26mBIEaFPI6jWZv2YAAogXS7nKXP-Cpy4BWgNTZNurgAAAAAOdwQAKaEEAAcAAAAqBFdFWlkw87zc1gZI7itQQVhwYANqGkVudGVyIEFpci9QZWdhc3VzIEFpcmxpbmVzagQwNTI1agQwNjM1ckOeAZUBmAEfABwBAgAWABcGEd0CEpABE_MFFKEETPNmTwBApgxQyiRLnaEBG8R0HcKyDiCbVA34jsIJARJjAQ1jAQIMOEZttQ/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Arin-Resort-ex.-Sundance-Resort-fly-pl.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 5614.0,
+  "min_p": 5614.0,
+  "max_p": 5614.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "25.10.2026 - 01.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "azura-deluxe-resort-spa",
+  "hotel_name": "Azura Deluxe Resort & Spa",
+  "x": [
+    "2026-07-20 02:07:33",
+    "2026-07-21 04:01:11",
+    "2026-07-21 07:19:54",
+    "2026-07-22 07:19:39",
+    "2026-07-23 07:37:42"
+  ],
+  "y": [
+    13343.0,
+    13142.0,
+    13142.0,
+    13122.0,
+    13131.0
+  ],
+  "hover": [
+    "Проверка: 20.07.2026 02:07<br>Даты поездки: 24.07.2026 - 31.07.2026",
+    "Проверка: 21.07.2026 04:01<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 07:19<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 07:19<br>Даты поездки: 23.07.2026 - 30.07.2026",
+    "Проверка: 23.07.2026 07:37<br>Даты поездки: 25.07.2026 - 01.08.2026"
+  ],
+  "meta": {
+    "dates": "25.07.2026 - 01.08.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,avsallar/azura-deluxe-resort-spa/paY0SvszOU-woaW1MTMDOBAAogILCXmIMmk_O5SPM1QU7bReKKeIGoKnnja88FI2bgsz4qBE9SRVgwrdGG0wZIy2ZQQVgqYAJqBllOLjIuMXI2mwEVBxcAWAhWAlwIEZADQLIDT9tAXSRTqydSAF6WlAFL7UNhAEzljDogiPuXCQ0AAhJjAQILTUsgrw/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Azura-Deluxe-Resort-Spa.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13185.725382429948,
+  "min_p": 13122.0,
+  "max_p": 13343.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "25.07.2026 - 01.08.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

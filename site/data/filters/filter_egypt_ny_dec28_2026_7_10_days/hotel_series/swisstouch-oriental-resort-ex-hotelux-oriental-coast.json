@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "swisstouch-oriental-resort-ex-hotelux-oriental-coast",
+  "hotel_name": "Swisstouch Oriental Resort (ex. Hotelux Oriental Coast)",
+  "x": [
+    "2026-10-23 20:38:15",
+    "2026-10-24 03:52:35",
+    "2026-10-29 07:03:23",
+    "2026-10-29 12:50:40",
+    "2026-10-30 00:28:16",
+    "2026-11-05 01:31:34",
+    "2026-11-05 15:46:31",
+    "2026-11-06 04:34:01"
+  ],
+  "y": [
+    10823.0,
+    10823.0,
+    10024.0,
+    9614.0,
+    10064.0,
+    10990.0,
+    10859.0,
+    10859.0
+  ],
+  "hover": [
+    "Проверка: 23.10.2026 20:38<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 24.10.2026 03:52<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 29.10.2026 07:03<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 29.10.2026 12:50<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 30.10.2026 00:28<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 05.11.2026 01:31<br>Даты поездки: 12.26.2026 - 08.01.2027",
+    "Проверка: 05.11.2026 15:46<br>Даты поездки: 12.26.2026 - 08.01.2027",
+    "Проверка: 06.11.2026 04:34<br>Даты поездки: 12.26.2026 - 08.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 08.01.2027",
+    "duration": "10 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/sentido-oriental-dream-resort/pK--6Ybwmd6Asa4-a-Q4n1AAogNUOYwN-6GCLPde66oG7At5zhSKBgUpU8lDZqoVYAAokqBEJWQkUwrpW11wZI61RQAViMCmACagJBSXIhHBHX-wEbvrBEGMPCGasE4OQnuQQkAcioxrQEAgBjAQYL9thauA/?operator=BVBE&adults=2&children=2020-12-10&objectId=6533&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-08&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=9&nights=9",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705167/plain/cms/fileadmin/config_img/objects/6533/Sentido-Oriental-Dream-Resort.jpg@webp"
+  },
+  "deal_score": 52,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 10542.927238367181,
+  "min_p": 9614.0,
+  "max_p": 10990.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 08.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

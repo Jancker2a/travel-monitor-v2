@@ -42,7 +42,9 @@ ENV/
 !travel_monitor_v2.db
 *.db-journal
 *.db-wal
-data/
+/data/
+!site/data/
+!site/data/**
 *.log
 
 # Node & Frontend

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "barcelo-murcia-siete-coronas-ex-silken-siete-coronas",
+  "hotel_name": "Barcelo Murcia Siete Coronas (ex. Silken Siete Coronas)",
+  "x": [
+    "2026-10-26T02:28:52.051235+01:00"
+  ],
+  "y": [
+    3085.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 02:28<br>Даты поездки: 20.12.2026 - 27.12.2026"
+  ],
+  "meta": {
+    "dates": "20.12.2026 - 27.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/hiszpania,costa-calida,murcja/barcelo-murcia-siete-coronas-ex-silken-siete-coronas-13/XTOPb3e19eX_wYAAHNOYVBwWQGvAQAFo5-SCpABCgYIiPQBEAESBgjgvgIQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjgyU01MUzhaVUo3UEc5QzRFMklQNVM5OFdVNUdMQUpTUDNVREpCQ0IyRktIRzFEODk2UVg0T0o0TFVFM1A3VExDNVFPUzNTSFM0S1lWMEQwVFRQV09NWlg4Cn8KBgiE_wIQAhIGCLTzDxABGm1PNTQ1NDRkNTMyZjQxNDU1MzRkNGE1NjM5NTQ0YTQ1MmY1MjRkMzAzMDUzNDczMDMwMzAzMDJmNDI0MjJmMzcyZjMyMzAzMjM2MzEzMjMyMzAyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCh0KAhABEgIQARoTRFNSVC0yNjUtTk9UUkFOU0ZFUgogCgUIxBMQARIFCNEXEAEaEERTUk0tMjY1LTJyMjI2MTUKIAoFCPgKEAESBQieDRABGhBEU1JNLTI2NS00cjIyNjE2CiIKBQjQDxABEgUIiBMQARoSRFNSVS0yNjUtVWJlemJhc2ljGIkCKPIBMgYIi-oSEAE4AQ/?operator=XTOP&adults=1&objectId=14707&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Rzesz%C3%B3w&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/XTOP/IMG/14707/e2e8dbe04e06dd3337b43fdcbcfad317e466f2287783d495b47ef91da2626293.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "+0.0%",
+  "confidence": "Low",
+  "median_p": 3085.0,
+  "min_p": 3085.0,
+  "max_p": 3085.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "20.12.2026 - 27.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

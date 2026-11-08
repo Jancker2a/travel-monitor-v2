@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "azura-world-ex-wyndham-alanya",
+  "hotel_name": "Azura World (ex. Wyndham Alanya)",
+  "x": [
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    10782.0,
+    10477.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 08.07.2027 - 15.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 03.07.2027 - 10.07.2027"
+  ],
+  "meta": {
+    "dates": "03.07.2027 - 10.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/wyndham-alanya-11/pwnhWjZOKfvgpF3ptkf5gAAAogH_tlgN1Tg0LgxkdAvSJLA1GSBs05HxepNkccblPbFhYqBEpPSVAwr9eo1wZI7VFQQVidLWACagMwMHdyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABHHsQJMnts3DYLJmAkgAAHj9cuQ08rUnDACDWMBAgt-oFz_/?operator=JOIP&adults=2&children=2020-08-12&objectId=232247&durationFrom=7&durationTo=10&departureDate=2027-07-03&returnDate=2027-07-10&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/80975/980c2dcb8deced20154a88e03e5731a9f06462cd265dfc3ebdf3043455ea9bb3.webp@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10629.5,
+  "min_p": 10477.0,
+  "max_p": 10782.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "03.07.2027 - 10.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

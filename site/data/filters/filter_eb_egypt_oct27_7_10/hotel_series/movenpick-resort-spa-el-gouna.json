@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "movenpick-resort-spa-el-gouna",
+  "hotel_name": "Movenpick Resort & Spa El Gouna",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    13675.0,
+    13675.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 16.10.2026 - 23.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 02.10.2026 - 09.10.2026"
+  ],
+  "meta": {
+    "dates": "02.10.2026 - 09.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,el-gouna/moevenpick-resort-spa-el-gouna/pwIxazxi22EOBrXu1TywF0AAogVi0i_xQp0t7SWJeQ8r7A1AAAAABV2AQAcdgEAAcAAAAqBFdFWlkw29Wo1wZI62pQQVilPmADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwMDAwagQwMDAwagQwMDAwagQwMDAwcj-eAZMBlAGVAZgBHwAcAQIAEQEWAxcCEu0DQK19TMsyTwBLnJMBUAAbgbsCHcyuDiAcDanuwQkBEmMBDGMBBguG2rZD/?operator=WEZY&adults=2&children=2020-08-12&objectId=137&durationFrom=7&durationTo=10&departureDate=2027-10-02&returnDate=2027-10-09&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701191/plain/cms/fileadmin/config_img/objects/137/Movenpick-Resort-Spa-El-Gouna-fly-pl.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13675.0,
+  "min_p": 13675.0,
+  "max_p": 13675.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "02.10.2026 - 09.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

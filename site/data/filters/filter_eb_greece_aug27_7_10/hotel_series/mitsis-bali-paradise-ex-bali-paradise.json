@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "mitsis-bali-paradise-ex-bali-paradise",
+  "hotel_name": "Mitsis Bali Paradise (ex. Bali Paradise)",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    12806.0,
+    12806.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,bali/bali-paradise-15/phna4sZx2PCxge3Rmsd2-oAAogiGBRn7LLIjCIyPBux_rKvpzK3wNI7KV3Bu6Z2IjTivEqBEdSQ1Mwrdao1wZIhmRQQVj1N2ADagMwNjRyPp0BFQcXAFwDWAVWAg9eQOwFU8ipAVIAXvhSW6sfS8IkYQAB276bASCKmLcIDQBRgf6ujY0BARJjAQJjAQILfXQrpQ/?operator=GRCS&adults=2&children=2020-08-12&objectId=216472&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707649/plain/cms/fileadmin/config_img/objects/216472/Mitsis-Bali-Paradise.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12806.0,
+  "min_p": 12806.0,
+  "max_p": 12806.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

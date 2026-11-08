@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "dream-qum-family",
+  "hotel_name": "Dream Qum Family",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    17657.0,
+    17657.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 15.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 01.07.2027 - 15.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 15.07.2027",
+    "duration": "15 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,manavgat/dream-qum-family-9/pu31f9JeL4hoxOE2VSy6zFAAogPDv_reVeTjG8E9mfyYeTsT-tZClfiXWZ_SojLpnzlJIqBFZJVFgwsdeo1wZI-YkBUEFY7SxgAnI_GgBcChUEFwBYAUCPA1Pna1IAW9gXXr58S4ESYQBM5KtFIO3bjQkNAFHBv_DtWE_D6SZdxI_Ti4UBAgxjAQILo4M1hQ/?operator=VITX&adults=2&children=2020-08-12&objectId=236582&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-15&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ITAK/IMG/AYTDQUM/07cbc3f87790b6a366a0b579b092cbf1bac5e2738f7eaec39db1f2f5e48a1771.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17657.0,
+  "min_p": 17657.0,
+  "max_p": 17657.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 15.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

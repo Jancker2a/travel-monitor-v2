@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_7_10_days",
+  "slug": "evita-asty-hotel",
+  "hotel_name": "Evita Asty Hotel",
+  "x": [
+    "2026-10-30 14:48:10",
+    "2026-10-30 19:47:57",
+    "2026-10-31 00:09:28"
+  ],
+  "y": [
+    5071.0,
+    5071.0,
+    5071.0
+  ],
+  "hover": [
+    "Проверка: 30.10.2026 14:48<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 30.10.2026 19:47<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 31.10.2026 00:09<br>Даты поездки: 21.11.2026 - 28.11.2026"
+  ],
+  "meta": {
+    "dates": "21.11.2026 - 28.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/evita-asty-13/XTOP8e6267X_wYAAHNOYVBwWQGuAQCCjaXQCpABCgYI1e0GEAESBgi1vQgQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjYwRktVN0RWUVlJTjA0TThQQjFPN1ZKSDdaS1ZZVFpDVDIzNlNMWUVCN0szWFk2MjBCSFpZM1NTU0EyWU4yM0FBMVlIUThBOUNaUkhGMTc4WTIyOFFJRTRECn8KBgirggQQAhIGCKOvFRABGm1PNTQ1NDRkNTMyZjQxNDc1MjQxNTQ0ODQ1NTI1MTRiMmY1MjRkNTM0NDMwMzAzMDMwMzAzMDJmNDI0MjJmMzcyZjMyMzAzMjM2MzEzMTMyMzEyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCh0KAhABEgIQARoTRFNSVC0xMTAtTk9UUkFOU0ZFUgogCgUIzDoQARIFCPNGEAEaEERTUk0tMTEwLTJyMjI2MDcKIQoFCMYKEAESBQjiDBABGhFEU1JNLTExMC0zNXIyMjYwOAoiCgUI8C4QARIFCJg5EAEaEkRTUlUtMTEwLVViZXpiYXNpYxhuKFQyBgjF-R4QATgD/?operator=XTOP&adults=2&children=2020-12-10&objectId=216200&durationFrom=7&durationTo=10&departureDate=2026-11-21&returnDate=2026-11-28&departureLocation=Modlin&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/XTOP/IMG/216200/21285f8ee484a58c6bd77b2cb1d0b20785a30a9f8d41dbaaf6a1e2b97e2033b2.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 5070.999999999999,
+  "min_p": 5071.0,
+  "max_p": 5071.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.11.2026 - 28.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_7_10_days.html"
+}

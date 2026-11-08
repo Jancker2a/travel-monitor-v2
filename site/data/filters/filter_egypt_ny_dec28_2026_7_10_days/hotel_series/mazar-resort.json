@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "mazar-resort",
+  "hotel_name": "MAZAR RESORT",
+  "x": [
+    "2026-10-22 00:36:44",
+    "2026-10-22 03:46:13",
+    "2026-11-03 16:27:05",
+    "2026-11-03 19:48:13",
+    "2026-11-04 03:31:38",
+    "2026-11-04 17:27:38",
+    "2026-11-04 19:48:11"
+  ],
+  "y": [
+    9947.0,
+    9947.0,
+    9500.0,
+    9500.0,
+    9500.0,
+    9500.0,
+    9500.0
+  ],
+  "hover": [
+    "Проверка: 22.10.2026 00:36<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 22.10.2026 03:46<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 03.11.2026 16:27<br>Даты поездки: 12.26.2026 - 05.01.2027",
+    "Проверка: 03.11.2026 19:48<br>Даты поездки: 12.26.2026 - 05.01.2027",
+    "Проверка: 04.11.2026 03:31<br>Даты поездки: 12.26.2026 - 05.01.2027",
+    "Проверка: 04.11.2026 17:27<br>Даты поездки: 12.26.2026 - 05.01.2027",
+    "Проверка: 04.11.2026 19:48<br>Даты поездки: 12.26.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 05.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/mazar-resort-spa-14/pLCaxW603JLertLEEdY5CiAAogfeQ-VB21gbpJw0JtshXiW1IJvSahBnKQnFVAY7DTP1UqBEtPTVQw8Put1wZInEpQAViVCmACagJBSXIfHBHwGrkE7uIBqwQrGMKdBBurhiQBn47OHgIAYwECBqUYxj0/?operator=KOMT&adults=2&children=2020-12-10&objectId=222142&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/KOMT/IMG/3440/19ba2309bc66fcf28226a43411c8d1c6edddf92417912d7079bcedd234699936.webp@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9578.198012637024,
+  "min_p": 9500.0,
+  "max_p": 9947.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

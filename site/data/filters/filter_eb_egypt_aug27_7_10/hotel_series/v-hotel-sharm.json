@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "v-hotel-sharm",
+  "hotel_name": "V Hotel Sharm",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    10670.0,
+    10670.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dessole-pyramisa-egipt-sharm-el-sheikh-egipt/pNeKKgaxlB3RmsfdhUofMrAAoguezLonnmZhTnHibRG2P7v6FkcsYdTKu4CIVjrxeK5U4qBEpPSVAwxdWo1wZIrlNQQVj1N2ACagMySnhyQpsBFAEVBhcAXANYBVYCQMoGT-IBXQBe3voBUqYgUwARhgxLwRdhAEzljDoNgMqYCSAAAduQsPjy5s2gMAINYwEADJVjrdo/?operator=JOIP&adults=2&children=2020-08-12&objectId=604&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744706419/plain/cms/fileadmin/config_img/objects/604/Pyramisa-Beach-Resort.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10669.999999999998,
+  "min_p": 10670.0,
+  "max_p": 10670.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

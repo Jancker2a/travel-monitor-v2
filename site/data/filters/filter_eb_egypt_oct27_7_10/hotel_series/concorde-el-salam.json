@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "concorde-el-salam",
+  "hotel_name": "Concorde El Salam",
+  "x": [
+    "2026-11-06 12:31:22"
+  ],
+  "y": [
+    8463.0
+  ],
+  "hover": [
+    "Проверка: 06.11.2026 12:31<br>Даты поездки: 09.10.2026 - 16.10.2026"
+  ],
+  "meta": {
+    "dates": "09.10.2026 - 16.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/concorde-el-salam/p31mfXdm8fqps-FtVSpl6tAAog4LtiL7dv6L9987NhgNZ7Q1APatE9enAxMfAVyCfE5QEqBEJWQkUwkfW21wZIj0JQAViMP2ACagJBSXIiHBHHhgIbl_JHGOOWH7kEtogmqwSSAQHHo5K2BQISYwECC8r5b-8/?operator=BVBE&adults=2&children=2020-08-12&objectId=621&durationFrom=7&durationTo=10&departureDate=2027-10-09&returnDate=2027-10-16&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701109/plain/cms/fileadmin/config_img/objects/621/Concorde-El-Salam-fly-pl.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8463.0,
+  "min_p": 8463.0,
+  "max_p": 8463.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "09.10.2026 - 16.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

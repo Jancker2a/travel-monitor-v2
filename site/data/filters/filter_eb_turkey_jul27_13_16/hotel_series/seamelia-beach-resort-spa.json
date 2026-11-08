@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "seamelia-beach-resort-spa",
+  "hotel_name": "Seamelia Beach Resort & Spa",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    19731.0,
+    19731.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 11.07.2027 - 24.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 11.07.2027 - 24.07.2027"
+  ],
+  "meta": {
+    "dates": "11.07.2027 - 24.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seamelia-beach/pCxROyiDfz4pkeWg_lyNl2AAogitqOMkbNDCnqLQ9S1lt3-vzrWKuMOazzoZxX_CQmgSwqBEpPSVAw0Neo1wZIk5oBUEFY3S5gAmoDM3FrckGbARQBXAkXAxUAWAJWAkDKBlOqaFIAT7UNXQARvXtepAtL7UNhAEzljDoNismYCSAAAcGD3MDUiM2cMAINYwECBhzLm9M/?operator=JOIP&adults=2&children=2020-08-12&objectId=31522&durationFrom=13&durationTo=16&departureDate=2027-07-11&returnDate=2027-07-24&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705565/plain/cms/fileadmin/config_img/objects/31522/Seamelia-Beach-Resort-Spa.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 19731.0,
+  "min_p": 19731.0,
+  "max_p": 19731.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "11.07.2027 - 24.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

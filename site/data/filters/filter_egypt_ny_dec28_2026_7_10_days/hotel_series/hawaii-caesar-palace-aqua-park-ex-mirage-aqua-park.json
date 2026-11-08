@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "hawaii-caesar-palace-aqua-park-ex-mirage-aqua-park",
+  "hotel_name": "Hawaii Caesar Palace & Aqua Park (ex Mirage Aqua Park)",
+  "x": [
+    "2026-09-23 13:53:18",
+    "2026-09-23 19:16:22",
+    "2026-09-23 22:33:30"
+  ],
+  "y": [
+    10912.0,
+    10912.0,
+    10912.0
+  ],
+  "hover": [
+    "Проверка: 23.09.2026 13:53<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 23.09.2026 19:16<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 23.09.2026 22:33<br>Даты поездки: 29.12.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "29.12.2026 - 05.01.2027",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/mirage-aqua-park-spa-cesar-palace/pE-kIYtvRInGGEWdk1451OAAogNOb8Wz3s_-Mby90Ub0kjqG9n6bAq9iaw9Z5P8khFlyIqBEtPTVQwm-_Q1QZIoFVQAViDEmACagJBSXIfHBHDGrkE4uABqwQDGJmWBBu1mCQBseLAHgIAYwEEC3Z-N4c/ofertasv/?filter[tourOperator]=KOMT&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/11/Hawaii-Caesar-Palace-Aqua-Park-ex-Mirage-Aqua-Park-fly-pl.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10912.0,
+  "min_p": 10912.0,
+  "max_p": 10912.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.12.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

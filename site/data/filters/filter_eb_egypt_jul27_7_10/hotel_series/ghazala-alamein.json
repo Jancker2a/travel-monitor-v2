@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "ghazala-alamein",
+  "hotel_name": "Ghazala Alamein",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    14475.0,
+    15217.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 03.07.2027 - 10.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 03.07.2027 - 10.07.2027"
+  ],
+  "meta": {
+    "dates": "03.07.2027 - 10.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dolny-egipt,al-alamajn/rixos-alamein-9/pOWV650IECNzemrzsp6POBAAogFfznthUrzngt8tTQWCiLV-MBWtSK2zKv_-6qtOsLizQqBFZJVFgw5tWo1wZI8XZQQVidLWACckAaABUHFwBcA1gFQI8DW7-DAVPMYFIAXvIbS-1DYQBM-PlEDe_bjQkgAFGs7NKYuQFPhoctXaSH7tZMAgxjAQIL7Oc_Gw/?operator=VITX&adults=2&children=2020-08-12&objectId=154517&durationFrom=7&durationTo=10&departureDate=2027-07-03&returnDate=2027-07-10&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ITAK/IMG/MUHGHAZ/0fb7991335c119fb2544eac7f87ff3155ea45ca2d59e44bf0d79965e052e765c.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14846.000000000002,
+  "min_p": 14475.0,
+  "max_p": 15217.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "03.07.2027 - 10.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

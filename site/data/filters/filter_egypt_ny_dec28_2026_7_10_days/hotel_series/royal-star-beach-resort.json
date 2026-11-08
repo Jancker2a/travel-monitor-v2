@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "royal-star-beach-resort",
+  "hotel_name": "Royal Star Beach Resort",
+  "x": [
+    "2026-10-23 09:51:56",
+    "2026-11-01 07:28:46",
+    "2026-11-02 08:06:06"
+  ],
+  "y": [
+    8569.0,
+    9503.0,
+    9503.0
+  ],
+  "hover": [
+    "Проверка: 23.10.2026 09:51<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 01.11.2026 07:28<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 02.11.2026 08:06<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/three-corners-royal-star-beach-resort/poqxLYnONNXoVEzwR6n9u3AAog0NOAIx6Wj2I-M62sW0A8IQbyY4eWR3p7KMyqfZ_qYPQqBEVDQ1gw4-yg1wZIn0pQAVjQCmACagJBSXIgHBGzMbkEtekYqwQBGPaELRvfrUEBzrSShAICEmMBAgY4a9N5/?operator=ECCX&adults=2&children=2020-12-10&objectId=140272&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701153/plain/cms/fileadmin/config_img/objects/140272/Royal-Star-Beach-Resort-ex-Three-Corners-fly-pl.jpg@webp"
+  },
+  "deal_score": 48,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9191.666666666666,
+  "min_p": 8569.0,
+  "max_p": 9503.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

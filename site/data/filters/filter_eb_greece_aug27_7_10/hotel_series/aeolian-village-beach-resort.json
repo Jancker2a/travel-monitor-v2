@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "aeolian-village-beach-resort",
+  "hotel_name": "Aeolian Village Beach Resort",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    12180.0,
+    12180.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,skala-eresou/aeolian-village-beach-resort-9/p7_KexXbodBLIz54RKY2T8AAog0uo4hIreQbtSvmjO1K9wO3ONsfYv9YqtR9eBruHQIlYqBEdSQ1Mwrdao1wZIlF9QQVj1N2ADcj8VBxcAWAhWAlwCHYQDDx5ApgNbmIQBUrZZUwBe8h5h7UNLAAHxiJ0BDfTNtQggAFHhx_vktgEBEmMBAmMBAgtz-7IZ/?operator=GRCS&adults=2&children=2020-08-12&objectId=230042&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/GRCS/IMG/MJTAEVI/2ce4e40e453b824be5ed81f4847560313a89276527d63c811e6be162ed38c122.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12180.0,
+  "min_p": 12180.0,
+  "max_p": 12180.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

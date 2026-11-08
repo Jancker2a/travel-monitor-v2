@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "white-hills-resort",
+  "hotel_name": "White Hills Resort",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    13825.0,
+    13825.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 05.10.2026 - 12.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 05.10.2026 - 12.10.2026"
+  ],
+  "meta": {
+    "dates": "05.10.2026 - 12.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/white-hills-by-sunrise-14/pTu80Rq1xS-TZM0h81LrdgAAogdhf_AAgYCx54FNAoLrZgYNNW4YIM-nXhKGw8D5jat6IqBE9BU0kw29Wo1wZIgWxQAVjtPmACagNBSWxyIRwRyrMBqwTi_BC5BAEb1_8RGN73EgH936S_AgIAYwECC8X-WJk/?operator=OASI&adults=2&children=2020-08-12&objectId=222623&durationFrom=7&durationTo=10&departureDate=2027-10-05&returnDate=2027-10-12&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707701/plain/cms/fileadmin/config_img/objects/222623/Sunrise-White-Hills.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13825.0,
+  "min_p": 13825.0,
+  "max_p": 13825.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "05.10.2026 - 12.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

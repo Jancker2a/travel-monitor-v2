@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "rixos-radamis-sharm-el-sheikh",
+  "hotel_name": "Rixos Radamis Sharm El Sheikh",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    13172.0,
+    13172.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 29.07.2027 - 05.08.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 29.07.2027 - 05.08.2027"
+  ],
+  "meta": {
+    "dates": "29.07.2027 - 05.08.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/rixos-radamis-sharm-13/pS5CZTOGO1UU5ntC2EirMaAAoglatNxIU9NnzjjJESG7ZMWzZnw6eyrdQCqMd8bH5aOKIqBEpPSVAw29Wo1wZI9GZQQViNMmACagNMTHNyQ5sBFAEVBhcAXANYBVYCQMoGT-IBXQBe3voBUqYgUwBLxyNhABHuoAFM9-s4DZzJmAkgAAGv9_vw1IjMoDACDWMBAAt5uJ5-/?operator=JOIP&adults=2&children=2020-08-12&objectId=229548&durationFrom=7&durationTo=10&departureDate=2027-07-29&returnDate=2027-08-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/62454/4ba97507de5a04bfe87ef578086b6c65033b092a7b841a218f3573e53cc7afb8.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13172.0,
+  "min_p": 13172.0,
+  "max_p": 13172.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.07.2027 - 05.08.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

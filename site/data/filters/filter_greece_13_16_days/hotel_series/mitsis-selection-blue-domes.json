@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_13_16_days",
+  "slug": "mitsis-selection-blue-domes",
+  "hotel_name": "Mitsis Selection Blue Domes",
+  "x": [
+    "2026-10-08 04:08:16",
+    "2026-10-08 13:19:08",
+    "2026-10-08 18:45:29",
+    "2026-10-09 00:17:19",
+    "2026-10-09 04:22:30",
+    "2026-10-09 11:25:29"
+  ],
+  "y": [
+    17848.0,
+    17848.0,
+    17870.0,
+    17870.0,
+    17861.0,
+    17861.0
+  ],
+  "hover": [
+    "Проверка: 08.10.2026 04:08<br>Даты поездки: 17.10.2026 - 31.10.2026",
+    "Проверка: 08.10.2026 13:19<br>Даты поездки: 17.10.2026 - 31.10.2026",
+    "Проверка: 08.10.2026 18:45<br>Даты поездки: 17.10.2026 - 31.10.2026",
+    "Проверка: 09.10.2026 00:17<br>Даты поездки: 17.10.2026 - 31.10.2026",
+    "Проверка: 09.10.2026 04:22<br>Даты поездки: 17.10.2026 - 31.10.2026",
+    "Проверка: 09.10.2026 11:25<br>Даты поездки: 17.10.2026 - 31.10.2026"
+  ],
+  "meta": {
+    "dates": "17.10.2026 - 31.10.2026",
+    "duration": "15 dni/14 nocy",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamaina/mitsis-blue-domes-resort/pD_opwogxRaCfji84FTYyyAAog93sSAlVHk3AwX0VrBBXaVnzhPMwzW-BSCIkBY4WztxAqBEdSQ1Mwneai1gZIxYsBUEFYtgFgA3I-FQ4XAFgBVgJcAh2bAw8eQI8DW6RxUp1XUwBh2ANLAF6nMAGYlYQBDea4zgggAFHj6ODxpQEBEmMBAmMBAgsUCI3b/ofertasv/?filter[tourOperator]=GRCS&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Mitsis-Blue-Domes-Exclusive-Resort-Spa-fly-pl.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17858.181593584504,
+  "min_p": 17848.0,
+  "max_p": 17870.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "17.10.2026 - 31.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_13_16_days.html"
+}

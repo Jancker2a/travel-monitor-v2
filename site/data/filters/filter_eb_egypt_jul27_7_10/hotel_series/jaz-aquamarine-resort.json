@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "jaz-aquamarine-resort",
+  "hotel_name": "Jaz Aquamarine Resort",
+  "x": [
+    "2026-10-29 15:50:04",
+    "2026-11-01 08:54:17",
+    "2026-11-02 00:45:30",
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    8817.0,
+    8657.0,
+    8657.0,
+    9389.0,
+    9423.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 15:50<br>Даты поездки: 22.07.2027 - 30.07.2027",
+    "Проверка: 01.11.2026 08:54<br>Даты поездки: 15.07.2027 - 23.07.2027",
+    "Проверка: 02.11.2026 00:45<br>Даты поездки: 15.07.2027 - 23.07.2027",
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 15.07.2027 - 23.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 15.07.2027 - 23.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 23.07.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/jaz-aquamarine-ex-iberotel-aquamarine/pV-2gQAzCiLeV_QCsHfXDbAAogC2bpvyW119qajl5Od0n8KwG4w_A5qeO3BAyScsQtSW8qBEJWUFIwtNWo1wZIz0lQAVi9L2ACag1BbGwgaW5jbHVzaXZlciAcEYAtG4fqBhibnQ-5BLW7FqsEAQGlwub5AQIAYwEDC_VPlnc/?operator=BVPR&adults=2&children=2020-08-12&objectId=8143&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705427/plain/cms/fileadmin/config_img/objects/8143/jaz-aquamarine-ex-iberotel-egipt-hurghada-1b.jpg@webp"
+  },
+  "deal_score": 45,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8909.184799093498,
+  "min_p": 8657.0,
+  "max_p": 9423.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 23.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

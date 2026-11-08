@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "titanic-pearl",
+  "hotel_name": "Titanic Pearl",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    10107.0,
+    10107.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 31.08.2027 - 08.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 31.08.2027 - 08.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 08.09.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-pearl-10/pI0uUSrJBA0zzoNvnHHpaNAAog0p-8Tb-DmTu3A0BHKeZYMuXduIKDdqi9iNE4pF45sDQqBEVYSU0wxdWo1wZI-05QAVilOGACagNVQUlyIRwRy8cHqwTnr065BB8bucBFGIqzUQHB97_tDgIAYwECC79Q_yc/?operator=EXIM&adults=2&children=2020-08-12&objectId=239566&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/123851/8336dd3746571adb753296a9cc4933ccd1e8b933da8a85e94abd52c599c3514e.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10107.0,
+  "min_p": 10107.0,
+  "max_p": 10107.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 08.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

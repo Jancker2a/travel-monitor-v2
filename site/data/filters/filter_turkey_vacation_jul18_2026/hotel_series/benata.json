@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "benata",
+  "hotel_name": "Benata",
+  "x": [
+    "2026-07-20 11:03:03",
+    "2026-07-20 13:57:20"
+  ],
+  "y": [
+    10157.0,
+    10157.0
+  ],
+  "hover": [
+    "Проверка: 20.07.2026 11:03<br>Даты поездки: 24.07.2026 - 01.08.2026",
+    "Проверка: 20.07.2026 13:57<br>Даты поездки: 24.07.2026 - 01.08.2026"
+  ],
+  "meta": {
+    "dates": "24.07.2026 - 01.08.2026",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,manavgat/benata-14/peiq_Y6Zf5xjVYb4U65B9vAAogE04w_SG4w_Dgzy5LlxHpE0q1DOKzwWL2Dka2jH9FG-EqBFZJVFgwo5r40gZIrU9QQVhUYAJyQhoAFQcXAFwDWAVAjwNT52tSAFvYF16-fEvtQ2EATJSsOQ3Y25gJIAFR8bjq7VhPwaH95qgYXdC59K7UMAILYwECCo9h_Lw/ofertasv/?filter[tourOperator]=VITX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2024/07/benata.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10157.0,
+  "min_p": 10157.0,
+  "max_p": 10157.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.07.2026 - 01.08.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

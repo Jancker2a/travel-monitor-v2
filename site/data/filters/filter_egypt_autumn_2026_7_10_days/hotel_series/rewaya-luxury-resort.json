@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "rewaya-luxury-resort",
+  "hotel_name": "Rewaya Luxury Resort",
+  "x": [
+    "2026-10-26 02:22:22",
+    "2026-10-26 07:33:42",
+    "2026-10-26 12:12:04"
+  ],
+  "y": [
+    7437.0,
+    7437.0,
+    7407.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 02:22<br>Даты поездки: 29.10.2026 - 06.11.2026",
+    "Проверка: 26.10.2026 07:33<br>Даты поездки: 29.10.2026 - 06.11.2026",
+    "Проверка: 26.10.2026 12:12<br>Даты поездки: 29.10.2026 - 06.11.2026"
+  ],
+  "meta": {
+    "dates": "29.10.2026 - 06.11.2026",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-luxury-resort-9/ph8PRQo4SVjBAluMn-OC6xAAogTWDU4mOjr7xNP9MoWGXuYP966lwJMXcBoSKWCVd3NSUqBEVYSU0w6Ov81gZI7zlQAVg8YAJqA1VBSXIhHBGb_warBL2pS7kERBvUnkAY7-ZHAY6S3asNAhJjAQINH7aTIg/?operator=EXIM&adults=2&children=2020-12-10&objectId=237611&durationFrom=7&durationTo=10&departureDate=2026-10-29&returnDate=2026-11-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/114587/d4eb92cfe350c7a33d54f02107ec3a32db9ef7ad1d4e95c8b7b4944e33e5d7b4.webp@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 7427.37986718576,
+  "min_p": 7407.0,
+  "max_p": 7437.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.10.2026 - 06.11.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

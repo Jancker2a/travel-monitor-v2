@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "leonardo-cypria-maris-ex-riu",
+  "hotel_name": "Leonardo Cypria Maris (ex. RIU)",
+  "x": [
+    "2026-11-03 15:10:20",
+    "2026-11-03 16:29:55",
+    "2026-11-03 19:51:29",
+    "2026-11-04 03:34:42",
+    "2026-11-04 07:22:50"
+  ],
+  "y": [
+    7789.0,
+    7789.0,
+    7789.0,
+    7789.0,
+    7789.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 15:10<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 03.11.2026 19:51<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 19.12.2026 - 26.12.2026"
+  ],
+  "meta": {
+    "dates": "19.12.2026 - 26.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/leonardo-cypria-maris-ex-riu-13/pi1tcnEBufLFCFHL8QvJMeAAogoajIChaF7zKwYiOdM-KdzVo7a_uwWIyLxEjdJfVRbUcqBE5LUkEw6J6r1wZI7TxQAVixCGABagJCQmoER0ROMGoDUEZPchgWDiAKDBGV4T4NwvGVCQ8HG4OhhRsBEmMnSmzn/?operator=NKRA&adults=1&objectId=27587&durationFrom=7&durationTo=10&departureDate=2026-12-19&returnDate=2026-12-26&departureLocation=Gda%C5%84sk&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/NKRA/IMG/1028257/024e7692c1af1af1ab328e6c2061b5170e830edbe4ae1588db54135238e9e5dd.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 7789.000000000001,
+  "min_p": 7789.0,
+  "max_p": 7789.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.12.2026 - 26.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

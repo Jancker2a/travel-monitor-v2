@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "casa-cook-north-coast",
+  "hotel_name": "Casa Cook North Coast",
+  "x": [
+    "2026-11-03 06:36:04"
+  ],
+  "y": [
+    14713.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 24.07.2027 - 31.07.2027"
+  ],
+  "meta": {
+    "dates": "24.07.2027 - 31.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dolny-egipt,al-alamajn/casa-cook-north-coast-14/pw-cX8G1AdItt36bVUbp5lAAogMaxTRVT8-asFCbk5jSg0s7CpH7prd3xtYPq0qpyeX8EqBEpPSVAwlual1wZI-XJQQViiMWACagNDR21yQpsBFAEVBhcAXANYBVYCQMoGT-IBXQBSqn5TAF60fEvtQ2EAEbCPAky1_TcNl8mYCSAAAa__i_iSpsygMAINYwEAC_uuaoc/?operator=JOIP&adults=2&children=2020-08-12&objectId=237300&durationFrom=7&durationTo=10&departureDate=2027-07-24&returnDate=2027-07-31&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/76600/5e84192ea708315dd83f87bba76527455e5565d0297ffff1e274c5ce9ce4f842.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14713.0,
+  "min_p": 14713.0,
+  "max_p": 14713.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.07.2027 - 31.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

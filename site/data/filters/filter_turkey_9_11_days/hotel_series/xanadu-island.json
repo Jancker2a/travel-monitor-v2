@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_9_11_days",
+  "slug": "xanadu-island",
+  "hotel_name": "Xanadu Island",
+  "x": [
+    "2026-10-17 17:27:59",
+    "2026-10-17 17:49:32",
+    "2026-10-17 18:13:55",
+    "2026-10-17 19:27:31",
+    "2026-10-17 22:50:02",
+    "2026-10-18 01:18:45"
+  ],
+  "y": [
+    12447.0,
+    12447.0,
+    12447.0,
+    12447.0,
+    12447.0,
+    12447.0
+  ],
+  "hover": [
+    "Проверка: 17.10.2026 17:27<br>Даты поездки: 18.10.2026 - 29.10.2026",
+    "Проверка: 17.10.2026 17:49<br>Даты поездки: 18.10.2026 - 29.10.2026",
+    "Проверка: 17.10.2026 18:13<br>Даты поездки: 18.10.2026 - 29.10.2026",
+    "Проверка: 17.10.2026 19:27<br>Даты поездки: 18.10.2026 - 29.10.2026",
+    "Проверка: 17.10.2026 22:50<br>Даты поездки: 18.10.2026 - 29.10.2026",
+    "Проверка: 18.10.2026 01:18<br>Даты поездки: 18.10.2026 - 29.10.2026"
+  ],
+  "meta": {
+    "dates": "18.10.2026 - 29.10.2026",
+    "duration": "12 dni/11 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,akyarlar/xanadu-island/pPc-ddY_Ok3orAeK0w6pAoAAog6DwwKF5IF6EigdCNMo29BgAAAAANdwQAjmwEAAsAAAAqBFdFWlkw5YTQ1gZIn2FQQWADah1FbnRlciBBaXIvTE9UIFBvbGlzaCBBaXJsaW5lc3JDngEfABwBAgAWABcKEukDEfcEE-ABFL0DFeEBGFpPuGRMAECmDFDnxQFLABv-UyCIvg4d_xQNjePCCQESYwEMYwECC4ZYnK4/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Xanadu.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12447.0,
+  "min_p": 12447.0,
+  "max_p": 12447.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "18.10.2026 - 29.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_9_11_days.html"
+}

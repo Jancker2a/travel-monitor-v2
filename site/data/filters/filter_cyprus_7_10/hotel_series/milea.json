@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "milea",
+  "hotel_name": "Milea",
+  "x": [
+    "2026-10-26 18:01:21",
+    "2026-10-26 21:47:16",
+    "2026-10-27 01:41:27",
+    "2026-10-27 07:32:51",
+    "2026-10-27 09:56:21",
+    "2026-10-27 10:30:54"
+  ],
+  "y": [
+    2787.0,
+    2787.0,
+    2787.0,
+    2787.0,
+    2787.0,
+    2792.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 18:01<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 26.10.2026 21:47<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 27.10.2026 01:41<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 27.10.2026 07:32<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 27.10.2026 09:56<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 27.10.2026 10:30<br>Даты поездки: 19.12.2026 - 26.12.2026"
+  ],
+  "meta": {
+    "dates": "19.12.2026 - 26.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,ajia-napa/milea-12/XTOP7641f2X_wYAAHNOYVBwWQHXAQC8Bx43CpABCgYIqKMDEAESBgjN9gMQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjgySUpESEMzN1VXV0MzM05RMFpUOUtJUUwyQTlIQlpVRERSUFU4Rkk0R1Y5VU45Mk5EN1ZSWTlURTdHVk5FQ1FGVTEwVVQzNzRZSEhIUzgxUjZZNFNRTk0wCn8KBgj7oAIQAhIGCJbdCxABGm1PNTQ1NDRkNTMyZjQxNDM1OTRjNDM0MTQ2NDg0OTRkMmY1MjRkNTM0NDUzNDczMDMwNDIzMDJmNDI0MjJmMzcyZjMyMzAzMjM2MzEzMjMxMzkyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCiIKBQjsWRABEgUIzm0QARoSRFNSVC0xNzE5LVRSQU5TRkVSCiIKBQiMFRABEgUIqBkQARoSRFNSTS0xNzE5LTUzcjIzMzgzCiEKBQjEExABEgUIuBcQARoRRFNSTS0xNzE5LTJyMjMzODQKHQoCEAESAhABGhNEU1JNLTE3MTktNDI2cjIzMzg1CiMKBQjQDxABEgUIiBMQARoTRFNSVS0xNzE5LVViZXpiYXNpYxi3DSjiGzIGCJmFERABOAE/?operator=XTOP&adults=1&objectId=223091&durationFrom=7&durationTo=10&departureDate=2026-12-19&returnDate=2026-12-26&departureLocation=Wroc%C5%82aw&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707720/plain/cms/fileadmin/config_img/objects/223091/milea.webp@webp"
+  },
+  "deal_score": 49,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 2787.1686557629046,
+  "min_p": 2787.0,
+  "max_p": 2792.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.12.2026 - 26.12.2026",
+  "display_price_ceiling": 6000.0,
+  "history_price_ceiling": 6000.0,
+  "back_href": "index_filter_cyprus_7_10.html"
+}

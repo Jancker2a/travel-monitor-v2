@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "jaz-sharm-dreams-resort",
+  "hotel_name": "Jaz Sharm Dreams Resort",
+  "x": [
+    "2026-08-28 21:50:00",
+    "2026-09-01 13:50:39",
+    "2026-09-01 16:11:33",
+    "2026-10-28 20:01:30",
+    "2026-10-29 00:24:44"
+  ],
+  "y": [
+    10580.0,
+    10630.0,
+    10630.0,
+    10657.0,
+    10657.0
+  ],
+  "hover": [
+    "Проверка: 28.08.2026 21:50<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 01.09.2026 13:50<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 01.09.2026 16:11<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 28.10.2026 20:01<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 29.10.2026 00:24<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-dreams-resort/p5u34cqZCTFKslfSl8ZLgmAAogEIRkZS32Fx116htKl7xE5Lfyi7D4Of8dkk1PUBb31j4qBE5LUkEwwYiK1wZIoVNQAVjACmADagJBSWoEV01JMGoDU1NIch4WDiAKDBHL4z4bnPemAQ319-4HDwcBEmMBDGMBAgy_8YH7/?operator=NKRA&adults=2&children=2020-12-10&objectId=610&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701105/plain/cms/fileadmin/config_img/objects/610/Jaz-Sharm-Dreams.webp@webp"
+  },
+  "deal_score": 49,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10630.88196780654,
+  "min_p": 10580.0,
+  "max_p": 10657.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

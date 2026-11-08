@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "aria-claros-beach-and-spa-resort",
+  "hotel_name": "Aria Claros Beach and Spa Resort",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    9976.0,
+    9976.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,ozdere/aria-claros-beach-and-spa-resort/p7k_tn6iGBc7E_c4grZUhNAAogZcms9zf3PFwCRPoqx7f7awAAAABkmQUAe5kFAAcAHQAqBFdFWlkw4tao1wZI-E1QQVilOGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAWABcGEu0DEcsyTMAyTwBAohhL58UBUAAboYoEHbvhDyAXDfTqvgkBEmMBDWMBAwxoU_Mp/?operator=WEZY&adults=2&children=2020-08-12&objectId=175605&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704436/plain/cms/fileadmin/config_img/objects/175605/Aria-Claros-Beach-and-Spa-Resort.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9976.0,
+  "min_p": 9976.0,
+  "max_p": 9976.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

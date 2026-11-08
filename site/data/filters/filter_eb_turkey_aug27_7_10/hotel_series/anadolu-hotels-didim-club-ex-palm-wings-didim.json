@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "anadolu-hotels-didim-club-ex-palm-wings-didim",
+  "hotel_name": "Anadolu Hotels Didim Club (ex. Palm Wings Didim)",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    10657.0,
+    10657.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,didim/palm-wings-beach-resort/p1jQjTLVOh9fsZo8ND5LjJAAog_C8LnJ98qF6sbipL0bpo-FyqdKSSoeXyyJP-CVva4mQqBFZJVFgw9dao1wZIoVNQQVj1N2ACckAaABUHFwBcA1gFQI8DU91xUgBb8AJesIsBS-1DYQBM-PlEDe3cjQkgAFGmi_jMXU-PizhdrM6doqgBAgxjAQILtDWPgg/?operator=VITX&adults=2&children=2020-08-12&objectId=11334&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744706388/plain/cms/fileadmin/config_img/objects/11334/Anadolu.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10657.0,
+  "min_p": 10657.0,
+  "max_p": 10657.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

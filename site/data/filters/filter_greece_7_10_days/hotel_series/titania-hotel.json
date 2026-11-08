@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_7_10_days",
+  "slug": "titania-hotel",
+  "hotel_name": "Titania Hotel",
+  "x": [
+    "2026-10-30 14:48:10"
+  ],
+  "y": [
+    5364.0
+  ],
+  "hover": [
+    "Проверка: 30.10.2026 14:48<br>Даты поездки: 13.11.2026 - 20.11.2026"
+  ],
+  "meta": {
+    "dates": "13.11.2026 - 20.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/titania/XTOPda9f23X_wYAAHNOYVBwWQGuAQCdZZlKCpABCgYIkZQJEAESBgjcoQsQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjYwNTdCQkdSUzBSSkdBRUVBV1VNSU5UTU44M0Q3TUg2Tk9WRUE3SVkzVlozNkZLQ1laSlc0MUdCMzZKRDhIRUcyU1hLQkRITzFWS09DR0xaVEUxM1Q2R05YCn8KBgix6gMQAhIGCPKvFBABGm1PNTQ1NDRkNTMyZjQxNDc1MjQxNTQ0ODM0MzM0NzMyMmY1MjRkNTM0NDMwMzAzMDMwMzAzMDJmNDI0MjJmMzcyZjMyMzAzMjM2MzEzMTMxMzMyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCh0KAhABEgIQARoTRFNSVC0xMTAtTk9UUkFOU0ZFUgogCgUIzDoQARIFCPNGEAEaEERTUk0tMTEwLTJyMjI2MDcKIQoFCMYKEAESBQjiDBABGhFEU1JNLTExMC0zNXIyMjYwOAoiCgUI8C4QARIFCJg5EAEaEkRTUlUtMTEwLVViZXpiYXNpYxhuKFQyBgi73iAQATgD/?operator=XTOP&adults=2&children=2020-12-10&objectId=18965&durationFrom=7&durationTo=10&departureDate=2026-11-13&returnDate=2026-11-20&departureLocation=Modlin&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744706719/plain/cms/fileadmin/config_img/objects/18965/titania.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 5364.0,
+  "min_p": 5364.0,
+  "max_p": 5364.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "13.11.2026 - 20.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_7_10_days.html"
+}

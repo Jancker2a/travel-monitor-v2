@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "the-x-belek",
+  "hotel_name": "The X Belek",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    10571.0,
+    10571.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/the-x-belek-13/pEV5MZSeYWiPpZNZNadqP4AAogKpqBNpB6BqmwuxUCNTbP9AAAAADHlwUA9ZcFAAcAEgAqBFdFWlkw7Nao1wZIy1JQQVilOGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcGEu0DT5FrTABAnBJL58UBUAARnmEbwYwBHeD6ESAuDfrtvgkBEmMBDGMBAgs2lJlU/?operator=WEZY&adults=2&children=2020-08-12&objectId=224475&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707792/plain/cms/fileadmin/config_img/objects/224475/the-x-belek.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10571.0,
+  "min_p": 10571.0,
+  "max_p": 10571.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

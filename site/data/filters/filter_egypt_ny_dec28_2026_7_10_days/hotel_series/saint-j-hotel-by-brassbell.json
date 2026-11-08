@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "saint-j-hotel-by-brassbell",
+  "hotel_name": "Saint J Hotel by Brassbell",
+  "x": [
+    "2026-11-04 03:31:38",
+    "2026-11-04 17:27:38",
+    "2026-11-04 19:48:11"
+  ],
+  "y": [
+    10977.0,
+    10977.0,
+    10977.0
+  ],
+  "hover": [
+    "Проверка: 04.11.2026 03:31<br>Даты поездки: 12.26.2026 - 04.01.2027",
+    "Проверка: 04.11.2026 17:27<br>Даты поездки: 12.26.2026 - 04.01.2027",
+    "Проверка: 04.11.2026 19:48<br>Даты поездки: 12.26.2026 - 04.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 04.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/saint-j-by-brassbell-9/pf24PT9YwBRhFET11h473NAAog2k1u2EzxUaZb5nQpchDL4GFJOaPYYorA4LPKCWLPbSEqBFZJVFgw7_ut1wZI4VVQQVj9CWACagpBRUdDQVJMME8wagpTVFNEMDAwMDAwagxXQVdDQUlEUDIwMDVqDENBSVdBV0RQMjAwNXI0kQGbAZ0BjwEaABcHFQBYCFwPQIADU5x5UgBe4YYBS-1DYQBMkIg4INSDmgkNAAIMYwECC1diM4A/?operator=VITX&adults=2&children=2020-12-10&objectId=239581&durationFrom=7&durationTo=10&departureDate=2026-12-28&returnDate=2027-01-04&departureLocation=Warszawa&catering=without&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ITAK/IMG/AEGCARL0O0/7e463ea2cbed1c16a464c165a113c5de35dc28ba6f3c50d4bd9d5cc93bb9ca4b.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10977.0,
+  "min_p": 10977.0,
+  "max_p": 10977.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 04.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

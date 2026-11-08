@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "ozkaymak-falez",
+  "hotel_name": "Ozkaymak Falez",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    16196.0,
+    16196.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 11.07.2027 - 24.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 11.07.2027 - 24.07.2027"
+  ],
+  "meta": {
+    "dates": "11.07.2027 - 24.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/ozkaymak-falez/pCKx1i28AkKpv1T3kpfGdMAAogD28gUGMqaKdnGbZusNdz4PzrWKuMOazzoZxX_CQmgSwqBEpPSVAwn9eo1wZIxH5QQVjdLmACagMxMnByQZsBFAFcCRcDFQBYAlYCQMoGU6poUgBPtQ1dABGLe17WC0vtQ2EATOWMOg2KyZgJIAAB1IuAqIWJzJwwAg1jAQIJR7kMRw/?operator=JOIP&adults=2&children=2020-08-12&objectId=1779&durationFrom=13&durationTo=16&departureDate=2027-07-11&returnDate=2027-07-24&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/31685/e414b7d3a786f22678f4cd3d05e4a87e93f48cf04e9bee8d4185384208abf125.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16196.0,
+  "min_p": 16196.0,
+  "max_p": 16196.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "11.07.2027 - 24.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

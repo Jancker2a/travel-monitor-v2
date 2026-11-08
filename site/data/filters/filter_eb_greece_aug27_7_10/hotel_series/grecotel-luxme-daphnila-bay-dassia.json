@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "grecotel-luxme-daphnila-bay-dassia",
+  "hotel_name": "Grecotel LuxMe Daphnila Bay Dassia",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    17626.0,
+    17626.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 28.08.2027 - 04.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 28.08.2027 - 04.09.2027"
+  ],
+  "meta": {
+    "dates": "28.08.2027 - 04.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,korfu,dassia/grecotel-lux-me-daphnila-bay-dassia-10/px7_AfrSStW70Tqarn3Ae0AAogCDL38yMxt-kJA9vmr5n9TgAAAAD4zgQAEM8EAAcAJAAqBFdFWlkwwNao1wZI2okBUEFY3TdgA2oKU21hcnR3aW5nc2oEMDAwMGoEMDAwMGoEMDAwMGoEMDAwMHJAngGTAZQBlQGYAR8AHAECABYEFwIS7QMRrzFM10hPAECnA0vnxQFQAB3w1hAgGBvd7X4N_5HDCAESYwEMYwECC1SK1iU/?operator=WEZY&adults=2&children=2020-08-12&objectId=2872&durationFrom=7&durationTo=10&departureDate=2027-08-28&returnDate=2027-09-04&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/WEZY/IMG/6819/ed93370ced03f92b917e8376729d3673fba912e9c54161e9bda01230d9c67ef4.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17626.0,
+  "min_p": 17626.0,
+  "max_p": 17626.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "28.08.2027 - 04.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

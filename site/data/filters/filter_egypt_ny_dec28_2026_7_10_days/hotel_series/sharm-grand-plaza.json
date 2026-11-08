@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "sharm-grand-plaza",
+  "hotel_name": "Sharm Grand Plaza",
+  "x": [
+    "2026-11-02 00:50:59"
+  ],
+  "y": [
+    12557.0
+  ],
+  "hover": [
+    "Проверка: 02.11.2026 00:50<br>Даты поездки: 12.26.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 05.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-plaza-resort/ppUt3t54bEufJ2bkdZT4mnAAogsyY15oMKfvvjphDEvg9LpC_Mx6Sk4EhRs3iIeoxS9y8qBE5LUkEw56Cf1wZIjWJQAVjYCmADagJBSWoEV01JMGoDU1NIch0WDiAKDBuABBGn3j4NuvCVCQ-sRQESYwEMYwECDJQqK9c/?operator=NKRA&adults=2&children=2020-12-10&objectId=1455&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701074/plain/cms/fileadmin/config_img/objects/1455/SHARM-GRAND-PLAZA-RESORT-1.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12557.0,
+  "min_p": 12557.0,
+  "max_p": 12557.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

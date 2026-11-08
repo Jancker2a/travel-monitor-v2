@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "arena-beach-resort-spa",
+  "hotel_name": "ARENA BEACH RESORT & SPA",
+  "x": [
+    "2026-10-22 10:17:46",
+    "2026-10-23 00:37:48",
+    "2026-10-23 03:46:04",
+    "2026-11-01 00:34:43"
+  ],
+  "y": [
+    9767.0,
+    9762.0,
+    9762.0,
+    8676.0
+  ],
+  "hover": [
+    "Проверка: 22.10.2026 10:17<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 23.10.2026 00:37<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 23.10.2026 03:46<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 01.11.2026 00:34<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/arena-beach-resort-premium-suites-hurghada-9/ph1bhHIYSEAr7I8NAOkkjhAAog0OtUz0cftCgiFKk3i8LU-m9n6bAq9iaw9Z5P8khFlyIqBEtPTVQwmPaZ1wZI5ENQAVjwCmACagJBSXIfHBGZHLkEjN8BqwQDGL3BBBus8CQBvKqGHwIAYwEGC_hNMUU/?operator=KOMT&adults=2&children=2020-12-10&objectId=237778&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/KOMT/IMG/3609/2faeae62d42241e0561eb819e1799dd84ebe3ec03ce8338e59f34462482e7f56.webp@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8816.920609132781,
+  "min_p": 8676.0,
+  "max_p": 9767.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

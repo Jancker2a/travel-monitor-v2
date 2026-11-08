@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "xanadu-makadi-bay",
+  "hotel_name": "Xanadu Makadi Bay",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    11920.0,
+    12199.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 01.07.2027 - 08.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 15.07.2027 - 23.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 23.07.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-makadi-bay-12/p-FuG0LDNVifG7deV0pIsmAAogP56AHMAOsH4nshiDKQJMrKBmDW1FDOj84VUmn9bsrhgqBE9BU0kw29Wo1wZIp19QAVi9L2ACagNVQUlyIRwR-I8BuQSE3RCrBAEb5JMQGJ-xFAGJy5G2AgIAYwEDC95NSak/?operator=OASI&adults=2&children=2020-08-12&objectId=216695&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707557/plain/cms/fileadmin/config_img/objects/216695/xanadu-makadi-bay.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12059.5,
+  "min_p": 11920.0,
+  "max_p": 12199.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 23.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

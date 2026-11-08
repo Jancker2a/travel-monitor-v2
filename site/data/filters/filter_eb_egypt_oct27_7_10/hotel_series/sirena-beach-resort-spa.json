@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "sirena-beach-resort-spa",
+  "hotel_name": "Sirena Beach Resort & Spa",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10",
+    "2026-11-04 17:22:53",
+    "2026-11-05 09:01:50",
+    "2026-11-05 23:46:44",
+    "2026-11-06 12:31:22",
+    "2026-11-07 01:13:11"
+  ],
+  "y": [
+    10764.0,
+    8698.0,
+    8676.0,
+    8745.0,
+    8745.0,
+    8745.0,
+    8745.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 02.10.2026 - 09.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 01.10.2026 - 08.10.2026",
+    "Проверка: 04.11.2026 17:22<br>Даты поездки: 04.10.2026 - 11.10.2026",
+    "Проверка: 05.11.2026 09:01<br>Даты поездки: 01.10.2026 - 08.10.2026",
+    "Проверка: 05.11.2026 23:46<br>Даты поездки: 04.10.2026 - 11.10.2026",
+    "Проверка: 06.11.2026 12:31<br>Даты поездки: 04.10.2026 - 11.10.2026",
+    "Проверка: 07.11.2026 01:13<br>Даты поездки: 04.10.2026 - 11.10.2026"
+  ],
+  "meta": {
+    "dates": "04.10.2026 - 11.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/movenpick-sirena-beach-13/pjNZhHc-_ZrcM59v1FqK7oAAogsKgEjx0FY3UvC9Jug0_wwdLmEev_ovrtW8pjgaN0-1oqBE9BU0kwndq51wZIqURQAViHPmACagNBSWxyIRwRwsABuQSI8BCrBAEbru8RGP7rEwG39-HDAgIAYwECDN2jkBs/?operator=OASI&adults=2&children=2020-08-12&objectId=6380&durationFrom=7&durationTo=10&departureDate=2027-10-04&returnDate=2027-10-11&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/OASI/IMG/24642/cb70c581a64dd7b9b4e30e191a832b706e8d5c593e226b487ccc95fd8161c468.webp@webp"
+  },
+  "deal_score": 53,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "+0.0%",
+  "delta_avg": "-2.6%",
+  "confidence": "Low",
+  "median_p": 8979.218491688205,
+  "min_p": 8676.0,
+  "max_p": 10764.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "04.10.2026 - 11.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

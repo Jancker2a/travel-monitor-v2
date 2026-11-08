@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "coral-sea-sensatori-ex-coral-sea-imperial",
+  "hotel_name": "Coral Sea Sensatori (ex Coral Sea Imperial)",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    13456.0,
+    13456.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-sensatori-ex-coral-sea-imperial/pvnslTB5iy1t7DDCy0BrqkAAogKPJ4zei9uWX0_Qcd3KvO76FkcsYdTKu4CIVjrxeK5U4qBEpPSVAw5dWo1wZIkGlQQVj1N2ACagNDR21yQpsBFAEVBhcAXANYBVYCQMoGT-IBXQBe3voBEdMTUtMMUwBLxyNhAEzljDoNgMqYCSAAAd_Sx4Dj5s2gMAINYwEADJi1yAY/?operator=JOIP&adults=2&children=2020-08-12&objectId=609&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705425/plain/cms/fileadmin/config_img/objects/609/Coral-Sea-Sensatori-ex-Coral-Sea-Imperial-fly-pl-2.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13455.999999999998,
+  "min_p": 13456.0,
+  "max_p": 13456.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

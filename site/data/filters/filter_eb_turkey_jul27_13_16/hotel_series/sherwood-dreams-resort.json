@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "sherwood-dreams-resort",
+  "hotel_name": "Sherwood Dreams Resort",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    19380.0,
+    19130.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 01.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 14.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/sherwood-dreams/pUb4z8WTlfwFFT0zTfKGGvAAoghIwbkzyysvD5-eG6NAG7nAAAAABsoAUAPJwFAA0AAAAqBFdFWlkwxNeo1wZIupUBUEFY7SxgA2oJRW50ZXIgQWlyagQwMDAwagQwMDAwagQwMDAwagQwMDAwckGeAZMBlAGVAZgBHwAcAQIAFgAXDBLnAxHYGUy5UU8AQJwSS-fFAVAAILTxEx2wCBvSsmENr6ndCAESYwEMYwECCyX93CU/?operator=WEZY&adults=2&children=2020-08-12&objectId=24766&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705401/plain/cms/fileadmin/config_img/objects/24766/SHERWOOD-DREAMS-RESORT.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 19255.0,
+  "min_p": 19130.0,
+  "max_p": 19380.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 14.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

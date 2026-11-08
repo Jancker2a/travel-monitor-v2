@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "pine-bay-holiday-resort",
+  "hotel_name": "Pine Bay Holiday Resort",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    18517.0,
+    18517.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 06.07.2027 - 20.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 06.07.2027 - 20.07.2027"
+  ],
+  "meta": {
+    "dates": "06.07.2027 - 20.07.2027",
+    "duration": "15 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,c/pine-bay-holiday-resort/p61U3KBf4CWQGx9cGRc5PVAAogrm_hPqPeGMGKFuo4LGIB2kCPLcUEDNWT3rV8krx6dwsqBFZJVFgwu9eo1wZI1ZABUEFY5S1gAnI_GgBcChUEFwBYAUCPA1PhZVIAW94dXr58S-1DYQBM-PlEIPLbjQkNAFG19p6CVE_7qBNdvJeY7bEBAg1jAQIMfN3HfQ/?operator=VITX&adults=2&children=2020-08-12&objectId=5227&durationFrom=13&durationTo=16&departureDate=2027-07-06&returnDate=2027-07-20&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702544/plain/cms/fileadmin/config_img/objects/5227/Pine-Bay.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18517.0,
+  "min_p": 18517.0,
+  "max_p": 18517.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "06.07.2027 - 20.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

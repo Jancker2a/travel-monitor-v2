@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "fantazia-marsa-alam",
+  "hotel_name": "Fantazia Marsa Alam",
+  "x": [
+    "2026-10-27 10:28:16",
+    "2026-10-30 14:46:57",
+    "2026-10-30 19:46:47",
+    "2026-10-31 10:54:08",
+    "2026-10-31 16:53:23",
+    "2026-10-31 19:28:13",
+    "2026-10-31 21:09:59",
+    "2026-11-01 00:34:43",
+    "2026-11-02 16:00:50",
+    "2026-11-02 18:19:27"
+  ],
+  "y": [
+    12197.0,
+    11337.0,
+    11810.0,
+    12007.0,
+    12007.0,
+    12007.0,
+    12007.0,
+    12007.0,
+    11681.0,
+    11266.0
+  ],
+  "hover": [
+    "Проверка: 27.10.2026 10:28<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 30.10.2026 14:46<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 30.10.2026 19:46<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 31.10.2026 10:54<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 31.10.2026 16:53<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 31.10.2026 19:28<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 31.10.2026 21:09<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 01.11.2026 00:34<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 02.11.2026 16:00<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 02.11.2026 18:19<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/fantazia-resort/p-4O7llifWDzJqiBJ4-1R-AAog_UDf-iLAKjz_XZI5ImZNOrG5kgRBbNLWpKMQZ3cq5joqBE9BU0kwpIyj1wZIglhQAVjeCmACagNBSWxyIRwRkqQBuQT3_w-rBAcbzOEPGNbqEwHVifmnAgIAYwECDN8e1bI/?operator=OASI&adults=2&children=2020-12-10&objectId=6714&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705414/plain/cms/fileadmin/config_img/objects/6714/Fantazia-Resort.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 11832.918470075796,
+  "min_p": 11266.0,
+  "max_p": 12197.0,
+  "samples": 10,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

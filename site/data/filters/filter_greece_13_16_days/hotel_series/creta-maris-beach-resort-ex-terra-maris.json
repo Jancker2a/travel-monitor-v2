@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_13_16_days",
+  "slug": "creta-maris-beach-resort-ex-terra-maris",
+  "hotel_name": "Creta Maris Beach Resort (ex Terra Maris)",
+  "x": [
+    "2026-09-24 17:19:35",
+    "2026-09-24 21:23:22"
+  ],
+  "y": [
+    19334.0,
+    19134.0
+  ],
+  "hover": [
+    "Проверка: 24.09.2026 17:19<br>Даты поездки: 03.10.2026 - 17.10.2026",
+    "Проверка: 24.09.2026 21:23<br>Даты поездки: 03.10.2026 - 17.10.2026"
+  ],
+  "meta": {
+    "dates": "03.10.2026 - 17.10.2026",
+    "duration": "15 dni/14 nocy",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/creta-maris-beach-resort-ex-terra-maris/pm9W-MJ9yUq7w8nHtUxg_nAAogyvEL_UrqZbMQHPlD5oKXfwwlb-nvOqrvAGptV8bcTakqBEJWQkUwuvHV1QZIvpUBUAFYxAFgA2oCQUlyJRwRjZ4BG9CcQhjR1ha5BPSGIasElwUBo5Oy8AMBEmMBDGMBAgvdrj_M/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/CRETA-MARIS-RESORT.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 19234.0,
+  "min_p": 19134.0,
+  "max_p": 19334.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "03.10.2026 - 17.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_13_16_days.html"
+}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "mary-side-ex-mary-palace",
+  "hotel_name": "Mary Side (ex. Mary Palace)",
+  "x": [
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    11099.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 07.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "07.07.2027 - 14.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/mary-palace/p1hs1T49_GiPhJKzlUJbH3AAogSYuA7Qr1M0td6VSmmffCxQAAAACGmwUAnJsFAAcAAAAqBFdFWlkwudeo1wZI21ZQQVj9LWADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBHAAWBBcCEuUDT5lrTABAnBJL-5MBUAAR5qsCHYT2ESAWG_QGDePevgkBEmMBDGMBAgYKBeK0/?operator=WEZY&adults=2&children=2020-08-12&objectId=168076&durationFrom=7&durationTo=10&departureDate=2027-07-07&returnDate=2027-07-14&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703376/plain/cms/fileadmin/config_img/objects/168076/Mary-Palace-fly-pl.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 11099.0,
+  "min_p": 11099.0,
+  "max_p": 11099.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "07.07.2027 - 14.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

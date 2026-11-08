@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "charmillion-club-resort",
+  "hotel_name": "Charmillion Club Resort",
+  "x": [
+    "2026-10-28 06:59:39",
+    "2026-10-28 10:52:05",
+    "2026-10-28 14:16:51",
+    "2026-10-28 20:01:30",
+    "2026-10-29 00:24:44"
+  ],
+  "y": [
+    10847.0,
+    10847.0,
+    10847.0,
+    10129.0,
+    10129.0
+  ],
+  "hover": [
+    "Проверка: 28.10.2026 06:59<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 28.10.2026 10:52<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 28.10.2026 14:16<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 28.10.2026 20:01<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 29.10.2026 00:24<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sea-club-sharm-el-sheikh/p11ioQ-YbRtYQEVnQ9lHzZAAogvNIU4S97hwEd6CTbqNTez7fyi7D4Of8dkk1PUBb31j4qBE5LUkEwwYiK1wZIkU9QAVjACmADagJBSWoEV01JMGoDU1NIchwWDiAKDBumERGh0j4Nle-VCQ8HARJjAQxjAQIMrbcBwg/?operator=NKRA&adults=2&children=2020-12-10&objectId=1128&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701107/plain/cms/fileadmin/config_img/objects/1128/Charmillion-Club-Resort-ex.-Sea-Club-Resort-fly-pl.webp@webp"
+  },
+  "deal_score": 57,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10568.423870488396,
+  "min_p": 10129.0,
+  "max_p": 10847.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

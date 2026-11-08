@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "sunrise-montemare-resort",
+  "hotel_name": "Sunrise Montemare Resort",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    10743.0,
+    10743.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-select-montemare/pyhGaESBChisnRICV-zNtyAAog1DzyGC1DZ3HjX9Wxdtz3B-SdtvBnVTpEO8Z6q6FcV1sqBE9BU0kwz9Wo1wZI91NQAVilOGACagNBSWxyIRwRwrMBuQSHwBCrBGAbg7wSGN73EgGvgqe_AgIAYwECC3wQnAE/?operator=OASI&adults=2&children=2020-08-12&objectId=24801&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703940/plain/cms/fileadmin/config_img/objects/24801/sunrise-montemare-resort-grand-select.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10743.000000000002,
+  "min_p": 10743.0,
+  "max_p": 10743.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

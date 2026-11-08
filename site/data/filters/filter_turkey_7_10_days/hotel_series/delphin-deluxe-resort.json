@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "delphin-deluxe-resort",
+  "hotel_name": "Delphin Deluxe Resort",
+  "x": [
+    "2026-10-19 12:18:06",
+    "2026-10-19 19:38:34",
+    "2026-10-20 00:32:27"
+  ],
+  "y": [
+    9333.0,
+    9378.0,
+    9378.0
+  ],
+  "hover": [
+    "Проверка: 19.10.2026 12:18<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 19.10.2026 19:38<br>Даты поездки: 24.10.2026 - 31.10.2026",
+    "Проверка: 20.10.2026 00:32<br>Даты поездки: 24.10.2026 - 31.10.2026"
+  ],
+  "meta": {
+    "dates": "24.10.2026 - 31.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/delphin-deluxe-resort/p6Mw5EYKl3Wlla0CAu9B_4AAogIDvhrlVchG8iBGi6sdhL6cBT9HTATqnDHdIJOHBJxz8qBE9SRVgwmLXa1gZIoklQQVhhYAJqBkpFLjIuMXI2mwEVBxcAWAhWAlwIEZQCQK4ET9tAXSRTqydSAF6WlAFL7UNhAEzljDogs_2XCQ0AAhJjAQIJOeFScw/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/02/Delphin-Deluxe-Resort.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9358.723437836139,
+  "min_p": 9333.0,
+  "max_p": 9378.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.10.2026 - 31.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

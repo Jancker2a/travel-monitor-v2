@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "pickalbatros-aqua-park-resort-sharm-el-sheikh",
+  "hotel_name": "Pickalbatros Aqua Park Resort (Sharm El Sheikh)",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    12025.0,
+    12025.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 13.07.2027 - 20.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 31.07.2027 - 07.08.2027"
+  ],
+  "meta": {
+    "dates": "31.07.2027 - 07.08.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-aqua-park-sharm-el-sheikh/p4RFUudywOvbMqAh7_HsAgAAogYdqyHw2M_sSRZHXXiOEDF53DqCsEl01_LpQMci-HTkAqBE9BU0kw0dWo1wZI-V1QAVi9MmACagNBSWxyIRwR2LIBuQSkwRCrBDMb9uMPGMLrEwH-4qSuAgIAYwECDACG_Ww/?operator=OASI&adults=2&children=2020-08-12&objectId=189355&durationFrom=7&durationTo=10&departureDate=2027-07-31&returnDate=2027-08-07&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705858/plain/cms/fileadmin/config_img/objects/189355/Albatros-Aqua-Park-Sharm.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12025.0,
+  "min_p": 12025.0,
+  "max_p": 12025.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.07.2027 - 07.08.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

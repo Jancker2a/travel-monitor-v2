@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "rocrita-lifestyle-resort-ex-aldiana-kreta",
+  "hotel_name": "Rocrita Lifestyle Resort (ex. Aldiana Kreta)",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    17197.0,
+    17197.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sitia/aldiana-kreta/pxKDrYz7zqjqkCxNE0PEQXAAogDIwNZXotCKnR0RzwV8WbGR0Qzl-MsxeCR38lDix8CXcqBFZJVFgwwNao1wZIrYYBUEFY9TdgAnJAGgAVBxcAXANYBUCPA1vXiQFTriNSAF74UkvtQ2EATPj5RA3t3I0JIABRntDdjY0BT5aWDV3M1fPheAIMYwECCwq-M7o/?operator=VITX&adults=2&children=2020-08-12&objectId=170412&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ITAK/IMG/HERROCR/50e3ed2b7887779659ab9edb8a60fe4e22d6224051631dd599cc066d2824c635.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17197.0,
+  "min_p": 17197.0,
+  "max_p": 17197.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

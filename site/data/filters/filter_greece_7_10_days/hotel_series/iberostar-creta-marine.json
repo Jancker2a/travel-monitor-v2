@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_7_10_days",
+  "slug": "iberostar-creta-marine",
+  "hotel_name": "Iberostar Creta Marine",
+  "x": [
+    "2026-10-19 12:19:13",
+    "2026-10-20 03:59:06",
+    "2026-10-20 09:47:18",
+    "2026-10-20 09:56:24"
+  ],
+  "y": [
+    12517.0,
+    12517.0,
+    12427.0,
+    12427.0
+  ],
+  "hover": [
+    "Проверка: 19.10.2026 12:19<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 20.10.2026 03:59<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 20.10.2026 09:47<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 20.10.2026 09:56<br>Даты поездки: 21.10.2026 - 28.10.2026"
+  ],
+  "meta": {
+    "dates": "21.10.2026 - 28.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,lavris/iberostar-creta-marine/pMg_vQcvhO_WSKLNEZZXa_AAogbAdqMGBQGDd4jDz9D2OlqfxSFlQZaaRLlW9h_Gs6v_YqBEVYSU0wqL3c1gZIi2FQAVgQYAJqAkFJciEcEcmiBqsE3aBBuQReG_-eNBjgxjwBmo2FowsCEmMBAgZ7T6IM/ofertasv/?filter[tourOperator]=EXIM&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/11/Iberostar-Creta-Marine.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12497.456137060994,
+  "min_p": 12427.0,
+  "max_p": 12517.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.10.2026 - 28.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_7_10_days.html"
+}

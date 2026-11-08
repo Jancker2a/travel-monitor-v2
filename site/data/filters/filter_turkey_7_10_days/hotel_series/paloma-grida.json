@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "paloma-grida",
+  "hotel_name": "Paloma Grida",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    12410.0,
+    12200.0,
+    12200.0,
+    12200.0,
+    12200.0,
+    12200.0,
+    12410.0,
+    12410.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 07.11.2026 - 14.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 07.11.2026 - 14.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 07.11.2026 - 14.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 07.11.2026 - 14.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 07.11.2026 - 14.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 04.11.2026 - 11.11.2026"
+  ],
+  "meta": {
+    "dates": "04.11.2026 - 11.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/paloma-grida-resort-spa/pE9HIjnZK9Cp_FQdyNV994AAogJ4hP6vtKAP1ijHYRzd000AAAAABstAQAcLQEAAcAEQAqBFdFWlkw3J6r1wZI-mBQQVj6__________8BYANqCUVudGVyIEFpcmoEMDY1NXJCngGTAR8AHAECABYAFwYS7QMR2AMU6QEVKBibAUyNZE8AQJwSS-fFAVAAG5DsAh3UtQ0gBA2A6cEJARJjAQ1jAQIMScljVw/?operator=WEZY&adults=2&children=2020-12-10&objectId=1774&durationFrom=7&durationTo=10&departureDate=2026-11-04&returnDate=2026-11-11&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705400/plain/cms/fileadmin/config_img/objects/1774/Paloma-Grida.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12279.427279852689,
+  "min_p": 12200.0,
+  "max_p": 12410.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "04.11.2026 - 11.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

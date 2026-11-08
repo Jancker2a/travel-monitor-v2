@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "caesar-bay-resort",
+  "hotel_name": "Caesar Bay Resort",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    12690.0,
+    12377.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 30.07.2027 - 06.08.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 30.07.2027 - 06.08.2027"
+  ],
+  "meta": {
+    "dates": "30.07.2027 - 06.08.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,aleksandria,c/caesar-bay-resort-13/pgBjZ8st9e2rmCM-rh294UAAogl7scW6TpONsuzfhdvtRZwgAAAADG1wQA3tcEAAcAHQAqBFdFWlkw29Wo1wZI2WBQQVilMmADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQZ4BkwGUAZUBmAEfAAIBHAAWBBcCEu0DQK19T8YFTABLocABUAAR_akCG-zpCx3V1AIgGA2s7cEJARJjAQ5jAQIGZ5BSWA/?operator=WEZY&adults=2&children=2020-08-12&objectId=203742&durationFrom=7&durationTo=10&departureDate=2027-07-30&returnDate=2027-08-06&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707248/plain/cms/fileadmin/config_img/objects/203742/caesar-bay-resort.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12533.5,
+  "min_p": 12377.0,
+  "max_p": 12690.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "30.07.2027 - 06.08.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

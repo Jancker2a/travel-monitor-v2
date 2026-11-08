@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "rixos-tersane-istanbul",
+  "hotel_name": "Rixos Tersane Istanbul",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    15344.0,
+    15526.0,
+    15526.0,
+    15526.0,
+    15526.0,
+    15526.0,
+    15233.0,
+    15233.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 25.11.2026 - 02.12.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 18.11.2026 - 25.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 18.11.2026 - 25.11.2026"
+  ],
+  "meta": {
+    "dates": "18.11.2026 - 25.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/rixos-tersane-istanbul-15/pWwRyPCpxi_UR1RmSIjZRoAAogHEJ1UQmkGLty1aEGlyFrWwAAAACi5XUCoq8QPgcAGAAqBFdFWlkw3J6r1wZIgXdQQVjJAmADahBUdXJraXNoIEFpcmxpbmVzagQwOTM1ckieAZMBAgEcAB8AFwYWCxLiAxSTBxXKAhhGQIpzT4w9TABL24gBUAARkLUBG-jgXQ3-9PIIHaT5ggoggJTr3AMBEmMBDGMBAgVmoPDv/?operator=WEZY&adults=2&children=2020-12-10&objectId=230535&durationFrom=7&durationTo=10&departureDate=2026-11-18&returnDate=2026-11-25&departureLocation=Warszawa&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/WEZY/IMG/65048/2d93b11f2321d14df1cb09606f68c5a4efb0a076727d466565800f2e34f008e5.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15429.869533080167,
+  "min_p": 15233.0,
+  "max_p": 15526.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "18.11.2026 - 25.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

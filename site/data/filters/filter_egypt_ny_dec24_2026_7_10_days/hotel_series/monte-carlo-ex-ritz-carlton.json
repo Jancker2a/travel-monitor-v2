@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "monte-carlo-ex-ritz-carlton",
+  "hotel_name": "Monte Carlo (ex. Ritz Carlton )",
+  "x": [
+    "2026-10-03 17:55:29",
+    "2026-10-07 23:26:47",
+    "2026-10-08 18:42:43",
+    "2026-10-09 00:15:54",
+    "2026-10-11 20:14:00",
+    "2026-10-12 00:11:13",
+    "2026-10-14 04:08:18",
+    "2026-10-14 09:53:44",
+    "2026-10-15 20:31:00"
+  ],
+  "y": [
+    10893.0,
+    10809.0,
+    10129.0,
+    10129.0,
+    10649.0,
+    10649.0,
+    10649.0,
+    10649.0,
+    10567.0
+  ],
+  "hover": [
+    "Проверка: 03.10.2026 17:55<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 07.10.2026 23:26<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 08.10.2026 18:42<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 09.10.2026 00:15<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 11.10.2026 20:14<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 12.10.2026 00:11<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.10.2026 04:08<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.10.2026 09:53<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 15.10.2026 20:31<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/monte-carlo-ex-ritz-carlton/pQypACIOpKDzBavJHgjUYqAAogRREp686CrTlnaH4Ke-Jq_PkOXkfKdmJWMT_yOmpOEMIqBEJWQkUw5bfE1gZIx1JQAVj9DGACagNBSStyIRwR6vkBG-3zQxiYqxqrBILhJrkEEgGD0vy4BAISYwECC2H0Xmw/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Monte-Carlo-Sharm-Resort-Spa.jpg"
+  },
+  "deal_score": 52,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 10597.790524424632,
+  "min_p": 10129.0,
+  "max_p": 10893.0,
+  "samples": 9,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

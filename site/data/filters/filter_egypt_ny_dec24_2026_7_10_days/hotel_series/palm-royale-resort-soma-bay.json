@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "palm-royale-resort-soma-bay",
+  "hotel_name": "Palm Royale Resort Soma Bay",
+  "x": [
+    "2026-09-12 16:17:19",
+    "2026-09-14 16:16:41",
+    "2026-09-14 21:32:48",
+    "2026-09-15 03:36:50",
+    "2026-10-14 15:52:21",
+    "2026-10-14 16:10:56",
+    "2026-10-17 17:47:50",
+    "2026-10-17 18:11:53"
+  ],
+  "y": [
+    10800.0,
+    10760.0,
+    10800.0,
+    10800.0,
+    10962.0,
+    10962.0,
+    10750.0,
+    10750.0
+  ],
+  "hover": [
+    "Проверка: 12.09.2026 16:17<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.09.2026 16:16<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.09.2026 21:32<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 15.09.2026 03:36<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.10.2026 15:52<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.10.2026 16:10<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 17.10.2026 17:47<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 17.10.2026 18:11<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/palm-royale-soma-bay/p6CA1EixcqqydO-ptbrPOeAAogOcUK8l5v8QGI16IN1ohH2q4l3-lULG69CvLTTUqTvRIqBEJWQkUwybzO1gZI_lNQAVjPDGACagJBSXIhHBHMtAEbwJZBGNT8GrkE-60pqwRvAa7Pu5QEAhJjAQINA4DGsg/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Palm-Royale-Resort-Soma-Bay.jpg"
+  },
+  "deal_score": 52,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 10812.363481212464,
+  "min_p": 10750.0,
+  "max_p": 10962.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

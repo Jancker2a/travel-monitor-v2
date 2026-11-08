@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "three-corners-fayrouz-plaza",
+  "hotel_name": "Three Corners Fayrouz Plaza",
+  "x": [
+    "2026-10-26 07:35:36",
+    "2026-10-26 09:01:05",
+    "2026-10-26 10:26:06",
+    "2026-10-26 12:14:28",
+    "2026-10-26 13:37:34",
+    "2026-10-26 16:22:29",
+    "2026-10-26 17:58:21"
+  ],
+  "y": [
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 07:35<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 26.10.2026 09:01<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 26.10.2026 10:26<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 26.10.2026 12:14<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 26.10.2026 13:37<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 26.10.2026 16:22<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 26.10.2026 17:58<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/three-corners-fayrouz-plaza-beach-resort/pkDnLGnXsy8OKtRTrC37utAAogLLjSo1RI2ldAaLU69mT8ssn6a82uLoRwPeUq6XTDTnsqBFZJVFgws43-1gZIvVxQQViHDGACagpBRUdSTUYxMFZTagpSTVBNREIwMDAwagxXTUlSTUZEUDQwMDJqDFJNRldNSURQNDAwMnI0kQGbAZ0BjwEaABcHFQBcA1gFQI8DXv3_AVO8FFIAS9MyYQBM7oQ4INaDmgkNAAIOYwEDDTFk4qM/?operator=VITX&adults=2&children=2020-12-10&objectId=1447&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702424/plain/cms/fileadmin/config_img/objects/1447/The-Three-Corners-Fayrouz-Plaza.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 11837.0,
+  "min_p": 11837.0,
+  "max_p": 11837.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

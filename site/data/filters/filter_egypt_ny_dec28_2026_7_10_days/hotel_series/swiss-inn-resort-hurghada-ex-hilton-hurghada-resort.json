@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "swiss-inn-resort-hurghada-ex-hilton-hurghada-resort",
+  "hotel_name": "Swiss Inn Resort Hurghada (ex. Hilton Hurghada Resort)",
+  "x": [
+    "2026-09-17 03:35:34",
+    "2026-09-20 03:21:16",
+    "2026-09-26 19:20:11",
+    "2026-09-26 22:01:59"
+  ],
+  "y": [
+    10775.0,
+    10775.0,
+    10504.0,
+    10504.0
+  ],
+  "hover": [
+    "Проверка: 17.09.2026 03:35<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 20.09.2026 03:21<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 26.09.2026 19:20<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 26.09.2026 22:01<br>Даты поездки: 29.12.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "29.12.2026 - 05.01.2027",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/hilton-resort/poRCz83rcK2vzVJod8NTIjAAog55nONpRgY3seXjBPnOxAAqNNd1ZKbu77pLI8HBXpCVUqBEJWQkUwt8ng1QZIiFJQAVi7EWACagJBSXIhHBGItAEbtPNBGLqkGrkE8akpqwQRAcb-zJQEAhJjAQIGsh5Mlw/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Swiss-Inn-Resort-Hurghada.jpg"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10709.101906782278,
+  "min_p": 10504.0,
+  "max_p": 10775.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.12.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

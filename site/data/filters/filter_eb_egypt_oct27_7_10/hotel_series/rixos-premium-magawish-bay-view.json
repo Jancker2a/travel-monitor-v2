@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "rixos-premium-magawish-bay-view",
+  "hotel_name": "Rixos Premium Magawish Bay View",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    18096.0,
+    18096.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 21.10.2026 - 28.10.2026"
+  ],
+  "meta": {
+    "dates": "21.10.2026 - 28.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rixos-premium-magawish-bay-view-11/pqsMjD3Wns8bBXeabMNQ1yAAoghTSjgUJEyhj90j8xVjVkdU18yUwtY7BpJPS8V-NFsRgqBEpPSVAw59Wo1wZIsI0BUEFY7UFgAmoDMDJZckObARQBFQYXAFwDWAVWAkDKBk_iAV0AUq-rAVMAXq9PS-1DYQAR8K0CTPXeNw3Ay5gJIAABrPHLsPXo06AwAg1jAQALM3bXSw/?operator=JOIP&adults=2&children=2020-08-12&objectId=237956&durationFrom=7&durationTo=10&departureDate=2027-10-21&returnDate=2027-10-28&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/80504/72b9b3cd4567017e4759277a6035f23699e3aef72cf308850ac030076b8a0054.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18096.0,
+  "min_p": 18096.0,
+  "max_p": 18096.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.10.2026 - 28.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

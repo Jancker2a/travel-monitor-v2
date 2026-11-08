@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "serbellas-boutique-pafos",
+  "hotel_name": "Serbellas Boutique (Pafos)",
+  "x": [
+    "2026-10-26T15:31:20.742051+01:00"
+  ],
+  "y": [
+    12129.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 15:31<br>Даты поездки: 19.12.2026 - 26.12.2026"
+  ],
+  "meta": {
+    "dates": "19.12.2026 - 26.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,kisonerga/serbellas-boutique-pafos-9/p7IP0_zi3KKZpbYu-0ZAQNAAogmNjxqwpcvMp6MbNuwyZPAhWSPe_ls1MXL-Px8fC_TdAqBFZJVFgw-Mj91gZI4V5QQViBCmABagpIQlgxMTU0MDg0agZEQlQuRFhqDEtUV1BGT0RQNzEzNGoMUEZPS1RXRFA3MTM0cjGRAZsBnQGPARoAFwcVAFwIWABAjwNL1s8BYQBS0C5TAF7XAUz9yzggy4OaCQ0AAQ1jwqJ_tg/ofertasv/?filter[tourOperator]=VITX&filter%5Bperson%5D=1",
+    "image_url": "https://datacfstatic.merlinx.pl/ITAK/IMG/HBX1154084/fdd2099699d459762f2cb8868f343f4288d4eee9755d0b516f8031680a1ed616.webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "+0.0%",
+  "confidence": "Low",
+  "median_p": 12129.0,
+  "min_p": 12129.0,
+  "max_p": 12129.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.12.2026 - 26.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "jadore-deluxe",
+  "hotel_name": "Jadore Deluxe",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    9557.0,
+    9557.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 26.08.2027 - 02.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 26.08.2027 - 02.09.2027"
+  ],
+  "meta": {
+    "dates": "26.08.2027 - 02.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/jadore-deluxe-hotel-spa/prTMmJeti7XkpqXQvLLhxkAAogNemzk6mqOwcJqUHN4PuR29smxsaXoDsM4W72YH0vA3cqBFZJVFgw2Nao1wZI1UpQQVitN2ACcj8aABUHFwBcA1gFQI8DU-drUgBb2BdevnxLgRJhAEzkq0UN6tyNCSAAUeKigO5YT6WFF13Ej9OLhQECDGMBAguftvlW/?operator=VITX&adults=2&children=2020-08-12&objectId=175205&durationFrom=7&durationTo=10&departureDate=2027-08-26&returnDate=2027-09-02&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704405/plain/cms/fileadmin/config_img/objects/175205/Jadore-Deluxe.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9557.0,
+  "min_p": 9557.0,
+  "max_p": 9557.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "26.08.2027 - 02.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

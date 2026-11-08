@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_7_10_days",
+  "slug": "delphi-art-hotel",
+  "hotel_name": "Delphi Art Hotel",
+  "x": [
+    "2026-10-31 03:37:37"
+  ],
+  "y": [
+    4667.0
+  ],
+  "hover": [
+    "Проверка: 31.10.2026 03:37<br>Даты поездки: 23.11.2026 - 30.11.2026"
+  ],
+  "meta": {
+    "dates": "23.11.2026 - 30.11.2026",
+    "duration": "10\nD",
+    "offer_url": "https://fly.pl/wycieczka/grecja,ateny,ateny/delphi-art/p9c8bdXXFniic9wCFXG7DJAAogU33KbinIJkXZO4LKvW36KsvRqjJ7_FX7EF_UBHjdXhsqBEVDQ1gw-KiV1wZIuyRQAVilBGACagJTQ3IgHBHoOLkEppsYqwQBGI3ILBuZwkAB84XU_gECEmMBAguvYeRO/?operator=ECCX&adults=2&children=2020-12-10&objectId=6090&durationFrom=7&durationTo=10&departureDate=2026-11-23&returnDate=2026-11-30&departureLocation=Katowice&catering=without&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ECCX/IMG/7272/d05f998fd3d1a5d9c2ad8abbd2e5642c1cd5cabd62d0a5ec720261813468f5a3.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 4667.0,
+  "min_p": 4667.0,
+  "max_p": 4667.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "23.11.2026 - 30.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_7_10_days.html"
+}

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "sunprime-c-lounge",
+  "hotel_name": "Sunprime C-Lounge",
+  "x": [
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    8944.0,
+    8944.0,
+    8959.0,
+    8959.0,
+    8959.0,
+    8959.0,
+    8959.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 14.11.2026 - 21.11.2026"
+  ],
+  "meta": {
+    "dates": "14.11.2026 - 21.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sunprime-c-lounge/pnH3Z6wrUbAEapvDqYxscdAAoguPa_Dfe8QCNP3vglmMGT2crsGsTEUSTH2wIX_lgpwDUqBE5LUkEwz56r1wZI_0VQAVjpAWADagVTRE9UUmoCQkJqBFdBVzFqA0FZVHIaGxYOIAoMEZXWPg3Z-5UJDwcBEmMBDGMBAgxrJwsG/?operator=NKRA&adults=2&children=2020-12-10&objectId=160523&durationFrom=7&durationTo=10&departureDate=2026-11-14&returnDate=2026-11-21&departureLocation=Warszawa&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703169/plain/cms/fileadmin/config_img/objects/160523/Sunprime-C-Lounge.webp@webp"
+  },
+  "deal_score": 49,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8956.027105923864,
+  "min_p": 8944.0,
+  "max_p": 8959.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "14.11.2026 - 21.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

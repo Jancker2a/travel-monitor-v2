@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "omer-prime-holiday-resort",
+  "hotel_name": "Omer Prime Holiday Resort",
+  "x": [
+    "2026-07-22 14:42:54"
+  ],
+  "y": [
+    12103.0
+  ],
+  "hover": [
+    "Проверка: 22.07.2026 14:42<br>Даты поездки: 23.07.2026 - 30.07.2026"
+  ],
+  "meta": {
+    "dates": "23.07.2026 - 30.07.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,c/omer-holiday-resort/p4YKq6fGOUYXa8Up1ZBfXEAAoguLfuBxz55P_2PJ2eNlasVxM9qUJ2yasXccbntWVQqVQqBFJOQlcw1PWC0wZIx15QQVgLYAJqBEJ3Y2FqFzI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1cjefAZ4BFQcXAFgICpwBQKwGEaQyGZIlUu4VUwAQpiJL568BYQAd-pNADzcguvORCQ0AAgxjAQMLzmAfnQ/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Omer-Prime-Holiday-Resort.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12103.0,
+  "min_p": 12103.0,
+  "max_p": 12103.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "23.07.2026 - 30.07.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

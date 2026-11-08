@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "armella-hill",
+  "hotel_name": "Armella Hill",
+  "x": [
+    "2026-10-29 12:48:38",
+    "2026-11-01 08:56:34",
+    "2026-11-02 00:47:49",
+    "2026-11-02 13:11:46",
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    13361.0,
+    13663.0,
+    13663.0,
+    13663.0,
+    14182.0,
+    14182.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 12:48<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 01.11.2026 08:56<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 02.11.2026 00:47<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 02.11.2026 13:11<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 01.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 14.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,manavgat/armella-hill-11/paG6GLQCMX2ImA7JrB2jAsAAogBZSNsyMO2jgVPqBMDNE9XAAAAABsoAUAPJwFAA0AEgAqBFdFWlkwhdeo1wZI5m5QQVjtLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcMEucDT5FrTABAnBIRvZkBS6osUAAbs1YggZsTHbAIDYHcvgkBEmMBDGMBAwp91UU8/?operator=WEZY&adults=2&children=2020-08-12&objectId=215689&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707498/plain/cms/fileadmin/config_img/objects/215689/armella-hill.webp@webp"
+  },
+  "deal_score": 46,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13776.316287829191,
+  "min_p": 13361.0,
+  "max_p": 14182.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 14.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

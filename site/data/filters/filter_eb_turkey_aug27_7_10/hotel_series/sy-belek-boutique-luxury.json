@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "sy-belek-boutique-luxury",
+  "hotel_name": "Sy Belek Boutique Luxury",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    9995.0,
+    9995.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/sy-hotels-belek-11/pKDpR20tE6JrX1SL0GsQsGAAogMkeG6sP8-IO7S-MeMqvyS098zlebYSmNl1AKEhwlCSQqBE9SRVgw4tao1wZIi05QQVilOGACagdSS0suMi4xcjabARUHFwBYCFYCXAhAwgYRojJPuQ5dJFOrJ1IAXpaUAUvtQ2EATOWMOiCCypgJDQACEmMBAgxa9NVy/?operator=OREX&adults=2&children=2020-08-12&objectId=231926&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/OREX/IMG/7293/1e7be466f312c8f23394b807a2fa934f30cabc91946b8c415e21c4c2b87d2dad.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9995.0,
+  "min_p": 9995.0,
+  "max_p": 9995.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

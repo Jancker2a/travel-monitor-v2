@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "daima-biz-kemer",
+  "hotel_name": "Daima Biz (Kemer)",
+  "x": [
+    "2026-10-29 12:48:38",
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    8771.0,
+    8915.0,
+    8915.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 12:48<br>Даты поездки: 01.07.2027 - 08.07.2027",
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 15.07.2027 - 22.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 22.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/daima-biz-resort/ptieUQ3-ggBfC4SABinYPcAAogoaDs2mMWjDrfFkq5e3_tbH-mtB_lUVCroPAvpH2D-M4qBE9SRVgw49ao1wZI00VQQVi9L2ACagVFLjIuMXI2mwEVBxcAWAhWAlwIQMIGEfU2T84VXSRTwxtSAF6WlAFLgRJhAEzRvjogjsmYCQ0AAhJjAQILqaln2g/?operator=OREX&adults=2&children=2020-08-12&objectId=35073&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703384/plain/cms/fileadmin/config_img/objects/35073/Daima-Biz-Resort-fly-pl.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8867.0,
+  "min_p": 8771.0,
+  "max_p": 8915.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 22.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_7_10_days",
+  "slug": "sheraton-sharm-resort-villas-spa",
+  "hotel_name": "Sheraton Sharm Resort Villas & Spa",
+  "x": [
+    "2026-11-03 06:41:02",
+    "2026-11-03 10:19:31",
+    "2026-11-03 13:19:25",
+    "2026-11-03 15:05:07",
+    "2026-11-03 16:24:58",
+    "2026-11-03 19:46:04",
+    "2026-11-04 03:29:31",
+    "2026-11-04 07:18:05"
+  ],
+  "y": [
+    9390.0,
+    9390.0,
+    9390.0,
+    9390.0,
+    9391.0,
+    10729.0,
+    9591.0,
+    9591.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:41<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 10:19<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 13:19<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 15:05<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 16:24<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 19:46<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 04.11.2026 03:29<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 04.11.2026 07:18<br>Даты поездки: 24.11.2026 - 01.12.2026"
+  ],
+  "meta": {
+    "dates": "24.11.2026 - 01.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sheraton-sharm-resort/p2vkqZaXHnYz7lG03wS1apAAogtq60j61D0m8M5Cl9tVozoyeZ-XHl05ZBBhQELzYgI-kqBEtPTVQw2Zyr1wZI90pQAVjZA2ACagJBSXIfHBGuHLkEqOEBqwQjGPjMBBuXgSUB7oyWHwIAYwECBQ7FkZM/?operator=KOMT&adults=2&children=2020-12-10&objectId=2898&durationFrom=7&durationTo=10&departureDate=2026-11-24&returnDate=2026-12-01&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701103/plain/cms/fileadmin/config_img/objects/2898/Sheraton-Sharm-Resort.webp@webp"
+  },
+  "deal_score": 67,
+  "deal_label": "Good",
+  "deal_class": "good",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 9814.189961770711,
+  "min_p": 9390.0,
+  "max_p": 10729.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.11.2026 - 01.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_7_10_days.html"
+}

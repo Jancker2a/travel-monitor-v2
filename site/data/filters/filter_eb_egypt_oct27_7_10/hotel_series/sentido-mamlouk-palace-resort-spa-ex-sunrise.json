@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "sentido-mamlouk-palace-resort-spa-ex-sunrise",
+  "hotel_name": "Sentido Mamlouk Palace Resort & Spa (ex Sunrise)",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    11803.0,
+    11803.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 03.10.2026 - 10.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 03.10.2026 - 10.10.2026"
+  ],
+  "meta": {
+    "dates": "03.10.2026 - 10.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sentido-mamlouk-palace-resort-ex-sunrise/pNxJyYH63lCq2n8yFFaL7rAAogtYsHrWS5Enx89vuXrIFDTeuTtjaGf_2wiUkFVsGwixkqBFNGUEww0NWo1wZIm1xQQVi9PmACciMLAhUFIgYSIVzMAkAuW-fwUQ2Mq4MJUbL3z_uPAQISYwEGDcikvVs/?operator=SFPL&adults=2&children=2020-08-12&objectId=43&durationFrom=7&durationTo=10&departureDate=2027-10-03&returnDate=2027-10-10&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702462/plain/cms/fileadmin/config_img/objects/43/Sentido-Mamlouk-Palace-Resort-Spa.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 11803.0,
+  "min_p": 11803.0,
+  "max_p": 11803.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "03.10.2026 - 10.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

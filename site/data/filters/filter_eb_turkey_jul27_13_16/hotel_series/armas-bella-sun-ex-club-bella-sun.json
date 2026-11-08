@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "armas-bella-sun-ex-club-bella-sun",
+  "hotel_name": "Armas Bella Sun (ex.Club Bella Sun)",
+  "x": [
+    "2026-11-02 13:11:46",
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41",
+    "2026-11-04 17:24:45",
+    "2026-11-05 09:03:42",
+    "2026-11-05 23:48:41",
+    "2026-11-06 12:33:15",
+    "2026-11-07 01:15:06"
+  ],
+  "y": [
+    13886.0,
+    13886.0,
+    13886.0,
+    13886.0,
+    13886.0,
+    13886.0,
+    13886.0,
+    13886.0
+  ],
+  "hover": [
+    "Проверка: 02.11.2026 13:11<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 04.11.2026 17:24<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 05.11.2026 09:03<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 05.11.2026 23:48<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 06.11.2026 12:33<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 07.11.2026 01:15<br>Даты поездки: 01.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 14.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/club-bella-sun/p8C_BhLKPRIFL1gqBf6QJbAAog4MMQuUUtqZ3hIzIXwVYUVgAAAABsoAUAPJwFAA0AAQAqBFdFWlkwjtu51wZIvmxQQVifLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcMEucDT5FrTABAnBIRgilL5ZwBUAAbnDEgmMATHbAIDYHcvgkBEmMBDGMBAwt4Wwnh/?operator=WEZY&adults=2&children=2020-08-12&objectId=1629&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704333/plain/cms/fileadmin/config_img/objects/1629/Armas-Bella-Sun.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "+0.0%",
+  "delta_avg": "+0.0%",
+  "confidence": "Medium",
+  "median_p": 13886.0,
+  "min_p": 13886.0,
+  "max_p": 13886.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 14.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

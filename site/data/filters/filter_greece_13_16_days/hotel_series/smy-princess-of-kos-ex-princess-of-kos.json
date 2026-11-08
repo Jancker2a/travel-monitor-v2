@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_13_16_days",
+  "slug": "smy-princess-of-kos-ex-princess-of-kos",
+  "hotel_name": "Smy Princess of Kos (ex. Princess of Kos)",
+  "x": [
+    "2026-09-22 17:06:54",
+    "2026-09-22 21:05:29",
+    "2026-09-23 13:54:41",
+    "2026-09-27 10:25:08",
+    "2026-10-07 23:28:03"
+  ],
+  "y": [
+    10459.0,
+    10459.0,
+    10954.0,
+    11496.0,
+    12730.0
+  ],
+  "hover": [
+    "Проверка: 22.09.2026 17:06<br>Даты поездки: 08.10.2026 - 21.10.2026",
+    "Проверка: 22.09.2026 21:05<br>Даты поездки: 08.10.2026 - 21.10.2026",
+    "Проверка: 23.09.2026 13:54<br>Даты поездки: 08.10.2026 - 22.10.2026",
+    "Проверка: 27.09.2026 10:25<br>Даты поездки: 12.10.2026 - 26.10.2026",
+    "Проверка: 07.10.2026 23:28<br>Даты поездки: 14.10.2026 - 28.10.2026"
+  ],
+  "meta": {
+    "dates": "14.10.2026 - 28.10.2026",
+    "duration": "15 dni/14 nocy",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,mastichari/princess-of-kos/p6SzOc41fRLv9ZNa9ZiZJXAAog_FNEdZSdXPNQUO4-JrXSca-2XD21BIQrDY94z2fiMiwqBEJWQkUw5PKa1gZIumNQAViSAWACagJBSXIhHBHT6AEb5f5AGKCYFbkEufInqwRhAb6C_9oDAgBjAQILCZhLOA/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/11/Princess-of-Kos-fly-pl.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12411.748930065844,
+  "min_p": 10459.0,
+  "max_p": 12730.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "14.10.2026 - 28.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_13_16_days.html"
+}

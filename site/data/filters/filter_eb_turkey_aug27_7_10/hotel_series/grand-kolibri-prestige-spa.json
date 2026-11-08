@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "grand-kolibri-prestige-spa",
+  "hotel_name": "Grand Kolibri Prestige & Spa",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    8188.0,
+    8188.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/grand-kolibri-prestige-spa-13/pE0C82Z3hpyumQTAV1euMCAAoggEIya3hKPG1PhOTA2BlkgeNN-_HJeWBPTLZL02X_0GMqBFJOQlcwr9ao1wZI_D9QQVj1N2ACagRCd2NhaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI9nwGeARUHFwBWA1gFCpwBQKwGEdUmEJw2GdwCU-EHUgBMob4BS-IZYQAd_c5HD58EIMmDiwkNAAIMYwEDCzp7KNY/?operator=RNBW&adults=2&children=2020-08-12&objectId=210863&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707459/plain/cms/fileadmin/config_img/objects/210863/grand-kolibri-prestige-spa.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8188.0,
+  "min_p": 8188.0,
+  "max_p": 8188.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "electra-palace-ialyssos",
+  "hotel_name": "Electra Palace (Ialyssos)",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    18643.0,
+    18643.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 27.08.2027 - 03.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 27.08.2027 - 03.09.2027"
+  ],
+  "meta": {
+    "dates": "27.08.2027 - 03.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ialyssos/electra-palace-ialyssos/p26Tx07wkG15HEhVPentmEAAogfz5yc5mLda9nU2QNm3Tsh0rPZsx1GTqg2GMi6Xyr_FEqBEdSQ1Mwytao1wZI05EBUEFYxTdgA3I_FQcXAFgIVgJcAh2DAg8vQJYEXsD8AVKRE1MAW4kOYdMiSwAB0o6WAQ2RyLwIIABR84Sf7d4BARJjAQJjAQILFYSIeA/?operator=GRCS&adults=2&children=2020-08-12&objectId=1142&durationFrom=7&durationTo=10&departureDate=2027-08-27&returnDate=2027-09-03&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703009/plain/cms/fileadmin/config_img/objects/1142/Hotel-Electra-Palace-Rhodes.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18643.0,
+  "min_p": 18643.0,
+  "max_p": 18643.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.08.2027 - 03.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

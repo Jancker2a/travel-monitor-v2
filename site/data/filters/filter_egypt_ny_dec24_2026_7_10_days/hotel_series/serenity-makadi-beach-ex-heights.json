@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "serenity-makadi-beach-ex-heights",
+  "hotel_name": "Serenity Makadi Beach (ex. Heights)",
+  "x": [
+    "2026-09-08 09:41:59",
+    "2026-10-06 09:42:53",
+    "2026-10-14 09:53:44",
+    "2026-10-15 03:39:41",
+    "2026-10-15 09:37:53"
+  ],
+  "y": [
+    10041.0,
+    10559.0,
+    10405.0,
+    10405.0,
+    10805.0
+  ],
+  "hover": [
+    "Проверка: 08.09.2026 09:41<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 06.10.2026 09:42<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.10.2026 09:53<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 15.10.2026 03:39<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 15.10.2026 09:37<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-makadi-heights/p4LkopuX4Nb4xYX5T60Z8xAAogTV7O866eoiK41oK5VyhYtka-WtljEXgfX-OSnJ4bppMqBEVDQ1gw0oXC1gZItVRQAViIDWACagNBSVVyIBwRtTe5BILjGKsEExjZ1jAb3dhEAdCpvJQCAgBjAQYLalRU1w/ofertasv/?filter[tourOperator]=ECCX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Serenity-Alpha-Beach.jpg"
+  },
+  "deal_score": 46,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10384.416168447326,
+  "min_p": 10041.0,
+  "max_p": 10805.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_7_10_days",
+  "slug": "flow-aqua-legends-resort",
+  "hotel_name": "Flow Aqua Legends Resort",
+  "x": [
+    "2026-10-15 20:26:35",
+    "2026-10-16 00:30:15",
+    "2026-10-16 03:32:04"
+  ],
+  "y": [
+    9981.0,
+    9981.0,
+    9981.0
+  ],
+  "hover": [
+    "Проверка: 15.10.2026 20:26<br>Даты поездки: 05.11.2026 - 12.11.2026",
+    "Проверка: 16.10.2026 00:30<br>Даты поездки: 05.11.2026 - 12.11.2026",
+    "Проверка: 16.10.2026 03:32<br>Даты поездки: 05.11.2026 - 12.11.2026"
+  ],
+  "meta": {
+    "dates": "05.11.2026 - 12.11.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/flow-aqua-legends-resort-9/p1JZFw0t3VwC3v6b-9x_PvAAogSXh4r7uxlF185AXZINFeOTRw0SLo4Gq1IwwAJ37oIkoqBEtPTVQwq_3F1gZI_U1QAVjeA2ACagJBSXIfHBGdHLkEwtcBqwQZGPrNBBud7iQBjbKIHwIAYwECBWVgUu8/ofertasv/?filter[tourOperator]=KOMT&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://datacfstatic.merlinx.pl/KOMT/IMG/3613/6526c08ba31df2f0ad56b825c1deff4000a0b0daa906709963d03162f0697794.webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9981.0,
+  "min_p": 9981.0,
+  "max_p": 9981.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "05.11.2026 - 12.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_7_10_days.html"
+}

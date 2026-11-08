@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "side-alegria-hotel-spa-ex-holiday-point-spa",
+  "hotel_name": "Side Alegria Hotel & Spa (ex Holiday Point & Spa)",
+  "x": [
+    "2026-07-05 19:09:45",
+    "2026-10-15 20:31:36",
+    "2026-10-16 00:32:43",
+    "2026-10-16 03:37:56",
+    "2026-10-16 20:17:23",
+    "2026-10-17 07:44:51"
+  ],
+  "y": [
+    8292.0,
+    5005.0,
+    5005.0,
+    5005.0,
+    4405.0,
+    4577.0
+  ],
+  "hover": [
+    "Проверка: 05.07.2026 19:09<br>Даты поездки: 06.07.2026 - 13.07.2026",
+    "Проверка: 15.10.2026 20:31<br>Даты поездки: 17.10.2026 - 24.10.2026",
+    "Проверка: 16.10.2026 00:32<br>Даты поездки: 17.10.2026 - 24.10.2026",
+    "Проверка: 16.10.2026 03:37<br>Даты поездки: 17.10.2026 - 24.10.2026",
+    "Проверка: 16.10.2026 20:17<br>Даты поездки: 19.10.2026 - 26.10.2026",
+    "Проверка: 17.10.2026 07:44<br>Даты поездки: 19.10.2026 - 26.10.2026"
+  ],
+  "meta": {
+    "dates": "19.10.2026 - 26.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/holiday-point/pm3a2G8IusewLERI9FhnzvAAogEUbfgHZIWQPwZz15YCQd8RzHL730e7wxYDUfCadxw2IqBEtPTVQw1JbM1gZI4SNQAVgqYAFqAkFJchwcEb0ZqwSdnwG5BBcYip4EG8uLJAGPjtUcAwBj9UlNRw/ofertasv/?filter[tourOperator]=KOMT&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Side-Alegria-Hotel-Spa.jpg"
+  },
+  "deal_score": 53,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 5042.593874191183,
+  "min_p": 4405.0,
+  "max_p": 8292.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.10.2026 - 26.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

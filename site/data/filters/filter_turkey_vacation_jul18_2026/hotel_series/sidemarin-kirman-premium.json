@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "sidemarin-kirman-premium",
+  "hotel_name": "Sidemarin Kirman Premium",
+  "x": [
+    "2026-07-20 16:04:12",
+    "2026-07-21 04:01:11",
+    "2026-07-21 07:19:54"
+  ],
+  "y": [
+    14454.0,
+    13158.0,
+    13158.0
+  ],
+  "hover": [
+    "Проверка: 20.07.2026 16:04<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 04:01<br>Даты поездки: 22.07.2026 - 29.07.2026",
+    "Проверка: 21.07.2026 07:19<br>Даты поездки: 22.07.2026 - 29.07.2026"
+  ],
+  "meta": {
+    "dates": "22.07.2026 - 29.07.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/kirman-sidemarin-beach-spa/p39VKS7dFrNm8jU4hDSEcFAAog81TJqA-0eNU_Za_MxziwhJF1vA4GXfKCVhEp_JwWVoAqBE9SRVgwiYP80gZI5mZQQVgSYAJqBkowLjIuMXI2mwEVBxcAWAhWAlwIEaYBQJwFT9tAXSRTqydSAF6WlAFL7UNhAEzljDoghfuXCQ0AAhJjAQIMIboCXQ/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2016/04/Kirman-Sidemarin-Beach-Spa-fly-pl-1.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13590.0,
+  "min_p": 13158.0,
+  "max_p": 14454.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.07.2026 - 29.07.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

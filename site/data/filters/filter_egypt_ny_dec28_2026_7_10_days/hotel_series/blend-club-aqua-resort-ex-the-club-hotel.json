@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "blend-club-aqua-resort-ex-the-club-hotel",
+  "hotel_name": "BLEND CLUB AQUA RESORT EX.THE CLUB HOTEL",
+  "x": [
+    "2026-11-01 00:34:43"
+  ],
+  "y": [
+    9623.0
+  ],
+  "hover": [
+    "Проверка: 01.11.2026 00:34<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/golden-five-club/phuQxKtNVp0dI1ZtoW203xAAogIaNAqh5xQs47NzO7j_kaCG9n6bAq9iaw9Z5P8khFlyIqBEtPTVQwmPaZ1wZIl0tQAVjwCmACagJBSXIfHBHyGbkEs-EBqwQDGLuQBBvwoiQBlOqzHgIAYwECBhAxoXg/?operator=KOMT&adults=2&children=2020-12-10&objectId=17967&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702454/plain/cms/fileadmin/config_img/objects/17967/blend-club-aqua-resort-ex-golden-five-club.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9623.0,
+  "min_p": 9623.0,
+  "max_p": 9623.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

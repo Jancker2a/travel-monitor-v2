@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_jul27_7_10",
+  "slug": "mitsis-royal-mare",
+  "hotel_name": "Mitsis Royal Mare",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:15"
+  ],
+  "y": [
+    16826.0,
+    16826.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 14.07.2027 - 21.07.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 14.07.2027 - 21.07.2027"
+  ],
+  "meta": {
+    "dates": "14.07.2027 - 21.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/aldemar-royal-mare/pCWPMbHQN7RIn-LjKMrD36AAog718Y9wUxDbEHdSYumHBnAKVc-61ignhElinaH9vNT6QqBEdSQ1MwuNao1wZIuoMBUEFYpS9gA3I9FQcXAFgIVgJcAh1lDxlAygVbpHFSpDhTAF74UmHtQ0sAAYPQmwEN74W3CCAAUZjX3Y2NAQESYwECYwECCyGSh-0/?operator=GRCS&adults=2&children=2020-08-12&objectId=2153&durationFrom=7&durationTo=10&departureDate=2027-07-14&returnDate=2027-07-21&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703123/plain/cms/fileadmin/config_img/objects/2153/Hotel-Mitsis-Royal-Mare-1.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16826.0,
+  "min_p": 16826.0,
+  "max_p": 16826.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "14.07.2027 - 21.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_jul27_7_10.html"
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "amc-royal-hotel-spa",
+  "hotel_name": "Amc Royal Hotel & Spa",
+  "x": [
+    "2026-10-20 18:39:22",
+    "2026-10-20 19:49:20",
+    "2026-10-20 20:36:49",
+    "2026-10-20 22:25:37",
+    "2026-10-22 00:36:44",
+    "2026-10-22 03:46:13",
+    "2026-11-02 00:50:59",
+    "2026-11-03 01:01:32",
+    "2026-11-04 17:27:38",
+    "2026-11-04 19:48:11"
+  ],
+  "y": [
+    12420.0,
+    12420.0,
+    12420.0,
+    12420.0,
+    12420.0,
+    12420.0,
+    12380.0,
+    12249.0,
+    10976.0,
+    10976.0
+  ],
+  "hover": [
+    "Проверка: 20.10.2026 18:39<br>Даты поездки: 12.26 - 7.01",
+    "Проверка: 20.10.2026 19:49<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 20.10.2026 20:36<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 20.10.2026 22:25<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 22.10.2026 00:36<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 22.10.2026 03:46<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 02.11.2026 00:50<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 03.11.2026 01:01<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 04.11.2026 17:27<br>Даты поездки: 12.26.2026 - 05.01.2027",
+    "Проверка: 04.11.2026 19:48<br>Даты поездки: 12.26.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 05.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/amc-royal-ex-amc-azur-resort/pelKTKsfoFQvgZ90sJIR-yAAogEeD8sdM0_6YSeso2VpnVRy9O28SciLCtEL1Q-YoPw0wqBE9SRVgw7_ut1wZI4FVQQViVCmACagVFLjIuMXI0mwEVBxcAXANYBVYCEQRAxgZdiw5PJFPingFSAF6vT0t4YQBM2s86IID_lwkNAAISYwECDHx8pZo/?operator=OREX&adults=2&children=2020-12-10&objectId=23176&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Pozna%C5%84&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701153/plain/cms/fileadmin/config_img/objects/23176/AMC-Royal-Resort.webp@webp"
+  },
+  "deal_score": 68,
+  "deal_label": "Good",
+  "deal_class": "good",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 12258.048715456196,
+  "min_p": 10976.0,
+  "max_p": 12420.0,
+  "samples": 10,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

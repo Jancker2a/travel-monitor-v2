@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "jaz-aquaviva",
+  "hotel_name": "Jaz Aquaviva",
+  "x": [
+    "2026-09-24 17:18:18",
+    "2026-09-24 21:22:18",
+    "2026-09-25 01:19:07",
+    "2026-09-25 03:41:45"
+  ],
+  "y": [
+    9048.0,
+    9048.0,
+    9048.0,
+    9048.0
+  ],
+  "hover": [
+    "Проверка: 24.09.2026 17:18<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 24.09.2026 21:22<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 25.09.2026 01:19<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 25.09.2026 03:41<br>Даты поездки: 29.12.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "29.12.2026 - 05.01.2027",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadi-aquaviva/pRui-LwpKdk93ZgU-SRRocAAog7reMg0q44RyERy8-On78hsWsSq6DELH_jZLDE37SwUYqBEVYSU0w2qLX1QZI2EZQAVjmEWADagJBSXIkHBG7_warBI-pS7kERRvlpkAY4dpHAe6RgawNARJjAQxjAQILbvq88g/ofertasv/?filter[tourOperator]=EXIM&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/07/Jaz-Aquaviva.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9048.0,
+  "min_p": 9048.0,
+  "max_p": 9048.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.12.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

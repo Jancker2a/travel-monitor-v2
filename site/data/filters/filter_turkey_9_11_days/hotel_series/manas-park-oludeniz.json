@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_9_11_days",
+  "slug": "manas-park-oludeniz",
+  "hotel_name": "Manas Park (Oludeniz)",
+  "x": [
+    "2026-09-12 19:20:58"
+  ],
+  "y": [
+    18728.0
+  ],
+  "hover": [
+    "Проверка: 12.09.2026 19:20<br>Даты поездки: 02.10.2026 - 12.10.2026"
+  ],
+  "meta": {
+    "dates": "02.10.2026 - 12.10.2026",
+    "duration": "11 dni/10 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,dalaman-fethiye,oludeniz/manas-park-oludeniz/p8WCRiti3SStU5mui2r7zBAAogqOVsnSg-xV4Ars86z748p2PYE-fuvMDp2CPa00ToEU8qBFJOQlcwmJSW1QZIqJIBUEFYzgNgAmoEQndjY2oNQUxMX0lOQ0xVU0lWRWoaMTYsMjk2LDM4MCw0NzcsNDgzLDQ4NCw0ODVqDzQwMyw0MTcsNDk3LDQ5OXI-nwGWAZ4BlAEVChcAWAUKTkD6BhG_Mxn2I1POKlIAEO8aTOmIAUvWGWEAD--qQB27CyDY05EJDQACDGMBBgtbtsmd/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/manas.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18728.0,
+  "min_p": 18728.0,
+  "max_p": 18728.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "02.10.2026 - 12.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_9_11_days.html"
+}

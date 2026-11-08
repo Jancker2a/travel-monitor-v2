@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "sunrise-arabian-beach-resort",
+  "hotel_name": "Sunrise Arabian Beach Resort",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    14692.0,
+    14692.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-grand-select-arabian-beach/pbuXByCTSC_XA2vfdGWkbfAAogzGHb9l2_cytpRYsltwcv0qFkcsYdTKu4CIVjrxeK5U4qBEpPSVAw5dWo1wZI5HJQQVj1N2ACagMxejhyQ5sBFAEVBhcAXANYBVYCQMoGT-IBXQBe3voBUqYgUwBLxyNhABGpwQFMvMs4DYDKmAkgAAHhzPf45ObNoDACDWMBBAusO0_V/?operator=JOIP&adults=2&children=2020-08-12&objectId=39515&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701110/plain/cms/fileadmin/config_img/objects/39515/Sunrise-Grand-Select-Arabian-Beach.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14692.0,
+  "min_p": 14692.0,
+  "max_p": 14692.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "sui-resort-by-oz",
+  "hotel_name": "SUI Resort by Oz",
+  "x": [
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41",
+    "2026-11-06 12:33:15",
+    "2026-11-07 01:15:09"
+  ],
+  "y": [
+    9277.0,
+    9277.0,
+    8797.0,
+    8797.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 05.07.2027 - 12.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 05.07.2027 - 12.07.2027",
+    "Проверка: 06.11.2026 12:33<br>Даты поездки: 05.07.2027 - 12.07.2027",
+    "Проверка: 07.11.2026 01:15<br>Даты поездки: 05.07.2027 - 12.07.2027"
+  ],
+  "meta": {
+    "dates": "05.07.2027 - 12.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/sui-resort-by-oz-10/p18ZJvgfO4lM-WHr5pO5qiAAog9enIAkyonEo7yOfCt0fYpATqmPaE1Vj_FPnF-d7gpQMqBEVYSU0wktu51wZI3URQAVj_LGACagJBSXIhHBHixge5BOabTasEFBvFnkoYksVOAZGBgPgOAhJjAQIGPRz4-A/?operator=EXIM&adults=2&children=2020-08-12&objectId=236909&durationFrom=7&durationTo=10&departureDate=2027-07-05&returnDate=2027-07-12&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/123746/7d00ef6afc2cf7b792342c5ac2761a85c4ef55aaf6e475452efddbcb919ead62.webp@webp"
+  },
+  "deal_score": 55,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "+0.0%",
+  "delta_avg": "-2.7%",
+  "confidence": "Low",
+  "median_p": 9038.748241868885,
+  "min_p": 8797.0,
+  "max_p": 9277.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "05.07.2027 - 12.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

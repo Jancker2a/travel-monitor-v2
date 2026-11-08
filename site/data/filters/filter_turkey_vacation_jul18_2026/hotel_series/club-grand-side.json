@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "club-grand-side",
+  "hotel_name": "Club Grand Side",
+  "x": [
+    "2026-07-21 04:01:11",
+    "2026-07-21 07:19:54",
+    "2026-07-21 09:53:28",
+    "2026-07-21 17:16:15",
+    "2026-07-22 02:08:58",
+    "2026-07-22 03:52:11",
+    "2026-07-22 07:19:39",
+    "2026-07-22 09:54:55",
+    "2026-07-22 14:42:54"
+  ],
+  "y": [
+    14466.0,
+    14466.0,
+    14466.0,
+    14466.0,
+    14596.0,
+    14596.0,
+    14596.0,
+    14596.0,
+    14596.0
+  ],
+  "hover": [
+    "Проверка: 21.07.2026 04:01<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 07:19<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 09:53<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 17:16<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 02:08<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 03:52<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 07:19<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 09:54<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 14:42<br>Даты поездки: 25.07.2026 - 01.08.2026"
+  ],
+  "meta": {
+    "dates": "25.07.2026 - 01.08.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/club-grand-side/pqRUVOBe1-OBT0JhA__yP9AAogWtNaQPpW6-KMP-4DEoeclwAAAABDqwQATHEEAAcAAQAqBFdFWlkw3vWC0wZIhHJQQVg7YANqHUVudGVyIEFpci9MT1QgUG9saXNoIEFpcmxpbmVzckSeAR8AHAECABYEFwIS7QMT-AoVDxjXARS0AU__XEwAQJwSEY5DUNmCAUsAG-yIASDYkg4d93MNsvjBCQESYwENYwECCKsRyes/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2018/05/Club-Grand-Side-fly-pl-1.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14529.562336449928,
+  "min_p": 14466.0,
+  "max_p": 14596.0,
+  "samples": 9,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "25.07.2026 - 01.08.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

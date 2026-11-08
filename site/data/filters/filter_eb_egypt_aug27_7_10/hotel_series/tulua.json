@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "tulua",
+  "hotel_name": "Tulua",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    12858.0,
+    12858.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/tulua-9/ptJHbPr65zHLoexbAJe8ipAAogwC8OadlG4AihmVJjGwzOdbNC-zJjxVaGMZHx3UBT3zIqBEpPSVAw2tWo1wZIumRQQVj1N2ACckQUARUGFwBcA1gFVgJAygZd4gFPAFOvqwFSAFv0Kl67JEvtQ2EAEe2vAkz43DcggMqYCQ0AAe3-69_EqdGgMAINYwEAC5y0HTo/?operator=JOIP&adults=2&children=2020-08-12&objectId=238606&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/80757/286243b8ba8bff94d0c6adf2d3ef6a6e24be053810a613a7e23e2820d70130c8.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12858.000000000002,
+  "min_p": 12858.0,
+  "max_p": 12858.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

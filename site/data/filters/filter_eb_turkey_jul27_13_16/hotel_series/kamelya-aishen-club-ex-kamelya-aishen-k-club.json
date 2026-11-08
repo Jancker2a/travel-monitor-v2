@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "kamelya-aishen-club-ex-kamelya-aishen-k-club",
+  "hotel_name": "Kamelya Aishen Club (ex. Kamelya Aishen K Club)",
+  "x": [
+    "2026-11-03 06:39:01"
+  ],
+  "y": [
+    19735.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 14.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/kamelya-world-holiday-village/pVYH7W42GlGrm3syMcqrI9AAogxGCzYSvfndyIdmJ2Tu7wGAAAAABsoAUAPJwFAA0AJAAqBFdFWlkw5Oel1wZIl5oBUEFY-ixgA2oJRW50ZXIgQWlyagQwMDAwagQwMDAwagQwMDAwagQwMDAwckCeAZMBlAGVAZgBHwAcAQIAFgAXDBLnAxHbYEy2Ck8AQJwSS-fFAVAAG9UtIN_DEx2wCA2B3L4JARJjAQxjAQIL5D9aog/?operator=WEZY&adults=2&children=2020-08-12&objectId=8011&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703244/plain/cms/fileadmin/config_img/objects/8011/Kamelya-Aishen-Club.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 19735.0,
+  "min_p": 19735.0,
+  "max_p": 19735.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 14.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

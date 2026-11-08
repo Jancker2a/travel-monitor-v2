@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_7_10_days",
+  "slug": "spotapart",
+  "hotel_name": "SpotApart",
+  "x": [
+    "2026-10-30 14:48:10",
+    "2026-10-30 19:47:57",
+    "2026-10-31 00:09:28",
+    "2026-10-31 03:37:37"
+  ],
+  "y": [
+    4202.0,
+    4202.0,
+    4202.0,
+    4202.0
+  ],
+  "hover": [
+    "Проверка: 30.10.2026 14:48<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 30.10.2026 19:47<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 31.10.2026 00:09<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 31.10.2026 03:37<br>Даты поездки: 21.11.2026 - 28.11.2026"
+  ],
+  "meta": {
+    "dates": "21.11.2026 - 28.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,ateny,ateny/spot-apart-residencies/XTOP70da88X_wYAAHNOYVBwWQGuAQAFRx64CpABCgYI1e0GEAESBgi1vQgQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjYwRktVN0RWUVlJTjA0TThQQjFPN1ZKSDdaS1ZZVFpDVDIzNlNMWUVCN0szWFk2MjBCSFpZM1NTU0EyWU4yM0FBMVlIUThBOUNaUkhGMTc4WTIyOFFJRTRECn8KBgjgggMQAhIGCOKIEBABGm1PNTQ1NDRkNTMyZjQxNDc1MjQxNTQ0ODQyNTkzMzU5MmY0MTUwMzAzMDU0MzE0MzU2NDIzMDJmNTM0MzJmMzcyZjMyMzAzMjM2MzEzMTMyMzEyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCh0KAhABEgIQARoTRFNSVC0xMTAtTk9UUkFOU0ZFUgogCgUIzDoQARIFCPNGEAEaEERTUk0tMTEwLTJyMjI2MDcKIQoFCMYKEAESBQjiDBABGhFEU1JNLTExMC0zNXIyMjYwOAoiCgUI8C4QARIFCJg5EAEaEkRTUlUtMTEwLVViZXpiYXNpYxhuKFQyBgiE0xkQATgD/?operator=XTOP&adults=2&children=2020-12-10&objectId=202261&durationFrom=7&durationTo=10&departureDate=2026-11-21&returnDate=2026-11-28&departureLocation=Modlin&catering=without&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/XTOP/IMG/202261/01d8def465fda7a0a01fc2f772c7c9222be5343eb23f7a03d089b0f372ad618f.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 4202.0,
+  "min_p": 4202.0,
+  "max_p": 4202.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.11.2026 - 28.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_7_10_days.html"
+}

@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "lusso-sorgun",
+  "hotel_name": "Lusso Sorgun",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    13537.0,
+    13537.0,
+    13537.0,
+    13537.0,
+    13537.0,
+    13537.0,
+    13537.0,
+    13537.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 04.11.2026 - 11.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 04.11.2026 - 11.11.2026"
+  ],
+  "meta": {
+    "dates": "04.11.2026 - 11.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,sorgun/lusso-sorgun-12/pIhQoiuo0eIQ5nBIIBppd9AAogXJFrf7V79jJIrw4f-tYzpAAAAABstAQAcLQEAAcAEQAqBFdFWlkw3J6r1wZI4WlQQVj6__________8BYANqCUVudGVyIEFpcmoEMDY1NXJDngGTAR8AAgEWABwAFwYS7QMUwQUVKBibAU-NZEwAQJwSS-fFAVAAEezSAR34zg4gBBvLtWMNtbPeCAESYwEKYwECCRn-4R4/?operator=WEZY&adults=2&children=2020-12-10&objectId=230643&durationFrom=7&durationTo=10&departureDate=2026-11-04&returnDate=2026-11-11&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/WEZY/IMG/68852/a6056192f9b1a6a2be8d91bb4cdf13047809163ca719c0bf238fe4c2814f92a1.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13537.0,
+  "min_p": 13537.0,
+  "max_p": 13537.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "04.11.2026 - 11.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

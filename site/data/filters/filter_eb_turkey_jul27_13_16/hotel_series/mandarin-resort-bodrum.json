@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "mandarin-resort-bodrum",
+  "hotel_name": "Mandarin Resort (Bodrum)",
+  "x": [
+    "2026-11-01 08:56:34",
+    "2026-11-02 00:47:49",
+    "2026-11-02 13:11:46",
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41",
+    "2026-11-04 17:24:45",
+    "2026-11-05 09:03:42"
+  ],
+  "y": [
+    13503.0,
+    13503.0,
+    13503.0,
+    13503.0,
+    13503.0,
+    13503.0,
+    13503.0
+  ],
+  "hover": [
+    "Проверка: 01.11.2026 08:56<br>Даты поездки: 22.07.2027 - 05.08.2027",
+    "Проверка: 02.11.2026 00:47<br>Даты поездки: 22.07.2027 - 05.08.2027",
+    "Проверка: 02.11.2026 13:11<br>Даты поездки: 22.07.2027 - 05.08.2027",
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 22.07.2027 - 05.08.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 22.07.2027 - 05.08.2027",
+    "Проверка: 04.11.2026 17:24<br>Даты поездки: 22.07.2027 - 05.08.2027",
+    "Проверка: 05.11.2026 09:03<br>Даты поездки: 22.07.2027 - 05.08.2027"
+  ],
+  "meta": {
+    "dates": "22.07.2027 - 05.08.2027",
+    "duration": "15 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,c/mandarin-resort-bodrum/prCwVHuYkpSg9X1qwbvvk8AAogjSQfC1kmrsjcT1ocOofpPUqUbYd7vOZMV7F6F_UVY8EqBFJOQlcw4_Cw1wZIv2lQQVi_MGACagRDQWdKaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI-nwGeAVYKFQQXAFgBChgUxQNA6wMRjB4QnCMZnx5S3Q1TAEyzuAFL2hlhAA_a8kcdJyD54ooJDQACDWMBAgZH-DNl/?operator=RNBW&adults=2&children=2020-08-12&objectId=30837&durationFrom=13&durationTo=16&departureDate=2027-07-22&returnDate=2027-08-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703324/plain/cms/fileadmin/config_img/objects/30837/Mandarin2.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13503.0,
+  "min_p": 13503.0,
+  "max_p": 13503.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.07.2027 - 05.08.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

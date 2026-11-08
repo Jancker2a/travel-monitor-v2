@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "club-nena-side",
+  "hotel_name": "Club Nena (Side)",
+  "x": [
+    "2026-07-20 16:04:12"
+  ],
+  "y": [
+    10504.0
+  ],
+  "hover": [
+    "Проверка: 20.07.2026 16:04<br>Даты поездки: 25.07.2026 - 01.08.2026"
+  ],
+  "meta": {
+    "dates": "25.07.2026 - 01.08.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,kizilagac/club-nena/p9-_a7pHEPndT4RyE1jkEYAAog9gckiTI4udcWAtFHjqnClRYyvmOx2Su2V8l9GMNqAGsqBEVDQ1gw3tX40gZIiFJQAVhpYAJqAkFJciAcEc5PqwSh_RW5BCAY8JUqG6ihQgGC8OPhAQIAYwECCIHWGuA/ofertasv/?filter[tourOperator]=ECCX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2016/11/Club-Nena-fly-pl.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10504.0,
+  "min_p": 10504.0,
+  "max_p": 10504.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "25.07.2026 - 01.08.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

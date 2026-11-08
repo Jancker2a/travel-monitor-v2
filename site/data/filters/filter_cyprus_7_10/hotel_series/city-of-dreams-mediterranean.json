@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "city-of-dreams-mediterranean",
+  "hotel_name": "City of Dreams Mediterranean",
+  "x": [
+    "2026-10-26T15:31:20.742051+01:00"
+  ],
+  "y": [
+    14759.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 15:31<br>Даты поездки: 21.12.2026 - 28.12.2026"
+  ],
+  "meta": {
+    "dates": "21.12.2026 - 28.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/city-of-dreams-mediterranean-10/pCITjaXdcU4AhHSW6_79wNAAog8GvVuADNl6K9Bkvj3FDEZhc-9UNy74reUMKpKzJZ97oqBFZJVFgw-Mj91gZIp3NQQVixCmABaglXQkI1MzU0NTJqCTc4MTk3LlNURGoMV0FXTENBRFAyMTE5agxMQ0FXQVdEUDIxMTlyMZEBmwGdAY8BGgAXBxUAXAhYAECPA1Ps1AFSAF6RK0vtQ2EATJCIOCDNg5oJDQABDWNPE72M/ofertasv/?filter[tourOperator]=VITX&filter%5Bperson%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2024/07/city-of-dreams-mediterranean.jpg"
+  },
+  "deal_score": 55,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "+0.0%",
+  "confidence": "Low",
+  "median_p": 14759.0,
+  "min_p": 14759.0,
+  "max_p": 14759.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.12.2026 - 28.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

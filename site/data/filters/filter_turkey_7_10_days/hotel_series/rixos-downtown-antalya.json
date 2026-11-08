@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "rixos-downtown-antalya",
+  "hotel_name": "Rixos Downtown (Antalya)",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    16989.0,
+    17089.0,
+    17089.0,
+    17000.0,
+    17000.0,
+    17000.0,
+    17000.0,
+    17000.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 24.11.2026 - 01.12.2026"
+  ],
+  "meta": {
+    "dates": "24.11.2026 - 01.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/rixos-downtown-antalya/p02Kkj2R9nyIHOg6juUXQEAAogZ42PBh5h_6nucBJQezPT1Yic5iiITh8tyOR-jbVG0vgqBE5LUkEw3J6r1wZI6IQBUAFY2QNgA2oGU1JDVktCagJBSWoEV0FXMGoDQVlUchobFg4gCgwRjdY-Dev7lQkPTQESYwEMYwECDMBZjiI/?operator=NKRA&adults=2&children=2020-12-10&objectId=29733&durationFrom=7&durationTo=10&departureDate=2026-11-24&returnDate=2026-12-01&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702619/plain/cms/fileadmin/config_img/objects/29733/Rixos-Downtown-Antalya.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17013.84912555139,
+  "min_p": 16989.0,
+  "max_p": 17089.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.11.2026 - 01.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

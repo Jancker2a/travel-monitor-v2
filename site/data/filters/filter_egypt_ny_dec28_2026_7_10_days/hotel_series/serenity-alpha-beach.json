@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "serenity-alpha-beach",
+  "hotel_name": "Serenity ALPHA Beach *****",
+  "x": [
+    "2026-10-23 00:37:48",
+    "2026-10-23 03:46:04",
+    "2026-10-23 09:51:56"
+  ],
+  "y": [
+    12104.0,
+    12104.0,
+    12104.0
+  ],
+  "hover": [
+    "Проверка: 23.10.2026 00:37<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 23.10.2026 03:46<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 23.10.2026 09:51<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-makadi-heights/p4qz6KaS784ZWj-JhqPEjzAAogTV7O866eoiK41oK5VyhYtgbyY4eWR3p7KMyqfZ_qYPQqBEVDQ1gwoaTs1gZIyF5QAVjADGACagNBSVVyIBwRtTe5BLPjGKsEARi61jAb3dhEAdSpvJQCAgBjAQYLY1zVVQ/?operator=ECCX&adults=2&children=2020-12-10&objectId=545&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701151/plain/cms/fileadmin/config_img/objects/545/Serenity-Alpha-Beach.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12104.0,
+  "min_p": 12104.0,
+  "max_p": 12104.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

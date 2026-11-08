@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_7_10_days",
+  "slug": "imperial-shams-abu-soma-resort",
+  "hotel_name": "Imperial Shams Abu Soma Resort",
+  "x": [
+    "2026-11-06 04:33:03",
+    "2026-11-06 12:34:08",
+    "2026-11-06 13:17:58",
+    "2026-11-06 20:35:47",
+    "2026-11-07 01:16:02",
+    "2026-11-07 08:43:33",
+    "2026-11-07 11:24:17",
+    "2026-11-07 13:06:08"
+  ],
+  "y": [
+    6982.0,
+    6982.0,
+    6982.0,
+    6982.0,
+    6982.0,
+    6881.0,
+    6881.0,
+    6881.0
+  ],
+  "hover": [
+    "Проверка: 06.11.2026 04:33<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 06.11.2026 12:34<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 06.11.2026 13:17<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 06.11.2026 20:35<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 07.11.2026 01:16<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 07.11.2026 08:43<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 07.11.2026 11:24<br>Даты поездки: 29.11.2026 - 06.12.2026",
+    "Проверка: 07.11.2026 13:06<br>Даты поездки: 29.11.2026 - 06.12.2026"
+  ],
+  "meta": {
+    "dates": "29.11.2026 - 06.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/imperial-shams-abu-soma/p1mjHPR9EpFfLqrSTMxGuKAAogbdFvDLxHMy5E7yYxwEdqG6jUXsy-dzUFHvW2FmI2d6MqBEtPTVQwtai81wZI4TVQAViDBGACagJBSXIfHBGiGrkE1-ABqwQjGOXWBBvt9SMBodegHwIAYwECBaR2nYs/?operator=KOMT&adults=2&children=2020-12-10&objectId=558&durationFrom=7&durationTo=10&departureDate=2026-11-29&returnDate=2026-12-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705269/plain/cms/fileadmin/config_img/objects/558/Imperial-Shams-Abu-Soma.webp@webp"
+  },
+  "deal_score": 56,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "-1.4%",
+  "delta_avg": "-1.2%",
+  "confidence": "Medium",
+  "median_p": 6961.77373059138,
+  "min_p": 6881.0,
+  "max_p": 6982.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.11.2026 - 06.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_7_10_days.html"
+}

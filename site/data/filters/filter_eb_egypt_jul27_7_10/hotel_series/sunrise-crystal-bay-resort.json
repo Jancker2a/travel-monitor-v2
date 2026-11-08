@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "sunrise-crystal-bay-resort",
+  "hotel_name": "Sunrise Crystal Bay Resort",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    13237.0,
+    13237.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 29.07.2027 - 05.08.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 29.07.2027 - 05.08.2027"
+  ],
+  "meta": {
+    "dates": "29.07.2027 - 05.08.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sunrise-cristal-bay-ex-coral-sea/pM5UeotB-60sm3W7K1qLrbAAogbw2gWvWe0utQf5vZbJtoUz01l7PgsvUcoFEGhodLDlwqBEpPSVAw29Wo1wZItWdQQViNMmACagNEYW5yQ5sBFAEVBhcAXANYBVYCQMoGT-IBXQBSr6sBUwBer09L7UNhABGdwQFMyMs4DZzJmAkgAAG5_e_4xMbMoDACDWMBBAs-gkFc/?operator=JOIP&adults=2&children=2020-08-12&objectId=3982&durationFrom=7&durationTo=10&departureDate=2027-07-29&returnDate=2027-08-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701335/plain/cms/fileadmin/config_img/objects/3982/Sunrise-Cristal-Bay-ex.-Coral-Sea.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13236.999999999998,
+  "min_p": 13237.0,
+  "max_p": 13237.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.07.2027 - 05.08.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "meder-resort",
+  "hotel_name": "Meder Resort",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    15162.0,
+    15162.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 01.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 14.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/meder-resort/p6uS0TVO0__pNx-nqi04lvAAog_Veh1uE0fsskQ0YmbCvxngAAAABsoAUAPJwFAA0AAAAqBFdFWlkwjteo1wZIunZQQVjtLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQZ4BkwGUAZUBmAEfABwBAgAWABcMEbgCEq8BTJFrTwBAnBJL58UBUAAgtPETHbAIG7DULg3Rh5AJARJjAQxjAQML7Njnkg/?operator=WEZY&adults=2&children=2020-08-12&objectId=4063&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702326/plain/cms/fileadmin/config_img/objects/4063/Meder-Resort.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15162.0,
+  "min_p": 15162.0,
+  "max_p": 15162.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 14.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

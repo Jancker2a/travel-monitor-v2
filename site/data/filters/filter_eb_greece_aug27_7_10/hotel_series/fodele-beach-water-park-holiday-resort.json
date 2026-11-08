@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "fodele-beach-water-park-holiday-resort",
+  "hotel_name": "Fodele Beach & Water Park Holiday Resort",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    17500.0,
+    17500.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,fodele/fodele-beach/pDwbhrWCMck6tLe5T0Q-vtAAog5S6Qtt2G8t0f_twY5lvJywAAAAAtzgQAR84EAAcAAAAqBFdFWlkwwNao1wZI3IgBUEFY9TdgA2oJRW50ZXIgQWlyagQwMDAwagQwMDAwagQwMDAwagQwMDAwcj-eAZMBlAGVAZgBHwAcAQIAFgQXAhLtAxGaBkCTd0yCL08AS-WWAVAAG9B_HdXVDyAaDaaBwgkBEmMBDGMBBgvdVtpM/?operator=WEZY&adults=2&children=2020-08-12&objectId=6312&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703010/plain/cms/fileadmin/config_img/objects/6312/Fodele-Beach.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17500.0,
+  "min_p": 17500.0,
+  "max_p": 17500.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "jaz-elite-negma",
+  "hotel_name": "Jaz Elite Negma",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    16175.0,
+    16175.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 02.10.2026 - 09.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 02.10.2026 - 09.10.2026"
+  ],
+  "meta": {
+    "dates": "02.10.2026 - 09.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/jaz-elite-negma-10/pRaEtb0yGy8hsOAJT9rhmFAAog0fm32YIlaOc8PnkjyXGeXdq-3V-qxOKdcfr-_pPJY0IqBEpPSVAw59Wo1wZIr35QQVilPmACagMxejhyQ5sBFAEVBhcAXANYBVYCQMoGT-IBXQBe3voBUrwUUwBLsS9hABGSmAJM0_Q3Da3LmAkgAAGZy4uho8vSoDACDWMBAAu2-sVm/?operator=JOIP&adults=2&children=2020-08-12&objectId=236586&durationFrom=7&durationTo=10&departureDate=2027-10-02&returnDate=2027-10-09&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/77722/39a507c64552986e20795510507ac240cd933c10e0fb4a63ae43a5818d2d5d92.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16175.0,
+  "min_p": 16175.0,
+  "max_p": 16175.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "02.10.2026 - 09.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

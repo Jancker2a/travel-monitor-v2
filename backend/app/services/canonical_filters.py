@@ -261,3 +261,4 @@ def resolve_filter_spec(filter_id: Optional[str]) -> Optional[Dict[str, Any]]:
         if k.replace("filter_", "") == key_clean:
             return spec
     return None
+

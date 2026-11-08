@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "sunrise-alora-aqua-park-resort",
+  "hotel_name": "Sunrise Alora Aqua Park Resort",
+  "x": [
+    "2026-10-27 14:27:29"
+  ],
+  "y": [
+    10604.0
+  ],
+  "hover": [
+    "Проверка: 27.10.2026 14:27<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/mirage-aqua-park-spa-cesar-palace/pE-kIYtvRInGGEWdk1451OAAogNOb8Wz3s_-Mby90Ub0kjqG9n6bAq9iaw9Z5P8khFlyIqBEtPTVQwxs2C1wZI7FJQAVjaC2ACagJBSXIfHBHDGrkE4uABqwQDGJmWBBu1mCQBseLAHgIAYwEEC6Zy_Zw/?operator=KOMT&adults=2&children=2020-12-10&objectId=159252&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702709/plain/cms/fileadmin/config_img/objects/159252/Hawaii-Caesar-Palace-Aqua-Park-ex-Mirage-Aqua-Park-fly-pl.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10604.0,
+  "min_p": 10604.0,
+  "max_p": 10604.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

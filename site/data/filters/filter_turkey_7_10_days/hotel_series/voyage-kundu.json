@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "voyage-kundu",
+  "hotel_name": "Voyage Kundu",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    13551.0,
+    13685.0,
+    13685.0,
+    13685.0,
+    13685.0,
+    13685.0,
+    13819.0,
+    13819.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 14.11.2026 - 21.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 14.11.2026 - 21.11.2026"
+  ],
+  "meta": {
+    "dates": "14.11.2026 - 21.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/voyage-kundu-10/puo3OOZDFnyq044nnSCVfgAAogVCG6Sr_tibGfXHgrQnAQkwAAAADdvwUA37QEAAcAAAAqBFdFWlkw3J6r1wZI-2tQQVjpAWADaglFbnRlciBBaXJqBDA2MDByRZ4BkwEfAAIBFgAcABcGEu0DFOIEFbsCGHNPgWNMAECcEkvnxQFQABGloAIbruUBIISdDB3-lQQNndK9CQESYwEMYwECC88Ak_c/?operator=WEZY&adults=2&children=2020-12-10&objectId=234766&durationFrom=7&durationTo=10&departureDate=2026-11-14&returnDate=2026-11-21&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/WEZY/IMG/78765/b677ee8c627b0ba54fd6cdd40ec28a37f8885ad015f75e69735c6d2c3800bd9a.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13700.215629155924,
+  "min_p": 13551.0,
+  "max_p": 13819.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "14.11.2026 - 21.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

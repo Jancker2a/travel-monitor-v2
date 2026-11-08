@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "ozkaymak-marina-kemer",
+  "hotel_name": "Ozkaymak Marina (Kemer)",
+  "x": [
+    "2026-11-03 06:37:51"
+  ],
+  "y": [
+    9917.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 30.08.2027 - 06.09.2027"
+  ],
+  "meta": {
+    "dates": "30.08.2027 - 06.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/ozkaymak-kemer-marina/pZHG0OTZsN84X3H2ilUH1XAAogTo2Uo4GPkfJFrXcwTkaYZxZbBI7y-EnUvRmNNm0N9mYqBFZJVFgwgOel1wZIvU1QQViaOGACcj8aABUHFwBcA1gFQI8DU-drUgBb2BdevnxLgRJhAEzkq0UN7tyNCSAAUZzAkO5YT-jnBl3Ej9OLhQECDGMBAgs18cko/?operator=VITX&adults=2&children=2020-08-12&objectId=2059&durationFrom=7&durationTo=10&departureDate=2027-08-30&returnDate=2027-09-06&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705036/plain/cms/fileadmin/config_img/objects/2059/ozkaymak-kemer-marina.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9917.0,
+  "min_p": 9917.0,
+  "max_p": 9917.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "30.08.2027 - 06.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

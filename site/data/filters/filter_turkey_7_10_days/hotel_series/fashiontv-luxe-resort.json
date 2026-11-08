@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "fashiontv-luxe-resort",
+  "hotel_name": "FashionTV Luxe Resort",
+  "x": [
+    "2026-06-23 23:35:10",
+    "2026-06-24 05:03:16",
+    "2026-06-24 08:51:23",
+    "2026-10-19 02:19:07",
+    "2026-10-19 12:18:06",
+    "2026-10-19 19:38:34",
+    "2026-10-20 00:32:27",
+    "2026-10-20 03:58:19"
+  ],
+  "y": [
+    9999.0,
+    10832.0,
+    10832.0,
+    9554.0,
+    9230.0,
+    9230.0,
+    9230.0,
+    9230.0
+  ],
+  "hover": [
+    "Проверка: 23.06.2026 23:35<br>Даты поездки: 23.06.2026 - 30.06.2026",
+    "Проверка: 24.06.2026 05:03<br>Даты поездки: 25.06.2026 - 02.07.2026",
+    "Проверка: 24.06.2026 08:51<br>Даты поездки: 25.06.2026 - 02.07.2026",
+    "Проверка: 19.10.2026 02:19<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 19.10.2026 12:18<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 19.10.2026 19:38<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 20.10.2026 00:32<br>Даты поездки: 21.10.2026 - 28.10.2026",
+    "Проверка: 20.10.2026 03:58<br>Даты поездки: 21.10.2026 - 28.10.2026"
+  ],
+  "meta": {
+    "dates": "21.10.2026 - 28.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/fashiontv-luxe-resort-9/py0jJIQvkK0kRkV8Ex-0rKAAogkbWHtbRuP6zSV6no4Xf3waiNaK6dlmKrkf9EXuXcb9gqBE9SRVgw1pXb1gZIjkhQQVgWYAJqB1BaRy4yLjFyNpsBFQcXAFgIVgJcCEDCBhHRKE_2D10kU78vUgBelpQBS4ESYQBM0b46ILD9lwkNAAISYwECC9hkBn4/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://datacfstatic.merlinx.pl/OREX/IMG/6060/400ecf22aaa4062f3f04135280ea7218a1d38aa589db915cde4072a44a0f43de.webp"
+  },
+  "deal_score": 71,
+  "deal_label": "Good",
+  "deal_class": "good",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 9708.023293418213,
+  "min_p": 9230.0,
+  "max_p": 10832.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.10.2026 - 28.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

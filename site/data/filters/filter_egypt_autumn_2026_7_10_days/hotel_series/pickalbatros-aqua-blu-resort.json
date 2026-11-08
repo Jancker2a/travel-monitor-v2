@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_autumn_2026_7_10_days",
+  "slug": "pickalbatros-aqua-blu-resort",
+  "hotel_name": "Pickalbatros Aqua Blu Resort",
+  "x": [
+    "2026-10-26 02:22:22",
+    "2026-10-26 07:33:42",
+    "2026-10-26 12:12:04",
+    "2026-10-26 16:21:07",
+    "2026-10-26 17:57:03",
+    "2026-10-26 21:42:56",
+    "2026-10-27 01:37:28",
+    "2026-10-27 07:28:01",
+    "2026-10-27 09:51:54",
+    "2026-10-27 10:27:02"
+  ],
+  "y": [
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0,
+    10875.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 02:22<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 26.10.2026 07:33<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 26.10.2026 12:12<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 26.10.2026 16:21<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 26.10.2026 17:57<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 26.10.2026 21:42<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 27.10.2026 01:37<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 27.10.2026 07:28<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 27.10.2026 09:51<br>Даты поездки: 29.10.2026 - 05.11.2026",
+    "Проверка: 27.10.2026 10:27<br>Даты поездки: 29.10.2026 - 05.11.2026"
+  ],
+  "meta": {
+    "dates": "29.10.2026 - 05.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-blu-resort-aqua-park/pc_hAwet5hgZvWwdMZMtmLAAogWplAL7PJUIKUhb9p6Gq0vBstrgoMttrZgZAvN8rfQ44qBEtPTVQw69yB1wZI-1RQAVgmYAJqAkFJch8cEb4buQSq4gGrBAMYkaYEG6KrJAGr3dceAgBjAQQM2P8U2g/?operator=KOMT&adults=2&children=2020-12-10&objectId=6531&durationFrom=7&durationTo=10&departureDate=2026-10-29&returnDate=2026-11-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705398/plain/cms/fileadmin/config_img/objects/6531/Albatros-Aqua-Blu-Resort.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 10875.0,
+  "min_p": 10875.0,
+  "max_p": 10875.0,
+  "samples": 10,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.10.2026 - 05.11.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+}

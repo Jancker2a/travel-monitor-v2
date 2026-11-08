@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "swiss-inn-resort-hurghada-ex-hilton-hurghada-resort",
+  "hotel_name": "Swiss Inn Resort Hurghada (ex. Hilton Hurghada Resort)",
+  "x": [
+    "2026-10-29 15:50:04",
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    8897.0,
+    9297.0,
+    9297.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 15:50<br>Даты поездки: 15.07.2027 - 23.07.2027",
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 22.07.2027 - 30.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 22.07.2027 - 30.07.2027"
+  ],
+  "meta": {
+    "dates": "22.07.2027 - 30.07.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/hilton-resort/pD2WCJ52BQDyIuTf9H82MnAAogd73ljNWUbLcB4VgwgC4stRhhRdb0PGvEHxMMldC2VZYqBE9BU0kwtNWo1wZI0UhQAVjlMGACagNBSWxyIRwRxY8BuQS53RCrBAEbo5oQGJ2pFAHX6Iq2AgIAYwECBsk0i5g/?operator=OASI&adults=2&children=2020-08-12&objectId=46&durationFrom=7&durationTo=10&departureDate=2027-07-22&returnDate=2027-07-29&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701192/plain/cms/fileadmin/config_img/objects/46/Swiss-Inn-Resort-Hurghada.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9163.666666666666,
+  "min_p": 8897.0,
+  "max_p": 9297.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.07.2027 - 30.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

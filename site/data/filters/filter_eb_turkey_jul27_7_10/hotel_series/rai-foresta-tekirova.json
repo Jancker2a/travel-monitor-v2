@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "rai-foresta-tekirova",
+  "hotel_name": "Rai Foresta Tekirova",
+  "x": [
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    12231.0,
+    12231.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 22.07.2027 - 29.07.2027"
+  ],
+  "meta": {
+    "dates": "22.07.2027 - 29.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,tekirova/rai-foresta-tekirova-12/p481XNTiQqzS2Yn6e35fP7AAog8DFxVXjj9mugT5t1cf7NUmkTmTKW4s4Iq9lW6YJ49KgqBE9SRVgw2deo1wZIx19QQVjlMGACagdRMFYuMi4xcjabARUHFwBYCFYCXAhAwgYR5DFP3xpdJFPDG1IAXpaUAUuBEmEATNG-OiCVyZgJDQACEmMBAgsESdTP/?operator=OREX&adults=2&children=2020-08-12&objectId=236902&durationFrom=7&durationTo=10&departureDate=2027-07-22&returnDate=2027-07-29&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/OREX/IMG/7231/f4bc03a0ad037fd7a943c056ea4938bdbc2186bcc9cd26b306465a85278207a8.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12231.0,
+  "min_p": 12231.0,
+  "max_p": 12231.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.07.2027 - 29.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "club-side-coast",
+  "hotel_name": "Club Side Coast",
+  "x": [
+    "2026-07-20 19:42:42",
+    "2026-07-20 21:46:45"
+  ],
+  "y": [
+    9323.0,
+    9323.0
+  ],
+  "hover": [
+    "Проверка: 20.07.2026 19:42<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 20.07.2026 21:46<br>Даты поездки: 25.07.2026 - 01.08.2026"
+  ],
+  "meta": {
+    "dates": "25.07.2026 - 01.08.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/club-side-coast/p2Opn46-RN0D3kX4LQBWyJAAogI-ptpmUCnW06CvF9XH79pwAAAABDqwQAwMYEAAcAAAAqBFdFWlkwpvb50gZI60hQQVhkYANqCUVudGVyIEFpcnJEngEfABwBAgAWBBcCEu0DEeECFYcFGNcBE7kBFJoDT_9cTABAnBJQ58UBSwAblS8dpuAPIP02DbXBwQkBEmMBDWMBAgyahISl/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Club-Side-Coast-fly-pl.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9323.0,
+  "min_p": 9323.0,
+  "max_p": 9323.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "25.07.2026 - 01.08.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

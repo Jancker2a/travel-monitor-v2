@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "rixos-premium-alamein-ex-regal-heights",
+  "hotel_name": "Rixos Premium Alamein (ex. Regal Heights)",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    14618.0,
+    16557.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 24.07.2027 - 31.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 17.07.2027 - 24.07.2027"
+  ],
+  "meta": {
+    "dates": "17.07.2027 - 24.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dolny-egipt,al-alamajn/rixos-premium-alamein-ex-regal-heights-10/pyr655KXtznpKOmEQKoCnCAAog5RUktx2DfovdVp9reNKGNk9KbKODcyREhFn-iPu90WMqBFZJVFgw5tWo1wZIrYEBUEFY7S9gAnJAGgAVBxcAXANYBUCPA1OL5AFSAF7yG1u8IEuxI2EATJz6RA3Z240JIABRl6bymLkBT43NDV2kh-7WTAIMYwECC4sDE7o/?operator=VITX&adults=2&children=2020-08-12&objectId=223577&durationFrom=7&durationTo=10&departureDate=2027-07-17&returnDate=2027-07-24&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ITAK/IMG/MUHRIXG/28e8c2d883c963f54da7a16701f89ec00512e622d9270c8c8e7e07704176d3ae.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15587.5,
+  "min_p": 14618.0,
+  "max_p": 16557.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "17.07.2027 - 24.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

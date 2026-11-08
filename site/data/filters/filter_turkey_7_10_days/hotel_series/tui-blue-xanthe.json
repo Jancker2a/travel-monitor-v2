@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "tui-blue-xanthe",
+  "hotel_name": "Tui Blue Xanthe",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    11068.0,
+    11068.0,
+    10918.0,
+    10918.0,
+    10918.0,
+    8445.0,
+    8445.0,
+    8445.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 21.11.2026 - 28.11.2026"
+  ],
+  "meta": {
+    "dates": "21.11.2026 - 28.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/xanthe-resort/pO9OKtnHF36kJolCo31ap0AAogqs-Z7kW_CVKrrOBVRVfHMBMgBbwBNADU8Aqe2JEalZ8qBEVDQ1gwyJ6r1wZI_UFQAViRA2ACagJBSXIgHBGlJ6sEkukZuQRCGKq0LxvZ9jwBsIDfkgICAGMBAgzpg2of/?operator=ECCX&adults=2&children=2020-12-10&objectId=3978&durationFrom=7&durationTo=10&departureDate=2026-11-21&returnDate=2026-11-28&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703327/plain/cms/fileadmin/config_img/objects/3978/Tui-Blue-Xanthe.webp@webp"
+  },
+  "deal_score": 81,
+  "deal_label": "Hot",
+  "deal_class": "hot",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 9653.972125825117,
+  "min_p": 8445.0,
+  "max_p": 11068.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.11.2026 - 28.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "reef-oasis-blue-bay-resort",
+  "hotel_name": "Reef Oasis Blue Bay Resort",
+  "x": [
+    "2026-09-26 03:43:29",
+    "2026-10-09 00:15:54",
+    "2026-10-09 04:20:58",
+    "2026-10-09 11:23:47"
+  ],
+  "y": [
+    10953.0,
+    10926.0,
+    10918.0,
+    10918.0
+  ],
+  "hover": [
+    "Проверка: 26.09.2026 03:43<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 09.10.2026 00:15<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 09.10.2026 04:20<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 09.10.2026 11:23<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/reef-oasis-blue-bay-resort/pJsr6bQaLgx5rFrcVJjvbQAAogxQrvbxZMWhsJSLPtcEI1wGgJ2MREVQeft-2AzPrrwC4qBEtPTVQwtOWi1gZIplVQAViWDmACagJBSXIfHBH-GqsEieMBuQQxGN-YBBv8jCQBtufIHgIAYwECC4W5L-0/ofertasv/?filter[tourOperator]=KOMT&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Reef-Oasis-Blue-Bay.jpg"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10929.072956654007,
+  "min_p": 10918.0,
+  "max_p": 10953.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

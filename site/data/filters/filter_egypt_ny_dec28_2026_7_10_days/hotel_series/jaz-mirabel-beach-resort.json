@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "jaz-mirabel-beach-resort",
+  "hotel_name": "Jaz Mirabel Beach Resort",
+  "x": [
+    "2026-09-24 17:18:18",
+    "2026-09-24 21:22:18"
+  ],
+  "y": [
+    8100.0,
+    10435.0
+  ],
+  "hover": [
+    "Проверка: 24.09.2026 17:18<br>Даты поездки: 29.12.2026 - 05.01.2027",
+    "Проверка: 24.09.2026 21:22<br>Даты поездки: 29.12.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "29.12.2026 - 05.01.2027",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-beach-resort/pSntqa6mmeCx2l7ZcFgVmSAAogOt6x-WNuf4OBeJ_wa74LW0fR3XftlsYjdQQEoTA-xk8qBEJWQkUw6_DV1QZIw1FQAVjsEWADagJBSXIkHBGD-QEbkO1DGKimGasE9OwnuQQjAaOdtacEARJjAQxjAQIL69eugw/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Jaz-Mirabel-Beach-Resort-fly-pl.jpg"
+  },
+  "deal_score": 46,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9267.500000000002,
+  "min_p": 8100.0,
+  "max_p": 10435.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.12.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "falcon-naama-star",
+  "hotel_name": "Falcon Naama Star",
+  "x": [
+    "2026-10-20 19:49:20",
+    "2026-10-20 20:36:49",
+    "2026-10-20 22:25:37"
+  ],
+  "y": [
+    9371.0,
+    9034.0,
+    9034.0
+  ],
+  "hover": [
+    "Проверка: 20.10.2026 19:49<br>Даты поездки: 12.26.2026 - 07.01.2027",
+    "Проверка: 20.10.2026 20:36<br>Даты поездки: 12.26.2026 - 05.01.2027",
+    "Проверка: 20.10.2026 22:25<br>Даты поездки: 12.26.2026 - 05.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 05.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/falcon-naama-star/pQGo8lpAL4wjXZqK8bQP-QAAogMzvjp09gaf1p_O3INVc0HEfR3XftlsYjdQQEoTA-xk8qBEJWQkUw9Jzf1gZIykZQAVj7DGACagJBSXIhHBHq-AEb9utDGPOFGKsE3I4puQQjAeHFoZYEAhJjAQYLzugNOA/?operator=BVBE&adults=2&children=2020-12-10&objectId=7647&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705268/plain/cms/fileadmin/config_img/objects/7647/Falcon-Naama-Star-fly-pl.jpg@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9112.525670863311,
+  "min_p": 9034.0,
+  "max_p": 9371.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 05.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

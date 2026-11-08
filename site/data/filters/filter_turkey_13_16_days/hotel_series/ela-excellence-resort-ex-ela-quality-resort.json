@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_13_16_days",
+  "slug": "ela-excellence-resort-ex-ela-quality-resort",
+  "hotel_name": "Ela Excellence Resort (ex. Ela Quality Resort)",
+  "x": [
+    "2026-11-04 03:33:11",
+    "2026-11-04 07:21:24"
+  ],
+  "y": [
+    18467.0,
+    18467.0
+  ],
+  "hover": [
+    "Проверка: 04.11.2026 03:33<br>Даты поездки: 21.11.2026 - 05.12.2026",
+    "Проверка: 04.11.2026 07:21<br>Даты поездки: 21.11.2026 - 05.12.2026"
+  ],
+  "meta": {
+    "dates": "21.11.2026 - 05.12.2026",
+    "duration": "15 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/ela-quality-resort/pt4Wa-uKgChR4wMy1aE7NzAAog0Y7M09JtEt2HetSHFzayAQAAAADHtAQA4bQEAA4AAQAqBFdFWlkwmZ6r1wZIo5ABUEFYkQNgA2oJRW50ZXIgQWlyagQwODMwckKeAZMBHwAcAQIAFgAXDRLmAxHHAxSBAxWtBRhzTKleTwBAnBJL58UBUAAb1KcDHev6DCAaDaDowQkBEmMBDGMBAgsN4s-v/?operator=WEZY&adults=2&children=2020-12-10&objectId=1592&durationFrom=13&durationTo=16&departureDate=2026-11-21&returnDate=2026-12-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702623/plain/cms/fileadmin/config_img/objects/1592/Ela-Quality-Resort-fly-pl.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18467.0,
+  "min_p": 18467.0,
+  "max_p": 18467.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.11.2026 - 05.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_13_16_days.html"
+}

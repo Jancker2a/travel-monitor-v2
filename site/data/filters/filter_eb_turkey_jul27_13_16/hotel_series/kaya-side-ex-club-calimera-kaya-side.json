@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "kaya-side-ex-club-calimera-kaya-side",
+  "hotel_name": "Kaya Side (ex. Club Calimera Kaya Side)",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    18644.0,
+    18644.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 02.07.2027 - 15.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 02.07.2027 - 15.07.2027"
+  ],
+  "meta": {
+    "dates": "02.07.2027 - 15.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,manavgat/calimera-kaya-side/pV7PZWCzmbNi1irUGGxUgXAAog4KMaxy8k4N7jbuxjDy8up9xRiaeiupdyMkFbAajPEkQqBE9SRVgwxNeo1wZI1JEBUEFYhS1gAmoHSEYwLjIuMXI1mwEVDRcAWAJWAlwIEaMGQB9Pw0xdJFPDG1IAXpaUAUuBEmEATNG-OiCByZgJDQACEmMBAguoSOes/?operator=OREX&adults=2&children=2020-08-12&objectId=8863&durationFrom=13&durationTo=16&departureDate=2027-07-02&returnDate=2027-07-15&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703246/plain/cms/fileadmin/config_img/objects/8863/Kaya-Side.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18644.0,
+  "min_p": 18644.0,
+  "max_p": 18644.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "02.07.2027 - 15.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

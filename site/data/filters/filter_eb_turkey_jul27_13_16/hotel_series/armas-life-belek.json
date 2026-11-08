@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "armas-life-belek",
+  "hotel_name": "Armas Life Belek",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    15939.0,
+    15939.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 19.07.2027 - 01.08.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 19.07.2027 - 01.08.2027"
+  ],
+  "meta": {
+    "dates": "19.07.2027 - 01.08.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/tui-day-night-connected-club-life-belek/pBmdr1cvrFR82VmYC4yntPAAog0Vf0Qjf2M4KMSAC5CQz3BnS6Ot9y5EG0dNqeQFfyeWQqBE9SRVgwn9eo1wZIw3xQQVidMGACagdKTE0uMi4xcjabARUNFwBYAlYCXAhAwgYRsCZPkyZdJFPDG1IAXpaUAUuBEmEATNG-OiCSyZgJDQACEmMBAgtd9yOw/?operator=OREX&adults=2&children=2020-08-12&objectId=195880&durationFrom=13&durationTo=16&departureDate=2027-07-19&returnDate=2027-08-01&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/OREX/IMG/5771/00ca85648381dbf274d7a506f07e272f512a3bc9b3c30afc7a9406dd7210cc72.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15939.0,
+  "min_p": 15939.0,
+  "max_p": 15939.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.07.2027 - 01.08.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

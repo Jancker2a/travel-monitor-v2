@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "limak-cyprus-deluxe",
+  "hotel_name": "Limak Cyprus Deluxe",
+  "x": [
+    "2026-11-03 13:24:09",
+    "2026-11-03 15:10:20",
+    "2026-11-03 16:29:55",
+    "2026-11-03 19:51:29",
+    "2026-11-04 03:34:42",
+    "2026-11-04 07:22:50"
+  ],
+  "y": [
+    8724.0,
+    8724.0,
+    8724.0,
+    8674.0,
+    8674.0,
+    8674.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 13:24<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 03.11.2026 15:10<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 03.11.2026 19:51<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 19.12.2026 - 26.12.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 19.12.2026 - 26.12.2026"
+  ],
+  "meta": {
+    "dates": "19.12.2026 - 26.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/limak-bafra/pbHiLYCakDXn1xRGeFpUZ7AAogtjJVe9p_EsnvTNhYld8Mn1XP7OcqA03RzWcLrX0-VU8qBEJWUFIw4Z6r1wZI3i5QAVixCGABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEZwyG8KXBxjsrw-rBOeSFbkEFQG4ztOBAgEAY3P2Vzk/?operator=BVPR&adults=1&objectId=191355&durationFrom=7&durationTo=10&departureDate=2026-12-19&returnDate=2026-12-26&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744706341/plain/cms/fileadmin/config_img/objects/191355/Limak-Cyprus-Deluxe.webp@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8690.344979834881,
+  "min_p": 8674.0,
+  "max_p": 8724.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.12.2026 - 26.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

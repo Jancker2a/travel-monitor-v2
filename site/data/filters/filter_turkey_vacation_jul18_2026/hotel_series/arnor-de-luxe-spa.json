@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "arnor-de-luxe-spa",
+  "hotel_name": "Arnor De Luxe & SPA",
+  "x": [
+    "2026-07-21 17:16:15",
+    "2026-07-21 18:36:15",
+    "2026-07-21 20:27:16",
+    "2026-07-22 01:06:11"
+  ],
+  "y": [
+    12899.0,
+    12899.0,
+    12899.0,
+    10395.0
+  ],
+  "hover": [
+    "Проверка: 21.07.2026 17:16<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 18:36<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 21.07.2026 20:27<br>Даты поездки: 25.07.2026 - 01.08.2026",
+    "Проверка: 22.07.2026 01:06<br>Даты поездки: 22.07.2026 - 29.07.2026"
+  ],
+  "meta": {
+    "dates": "22.07.2026 - 29.07.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,manavgat/arnor-de-luxe-spa-11/pZaogw7VPF3pPohE1y9kRqAAogYTxL4H4d4ymrjAS6INC3-wAAAADiagQA9WoEAAcAAAAqBFdFWlkw5fb_0gZIm1FQQWADaglFbnRlciBBaXJyQp4BHwAcAQIAFgAXBhLlAxXtCBjmARM8FJADT_pcTABAnBIR-G1QgyZLABvBqQEdhZcOIBMN_fjCCQESYwELYwEDCvEEw-c/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://datacfstatic.merlinx.pl/WEZY/IMG/30617/b0e6cd123adcc40d09869e53038db114afa97f53c0ee274bdfc2aa8aa70a8a96.webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 11966.355389763945,
+  "min_p": 10395.0,
+  "max_p": 12899.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.07.2026 - 29.07.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

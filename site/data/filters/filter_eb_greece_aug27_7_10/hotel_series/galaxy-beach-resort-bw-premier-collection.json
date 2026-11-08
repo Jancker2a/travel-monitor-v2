@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "galaxy-beach-resort-bw-premier-collection",
+  "hotel_name": "Galaxy Beach Resort BW Premier Collection",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    12677.0,
+    12677.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 27.08.2027 - 03.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 27.08.2027 - 03.09.2027"
+  ],
+  "meta": {
+    "dates": "27.08.2027 - 03.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/best-western-galaxy-laganas/p4x0Z99MP427Vql24TY_fJAAogM1rsnZ9AjIHWbylcedg85QH3xc2OJl1C4Ay0r-NiJbIqBFZJVFgwrdao1wZIhWNQQVjFN2ACcj8aABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMq9ZEDevcjQkgAF2K8pLwhQJPrNjRwRxRzCcCDGMBAgvMM-O-/?operator=VITX&adults=2&children=2020-08-12&objectId=2213&durationFrom=7&durationTo=10&departureDate=2027-08-27&returnDate=2027-09-03&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701038/plain/cms/fileadmin/config_img/objects/2213/Best-Western-Galaxy-Laganas-fly-pl.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12677.0,
+  "min_p": 12677.0,
+  "max_p": 12677.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.08.2027 - 03.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

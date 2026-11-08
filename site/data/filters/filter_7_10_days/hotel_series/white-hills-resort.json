@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_7_10_days",
+  "slug": "white-hills-resort",
+  "hotel_name": "White Hills Resort",
+  "x": [
+    "2026-11-03 06:41:02",
+    "2026-11-03 10:19:31",
+    "2026-11-03 13:19:25",
+    "2026-11-03 15:05:07",
+    "2026-11-03 16:24:58",
+    "2026-11-03 19:46:04",
+    "2026-11-04 07:18:05"
+  ],
+  "y": [
+    13797.0,
+    13797.0,
+    13947.0,
+    13947.0,
+    13947.0,
+    13947.0,
+    13947.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:41<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 10:19<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 13:19<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 15:05<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 16:24<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 03.11.2026 19:46<br>Даты поездки: 24.11.2026 - 01.12.2026",
+    "Проверка: 04.11.2026 07:18<br>Даты поездки: 24.11.2026 - 01.12.2026"
+  ],
+  "meta": {
+    "dates": "24.11.2026 - 01.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/white-hills-by-sunrise-14/pLkDKMIjsF-4cZvckrvZA3AAogKEQkUGp5k4YmScR1WbgACDNiiioEZFxK1N2T_nekMuIqBEVYSU0w55yr1wZI-2xQAVjZA2ACagJBSXIhHBHT_Aa5BJWzS6sERhu1oTsYodVGAfz_ivAMAgBjAQILkn5ssw/?operator=EXIM&adults=2&children=2020-12-10&objectId=222623&durationFrom=7&durationTo=10&departureDate=2026-11-24&returnDate=2026-12-01&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707701/plain/cms/fileadmin/config_img/objects/222623/Sunrise-White-Hills.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13910.934381346242,
+  "min_p": 13797.0,
+  "max_p": 13947.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.11.2026 - 01.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_7_10_days.html"
+}

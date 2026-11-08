@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "holiday-inn-resort-west-beach-bodrum",
+  "hotel_name": "Holiday Inn Resort West Beach Bodrum",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    10004.0,
+    10004.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 26.08.2027 - 02.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 26.08.2027 - 02.09.2027"
+  ],
+  "meta": {
+    "dates": "26.08.2027 - 02.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,turgutreis/holiday-inn-resort-west-beach-bodrum-10/pG_q9FSsh1fWvPgeRnfjsbAAogFBZIbMyZzktFtPBO4ONHm_QN2twodqTv27GNfAmonSAqBFJOQlcw4tao1wZIlE5QQVitN2ACagRCd2NEaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI6nwGeARUHFwBWA1gFCgRAxAcR0EAZ9x5T3Q1SABC_YEz0V0vaGWEAD-LyRx0pINfjigkNAAIMYwECC-HsYyE/?operator=RNBW&adults=2&children=2020-08-12&objectId=236707&durationFrom=7&durationTo=10&departureDate=2027-08-26&returnDate=2027-09-02&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/RNBW/IMG/9255/14dc193d4b22b0048f5275c27d3b6cb3bdb045b829623bc783d9ff4f7618b4c1.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10004.0,
+  "min_p": 10004.0,
+  "max_p": 10004.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "26.08.2027 - 02.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

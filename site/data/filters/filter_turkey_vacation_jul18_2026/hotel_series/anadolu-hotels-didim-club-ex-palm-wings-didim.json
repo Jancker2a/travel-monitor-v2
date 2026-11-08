@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_vacation_jul18_2026",
+  "slug": "anadolu-hotels-didim-club-ex-palm-wings-didim",
+  "hotel_name": "Anadolu Hotels Didim Club (ex. Palm Wings Didim)",
+  "x": [
+    "2026-07-20 02:07:33",
+    "2026-07-20 04:19:38",
+    "2026-07-20 07:59:33",
+    "2026-07-20 11:03:03"
+  ],
+  "y": [
+    10557.0,
+    10557.0,
+    10557.0,
+    11157.0
+  ],
+  "hover": [
+    "Проверка: 20.07.2026 02:07<br>Даты поездки: 23.07.2026 - 31.07.2026",
+    "Проверка: 20.07.2026 04:19<br>Даты поездки: 23.07.2026 - 31.07.2026",
+    "Проверка: 20.07.2026 07:59<br>Даты поездки: 23.07.2026 - 31.07.2026",
+    "Проверка: 20.07.2026 11:03<br>Даты поездки: 23.07.2026 - 31.07.2026"
+  ],
+  "meta": {
+    "dates": "23.07.2026 - 31.07.2026",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,didim/palm-wings-beach-resort/pPwnemARJyxlI_5xXwsv7VAAogA5KVVoPvdIw9m7vwHE4ezIhtswdb3bT1O6VJ_fxUJqAqBFZJVFgw4sj30gZIlVdQQVg-YAJyQBoAFQcXAFwDWAVAjwNT3XFSAFvwAl6wiwFL7UNhAEzZszkNktSYCSABUZ_a-MxdT46LOF2szp2iqAECC2MBAgq9wth2/ofertasv/?filter[tourOperator]=VITX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2009/05/Anadolu.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10710.128198094115,
+  "min_p": 10557.0,
+  "max_p": 11157.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "23.07.2026 - 31.07.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_vacation_jul18.html"
+}

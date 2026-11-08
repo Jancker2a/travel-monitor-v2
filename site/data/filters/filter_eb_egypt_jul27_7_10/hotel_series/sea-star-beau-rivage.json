@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "sea-star-beau-rivage",
+  "hotel_name": "Sea Star Beau Rivage",
+  "x": [
+    "2026-11-01 08:54:17",
+    "2026-11-02 00:45:30",
+    "2026-11-02 13:09:23",
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10",
+    "2026-11-04 17:22:53",
+    "2026-11-05 23:46:44",
+    "2026-11-06 12:31:22",
+    "2026-11-07 01:13:10"
+  ],
+  "y": [
+    8922.0,
+    8929.0,
+    8929.0,
+    8929.0,
+    8929.0,
+    8818.0,
+    8818.0,
+    8818.0,
+    8818.0
+  ],
+  "hover": [
+    "Проверка: 01.11.2026 08:54<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 02.11.2026 00:45<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 02.11.2026 13:09<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 22.07.2027 - 29.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 04.11.2026 17:22<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 05.11.2026 23:46<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 06.11.2026 12:31<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 07.11.2026 01:13<br>Даты поездки: 15.07.2027 - 22.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 22.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sea-star-beau-rivage/p0g-VzD_V60oLBBcq8OsS9AAogWzllsSxKLApvPTl2cC_E_V-N5kHVTEyyQQBD1YNzWwwqBEpPSVAwnNq51wZI8kRQQVjvLmACagMwZmRyQpsBFAEVBhcAXANYBVYCQMoGT-IBXQBSr6sBUwARxxpe6DRL7UNhAEzljDoNjsmYCSAAAcaXuPDEhsygMAINYwEADND8kuo/?operator=JOIP&adults=2&children=2020-08-12&objectId=535&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701152/plain/cms/fileadmin/config_img/objects/535/Sea-Star-Beau-Rivage-fly-pl.webp@webp"
+  },
+  "deal_score": 57,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "+0.0%",
+  "delta_avg": "-0.7%",
+  "confidence": "Medium",
+  "median_p": 8877.18438492651,
+  "min_p": 8818.0,
+  "max_p": 8929.0,
+  "samples": 9,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 22.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

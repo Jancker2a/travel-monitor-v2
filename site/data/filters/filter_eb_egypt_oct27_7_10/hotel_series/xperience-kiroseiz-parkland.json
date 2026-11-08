@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "xperience-kiroseiz-parkland",
+  "hotel_name": "Xperience Kiroseiz Parkland",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10",
+    "2026-11-05 09:01:50",
+    "2026-11-05 23:46:44",
+    "2026-11-06 12:31:22",
+    "2026-11-07 01:13:11"
+  ],
+  "y": [
+    9359.0,
+    9359.0,
+    8763.0,
+    8759.0,
+    8139.0,
+    8759.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 05.10.2026 - 12.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 05.10.2026 - 12.10.2026",
+    "Проверка: 05.11.2026 09:01<br>Даты поездки: 07.10.2026 - 14.10.2026",
+    "Проверка: 05.11.2026 23:46<br>Даты поездки: 07.10.2026 - 14.10.2026",
+    "Проверка: 06.11.2026 12:31<br>Даты поездки: 09.10.2026 - 16.10.2026",
+    "Проверка: 07.11.2026 01:13<br>Даты поездки: 09.10.2026 - 16.10.2026"
+  ],
+  "meta": {
+    "dates": "09.10.2026 - 16.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-parkland/pbPykhrLGhcKKLmLEFq2hCAAogouvz1aWOz2v15KnU96QzjVAPatE9enAxMfAVyCfE5QEqBEJWQkUwndq51wZIt0RQAVj_PmACagJBSXIiHBGVhwIbwIRIGI-mH7kEk-YlqwSSAQHQita7BQISYwECC8wtbLo/?operator=BVBE&adults=2&children=2020-08-12&objectId=22164&durationFrom=7&durationTo=10&departureDate=2027-10-09&returnDate=2027-10-16&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744700403/plain/cms/fileadmin/config_img/objects/22164/Xperience-Kiroseiz-Parkland-fly-pl.jpg@webp"
+  },
+  "deal_score": 53,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "-0.0%",
+  "delta_avg": "-2.4%",
+  "confidence": "Low",
+  "median_p": 8976.24318941857,
+  "min_p": 8139.0,
+  "max_p": 9359.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "09.10.2026 - 16.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

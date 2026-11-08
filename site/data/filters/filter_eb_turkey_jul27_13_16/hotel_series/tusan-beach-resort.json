@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "tusan-beach-resort",
+  "hotel_name": "Tusan Beach Resort",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    17711.0,
+    17711.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 06.07.2027 - 20.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 06.07.2027 - 20.07.2027"
+  ],
+  "meta": {
+    "dates": "06.07.2027 - 20.07.2027",
+    "duration": "15 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,c/tusan-beach-resort/pShQvBWzo0TE_ChMJVp3r2AAogO5w_Nf1UNVPJxAZmdghzoAAAAABcmQUAdJkFAA4AAQAqBFdFWlkwsdeo1wZIr4oBUEFY5S1gA2oJRW50ZXIgQWlyagQwMDAwagQwMDAwagQwMDAwagQwMDAwckCeAZMBlAGVAZgBHwAcAQIAFgAXDRLmAxGPMEz8NE8AQKIYS-fFAVAAHdTrEyAYG4mMGg313aQJARJjAQ1jAQQMiuGN2Q/?operator=WEZY&adults=2&children=2020-08-12&objectId=4978&durationFrom=13&durationTo=16&departureDate=2027-07-06&returnDate=2027-07-20&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702544/plain/cms/fileadmin/config_img/objects/4978/Tusan-Beach-Resort.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17711.0,
+  "min_p": 17711.0,
+  "max_p": 17711.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "06.07.2027 - 20.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

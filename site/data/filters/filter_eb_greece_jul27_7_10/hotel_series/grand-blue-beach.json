@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_jul27_7_10",
+  "slug": "grand-blue-beach",
+  "hotel_name": "Grand Blue Beach",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:15"
+  ],
+  "y": [
+    13589.0,
+    13589.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 06.07.2027 - 13.07.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 06.07.2027 - 13.07.2027"
+  ],
+  "meta": {
+    "dates": "06.07.2027 - 13.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/grand-blue-beach/phiHbLcJPOUB1t7zw-bYTYAAogCb4zHVAclMK-UB-aXOvsrxnHu_zzCQzbTQgZmQ6deu8qBFJOQlcwr9ao1wZIlWpQQVjlLWACagRCd2NUaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI7nwGeARUHFwBWA1gFCglAvwcR2CoZrTcQ311T4QdSAEygAkvMdWEAHZunRw_LASCErYsJDQACDGMBBQs8-kal/?operator=RNBW&adults=2&children=2020-08-12&objectId=179238&durationFrom=7&durationTo=10&departureDate=2027-07-06&returnDate=2027-07-13&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704873/plain/cms/fileadmin/config_img/objects/179238/Gran-Blue-Beach.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13589.0,
+  "min_p": 13589.0,
+  "max_p": 13589.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "06.07.2027 - 13.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_jul27_7_10.html"
+}

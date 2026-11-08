@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "dosinia-luxury-resort",
+  "hotel_name": "Dosinia Luxury Resort",
+  "x": [
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    12146.0,
+    12146.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 25.07.2027 - 01.08.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 25.07.2027 - 01.08.2027"
+  ],
+  "meta": {
+    "dates": "25.07.2027 - 01.08.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,beldibi/dosinia-luxury-resort/pTgMfON2mdUHOYQy07PD4zAAogb1AL5gGwRTPDWk-05fHJ4zvZRi8Q0SFze48GsMjwKO8qBFJOQlcw2deo1wZI8l5QQVitMWACagRCd2NhaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI9nwGeARUHFwBWA1gFCpwBQKwGEc4yGf8sU-EHUgAQ-DFMqYwBS-IZYQAd885HD58EIOuCiwkNAAIMYwEDC-jqx6U/?operator=RNBW&adults=2&children=2020-08-12&objectId=197932&durationFrom=7&durationTo=10&departureDate=2027-07-25&returnDate=2027-08-01&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707088/plain/cms/fileadmin/config_img/objects/197932/Dosinia-Luxury-Resort1.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12146.0,
+  "min_p": 12146.0,
+  "max_p": 12146.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "25.07.2027 - 01.08.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

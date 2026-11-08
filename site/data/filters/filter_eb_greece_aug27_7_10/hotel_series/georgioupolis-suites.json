@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "georgioupolis-suites",
+  "hotel_name": "Georgioupolis Suites",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    18675.0,
+    18675.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 29.08.2027 - 05.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 29.08.2027 - 05.09.2027"
+  ],
+  "meta": {
+    "dates": "29.08.2027 - 05.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/georgioupolis-suites-9/p_LeKwV1H_7WX-n1NFEsKQAAogYYiYM05w387jJf33_ez2WgAAAAAtzgQAR84EAAcAAAAqBFdFWlkwytao1wZI85EBUEFY9TdgA2oJRW50ZXIgQWlyagQwMDAwagQwMDAwagQwMDAwagQwMDAwckCeAZMBlAGVAZgBHwACARwAFgQXAhLtA0CtfU-CL0wAS-WWAVAAEfE_G8fAAh3t1A0gGg2mgcIJARJjAQ1jAQIMvJY_6g/?operator=WEZY&adults=2&children=2020-08-12&objectId=224793&durationFrom=7&durationTo=10&departureDate=2027-08-29&returnDate=2027-09-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/WEZY/IMG/50041/d90d0830d74d2a901c14ef825c3c81b30e57d33801968e7b469e4067f4d0c1f6.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18675.0,
+  "min_p": 18675.0,
+  "max_p": 18675.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "29.08.2027 - 05.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "club-paradiso",
+  "hotel_name": "Club Paradiso",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14",
+    "2026-11-06 12:32:21",
+    "2026-11-07 01:14:10"
+  ],
+  "y": [
+    8339.0,
+    8339.0,
+    7902.0,
+    7902.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 06.11.2026 12:32<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 07.11.2026 01:14<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,kestel/club-paradiso/pqcgt31W99OTTG8v1AUeXKAAogqR_PqipXBAtJk_0mRGcp3098zlebYSmNl1AKEhwlCSQqBE9SRVgw19q51wZI3j1QQVjXN2ACagdDSFguMi4xcjabARUHFwBYCFYCXAgRnwFAowVP20BdJFOrJ1IAXpaUAUvtQ2EATOWMOiCCypgJDQACEmMBAgzvL6Pc/?operator=OREX&adults=2&children=2020-08-12&objectId=1997&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702522/plain/cms/fileadmin/config_img/objects/1997/Club-Paradiso.webp@webp"
+  },
+  "deal_score": 55,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "+0.0%",
+  "delta_avg": "-2.7%",
+  "confidence": "Low",
+  "median_p": 8122.083661426838,
+  "min_p": 7902.0,
+  "max_p": 8339.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

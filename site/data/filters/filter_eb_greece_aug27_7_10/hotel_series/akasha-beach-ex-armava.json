@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "akasha-beach-ex-armava",
+  "hotel_name": "Akasha Beach (ex Armava)",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    15789.0,
+    15789.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/armava/pibdDK3JWI91LA7yLM6dkFAAoglDE2XyOVZ7KC2E49rPmsZQFAjBnj1iABJ1KYJCCFTTsqBEVDQ1gwttao1wZIrXtQAVilOGACagNBSVByIRwR0T25BMDyGasEkAEYxLUwG5aZRAG_75iZAgIAYwECDPuw49I/?operator=ECCX&adults=2&children=2020-08-12&objectId=19391&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701466/plain/cms/fileadmin/config_img/objects/19391/Akasha-Beach-Hotel-SPA.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15789.0,
+  "min_p": 15789.0,
+  "max_p": 15789.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

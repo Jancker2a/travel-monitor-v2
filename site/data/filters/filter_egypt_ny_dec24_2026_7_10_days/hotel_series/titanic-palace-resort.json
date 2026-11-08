@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "titanic-palace-resort",
+  "hotel_name": "Titanic Palace Resort",
+  "x": [
+    "2026-09-30 10:11:58"
+  ],
+  "y": [
+    10667.0
+  ],
+  "hover": [
+    "Проверка: 30.09.2026 10:11<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-palace-2/pyhmt1QDN6gLrqB9FIrfmeAAogcF9eugRMRnkAg6p5E-Lp9Ea-WtljEXgfX-OSnJ4bppMqBEVDQ1gwz4jz1QZIq1NQAVjvD2ACagJBSXIgHBH7J7kEvPIYqwQTGMLVLxuk00QBnZ-wkAICAGMBAgtnvME-/ofertasv/?filter[tourOperator]=ECCX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Titanic-Palace-Resort.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10667.0,
+  "min_p": 10667.0,
+  "max_p": 10667.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "mirage-park-resort",
+  "hotel_name": "Mirage Park Resort",
+  "x": [
+    "2026-10-10 03:52:56",
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    8701.0,
+    8784.0,
+    8784.0,
+    8784.0,
+    8784.0,
+    8784.0,
+    8784.0,
+    9454.0,
+    9454.0
+  ],
+  "hover": [
+    "Проверка: 10.10.2026 03:52<br>Даты поездки: 02.11.2026 - 09.11.2026",
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 21.11.2026 - 28.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 21.11.2026 - 28.11.2026"
+  ],
+  "meta": {
+    "dates": "21.11.2026 - 28.11.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/majesty-mirage-park-resort/p6TwKZZ5O8dcpPRG6PtwxGAAogv4rvIbPFWXPajV2Q6ziI0gAAAADHtAQA4LQEAAcAAwAqBFdFWlkwz56r1wZI7klQQViRA2ADaglFbnRlciBBaXJqBDA4MzByQZ4BkwEfAAIBFgAcABcGEu0DFMgGFVUYc0yBY08AQJwSEccOS6C3AVAAHb-iECAZG5Lbfg2PjcMIARJjAQxjAQILrBr7Ow/?operator=WEZY&adults=2&children=2020-12-10&objectId=9060&durationFrom=7&durationTo=10&departureDate=2026-11-21&returnDate=2026-11-28&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703428/plain/cms/fileadmin/config_img/objects/9060/Mirage-Park-Resort.webp@webp"
+  },
+  "deal_score": 43,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 8924.537085811224,
+  "min_p": 8701.0,
+  "max_p": 9454.0,
+  "samples": 9,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.11.2026 - 28.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

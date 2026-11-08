@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "sunrise-remal-resort-ex-tiran-island",
+  "hotel_name": "Sunrise Remal Resort (ex. Tiran Island)",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    12857.0,
+    12857.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 31.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 31.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "31.08.2027 - 07.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tiran-island/pU50qK4xGKTAwM_ic0c5u3AAogP7jf_NOkGbp8t04XGxPm9eSdtvBnVTpEO8Z6q6FcV1sqBE9BU0kw2tWo1wZIuWRQAVilOGACagNBSWxyIRwRw7MBuQSGwBCrBGAbm70SGOH3EgHZ-qy_AgIAYwECC_1Jioo/?operator=OASI&adults=2&children=2020-08-12&objectId=15710&durationFrom=7&durationTo=10&departureDate=2027-08-31&returnDate=2027-09-07&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744700402/plain/cms/fileadmin/config_img/objects/15710/Sunrise-Remal-Resort.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12857.0,
+  "min_p": 12857.0,
+  "max_p": 12857.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "31.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

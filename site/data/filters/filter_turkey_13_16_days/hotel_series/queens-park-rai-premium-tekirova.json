@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_13_16_days",
+  "slug": "queens-park-rai-premium-tekirova",
+  "hotel_name": "Queens Park Rai Premium Tekirova",
+  "x": [
+    "2026-10-13 19:46:30",
+    "2026-10-14 01:06:32",
+    "2026-10-14 04:11:03"
+  ],
+  "y": [
+    9149.0,
+    9149.0,
+    9149.0
+  ],
+  "hover": [
+    "Проверка: 13.10.2026 19:46<br>Даты поездки: 18.10.2026 - 31.10.2026",
+    "Проверка: 14.10.2026 01:06<br>Даты поездки: 18.10.2026 - 31.10.2026",
+    "Проверка: 14.10.2026 04:11<br>Даты поездки: 18.10.2026 - 31.10.2026"
+  ],
+  "meta": {
+    "dates": "18.10.2026 - 31.10.2026",
+    "duration": "14 dni/13 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,tekirova/queens-park-resort/pf8Dq14TroJ--fzYkG48EVAAogyJypwupTTnz_l5Gbb4YzcNUckYTHkdrOa7S_NVBBcFQqBE9SRVgw3sm71gZIvUdQQVhdYAJqB0JUSy4yLjFyNpsBFQ0XAFgCVgJcCEDCBhHbB0-AOV0kU6snUgBelpQBS-1DYQBM5Yw6IK39lwkNAAISYwECC878Nrg/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2016/01/Rai-Premium-Tekirova.jpg"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9149.0,
+  "min_p": 9149.0,
+  "max_p": 9149.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "18.10.2026 - 31.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_13_16_days.html"
+}

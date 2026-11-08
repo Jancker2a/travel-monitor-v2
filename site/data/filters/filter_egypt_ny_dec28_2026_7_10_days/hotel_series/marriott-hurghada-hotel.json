@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "marriott-hurghada-hotel",
+  "hotel_name": "Marriott Hurghada Hotel",
+  "x": [
+    "2026-10-30 19:46:47"
+  ],
+  "y": [
+    10677.0
+  ],
+  "hover": [
+    "Проверка: 30.10.2026 19:46<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/marriott-hurghada-beach-resort/pI9FFwhVnEkKyGKm9HkHhXAAogZ-67AiJFPXSpnPuVLKwXhmOrqUdT27HNdJzFwvnUQNMqBE9BU0kwnMyT1wZItVNQAViNC2ACagJIQnIhHBGpjwG5BNCPEKsEARuE6A4Y_skRAbnKm5kCAgBjAQIHbFK8dg/?operator=OASI&adults=2&children=2020-12-10&objectId=3816&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=breakfast_and_dinner&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702388/plain/cms/fileadmin/config_img/objects/3816/Marriott-Hurghada-Beach-Resort.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10677.0,
+  "min_p": 10677.0,
+  "max_p": 10677.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

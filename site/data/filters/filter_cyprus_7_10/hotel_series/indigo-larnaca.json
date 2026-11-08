@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "indigo-larnaca",
+  "hotel_name": "Indigo Larnaca",
+  "x": [
+    "2026-11-03 13:24:09",
+    "2026-11-03 15:10:20",
+    "2026-11-03 16:29:55",
+    "2026-11-03 19:51:29",
+    "2026-11-04 03:34:42",
+    "2026-11-04 07:22:50"
+  ],
+  "y": [
+    5681.0,
+    5681.0,
+    5681.0,
+    5681.0,
+    5681.0,
+    5681.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 13:24<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 03.11.2026 15:10<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 03.11.2026 19:51<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 24.12.2026 - 31.12.2026"
+  ],
+  "meta": {
+    "dates": "24.12.2026 - 31.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/indigo-larnaca-12/XTOPb7a632X_wYAAHNOYVBwWQHXAQB2M5RfCpABCgYIgagCEAESBgiN5QIQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjgyU1NISk9KR1dQWUhMM0VQVzE1OVVINkY1V0o1MEVWTTE3MVBVOUE5MThMS0xEQ1pXQlhBMlVOR0g1U1lXSlJJRE5SVzdOV1NMV0cyVDFGMEdORkxFMzA0Cn8KBgi2_AUQAhIGCOnlHhABGm1PNTQ1NDRkNTMyZjQxNDM1OTRjNDM0MTQ1MzA1MTMwMmY1MjRkNDQ0YzQ5NGU0MzU2NDIzMDJmNDI0MjJmMzcyZjMyMzAzMjM2MzEzMjMyMzQyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCiIKBQjMOhABEgUIvkcQARoSRFNSVC0xODA2LVRSQU5TRkVSCiIKBQiMFRABEgUIqBkQARoSRFNSTS0xODA2LTUzcjIzMzg2CiEKBQjEExABEgUIuBcQARoRRFNSTS0xODA2LTJyMjMzODcKHQoCEAESAhABGhNEU1JNLTE4MDYtNDI2cjIzMzg4CiMKBQjQDxABEgUIiBMQARoTRFNSVS0xODA2LVViZXpiYXNpYxiODiiAIDIGCJzWIhABOAE/?operator=XTOP&adults=1&objectId=221782&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Radom&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707677/plain/cms/fileadmin/config_img/objects/221782/indigo-larnaca.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 5681.0,
+  "min_p": 5681.0,
+  "max_p": 5681.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "24.12.2026 - 31.12.2026",
+  "display_price_ceiling": 6000.0,
+  "history_price_ceiling": 6000.0,
+  "back_href": "index_filter_cyprus_7_10.html"
+}

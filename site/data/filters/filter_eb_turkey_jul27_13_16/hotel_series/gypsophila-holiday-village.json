@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "gypsophila-holiday-village",
+  "hotel_name": "Gypsophila Holiday Village",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    16360.0,
+    16523.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 28.07.2027 - 10.08.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 22.07.2027 - 04.08.2027"
+  ],
+  "meta": {
+    "dates": "22.07.2027 - 04.08.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/gypsophila/pcyZ5nfOzFuWXuUdtNIT3_AAogXP0kUPvWgbR3Fzggk4DU3AAAAABvoAUAP5wFAA0ADAAqBFdFWlkwqdeo1wZIi4EBUEFY5TBgA2oJRW50ZXIgQWlyagQwMDAwagQwMDAwagQwMDAwagQwMDAwckCeAZMBlAGVAZgBHwAcAQIAFgAXDBLnAxH0AUydaU8AQJwSG_OnAUv0HVAAILfxEx2wCA2T3L4JARJjAQ1jAQMM6qzLtA/?operator=WEZY&adults=2&children=2020-08-12&objectId=4960&durationFrom=13&durationTo=16&departureDate=2027-07-22&returnDate=2027-08-04&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702696/plain/cms/fileadmin/config_img/objects/4960/Gypsophila-Holiday-Village-fly-pl.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16441.5,
+  "min_p": 16360.0,
+  "max_p": 16523.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "22.07.2027 - 04.08.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

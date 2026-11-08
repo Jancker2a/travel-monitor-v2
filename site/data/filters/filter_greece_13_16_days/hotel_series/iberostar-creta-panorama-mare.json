@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_greece_13_16_days",
+  "slug": "iberostar-creta-panorama-mare",
+  "hotel_name": "Iberostar Creta Panorama & Mare",
+  "x": [
+    "2026-10-01 02:41:31",
+    "2026-10-01 22:28:42",
+    "2026-10-03 17:56:43",
+    "2026-10-03 18:35:26"
+  ],
+  "y": [
+    18806.0,
+    17225.0,
+    19422.0,
+    19422.0
+  ],
+  "hover": [
+    "Проверка: 01.10.2026 02:41<br>Даты поездки: 05.10.2026 - 19.10.2026",
+    "Проверка: 01.10.2026 22:28<br>Даты поездки: 05.10.2026 - 18.10.2026",
+    "Проверка: 03.10.2026 17:56<br>Даты поездки: 04.10.2026 - 18.10.2026",
+    "Проверка: 03.10.2026 18:35<br>Даты поездки: 04.10.2026 - 18.10.2026"
+  ],
+  "meta": {
+    "dates": "04.10.2026 - 18.10.2026",
+    "duration": "15 dni/14 nocy",
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,lavris/iberostar-creta-panorama/pvO3oEhJHwHyegOhwLXC6dAAogBMJiWsVbcka0UCmaxElihkLrdY_yY1lVY3rpNDYg_CgqBEJWQkUw1t2E1gZI3pcBUAFYB2ACagJBSXIgHBG3ZRvXzjsY0oUTuQTl4SurBAEBguCTywQCAGMBAgYYuiuS/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Iberostar-Creta-Panorama-Mare.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 18135.209042335657,
+  "min_p": 17225.0,
+  "max_p": 19422.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "04.10.2026 - 18.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_greece_13_16_days.html"
+}

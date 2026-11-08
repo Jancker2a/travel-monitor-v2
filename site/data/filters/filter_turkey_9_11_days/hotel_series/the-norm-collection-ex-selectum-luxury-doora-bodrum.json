@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_9_11_days",
+  "slug": "the-norm-collection-ex-selectum-luxury-doora-bodrum",
+  "hotel_name": "The Norm Collection (ex. Selectum Luxury Doora Bodrum)",
+  "x": [
+    "2026-09-18 13:30:28",
+    "2026-09-18 18:36:19",
+    "2026-09-18 21:46:47",
+    "2026-09-19 00:43:33"
+  ],
+  "y": [
+    17659.0,
+    17659.0,
+    17659.0,
+    17659.0
+  ],
+  "hover": [
+    "Проверка: 18.09.2026 13:30<br>Даты поездки: 08.10.2026 - 18.10.2026",
+    "Проверка: 18.09.2026 18:36<br>Даты поездки: 08.10.2026 - 18.10.2026",
+    "Проверка: 18.09.2026 21:46<br>Даты поездки: 08.10.2026 - 18.10.2026",
+    "Проверка: 19.09.2026 00:43<br>Даты поездки: 08.10.2026 - 18.10.2026"
+  ],
+  "meta": {
+    "dates": "08.10.2026 - 18.10.2026",
+    "duration": "11 dni/10 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,bodrum,torba/ora-holiday/pjLe90rfunyaGVqW0sRppQAAogCA2JkwOS0f7_jWCVLyEx8-Uhdy_Jws5g0XbPfjDu5P0qBFJOQlcwrP221QZI-4kBUEFYyQNgAmoEQndjRGoNQUxMX0lOQ0xVU0lWRWoXMjk2LDM4MCw0NzcsNDgzLDQ4NCw0ODVyPJ8BlgGeARUKFwBYBQoEQMQHEb45GfgdU-4VUgAQqkdMiXFL2hlhAB2QlEAP_5EBIPnjkAkNAAIMYwECC85KOtE/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Norm.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17659.0,
+  "min_p": 17659.0,
+  "max_p": 17659.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "08.10.2026 - 18.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_9_11_days.html"
+}

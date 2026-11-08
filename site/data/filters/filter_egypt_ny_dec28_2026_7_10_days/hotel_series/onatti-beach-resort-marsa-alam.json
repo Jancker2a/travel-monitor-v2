@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "onatti-beach-resort-marsa-alam",
+  "hotel_name": "ONATTI Beach Resort - Marsa Alam",
+  "x": [
+    "2026-10-30 14:46:57",
+    "2026-10-30 19:46:47",
+    "2026-11-02 16:00:50",
+    "2026-11-02 18:19:27"
+  ],
+  "y": [
+    9625.0,
+    9625.0,
+    9106.0,
+    8691.0
+  ],
+  "hover": [
+    "Проверка: 30.10.2026 14:46<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 30.10.2026 19:46<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 02.11.2026 16:00<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 02.11.2026 18:19<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/onatti-beach-resort/pNm--PNJHqB8tPmEDYscW0AAog1zmYj6D41YYvTrlSpC05JrG5kgRBbNLWpKMQZ3cq5joqBE9BU0kwpIyj1wZI80NQAVjeCmACagNBSWxyIRwRoKQBuQTp_w-rBAcbkO4PGM2DFAHqktSsAgIAYwECC6g_iTI/?operator=OASI&adults=2&children=2020-12-10&objectId=22274&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704452/plain/cms/fileadmin/config_img/objects/22274/Onatti-Beach-Resort.webp@webp"
+  },
+  "deal_score": 56,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9395.328566303246,
+  "min_p": 8691.0,
+  "max_p": 9625.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

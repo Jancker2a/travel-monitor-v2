@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "ducale-lara",
+  "hotel_name": "Ducale Lara",
+  "x": [
+    "2026-09-20 14:32:19",
+    "2026-09-20 18:55:44",
+    "2026-09-20 21:36:56",
+    "2026-09-21 00:35:59"
+  ],
+  "y": [
+    10635.0,
+    10635.0,
+    10635.0,
+    10651.0
+  ],
+  "hover": [
+    "Проверка: 20.09.2026 14:32<br>Даты поездки: 07.10.2026 - 14.10.2026",
+    "Проверка: 20.09.2026 18:55<br>Даты поездки: 07.10.2026 - 14.10.2026",
+    "Проверка: 20.09.2026 21:36<br>Даты поездки: 07.10.2026 - 14.10.2026",
+    "Проверка: 21.09.2026 00:35<br>Даты поездки: 12.10.2026 - 19.10.2026"
+  ],
+  "meta": {
+    "dates": "12.10.2026 - 19.10.2026",
+    "duration": "8 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/venezia-palace/pZGn8umZ-HaqBUd8o3tJysAAogjnDySAbamIckv4Q-2VNQPLEmPWp5NugcyQLeBApBzE4qBEVYSU0w57_B1QZIm1NQAVj5A2ACagNVQUlyIRwRt8gGqwT0pEW5BAMbxswzGKTHPAGS0J2PCwISYwECBorszNI/ofertasv/?filter[tourOperator]=EXIM&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Venezia-Palace-Deluxe.jpg"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10638.660000074302,
+  "min_p": 10635.0,
+  "max_p": 10651.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.10.2026 - 19.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

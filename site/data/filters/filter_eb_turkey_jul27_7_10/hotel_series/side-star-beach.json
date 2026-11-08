@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "side-star-beach",
+  "hotel_name": "Side Star Beach",
+  "x": [
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    11768.0,
+    11768.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 15.07.2027 - 22.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 15.07.2027 - 22.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 22.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-beach/pZ3Jetu6zFKyTKOnM7gVhCAAogFnHYdqUQygGBfC6XDwHmP3-mtB_lUVCroPAvpH2D-M4qBE9SRVgwzteo1wZI-FtQQVi9L2ACagZKMC4yLjFyNpsBFQcXAFgIVgJcCBHrAUDXBE_DTF0kU8MbUgBelpQBS4ESYQBM0b46II7JmAkNAAISYwECBkeg9lE/?operator=OREX&adults=2&children=2020-08-12&objectId=5741&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703333/plain/cms/fileadmin/config_img/objects/5741/Side-Star-Beach-fly-pl-1-scaled.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 11768.0,
+  "min_p": 11768.0,
+  "max_p": 11768.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 22.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

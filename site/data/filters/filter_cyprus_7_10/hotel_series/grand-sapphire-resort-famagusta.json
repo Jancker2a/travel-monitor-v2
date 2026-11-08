@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "grand-sapphire-resort-famagusta",
+  "hotel_name": "Grand Sapphire Resort (Famagusta)",
+  "x": [
+    "2026-11-03 13:24:09",
+    "2026-11-03 15:10:20",
+    "2026-11-03 16:29:55",
+    "2026-11-03 19:51:29",
+    "2026-11-04 03:34:42",
+    "2026-11-04 07:22:50"
+  ],
+  "y": [
+    5109.0,
+    5109.0,
+    5109.0,
+    5109.0,
+    5109.0,
+    5109.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 13:24<br>Даты поездки: 20.12.2026 - 27.12.2026",
+    "Проверка: 03.11.2026 15:10<br>Даты поездки: 20.12.2026 - 27.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 20.12.2026 - 27.12.2026",
+    "Проверка: 03.11.2026 19:51<br>Даты поездки: 20.12.2026 - 27.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 20.12.2026 - 27.12.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 20.12.2026 - 27.12.2026"
+  ],
+  "meta": {
+    "dates": "20.12.2026 - 27.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/grand-sapphire-resort-14/p36As0CJN8BfQ3fwUrWEY3AAog4hy0sfeu-SC6geo1aewyOB9fe9I6G2s1Yx8EMpn0WvgqBEVYSU0w4Z6r1wZI9SdQAVjJCGABagNVQUlyHhwR8YMHqwS12Ui5BBcb8ehDGKuBSQG3uZu9DQEAY709fY4/?operator=EXIM&adults=1&objectId=216476&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/115185/fec23af8ea80efd516f0e46c9d610213203673c5e5146a9f5d147b237fde292f.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 5109.0,
+  "min_p": 5109.0,
+  "max_p": 5109.0,
+  "samples": 6,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "20.12.2026 - 27.12.2026",
+  "display_price_ceiling": 6000.0,
+  "history_price_ceiling": 6000.0,
+  "back_href": "index_filter_cyprus_7_10.html"
+}

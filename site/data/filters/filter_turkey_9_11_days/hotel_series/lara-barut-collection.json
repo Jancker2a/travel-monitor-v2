@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_9_11_days",
+  "slug": "lara-barut-collection",
+  "hotel_name": "Lara Barut Collection",
+  "x": [
+    "2026-11-03 06:45:15",
+    "2026-11-03 10:24:23",
+    "2026-11-03 13:23:57",
+    "2026-11-03 15:09:20",
+    "2026-11-03 16:29:51",
+    "2026-11-03 19:50:48",
+    "2026-11-04 03:34:23",
+    "2026-11-04 07:22:40"
+  ],
+  "y": [
+    17347.0,
+    17347.0,
+    17347.0,
+    17347.0,
+    17347.0,
+    17347.0,
+    17749.0,
+    17749.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:45<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 18.11.2026 - 28.11.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 18.11.2026 - 28.11.2026"
+  ],
+  "meta": {
+    "dates": "18.11.2026 - 28.11.2026",
+    "duration": "11 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/barut-lara-resort/pkS_9Z8KOGwO3dom5ObjakAAog_ZpTvx3wjHGkRuueIf8I4AAAAAButAQA4LQEAAoAAAAqBFdFWlkw656r1wZI1YoBUEFYyQJgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwAcAQIAFgAXCRLqAxFKFPcEFdwBGHNMgWNPAECcEkvnxQFQABvg7QkdhrQGIHINnujBCQESYwEMYwECC530pL8/?operator=WEZY&adults=2&children=2020-08-12&objectId=3875&durationFrom=9&durationTo=11&departureDate=2026-11-18&returnDate=2026-11-28&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=10&nights=10",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702724/plain/cms/fileadmin/config_img/objects/3875/Barut-Lara-Collection.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17445.946296217746,
+  "min_p": 17347.0,
+  "max_p": 17749.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "18.11.2026 - 28.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_9_11_days.html"
+}

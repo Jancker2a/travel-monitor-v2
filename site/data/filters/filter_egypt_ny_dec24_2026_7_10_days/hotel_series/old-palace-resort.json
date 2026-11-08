@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec24_2026_7_10_days",
+  "slug": "old-palace-resort",
+  "hotel_name": "Old Palace Resort",
+  "x": [
+    "2026-09-08 09:41:59",
+    "2026-10-12 21:56:42",
+    "2026-10-14 20:48:26",
+    "2026-10-15 00:27:06",
+    "2026-11-06 04:33:03",
+    "2026-11-06 12:34:09",
+    "2026-11-06 13:17:58"
+  ],
+  "y": [
+    10672.0,
+    10847.0,
+    10884.0,
+    10884.0,
+    10644.0,
+    10644.0,
+    10644.0
+  ],
+  "hover": [
+    "Проверка: 08.09.2026 09:41<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 12.10.2026 21:56<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 14.10.2026 20:48<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 15.10.2026 00:27<br>Даты поездки: 24.12.2026 - 31.12.2026",
+    "Проверка: 06.11.2026 04:33<br>Даты поездки: 12.26.2026 - 01.01.2027",
+    "Проверка: 06.11.2026 12:34<br>Даты поездки: 12.26.2026 - 01.01.2027",
+    "Проверка: 06.11.2026 13:17<br>Даты поездки: 12.26.2026 - 01.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 01.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/old-palace-resort/pAqjjXLSSn9YQIF9fasZKmAAogH_3jwf8U2DIif760Bspa-a4l3-lULG69CvLTTUqTvRIqBEJWQkUw_Iq31wZIlFNQAVjzCGACagJBSXIhHBGytAEbj6FEGOmnGLkEsfgoqwRvAd6pvZgEAhJjAQILc825yA/?operator=BVBE&adults=2&children=2020-12-10&objectId=4842&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703165/plain/cms/fileadmin/config_img/objects/4842/Old-Palace-Resort-Sahl-Hasheesh.webp@webp"
+  },
+  "deal_score": 51,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10748.603141758402,
+  "min_p": 10644.0,
+  "max_p": 10884.0,
+  "samples": 7,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 01.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+}

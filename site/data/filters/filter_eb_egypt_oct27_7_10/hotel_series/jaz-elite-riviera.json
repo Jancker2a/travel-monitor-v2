@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "jaz-elite-riviera",
+  "hotel_name": "Jaz Elite Riviera",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    12147.0,
+    12147.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 15.10.2026 - 22.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 15.10.2026 - 22.10.2026"
+  ],
+  "meta": {
+    "dates": "15.10.2026 - 22.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/jaz-riviera-15/ppYwKV_5xl6I6hU1GYdrU4AAoga2nZhNWJ8f1Sc2ZvSndyuogi6Sgj8D4SMSVmCWJ0DnEqBEVYSU0w29Wo1wZI815QAVjdQGACagJBSXIhHBGTyAe5BN-yTqsEPxvywEUYlYRRAbqPzucOAgBjAQILn8FAVw/?operator=EXIM&adults=2&children=2020-08-12&objectId=230940&durationFrom=7&durationTo=10&departureDate=2027-10-15&returnDate=2027-10-22&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/123923/568b298780cd2ce6eee312f0f43ef758b5c995ecff934bf20f82542d99af1412.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12147.0,
+  "min_p": 12147.0,
+  "max_p": 12147.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.10.2026 - 22.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

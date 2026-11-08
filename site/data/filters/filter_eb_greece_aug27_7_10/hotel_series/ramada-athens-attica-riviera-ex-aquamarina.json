@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "ramada-athens-attica-riviera-ex-aquamarina",
+  "hotel_name": "Ramada Athens Attica Riviera (ex Aquamarina)",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    15030.0,
+    15030.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 30.08.2027 - 07.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 30.08.2027 - 07.09.2027"
+  ],
+  "meta": {
+    "dates": "30.08.2027 - 07.09.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,attyka,mati/aquis-aquamarina-mati/pyXP8x9o-XD6Zhde1jilhuAAogaM6FSENmsb_66h8csCnSiN3U3w7ImiJe6poiqM-UKscqBEJWQkUwttao1wZItnVQAViNOGACagJBSXIiHBGF6AEbvdRHGNLaH6sE6IoluQSjFwHyv6a3BQISYwECC0fF5E0/?operator=BVBE&adults=2&children=2020-08-12&objectId=8837&durationFrom=7&durationTo=10&departureDate=2027-08-30&returnDate=2027-09-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703079/plain/cms/fileadmin/config_img/objects/8837/Aquamarina-Mati-fly-pl.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15030.0,
+  "min_p": 15030.0,
+  "max_p": 15030.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "30.08.2027 - 07.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

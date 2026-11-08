@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "marbella-inn",
+  "hotel_name": "Marbella Inn",
+  "x": [
+    "2026-10-26T02:28:52.051235+01:00"
+  ],
+  "y": [
+    3029.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 02:28<br>Даты поездки: 20.12.2026 - 27.12.2026"
+  ],
+  "meta": {
+    "dates": "20.12.2026 - 27.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/hiszpania,costa-del-sol,marbella/marbella-inn/XTOPad7098X_wYAAHNOYVBwWQGwAQBDF19OCpABCgYIkuYCEAESBgjKtQMQARp-TVBVVzJHRjIzTjFWNkpNVzVLSUdTOUdCMVBESFJTTEM5QUVXWjgyU01MUzhaVUhPV0U5S1kzM0E0NTdDRk1RRU1aNENETUQyN0tRUE5FVjhMRllRNzNXWDZSN1FFSlcyTEFLQVdVM01NSzdRUU9LSU1LVldaS0VCMzlYRjgzCn8KBgjwwwIQAhIGCOqqDRABGm1PNTQ1NDRkNTMyZjQxNGQ1NDUzNDU1MzMwNGY0NzM0MmY1MzU0MzAzMDQ5NGUzMDMwNDEzMDJmNTM0MzJmMzcyZjMyMzAzMjM2MzEzMjMyMzAyZjMwMzEzMjMzMzQzNTM2MzczODM5MzAzMTMyCiMKBgjohAEQARIGCISiARABGhFEU1JULTgwLVRSQU5TRkVSMgofCgUIxBMQARIFCNEXEAEaD0RTUk0tODAtMnIyMjYwNQofCgUIiA4QARIFCIIREAEaD0RTUk0tODAtOHIyMjYwNgohCgUI0A8QARIFCIgTEAEaEURTUlUtODAtVUJFWkJBU0lDGFAoDzIGCJO-EhABOAE/?operator=XTOP&adults=1&objectId=80146&durationFrom=7&durationTo=10&departureDate=2026-12-20&returnDate=2026-12-27&departureLocation=Pozna%C5%84&catering=without&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705766/plain/cms/fileadmin/config_img/objects/80146/Marbella-Inn-fly-pl-1.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "+0.0%",
+  "confidence": "Low",
+  "median_p": 3029.0,
+  "min_p": 3029.0,
+  "max_p": 3029.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "20.12.2026 - 27.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

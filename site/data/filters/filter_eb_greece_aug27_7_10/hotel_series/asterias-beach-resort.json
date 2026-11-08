@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "asterias-beach-resort",
+  "hotel_name": "Asterias Beach Resort",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    12866.0,
+    12866.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 27.08.2027 - 03.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 27.08.2027 - 03.09.2027"
+  ],
+  "meta": {
+    "dates": "27.08.2027 - 03.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,afandou/lti-asterias-beach/p0f9940tGbSOLjuHWQ9zqYAAogKBi1CACeZpym544EqI9SS0rPZsx1GTqg2GMi6Xyr_FEqBEdSQ1Mwrdao1wZIwmRQQVjFN2ADcj8XBxUAXANYBVYCHYUCDy9AlgRbloABXqp8UpETUwBh3DBLAAGmkJYBDb3GvAggAFHvlZTt3gEBEmMBAmMBAgveBsb-/?operator=GRCS&adults=2&children=2020-08-12&objectId=108573&durationFrom=7&durationTo=10&departureDate=2027-08-27&returnDate=2027-09-03&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703217/plain/cms/fileadmin/config_img/objects/108573/Sentido-Asterias-Beach-Resort.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12866.0,
+  "min_p": 12866.0,
+  "max_p": 12866.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.08.2027 - 03.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

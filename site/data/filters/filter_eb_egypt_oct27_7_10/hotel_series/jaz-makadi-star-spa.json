@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "jaz-makadi-star-spa",
+  "hotel_name": "Jaz Makadi Star & Spa",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    16317.0,
+    16317.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 03.10.2026 - 10.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 03.10.2026 - 10.10.2026"
+  ],
+  "meta": {
+    "dates": "03.10.2026 - 10.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadi-star-resort/pmYc6O8tVKHT2bGnrphLViAAog0y5xZXNqAaWp1gAlGBbG319RKfCaepeGP5BFzJxEXa0qBEVYSU0w59Wo1wZIvX9QAVi9PmABagJBSXIeHBGrxwe5BK_yTKsEHBvL-kYY3I1JAfGOv4oOAwBjNTUiRw/?operator=EXIM&adults=2&children=2020-08-12&objectId=8145&durationFrom=7&durationTo=10&departureDate=2027-10-03&returnDate=2027-10-10&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/123819/d897fcb84129c688af252ce81e6dcac5e56c75ffa7682145bd3f7a3644757eb8.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16317.0,
+  "min_p": 16317.0,
+  "max_p": 16317.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "03.10.2026 - 10.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "filter_id": "filter_egypt_ny_dec28_2026_7_10_days",
+  "slug": "sun-sea-hotel",
+  "hotel_name": "SUN & SEA HOTEL",
+  "x": [
+    "2026-10-22 10:17:46",
+    "2026-10-22 20:48:13",
+    "2026-10-23 09:51:56",
+    "2026-10-23 15:42:58",
+    "2026-10-24 09:34:13",
+    "2026-10-24 12:09:32",
+    "2026-10-24 14:54:18",
+    "2026-10-24 18:43:45",
+    "2026-10-24 19:43:45",
+    "2026-10-27 10:28:16"
+  ],
+  "y": [
+    9474.0,
+    9469.0,
+    9469.0,
+    9469.0,
+    9469.0,
+    9469.0,
+    9469.0,
+    9469.0,
+    9469.0,
+    9919.0
+  ],
+  "hover": [
+    "Проверка: 22.10.2026 10:17<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 22.10.2026 20:48<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 23.10.2026 09:51<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 23.10.2026 15:42<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 24.10.2026 09:34<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 24.10.2026 12:09<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 24.10.2026 14:54<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 24.10.2026 18:43<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 24.10.2026 19:43<br>Даты поездки: 12.26.2026 - 06.01.2027",
+    "Проверка: 27.10.2026 10:28<br>Даты поездки: 12.26.2026 - 06.01.2027"
+  ],
+  "meta": {
+    "dates": "12.26.2026 - 06.01.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sun-sea-hurghada-15/pYXCjBNBbpgajeFThjw0EBAAogzzxCyyYt3QoBwqJf_mttMm9n6bAq9iaw9Z5P8khFlyIqBEtPTVQwtN2B1wZIv01QAVjeC2ACagJBSXIfHBGaHLkEi98BqwQDGJ3PBBul5SQBxbyUHwIAYwEGC4-pBTM/?operator=KOMT&adults=2&children=2020-12-10&objectId=1132&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707296/plain/cms/fileadmin/config_img/objects/1132/Sun-Sea-Hurghada-fly-pl-4.jpg@webp"
+  },
+  "deal_score": 42,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Medium",
+  "median_p": 9698.892997059762,
+  "min_p": 9469.0,
+  "max_p": 9919.0,
+  "samples": 10,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "12.26.2026 - 06.01.2027",
+  "display_price_ceiling": 11000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+}

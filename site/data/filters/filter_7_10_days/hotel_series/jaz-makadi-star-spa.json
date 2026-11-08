@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_7_10_days",
+  "slug": "jaz-makadi-star-spa",
+  "hotel_name": "Jaz Makadi Star & Spa",
+  "x": [
+    "2026-10-20 18:35:30",
+    "2026-10-20 19:47:26",
+    "2026-10-20 20:32:30"
+  ],
+  "y": [
+    13963.0,
+    14385.0,
+    13965.0
+  ],
+  "hover": [
+    "Проверка: 20.10.2026 18:35<br>Даты поездки: 5.11 - 13.11",
+    "Проверка: 20.10.2026 19:47<br>Даты поездки: 05.11.2026 - 13.11.2026",
+    "Проверка: 20.10.2026 20:32<br>Даты поездки: 05.11.2026 - 13.11.2026"
+  ],
+  "meta": {
+    "dates": "05.11.2026 - 13.11.2026",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadi-star-resort/p_7rxuH7842s23gEhZJF_LAAoguYjaZKDwVvSmIw0D6Rrr-pYtfkpStBdQtlKSQcbh75sqBEtPTVQw3-fe1gZIjW1QAVjtAmACagJBSXIfHBGRG6sE5d8BuQQZGLOTBBvgmSQBkIa6HgIAYwEDC-EvCoM/?operator=KOMT&adults=2&children=2020-12-10&objectId=8145&durationFrom=7&durationTo=10&departureDate=2026-11-05&returnDate=2026-11-12&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/KOMT/IMG/3473/7854f0f0cca8883663e9bc355ee643675d52ce786edf52c680f6b575cc6caa19.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14080.919219994792,
+  "min_p": 13963.0,
+  "max_p": 14385.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "05.11.2026 - 13.11.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_7_10_days.html"
+}

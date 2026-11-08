@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_cyprus_7_10",
+  "slug": "minthis-resort",
+  "hotel_name": "Minthis Resort",
+  "x": [
+    "2026-10-26T15:31:20.742051+01:00"
+  ],
+  "y": [
+    18559.0
+  ],
+  "hover": [
+    "Проверка: 26.10.2026 15:31<br>Даты поездки: 19.12.2026 - 26.12.2026"
+  ],
+  "meta": {
+    "dates": "19.12.2026 - 26.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/minthis-resort-14/p9F_jP3OrLaPGg8Li_CKESAAogjLVW0ixpSBHfJnP_-ggKgdsfwZeS9D80KFedQPjYY5QqBFZJVFgw-Mj91gZI_5ABUEFYgQpgAWoJSEJYOTExNTM3agZGQU0uR1ZqDEdETlBGT0RQNzAyOWoMUEZPR0RORFA3MDI5cjGRAZsBnQGPARoAFwcVAFwIWABAjwNLzaIBYQBS2VtTAF7XAUz9yzggy4OaCQ0AAQ1jAQUP2g/ofertasv/?filter[tourOperator]=VITX&filter%5Bperson%5D=1",
+    "image_url": "https://datacfstatic.merlinx.pl/ITAK/IMG/HBX911537/281ebce92facffdfbcfb47f464bb48306d1ec36f632c0c64268f2529ddb69ef4.webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "+0.0%",
+  "confidence": "Low",
+  "median_p": 18559.0,
+  "min_p": 18559.0,
+  "max_p": 18559.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.12.2026 - 26.12.2026",
+  "display_price_ceiling": null,
+  "history_price_ceiling": null,
+  "back_href": "index.html"
+}

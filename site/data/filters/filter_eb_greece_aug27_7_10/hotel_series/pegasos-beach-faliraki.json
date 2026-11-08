@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "pegasos-beach-faliraki",
+  "hotel_name": "Pegasos Beach (Faliraki)",
+  "x": [
+    "2026-10-29 12:47:27",
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13",
+    "2026-11-04 17:23:49",
+    "2026-11-05 09:02:45",
+    "2026-11-05 23:47:43",
+    "2026-11-06 12:32:20",
+    "2026-11-07 01:14:10"
+  ],
+  "y": [
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0,
+    11837.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 12:47<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 04.11.2026 17:23<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 05.11.2026 09:02<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 05.11.2026 23:47<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 06.11.2026 12:32<br>Даты поездки: 30.08.2027 - 06.09.2027",
+    "Проверка: 07.11.2026 01:14<br>Даты поездки: 30.08.2027 - 06.09.2027"
+  ],
+  "meta": {
+    "dates": "30.08.2027 - 06.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/pegasos-beach-faliraki/pdoPotR7dB3YPC0yno5nvoAAogRQpJ0teU7MTQlPZDVmwvaRWmiUCNI_EQZwc-M4VlkzgqBFZJVFgw19q51wZIvVxQQVi_N2ACckAaABUHFwBcA1gFQI8DW5eFAV7melKRE1MAS9wwYQBM-PlEDe7cjQkgAFH95L3t3gFPttMTXZDeqYInAgxjAQILtnzPDg/?operator=VITX&adults=2&children=2020-08-12&objectId=3784&durationFrom=7&durationTo=10&departureDate=2027-08-30&returnDate=2027-09-06&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703279/plain/cms/fileadmin/config_img/objects/3784/Pegasos-Deluxe-Beach-Hotel.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Normal",
+  "deal_class": "normal",
+  "delta48": "+0.0%",
+  "delta_avg": "+0.0%",
+  "confidence": "Medium",
+  "median_p": 11837.0,
+  "min_p": 11837.0,
+  "max_p": 11837.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "30.08.2027 - 06.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

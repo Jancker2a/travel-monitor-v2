@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "catamaran-quality-times-ex-catamaran-resort",
+  "hotel_name": "Catamaran Quality Times (ex. Catamaran Resort)",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    15359.0,
+    15359.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 02.07.2027 - 15.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 02.07.2027 - 15.07.2027"
+  ],
+  "meta": {
+    "dates": "02.07.2027 - 15.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,beldibi/catamaran-resort-kemer/pc4k1b5blcoZqCNBle_f7aAAogs040UKafKI6jdGy2JcyH8txRiaeiupdyMkFbAajPEkQqBE9SRVgwl9eo1wZI_3dQQViFLWACagdFNVUuMi4xcjabARUNFwBYAlYCXAhAwgYR3QtP5kBdJFPDG1IAXpaUAUuBEmEATNG-OiCByZgJDQACEmMBAguQxb8G/?operator=OREX&adults=2&children=2020-08-12&objectId=1560&durationFrom=13&durationTo=16&departureDate=2027-07-02&returnDate=2027-07-15&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703047/plain/cms/fileadmin/config_img/objects/1560/Catamaran-Resort-Kemer.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15359.0,
+  "min_p": 15359.0,
+  "max_p": 15359.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "02.07.2027 - 15.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_7_10",
+  "slug": "galeri-resort",
+  "hotel_name": "Galeri Resort",
+  "x": [
+    "2026-11-03 06:39:05",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    10138.0,
+    10138.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 07.07.2027 - 14.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 07.07.2027 - 14.07.2027"
+  ],
+  "meta": {
+    "dates": "07.07.2027 - 14.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/galeri-resort/ps6TM0taVOM-ul-zfM8mk-AAogYJeNZTsk5VV8ZGnz5rmFPgAAAACGmwUAnJsFAAcAAQAqBFdFWlkwmteo1wZImk9QQVj9LWADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAWABcGEuUDEY8wTIo7TwBAnBJL-5MBUAAd6qEUIBYbpph7DbHNwwgBEmMBDGMBAws8xxn2/?operator=WEZY&adults=2&children=2020-08-12&objectId=1598&durationFrom=7&durationTo=10&departureDate=2027-07-07&returnDate=2027-07-14&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703383/plain/cms/fileadmin/config_img/objects/1598/GALERI-RESORT-HOTEL.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 10138.0,
+  "min_p": 10138.0,
+  "max_p": 10138.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "07.07.2027 - 14.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+}

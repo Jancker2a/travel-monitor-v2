@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_13_16_days",
+  "slug": "steigenberger-al-dau-club",
+  "hotel_name": "Steigenberger Al Dau Club",
+  "x": [
+    "2026-10-29 14:21:19",
+    "2026-11-03 10:19:33",
+    "2026-11-03 13:19:26",
+    "2026-11-03 15:05:07",
+    "2026-11-03 16:25:00",
+    "2026-11-03 19:44:44",
+    "2026-11-04 03:29:31",
+    "2026-11-04 07:18:05"
+  ],
+  "y": [
+    15964.0,
+    17046.0,
+    17046.0,
+    17046.0,
+    17096.0,
+    17096.0,
+    17096.0,
+    17283.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 14:21<br>Даты поездки: 15.11.2026 - 29.11.2026",
+    "Проверка: 03.11.2026 10:19<br>Даты поездки: 17.11.2026 - 02.12.2026",
+    "Проверка: 03.11.2026 13:19<br>Даты поездки: 17.11.2026 - 02.12.2026",
+    "Проверка: 03.11.2026 15:05<br>Даты поездки: 17.11.2026 - 02.12.2026",
+    "Проверка: 03.11.2026 16:25<br>Даты поездки: 17.11.2026 - 02.12.2026",
+    "Проверка: 03.11.2026 19:44<br>Даты поездки: 17.11.2026 - 02.12.2026",
+    "Проверка: 04.11.2026 03:29<br>Даты поездки: 17.11.2026 - 02.12.2026",
+    "Проверка: 04.11.2026 07:18<br>Даты поездки: 19.11.2026 - 04.12.2026"
+  ],
+  "meta": {
+    "dates": "19.11.2026 - 04.12.2026",
+    "duration": "16 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,hurghada/steigenberger-aqua-magic/pfnI1hTUVxLLyU_6cLMa0hAAog4LZd0hJjPk3rdQmkOVG99pU3HMejWEdf7PzeVCiwrKsqBE5LUkEw0pyr1wZIg4cBUAFY4QJgA2oCQUlqBFdNSTBqA0hSR3IcFg4gCgwb4AMR5N8-Da_ulQkPVQESYwEMYwECDDhg3yI/?operator=NKRA&adults=2&children=2020-12-10&objectId=3841&durationFrom=13&durationTo=16&departureDate=2026-11-19&returnDate=2026-12-03&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/NKRA/IMG/1028560/ff06326380088d27d9533bc1d3c5e8d24640115306cd0085e137dfa8ec742837.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16988.529643695776,
+  "min_p": 15964.0,
+  "max_p": 17283.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "19.11.2026 - 04.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_13_16_days.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "pickalbatros-blu-spa-resort-hurghada",
+  "hotel_name": "Pickalbatros Blu Spa Resort Hurghada",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    15687.0,
+    15687.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 15.07.2027 - 23.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 15.07.2027 - 23.07.2027"
+  ],
+  "meta": {
+    "dates": "15.07.2027 - 23.07.2027",
+    "duration": "9 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/albatros-blue-spa-resort-hurghada-10/pyGhBr8LIe1j7GVwP2XUNVAAogRTyCa4jAjfi30nMlE7g5qoSVDwZdE9GrzcTl1rX-PnsqBEVYSU0w5tWo1wZIx3pQAVi9L2ABagNVQUlyHhwRuMcHqwSysE65BB8b-L1FGIH3SgG6rdamDgMAY-Bh66Q/?operator=EXIM&adults=2&children=2020-08-12&objectId=219158&durationFrom=7&durationTo=10&departureDate=2027-07-15&returnDate=2027-07-22&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707616/plain/cms/fileadmin/config_img/objects/219158/Albatros-Blu-Spa-Resort-Hurghada.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15687.0,
+  "min_p": 15687.0,
+  "max_p": 15687.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "15.07.2027 - 23.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

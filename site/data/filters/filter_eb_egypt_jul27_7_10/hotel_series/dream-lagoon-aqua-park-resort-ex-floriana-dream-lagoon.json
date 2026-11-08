@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_jul27_7_10",
+  "slug": "dream-lagoon-aqua-park-resort-ex-floriana-dream-lagoon",
+  "hotel_name": "Dream Lagoon & Aqua Park Resort (ex. Floriana Dream Lagoon)",
+  "x": [
+    "2026-11-02 00:45:30",
+    "2026-11-02 13:09:23",
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:10",
+    "2026-11-04 17:22:53"
+  ],
+  "y": [
+    8929.0,
+    8929.0,
+    8929.0,
+    8929.0,
+    8929.0
+  ],
+  "hover": [
+    "Проверка: 02.11.2026 00:45<br>Даты поездки: 01.07.2027 - 08.07.2027",
+    "Проверка: 02.11.2026 13:09<br>Даты поездки: 01.07.2027 - 08.07.2027",
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 01.07.2027 - 08.07.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 01.07.2027 - 08.07.2027",
+    "Проверка: 04.11.2026 17:22<br>Даты поездки: 01.07.2027 - 08.07.2027"
+  ],
+  "meta": {
+    "dates": "01.07.2027 - 08.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/floriana-dream-lagoon/pLnZdsInigK0Ardys2LagBAAogJkebPuGAMmI6n9uaJ2ma7wAAAADM1gQA6NYEAAcAAQAqBFdFWlkw4ret1wZI4UVQQVjXLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByP54BkwGUAZUBmAEfABwBAgAWBBcCEu0DQK19Ed5PTNhGTwBLsS9QABvPiwMd9doNIBwNhe_BCQESYwEOYwEGDYlwlfE/?operator=WEZY&adults=2&children=2020-08-12&objectId=30943&durationFrom=7&durationTo=10&departureDate=2027-07-01&returnDate=2027-07-08&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704624/plain/cms/fileadmin/config_img/objects/30943/Future-Dream-Lagoon-ex.-Floriana-Dream-Lagoon-fly-pl.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8929.0,
+  "min_p": 8929.0,
+  "max_p": 8929.0,
+  "samples": 5,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "01.07.2027 - 08.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_aug27_7_10",
+  "slug": "asia-beach-resort-and-spa",
+  "hotel_name": "Asia Beach Resort and Spa",
+  "x": [
+    "2026-11-03 06:37:51",
+    "2026-11-03 19:42:14"
+  ],
+  "y": [
+    8317.0,
+    8317.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 28.08.2027 - 04.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 28.08.2027 - 04.09.2027"
+  ],
+  "meta": {
+    "dates": "28.08.2027 - 04.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/asia-beach-resort/pdHIgSdiyLQ6GTZo_yA32HAAogjO-2j9GNcbfb1aUoy3etyNx0Lak3rk2HPgpxpw25YTMqBFJOQlcwr9ao1wZI_UBQQVjdN2ACagRCd2NEaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI7nwGeARUHFwBWA1gFCgRAxAcR2g0Z81FT4QdSABC8VUzlaEviGWEAD8LhRh3VBSDN74sJDQACDGMBAgtrk1kX/?operator=RNBW&adults=2&children=2020-08-12&objectId=175340&durationFrom=7&durationTo=10&departureDate=2027-08-28&returnDate=2027-09-04&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704408/plain/cms/fileadmin/config_img/objects/175340/Asia-Beach-Resort-Hotel.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 8317.0,
+  "min_p": 8317.0,
+  "max_p": 8317.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "28.08.2027 - 04.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_aug27_7_10.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "l-oceanica-beach-resort-kemer",
+  "hotel_name": "L' Oceanica Beach Resort (Kemer)",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    17505.0,
+    17505.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 04.07.2027 - 17.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 04.07.2027 - 17.07.2027"
+  ],
+  "meta": {
+    "dates": "04.07.2027 - 17.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,camyuva/oceanica-beach-resort/pY9V_K9LmhOLe26SUuKRNPAAogR7xvu9UMgM4VT0Ti8tET52J5gjrNwNCyDDRcYlL_JrsqBEpPSVAwsdeo1wZI4YgBUEFYtS1gAmoDOHBRckGbARQBXAkXAxUAWAJWAkDKBlOqaFIAT7UNXQAR5Xpe_AtL7UNhAEzljDoNg8mYCSAAAerLx6DkiMycMAINYwECBofsrl0/?operator=JOIP&adults=2&children=2020-08-12&objectId=2036&durationFrom=13&durationTo=16&departureDate=2027-07-04&returnDate=2027-07-17&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702414/plain/cms/fileadmin/config_img/objects/2036/L-Oceanica-Beach-Resort.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 17505.0,
+  "min_p": 17505.0,
+  "max_p": 17505.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "04.07.2027 - 17.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}

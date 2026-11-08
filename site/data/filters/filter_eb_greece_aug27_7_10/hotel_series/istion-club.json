@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_aug27_7_10",
+  "slug": "istion-club",
+  "hotel_name": "Istion Club",
+  "x": [
+    "2026-11-03 06:37:49",
+    "2026-11-03 19:42:13"
+  ],
+  "y": [
+    14732.0,
+    14732.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:37<br>Даты поездки: 27.08.2027 - 03.09.2027",
+    "Проверка: 03.11.2026 19:42<br>Даты поездки: 27.08.2027 - 03.09.2027"
+  ],
+  "meta": {
+    "dates": "27.08.2027 - 03.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-poteidaia/istion-club/pTQQv8Koa59W_3XNkRcgF7AAogK0sIyZfvlXbjdeyx0GGSGwg2RhCqYiqJtwMhU0Ihru8qBEJWQkUwttao1wZIjHNQAVjFN2ACagNBSStyIRwR2-UBG9_5RBjzkCCrBNqrJrkEFQHzmaSHBQISYwECB0wSZWw/?operator=BVBE&adults=2&children=2020-08-12&objectId=7186&durationFrom=7&durationTo=10&departureDate=2027-08-27&returnDate=2027-09-03&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703686/plain/cms/fileadmin/config_img/objects/7186/Istion-Club-fly-pl.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14732.0,
+  "min_p": 14732.0,
+  "max_p": 14732.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.08.2027 - 03.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_aug27_7_10.html"
+}

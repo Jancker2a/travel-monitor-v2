@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "gewan-palace-resort-new-alamein",
+  "hotel_name": "Gewan Palace Resort New Alamein",
+  "x": [
+    "2026-11-03 06:36:04"
+  ],
+  "y": [
+    12696.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 28.08.2027 - 04.09.2027"
+  ],
+  "meta": {
+    "dates": "28.08.2027 - 04.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dolny-egipt,al-alamajn/crystal-lotus-luxury-palace-by-pickalbatros-13/pjvbXp559LknXxluxNrZaxAAogeuno4DEzlF9tHrS851irIpUSvufmfPpzEbqMHxmyczUqBEpPSVAwjeal1wZImGNQQVjqN2ACagMwMHdyQpsBFAEVBhcAXANYBVYCQMoGT-IBXQBSqn5TAF60fEvtQ2EAEaa9AUy_zzgN_8mYCSAAAcT0s5CUptOgMAINYwEACzw1jDs/?operator=JOIP&adults=2&children=2020-08-12&objectId=232151&durationFrom=7&durationTo=10&departureDate=2027-08-28&returnDate=2027-09-04&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/66094/152ce5e706ad51ee8f5e36f36bd6866e590d43109f9559b66cdce1209297f3d7.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12696.0,
+  "min_p": 12696.0,
+  "max_p": 12696.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "28.08.2027 - 04.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

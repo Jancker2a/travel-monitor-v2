@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "hagia-sofia-mansions-curio-by-hilton-ex-yesil-ev",
+  "hotel_name": "Hagia Sofia Mansions Curio by Hilton (ex. Yesil Ev)",
+  "x": [
+    "2026-11-03 06:44:48",
+    "2026-11-03 10:24:04",
+    "2026-11-03 13:23:30",
+    "2026-11-03 15:09:00",
+    "2026-11-03 16:29:28",
+    "2026-11-03 19:50:38",
+    "2026-11-04 03:34:19",
+    "2026-11-04 07:22:18"
+  ],
+  "y": [
+    13581.0,
+    13581.0,
+    13581.0,
+    13581.0,
+    13581.0,
+    13781.0,
+    13531.0,
+    13531.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:44<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 03.11.2026 10:24<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 03.11.2026 13:23<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 03.11.2026 15:09<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 03.11.2026 16:29<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 03.11.2026 19:50<br>Даты поездки: 26.11.2026 - 03.12.2026",
+    "Проверка: 04.11.2026 03:34<br>Даты поездки: 27.11.2026 - 04.12.2026",
+    "Проверка: 04.11.2026 07:22<br>Даты поездки: 27.11.2026 - 04.12.2026"
+  ],
+  "meta": {
+    "dates": "27.11.2026 - 04.12.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,c/hagia-sofia-mansions-curio-by-hilton-ex-yesil-ev-14/p0dyT_G2jRVbwhDnaaL_JUAAogiqki4SCRdpBDMQnlIqOfI-aJPxPNf76OGVmy9fKG4CMqBEJWUFIw3J6r1wZI22lQAVihBGACagJST3IhHBHLUhuTkQUY9LMNqwTKgBa5BKQFAdbQutABAhJjAQIFIP997Q/?operator=BVPR&adults=2&children=2020-12-10&objectId=132478&durationFrom=7&durationTo=10&departureDate=2026-11-27&returnDate=2026-12-04&departureLocation=Warszawa&catering=without&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/BVPR/IMG/10571/c4cbf3f6512ee9eddec1f75880080256bb163eab7f448d38aa378b2806dc6635.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 13624.673538281926,
+  "min_p": 13531.0,
+  "max_p": 13781.0,
+  "samples": 8,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.11.2026 - 04.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "azur-white-ras-el-hekma",
+  "hotel_name": "Azur White Ras El Hekma",
+  "x": [
+    "2026-11-03 06:36:04"
+  ],
+  "y": [
+    14386.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 28.08.2027 - 04.09.2027"
+  ],
+  "meta": {
+    "dates": "28.08.2027 - 04.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,aleksandria,zawiet-el-awamy/azur-white-ras-el-hekma-9/paidjjkrON0Jon3I9vvVaZAAogUArjGb7LyDuQdoM0hQEl65USvufmfPpzEbqMHxmyczUqBEpPSVAwlual1wZIsnBQQVjqN2ACagNPc2tyQpsBFAEVBhcAXANYBVYCQMoGT-IBXQBSqn5TAF60fEvtQ2EAEbSZAkyx8zcN_8mYCSAAAcTS_-_Eps6gMAINYwEAC9UaQNc/?operator=JOIP&adults=2&children=2020-08-12&objectId=237301&durationFrom=7&durationTo=10&departureDate=2027-08-28&returnDate=2027-09-04&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/JOIP/IMG/77884/630bd46a6b4fee8a935ae874ab9bbad9eb1087e07c96fb7d2ef325a84839187c.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14386.0,
+  "min_p": 14386.0,
+  "max_p": 14386.0,
+  "samples": 1,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "28.08.2027 - 04.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

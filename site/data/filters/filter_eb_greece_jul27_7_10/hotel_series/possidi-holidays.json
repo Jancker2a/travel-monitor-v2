@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_greece_jul27_7_10",
+  "slug": "possidi-holidays",
+  "hotel_name": "Possidi Holidays",
+  "x": [
+    "2026-10-29 12:47:29",
+    "2026-11-01 08:55:27",
+    "2026-11-02 00:46:40",
+    "2026-11-02 13:10:36"
+  ],
+  "y": [
+    12329.0,
+    12329.0,
+    12329.0,
+    12329.0
+  ],
+  "hover": [
+    "Проверка: 29.10.2026 12:47<br>Даты поездки: 02.07.2027 - 09.07.2027",
+    "Проверка: 01.11.2026 08:55<br>Даты поездки: 02.07.2027 - 09.07.2027",
+    "Проверка: 02.11.2026 00:46<br>Даты поездки: 02.07.2027 - 09.07.2027",
+    "Проверка: 02.11.2026 13:10<br>Даты поездки: 02.07.2027 - 09.07.2027"
+  ],
+  "meta": {
+    "dates": "02.07.2027 - 09.07.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,possidi/possidi-holidays/pcd_qBy-eD1FUJX064opx8AAogNd_Jb1xQjYWIEDeSAUg-i-XvuSGtgegGiziWESGa2pIqBE9BU0kwwvuh1wZIqWBQAVijLWACagNBSWxyIRwR8Y0BqwS8vRG5BGsbv5sRGNnzEwH4p-fBAgIAYwEFCuMhJNs/?operator=OASI&adults=2&children=2020-08-12&objectId=10579&durationFrom=7&durationTo=10&departureDate=2027-07-02&returnDate=2027-07-09&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703759/plain/cms/fileadmin/config_img/objects/10579/Possidi-Holidays-fly-pl.jpg@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 12329.0,
+  "min_p": 12329.0,
+  "max_p": 12329.0,
+  "samples": 4,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "02.07.2027 - 09.07.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_greece_jul27_7_10.html"
+}

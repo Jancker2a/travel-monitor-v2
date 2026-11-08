@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_7_10_days",
+  "slug": "omer-holiday-village",
+  "hotel_name": "Omer Holiday Village",
+  "x": [
+    "2026-07-15 17:38:54",
+    "2026-09-26 22:02:01",
+    "2026-09-27 01:01:53"
+  ],
+  "y": [
+    9072.0,
+    5970.0,
+    5970.0
+  ],
+  "hover": [
+    "Проверка: 15.07.2026 17:38<br>Даты поездки: 16.07.2026 - 23.07.2026",
+    "Проверка: 26.09.2026 22:02<br>Даты поездки: 27.09.2026 - 05.10.2026",
+    "Проверка: 27.09.2026 01:01<br>Даты поездки: 27.09.2026 - 05.10.2026"
+  ],
+  "meta": {
+    "dates": "27.09.2026 - 05.10.2026",
+    "duration": "9 dni/7 nocy",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,c/omer-holiday-resort/pkIwe-Pmpu8oDlOlPLxBhvAAogVjBN80iBq98OTMBou2S4mj7GKLNb0QMerUyA6NbDCQ8qBFJOQlcw4Z3h1QZI0i5QQWACagRCd2Nhag1BTExfSU5DTFVTSVZFahcyOTYsMzgwLDQ3Nyw0ODMsNDg0LDQ4NXI8nwGWAZ4BFQcXAVgHCpwBQKwGEaQyGZIlU-4VUgAQpiJMjZYBS9oZYQAPi6ZBHTMg-eKQCQ0AAgxjAQMLDTowqQ/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Omer-Prime-Holiday-Resort.jpg"
+  },
+  "deal_score": 55,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 7003.999999999999,
+  "min_p": 5970.0,
+  "max_p": 9072.0,
+  "samples": 3,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "27.09.2026 - 05.10.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_7_10_days.html"
+}

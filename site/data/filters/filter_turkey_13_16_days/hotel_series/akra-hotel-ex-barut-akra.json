@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_turkey_13_16_days",
+  "slug": "akra-hotel-ex-barut-akra",
+  "hotel_name": "Akra Hotel (ex. Barut Akra)",
+  "x": [
+    "2026-11-04 03:33:11",
+    "2026-11-04 07:21:24"
+  ],
+  "y": [
+    15069.0,
+    15069.0
+  ],
+  "hover": [
+    "Проверка: 04.11.2026 03:33<br>Даты поездки: 21.11.2026 - 05.12.2026",
+    "Проверка: 04.11.2026 07:21<br>Даты поездки: 21.11.2026 - 05.12.2026"
+  ],
+  "meta": {
+    "dates": "21.11.2026 - 05.12.2026",
+    "duration": "15 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,antalya/akra-antalya/p_bR9LakTmzqhBFyD6j4z2AAogmZVoQ-iWZkFMeV11VIzGuAAAAADHtAQA4bQEAA4AIgAqBFdFWlkwmZ6r1wZI3XVQQViRA2ADaglFbnRlciBBaXJqBDA4MzByQp4BkwEfAAIBHAAXDRaYAxJOFMgGFa0FGHMR9TtMtCJPAECcEkvnxQFQABu4wAEdh-IOIBoNoOjBCQESYwEMYwECC4OFRs4/?operator=WEZY&adults=2&children=2020-12-10&objectId=140835&durationFrom=13&durationTo=16&departureDate=2026-11-21&returnDate=2026-12-05&departureLocation=Warszawa&catering=without&transport=accommodation_flight&duration=14&nights=14",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/WEZY/IMG/9809/278c87db1e524ccf643fb63b00ab146870a34274173004dcf81f6fb1bf1c91a3.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 15069.0,
+  "min_p": 15069.0,
+  "max_p": 15069.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "21.11.2026 - 05.12.2026",
+  "display_price_ceiling": 10000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_turkey_13_16_days.html"
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_aug27_7_10",
+  "slug": "cooee-prima-life-makadi-bay",
+  "hotel_name": "Cooee Prima Life Makadi Bay",
+  "x": [
+    "2026-11-03 06:36:04",
+    "2026-11-03 19:40:11"
+  ],
+  "y": [
+    9897.0,
+    9897.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 26.08.2027 - 02.09.2027",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 26.08.2027 - 02.09.2027"
+  ],
+  "meta": {
+    "dates": "26.08.2027 - 02.09.2027",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/prima-life-makadi-bay/p0kEoVvalnLtMZK-iJGZz9AAogN45nJHXSe9Brqz0TMeM1g3pOep0jeZhtCcYjVbbMvBsqBFZJVFgwvNWo1wZIqU1QQVitN2ACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS4ESYQBM5KtFDercjQkgAFGk6dn7jwFP48wEXcCun_5NAg9jAQIO3ydpVA/?operator=VITX&adults=2&children=2020-08-12&objectId=2810&durationFrom=7&durationTo=10&departureDate=2027-08-26&returnDate=2027-09-02&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702836/plain/cms/fileadmin/config_img/objects/2810/Prima-Life-Makadi-Resort.webp@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 9897.0,
+  "min_p": 9897.0,
+  "max_p": 9897.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "26.08.2027 - 02.09.2027",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_aug27_7_10.html"
+}

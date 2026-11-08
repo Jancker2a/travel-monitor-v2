@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_egypt_oct27_7_10",
+  "slug": "sakhra-spa-by-jaz",
+  "hotel_name": "Sakhra & Spa by Jaz",
+  "x": [
+    "2026-11-03 06:36:03",
+    "2026-11-03 19:40:10"
+  ],
+  "y": [
+    16077.0,
+    16077.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:36<br>Даты поездки: 16.10.2026 - 23.10.2026",
+    "Проверка: 03.11.2026 19:40<br>Даты поездки: 09.10.2026 - 16.10.2026"
+  ],
+  "meta": {
+    "dates": "09.10.2026 - 16.10.2026",
+    "duration": "8 dni",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dolny-egipt,marsa-matrouh/jaz-sakhra-12/pdWGbi-f0Mp-mGLR4WRdXCAAogNqsHe4sJkAxx8xJbQPiChG3qrWpR_y11jfg2ghAfL5UqBFZJVFgw59Wo1wZIzX1QQVjNP2ACckAaABUHFwBcA1gFQI8DW6eGAVPkXVIAXvIbS-1DYQBM-PlEDaHejQkgAFHgu_SYuQFPoLULXaSH7tZMAgxjAQILmZ6n5Q/?operator=VITX&adults=2&children=2020-08-12&objectId=226701&durationFrom=7&durationTo=10&departureDate=2027-10-09&returnDate=2027-10-16&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/ITAK/IMG/MUHSAKH/c7d12dd3751a1d58fa7a0a4d349aa9eea933f05705a205e5e823ee62e27b2a56.webp@webp"
+  },
+  "deal_score": 0,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 16077.000000000002,
+  "min_p": 16077.0,
+  "max_p": 16077.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "09.10.2026 - 16.10.2026",
+  "display_price_ceiling": 12000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+}

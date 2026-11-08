@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "filter_id": "filter_eb_turkey_jul27_13_16",
+  "slug": "sultan-of-dreams",
+  "hotel_name": "Sultan of Dreams",
+  "x": [
+    "2026-11-03 06:39:01",
+    "2026-11-03 19:43:41"
+  ],
+  "y": [
+    14071.0,
+    14071.0
+  ],
+  "hover": [
+    "Проверка: 03.11.2026 06:39<br>Даты поездки: 07.07.2027 - 20.07.2027",
+    "Проверка: 03.11.2026 19:43<br>Даты поездки: 07.07.2027 - 20.07.2027"
+  ],
+  "meta": {
+    "dates": "07.07.2027 - 20.07.2027",
+    "duration": "14 dni",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,manavgat/sultan-of-dreams/phNUfSpQx9SrQhCB7OT-yyAAogs2dL0a2LtodEtiqjw_XE5aIfAGVQrQ5siSihWU_V1gsqBEVYSU0w4tao1wZI921QAVj9LWACagJBSXIiHBHFsge5BJf6UKsEgQEbuadGGOaBTwGw78v4DgISYwECDCBlc6w/?operator=EXIM&adults=2&children=2020-08-12&objectId=105413&durationFrom=13&durationTo=16&departureDate=2027-07-07&returnDate=2027-07-20&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703427/plain/cms/fileadmin/config_img/objects/105413/Sultan-of-Dreams-fly-pl.jpg@webp"
+  },
+  "deal_score": 50,
+  "deal_label": "Warm-up",
+  "deal_class": "warm",
+  "delta48": "—",
+  "delta_avg": "—",
+  "confidence": "Low",
+  "median_p": 14071.0,
+  "min_p": 14071.0,
+  "max_p": 14071.0,
+  "samples": 2,
+  "alert_threshold": 8.0,
+  "trip_dates_label": "07.07.2027 - 20.07.2027",
+  "display_price_ceiling": 16000.0,
+  "history_price_ceiling": 20000.0,
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+}
