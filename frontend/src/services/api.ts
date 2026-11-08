@@ -72,6 +72,15 @@ export async function getTopPriceDrops(limit: number = 12): Promise<PriceDropIte
   return resp.json();
 }
 
+export async function getTop10Timeline(destination?: string): Promise<{ date: string; avg_price: number; min_price: number; max_price: number }[]> {
+  const q = destination ? `?destination=${encodeURIComponent(destination)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/top10-timeline${q}`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки таймлайна ТОП-10 (${resp.status})`);
+  }
+  return resp.json();
+}
+
 export async function getAirportComparison(destination?: string): Promise<AirportStat[]> {
   const q = destination ? `?destination=${encodeURIComponent(destination)}` : "";
   const resp = await fetch(`${API_BASE}/api/v2/analytics/airports${q}`);

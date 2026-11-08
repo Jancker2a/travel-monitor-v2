@@ -218,11 +218,11 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         onClick={onClose}
       />
 
-      {/* 780px Wide Slide-Over Drawer from Left */}
-      <div className="fixed inset-y-0 left-0 max-w-full flex">
+      {/* 780px Wide Slide-Over Drawer from Right */}
+      <div className="fixed inset-y-0 right-0 max-w-full flex">
         <aside
           id="passportDrawer"
-          className="w-screen max-w-[780px] bg-white shadow-2xl flex flex-col border-r border-slate-200 transform transition-transform duration-300 ease-in-out animate-slideInLeft overflow-hidden"
+          className="w-screen max-w-[780px] bg-white shadow-2xl flex flex-col border-l border-slate-200 transform transition-transform duration-300 ease-in-out animate-slideInRight overflow-hidden"
           role="dialog"
           aria-modal="true"
         >

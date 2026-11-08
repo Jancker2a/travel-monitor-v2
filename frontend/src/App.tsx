@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { SidebarNavigation } from "./components/SidebarNavigation";
 import { HeroTerminal } from "./components/HeroTerminal";
+import { AiMarketBriefing } from "./components/AiMarketBriefing";
+import { Top10TimelineChart } from "./components/Top10TimelineChart";
 import { AnalyticsFold } from "./components/AnalyticsFold";
+import { UniversalTableFilters, FilterState } from "./components/UniversalTableFilters";
 import { HotelTableView } from "./components/HotelTableView";
 import { HotelCard } from "./components/HotelCard";
 import { HotelPassportDrawer } from "./components/HotelPassportDrawer";
@@ -22,13 +25,11 @@ import {
   deleteWatchlistItem,
   getTopPriceDrops,
   getAirportComparison,
-  getFilterMonitors,
 } from "./services/api";
-import { Bell, Menu, Radio, Sparkles, SlidersHorizontal, Table, LayoutGrid } from "lucide-react";
+import { Bell, Menu, Radio, Sparkles } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
 
-// Preset configurations for canonical V1 filters
 const FILTER_PRESETS: Record<
   string,
   {
@@ -146,117 +147,26 @@ const FILTER_PRESETS: Record<
       airports: ["WAW", "KTW"],
     },
   },
-  egypt_sharm: {
-    title: "🇪🇬 Шарм-эль-Шейх — Бухты без ветра",
-    countryBadge: "🇪🇬 ШАРМ-ЭЛЬ-ШЕЙХ",
-    destination: "egypt",
-    targetUrl: "https://fly.pl/wczasy/egipt/sharm-el-sheikh/?od-2027-04-15&do-2027-05-30&dorosli=2&dzieci=1&wiek=6",
-    chips: {
-      airports: "WAW, KTW",
-      dates: "15.04.2027 — 30.05.2027",
-      party: "2 взр + 1 реб",
-      hotelClass: "5★ Защищенные бухты",
-      budget: "до 12 000 zł",
-    },
-    searchReq: {
-      destination: "egypt",
-      dates: { start_date_min: "2027-04-15", start_date_max: "2027-05-30" },
-      duration: { min_nights: 7, max_nights: 10 },
-      travelers: { adults: 2, children: 1, children_ages: [6] },
-      airports: ["WAW"],
-    },
-  },
-  egypt_hurghada: {
-    title: "🇪🇬 Хургада — Песчаный пологий вход",
-    countryBadge: "🇪🇬 ХУРГАДА",
-    destination: "egypt",
-    targetUrl: "https://fly.pl/wczasy/egipt/hurghada/?od-2027-04-15&do-2027-05-30&dorosli=2&dzieci=1&wiek=6",
-    chips: {
-      airports: "WAW, KTW, WRO",
-      dates: "15.04.2027 — 30.05.2027",
-      party: "2 взр + 1 реб",
-      hotelClass: "4★ – 5★ All Inclusive",
-      budget: "до 10 500 zł",
-    },
-    searchReq: {
-      destination: "egypt",
-      dates: { start_date_min: "2027-04-15", start_date_max: "2027-05-30" },
-      duration: { min_nights: 7, max_nights: 10 },
-      travelers: { adults: 2, children: 1, children_ages: [6] },
-      airports: ["WAW", "KTW"],
-    },
-  },
-  greece_islands: {
-    title: "🇬🇷 Греция — Крит и Родос (7–10 ночей)",
-    countryBadge: "🇬🇷 ГРЕЦИЯ ОСТРОВА",
-    destination: "greece",
-    targetUrl: "https://fly.pl/wczasy/grecja/?od-2027-06-01&do-2027-07-15&dorosli=2&dzieci=1&wiek=6&dlugosc=7-10",
-    chips: {
-      airports: "WAW, WRO, KTW, POZ",
-      dates: "01.06.2027 — 15.07.2027",
-      party: "2 взр + 1 реб",
-      hotelClass: "4★ – 5★ All Inclusive",
-      budget: "до 14 000 zł",
-    },
-    searchReq: {
-      destination: "greece",
-      dates: { start_date_min: "2027-06-01", start_date_max: "2027-07-15" },
-      duration: { min_nights: 7, max_nights: 10 },
-      travelers: { adults: 2, children: 1, children_ages: [6] },
-      airports: ["WAW", "KTW"],
-    },
-  },
-  spain_mallorca: {
-    title: "🇪🇸 Испания — Майорка (7–10 ночей)",
-    countryBadge: "🇪🇸 ИСПАНИЯ",
-    destination: "spain",
-    targetUrl: "https://fly.pl/wczasy/hiszpania/majorka/?od-2027-06-01&do-2027-07-15&dorosli=2&dzieci=1&wiek=6",
-    chips: {
-      airports: "WAW, WRO, BER",
-      dates: "01.06.2027 — 15.07.2027",
-      party: "2 взр + 1 реб",
-      hotelClass: "4★ – 5★ Half Board / AI",
-      budget: "до 15 000 zł",
-    },
-    searchReq: {
-      destination: "spain",
-      dates: { start_date_min: "2027-06-01", start_date_max: "2027-07-15" },
-      duration: { min_nights: 7, max_nights: 10 },
-      travelers: { adults: 2, children: 1, children_ages: [6] },
-      airports: ["WAW", "BER"],
-    },
-  },
-  early_booking_2027: {
-    title: "🐣 Раннее бронирование лето 2027 (Радар)",
-    countryBadge: "🐣 РАННЕЕ БРОНИРОВАНИЕ",
-    destination: "turkey",
-    targetUrl: "https://fly.pl/wczasy/turcja/?od-2027-06-01&do-2027-08-31&dorosli=2&dzieci=1&wiek=6",
-    chips: {
-      airports: "WAW, KTW, WRO, POZ, GDN",
-      dates: "01.06.2027 — 31.08.2027",
-      party: "2 взр + 1 реб (6 лет)",
-      hotelClass: "4★ – 5★ All Inclusive",
-      budget: "до 13 000 zł",
-    },
-    searchReq: {
-      destination: "turkey",
-      dates: { start_date_min: "2027-06-01", start_date_max: "2027-08-31" },
-      duration: { min_nights: 7, max_nights: 10 },
-      travelers: { adults: 2, children: 1, children_ages: [6] },
-      airports: ["WAW", "KTW"],
-    },
-  },
+};
+
+const INITIAL_FILTERS: FilterState = {
+  search: "",
+  priceMax: "",
+  recommendation: "",
+  tripAdvisor: "",
+  change: "",
+  region: "",
+  onlyFavorites: false,
 };
 
 export const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"filter" | "search" | "arbitrage">("filter");
   const [activeFilterId, setActiveFilterId] = useState<string>("turkey_7_10_days");
-  const [viewMode, setViewMode] = useState<"table" | "cards">("table");
+  const [viewMode, setViewMode] = useState<"cards" | "table" | "arbitrage">("table");
 
   const [results, setResults] = useState<SearchHotelItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isCached, setIsCached] = useState(false);
   const [activeHotelPassport, setActiveHotelPassport] = useState<string | null>(null);
 
   const [watchlistItems, setWatchlistItems] = useState<WatchlistItem[]>([]);
@@ -265,12 +175,16 @@ export const App: React.FC = () => {
   const [topDrops, setTopDrops] = useState<PriceDropItem[]>([]);
   const [airportStats, setAirportStats] = useState<AirportStat[]>([]);
 
+  // Filter state
+  const [tableFilters, setTableFilters] = useState<FilterState>(INITIAL_FILTERS);
+  const [sortField, setSortField] = useState("price");
+  const [sortAsc, setSortAsc] = useState(true);
+
   // Current active preset config
   const currentPreset = FILTER_PRESETS[activeFilterId] || FILTER_PRESETS["turkey_7_10_days"];
 
-  // Initial load
   useEffect(() => {
-    // 1. Fetch user's watchlist
+    // 1. Fetch user watchlist
     getWatchlist(CURRENT_USER_ID)
       .then((data) => setWatchlistItems(data.items))
       .catch((err) => console.warn("Watchlist fetch failed:", err));
@@ -295,7 +209,6 @@ export const App: React.FC = () => {
     try {
       const resp = await searchTours(preset.searchReq);
       setResults(resp.results);
-      setIsCached(resp.cached);
     } catch (err: any) {
       console.error("Filter search error:", err);
     } finally {
@@ -315,9 +228,7 @@ export const App: React.FC = () => {
     try {
       const resp = await searchTours(req);
       setResults(resp.results);
-      setIsCached(resp.cached);
     } catch (err: any) {
-      console.error("Search error:", err);
       alert("Ошибка поиска: " + (err.message || "Не удалось выполнить запрос"));
     } finally {
       setIsLoading(false);
@@ -363,13 +274,109 @@ export const App: React.FC = () => {
     setWatchlistItems((prev) => prev.filter((w) => w.watch_id !== watchId));
   };
 
-  // Watched cohorts set
   const watchedCohortHashes = useMemo(
     () => new Set(watchlistItems.map((w) => w.cohort_hash)),
     [watchlistItems]
   );
 
-  // Compute live KPI metrics for HeroTerminal
+  // Available regions list
+  const availableRegions = useMemo(() => {
+    const s = new Set<string>();
+    results.forEach((h) => {
+      if (h.region) s.add(h.region);
+    });
+    return Array.from(s).sort();
+  }, [results]);
+
+  // Filtered & Sorted Hotels
+  const filteredHotels = useMemo(() => {
+    let res = results.filter((h) => {
+      // Search
+      if (tableFilters.search) {
+        const q = tableFilters.search.toLowerCase();
+        const match =
+          h.hotel_name.toLowerCase().includes(q) ||
+          (h.region && h.region.toLowerCase().includes(q));
+        if (!match) return false;
+      }
+
+      // Max price
+      if (tableFilters.priceMax) {
+        const maxP = parseFloat(tableFilters.priceMax);
+        if (h.current_offer.total_price_pln > maxP) return false;
+      }
+
+      // Recommendation
+      if (tableFilters.recommendation === "buy" && h.intelligence.deal_score < 75) {
+        return false;
+      }
+      if (
+        tableFilters.recommendation === "wait" &&
+        (h.intelligence.deal_score >= 75 || h.intelligence.deal_score < 45)
+      ) {
+        return false;
+      }
+      if (tableFilters.recommendation === "expensive" && h.intelligence.deal_score >= 45) {
+        return false;
+      }
+
+      // TripAdvisor
+      if (tableFilters.tripAdvisor) {
+        const minRating = parseFloat(tableFilters.tripAdvisor);
+        if (!h.ta_rating || h.ta_rating < minRating) return false;
+      }
+
+      // Change
+      if (tableFilters.change === "decrease" && h.intelligence.drop_48h_pct <= 0) {
+        return false;
+      }
+      if (tableFilters.change === "stable" && h.intelligence.drop_48h_pct !== 0) {
+        return false;
+      }
+
+      // Region
+      if (tableFilters.region && h.region !== tableFilters.region) {
+        return false;
+      }
+
+      // Favorites
+      if (tableFilters.onlyFavorites && !watchedCohortHashes.has(h.current_offer.cohort_hash)) {
+        return false;
+      }
+
+      return true;
+    });
+
+    // Sort
+    res.sort((a, b) => {
+      let diff = 0;
+      if (sortField === "price") {
+        diff = a.current_offer.total_price_pln - b.current_offer.total_price_pln;
+      } else if (sortField === "deal_score") {
+        diff = b.intelligence.deal_score - a.intelligence.deal_score;
+      } else if (sortField === "ta_rating") {
+        diff = (b.ta_rating || 0) - (a.ta_rating || 0);
+      } else if (sortField === "hotel") {
+        diff = a.hotel_name.localeCompare(b.hotel_name);
+      } else if (sortField === "delta48") {
+        diff = b.intelligence.drop_48h_pct - a.intelligence.drop_48h_pct;
+      }
+      return sortAsc ? diff : -diff;
+    });
+
+    return res;
+  }, [results, tableFilters, sortField, sortAsc, watchedCohortHashes]);
+
+  const handleSort = (field: string) => {
+    if (sortField === field) {
+      setSortAsc(!sortAsc);
+    } else {
+      setSortField(field);
+      setSortAsc(field === "price");
+    }
+  };
+
+  // Live KPI metrics
   const heroKpi = useMemo(() => {
     if (!results.length) {
       return {
@@ -399,7 +406,7 @@ export const App: React.FC = () => {
             dropHotel.current_offer.total_price_pln *
               (dropHotel.intelligence.drop_48h_pct / 100)
           )
-        : 350,
+        : 420,
       lastUpdatedText: "12 мин. назад",
     };
   }, [results]);
@@ -417,7 +424,7 @@ export const App: React.FC = () => {
           setIsSidebarOpen(false);
         }}
         onOpenArbitrage={() => {
-          setActiveTab("arbitrage");
+          setViewMode("arbitrage");
           setIsSidebarOpen(false);
         }}
         activeTab={activeTab}
@@ -427,7 +434,6 @@ export const App: React.FC = () => {
       <header className="bg-slate-900 text-white py-3 px-4 sm:px-6 border-b border-slate-800 sticky top-0 z-30 shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Sidebar Toggle Button (#sidebarToggle) */}
             <button
               id="sidebarToggle"
               type="button"
@@ -457,13 +463,15 @@ export const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Mode Tabs */}
             <div className="hidden md:flex items-center gap-1 bg-slate-800/90 p-1 rounded-2xl border border-slate-700">
               <button
                 type="button"
-                onClick={() => setActiveTab("filter")}
+                onClick={() => {
+                  setActiveTab("filter");
+                  setViewMode("table");
+                }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  activeTab === "filter"
+                  activeTab === "filter" && viewMode !== "arbitrage"
                     ? "bg-blue-600 text-white shadow-sm"
                     : "text-slate-300 hover:text-white hover:bg-slate-700/50"
                 }`}
@@ -486,9 +494,9 @@ export const App: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setActiveTab("arbitrage")}
+                onClick={() => setViewMode("arbitrage")}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  activeTab === "arbitrage"
+                  viewMode === "arbitrage"
                     ? "bg-blue-600 text-white shadow-sm"
                     : "text-slate-300 hover:text-white hover:bg-slate-700/50"
                 }`}
@@ -497,7 +505,6 @@ export const App: React.FC = () => {
               </button>
             </div>
 
-            {/* Watchlist Button */}
             <button
               onClick={() => setIsWatchlistOpen(true)}
               className="relative inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700"
@@ -516,135 +523,90 @@ export const App: React.FC = () => {
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full space-y-5">
-        {/* If in Search Tab, display search bar */}
+        {/* If in Search Tab */}
         {activeTab === "search" && (
           <div className="mb-4">
             <SearchHeader onSearch={handleSearch} isLoading={isLoading} />
           </div>
         )}
 
-        {/* If in Arbitrage Tab */}
-        {activeTab === "arbitrage" && <GermanArbitrageView />}
+        {/* 1. Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
+        <HeroTerminal
+          title={
+            activeTab === "filter"
+              ? currentPreset.title
+              : "🔍 Результаты метапоиска"
+          }
+          countryBadge={
+            activeTab === "filter"
+              ? currentPreset.countryBadge
+              : "ПОЛЬЗОВАТЕЛЬСКИЙ ПОИСК"
+          }
+          targetUrl={activeTab === "filter" ? currentPreset.targetUrl : undefined}
+          chips={activeTab === "filter" ? currentPreset.chips : undefined}
+          kpi={heroKpi}
+        />
 
-        {/* If in Filter or Search results mode */}
-        {activeTab !== "arbitrage" && (
-          <>
-            {/* V1 Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
-            <HeroTerminal
-              title={
-                activeTab === "filter"
-                  ? currentPreset.title
-                  : "🔍 Результаты метапоиска"
-              }
-              countryBadge={
-                activeTab === "filter"
-                  ? currentPreset.countryBadge
-                  : "ПОЛЬЗОВАТЕЛЬСКИЙ ПОИСК"
-              }
-              targetUrl={
-                activeTab === "filter" ? currentPreset.targetUrl : undefined
-              }
-              chips={
-                activeTab === "filter" ? currentPreset.chips : undefined
-              }
-              kpi={heroKpi}
-            />
+        {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
+        <AiMarketBriefing
+          filterTitle={currentPreset.chips.dates}
+          buyNowCount={heroKpi.buyNowCount}
+        />
 
-            {/* V1 Collapsible Analytics Accordion (#analyticsFold) */}
-            <AnalyticsFold
-              hotels={results}
-              topDrops={topDrops}
-              airportStats={airportStats}
-              onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
-            />
+        {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
+        <Top10TimelineChart destination={currentPreset.destination} />
 
-            {/* V1 Table / Cards View with floating volumetric rows */}
-            {isLoading ? (
-              <div className="space-y-3">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-20 bg-white rounded-2xl border border-slate-200/80 p-4 animate-pulse flex items-center gap-4"
-                  >
-                    <div className="w-14 h-14 bg-slate-200 rounded-xl shrink-0" />
-                    <div className="flex-1 space-y-2">
-                      <div className="h-4 bg-slate-200 rounded w-1/3" />
-                      <div className="h-3 bg-slate-100 rounded w-1/2" />
-                    </div>
-                    <div className="w-24 h-8 bg-slate-200 rounded-lg shrink-0" />
-                  </div>
-                ))}
-              </div>
-            ) : results.length > 0 ? (
-              viewMode === "table" ? (
-                <HotelTableView
-                  hotels={results}
+        {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
+        <AnalyticsFold
+          hotels={results}
+          topDrops={topDrops}
+          airportStats={airportStats}
+          onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
+        />
+
+        {/* 5. Universal Toolbar: Вид (Карточки / Таблица / Арбитраж) + Фильтры */}
+        <UniversalTableFilters
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
+          filters={tableFilters}
+          onFilterChange={setTableFilters}
+          onClear={() => setTableFilters(INITIAL_FILTERS)}
+          regions={availableRegions}
+        />
+
+        {/* 6. Mode Switch Views */}
+        {viewMode === "arbitrage" ? (
+          <GermanArbitrageView />
+        ) : viewMode === "table" ? (
+          <HotelTableView
+            hotels={filteredHotels}
+            onOpenPassport={(id) => setActiveHotelPassport(id)}
+            onToggleWatchlist={handleToggleWatchlist}
+            watchedCohortHashes={watchedCohortHashes}
+            sortField={sortField}
+            sortAsc={sortAsc}
+            onSort={handleSort}
+          />
+        ) : (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredHotels.map((hotel) => (
+                <HotelCard
+                  key={hotel.current_offer.cohort_hash}
+                  hotel={hotel}
                   onOpenPassport={(id) => setActiveHotelPassport(id)}
                   onToggleWatchlist={handleToggleWatchlist}
-                  watchedCohortHashes={watchedCohortHashes}
-                  viewMode={viewMode}
-                  onViewModeChange={setViewMode}
+                  isWatched={watchedCohortHashes.has(
+                    hotel.current_offer.cohort_hash
+                  )}
                 />
-              ) : (
-                <div className="space-y-4">
-                  {/* Toolbar for card mode */}
-                  <div className="flex items-center justify-between bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-sm">
-                    <div className="text-xs font-bold text-slate-800">
-                      Карточный вид ({results.length} предложений)
-                    </div>
-                    <div className="mode-switch-box">
-                      <button
-                        type="button"
-                        onClick={() => setViewMode("table")}
-                        className="mode-btn"
-                        id="modeBtnTable"
-                      >
-                        <Table className="w-3.5 h-3.5" />
-                        <span>Таблица</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setViewMode("cards")}
-                        className="mode-btn active"
-                        id="modeBtnCards"
-                      >
-                        <LayoutGrid className="w-3.5 h-3.5" />
-                        <span>Карточки</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    {results.map((hotel) => (
-                      <HotelCard
-                        key={hotel.current_offer.cohort_hash}
-                        hotel={hotel}
-                        onOpenPassport={(id) => setActiveHotelPassport(id)}
-                        onToggleWatchlist={handleToggleWatchlist}
-                        isWatched={watchedCohortHashes.has(
-                          hotel.current_offer.cohort_hash
-                        )}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )
-            ) : (
-              <div className="bg-white rounded-3xl border border-slate-200 p-12 text-center text-slate-500 max-w-lg mx-auto mt-6">
-                <div className="text-4xl mb-2">🔍</div>
-                <h3 className="text-base font-bold text-slate-800">
-                  Предложения загружаются...
-                </h3>
-                <p className="text-xs text-slate-500 mt-1">
-                  Идет опрос базы данных по выбранным параметрам.
-                </p>
-              </div>
-            )}
-          </>
+              ))}
+            </div>
+          </div>
         )}
       </main>
 
-      {/* Hotel AI Passport Drawer (780px Slide-Over Panel) */}
+      {/* 7. Hotel AI Passport Drawer (Slides out from RIGHT) */}
       <HotelPassportDrawer
         hotelId={activeHotelPassport}
         onClose={() => setActiveHotelPassport(null)}

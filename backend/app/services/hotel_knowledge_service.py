@@ -258,3 +258,4 @@ class HotelKnowledgeService:
             "ai_hotel_summary": verdict,
             "infra_rich": infra_rich,
         }
+

@@ -194,6 +194,12 @@ async def get_airports_comparison(db: AsyncSession = Depends(get_db), destinatio
     return await AnalyticsService.get_airport_comparison(db, destination=destination)
 
 
+@app.get("/api/v2/analytics/top10-timeline")
+async def get_top10_timeline(db: AsyncSession = Depends(get_db), destination: str = None):
+    """Time-series of top 10 cheapest offers (avg, min, max) across historical scrape runs."""
+    return await AnalyticsService.get_top10_timeline(db, destination=destination)
+
+
 @app.get("/api/v2/analytics/overview")
 async def get_market_overview(db: AsyncSession = Depends(get_db)):
     """High-level platform market counters (total hotels, cohorts, snapshots)."""

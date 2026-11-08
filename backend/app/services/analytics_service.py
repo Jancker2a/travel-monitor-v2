@@ -59,6 +59,41 @@ class AnalyticsService:
         return results
 
     @classmethod
+    async def get_top10_timeline(
+        cls, db: AsyncSession, destination: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """Returns time series of top 10 cheapest offers (avg, min, max) across historical scrape runs."""
+        query = text("""
+            WITH ranked AS (
+                SELECT strftime('%Y-%m-%d %H\\:00', recorded_at) as snap_bucket,
+                       total_price_pln,
+                       ROW_NUMBER() OVER (PARTITION BY strftime('%Y-%m-%d %H\\:00', recorded_at) ORDER BY total_price_pln ASC) as rn
+                FROM price_snapshots
+            )
+            SELECT snap_bucket,
+                   ROUND(AVG(total_price_pln), 0) as avg_price,
+                   ROUND(MIN(total_price_pln), 0) as min_price,
+                   ROUND(MAX(total_price_pln), 0) as max_price
+            FROM ranked
+            WHERE rn <= 10
+            GROUP BY snap_bucket
+            ORDER BY snap_bucket ASC
+        """)
+        res = await db.execute(query)
+        rows = res.mappings().all()
+
+        results = []
+        for r in rows:
+            bucket = str(r["snap_bucket"])
+            results.append({
+                "date": bucket,
+                "avg_price": float(r["avg_price"]),
+                "min_price": float(r["min_price"]),
+                "max_price": float(r["max_price"]),
+            })
+        return results
+
+    @classmethod
     async def get_airport_comparison(
         cls, db: AsyncSession, destination: Optional[str] = None
     ) -> List[Dict[str, Any]]:
@@ -96,6 +131,41 @@ class AnalyticsService:
                 "min_price_pln": float(r["min_price"]),
                 "avg_price_pln": float(r["avg_price"]),
                 "avg_night_pax": float(r["avg_night_pax"]),
+            })
+        return results
+
+    @classmethod
+    async def get_top10_timeline(
+        cls, db: AsyncSession, destination: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """Returns time series of top 10 cheapest offers (avg, min, max) across historical scrape runs."""
+        query = text("""
+            WITH ranked AS (
+                SELECT strftime('%Y-%m-%d %H\\:00', recorded_at) as snap_bucket,
+                       total_price_pln,
+                       ROW_NUMBER() OVER (PARTITION BY strftime('%Y-%m-%d %H\\:00', recorded_at) ORDER BY total_price_pln ASC) as rn
+                FROM price_snapshots
+            )
+            SELECT snap_bucket,
+                   ROUND(AVG(total_price_pln), 0) as avg_price,
+                   ROUND(MIN(total_price_pln), 0) as min_price,
+                   ROUND(MAX(total_price_pln), 0) as max_price
+            FROM ranked
+            WHERE rn <= 10
+            GROUP BY snap_bucket
+            ORDER BY snap_bucket ASC
+        """)
+        res = await db.execute(query)
+        rows = res.mappings().all()
+
+        results = []
+        for r in rows:
+            bucket = str(r["snap_bucket"])
+            results.append({
+                "date": bucket,
+                "avg_price": float(r["avg_price"]),
+                "min_price": float(r["min_price"]),
+                "max_price": float(r["max_price"]),
             })
         return results
 
