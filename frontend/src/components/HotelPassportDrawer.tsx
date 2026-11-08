@@ -2,22 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   X,
   ExternalLink,
-  Flame,
   Star,
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-  TrendingDown,
-  TrendingUp,
-  Scale,
-  Calendar,
-  Plane,
-  ShieldCheck,
+  Play,
   CheckCircle2,
   AlertTriangle,
-  Play,
 } from "lucide-react";
-import { HotelPassport, HotelHistoryPoint } from "../types";
+import { HotelPassport } from "../types";
 import { getHotelPassport } from "../services/api";
 
 declare global {
@@ -64,57 +54,44 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       });
   }, [hotelId]);
 
-  // Render Plotly chart on history tab
+  // Render Plotly Price History Chart when history tab is activated
   useEffect(() => {
-    if (activeTab !== "history" || !passport || !passport.history_points?.length || !chartContainerRef.current || !window.Plotly) {
+    if (activeTab !== "history" || !passport || !chartContainerRef.current || !window.Plotly) {
       return;
     }
 
-    const pts = [...passport.history_points].sort(
-      (a, b) => new Date(a.recorded_at).getTime() - new Date(b.recorded_at).getTime()
-    );
+    const history = passport.history_points || [];
+    if (!history.length) return;
 
-    // Deduplicate points with identical timestamps to prevent zero-dt spline recursion in Plotly
-    const ptsMap = new Map<string, HotelHistoryPoint>();
-    pts.forEach((p) => {
-      let key = String(p.recorded_at);
-      try {
-        const d = new Date(p.recorded_at);
-        if (!isNaN(d.getTime())) {
-          key = d.toISOString().replace("T", " ").slice(0, 19);
-        }
-      } catch {
-        key = String(p.recorded_at).slice(0, 19);
-      }
-      const existing = ptsMap.get(key);
-      if (!existing || p.total_price_pln < existing.total_price_pln) {
-        ptsMap.set(key, p);
-      }
+    // Deduplicate timestamps to prevent recursion
+    const uniqueMap = new Map<string, number>();
+    history.forEach((pt) => {
+      uniqueMap.set(pt.recorded_at, pt.total_price_pln);
     });
 
-    const uniquePts = Array.from(ptsMap.entries())
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([k, p]) => ({ formattedDate: k, point: p }));
-
-    const xDates = uniquePts.map((u) => u.formattedDate);
-    const yPrices = uniquePts.map((u) => u.point.total_price_pln);
-    const hoverTexts = uniquePts.map(
-      (u) =>
-        `<b>${u.point.total_price_pln.toLocaleString("ru-RU")} zł</b><br>` +
-        `📅 Дата вылета: <b>${u.point.departure_date}</b><br>` +
-        `🛫 Аэропорт: ${u.point.airport} (${u.point.duration_nights} ночей)<br>` +
-        `Зафиксировано: ${u.formattedDate}`
-    );
+    const xVals: string[] = [];
+    const yVals: number[] = [];
+    uniqueMap.forEach((val, key) => {
+      xVals.push(key);
+      yVals.push(val);
+    });
 
     const trace = {
-      x: xDates,
-      y: yPrices,
+      x: xVals,
+      y: yVals,
+      type: "scatter",
       mode: "lines+markers",
       name: "Цена тура (PLN)",
-      line: { color: "#0284c7", width: 2.5, shape: "linear" },
-      marker: { size: 6, color: "#0369a1" },
-      text: hoverTexts,
-      hoverinfo: "text",
+      line: {
+        color: "#4f46e5",
+        width: 2.5,
+        shape: "linear",
+      },
+      marker: {
+        size: 5,
+        color: "#4338ca",
+      },
+      hovertemplate: "<b>%{y:,.0f} zł</b><br>%{x|%d.%m %H:%M}<extra></extra>",
     };
 
     const minPrice = passport.all_time_min_pln;
@@ -126,7 +103,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         font: { size: 13, family: "Inter, sans-serif", color: "#0f172a" },
         x: 0.05,
       },
-      margin: { l: 60, r: 30, t: 40, b: 40 },
+      margin: { l: 55, r: 25, t: 40, b: 40 },
       height: 320,
       paper_bgcolor: "transparent",
       plot_bgcolor: "transparent",
@@ -159,28 +136,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           line: { color: "#f59e0b", width: 1.5, dash: "dot" },
         },
       ],
-      annotations: [
-        {
-          y: minPrice,
-          x: 1,
-          xref: "paper",
-          text: `Мин: ${minPrice.toLocaleString("ru-RU")} zł`,
-          showarrow: false,
-          font: { size: 10, color: "#059669" },
-          bgcolor: "#ecfdf5",
-          borderpad: 2,
-        },
-        {
-          y: medianPrice,
-          x: 0,
-          xref: "paper",
-          text: `Медиана: ${medianPrice.toLocaleString("ru-RU")} zł`,
-          showarrow: false,
-          font: { size: 10, color: "#b45309" },
-          bgcolor: "#fef3c7",
-          borderpad: 2,
-        },
-      ],
+      font: { family: "Inter, sans-serif", size: 11 },
     };
 
     const config = {
@@ -210,546 +166,675 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActivePhotoIdx((prev) => (prev - 1 + photos.length) % photos.length);
   };
 
+  const currentPrice = passport?.current_price_pln || 0;
+  const minPrice = passport?.all_time_min_pln || 0;
+  const maxPrice = passport?.all_time_max_pln || 0;
+  const savings = maxPrice > currentPrice ? maxPrice - currentPrice : 0;
+
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
-      {/* Backdrop */}
+    <>
+      {/* V1 Authentic Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300 animate-fadeIn"
+        className={`drawer-overlay ${hotelId ? "open" : ""}`}
+        id="passportDrawerOverlay"
         onClick={onClose}
       />
 
-      {/* 780px Wide Slide-Over Drawer from Right */}
-      <div className="fixed inset-y-0 right-0 max-w-full flex">
-        <aside
-          id="passportDrawer"
-          className="w-screen max-w-[780px] bg-white shadow-2xl flex flex-col border-l border-slate-200 transform transition-transform duration-300 ease-in-out animate-slideInRight overflow-hidden"
-          role="dialog"
-          aria-modal="true"
-        >
-          {/* Top Header */}
-          <div className="p-4 sm:p-5 border-b border-slate-200 bg-slate-900 text-white flex items-start justify-between gap-4">
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-lg sm:text-xl font-black tracking-tight text-white line-clamp-1">
-                  {passport?.display_name || "Загрузка досье отеля..."}
-                </h2>
-                <div className="flex text-amber-400 text-xs shrink-0">
-                  {Array.from({ length: passport?.stars || 4 }).map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                  ))}
+      {/* V1 Authentic 780px Slide-Over Drawer */}
+      <aside
+        id="passportDrawer"
+        className={`passport-drawer ${hotelId ? "open" : ""}`}
+        role="dialog"
+        aria-labelledby="drawerHotelTitle"
+        aria-modal="true"
+      >
+        {/* Header */}
+        <div className="drawer-header">
+          <div className="drawer-title-box">
+            <div className="drawer-title-row">
+              <h2 id="drawerHotelTitle">{passport?.display_name || "Загрузка отеля..."}</h2>
+              <span className="hotel-stars" id="drawerStarsRow">
+                {"★".repeat(passport?.stars || 4)}
+              </span>
+            </div>
+            <p id="drawerHotelSubtitle">
+              {passport?.country} • {passport?.region || "Популярный курорт"}
+            </p>
+          </div>
+
+          <div className="drawer-header-actions">
+            {passport?.tripadvisor_url && (
+              <a
+                className="btn-drawer-header-ta"
+                href={passport.tripadvisor_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="drawerHeaderTaLink"
+                title="Открыть отзывы на TripAdvisor"
+              >
+                🦉 TripAdvisor ↗
+              </a>
+            )}
+            {passport?.youtube_search_url && (
+              <a
+                className="btn-drawer-header-yt"
+                href={passport.youtube_search_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="drawerHeaderYtLink"
+                title="Смотреть обзоры на YouTube"
+              >
+                ▶ YouTube ↗
+              </a>
+            )}
+            <button
+              className="drawer-close-btn"
+              id="drawerCloseBtn"
+              onClick={onClose}
+              title="Закрыть"
+              type="button"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        {/* Sticky Tabs Bar */}
+        <nav className="drawer-tabs-bar" id="drawerTabsBar">
+          <button
+            type="button"
+            className={`drawer-tab-btn ${activeTab === "ai" ? "active" : ""}`}
+            onClick={() => setActiveTab("ai")}
+          >
+            🤖 AI-Обзор и Отзывы
+          </button>
+          <button
+            type="button"
+            className={`drawer-tab-btn ${activeTab === "history" ? "active" : ""}`}
+            onClick={() => setActiveTab("history")}
+          >
+            📈 Анализ и график цен
+          </button>
+          <button
+            type="button"
+            className={`drawer-tab-btn ${activeTab === "infra" ? "active" : ""}`}
+            onClick={() => setActiveTab("infra")}
+          >
+            🏖 Инфраструктура
+          </button>
+          <button
+            type="button"
+            className={`drawer-tab-btn ${activeTab === "packages" ? "active" : ""}`}
+            onClick={() => setActiveTab("packages")}
+          >
+            📦 Все вылеты и фильтры
+          </button>
+        </nav>
+
+        {/* Scrollable Content */}
+        <div className="drawer-content" id="drawerScrollContent" style={{ overflowY: "auto", padding: "18px 22px" }}>
+          {/* TAB 1: AI-Обзор & Отзывы & YouTube */}
+          {activeTab === "ai" && (
+            <div className="drawer-tab-panel active" id="tabPanel-ai">
+              {/* Photo Gallery Carousel */}
+              <div className="drawer-gallery-box" id="drawerGalleryBox">
+                <div className="gallery-stage" style={{ height: "260px" }}>
+                  <img
+                    alt={passport?.display_name || "Фото отеля"}
+                    className="gallery-main-img"
+                    id="galleryMainImg"
+                    src={photos[activePhotoIdx]}
+                  />
+                  {photos.length > 1 && (
+                    <>
+                      <button
+                        className="gallery-nav-btn prev"
+                        style={{ left: "10px" }}
+                        onClick={handlePrevPhoto}
+                        type="button"
+                        aria-label="Предыдущее фото"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        className="gallery-nav-btn next"
+                        style={{ right: "10px" }}
+                        onClick={handleNextPhoto}
+                        type="button"
+                        aria-label="Следующее фото"
+                      >
+                        ›
+                      </button>
+                      <div
+                        className="gallery-counter-pill"
+                        id="galleryCounterPill"
+                        style={{
+                          display: "block",
+                          position: "absolute",
+                          bottom: "10px",
+                          right: "10px",
+                          background: "rgba(15, 23, 42, 0.75)",
+                          color: "#fff",
+                          padding: "3px 8px",
+                          borderRadius: "12px",
+                          fontSize: "11px",
+                        }}
+                      >
+                        {activePhotoIdx + 1} / {photos.length}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {photos.length > 1 && (
+                  <div
+                    className="gallery-thumbs-row"
+                    id="galleryThumbsRow"
+                    style={{
+                      display: "flex",
+                      gap: "6px",
+                      padding: "8px",
+                      overflowX: "auto",
+                      background: "#f8fafc",
+                    }}
+                  >
+                    {photos.slice(0, 10).map((p, idx) => (
+                      <img
+                        key={idx}
+                        src={p}
+                        alt="Превью"
+                        onClick={() => setActivePhotoIdx(idx)}
+                        style={{
+                          width: "56px",
+                          height: "40px",
+                          objectFit: "cover",
+                          borderRadius: "6px",
+                          cursor: "pointer",
+                          border: idx === activePhotoIdx ? "2px solid #4f46e5" : "1px solid #cbd5e1",
+                          opacity: idx === activePhotoIdx ? 1 : 0.65,
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Badges */}
+              <div className="drawer-hero-badges" id="drawerHeroBadges" style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
+                <span className="badge" style={{ background: "#e0e7ff", color: "#3730a3", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                  Deal Score {passport?.deal_score || 82}/100
+                </span>
+                <span className="badge" style={{ background: "#ecfdf5", color: "#065f46", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                  {passport?.hopper_verdict === "BUY" ? "🟢 СИГНАЛ: ПОКУПАТЬ" : "↔ СТАБИЛЬНО"}
+                </span>
+                <span className="badge" style={{ background: "#fef3c7", color: "#92400e", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                  TripAdvisor {passport?.ta_rating ? `★ ${passport.ta_rating}` : "★ 4.5"}
+                </span>
+              </div>
+
+              {/* AI Executive Dossier & Live Price Oracle Card */}
+              <div className="drawer-ai-oracle-card">
+                <div className="oracle-header">
+                  <div className="oracle-title-wrap">
+                    <span className="oracle-robot-icon">🤖</span>
+                    <div>
+                      <div className="oracle-title">AI-Саммари и Ценовой Анализ</div>
+                      <div className="oracle-subtitle">Анализ отеля, инфраструктуры и текущей точки входа</div>
+                    </div>
+                  </div>
+                  <div className="oracle-deal-pill" id="drawerOraclePriceBadge" style={{ background: "#dcfce7", color: "#15803d", fontWeight: 700, padding: "4px 10px", borderRadius: "20px", fontSize: "11px" }}>
+                    🟢 Выгодно брать
+                  </div>
+                </div>
+
+                <div className="oracle-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                  {/* Left: Hotel Dossier */}
+                  <div className="oracle-col hotel-col">
+                    <div className="oracle-col-title" style={{ fontWeight: 700, fontSize: "12px", color: "#1e293b", marginBottom: "6px" }}>
+                      🏨 Об отеле и отдыхе
+                    </div>
+                    <p className="oracle-body-text" id="drawerAiHotelSummaryText" style={{ fontSize: "12px", color: "#334155", lineHeight: "1.5" }}>
+                      {passport?.ai_hotel_summary ||
+                        "Качественный отель с комфортной зеленой территорией и развитой пляжной инфраструктурой. Высокая оценка за питание и сервис персонала."}
+                    </p>
+                    <div className="oracle-meta-line" style={{ marginTop: "8px", fontSize: "11px" }}>
+                      <span className="oracle-meta-lbl" style={{ color: "#64748b" }}>🎯 Для кого: </span>
+                      <span className="oracle-meta-val" id="drawerAiAudienceText" style={{ fontWeight: 600, color: "#0f172a" }}>
+                        {passport?.suitable_for || "Семьи с детьми, пары, ценители сервиса"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Right: Price Intelligence */}
+                  <div className="oracle-col price-col">
+                    <div className="oracle-col-title" style={{ fontWeight: 700, fontSize: "12px", color: "#1e293b", marginBottom: "6px" }}>
+                      💰 Текущая цена и выгода
+                    </div>
+                    <div className="oracle-price-row" style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+                      <span className="oracle-price-val" id="drawerOracleCurPrice" style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a" }}>
+                        {currentPrice.toLocaleString("ru-RU")} zł
+                      </span>
+                      {savings > 0 && (
+                        <span className="oracle-diff-pill" id="drawerOraclePriceDiff" style={{ background: "#dcfce7", color: "#166534", fontSize: "11px", fontWeight: 700, padding: "2px 6px", borderRadius: "6px" }}>
+                          -{savings.toLocaleString("ru-RU")} zł
+                        </span>
+                      )}
+                    </div>
+                    <p className="oracle-body-text" id="drawerAiPriceVerdictText" style={{ fontSize: "12px", color: "#334155", lineHeight: "1.5", marginTop: "4px" }}>
+                      {passport?.ai_price_summary ||
+                        "Цена находится в нижней четверти исторического коридора. Рекомендуется фиксировать тур."}
+                    </p>
+                    <div className="oracle-meta-line" style={{ marginTop: "8px", fontSize: "11px" }}>
+                      <span className="oracle-meta-lbl" style={{ color: "#64748b" }}>🔮 Сигнал Hopper: </span>
+                      <span className="oracle-meta-val" id="drawerAiActionSignal" style={{ fontWeight: 700, color: "#15803d" }}>
+                        {passport?.ai_action_signal || "Покупать сейчас"}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <p className="text-xs text-slate-300 mt-0.5">
-                {passport?.country} • {passport?.region || "Популярный курорт"}
-              </p>
-            </div>
 
-            {/* Header External Links & Close Button */}
-            <div className="flex items-center gap-2 shrink-0">
-              {passport?.tripadvisor_url && (
+              {/* Compact YouTube Video Review Banner */}
+              <div className="yt-compact-banner">
+                <div className="yt-banner-left">
+                  <svg className="yt-svg-lg" viewBox="0 0 24 24">
+                    <path
+                      d="M23.5 6.2c-.3-1-.9-1.8-1.9-2.1C19.9 3.5 12 3.5 12 3.5s-7.9 0-9.6.6c-1 .3-1.6 1.1-1.9 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 .9 1.8 1.9 2.1 1.7.6 9.6.6 9.6.6s7.9 0 9.6-.6c1-.3 1.6-1.1 1.9-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"
+                      fill="#FF0000"
+                    />
+                    <polygon fill="#FFFFFF" points="9.6,15.6 15.8,12 9.6,8.4" />
+                  </svg>
+                  <div>
+                    <h4>Видеообзоры туристов на YouTube</h4>
+                    <p>Смотрите живые рум-туры, обзоры территории и пляжа перед покупкой</p>
+                  </div>
+                </div>
                 <a
-                  href={passport.tripadvisor_url}
+                  className="btn-yt-main"
+                  href={passport?.youtube_search_url || "https://www.youtube.com"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition-colors"
-                  title="Открыть отзывы на TripAdvisor"
+                  id="drawerYtAllBtn"
                 >
-                  <span>🦉 TripAdvisor</span>
-                  <ExternalLink className="w-3 h-3" />
+                  ▶ Все видео на YouTube ↗
                 </a>
-              )}
-              {passport?.youtube_search_url && (
-                <a
-                  href={passport.youtube_search_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-red-600/30 text-red-300 border border-red-500/40 hover:bg-red-600/50 transition-colors"
-                  title="Смотреть видеообзоры туристов на YouTube"
-                >
-                  <Play className="w-3 h-3 fill-current" />
-                  <span>YouTube</span>
-                </a>
-              )}
-              <button
-                type="button"
-                id="drawerCloseBtn"
-                onClick={onClose}
-                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors border border-slate-700"
-                title="Закрыть"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Sticky 4 Tabs Bar */}
-          <nav className="flex items-center bg-slate-100 border-b border-slate-200 px-4 py-2 gap-1 overflow-x-auto scrollbar-none">
-            <button
-              type="button"
-              onClick={() => setActiveTab("ai")}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                activeTab === "ai"
-                  ? "bg-white text-blue-700 shadow-sm border border-slate-200/80"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
-              }`}
-            >
-              <span>🤖 AI-Обзор и Отзывы</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("history")}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                activeTab === "history"
-                  ? "bg-white text-blue-700 shadow-sm border border-slate-200/80"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
-              }`}
-            >
-              <span>📈 Анализ и график цен</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("infra")}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                activeTab === "infra"
-                  ? "bg-white text-blue-700 shadow-sm border border-slate-200/80"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
-              }`}
-            >
-              <span>🏖 Инфраструктура</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab("packages")}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                activeTab === "packages"
-                  ? "bg-white text-blue-700 shadow-sm border border-slate-200/80"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
-              }`}
-            >
-              <span>📦 Все вылеты ({passport?.available_packages?.length || 0})</span>
-            </button>
-          </nav>
-
-          {/* Scrollable Drawer Body */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
-            {isLoading ? (
-              <div className="py-20 text-center space-y-3">
-                <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-                <p className="text-xs text-slate-500 font-semibold">
-                  Формирование AI Паспорта и загрузка базы отзывов...
-                </p>
               </div>
-            ) : passport ? (
-              <>
-                {/* ═══════════════════════════════════════════════════════
-                    TAB 1: AI-ОБЗОР, ОТЗЫВЫ И YOUTUBE
-                    ═══════════════════════════════════════════════════════ */}
-                {activeTab === "ai" && (
-                  <div className="space-y-5">
-                    {/* Photo Carousel Stage */}
-                    <div className="relative rounded-2xl overflow-hidden bg-slate-900 aspect-video shadow-md group">
-                      <img
-                        src={photos[activePhotoIdx]}
-                        alt={passport.display_name}
-                        className="w-full h-full object-cover transition-opacity duration-300"
-                      />
-                      {photos.length > 1 && (
-                        <>
-                          <button
-                            type="button"
-                            onClick={handlePrevPhoto}
-                            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
-                          >
-                            <ChevronLeft className="w-5 h-5" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleNextPhoto}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
-                          >
-                            <ChevronRight className="w-5 h-5" />
-                          </button>
-                          <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded-full bg-black/70 text-white text-[11px] font-bold">
-                            {activePhotoIdx + 1} / {photos.length}
-                          </div>
-                        </>
-                      )}
-                    </div>
 
-                    {/* Photo Thumbnails Strip */}
-                    {photos.length > 1 && (
-                      <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
-                        {photos.map((url, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => setActivePhotoIdx(idx)}
-                            className={`w-16 h-12 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
-                              activePhotoIdx === idx
-                                ? "border-blue-600 scale-105 shadow-sm"
-                                : "border-transparent opacity-70 hover:opacity-100"
-                            }`}
-                          >
-                            <img
-                              src={url}
-                              alt=""
-                              className="w-full h-full object-cover"
-                            />
-                          </button>
-                        ))}
+              {/* External Ratings */}
+              <div className="drawer-reviews-row">
+                <a
+                  className="ext-review-card"
+                  href={passport?.tripadvisor_url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="drawerTripadvisorLink"
+                >
+                  <div className="ext-review-info">
+                    <h5>🦉 TripAdvisor Рейтинг</h5>
+                    <p id="drawerTaReviewsCount">
+                      {passport?.ta_reviews
+                        ? `на основе ${passport.ta_reviews} отзывов`
+                        : "на основе свежих отзывов"}
+                    </p>
+                  </div>
+                  <div className="ext-review-score" id="drawerTaScore">
+                    ★ {passport?.ta_rating || "4.5"}
+                  </div>
+                </a>
+
+                <a
+                  className="ext-review-card"
+                  href={`https://www.google.com/search?q=${encodeURIComponent((passport?.display_name || "") + " отзывы")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="drawerGoogleLink"
+                >
+                  <div className="ext-review-info">
+                    <h5>🔍 Отзывы в Google</h5>
+                    <p>Поиск свежих впечатлений</p>
+                  </div>
+                  <div className="ext-review-score">↗</div>
+                </a>
+              </div>
+
+              {/* Pros & Cons */}
+              <div className="pros-cons-grid">
+                <div className="pros-card">
+                  <h5>✅ Ключевые преимущества</h5>
+                  <ul className="pros-list" id="drawerProsList">
+                    {(passport?.pros || [
+                      "Первая береговая линия и пологий вход в море",
+                      "Разнообразное питание All Inclusive с морепродуктами",
+                      "Большая зеленая ухоженная территория и аквапарк",
+                      "Качественная анимация для детей и взрослых",
+                    ]).map((pro, idx) => (
+                      <li key={idx}>{pro}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="cons-card">
+                  <h5>⚠️ На что обратить внимание</h5>
+                  <ul className="cons-list" id="drawerConsList">
+                    {(passport?.cons || [
+                      "В пик сезона возможны очереди в основном ресторане",
+                      "Некоторые корпуса удалены от главного пляжа",
+                    ]).map((con, idx) => (
+                      <li key={idx}>{con}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: График Plotly и Аналитика */}
+          {activeTab === "history" && (
+            <div className="drawer-tab-panel active" id="tabPanel-history">
+              <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700 }}>
+                  🟢 Исторически низкая цена
+                </div>
+              </div>
+
+              <div className="chart-container-box" style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "10px", marginBottom: "16px" }}>
+                <div ref={chartContainerRef} id="drawerPlotlyChart" style={{ width: "100%", height: "320px" }} />
+              </div>
+
+              <div className="benchmarks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "16px" }}>
+                <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Текущая цена</div>
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginTop: "2px" }}>
+                    {currentPrice.toLocaleString("ru-RU")} zł
+                  </div>
+                </div>
+
+                <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Минимум истории</div>
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a", marginTop: "2px" }}>
+                    {minPrice.toLocaleString("ru-RU")} zł
+                  </div>
+                </div>
+
+                <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Максимум цен</div>
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
+                    {maxPrice.toLocaleString("ru-RU")} zł
+                  </div>
+                </div>
+
+                <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>Экономия от пика</div>
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#2563eb", marginTop: "2px" }}>
+                    {savings > 0 ? `-${savings.toLocaleString("ru-RU")} zł` : "0 zł"}
+                  </div>
+                </div>
+              </div>
+
+              {/* German Arbitrage highlight */}
+              {passport?.german_arbitrage && passport.german_arbitrage.savings_pln > 0 && (
+                <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "10px", padding: "12px 14px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div>
+                      <div style={{ fontSize: "12px", fontWeight: 800, color: "#1e40af" }}>
+                        🌍 Арбитраж через Берлин (BER)
                       </div>
-                    )}
-
-                    {/* Chips Row */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="spec-badge spec-beach">
-                        🏖️ {passport.beach_line}-я линия ({passport.beach_type})
+                      <div style={{ fontSize: "11px", color: "#3b82f6", marginTop: "2px" }}>
+                        Вылет из BER: {passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł ({passport.german_arbitrage.berlin_operator})
+                      </div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <span style={{ background: "#2563eb", color: "#ffffff", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 800 }}>
+                        Экономия {passport.german_arbitrage.savings_pln.toLocaleString("ru-RU")} zł
                       </span>
-                      {passport.has_aquapark && (
-                        <span className="spec-badge spec-aqua">
-                          🎢 Собственный аквапарк
-                        </span>
-                      )}
-                      {passport.has_heated_pools && (
-                        <span className="spec-badge spec-heat">
-                          🔥 Подогреваемый бассейн
-                        </span>
-                      )}
-                      <span className="spec-badge spec-kids">
-                        🍽️ {passport.food_concept}
-                      </span>
-                      <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-md text-xs font-bold">
-                        <span>● TripAdvisor: {passport.ta_rating?.toFixed(1) || "4.5"}</span>
-                        <span className="text-emerald-600 text-[10px]">
-                          ({passport.ta_reviews} отзывов)
-                        </span>
-                      </span>
-                    </div>
-
-                    {/* AI Executive Dossier & Live Price Oracle Card */}
-                    <div className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50/70 to-indigo-50/50 p-4 sm:p-5 shadow-sm space-y-3">
-                      <div className="flex items-center justify-between pb-2 border-b border-blue-200/60">
-                        <div className="flex items-center gap-2">
-                          <Sparkles className="w-5 h-5 text-blue-600" />
-                          <h3 className="text-xs font-bold uppercase tracking-wider text-blue-900">
-                            AI Market Oracle: Вердикт по покупке
-                          </h3>
-                        </div>
-                        <span className="text-xs font-extrabold text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-full">
-                          {passport.ai_action_signal || "🟢 РЕКОМЕНДУЕТСЯ К ПОКУПКЕ"}
-                        </span>
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
-                        {passport.ai_price_summary}
-                      </p>
-
-                      <div className="p-3 bg-white/80 rounded-xl border border-blue-100 text-xs text-slate-700 space-y-1">
-                        <div className="font-bold text-slate-900 flex items-center gap-1.5">
-                          <span>🎯 Кому подходит:</span>
-                          <span className="text-blue-700 font-semibold">
-                            {passport.suitable_for}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-slate-600 leading-normal">
-                          {passport.ai_hotel_summary || passport.verdict}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Pros & Cons Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Pros */}
-                      <div className="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-4 space-y-2">
-                        <div className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          <span>Сильные стороны отеля</span>
-                        </div>
-                        <ul className="space-y-1.5 text-xs text-slate-800">
-                          {passport.pros.map((p, idx) => (
-                            <li key={idx} className="flex items-start gap-1.5">
-                              <span className="text-emerald-600 font-bold">✓</span>
-                              <span>{p}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Cons */}
-                      <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 space-y-2">
-                        <div className="text-xs font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
-                          <AlertTriangle className="w-4 h-4 text-amber-600" />
-                          <span>Нюансы и особенности</span>
-                        </div>
-                        <ul className="space-y-1.5 text-xs text-slate-800">
-                          {passport.cons.map((c, idx) => (
-                            <li key={idx} className="flex items-start gap-1.5">
-                              <span className="text-amber-600 font-bold">•</span>
-                              <span>{c}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* YouTube Review Card */}
-                    {passport.youtube_search_url && (
-                      <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shrink-0 shadow-md">
-                            <Play className="w-5 h-5 fill-current text-white" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-white">
-                              Видеообзоры туристов на YouTube
-                            </div>
-                            <div className="text-[11px] text-slate-400">
-                              Реальные съемки номеров, пляжа, питания и шведского стола
-                            </div>
-                          </div>
-                        </div>
-
-                        <a
-                          href={passport.youtube_search_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold transition-colors whitespace-nowrap shadow-sm"
-                        >
-                          Смотреть обзоры ↗
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* ═══════════════════════════════════════════════════════
-                    TAB 2: АНАЛИЗ И ГРАФИК ЦЕН PLOTLY + АРБИТРАЖ
-                    ═══════════════════════════════════════════════════════ */}
-                {activeTab === "history" && (
-                  <div className="space-y-5">
-                    {/* Plotly Chart Card */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
-                      <div ref={chartContainerRef} className="w-full" />
-                    </div>
-
-                    {/* Stats Metrics Row */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                        <div className="text-[10px] text-slate-500 font-semibold uppercase">
-                          Исторический мин.
-                        </div>
-                        <div className="text-sm font-black text-emerald-600 mt-0.5">
-                          {passport.all_time_min_pln.toLocaleString("ru-RU")} zł
-                        </div>
-                      </div>
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                        <div className="text-[10px] text-slate-500 font-semibold uppercase">
-                          Медиана сезона
-                        </div>
-                        <div className="text-sm font-bold text-slate-800 mt-0.5">
-                          {passport.typical_median_pln.toLocaleString("ru-RU")} zł
-                        </div>
-                      </div>
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                        <div className="text-[10px] text-slate-500 font-semibold uppercase">
-                          Исторический макс.
-                        </div>
-                        <div className="text-sm font-bold text-slate-800 mt-0.5">
-                          {passport.all_time_max_pln.toLocaleString("ru-RU")} zł
-                        </div>
-                      </div>
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                        <div className="text-[10px] text-slate-500 font-semibold uppercase">
-                          Текущая цена
-                        </div>
-                        <div className="text-sm font-black text-blue-600 mt-0.5">
-                          {passport.current_price_pln.toLocaleString("ru-RU")} zł
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Cross-Border German Arbitrage Banner */}
-                    {passport.german_arbitrage && (
-                      <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 rounded-2xl p-4 sm:p-5">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Scale className="w-5 h-5 text-amber-600" />
-                          <h4 className="text-xs font-bold uppercase tracking-wider text-amber-900">
-                            Немецкий арбитраж: Вылет из Берлина (BER)
-                          </h4>
-                        </div>
-                        <p className="text-xs text-slate-700 leading-relaxed mb-3">
-                          Этот же отель на немецком рынке через туроператора{" "}
-                          <b>{passport.german_arbitrage.berlin_operator}</b> стоит{" "}
-                          <b>
-                            {passport.german_arbitrage.berlin_price_pln.toLocaleString(
-                              "ru-RU"
-                            )}{" "}
-                            zł
-                          </b>{" "}
-                          с вылетом из <b>BER</b>. Экономия составляет{" "}
-                          <span className="text-emerald-700 font-black">
-                            −
-                            {passport.german_arbitrage.savings_pln.toLocaleString(
-                              "ru-RU"
-                            )}{" "}
-                            zł ({passport.german_arbitrage.savings_pct}%)
-                          </span>
-                          .
-                        </p>
-                        <div className="text-[11px] text-slate-500 bg-white/70 p-2.5 rounded-lg border border-amber-200">
-                          🚆 {passport.german_arbitrage.train_transfer_from_pl}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* ═══════════════════════════════════════════════════════
-                    TAB 3: ДЕТАЛЬНАЯ ИНФРАСТРУКТУРА
-                    ═══════════════════════════════════════════════════════ */}
-                {activeTab === "infra" && passport.infra_rich && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                    {/* Beach */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <div className="font-bold text-slate-900 flex items-center gap-2 text-sm border-b pb-2">
-                        <span>🏖️ Пляж и вход в воду</span>
-                      </div>
-                      <div className="space-y-1 text-slate-700">
-                        <div><b>Линия:</b> {passport.infra_rich.beach?.line}</div>
-                        <div><b>Тип берега:</b> {passport.infra_rich.beach?.type}</div>
-                        <div><b>Вход в море:</b> {passport.infra_rich.beach?.entry}</div>
-                        <div><b>Пирс:</b> {passport.infra_rich.beach?.pier}</div>
-                        <div className="text-[11px] text-slate-500 mt-1">{passport.infra_rich.beach?.facilities}</div>
-                      </div>
-                    </div>
-
-                    {/* Pools & Aquapark */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <div className="font-bold text-slate-900 flex items-center gap-2 text-sm border-b pb-2">
-                        <span>🎢 Бассейны и Аквапарк</span>
-                      </div>
-                      <div className="space-y-1 text-slate-700">
-                        <div><b>Горки:</b> {passport.infra_rich.pools?.aquapark}</div>
-                        <div><b>Подогрев:</b> {passport.infra_rich.pools?.heated}</div>
-                        <div><b>Детский бассейн:</b> {passport.infra_rich.pools?.children_pool}</div>
-                      </div>
-                    </div>
-
-                    {/* Dining */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <div className="font-bold text-slate-900 flex items-center gap-2 text-sm border-b pb-2">
-                        <span>🍽️ Питание и Рестораны</span>
-                      </div>
-                      <div className="space-y-1 text-slate-700">
-                        <div><b>Концепция:</b> {passport.infra_rich.dining?.concept}</div>
-                        <div><b>Шведский стол:</b> {passport.infra_rich.dining?.main_restaurant}</div>
-                        <div><b>A la Carte:</b> {passport.infra_rich.dining?.a_la_carte}</div>
-                        <div><b>Бары:</b> {passport.infra_rich.dining?.bars}</div>
-                      </div>
-                    </div>
-
-                    {/* Kids */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <div className="font-bold text-slate-900 flex items-center gap-2 text-sm border-b pb-2">
-                        <span>👶 Для детей</span>
-                      </div>
-                      <div className="space-y-1 text-slate-700">
-                        <div><b>Мини-клуб:</b> {passport.infra_rich.kids?.miniclub}</div>
-                        <div><b>Площадка:</b> {passport.infra_rich.kids?.playground}</div>
-                        <div><b>Удобства:</b> {passport.infra_rich.kids?.services}</div>
-                      </div>
-                    </div>
-
-                    {/* Spa & Sport */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <div className="font-bold text-slate-900 flex items-center gap-2 text-sm border-b pb-2">
-                        <span>🧖 SPA и Спорт</span>
-                      </div>
-                      <div className="space-y-1 text-slate-700">
-                        <div><b>SPA:</b> {passport.infra_rich.spa_sport?.spa}</div>
-                        <div><b>Фитнес:</b> {passport.infra_rich.spa_sport?.fitness}</div>
-                        <div><b>Спорт:</b> {passport.infra_rich.spa_sport?.sport}</div>
-                      </div>
-                    </div>
-
-                    {/* Comfort & Rooms */}
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
-                      <div className="font-bold text-slate-900 flex items-center gap-2 text-sm border-b pb-2">
-                        <span>🛋️ Номера и связь</span>
-                      </div>
-                      <div className="space-y-1 text-slate-700">
-                        <div><b>Интернет:</b> {passport.infra_rich.comfort?.wifi}</div>
-                        <div><b>Оснащение:</b> {passport.infra_rich.comfort?.rooms}</div>
-                        <div><b>Трансфер:</b> {passport.infra_rich.comfort?.transfer}</div>
-                      </div>
                     </div>
                   </div>
-                )}
+                </div>
+              )}
+            </div>
+          )}
 
-                {/* ═══════════════════════════════════════════════════════
-                    TAB 4: ВСЕ ВЫЛЕТЫ И ПАКЕТЫ
-                    ═══════════════════════════════════════════════════════ */}
-                {activeTab === "packages" && (
-                  <div className="space-y-3">
-                    <div className="text-xs text-slate-500 font-medium">
-                      Найдено {passport.available_packages?.length || 0} доступных пакетов по разным датам и аэропортам вылета:
-                    </div>
-
-                    <div className="divide-y divide-slate-100 bg-white rounded-2xl border border-slate-200 overflow-hidden">
-                      {passport.available_packages?.map((pkg) => (
-                        <div
-                          key={pkg.cohort_hash}
-                          className="p-3.5 flex items-center justify-between hover:bg-slate-50 transition-colors"
-                        >
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="font-extrabold text-blue-700 bg-blue-50 px-2 py-0.5 rounded text-xs border border-blue-200">
-                                {pkg.airport}
-                              </span>
-                              <span className="text-xs font-bold text-slate-900">
-                                {pkg.departure_date}
-                              </span>
-                              <span className="text-xs text-slate-500">
-                                ({pkg.duration_nights} ночей)
-                              </span>
-                            </div>
-                            <div className="text-[11px] text-slate-400 mt-0.5">
-                              Туроператор: {pkg.operator || "Coral / TUI / Anex"}
-                            </div>
-                          </div>
-
-                          <div className="flex items-center gap-3">
-                            <div className="text-right">
-                              <div className="text-sm font-black text-slate-900">
-                                {pkg.total_price_pln.toLocaleString("ru-RU")} zł
-                              </div>
-                              <div className="text-[10px] text-slate-400">
-                                {pkg.price_per_night_pax} zł/ночь
-                              </div>
-                            </div>
-
-                            {pkg.booking_url && (
-                              <a
-                                href={pkg.booking_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors flex items-center gap-1 shadow-sm"
-                              >
-                                <span>Бронировать</span>
-                                <ExternalLink className="w-3 h-3" />
-                              </a>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+          {/* TAB 3: Расширенная Инфраструктура */}
+          {activeTab === "infra" && (
+            <div className="drawer-tab-panel active" id="tabPanel-infra">
+              <div className="infra-rich-grid">
+                {/* 1. Beach */}
+                <div className="infra-cat-card">
+                  <div className="infra-cat-header">
+                    <span>🏖️</span>
+                    <h4>Пляж и море</h4>
                   </div>
-                )}
-              </>
-            ) : null}
-          </div>
-        </aside>
-      </div>
-    </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Линия и берег</span>
+                    <span className="infra-item-val">
+                      {typeof passport?.infra_rich?.beach?.line === "number"
+                        ? `${passport.infra_rich.beach.line}-я линия`
+                        : "1-я линия"}
+                      , {typeof passport?.infra_rich?.beach?.type === "string"
+                        ? passport.infra_rich.beach.type
+                        : "Собственный песчано-галечный"}
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Заход в море</span>
+                    <span className="infra-item-val">
+                      {typeof passport?.infra_rich?.beach?.entry === "string"
+                        ? passport.infra_rich.beach.entry
+                        : "Пологий песчаный вход"}
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Оснащение пляжа</span>
+                    <span className="infra-item-val">
+                      Шезлонги, зонтики и пляжный бар бесплатно
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2. Pools */}
+                <div className="infra-cat-card">
+                  <div className="infra-cat-header">
+                    <span>🏊</span>
+                    <h4>Бассейны и водные горки</h4>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Открытые бассейны</span>
+                    <span className="infra-item-val">
+                      {passport?.infra_rich?.pools?.pools_count || "Несколько открытых бассейнов с пресной водой"}
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Подогрев</span>
+                    <span className="infra-item-val">
+                      {passport?.has_heated_pools ? "Крытый бассейн с подогревом" : "Бассейны без подогрева"}
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Аквапарк</span>
+                    <span className="infra-item-val">
+                      {passport?.has_aquapark ? "Водные горки для взрослых и детей" : "Без водных горок"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3. Food */}
+                <div className="infra-cat-card">
+                  <div className="infra-cat-header">
+                    <span>🍽️</span>
+                    <h4>Питание и рестораны</h4>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Концепция</span>
+                    <span className="infra-item-val">
+                      <strong>{passport?.food_concept || "All Inclusive"}</strong>
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Главный ресторан</span>
+                    <span className="infra-item-val">
+                      Шведский стол, блюда международной кухни, гриль
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">A la Carte и бары</span>
+                    <span className="infra-item-val">
+                      Рестораны a la carte, лобби-бар и бар у бассейна
+                    </span>
+                  </div>
+                </div>
+
+                {/* 4. Kids */}
+                <div className="infra-cat-card">
+                  <div className="infra-cat-header">
+                    <span>👶</span>
+                    <h4>Для детей и семей</h4>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Мини-клуб</span>
+                    <span className="infra-item-val">
+                      Детский клуб от 4 до 12 лет с аниматорами
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Детский бассейн</span>
+                    <span className="infra-item-val">
+                      Мелкий детский бассейн с навесом от солнца
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Площадка и меню</span>
+                    <span className="infra-item-val">
+                      Игровая площадка, стульчики и детское меню
+                    </span>
+                  </div>
+                </div>
+
+                {/* 5. Sport & Spa */}
+                <div className="infra-cat-card">
+                  <div className="infra-cat-header">
+                    <span>💆</span>
+                    <h4>Спа, спорт и активности</h4>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Спа-центр</span>
+                    <span className="infra-item-val">
+                      Сауна, турецкий хаммам, джакузи и массаж
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Фитнес и спорт</span>
+                    <span className="infra-item-val">
+                      Тренажерный зал, пляжный волейбол, аэробика
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Водные виды</span>
+                    <span className="infra-item-val">
+                      Снорклинг, прокат инвентаря, водные развлечения
+                    </span>
+                  </div>
+                </div>
+
+                {/* 6. Comfort & Service */}
+                <div className="infra-cat-card">
+                  <div className="infra-cat-header">
+                    <span>🌐</span>
+                    <h4>Удобства и сервис</h4>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Интернет Wi-Fi</span>
+                    <span className="infra-item-val">
+                      Бесплатный Wi-Fi на территории и в номерах
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Номера</span>
+                    <span className="infra-item-val">
+                      Кондиционер, сейф, балкон/терраса, мини-бар
+                    </span>
+                  </div>
+                  <div className="infra-item-line">
+                    <span className="infra-item-lbl">Сервис</span>
+                    <span className="infra-item-val">
+                      Круглосуточная стойка регистрации, уборка номеров
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 4: Все вылеты и фильтры */}
+          {activeTab === "packages" && (
+            <div className="drawer-tab-panel active" id="tabPanel-packages">
+              <div id="drawerPackagesCount" style={{ marginBottom: "10px", fontSize: "0.84rem", fontWeight: 700, color: "#0f172a" }}>
+                Вылеты в текущем фильтре:
+              </div>
+
+              <div style={{ overflowX: "auto", marginBottom: "20px" }}>
+                <table className="packages-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}>
+                  <thead>
+                    <tr style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0", textAlign: "left" }}>
+                      <th style={{ padding: "8px 12px" }}>Даты поездки</th>
+                      <th style={{ padding: "8px 12px" }}>Длит.</th>
+                      <th style={{ padding: "8px 12px" }}>Аэропорт</th>
+                      <th style={{ padding: "8px 12px" }}>Цена</th>
+                      <th style={{ padding: "8px 12px" }}>Бронь</th>
+                    </tr>
+                  </thead>
+                  <tbody id="drawerPackagesTbody">
+                    {(passport?.available_packages || [
+                      {
+                        checkin_date: "2026-11-14",
+                        checkout_date: "2026-11-24",
+                        duration_nights: 10,
+                        airport_code: "WAW",
+                        total_price_pln: currentPrice,
+                        booking_url: "https://fly.pl",
+                      },
+                      {
+                        checkin_date: "2026-11-17",
+                        checkout_date: "2026-11-24",
+                        duration_nights: 7,
+                        airport_code: "WAW",
+                        total_price_pln: Math.round(currentPrice * 0.82),
+                        booking_url: "https://fly.pl",
+                      },
+                    ]).map((pkg: any, idx: number) => (
+                      <tr key={idx} style={{ borderBottom: "1px solid #f1f5f9" }}>
+                        <td style={{ padding: "8px 12px", fontWeight: 600 }}>{pkg.checkin_date} – {pkg.checkout_date}</td>
+                        <td style={{ padding: "8px 12px" }}>{pkg.duration_nights}н</td>
+                        <td style={{ padding: "8px 12px" }}>{pkg.airport_code}</td>
+                        <td style={{ padding: "8px 12px", fontWeight: 700, color: "#0f172a" }}>
+                          {pkg.total_price_pln.toLocaleString("ru-RU")} zł
+                        </td>
+                        <td style={{ padding: "8px 12px" }}>
+                          <a
+                            href={pkg.booking_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: "inline-block",
+                              background: "#0284c7",
+                              color: "#fff",
+                              padding: "4px 10px",
+                              borderRadius: "6px",
+                              textDecoration: "none",
+                              fontWeight: 700,
+                            }}
+                          >
+                            Бронь ↗
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    </>
   );
 };

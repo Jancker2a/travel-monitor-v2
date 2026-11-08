@@ -1,3 +1,6 @@
+@import "./styles/v1_dashboard.css";
+@import "./styles/v1_passport_drawer.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
