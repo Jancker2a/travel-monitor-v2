@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -114,4 +115,12 @@ async def trigger_watchlist_check():
 async def get_hotel_history_passport(hotel_id: str, db: AsyncSession = Depends(get_db)):
     """Retrieves complete Hotel Passport with all-time price history points and stats."""
     return await WatchlistService.get_hotel_passport(db, hotel_id)
+
+
+# Mount built React SPA frontend if dist exists
+dist_dir = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+if dist_dir.is_dir():
+    from fastapi.staticfiles import StaticFiles
+    logger.info(f"Mounting production frontend build from {dist_dir} to /")
+    app.mount("/", StaticFiles(directory=str(dist_dir), html=True), name="frontend")
 

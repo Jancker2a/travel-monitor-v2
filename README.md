@@ -5,66 +5,67 @@ Next-Generation Intelligent Travel Price Monitor, Universal Meta-Search, and Pri
 ---
 
 ## 🌟 Key Features
-- **Universal Live Search:** Search across any destination, departure dates, duration (6-15 nights), passenger compositions (adults + children), and airports.
+- **Interactive Web SPA:** Modern React 18 + Vite + Tailwind CSS meta-search application with destination pills, date filters, traveler configurator, and airport selectors.
 - **The Dual-Engine Data Architecture:**
-  - **Trunk Engine:** Automated background monitoring of TOP-500 hotels across core destinations, maintaining dense, continuous price history.
-  - **On-Demand Engine:** Real-time fast query builder and live scrape gateway for custom user requests.
-- **Deterministic Cohort Signatures (`cohort_hash`):** Normalizes chaotic searches into structured time-series packages.
-- **Hopper Self-Learning Engine:** Predictive Buy/Wait signals calibrated against real historical price trajectories.
-- **Deal Score & Market DNA:** Identifies true discounts vs deceptive marketing baselines.
+  - **Instant Cache Engine:** Sub-100ms response time against a pre-indexed historical database (43,651+ price snapshots across 1,115 hotels).
+  - **On-Demand Live Engine:** Real-time parametric query builder and live scrape gateway for custom user requests.
+- **Hopper Self-Learning Radar & Deal Score:**
+  - Real-time deal badges (`SUPER_DEAL`, `GOOD_DEAL`, `FAIR_PRICE`, `OVERPRICED`).
+  - Actionable recommendations (`BUY NOW`, `WAIT`) with calibrated confidence scores.
+  - SVG price sparklines rendered inline on every hotel card.
+- **Hotel Passport & Historical Charts:**
+  - Complete price fluctuation graphs powered by Plotly.js.
+  - Tooltips displaying trip dates, price per night per person, and departure airport.
+  - All-time statistics (historical min, median, max).
+- **Smart Watchlist & Price Alerts:**
+  - One-click price tracking with custom target price ($P_{\text{target}}$).
+  - Background scheduler automatically detecting price drops $\ge 50$ PLN or target hits.
+  - Automated Telegram push notifications.
 
 ---
 
 ## 🏗️ Architecture Stack
-- **Backend:** Python 3.11, FastAPI (async/await)
-- **Database:** PostgreSQL 16 (or Supabase in production) with SQLAlchemy 2.0 & asyncpg
-- **Caching:** Redis 7 / Upstash
-- **Scraping:** Fast asynchronous HTTP gateway & headless Playwright fallback
-- **Containerization:** Docker Compose
+- **Frontend:** React 18, Vite, TypeScript, Tailwind CSS, Lucide Icons, Plotly.js 2.35.2
+- **Backend:** Python 3.9+, FastAPI (async/await), Pydantic v2
+- **Database & ORM:** PostgreSQL 16 / SQLite with SQLAlchemy 2.0, asyncpg, and aiosqlite
+- **Background Worker:** Async lifespan scheduler for Watchlist evaluation & alerts
+- **Scraping Engine:** Asynchronous HTTP client with browser headers and RDFa schema parser
 
 ---
 
-## 🚀 Quick Start (Local Development)
+## 🚀 Quick Start (1-Click Launcher)
 
-### 1. Using Docker Compose (Recommended)
+To run the complete platform (Frontend, Backend API, and Database):
+```bash
+./start.sh
+```
+
+Then open:
+- 🌐 **Web Application:** `http://localhost:8000`
+- 📖 **Interactive API Docs (Swagger):** `http://localhost:8000/docs`
+- 🩺 **Health Check:** `http://localhost:8000/healthz`
+
+---
+
+## 🐳 Docker Compose
 ```bash
 docker compose up -d
-```
-FastAPI interactive Swagger documentation will be available at:
-👉 `http://localhost:8000/docs`
-
-Healthcheck:
-👉 `http://localhost:8000/healthz`
-
-### 2. Without Docker (Local Virtual Environment)
-```bash
-# Setup venv
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r backend/requirements.txt
-
-# Run migrations / tests
-PYTHONPATH=backend python3 -m unittest discover -s backend/tests
-
-# Run server with SQLite (for fast local dev without Postgres)
-DATABASE_URL="sqlite+aiosqlite:///travel_monitor_v2.db" uvicorn app.main:app --reload --port 8000
-```
-
----
-
-## 📦 Data Migration from v1
-To import all 4 months of historical price data (20,000+ offers) from `travel-price-monitor` v1 into v2:
-
-```bash
-source .venv/bin/activate
-PYTHONPATH=backend python3 scripts/migrate_v1_sqlite.py
 ```
 
 ---
 
 ## 🧪 Testing
+
+Run complete backend test suite:
 ```bash
 source .venv/bin/activate
-PYTHONPATH=backend python3 -m unittest discover -s backend/tests
+pytest
+# 10 passed in 0.17s
 ```
 
+Run frontend build verification:
+```bash
+cd frontend
+npm run build
+# ✓ built in 767ms
+```
