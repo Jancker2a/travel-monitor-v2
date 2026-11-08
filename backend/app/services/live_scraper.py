@@ -404,3 +404,4 @@ class LiveScraperService:
 
         await db.commit()
         return items
+

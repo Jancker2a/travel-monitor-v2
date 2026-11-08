@@ -216,3 +216,4 @@ class SearchService:
         # Sort by total price ascending
         items.sort(key=lambda x: x.current_offer.total_price_pln)
         return items
+

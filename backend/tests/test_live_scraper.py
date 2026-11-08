@@ -107,3 +107,4 @@ async def test_process_and_persist_offers():
         assert len(item.history_sparkline) >= 1
 
     await engine.dispose()
+
