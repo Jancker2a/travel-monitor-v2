@@ -6,34 +6,41 @@ import httpx
 from app.config import settings
 from app.database import AsyncSessionLocal
 from app.services.watchlist_service import WatchlistService
+from app.services.normalized_crawler import NormalizedCrawlerService
 
 logger = logging.getLogger("travel_monitor_2.scheduler")
 
 
 class BackgroundScheduler:
-    """Async background worker for scheduled Watchlist checks and Telegram push alerts."""
+    """Async background worker for scheduled Watchlist checks, Telegram alerts, and normalized crawling."""
 
-    def __init__(self, check_interval_seconds: int = 3600):
+    def __init__(self, check_interval_seconds: int = 3600, crawler_interval_seconds: int = 21600):
         self.check_interval_seconds = check_interval_seconds
+        self.crawler_interval_seconds = crawler_interval_seconds
         self._running = False
         self._task: Optional[asyncio.Task] = None
+        self._crawler_task: Optional[asyncio.Task] = None
 
     async def start(self):
         if self._running:
             return
         self._running = True
         self._task = asyncio.create_task(self._run_loop())
-        logger.info(f"Background Watchlist Scheduler started (interval: {self.check_interval_seconds}s)")
+        self._crawler_task = asyncio.create_task(self._run_crawler_loop())
+        logger.info(
+            f"Background Scheduler started (watchlist interval: {self.check_interval_seconds}s, crawler interval: {self.crawler_interval_seconds}s)"
+        )
 
     async def stop(self):
         self._running = False
-        if self._task and not self._task.done():
-            self._task.cancel()
-            try:
-                await self._task
-            except asyncio.CancelledError:
-                pass
-        logger.info("Background Watchlist Scheduler stopped.")
+        for t in [self._task, self._crawler_task]:
+            if t and not t.done():
+                t.cancel()
+                try:
+                    await t
+                except asyncio.CancelledError:
+                    pass
+        logger.info("Background Scheduler stopped.")
 
     async def _run_loop(self):
         while self._running:
@@ -42,9 +49,24 @@ class BackgroundScheduler:
             except Exception as e:
                 logger.error(f"Error during scheduler execution cycle: {e}")
 
-            # Sleep until next interval
             try:
                 await asyncio.sleep(self.check_interval_seconds)
+            except asyncio.CancelledError:
+                break
+
+    async def _run_crawler_loop(self):
+        """Periodic background pass to maintain normalized 1p 8n price benchmark database."""
+        # Initial wait to let app startup smoothly
+        await asyncio.sleep(10)
+        while self._running:
+            try:
+                logger.info("Scheduler: starting periodic normalized crawler pass...")
+                await NormalizedCrawlerService.run_crawler_cycle(max_offers_per_dest=30)
+            except Exception as e:
+                logger.error(f"Error during periodic normalized crawler pass: {e}")
+
+            try:
+                await asyncio.sleep(self.crawler_interval_seconds)
             except asyncio.CancelledError:
                 break
 

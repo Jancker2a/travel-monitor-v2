@@ -95,3 +95,4 @@ export const TopDropsCarousel: React.FC<Props> = ({ drops, onSelectHotel }) => {
     </div>
   );
 };
+

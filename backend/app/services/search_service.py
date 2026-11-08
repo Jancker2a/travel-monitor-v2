@@ -17,6 +17,7 @@ from app.schemas.search import (
 )
 from app.services.live_scraper import LiveScraperService
 from app.services.query_builder import UniversalQueryBuilder
+from app.services.cost_decomposer import CostDecomposer
 
 logger = logging.getLogger("travel_monitor_2.search")
 
@@ -200,6 +201,21 @@ class SearchService:
                 booking_url=cohort.offer_url,
             )
 
+            # Decompose cost and derive normalized 1 pax / 8 nights benchmark
+            decomp = CostDecomposer.decompose(
+                total_price_pln=curr_price,
+                duration_nights=cohort.duration_nights,
+                adults=cohort.adults,
+                children=cohort.children,
+                destination=dest_keyword,
+            )
+            pure_night = round(decomp["pure_hotel_night_per_adult"], 1)
+            norm_bench = round(
+                decomp["flight_seat_cost"]
+                + (8.0 * pure_night * (1.18 if "turkey" in dest_keyword else 1.20)),
+                0,
+            )
+
             item = SearchHotelItem(
                 hotel_id=hotel.hotel_id,
                 hotel_name=hotel.display_name,
@@ -210,6 +226,8 @@ class SearchService:
                 current_offer=current_offer,
                 intelligence=intelligence,
                 history_sparkline=sparkline,
+                normalized_benchmark_1p_8n=norm_bench,
+                pure_hotel_night_pln=pure_night,
             )
             items.append(item)
 

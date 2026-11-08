@@ -89,3 +89,11 @@ export async function getMarketOverview(): Promise<MarketOverview> {
   return resp.json();
 }
 
+export async function getHotelNormalizedHistory(hotelId: string): Promise<any> {
+  const resp = await fetch(`${API_BASE}/api/v2/hotels/${encodeURIComponent(hotelId)}/normalized-history`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки нормализованной истории (${resp.status})`);
+  }
+  return resp.json();
+}
+

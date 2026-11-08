@@ -84,3 +84,4 @@ export const AirportComparisonWidget: React.FC<Props> = ({ stats }) => {
     </div>
   );
 };
+

@@ -63,3 +63,4 @@ class TestCostDecomposer(unittest.TestCase):
         self.assertIn("diff_pct", comp)
         self.assertIn("status", comp)
         self.assertIn("explanation", comp)
+

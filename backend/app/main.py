@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
+from sqlalchemy import text, select
 
 import uuid
 from app.config import settings
@@ -116,8 +116,65 @@ from app.services.analytics_service import AnalyticsService
 
 @app.get("/api/v2/hotels/{hotel_id}/history", response_model=HotelPassportResponse)
 async def get_hotel_history_passport(hotel_id: str, db: AsyncSession = Depends(get_db)):
-    """Retrieves complete Hotel Passport with all-time price history points and stats."""
+    """Retrieves complete Hotel Passport with all-time price history points and stats (Raw exact cohorts)."""
     return await WatchlistService.get_hotel_passport(db, hotel_id)
+
+
+@app.get("/api/v2/hotels/{hotel_id}/normalized-history")
+async def get_hotel_normalized_history(hotel_id: str, db: AsyncSession = Depends(get_db)):
+    """Retrieves normalized time series (1 adult, 8 nights benchmark) from dedicated normalized database."""
+    from app.models.normalized_snapshot import NormalizedPriceSnapshot
+    from app.models.hotel import Hotel
+
+    # Fetch hotel
+    h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
+    h_res = await db.execute(h_stmt)
+    hotel = h_res.scalar_one_or_none()
+    if not hotel:
+        raise HTTPException(status_code=404, detail="Hotel not found")
+
+    # Fetch normalized snapshots
+    stmt = (
+        select(NormalizedPriceSnapshot)
+        .where(NormalizedPriceSnapshot.hotel_id == hotel_id)
+        .order_by(NormalizedPriceSnapshot.recorded_at.asc())
+    )
+    res = await db.execute(stmt)
+    snapshots = res.scalars().all()
+
+    points = [
+        {
+            "recorded_at": s.recorded_at.isoformat() if s.recorded_at else "",
+            "normalized_price_1p_8n": s.normalized_price_1p_8n,
+            "pure_hotel_night_rate": s.pure_hotel_night_rate,
+            "flight_estimate_seat": s.flight_estimate_seat,
+            "source_type": s.source_type,
+            "is_crawler": s.is_crawler_standard,
+        }
+        for s in snapshots
+    ]
+
+    prices = [p["normalized_price_1p_8n"] for p in points if p["normalized_price_1p_8n"] > 0]
+    import statistics
+    stats = {
+        "min_normalized_pln": min(prices) if prices else 0.0,
+        "median_normalized_pln": statistics.median(prices) if prices else 0.0,
+        "max_normalized_pln": max(prices) if prices else 0.0,
+        "total_snapshots": len(points),
+    }
+
+    return {
+        "hotel_id": hotel.hotel_id,
+        "hotel_name": hotel.display_name,
+        "country": hotel.country,
+        "benchmark_label": "Эталонная цена: 1 человек • 8 ночей",
+        "benchmark_explanation": (
+            "Нормализованный индекс исключает искажения разных дат и количества людей. "
+            "Вычисляется как: Фиксированный чартерный перелёт + (8 ночей × Чистая посуточная ставка отеля × Single Factor)."
+        ),
+        "stats": stats,
+        "history": points,
+    }
 
 
 @app.get("/api/v2/analytics/top-drops")

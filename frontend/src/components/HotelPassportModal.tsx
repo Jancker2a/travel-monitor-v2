@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { X, TrendingDown, Star, Calendar, RefreshCw } from "lucide-react";
+import { X, TrendingDown, Star, Calendar, RefreshCw, Layers } from "lucide-react";
 import { HotelPassport } from "../types";
-import { getHotelPassport } from "../services/api";
+import { getHotelPassport, getHotelNormalizedHistory } from "../services/api";
 
 declare global {
   interface Window {
@@ -16,15 +16,24 @@ interface Props {
 
 export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
   const [passport, setPassport] = useState<HotelPassport | null>(null);
+  const [normalizedData, setNormalizedData] = useState<any>(null);
+  const [viewMode, setViewMode] = useState<"raw" | "normalized">("raw");
   const [isLoading, setIsLoading] = useState(false);
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!hotelId) return;
     setIsLoading(true);
-    getHotelPassport(hotelId)
-      .then((data) => {
-        setPassport(data);
+    setNormalizedData(null);
+    setViewMode("raw");
+
+    Promise.all([
+      getHotelPassport(hotelId).catch(() => null),
+      getHotelNormalizedHistory(hotelId).catch(() => null),
+    ])
+      .then(([passData, normData]) => {
+        setPassport(passData);
+        setNormalizedData(normData);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -33,19 +42,40 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
       });
   }, [hotelId]);
 
-  // Render Plotly chart whenever passport data is ready
+  // Render Plotly chart based on active view mode (raw vs normalized)
   useEffect(() => {
-    if (!passport || !chartRef.current || !window.Plotly) return;
+    if (!chartRef.current || !window.Plotly) return;
 
-    const xValues = passport.history_points.map((p) => p.recorded_at);
-    const yValues = passport.history_points.map((p) => p.total_price_pln);
-    const hoverTexts = passport.history_points.map(
-      (p) =>
-        `<b>${p.total_price_pln.toLocaleString("ru-RU")} zł</b><br>` +
-        `📅 Даты поездки: ${p.departure_date} (${p.duration_nights} ночей)<br>` +
-        `🛫 Аэропорт: ${p.airport}<br>` +
-        `💵 За ночь/чел: ${p.price_per_night_per_pax.toFixed(0)} zł`
-    );
+    let xValues: string[] = [];
+    let yValues: number[] = [];
+    let hoverTexts: string[] = [];
+    let lineColor = "#2563eb";
+
+    if (viewMode === "normalized" && normalizedData && normalizedData.history.length > 0) {
+      xValues = normalizedData.history.map((p: any) => p.recorded_at);
+      yValues = normalizedData.history.map((p: any) => p.normalized_price_1p_8n);
+      hoverTexts = normalizedData.history.map(
+        (p: any) =>
+          `<b>${p.normalized_price_1p_8n.toLocaleString("ru-RU")} zł</b> (1 чел. / 8 ночей)<br>` +
+          `🏨 Чистая ставка отеля: ${p.pure_hotel_night_rate} zł / ночь<br>` +
+          `✈️ Оценка перелёта: ${p.flight_estimate_seat} zł<br>` +
+          `📌 Источник: ${p.source_type === "crawler_1p_8n" ? "🟢 Прямой замер (1p/8n)" : "🔵 Ре-нормализация v1"}`
+      );
+      lineColor = "#059669";
+    } else if (passport && passport.history_points.length > 0) {
+      xValues = passport.history_points.map((p) => p.recorded_at);
+      yValues = passport.history_points.map((p) => p.total_price_pln);
+      hoverTexts = passport.history_points.map(
+        (p) =>
+          `<b>${p.total_price_pln.toLocaleString("ru-RU")} zł</b><br>` +
+          `📅 Даты поездки: ${p.departure_date} (${p.duration_nights} ночей)<br>` +
+          `🛫 Аэропорт: ${p.airport}<br>` +
+          `💵 За ночь/чел: ${p.price_per_night_per_pax.toFixed(0)} zł`
+      );
+      lineColor = "#2563eb";
+    }
+
+    if (xValues.length === 0) return;
 
     const trace = {
       x: xValues,
@@ -54,9 +84,9 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
       hoverinfo: "text",
       mode: "lines+markers",
       type: "scatter",
-      line: { color: "#2563eb", width: 2.5, shape: "spline" },
+      line: { color: lineColor, width: 2.5, shape: "spline" },
       marker: {
-        color: "#1d4ed8",
+        color: lineColor,
         size: 7,
         line: { color: "#ffffff", width: 1.5 },
       },
@@ -91,7 +121,7 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
       displayModeBar: false,
     };
 
-    window.Plotly.newPlot(chartRef.current, [trace], layout, config);
+    window.Plotly.react(chartRef.current, [trace], layout, config);
 
     // Multi-phase resize per project web standards
     const timers = [40, 150, 350].map((delay) =>
@@ -105,7 +135,7 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
     return () => {
       timers.forEach(clearTimeout);
     };
-  }, [passport]);
+  }, [passport, normalizedData, viewMode]);
 
   if (!hotelId) return null;
 
@@ -145,33 +175,101 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
             </div>
           ) : passport ? (
             <div>
+              {/* View Mode Switcher Toolbar */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-5 p-2 bg-slate-100/80 rounded-2xl border border-slate-200">
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("raw")}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                      viewMode === "raw"
+                        ? "bg-blue-600 text-white shadow-sm"
+                        : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"
+                    }`}
+                  >
+                    📊 Замеры конкретного тура (2+1 / точный состав)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("normalized")}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                      viewMode === "normalized"
+                        ? "bg-emerald-600 text-white shadow-sm"
+                        : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200"
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>🏷️ Нормализованный индекс (1 чел. • 8 ночей)</span>
+                    <span className="text-[9px] bg-emerald-100 text-emerald-800 font-extrabold px-1.5 py-0.2 rounded-full">
+                      ЭТАЛОН
+                    </span>
+                  </button>
+                </div>
+
+                <div className="text-[11px] text-slate-500 font-medium px-2">
+                  {viewMode === "raw" ? (
+                    <span>Прямые замеры цены выбранного состава и дат</span>
+                  ) : (
+                    <span>Исключает искажения разницы дат и состава гостей</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Mode Explanation Banner (when Normalized) */}
+              {viewMode === "normalized" && (
+                <div className="mb-5 p-3 rounded-2xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-900 flex items-start gap-2.5">
+                  <span className="text-base">💡</span>
+                  <div>
+                    <span className="font-bold">Эталонный индекс отеля: 1 взрослый, 8 ночей.</span>
+                    <p className="text-[11px] text-emerald-800/90 mt-0.5 leading-relaxed">
+                      Вычисляется из чистой посуточной ставки отеля ($H$) + фиксированного чартерного перелёта ($F$).
+                      Позволяет честно сравнивать отель с другими гостиницами и оценивать реальный тренд без влияния сезонных смен дат вылета.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Stat Cards Row */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                 <div className="bg-emerald-50 border border-emerald-100 p-3.5 rounded-2xl">
-                  <div className="text-[11px] font-semibold text-emerald-700 uppercase">Исторический минимум</div>
+                  <div className="text-[11px] font-semibold text-emerald-700 uppercase">
+                    {viewMode === "normalized" ? "Мин. эталон (1p/8n)" : "Исторический минимум"}
+                  </div>
                   <div className="text-xl font-extrabold text-emerald-900 mt-0.5">
-                    {passport.all_time_min_pln.toLocaleString("ru-RU")} zł
+                    {viewMode === "normalized" && normalizedData
+                      ? `${normalizedData.stats.min_normalized_pln.toLocaleString("ru-RU")} zł`
+                      : `${passport.all_time_min_pln.toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="bg-blue-50 border border-blue-100 p-3.5 rounded-2xl">
-                  <div className="text-[11px] font-semibold text-blue-700 uppercase">Медианная цена</div>
+                  <div className="text-[11px] font-semibold text-blue-700 uppercase">
+                    {viewMode === "normalized" ? "Медиана эталона" : "Медианная цена"}
+                  </div>
                   <div className="text-xl font-extrabold text-blue-900 mt-0.5">
-                    {passport.typical_median_pln.toLocaleString("ru-RU")} zł
+                    {viewMode === "normalized" && normalizedData
+                      ? `${normalizedData.stats.median_normalized_pln.toLocaleString("ru-RU")} zł`
+                      : `${passport.typical_median_pln.toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
-                  <div className="text-[11px] font-semibold text-slate-600 uppercase">Максимум сезона</div>
+                  <div className="text-[11px] font-semibold text-slate-600 uppercase">
+                    {viewMode === "normalized" ? "Макс. эталон" : "Максимум сезона"}
+                  </div>
                   <div className="text-xl font-extrabold text-slate-800 mt-0.5">
-                    {passport.all_time_max_pln.toLocaleString("ru-RU")} zł
+                    {viewMode === "normalized" && normalizedData
+                      ? `${normalizedData.stats.max_normalized_pln.toLocaleString("ru-RU")} zł`
+                      : `${passport.all_time_max_pln.toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
                   <div className="text-[11px] font-semibold text-slate-600 uppercase">Всего замеров</div>
                   <div className="text-xl font-extrabold text-slate-800 mt-0.5">
-                    {passport.history_points.length} точек
+                    {viewMode === "normalized" && normalizedData
+                      ? `${normalizedData.stats.total_snapshots} точек`
+                      : `${passport.history_points.length} точек`}
                   </div>
                 </div>
               </div>

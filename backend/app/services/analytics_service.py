@@ -113,3 +113,4 @@ class AnalyticsService:
         res = await db.execute(query)
         row = res.mappings().first()
         return dict(row) if row else {}
+

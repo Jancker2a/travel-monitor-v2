@@ -57,6 +57,8 @@ export interface SearchHotelItem {
   current_offer: OfferSummary;
   intelligence: HotelIntelligence;
   history_sparkline: number[];
+  normalized_benchmark_1p_8n?: number;
+  pure_hotel_night_pln?: number;
 }
 
 export interface SearchResponse {

@@ -62,6 +62,8 @@ class SearchHotelItem(BaseModel):
     current_offer: OfferSummary
     intelligence: HotelIntelligence
     history_sparkline: List[float] = Field(default_factory=list)
+    normalized_benchmark_1p_8n: Optional[float] = None
+    pure_hotel_night_pln: Optional[float] = None
 
 
 class SearchResponse(BaseModel):

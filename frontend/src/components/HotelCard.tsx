@@ -138,6 +138,24 @@ export const HotelCard: React.FC<Props> = ({
               {intelligence.recommendation}
             </p>
           </div>
+
+          {/* Standard Normalized Benchmark Pill (Point 5) */}
+          {hotel.normalized_benchmark_1p_8n && (
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] text-slate-600 bg-blue-50/70 border border-blue-100/80 px-2.5 py-1.5 rounded-xl">
+              <span className="font-bold text-blue-700 flex items-center gap-1">
+                <span>🏷️ Норм. эталон:</span>
+                <span className="text-blue-900 font-extrabold">{hotel.normalized_benchmark_1p_8n.toLocaleString("ru-RU")} zł</span>
+              </span>
+              <span className="text-slate-300">•</span>
+              <span>1 чел. / 8 ночей {hotel.pure_hotel_night_pln ? `(~${hotel.pure_hotel_night_pln} zł/ночь отель)` : ""}</span>
+              <span
+                className="ml-auto text-[10px] text-blue-600 bg-blue-100/70 px-1.5 py-0.5 rounded font-semibold cursor-help"
+                title="Нормализованный индекс приведен к эталону 1 чел. на 8 ночей. Исключает искажения дат, состава семьи и разницы чартеров для объективного сравнения отелей."
+              >
+                ℹ️ Индекс сравнения
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Footer: Sparkline & Price + CTA */}

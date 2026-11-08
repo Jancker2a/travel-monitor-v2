@@ -122,3 +122,4 @@ class CostDecomposer:
             "curr_pure_rate": curr_pure_rate,
             "benchmark_pure_rate": trunk_median_pure_rate,
         }
+
