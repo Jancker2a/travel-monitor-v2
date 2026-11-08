@@ -3,6 +3,9 @@ import {
   SearchResponse,
   WatchlistItem,
   HotelPassport,
+  PriceDropItem,
+  AirportStat,
+  MarketOverview,
 } from "../types";
 
 const API_BASE = "";
@@ -59,5 +62,30 @@ export async function deleteWatchlistItem(watchId: string): Promise<void> {
   if (!resp.ok) {
     throw new Error(`Ошибка удаления из Watchlist (${resp.status})`);
   }
+}
+
+export async function getTopPriceDrops(limit: number = 12): Promise<PriceDropItem[]> {
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/top-drops?limit=${limit}`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки топ падений цен (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getAirportComparison(destination?: string): Promise<AirportStat[]> {
+  const q = destination ? `?destination=${encodeURIComponent(destination)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/airports${q}`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки сравнения аэропортов (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getMarketOverview(): Promise<MarketOverview> {
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/overview`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки сводки рынка (${resp.status})`);
+  }
+  return resp.json();
 }
 

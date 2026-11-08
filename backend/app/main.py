@@ -111,10 +111,31 @@ async def trigger_watchlist_check():
     return {"status": "ok", "alerts_dispatched": alerts_count}
 
 
+from app.services.analytics_service import AnalyticsService
+
+
 @app.get("/api/v2/hotels/{hotel_id}/history", response_model=HotelPassportResponse)
 async def get_hotel_history_passport(hotel_id: str, db: AsyncSession = Depends(get_db)):
     """Retrieves complete Hotel Passport with all-time price history points and stats."""
     return await WatchlistService.get_hotel_passport(db, hotel_id)
+
+
+@app.get("/api/v2/analytics/top-drops")
+async def get_top_drops(db: AsyncSession = Depends(get_db), limit: int = 12):
+    """Returns tours with the biggest price drops across the market."""
+    return await AnalyticsService.get_top_price_drops(db, limit=limit)
+
+
+@app.get("/api/v2/analytics/airports")
+async def get_airports_comparison(db: AsyncSession = Depends(get_db), destination: str = None):
+    """Compares average and minimum tour prices by departure airport."""
+    return await AnalyticsService.get_airport_comparison(db, destination=destination)
+
+
+@app.get("/api/v2/analytics/overview")
+async def get_market_overview(db: AsyncSession = Depends(get_db)):
+    """High-level platform market counters (total hotels, cohorts, snapshots)."""
+    return await AnalyticsService.get_market_overview(db)
 
 
 # Mount built React SPA frontend if dist exists

@@ -111,3 +111,37 @@ export interface HotelPassport {
   history_points: HotelHistoryPoint[];
 }
 
+export interface PriceDropItem {
+  cohort_hash: string;
+  hotel_id: string;
+  hotel_name: string;
+  country: string;
+  region: string;
+  stars: number;
+  main_image_url?: string;
+  duration_nights: number;
+  departure_date: string;
+  airport: string;
+  previous_price_pln: number;
+  current_price_pln: number;
+  drop_amount_pln: number;
+  drop_pct: number;
+  booking_url?: string;
+}
+
+export interface AirportStat {
+  airport_code: string;
+  hotel_count: number;
+  min_price_pln: number;
+  avg_price_pln: number;
+  avg_night_pax: number;
+}
+
+export interface MarketOverview {
+  total_hotels: number;
+  total_cohorts: number;
+  total_snapshots: number;
+  avg_current_price: number;
+  min_current_price: number;
+}
+

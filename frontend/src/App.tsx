@@ -3,8 +3,17 @@ import { SearchHeader } from "./components/SearchHeader";
 import { HotelCard } from "./components/HotelCard";
 import { HotelPassportModal } from "./components/HotelPassportModal";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
-import { SearchRequest, SearchHotelItem, WatchlistItem } from "./types";
-import { searchTours, getWatchlist, addToWatchlist, deleteWatchlistItem } from "./services/api";
+import { TopDropsCarousel } from "./components/TopDropsCarousel";
+import { AirportComparisonWidget } from "./components/AirportComparisonWidget";
+import { SearchRequest, SearchHotelItem, WatchlistItem, PriceDropItem, AirportStat } from "./types";
+import {
+  searchTours,
+  getWatchlist,
+  addToWatchlist,
+  deleteWatchlistItem,
+  getTopPriceDrops,
+  getAirportComparison,
+} from "./services/api";
 import { Bell, Flame, SlidersHorizontal, Sparkles } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
@@ -16,16 +25,28 @@ export const App: React.FC = () => {
   const [activeHotelPassport, setActiveHotelPassport] = useState<string | null>(null);
   const [watchlistItems, setWatchlistItems] = useState<WatchlistItem[]>([]);
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
+  const [topDrops, setTopDrops] = useState<PriceDropItem[]>([]);
+  const [airportStats, setAirportStats] = useState<AirportStat[]>([]);
   const [sortBy, setSortBy] = useState<"price" | "deal_score">("price");
 
-  // Initial load: fetch watchlist & run default search for Turkey
+  // Initial load: fetch watchlist, top drops, airport stats & run default search for Turkey
   useEffect(() => {
     // 1. Fetch user's watchlist
     getWatchlist(CURRENT_USER_ID)
       .then((data) => setWatchlistItems(data.items))
       .catch((err) => console.warn("Watchlist fetch failed:", err));
 
-    // 2. Perform initial instant search
+    // 2. Fetch top price drops
+    getTopPriceDrops(10)
+      .then((drops) => setTopDrops(drops))
+      .catch((err) => console.warn("Top drops fetch failed:", err));
+
+    // 3. Fetch airport comparison stats
+    getAirportComparison("turkey")
+      .then((stats) => setAirportStats(stats))
+      .catch((err) => console.warn("Airport stats fetch failed:", err));
+
+    // 4. Perform initial instant search
     handleSearch({
       destination: "turkey",
       dates: { start_date_min: "2026-11-15", start_date_max: "2026-11-25" },
@@ -135,7 +156,17 @@ export const App: React.FC = () => {
       <SearchHeader onSearch={handleSearch} isLoading={isLoading} />
 
       {/* Main Results View */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+        {/* Market Analytics & Top Drops (V1 Intelligence Integration) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <TopDropsCarousel drops={topDrops} onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)} />
+          </div>
+          <div className="lg:col-span-1">
+            <AirportComparisonWidget stats={airportStats} />
+          </div>
+        </div>
+
         {/* Results Toolbar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 gap-3">
           <div>
