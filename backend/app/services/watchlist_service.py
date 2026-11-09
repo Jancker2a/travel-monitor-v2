@@ -1,5 +1,8 @@
 import uuid
 import logging
+import time
+import re
+from collections import defaultdict
 from datetime import datetime, date
 from typing import List, Optional, Tuple, Dict, Any
 from fastapi import HTTPException
@@ -19,6 +22,46 @@ from app.schemas.watchlist import (
 from app.schemas.hotel import HotelPassportResponse, HotelHistoryPoint
 
 logger = logging.getLogger("travel_monitor_2.watchlist")
+
+
+_HOTEL_ALIAS_CACHE: Dict[str, List[str]] = {}
+_ALIAS_CACHE_TS: float = 0.0
+_ALIAS_CACHE_TTL: float = 3600.0  # 1 hour
+
+COUNTRY_MAP = {
+    "египет": "egypt",
+    "турция": "turkey",
+    "греция": "greece",
+    "кипр": "cyprus",
+    "испания": "spain",
+    "болгария": "bulgaria",
+}
+
+
+def _norm_country(c: Optional[str]) -> str:
+    if not c:
+        return ""
+    c_lower = c.strip().lower()
+    return COUNTRY_MAP.get(c_lower, c_lower)
+
+
+def _smart_hotel_tokens(title: str) -> str:
+    # 1. Remove all parentheses
+    n = re.sub(r"\s*\([^)]*\)", "", title)
+    # 2. Remove country and common resort/city tokens
+    n = re.sub(
+        r"\b(?:turcja|egipt|grecja|cypr|hiszpania|turkey|egypt|greece|cyprus|spain|alanya|kemer|side|belek|antalya|sharm|hurghada|türkler|okurcalar|el|sheikh)\b",
+        " ",
+        n,
+        flags=re.I,
+    )
+    n = re.sub(r"[^\w\s]", " ", n.lower())
+    stop = {
+        "hotel", "hotels", "resort", "resorts", "spa", "beach", "club",
+        "palace", "deluxe", "aqua", "park", "the", "and", "di", "ex"
+    }
+    tokens = [t for t in n.split() if len(t) > 1 and t not in stop]
+    return " ".join(sorted(tokens)) if tokens else title.strip().lower()
 
 
 class WatchlistService:
@@ -265,52 +308,33 @@ class WatchlistService:
     async def _find_related_hotel_ids(cls, db: AsyncSession, hotel: Hotel) -> List[str]:
         """
         Finds all hotel_ids that refer to the same physical property,
-        handling tour operator renames, (ex. ...) additions, and trailing 'Hotel/Resort' variations.
+        handling tour operator renames, (ex. ...) additions, regional tags, and trailing 'Hotel/Resort' variations.
+        Uses in-memory cluster caching for <0.1ms lookups.
         """
-        import re
-        target_id = hotel.hotel_id
-        related = {target_id}
+        global _HOTEL_ALIAS_CACHE, _ALIAS_CACHE_TS
+        now = time.time()
+        if _HOTEL_ALIAS_CACHE and (now - _ALIAS_CACHE_TS < _ALIAS_CACHE_TTL):
+            if hotel.hotel_id in _HOTEL_ALIAS_CACHE:
+                return _HOTEL_ALIAS_CACHE[hotel.hotel_id]
 
-        COUNTRY_MAP = {
-            "египет": "egypt",
-            "турция": "turkey",
-            "греция": "greece",
-            "кипр": "cyprus",
-            "испания": "spain",
-            "болгария": "bulgaria",
-        }
-
-        def norm_country(c: Optional[str]) -> str:
-            if not c:
-                return ""
-            c_lower = c.strip().lower()
-            return COUNTRY_MAP.get(c_lower, c_lower)
-
-        def clean_tokens(title: str) -> str:
-            title = re.sub(r"\s*\((?:ex\.?|dawniej|formerly|ex)[^)]*\)?", "", title, flags=re.I)
-            title = re.sub(r"[^\w\s]", " ", title.lower())
-            stop = {"hotel", "hotels", "resort", "resorts", "spa", "beach", "club", "palace", "deluxe", "aqua", "park"}
-            tokens = [t for t in title.split() if len(t) > 1 and t not in stop]
-            return " ".join(sorted(tokens)) if tokens else title.strip().lower()
-
-        target_key = clean_tokens(hotel.display_name)
-        if not target_key:
-            return list(related)
-
-        target_country = norm_country(hotel.country)
-
+        # Rebuild alias clusters across all hotels
         stmt = select(Hotel.hotel_id, Hotel.display_name, Hotel.country)
-        candidates = (await db.execute(stmt)).all()
-        for cand_id, cand_name, cand_country_raw in candidates:
-            if cand_id == target_id:
-                continue
-            cand_c = norm_country(cand_country_raw)
-            if target_country and cand_c and target_country != cand_c:
-                continue
-            if clean_tokens(cand_name) == target_key:
-                related.add(cand_id)
+        rows = (await db.execute(stmt)).all()
 
-        return list(related)
+        clusters = defaultdict(list)
+        new_cache: Dict[str, List[str]] = {}
+        for hid, name, c_raw in rows:
+            c = _norm_country(c_raw)
+            key = (c, _smart_hotel_tokens(name))
+            clusters[key].append(hid)
+
+        for key, hids in clusters.items():
+            for hid in hids:
+                new_cache[hid] = hids
+
+        _HOTEL_ALIAS_CACHE = new_cache
+        _ALIAS_CACHE_TS = now
+        return _HOTEL_ALIAS_CACHE.get(hotel.hotel_id, [hotel.hotel_id])
 
     @classmethod
     async def get_hotel_passport(

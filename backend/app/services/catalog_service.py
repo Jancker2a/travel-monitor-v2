@@ -6,7 +6,7 @@ from typing import Dict, Any, List, Optional, Tuple, Set
 from datetime import datetime, timedelta, timezone
 import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
+from sqlalchemy import text, select
 
 logger = logging.getLogger("travel_monitor_2.catalog")
 
@@ -187,19 +187,19 @@ class CatalogService:
 
         hotel_ids = [r[0] for r in active_rows]
 
-        # 3. Expand hotel IDs to query variants (e.g. viva-sharm and viva-sharm-hotel)
-        def _get_id_variants(hid: str) -> Set[str]:
-            res = {hid}
-            base = re.sub(r"-(hotel|resort|spa|village|palace|beach)$", "", hid)
-            res.add(base)
-            res.add(f"{base}-hotel")
-            res.add(f"{base}-resort")
-            return res
+        # 3. Expand hotel IDs to query variants across alias clusters
+        from app.services.watchlist_service import WatchlistService
+        from app.models.hotel import Hotel
+
+        active_h_res = await db.execute(select(Hotel).where(Hotel.hotel_id.in_(hotel_ids)))
+        active_h_map = {h.hotel_id: h for h in active_h_res.scalars().all()}
 
         all_query_hids: Set[str] = set()
         variant_to_primary: Dict[str, Set[str]] = {}
         for hid in hotel_ids:
-            vars_set = _get_id_variants(hid)
+            h_obj = active_h_map.get(hid)
+            vars_set = set(await WatchlistService._find_related_hotel_ids(db, h_obj)) if h_obj else {hid}
+            vars_set.add(hid)
             all_query_hids.update(vars_set)
             for v in vars_set:
                 if v not in variant_to_primary:

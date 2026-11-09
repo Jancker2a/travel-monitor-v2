@@ -222,10 +222,13 @@ async def get_hotel_normalized_history(hotel_id: str, db: AsyncSession = Depends
     if not hotel:
         raise HTTPException(status_code=404, detail="Hotel not found")
 
+    # Resolve related hotel aliases to aggregate complete historical benchmark
+    related_ids = await WatchlistService._find_related_hotel_ids(db, hotel)
+
     # Fetch normalized snapshots
     stmt = (
         select(NormalizedPriceSnapshot)
-        .where(NormalizedPriceSnapshot.hotel_id == hotel_id)
+        .where(NormalizedPriceSnapshot.hotel_id.in_(related_ids))
         .order_by(NormalizedPriceSnapshot.recorded_at.asc())
     )
     res = await db.execute(stmt)
