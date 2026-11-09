@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   X,
   ExternalLink,
@@ -30,6 +30,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const [passport, setPassport] = useState<HotelPassport | null>(null);
   const [normalizedData, setNormalizedData] = useState<any>(null);
   const [historyMode, setHistoryMode] = useState<"original" | "normalized">("original");
+  const [historyRange, setHistoryRange] = useState<"7d" | "30d" | "all">("all");
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"ai" | "history" | "infra" | "packages">("ai");
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
@@ -66,10 +67,22 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
     if (historyMode === "normalized" && normalizedData?.points?.length) {
       // Normalized Benchmark Series (1 pax, 8 nights)
-      const xVals = normalizedData.points.map((p: any) => p.recorded_at);
-      const yVals = normalizedData.points.map((p: any) => p.normalized_price_1p_8n);
-      const minP = normalizedData.stats.min_normalized_pln;
-      const medP = normalizedData.stats.median_normalized_pln;
+      let normPoints = normalizedData.points;
+      if (historyRange !== "all") {
+        const now = new Date().getTime();
+        const cutoffDays = historyRange === "7d" ? 7 : 30;
+        const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
+        const filtered = normPoints.filter(
+          (p: any) => new Date(p.recorded_at).getTime() >= cutoffMs
+        );
+        if (filtered.length > 0) normPoints = filtered;
+      }
+
+      const xVals = normPoints.map((p: any) => p.recorded_at);
+      const yVals = normPoints.map((p: any) => p.normalized_price_1p_8n);
+      const minP = Math.min(...yVals);
+      const sortedY = [...yVals].sort((a, b) => a - b);
+      const medP = sortedY[Math.floor(sortedY.length / 2)] || minP;
 
       const trace = {
         x: xVals,
@@ -106,8 +119,21 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     }
 
     // Original Tour History (2+1 / Custom)
-    const history = passport.history_points || [];
-    if (!history.length) return;
+    const allHistory = passport.history_points || [];
+    if (!allHistory.length) return;
+
+    let history = allHistory;
+    if (historyRange !== "all") {
+      const now = new Date().getTime();
+      const cutoffDays = historyRange === "7d" ? 7 : 30;
+      const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
+      const filtered = allHistory.filter(
+        (pt) => new Date(pt.recorded_at).getTime() >= cutoffMs
+      );
+      if (filtered.length > 0) {
+        history = filtered;
+      }
+    }
 
     // Deduplicate timestamps to prevent recursion
     const uniqueMap = new Map<string, number>();
@@ -140,8 +166,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       hovertemplate: "<b>%{y:,.0f} zł</b><br>%{x|%d.%m %H:%M}<extra></extra>",
     };
 
-    const minPrice = passport.all_time_min_pln;
-    const medianPrice = passport.typical_median_pln;
+    const pVals = yVals.length ? yVals : [passport.current_price_pln];
+    const minPrice = Math.min(...pVals);
+    const sortedP = [...pVals].sort((a, b) => a - b);
+    const medianPrice = sortedP[Math.floor(sortedP.length / 2)] || minPrice;
 
     const layout = {
       title: {
@@ -191,7 +219,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     };
 
     window.Plotly.react(chartContainerRef.current, [trace], layout, config);
-  }, [activeTab, passport, historyMode, normalizedData]);
+  }, [activeTab, passport, historyMode, historyRange, normalizedData]);
 
   if (!hotelId) return null;
 
@@ -216,6 +244,43 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const minPrice = passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
   const savings = maxPrice > currentPrice ? maxPrice - currentPrice : 0;
+
+  // Dynamic values depending on active filter range (7d / 30d / all)
+  const rangeStats = useMemo(() => {
+    if (historyMode === "normalized") {
+      let normPoints = normalizedData?.points || [];
+      if (historyRange !== "all") {
+        const now = Date.now();
+        const cutoffDays = historyRange === "7d" ? 7 : 30;
+        const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
+        const filtered = normPoints.filter(
+          (p: any) => new Date(p.recorded_at).getTime() >= cutoffMs
+        );
+        if (filtered.length > 0) normPoints = filtered;
+      }
+      const yVals = normPoints.map((p: any) => p.normalized_price_1p_8n);
+      const cur = yVals.length > 0 ? yVals[yVals.length - 1] : normalizedData?.stats?.current_normalized_pln || 0;
+      const min = yVals.length > 0 ? Math.min(...yVals) : normalizedData?.stats?.min_normalized_pln || 0;
+      const max = yVals.length > 0 ? Math.max(...yVals) : normalizedData?.stats?.max_normalized_pln || 0;
+      return { cur, min, max, savings: max > cur ? max - cur : 0 };
+    }
+
+    let hist = passport?.history_points || [];
+    if (historyRange !== "all") {
+      const now = Date.now();
+      const cutoffDays = historyRange === "7d" ? 7 : 30;
+      const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
+      const filtered = hist.filter(
+        (p) => new Date(p.recorded_at).getTime() >= cutoffMs
+      );
+      if (filtered.length > 0) hist = filtered;
+    }
+    const pVals = hist.map((p) => p.total_price_pln);
+    const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
+    const min = pVals.length > 0 ? Math.min(...pVals) : minPrice;
+    const max = pVals.length > 0 ? Math.max(...pVals) : maxPrice;
+    return { cur, min, max, savings: max > cur ? max - cur : 0 };
+  }, [historyMode, historyRange, normalizedData, passport?.history_points, currentPrice, minPrice, maxPrice]);
 
   return (
     <>
@@ -595,6 +660,42 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   </button>
                 </div>
 
+                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+                  <button
+                    type="button"
+                    onClick={() => setHistoryRange("7d")}
+                    className={`px-2.5 py-1 rounded-lg transition-all ${
+                      historyRange === "7d"
+                        ? "bg-white text-slate-900 shadow-2xs font-bold"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    7 дней
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setHistoryRange("30d")}
+                    className={`px-2.5 py-1 rounded-lg transition-all ${
+                      historyRange === "30d"
+                        ? "bg-white text-slate-900 shadow-2xs font-bold"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    30 дней
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setHistoryRange("all")}
+                    className={`px-2.5 py-1 rounded-lg transition-all ${
+                      historyRange === "all"
+                        ? "bg-white text-slate-900 shadow-2xs font-bold"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    Вся история
+                  </button>
+                </div>
+
                 <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700 }}>
                   {historyMode === "normalized" ? "📊 Нормализованная база" : "🟢 Исторически низкая цена"}
                 </div>
@@ -616,42 +717,36 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     {historyMode === "normalized" ? "Текущий эталон" : "Текущая цена"}
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginTop: "2px" }}>
-                    {historyMode === "normalized" && normalizedData?.stats?.current_normalized_pln != null
-                      ? `${Number(normalizedData.stats.current_normalized_pln).toLocaleString("ru-RU")} zł`
-                      : `${currentPrice.toLocaleString("ru-RU")} zł`}
+                    {`${Math.round(rangeStats.cur).toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Мин. эталон" : "Минимум истории"}
+                    {historyMode === "normalized" ? "Мин. эталон" : "Минимум периода"}
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a", marginTop: "2px" }}>
-                    {historyMode === "normalized" && normalizedData?.stats?.min_normalized_pln != null
-                      ? `${Number(normalizedData.stats.min_normalized_pln).toLocaleString("ru-RU")} zł`
-                      : `${minPrice.toLocaleString("ru-RU")} zł`}
+                    {`${Math.round(rangeStats.min).toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Макс. эталон" : "Максимум цен"}
+                    {historyMode === "normalized" ? "Макс. эталон" : "Максимум периода"}
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
-                    {historyMode === "normalized" && normalizedData?.stats?.max_normalized_pln != null
-                      ? `${Number(normalizedData.stats.max_normalized_pln).toLocaleString("ru-RU")} zł`
-                      : `${maxPrice.toLocaleString("ru-RU")} zł`}
+                    {`${Math.round(rangeStats.max).toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Чистая ночь" : "Экономия от пика"}
+                    {historyMode === "normalized" ? "Чистая ночь" : "Экономия периода"}
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#2563eb", marginTop: "2px" }}>
                     {historyMode === "normalized" && normalizedData?.stats?.pure_hotel_night_rate != null
                       ? `~${normalizedData.stats.pure_hotel_night_rate} zł/н`
-                      : savings > 0 ? `-${savings.toLocaleString("ru-RU")} zł` : "0 zł"}
+                      : rangeStats.savings > 0 ? `-${Math.round(rangeStats.savings).toLocaleString("ru-RU")} zł` : "0 zł"}
                   </div>
                 </div>
               </div>

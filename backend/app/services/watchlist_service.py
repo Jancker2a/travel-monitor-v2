@@ -262,6 +262,57 @@ class WatchlistService:
         return alerts
 
     @classmethod
+    async def _find_related_hotel_ids(cls, db: AsyncSession, hotel: Hotel) -> List[str]:
+        """
+        Finds all hotel_ids that refer to the same physical property,
+        handling tour operator renames, (ex. ...) additions, and trailing 'Hotel/Resort' variations.
+        """
+        import re
+        target_id = hotel.hotel_id
+        related = {target_id}
+
+        COUNTRY_MAP = {
+            "египет": "egypt",
+            "турция": "turkey",
+            "греция": "greece",
+            "кипр": "cyprus",
+            "испания": "spain",
+            "болгария": "bulgaria",
+        }
+
+        def norm_country(c: Optional[str]) -> str:
+            if not c:
+                return ""
+            c_lower = c.strip().lower()
+            return COUNTRY_MAP.get(c_lower, c_lower)
+
+        def clean_tokens(title: str) -> str:
+            title = re.sub(r"\s*\((?:ex\.?|dawniej|formerly|ex)[^)]*\)?", "", title, flags=re.I)
+            title = re.sub(r"[^\w\s]", " ", title.lower())
+            stop = {"hotel", "hotels", "resort", "resorts", "spa", "beach", "club", "palace", "deluxe", "aqua", "park"}
+            tokens = [t for t in title.split() if len(t) > 1 and t not in stop]
+            return " ".join(sorted(tokens)) if tokens else title.strip().lower()
+
+        target_key = clean_tokens(hotel.display_name)
+        if not target_key:
+            return list(related)
+
+        target_country = norm_country(hotel.country)
+
+        stmt = select(Hotel.hotel_id, Hotel.display_name, Hotel.country)
+        candidates = (await db.execute(stmt)).all()
+        for cand_id, cand_name, cand_country_raw in candidates:
+            if cand_id == target_id:
+                continue
+            cand_c = norm_country(cand_country_raw)
+            if target_country and cand_c and target_country != cand_c:
+                continue
+            if clean_tokens(cand_name) == target_key:
+                related.add(cand_id)
+
+        return list(related)
+
+    @classmethod
     async def get_hotel_passport(
         cls, db: AsyncSession, hotel_id: str, filter_id: Optional[str] = None
     ) -> HotelPassportResponse:
@@ -274,20 +325,22 @@ class WatchlistService:
         if not hotel:
             raise HTTPException(status_code=404, detail="Hotel not found")
 
-        # 2. Fetch all cohorts for this hotel
-        cohort_stmt = select(OfferCohort).where(OfferCohort.hotel_id == hotel_id)
+        # Resolve related hotel_ids (canonical hotel, aliases, renames)
+        related_hotel_ids = await cls._find_related_hotel_ids(db, hotel)
+
+        # 2. Fetch all cohorts for this hotel and related aliases
+        cohort_stmt = select(OfferCohort).where(OfferCohort.hotel_id.in_(related_hotel_ids))
         all_cohorts = (await db.execute(cohort_stmt)).scalars().all()
         if not all_cohorts:
             raise HTTPException(status_code=404, detail="No cohorts found for this hotel")
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
-        from app.services.timeline_service import resolve_filter_id
+        from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
         canonical_fid = resolve_filter_id(filter_id) if filter_id else None
+        filter_variants = set(get_all_filter_id_variants(filter_id)) if filter_id else set()
         scoped_cohorts = []
-        if canonical_fid:
-            scoped_cohorts = [c for c in all_cohorts if c.filter_id == canonical_fid]
-            if not scoped_cohorts and filter_id != canonical_fid:
-                scoped_cohorts = [c for c in all_cohorts if c.filter_id == filter_id]
+        if filter_variants:
+            scoped_cohorts = [c for c in all_cohorts if c.filter_id in filter_variants]
 
         if not scoped_cohorts:
             spec = resolve_filter_spec(filter_id)
