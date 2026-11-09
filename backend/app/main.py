@@ -91,6 +91,19 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    import traceback
+    tb = traceback.format_exc()
+    logger.error(f"500 ERROR on {request.url}: {exc}\n{tb}")
+    return JSONResponse(
+        status_code=500,
+        content={"error": str(exc), "type": type(exc).__name__, "traceback": tb.splitlines()[-10:]},
+    )
+
 # Enable CORS for Next.js / SvelteKit / mobile frontend
 app.add_middleware(
     CORSMiddleware,
