@@ -48,25 +48,26 @@ class TimelineService:
         """
         canonical_filter_id = resolve_filter_id(filter_id)
 
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+
         # Build time constraint
         time_clause = ""
         params: Dict[str, Any] = {"fid": canonical_filter_id}
 
         if range_param == "7d":
-            cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+            cutoff_dt = datetime.now(timezone.utc) - timedelta(days=7)
             time_clause = "AND ps.recorded_at >= :cutoff"
-            params["cutoff"] = cutoff
+            params["cutoff"] = cutoff_dt if is_pg else cutoff_dt.isoformat()
         elif range_param == "30d":
-            cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+            cutoff_dt = datetime.now(timezone.utc) - timedelta(days=30)
             time_clause = "AND ps.recorded_at >= :cutoff"
-            params["cutoff"] = cutoff
+            params["cutoff"] = cutoff_dt if is_pg else cutoff_dt.isoformat()
 
         ceiling_clause = ""
         if ceiling_pln and ceiling_pln > 0:
             ceiling_clause = "AND ps.total_price_pln <= :ceiling_pln"
             params["ceiling_pln"] = ceiling_pln
 
-        is_pg = db.bind.dialect.name == "postgresql"
         bucket_expr = (
             "to_char(ps.recorded_at, 'YYYY-MM-DD\"T\"HH24:00:00\"Z\"')"
             if is_pg

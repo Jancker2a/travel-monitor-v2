@@ -73,7 +73,11 @@ class CatalogService:
         else:
             max_dt = max_ts
 
-        cutoff = (max_dt - timedelta(hours=4)).isoformat()
+        if max_dt.tzinfo is None:
+            max_dt = max_dt.replace(tzinfo=timezone.utc)
+
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        cutoff = (max_dt - timedelta(hours=4)) if is_pg else (max_dt - timedelta(hours=4)).isoformat()
 
         # 2. Query active hotels and their cheapest offer in the latest scrape run (using window partition)
         active_sql = """
@@ -122,7 +126,7 @@ class CatalogService:
 
         if not active_rows:
             # Wider window fallback if last scrape was slightly sparse
-            cutoff_24h = (max_dt - timedelta(hours=24)).isoformat()
+            cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
             active_res = await db.execute(text(active_sql), {"fid": canonical_fid, "cutoff": cutoff_24h})
             active_rows = active_res.fetchall()
 

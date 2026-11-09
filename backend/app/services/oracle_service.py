@@ -1,6 +1,6 @@
 import logging
 from typing import Dict, Any, Optional
-from datetime import datetime, date, timezone
+from datetime import datetime, date, timezone, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
@@ -79,7 +79,11 @@ class OracleService:
         else:
             max_dt = max_ts
 
-        cutoff = (max_dt - timedelta(hours=4)).isoformat()
+        if max_dt.tzinfo is None:
+            max_dt = max_dt.replace(tzinfo=timezone.utc)
+
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        cutoff = (max_dt - timedelta(hours=4)) if is_pg else (max_dt - timedelta(hours=4)).isoformat()
 
         offers_sql = """
             WITH ranked_offers AS (
@@ -120,7 +124,7 @@ class OracleService:
 
         if not rows:
             # Fallback to 24h cutoff
-            cutoff_24h = (max_dt - timedelta(hours=24)).isoformat()
+            cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
             res = await db.execute(text(offers_sql), {"fid": canonical_fid, "cutoff": cutoff_24h})
             rows = res.fetchall()
 
