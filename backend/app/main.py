@@ -28,6 +28,36 @@ logging.basicConfig(
 logger = logging.getLogger("travel_monitor_2")
 
 
+async def _async_background_db_maintenance():
+    """Runs non-blocking migrations/backfills in the background to avoid stalling uvicorn startup."""
+    try:
+        if engine.dialect.name == "postgresql":
+            async with engine.begin() as conn:
+                has_cohort_nulls = (await conn.execute(text(
+                    "SELECT 1 FROM offer_cohorts WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
+                ))).scalar()
+                if has_cohort_nulls:
+                    await conn.execute(text("""
+                        UPDATE offer_cohorts 
+                        SET filter_id = destination_code 
+                        WHERE (filter_id IS NULL OR filter_id = '');
+                    """))
+                has_nulls = (await conn.execute(text(
+                    "SELECT 1 FROM price_snapshots WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
+                ))).scalar()
+                if has_nulls:
+                    logger.info("Backfilling filter_id for legacy price_snapshots in background...")
+                    await conn.execute(text("""
+                        UPDATE price_snapshots ps 
+                        SET filter_id = oc.destination_code 
+                        FROM offer_cohorts oc 
+                        WHERE ps.cohort_id = oc.cohort_id 
+                          AND (ps.filter_id IS NULL OR ps.filter_id = '');
+                    """))
+    except Exception as mig_err:
+        logger.warning(f"Note on background column backfill: {mig_err}")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Initializing database tables for Travel Monitor 2.0...")
@@ -45,39 +75,16 @@ async def lifespan(app: FastAPI):
         except Exception:
             pass
 
-        # Backfill filter_id from destination_code if NULL (with fast existence guard)
-        try:
-            if engine.dialect.name == "postgresql":
-                has_nulls = (await conn.execute(text(
-                    "SELECT 1 FROM price_snapshots WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
-                ))).scalar()
-                if has_nulls:
-                    logger.info("Backfilling filter_id for legacy price_snapshots...")
-                    await conn.execute(text("""
-                        UPDATE price_snapshots ps 
-                        SET filter_id = oc.destination_code 
-                        FROM offer_cohorts oc 
-                        WHERE ps.cohort_id = oc.cohort_id 
-                          AND (ps.filter_id IS NULL OR ps.filter_id = '');
-                    """))
-                has_cohort_nulls = (await conn.execute(text(
-                    "SELECT 1 FROM offer_cohorts WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
-                ))).scalar()
-                if has_cohort_nulls:
-                    await conn.execute(text("""
-                        UPDATE offer_cohorts 
-                        SET filter_id = destination_code 
-                        WHERE (filter_id IS NULL OR filter_id = '');
-                    """))
-        except Exception as mig_err:
-            logger.warning(f"Note on column backfill: {mig_err}")
-
     logger.info("Database schema initialized successfully.")
 
     # Seed canonical v1 filter monitors
     async with AsyncSessionLocal() as db:
         from app.services.filter_monitor_service import FilterMonitorService
         await FilterMonitorService.init_default_monitors(db)
+
+    # Launch background DB backfill without delaying container healthchecks
+    import asyncio
+    asyncio.create_task(_async_background_db_maintenance())
 
     # Start background scheduler only if explicitly enabled (e.g. standalone worker)
     if settings.ENABLE_BACKGROUND_SCHEDULER:
