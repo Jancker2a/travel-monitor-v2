@@ -17,6 +17,7 @@ class HotelCatalogCard(BaseModel):
     historical_max_price: float
     delta_vs_typical_pct: float
     change_24h_pct: float = 0.0
+    change_48h_pct: float = 0.0
     change_7d_pct: float = 0.0
     deal_score: int = 50
     deal_confidence: str = "Medium"

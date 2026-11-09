@@ -75,6 +75,10 @@ class CatalogService:
             filtered_cards.sort(key=lambda x: x["deal_score"], reverse=not reverse_order)
         elif sort_by == "ta_rating":
             filtered_cards.sort(key=lambda x: (x["ta_rating"] or 0, x["ta_reviews"]), reverse=not reverse_order)
+        elif sort_by in ("discount_48h", "delta48"):
+            filtered_cards.sort(key=lambda x: x.get("change_48h_pct", 0.0), reverse=reverse_order)
+        elif sort_by == "delta_avg":
+            filtered_cards.sort(key=lambda x: x.get("delta_vs_typical_pct", 0.0), reverse=reverse_order)
         elif sort_by == "discount_24h":
             filtered_cards.sort(key=lambda x: x["change_24h_pct"], reverse=reverse_order)
         else:  # default "price"
@@ -325,13 +329,24 @@ class CatalogService:
                 all_prices = [p[1] for p in hist_pts]
                 typical_med = round(statistics.median(all_prices), 0)
 
-                # Look for price ~24h ago and ~7d ago
+                # Look for price ~24h ago, ~48h ago, and ~7d ago
                 latest_dt = hist_pts[-1][0]
                 dt_24h_target = latest_dt - timedelta(hours=24)
+                dt_48h_target = latest_dt - timedelta(hours=48)
                 dt_7d_target = latest_dt - timedelta(days=7)
 
                 p_24h = None
+                p_48h = None
                 p_7d = None
+
+                # Following V1 logic for 48h baseline:
+                win_48h = [pt for pt in hist_pts if pt[0] >= dt_48h_target]
+                if len(win_48h) >= 2:
+                    p_48h = win_48h[0][1]
+                elif len(hist_pts) >= 2:
+                    p_48h = hist_pts[-2][1]
+                else:
+                    p_48h = None
 
                 for dt, p in reversed(hist_pts):
                     if p_24h is None and dt <= dt_24h_target:
@@ -342,10 +357,12 @@ class CatalogService:
                         break
 
                 chg_24h = round((curr_price - p_24h) / p_24h * 100.0, 1) if p_24h else 0.0
+                chg_48h = round((curr_price - p_48h) / p_48h * 100.0, 1) if p_48h else 0.0
                 chg_7d = round((curr_price - p_7d) / p_7d * 100.0, 1) if p_7d else 0.0
             else:
                 typical_med = curr_price
                 chg_24h = 0.0
+                chg_48h = 0.0
                 chg_7d = 0.0
 
             delta_vs_typical = (
@@ -390,6 +407,8 @@ class CatalogService:
                 )
                 deal_score = int(deal_metrics.get("deal_score", 50))
                 confidence = deal_metrics.get("confidence", "Medium")
+                if "avg_delta_pct" in deal_metrics and deal_metrics["avg_delta_pct"] is not None:
+                    delta_vs_typical = round(float(deal_metrics["avg_delta_pct"]), 1)
             else:
                 deal_score = 50
                 confidence = "Low"
@@ -398,7 +417,9 @@ class CatalogService:
             badges = []
             if curr_price <= hist_min * 1.01:
                 badges.append("Исторический минимум")
-            if chg_24h <= -3.0:
+            if chg_48h <= -3.0:
+                badges.append(f"Снижение за 48ч ({chg_48h}%)")
+            elif chg_24h <= -3.0:
                 badges.append(f"Снижение за 24ч ({chg_24h}%)")
             if deal_score >= 80:
                 badges.append("Выгодная цена")
@@ -425,6 +446,7 @@ class CatalogService:
                 "historical_max_price": hist_max,
                 "delta_vs_typical_pct": delta_vs_typical,
                 "change_24h_pct": chg_24h,
+                "change_48h_pct": chg_48h,
                 "change_7d_pct": chg_7d,
                 "deal_score": deal_score,
                 "deal_confidence": confidence,

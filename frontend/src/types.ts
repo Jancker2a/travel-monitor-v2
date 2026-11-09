@@ -43,6 +43,7 @@ export interface HotelIntelligence {
   hopper_confidence: number;
   recommendation: string;
   drop_48h_pct: number;
+  delta_vs_typical_pct?: number;
   historic_min_pln: number;
   typical_median_pln: number;
   german_arbitrage_diff_pln?: number | null;
@@ -254,6 +255,7 @@ export interface HotelCatalogCard {
   historical_max_price: number;
   delta_vs_typical_pct: number;
   change_24h_pct: number;
+  change_48h_pct?: number;
   change_7d_pct: number;
   deal_score: number;
   deal_confidence: string;

@@ -594,7 +594,8 @@ function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
         c.badges && c.badges.length > 0
           ? c.badges.join(" • ")
           : "Стабильная цена",
-      drop_48h_pct: c.change_24h_pct,
+      drop_48h_pct: c.change_48h_pct !== undefined ? c.change_48h_pct : c.change_24h_pct,
+      delta_vs_typical_pct: c.delta_vs_typical_pct,
       historic_min_pln: c.historical_min_price,
       typical_median_pln: c.typical_median_price,
     },
@@ -782,7 +783,7 @@ export const App: React.FC = () => {
       }
 
       // Change
-      if (tableFilters.change === "decrease" && h.intelligence.drop_48h_pct <= 0) {
+      if (tableFilters.change === "decrease" && h.intelligence.drop_48h_pct >= 0) {
         return false;
       }
       if (tableFilters.change === "stable" && h.intelligence.drop_48h_pct !== 0) {
@@ -808,13 +809,17 @@ export const App: React.FC = () => {
       if (sortField === "price") {
         diff = a.current_offer.total_price_pln - b.current_offer.total_price_pln;
       } else if (sortField === "deal_score") {
-        diff = b.intelligence.deal_score - a.intelligence.deal_score;
+        diff = a.intelligence.deal_score - b.intelligence.deal_score;
       } else if (sortField === "ta_rating") {
-        diff = (b.ta_rating || 0) - (a.ta_rating || 0);
+        diff = (a.ta_rating || 0) - (b.ta_rating || 0);
       } else if (sortField === "hotel") {
         diff = a.hotel_name.localeCompare(b.hotel_name);
       } else if (sortField === "delta48") {
-        diff = b.intelligence.drop_48h_pct - a.intelligence.drop_48h_pct;
+        diff = a.intelligence.drop_48h_pct - b.intelligence.drop_48h_pct;
+      } else if (sortField === "delta_avg") {
+        const aAvg = a.intelligence.delta_vs_typical_pct ?? 0;
+        const bAvg = b.intelligence.delta_vs_typical_pct ?? 0;
+        diff = aAvg - bAvg;
       }
       return sortAsc ? diff : -diff;
     });
@@ -827,7 +832,11 @@ export const App: React.FC = () => {
       setSortAsc(!sortAsc);
     } else {
       setSortField(field);
-      setSortAsc(field === "price");
+      if (field === "deal_score" || field === "ta_rating") {
+        setSortAsc(false);
+      } else {
+        setSortAsc(true);
+      }
     }
   };
 

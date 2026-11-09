@@ -1,5 +1,5 @@
 import React from "react";
-import { ExternalLink, Star, ArrowUpDown, Bell } from "lucide-react";
+import { ExternalLink, Star, ArrowUpDown, ArrowUp, ArrowDown, Bell } from "lucide-react";
 import { SearchHotelItem } from "../types";
 
 interface HotelTableViewProps {
@@ -21,6 +21,16 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
   sortAsc,
   onSort,
 }) => {
+  const renderSortIcon = (field: string) => {
+    if (sortField !== field) {
+      return <ArrowUpDown className="w-3.5 h-3.5 opacity-40 shrink-0" />;
+    }
+    return sortAsc ? (
+      <ArrowUp className="w-3.5 h-3.5 text-blue-600 font-extrabold shrink-0" />
+    ) : (
+      <ArrowDown className="w-3.5 h-3.5 text-blue-600 font-extrabold shrink-0" />
+    );
+  };
   return (
     <div className="space-y-4" id="tableSection">
       {/* Table Section Title */}
@@ -63,35 +73,35 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
       <div className="hotels-table-container">
         <table className="hotels-table" id="hotelsTable">
           <thead>
-            <tr className="bg-sky-50/80 border-b border-sky-100 text-sky-900 text-xs uppercase tracking-wider font-extrabold">
+            <tr className="bg-sky-50/80 border-b border-sky-100 text-sky-900 text-xs uppercase tracking-wider font-extrabold select-none">
               <th
                 onClick={() => onSort("hotel")}
-                className="cursor-pointer hover:text-blue-900 pl-4 py-3 rounded-l-xl"
+                className="cursor-pointer hover:text-blue-900 pl-4 py-3 rounded-l-xl transition-colors"
                 style={{ width: "24%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>ОТЕЛЬ</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 opacity-60" />
+                  {renderSortIcon("hotel")}
                 </div>
               </th>
               <th
                 onClick={() => onSort("price")}
-                className="cursor-pointer hover:text-blue-900 py-3"
+                className="cursor-pointer hover:text-blue-900 py-3 transition-colors"
                 style={{ width: "12%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>ЦЕНА</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 opacity-60" />
+                  {renderSortIcon("price")}
                 </div>
               </th>
               <th
                 onClick={() => onSort("deal_score")}
-                className="cursor-pointer hover:text-blue-900 py-3"
+                className="cursor-pointer hover:text-blue-900 py-3 transition-colors"
                 style={{ width: "11%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>DEAL SCORE</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 opacity-60" />
+                  {renderSortIcon("deal_score")}
                 </div>
               </th>
               <th style={{ width: "11%", textAlign: "center" }} className="py-3">
@@ -99,34 +109,35 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("ta_rating")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center"
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors"
                 style={{ width: "7%" }}
                 title="TripAdvisor"
               >
                 <div className="flex items-center justify-center gap-1.5">
                   <span>🦉</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 opacity-60" />
+                  {renderSortIcon("ta_rating")}
                 </div>
               </th>
               <th
                 onClick={() => onSort("delta48")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center"
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors"
                 style={{ width: "7%" }}
+                title="Изменение цены за последние 48 часов"
               >
                 <div className="flex items-center justify-center gap-1.5">
                   <span>Δ 48Ч</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 opacity-60" />
+                  {renderSortIcon("delta48")}
                 </div>
               </th>
               <th
                 onClick={() => onSort("delta_avg")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center"
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors"
                 style={{ width: "8%" }}
-                title="Отклонение от средней цены"
+                title="Отклонение от типичной (плато) средней цены отеля"
               >
                 <div className="flex items-center justify-center gap-1.5">
                   <span>Δ К СРЕДНЕЙ</span>
-                  <ArrowUpDown className="w-3.5 h-3.5 opacity-60" />
+                  {renderSortIcon("delta_avg")}
                 </div>
               </th>
               <th style={{ width: "9%" }} className="py-3">
@@ -179,7 +190,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
               // Delta values
               const delta48 = intel.drop_48h_pct;
-              const deltaAvg = intel.drop_48h_pct > 0 ? -intel.drop_48h_pct : 0;
+              const deltaAvg = intel.delta_vs_typical_pct !== undefined ? intel.delta_vs_typical_pct : 0;
 
               return (
                 <tr key={offer.cohort_hash} className="group">
@@ -256,8 +267,14 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                   {/* Δ 48ч */}
                   <td style={{ textAlign: "center" }}>
-                    {delta48 > 0 ? (
-                      <span className="delta-down text-xs font-black px-2 py-0.5 rounded-md">↓ −{delta48}%</span>
+                    {delta48 < 0 ? (
+                      <span className="delta-down text-xs font-black px-2 py-0.5 rounded-md text-emerald-700 bg-emerald-50 border border-emerald-200/80">
+                        ↓ {delta48.toFixed(1)}%
+                      </span>
+                    ) : delta48 > 0 ? (
+                      <span className="delta-up text-xs font-black px-2 py-0.5 rounded-md text-rose-700 bg-rose-50 border border-rose-200/80">
+                        ↑ +{delta48.toFixed(1)}%
+                      </span>
                     ) : (
                       <span className="delta-flat text-xs font-bold text-slate-400">—</span>
                     )}
@@ -266,7 +283,13 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   {/* Δ к средней */}
                   <td style={{ textAlign: "center" }}>
                     {deltaAvg < 0 ? (
-                      <span className="delta-down text-xs font-black px-2 py-0.5 rounded-md">↓ {deltaAvg}%</span>
+                      <span className="delta-down text-xs font-black px-2 py-0.5 rounded-md text-emerald-700 bg-emerald-50 border border-emerald-200/80">
+                        ↓ {deltaAvg.toFixed(1)}%
+                      </span>
+                    ) : deltaAvg > 0 ? (
+                      <span className="delta-up text-xs font-black px-2 py-0.5 rounded-md text-rose-700 bg-rose-50 border border-rose-200/80">
+                        ↑ +{deltaAvg.toFixed(1)}%
+                      </span>
                     ) : (
                       <span className="delta-flat text-xs font-bold text-slate-400">0%</span>
                     )}
