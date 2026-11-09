@@ -1,10 +1,14 @@
 import logging
+import time
 from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
 logger = logging.getLogger("travel_monitor_2.timeline")
+
+_TIMELINE_CACHE: Dict[Tuple[str, str, Optional[float]], Tuple[float, Dict[str, Any]]] = {}
+_CACHE_TTL_SECONDS = 180
 
 # Aliases between legacy shorthand and canonical folder/monitor IDs
 ALIAS_MAP = {
@@ -80,6 +84,14 @@ class TimelineService:
         For each hourly scrape run, finds minimum price per hotel, sorts ascending,
         takes Top-10 hotels, and computes avg, min, and max price corridor.
         """
+        canonical_fid = resolve_filter_id(filter_id)
+        cache_key = (canonical_fid, range_param, ceiling_pln)
+        now_ts = time.time()
+        if cache_key in _TIMELINE_CACHE:
+            c_time, c_data = _TIMELINE_CACHE[cache_key]
+            if now_ts - c_time < _CACHE_TTL_SECONDS:
+                return c_data
+
         fids = get_all_filter_id_variants(filter_id)
 
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
@@ -200,11 +212,13 @@ class TimelineService:
                 "last_updated": timeline_points[-1]["time"],
             }
 
-        return {
+        res = {
             "filter_id": filter_id,
             "range": range_param,
             "points_count": len(timeline_points),
             "timeline": timeline_points,
             "stats": stats,
         }
+        _TIMELINE_CACHE[cache_key] = (now_ts, res)
+        return res
 

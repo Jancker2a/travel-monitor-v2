@@ -1,6 +1,7 @@
 import logging
 import statistics
-from typing import Dict, Any, List, Optional
+import time
+from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
@@ -8,6 +9,9 @@ from sqlalchemy import text
 logger = logging.getLogger("travel_monitor_2.catalog")
 
 from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
+
+_CATALOG_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
+_CACHE_TTL_SECONDS = 180  # 3 minutes in-memory cache
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:
@@ -36,6 +40,55 @@ class CatalogService:
         TripAdvisor ratings, and badges calculated directly against historical database.
         """
         canonical_fid = resolve_filter_id(filter_id)
+
+        # Check in-memory cache
+        now_ts = time.time()
+        cards: Optional[List[Dict[str, Any]]] = None
+        if canonical_fid in _CATALOG_CACHE:
+            c_time, c_cards = _CATALOG_CACHE[canonical_fid]
+            if now_ts - c_time < _CACHE_TTL_SECONDS:
+                cards = c_cards
+
+        if cards is None:
+            cards = await cls._compute_catalog_cards(db, filter_id, canonical_fid)
+            _CATALOG_CACHE[canonical_fid] = (now_ts, cards)
+
+        # 5. Apply filters
+        filtered_cards = list(cards)
+        if stars:
+            filtered_cards = [c for c in filtered_cards if c["stars"] == stars]
+        if search_query:
+            sq = search_query.strip().lower()
+            filtered_cards = [c for c in filtered_cards if sq in c["display_name"].lower()]
+        if min_price is not None:
+            filtered_cards = [c for c in filtered_cards if c["current_min_price"] >= min_price]
+        if max_price is not None:
+            filtered_cards = [c for c in filtered_cards if c["current_min_price"] <= max_price]
+
+        # 6. Sorting
+        reverse_order = order.lower() == "desc"
+        if sort_by == "deal_score":
+            filtered_cards.sort(key=lambda x: x["deal_score"], reverse=not reverse_order)
+        elif sort_by == "ta_rating":
+            filtered_cards.sort(key=lambda x: (x["ta_rating"] or 0, x["ta_reviews"]), reverse=not reverse_order)
+        elif sort_by == "discount_24h":
+            filtered_cards.sort(key=lambda x: x["change_24h_pct"], reverse=reverse_order)
+        else:  # default "price"
+            filtered_cards.sort(key=lambda x: x["current_min_price"], reverse=reverse_order)
+
+        return {
+            "filter_id": filter_id,
+            "total_hotels": len(filtered_cards),
+            "hotels": filtered_cards,
+        }
+
+    @classmethod
+    async def _compute_catalog_cards(
+        cls,
+        db: AsyncSession,
+        filter_id: str,
+        canonical_fid: str,
+    ) -> List[Dict[str, Any]]:
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
@@ -49,7 +102,7 @@ class CatalogService:
         max_ts = time_res.scalar()
 
         if not max_ts:
-            return {"filter_id": filter_id, "total_hotels": 0, "hotels": []}
+            return []
 
         if isinstance(max_ts, str):
             ts_str = max_ts.replace("Z", "+00:00").replace(" ", "T")
@@ -121,14 +174,38 @@ class CatalogService:
             active_rows = active_res.fetchall()
 
         if not active_rows:
-            return {"filter_id": filter_id, "total_hotels": 0, "hotels": []}
+            return []
 
         hotel_ids = [r[0] for r in active_rows]
 
-        # 3. Batch fetch all historical snapshots for these hotels under this filter
+        # 3. Batch fetch historical min/max aggregate stats directly in SQL
         placeholders = ",".join(f":h{i}" for i in range(len(hotel_ids)))
         h_params = {f"h{i}": hid for i, hid in enumerate(hotel_ids)}
         h_params["fids"] = fids
+
+        stats_sql = f"""
+            SELECT 
+                oc.hotel_id,
+                MIN(ps.total_price_pln) as hist_min,
+                MAX(ps.total_price_pln) as hist_max
+            FROM price_snapshots ps
+            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+            WHERE {filter_expr}
+              AND oc.hotel_id IN ({placeholders})
+            GROUP BY oc.hotel_id;
+        """
+        s_stmt = text(stats_sql)
+        if not is_pg:
+            from sqlalchemy import bindparam
+            s_stmt = s_stmt.bindparams(bindparam("fids", expanding=True))
+
+        stats_res = await db.execute(s_stmt, h_params)
+        hotel_stats = {r[0]: (float(r[1]), float(r[2])) for r in stats_res.fetchall()}
+
+        # 3b. Fetch recent 30-day snapshots for 24h/7d change and median calculation (fast & bounded)
+        recent_cutoff = (max_dt - timedelta(days=30)) if is_pg else (max_dt - timedelta(days=30)).isoformat()
+        h_params_recent = dict(h_params)
+        h_params_recent["recent_cutoff"] = recent_cutoff
 
         hist_sql = f"""
             SELECT 
@@ -139,6 +216,7 @@ class CatalogService:
             JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
             WHERE {filter_expr}
               AND oc.hotel_id IN ({placeholders})
+              AND ps.recorded_at >= :recent_cutoff
             ORDER BY ps.recorded_at ASC;
         """
         h_stmt = text(hist_sql)
@@ -146,7 +224,7 @@ class CatalogService:
             from sqlalchemy import bindparam
             h_stmt = h_stmt.bindparams(bindparam("fids", expanding=True))
 
-        hist_res = await db.execute(h_stmt, h_params)
+        hist_res = await db.execute(h_stmt, h_params_recent)
         hist_rows = hist_res.fetchall()
 
         # Group history points by hotel_id
@@ -189,14 +267,24 @@ class CatalogService:
 
             curr_price = float(curr_price)
             hist_pts = hotel_history.get(h_id, [])
+            stats_tuple = hotel_stats.get(h_id)
+
+            if stats_tuple:
+                hist_min = round(stats_tuple[0], 0)
+                hist_max = round(stats_tuple[1], 0)
+            elif hist_pts:
+                all_p = [p[1] for p in hist_pts]
+                hist_min = round(min(all_p), 0)
+                hist_max = round(max(all_p), 0)
+            else:
+                hist_min = curr_price
+                hist_max = curr_price
 
             if hist_pts:
                 all_prices = [p[1] for p in hist_pts]
-                hist_min = round(min(all_prices), 0)
-                hist_max = round(max(all_prices), 0)
                 typical_med = round(statistics.median(all_prices), 0)
 
-                # Look for price ~24h ago
+                # Look for price ~24h ago and ~7d ago
                 latest_dt = hist_pts[-1][0]
                 dt_24h_target = latest_dt - timedelta(hours=24)
                 dt_7d_target = latest_dt - timedelta(days=7)
@@ -215,8 +303,6 @@ class CatalogService:
                 chg_24h = round((curr_price - p_24h) / p_24h * 100.0, 1) if p_24h else 0.0
                 chg_7d = round((curr_price - p_7d) / p_7d * 100.0, 1) if p_7d else 0.0
             else:
-                hist_min = curr_price
-                hist_max = curr_price
                 typical_med = curr_price
                 chg_24h = 0.0
                 chg_7d = 0.0
@@ -258,11 +344,14 @@ class CatalogService:
                 badges.append(f"Снижение за 24ч ({chg_24h}%)")
             if deal_score >= 80:
                 badges.append("Выгодная цена")
-            if ta_rating and float(ta_rating) >= 4.5:
-                badges.append(f"Жемчужина {ta_rating}★")
 
-            checkin_str = checkin_dt.isoformat() if hasattr(checkin_dt, "isoformat") else (str(checkin_dt) if checkin_dt else None)
-            last_updated_str = last_rec_at.isoformat() if hasattr(last_rec_at, "isoformat") else (str(last_rec_at) if last_rec_at else "")
+            # Formatted strings
+            checkin_str = checkin_dt.strftime("%Y-%m-%d") if hasattr(checkin_dt, "strftime") else str(checkin_dt)
+            last_updated_str = (
+                last_rec_at.isoformat()
+                if hasattr(last_rec_at, "isoformat")
+                else str(last_rec_at)
+            )
 
             cards.append({
                 "hotel_id": h_id,
@@ -289,32 +378,4 @@ class CatalogService:
                 "last_updated": last_updated_str,
             })
 
-        # 5. Apply filters
-        filtered_cards = cards
-        if stars:
-            filtered_cards = [c for c in filtered_cards if c["stars"] == stars]
-        if search_query:
-            sq = search_query.strip().lower()
-            filtered_cards = [c for c in filtered_cards if sq in c["display_name"].lower()]
-        if min_price is not None:
-            filtered_cards = [c for c in filtered_cards if c["current_min_price"] >= min_price]
-        if max_price is not None:
-            filtered_cards = [c for c in filtered_cards if c["current_min_price"] <= max_price]
-
-        # 6. Sorting
-        reverse_order = order.lower() == "desc"
-        if sort_by == "deal_score":
-            filtered_cards.sort(key=lambda x: x["deal_score"], reverse=not reverse_order)
-        elif sort_by == "ta_rating":
-            filtered_cards.sort(key=lambda x: (x["ta_rating"] or 0, x["ta_reviews"]), reverse=not reverse_order)
-        elif sort_by == "discount_24h":
-            filtered_cards.sort(key=lambda x: x["change_24h_pct"], reverse=reverse_order)
-        else:  # default "price"
-            filtered_cards.sort(key=lambda x: x["current_min_price"], reverse=reverse_order)
-
-        return {
-            "filter_id": filter_id,
-            "total_hotels": len(filtered_cards),
-            "hotels": filtered_cards,
-        }
-
+        return cards
