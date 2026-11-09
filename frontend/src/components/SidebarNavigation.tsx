@@ -60,8 +60,8 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       group: "🇪🇬 Египет",
       icon: "🇪🇬",
       items: [
-        { id: "egypt_autumn_7_10", title: "7–10 дней (Красное море)" },
-        { id: "egypt_autumn_13_16", title: "13–16 дней (Длительный)" },
+        { id: "egypt_7_10", title: "7–10 дней (Красное море)" },
+        { id: "egypt_13_16", title: "13–16 дней (Длительный)" },
         { id: "egypt_sharm_dec20_29_1p", title: "Шарм 20–29 дек (1 взр)" },
         { id: "egypt_ny_dec24_2026_7_10", title: "Новый Год 24.12–06.01", badge: "🎄 НГ" },
         { id: "egypt_ny_dec28_2026_7_10", title: "Новый Год 28.12–06.01", badge: "🎄 НГ" },
@@ -101,6 +101,8 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       icon: "📦",
       items: [
         { id: "turkey_vacation_jul18_2026", title: "Турция • Отпуск 18 июля" },
+        { id: "egypt_autumn_2026_7_10_days", title: "Египет • Осень 2026 (7–10 дн)" },
+        { id: "egypt_autumn_2026_13_16_days", title: "Египет • Осень 2026 (13–16 дн)" },
       ],
     },
   ];

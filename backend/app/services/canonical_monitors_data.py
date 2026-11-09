@@ -50,18 +50,18 @@ CANONICAL_MONITORS = [
     },
     {
         "id": "13_16_days",
-        "group_id": "other",
-        "title": "13–16 дней",
-        "subtitle": "13–16 дней",
-        "destination": "turkey",
+        "group_id": "egypt",
+        "title": "Египет • 13–16 дн.",
+        "subtitle": "Египет • 13–16 дн.",
+        "destination": "egypt",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=28-05-2026&startDateMax=17-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price"
     },
     {
         "id": "7_10_days",
-        "group_id": "other",
-        "title": "7–10 дней",
-        "subtitle": "7–10 дней",
-        "destination": "turkey",
+        "group_id": "egypt",
+        "title": "Египет • 7–10 дн.",
+        "subtitle": "Египет • 7–10 дн.",
+        "destination": "egypt",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=28-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price"
     },
     {
