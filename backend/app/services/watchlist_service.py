@@ -314,8 +314,7 @@ class WatchlistService:
         global _HOTEL_ALIAS_CACHE, _ALIAS_CACHE_TS
         now = time.time()
         if _HOTEL_ALIAS_CACHE and (now - _ALIAS_CACHE_TS < _ALIAS_CACHE_TTL):
-            if hotel.hotel_id in _HOTEL_ALIAS_CACHE:
-                return _HOTEL_ALIAS_CACHE[hotel.hotel_id]
+            return _HOTEL_ALIAS_CACHE.get(hotel.hotel_id, [hotel.hotel_id])
 
         # Rebuild alias clusters across all hotels
         stmt = select(Hotel.hotel_id, Hotel.display_name, Hotel.country)
@@ -324,13 +323,17 @@ class WatchlistService:
         clusters = defaultdict(list)
         new_cache: Dict[str, List[str]] = {}
         for hid, name, c_raw in rows:
+            new_cache[hid] = [hid]
             c = _norm_country(c_raw)
-            key = (c, _smart_hotel_tokens(name))
-            clusters[key].append(hid)
+            toks = _smart_hotel_tokens(name)
+            if toks:
+                key = (c, toks)
+                clusters[key].append(hid)
 
         for key, hids in clusters.items():
-            for hid in hids:
-                new_cache[hid] = hids
+            if len(hids) > 1:
+                for hid in hids:
+                    new_cache[hid] = hids
 
         _HOTEL_ALIAS_CACHE = new_cache
         _ALIAS_CACHE_TS = now

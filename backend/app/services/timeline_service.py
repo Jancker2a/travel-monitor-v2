@@ -187,7 +187,7 @@ class TimelineService:
 
             top10_hotels = [
                 {"name": item[0], "price": item[1], "position": idx + 1}
-                for idx, item in enumerate(top10)
+                for idx, item in enumerate(top10[:3])
             ]
             timeline_points.append({
                 "time": r_time,

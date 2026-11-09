@@ -70,5 +70,5 @@ COPY --from=frontend-builder /build/dist /app/frontend/dist
 EXPOSE 8080
 
 WORKDIR /app/backend
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080} --workers 2"]
 

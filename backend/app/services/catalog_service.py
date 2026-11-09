@@ -15,7 +15,7 @@ from app.services.hotel_deal_score import compute_hotel_deal_metrics
 from app.services.hotel_knowledge_service import HotelKnowledgeService
 
 _CATALOG_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
-_CACHE_TTL_SECONDS = 180  # 3 minutes in-memory cache
+_CACHE_TTL_SECONDS = 900  # 15 minutes in-memory cache
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:
@@ -100,10 +100,11 @@ class CatalogService:
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
+        oc_filter_expr = "oc.filter_id = ANY(:fids)" if is_pg else "oc.filter_id IN :fids"
         join_col = "cohort_id" if is_pg else "cohort_hash"
 
-        # 1. Find the latest recorded scrape time for this filter
-        stmt = text(f"SELECT MAX(ps.recorded_at) FROM price_snapshots ps WHERE {filter_expr}")
+        # 1. Find the latest recorded scrape time for this filter using fast index scan
+        stmt = text(f"SELECT ps.recorded_at FROM price_snapshots ps WHERE {filter_expr} ORDER BY ps.recorded_at DESC LIMIT 1")
         if not is_pg:
             from sqlalchemy import bindparam
             stmt = stmt.bindparams(bindparam("fids", expanding=True))
@@ -221,6 +222,7 @@ class CatalogService:
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
             WHERE {filter_expr}
+              AND {oc_filter_expr}
               AND oc.hotel_id IN ({placeholders})
             GROUP BY oc.hotel_id;
         """
@@ -255,6 +257,7 @@ class CatalogService:
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
             WHERE {filter_expr}
+              AND {oc_filter_expr}
               AND oc.hotel_id IN ({placeholders})
               AND ps.recorded_at >= :recent_cutoff
             ORDER BY ps.recorded_at ASC;

@@ -9,8 +9,10 @@ logger = logging.getLogger("travel_monitor_2.analytics")
 
 _TOP_DROPS_CACHE: Dict[Tuple[int, float], Tuple[float, List[Dict[str, Any]]]] = {}
 _AIRPORT_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
+_TOP10_ANALYTICS_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
 _OFFERS_COUNT_CACHE: Optional[Tuple[float, List[Dict[str, Any]]]] = None
-_ANALYTICS_CACHE_TTL = 300.0  # 5 minutes
+_MARKET_OVERVIEW_CACHE: Optional[Tuple[float, Dict[str, Any]]] = None
+_ANALYTICS_CACHE_TTL = 900.0  # 15 minutes cache
 
 
 class AnalyticsService:
@@ -89,6 +91,13 @@ class AnalyticsService:
         from app.services.canonical_filters import resolve_filter_spec
         from sqlalchemy import bindparam
 
+        cache_key = f"{filter_id or ''}_{destination or ''}"
+        now_ts = time.time()
+        if cache_key in _TOP10_ANALYTICS_CACHE:
+            c_time, c_data = _TOP10_ANALYTICS_CACHE[cache_key]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
+
         spec = resolve_filter_spec(filter_id)
         if spec:
             dest_codes = list(spec["destination_codes"])
@@ -107,7 +116,7 @@ class AnalyticsService:
         else:
             dest_codes = ["filter_turkey_7_10_days", "filter_7_10_days"]
 
-        is_pg = db.bind.dialect.name == "postgresql"
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         date_expr = "TO_CHAR(s.recorded_at, 'YYYY-MM-DD HH24:00')" if is_pg else "strftime('%Y-%m-%d %H:00', s.recorded_at)"
 
         query = text(f"""
@@ -151,15 +160,16 @@ class AnalyticsService:
                 "min_price": round(float(r["min_price"]), 0) if r["min_price"] is not None else 0.0,
                 "max_price": round(float(r["max_price"]), 0) if r["max_price"] is not None else 0.0,
             })
-        _TOP_DROPS_CACHE[cache_key] = (now_ts, results)
+        _TOP10_ANALYTICS_CACHE[cache_key] = (now_ts, results)
         return results
 
     @classmethod
     async def get_airport_comparison(
         cls, db: AsyncSession, destination: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        """Calculates average and minimum package price grouped by departure airport."""
-        cache_key = (destination or "all").lower().strip()
+        """Calculates average and minimum package price grouped by departure airport using indexed filter queries."""
+        dest_clean = (destination or "all").lower().strip()
+        cache_key = dest_clean
         now_ts = time.time()
         if cache_key in _AIRPORT_CACHE:
             c_time, c_data = _AIRPORT_CACHE[cache_key]
@@ -167,30 +177,50 @@ class AnalyticsService:
                 return c_data
 
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
-        cutoff_expr = "NOW() - INTERVAL '7 days'" if is_pg else "datetime('now', '-7 days')"
+        cutoff_expr = "NOW() - INTERVAL '48 hours'" if is_pg else "datetime('now', '-48 hours')"
 
-        filter_clause = ""
-        params: Dict[str, Any] = {}
-        if destination:
-            filter_clause = "AND (LOWER(c.destination_code) LIKE :dest OR LOWER(h.country) LIKE :dest)"
-            params["dest"] = f"%{destination.lower()}%"
+        from app.services.timeline_service import get_all_filter_id_variants
+        fids = get_all_filter_id_variants(dest_clean) if destination else []
 
-        query = text(f"""
-            SELECT c.airport_code,
-                   COUNT(DISTINCT c.hotel_id) as hotel_count,
-                   MIN(s.total_price_pln) as min_price,
-                   AVG(s.total_price_pln) as avg_price,
-                   AVG(s.price_per_night_per_pax) as avg_night_pax
-            FROM price_snapshots s
-            JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
-            JOIN hotels h ON c.hotel_id = h.hotel_id
-            WHERE s.recorded_at >= {cutoff_expr}
-            {filter_clause}
-            GROUP BY c.airport_code
-            HAVING COUNT(*) >= 5
-            ORDER BY avg_price ASC
-        """)
-        res = await db.execute(query, params)
+        if fids:
+            query = text(f"""
+                SELECT c.airport_code,
+                       COUNT(DISTINCT c.hotel_id) as hotel_count,
+                       MIN(s.total_price_pln) as min_price,
+                       AVG(s.total_price_pln) as avg_price,
+                       AVG(s.price_per_night_per_pax) as avg_night_pax
+                FROM price_snapshots s
+                JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
+                WHERE s.filter_id = ANY(:fids)
+                  AND s.recorded_at >= {cutoff_expr}
+                GROUP BY c.airport_code
+                HAVING COUNT(*) >= 3
+                ORDER BY avg_price ASC
+            """)
+            res = await db.execute(query, {"fids": fids})
+        else:
+            filter_clause = ""
+            params: Dict[str, Any] = {}
+            if destination:
+                filter_clause = "AND (LOWER(c.destination_code) LIKE :dest OR LOWER(h.country) LIKE :dest)"
+                params["dest"] = f"%{destination.lower()}%"
+            query = text(f"""
+                SELECT c.airport_code,
+                       COUNT(DISTINCT c.hotel_id) as hotel_count,
+                       MIN(s.total_price_pln) as min_price,
+                       AVG(s.total_price_pln) as avg_price,
+                       AVG(s.price_per_night_per_pax) as avg_night_pax
+                FROM price_snapshots s
+                JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
+                JOIN hotels h ON c.hotel_id = h.hotel_id
+                WHERE s.recorded_at >= {cutoff_expr}
+                {filter_clause}
+                GROUP BY c.airport_code
+                HAVING COUNT(*) >= 3
+                ORDER BY avg_price ASC
+            """)
+            res = await db.execute(query, params)
+
         rows = res.mappings().all()
 
         results = []
@@ -264,6 +294,13 @@ class AnalyticsService:
     @classmethod
     async def get_market_overview(cls, db: AsyncSession) -> Dict[str, Any]:
         """Returns high-level market metrics: active hotels, cohorts, total tracked points, median price."""
+        global _MARKET_OVERVIEW_CACHE
+        now_ts = time.time()
+        if _MARKET_OVERVIEW_CACHE is not None:
+            c_time, c_data = _MARKET_OVERVIEW_CACHE
+            if now_ts - c_time < 1800.0:  # 30 minutes cache
+                return c_data
+
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         cutoff_expr = "NOW() - INTERVAL '24 hours'" if is_pg else "datetime('now', '-24 hours')"
 
@@ -277,4 +314,6 @@ class AnalyticsService:
         """)
         res = await db.execute(query)
         row = res.mappings().first()
-        return dict(row) if row else {}
+        results = dict(row) if row else {}
+        _MARKET_OVERVIEW_CACHE = (now_ts, results)
+        return results
