@@ -812,7 +812,8 @@
     "2026-10-20 09:55:15",
     "2026-10-20 17:37:48",
     "2026-10-20 18:39:05",
-    "2026-11-09 08:56:15"
+    "2026-11-09 08:56:15",
+    "2026-11-09 09:47:38"
   ],
   "y": [
     9552.0,
@@ -1623,6 +1624,7 @@
     10123.0,
     10123.0,
     10123.0,
+    13878.0,
     13878.0
   ],
   "hover": [
@@ -2450,10 +2452,11 @@
   "median_p": 9069.337708219258,
   "min_p": 8010.0,
   "max_p": 13878.0,
-  "samples": 809,
+  "samples": 810,
   "alert_threshold": 8.0,
   "trip_dates_label": "28.10 - 5.11",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html",
+  "current_price": 13878.0
 }

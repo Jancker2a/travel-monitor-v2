@@ -4,10 +4,12 @@
   "slug": "invidia-coral-beach-tiran",
   "hotel_name": "Invidia Coral Beach Tiran",
   "x": [
-    "2026-07-27 09:30:20"
+    "2026-07-27 09:30:20",
+    "2026-11-09 09:49:25"
   ],
   "y": [
-    13423.0
+    13423.0,
+    5608.0
   ],
   "hover": [
     "Проверка: 27.07.2026 09:30<br>Даты поездки: 10.10.2026 - 24.10.2026"
@@ -25,12 +27,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 13423.0,
-  "min_p": 13423.0,
+  "min_p": 5608.0,
   "max_p": 13423.0,
-  "samples": 1,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "10.10.2026 - 24.10.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_autumn_2026_13_16_days.html"
+  "back_href": "index_filter_egypt_autumn_2026_13_16_days.html",
+  "current_price": 5608.0
 }
