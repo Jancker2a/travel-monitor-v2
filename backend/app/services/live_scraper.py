@@ -429,6 +429,7 @@ class LiveScraperService:
                 airport_code=off["departure_airport"],
                 adults=req.travelers.adults,
                 board_basis=off["board_basis"],
+                filter_id=req.filter_id,
             )
 
             # Upsert Cohort (with in-batch deduplication)
@@ -442,6 +443,7 @@ class LiveScraperService:
             if not cohort_entity:
                 cohort_entity = OfferCohort(
                     cohort_hash=cohort_hash,
+                    filter_id=req.filter_id,
                     hotel_id=hotel_id,
                     destination_code=req.destination,
                     checkin_date=off["checkin_date"],
@@ -459,6 +461,8 @@ class LiveScraperService:
                 db.add(cohort_entity)
             else:
                 cohort_entity.last_seen_at = now_dt
+                if req.filter_id and not cohort_entity.filter_id:
+                    cohort_entity.filter_id = req.filter_id
                 if off["offer_url"]:
                     cohort_entity.offer_url = off["offer_url"]
 
@@ -470,6 +474,7 @@ class LiveScraperService:
 
             snapshot = PriceSnapshot(
                 cohort_hash=cohort_hash,
+                filter_id=req.filter_id,
                 recorded_at=now_dt,
                 total_price_pln=off["price"],
                 price_per_night_per_pax=round(price_pax_night, 2),

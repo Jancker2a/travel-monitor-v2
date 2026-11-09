@@ -39,9 +39,11 @@ ENV/
 *.sqlite
 *.sqlite3
 *.db
-!travel_monitor_v2.db
+travel_monitor_v2.db
+!travel_monitor_v2.db.gz.*
 *.db-journal
 *.db-wal
+*.db-shm
 /data/
 !site/data/
 !site/data/**

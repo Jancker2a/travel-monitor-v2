@@ -1,5 +1,6 @@
 import hashlib
 from datetime import date
+from typing import Optional
 from sqlalchemy import (
     Column,
     String,
@@ -22,9 +23,10 @@ def compute_cohort_hash(
     airport_code: str,
     adults: int = 2,
     board_basis: str = "All Inclusive",
+    filter_id: Optional[str] = None,
 ) -> str:
     """Computes a deterministic SHA256 signature for this package cohort."""
-    key = f"{hotel_id.strip().lower()}|{checkin_date.isoformat()}|{duration_nights}|{airport_code.strip().upper()}|{adults}|{board_basis.strip().lower()}"
+    key = f"{filter_id or ''}|{hotel_id.strip().lower()}|{checkin_date.isoformat()}|{duration_nights}|{airport_code.strip().upper()}|{adults}|{board_basis.strip().lower()}"
     return hashlib.sha256(key.encode("utf-8")).hexdigest()[:32]
 
 
@@ -32,6 +34,7 @@ class OfferCohort(Base):
     __tablename__ = "offer_cohorts"
 
     cohort_hash = Column(String(32), primary_key=True, index=True)
+    filter_id = Column(String(64), nullable=True, index=True)
     hotel_id = Column(String(128), ForeignKey("hotels.hotel_id", ondelete="CASCADE"), nullable=False, index=True)
     destination_code = Column(String(64), nullable=False, index=True)
     checkin_date = Column(Date, nullable=False, index=True)
@@ -54,9 +57,10 @@ class OfferCohort(Base):
     watchlists = relationship("WatchlistItem", back_populates="cohort", cascade="all, delete-orphan")
 
     __table_args__ = (
+        Index("idx_cohort_filter_hotel", "filter_id", "hotel_id"),
         Index("idx_cohort_search", "hotel_id", "checkin_date", "duration_nights", "airport_code"),
     )
 
     def __repr__(self) -> str:
-        return f"<Cohort {self.cohort_hash[:8]} {self.hotel_id} {self.checkin_date} ({self.duration_nights}n)>"
+        return f"<Cohort {self.cohort_hash[:8]} [{self.filter_id}] {self.hotel_id} {self.checkin_date} ({self.duration_nights}n)>"
 

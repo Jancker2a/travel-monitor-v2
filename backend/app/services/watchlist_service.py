@@ -281,14 +281,22 @@ class WatchlistService:
             raise HTTPException(status_code=404, detail="No cohorts found for this hotel")
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
+        from app.services.timeline_service import ALIAS_MAP
+        canonical_fid = ALIAS_MAP.get(filter_id, filter_id) if filter_id else None
         scoped_cohorts = []
-        spec = resolve_filter_spec(filter_id)
-        if spec:
-            dest_codes = set(spec.get("destination_codes", []))
-            scoped_cohorts = [c for c in all_cohorts if c.destination_code in dest_codes]
-            if not scoped_cohorts:
-                # Fallback to party composition
-                scoped_cohorts = [c for c in all_cohorts if c.adults == spec.get("adults", 2) and c.children == spec.get("children", 1)]
+        if canonical_fid:
+            scoped_cohorts = [c for c in all_cohorts if c.filter_id == canonical_fid]
+            if not scoped_cohorts and filter_id != canonical_fid:
+                scoped_cohorts = [c for c in all_cohorts if c.filter_id == filter_id]
+
+        if not scoped_cohorts:
+            spec = resolve_filter_spec(filter_id)
+            if spec:
+                dest_codes = set(spec.get("destination_codes", []))
+                scoped_cohorts = [c for c in all_cohorts if c.destination_code in dest_codes]
+                if not scoped_cohorts:
+                    # Fallback to party composition
+                    scoped_cohorts = [c for c in all_cohorts if c.adults == spec.get("adults", 2) and c.children == spec.get("children", 1)]
 
         # If still no scoped cohorts or no filter_id provided, pick the destination_code group with the most snapshots
         if not scoped_cohorts:

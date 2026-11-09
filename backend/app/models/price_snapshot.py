@@ -17,6 +17,7 @@ class PriceSnapshot(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     cohort_hash = Column(String(32), ForeignKey("offer_cohorts.cohort_hash", ondelete="CASCADE"), nullable=False, index=True)
+    filter_id = Column(String(64), nullable=True, index=True)
     recorded_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
     total_price_pln = Column(Float, nullable=False)
     price_per_night_per_pax = Column(Float, nullable=False, index=True)
@@ -27,6 +28,7 @@ class PriceSnapshot(Base):
     cohort = relationship("OfferCohort", back_populates="snapshots")
 
     __table_args__ = (
+        Index("idx_snapshot_filter_time", "filter_id", "recorded_at"),
         Index("idx_snapshot_cohort_time", "cohort_hash", "recorded_at"),
     )
 

@@ -51,11 +51,18 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /app/backend/requirements.txt && \
     playwright install chromium
 
-# Copy Backend, Scripts, Site, and Database
+# Copy Backend, Scripts, Site, and Database / Chunks
 COPY backend /app/backend
 COPY scripts /app/scripts
 COPY site /app/site
-COPY travel_monitor_v2.db /app/travel_monitor_v2.db
+COPY travel_monitor_v2.db* /app/
+
+# Unpack database if chunks are present
+RUN if [ -f /app/travel_monitor_v2.db.gz.aa ]; then \
+        echo "Decompressing database chunks into /app/travel_monitor_v2.db..."; \
+        cat /app/travel_monitor_v2.db.gz.* | gunzip > /app/travel_monitor_v2.db && \
+        rm -f /app/travel_monitor_v2.db.gz.*; \
+    fi
 
 # Copy Built Frontend Assets from Stage 1 into /app/frontend/dist
 COPY --from=frontend-builder /build/dist /app/frontend/dist

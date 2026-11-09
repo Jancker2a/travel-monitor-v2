@@ -1,4 +1,9 @@
+import os
+import glob
+import gzip
+import shutil
 import logging
+from pathlib import Path
 from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
@@ -9,6 +14,26 @@ from sqlalchemy.orm import DeclarativeBase
 from app.config import settings
 
 logger = logging.getLogger("travel_monitor_2")
+
+# Auto-decompress database archive if db file does not exist but chunks do
+ROOT_DIR = Path(__file__).resolve().parents[2]
+db_file = ROOT_DIR / "travel_monitor_v2.db"
+parts = sorted(glob.glob(str(ROOT_DIR / "travel_monitor_v2.db.gz.*")))
+if not db_file.exists() and parts:
+    try:
+        logger.info(f"Unpacking {len(parts)} database archive chunks into {db_file}...")
+        combined_gz = ROOT_DIR / "travel_monitor_v2.combined.gz"
+        with open(combined_gz, "wb") as out_f:
+            for p in parts:
+                with open(p, "rb") as pf:
+                    shutil.copyfileobj(pf, out_f)
+        with gzip.open(combined_gz, "rb") as gz_in, open(db_file, "wb") as out_f:
+            shutil.copyfileobj(gz_in, out_f)
+        if combined_gz.exists():
+            combined_gz.unlink()
+        logger.info("Database unpacked successfully.")
+    except Exception as unpack_err:
+        logger.error(f"Error unpacking database archive: {unpack_err}")
 
 # Database engine initialization
 db_url = settings.DATABASE_URL

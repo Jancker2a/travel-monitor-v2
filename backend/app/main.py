@@ -229,6 +229,64 @@ async def get_market_overview(db: AsyncSession = Depends(get_db)):
 
 from app.services.filter_monitor_service import FilterMonitorService
 from app.services.arbitrage_service import ArbitrageService
+from app.schemas.timeline import TimelineResponse
+from app.services.timeline_service import TimelineService
+from app.schemas.catalog import HotelCatalogResponse
+from app.services.catalog_service import CatalogService
+from app.services.oracle_service import OracleService
+
+
+@app.get("/api/v2/filters/{filter_id}/top10-timeline", response_model=TimelineResponse)
+async def get_filter_top10_timeline(
+    filter_id: str,
+    range: str = "all",
+    ceiling_pln: Optional[float] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Computes real-time Top-10 cheapest offers timeline directly from historical database.
+    Replaces static generated HTML Plotly charts with high-performance JSON API.
+    """
+    return await TimelineService.get_top10_timeline(
+        db, filter_id=filter_id, range_param=range, ceiling_pln=ceiling_pln
+    )
+
+
+@app.get("/api/v2/filters/{filter_id}/oracle")
+async def get_filter_market_oracle(filter_id: str, db: AsyncSession = Depends(get_db)):
+    """
+    AI Market Intelligence & Flight Dynamics Oracle:
+    Computes market phase, charter dynamics, floor saturation, and strategic buying advice.
+    """
+    return await OracleService.get_filter_oracle(db, filter_id=filter_id)
+
+
+@app.get("/api/v2/filters/{filter_id}/hotels", response_model=HotelCatalogResponse)
+async def get_filter_hotels_catalog(
+    filter_id: str,
+    sort_by: str = "price",
+    order: str = "asc",
+    stars: Optional[int] = None,
+    search: Optional[str] = None,
+    min_price: Optional[float] = None,
+    max_price: Optional[float] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Returns live hotel catalog cards for a filter with Deal Score, 24h & 7d price dynamics,
+    TripAdvisor ratings, and smart badges (e.g. Historic Minimum, Price Drop).
+    Replaces static hotel table and grid views.
+    """
+    return await CatalogService.get_filter_hotels(
+        db,
+        filter_id=filter_id,
+        sort_by=sort_by,
+        order=order,
+        stars=stars,
+        search_query=search,
+        min_price=min_price,
+        max_price=max_price,
+    )
 
 
 @app.get("/api/v2/monitors")
