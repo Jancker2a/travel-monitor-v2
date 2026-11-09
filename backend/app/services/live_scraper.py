@@ -18,6 +18,8 @@ from app.schemas.search import (
 )
 from app.services.query_builder import UniversalQueryBuilder
 
+from urllib.parse import urlparse, parse_qs
+
 logger = logging.getLogger("travel_monitor_2.scraper")
 
 
@@ -82,6 +84,115 @@ class LiveScraperService:
         "_crflytest": "newfly2:new",
         "newpath": "1",
     }
+
+    @classmethod
+    async def fetch_offers_via_api(cls, url: str, max_offers: int = 50) -> List[Dict[str, Any]]:
+        """Parses Fly.pl search URL and directly queries Fly.pl JSON search API."""
+        try:
+            parsed = urlparse(url)
+            qs = parse_qs(parsed.query)
+
+            def to_iso(d_str: str) -> str:
+                parts = d_str.split("-")
+                return f"{parts[2]}-{parts[1]}-{parts[0]}" if len(parts) == 3 else d_str
+
+            api_params: Dict[str, Any] = {
+                "pager[page]": 1,
+                "pager[size]": min(50, max_offers),
+                "priceType": "total",
+                "totalPrice": 1,
+                "pager[orderBy][0][field]": "price",
+                "pager[orderBy][0][direction]": "asc",
+            }
+
+            if "adults" in qs:
+                api_params["adults"] = int(qs["adults"][0])
+            if "durationFrom" in qs:
+                api_params["durationFrom"] = int(qs["durationFrom"][0])
+            if "durationTo" in qs:
+                api_params["durationTo"] = int(qs["durationTo"][0])
+            if "categoryRating" in qs:
+                cat_val = float(qs["categoryRating"][0])
+                api_params["categoryRating"] = cat_val / 10.0 if cat_val >= 10 else cat_val
+            if "priceFrom" in qs:
+                api_params["price[min]"] = float(qs["priceFrom"][0])
+            if "priceTo" in qs:
+                api_params["price[max]"] = float(qs["priceTo"][0])
+            if "startDateMin" in qs:
+                api_params["startDate[min]"] = to_iso(qs["startDateMin"][0])
+            if "startDateMax" in qs:
+                api_params["startDate[max]"] = to_iso(qs["startDateMax"][0])
+            if "children" in qs:
+                for i, ch in enumerate(qs["children"][0].split(",")):
+                    api_params[f"children[{i}]"] = to_iso(ch.strip())
+            if "destinationLocation" in qs:
+                dest_val = qs["destinationLocation"][0].rstrip(":")
+                api_params["destinationLocation[0]"] = dest_val
+            if "departureLocation" in qs:
+                deps = qs["departureLocation"][0].split(",")
+                dep_idx = 0
+                for dep in deps:
+                    dep_clean = dep.replace("+-+", " ").replace("+", " ").strip()
+                    if "radom" in dep_clean.lower():
+                        dep_clean = "Radom"
+                    elif "modlin" in dep_clean.lower():
+                        dep_clean = "Modlin"
+                    elif "warszawa" in dep_clean.lower():
+                        dep_clean = "Warszawa"
+                    if dep_clean:
+                        api_params[f"departureLocation[{dep_idx}]"] = dep_clean
+                        dep_idx += 1
+
+            headers = {
+                "User-Agent": cls.DEFAULT_HEADERS["User-Agent"],
+                "Accept": "application/json, text/plain, */*",
+                "Referer": url,
+            }
+
+            async with httpx.AsyncClient(headers=headers, timeout=15.0) as client:
+                resp = await client.get("https://fly.pl/api/fqs/v1/offers/search", params=api_params)
+                if resp.status_code == 200:
+                    payload = resp.json().get("data", {})
+                    raw_list = payload.get("offers", []) if isinstance(payload, dict) else []
+                    results = []
+                    for o in raw_list[:max_offers]:
+                        hotel_name = o.get("name") or o.get("unifiedName") or ""
+                        if not hotel_name:
+                            continue
+                        price_num = float(o.get("total") or o.get("price") or 0.0)
+                        if price_num <= 0:
+                            continue
+                        dep_date = (o.get("departureDate") or "")[:10]
+                        ret_date = (o.get("returnDate") or "")[:10]
+                        dates_str = f"{dep_date} - {ret_date}" if dep_date else ""
+                        checkin_d, checkout_d = parse_departure_date(dates_str)
+                        nights = int(o.get("nights") or o.get("duration") or 7)
+                        stars_val = int(o.get("categoryRating", 40)) // 10 if o.get("categoryRating") else 4
+                        thumb = o.get("thumbnailUrl") or (o.get("imagesUrl")[0] if o.get("imagesUrl") else "")
+                        pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
+                        ta_r = float(o["rating"]) if o.get("rating") else None
+                        board = o.get("serviceDesc") or "All Inclusive"
+                        results.append({
+                            "hotel_name": hotel_name,
+                            "price": price_num,
+                            "dates": dates_str,
+                            "checkin_date": checkin_d or date.today(),
+                            "checkout_date": checkout_d,
+                            "duration": f"{nights} nocy",
+                            "duration_nights": nights,
+                            "departure_airport": o.get("departureLocation") or o.get("departureCode") or "WAW",
+                            "board_basis": board,
+                            "stars": stars_val,
+                            "main_image_url": thumb,
+                            "image_url": thumb,
+                            "offer_url": pub_url,
+                            "ta_rating": ta_r,
+                            "operator": o.get("operatorName") or o.get("operator") or "",
+                        })
+                    return results
+        except Exception as e:
+            logger.warning(f"Direct Fly.pl JSON API search failed for {url}: {e}")
+        return []
 
     @classmethod
     async def fetch_page_html(cls, url: str, timeout_seconds: float = 12.0) -> Optional[str]:

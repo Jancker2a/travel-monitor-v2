@@ -62,19 +62,23 @@ class NormalizedCrawlerService:
         async with httpx.AsyncClient(headers=DEFAULT_HEADERS, timeout=15.0, follow_redirects=True) as client:
             async with AsyncSessionLocal() as session:
                 for dest in CRAWLER_DESTINATIONS:
-                    dest_collected = await cls._crawl_destination(
-                        client=client,
-                        session=session,
-                        dest=dest,
-                        start_min=start_min,
-                        start_max=start_max,
-                        limit=max_offers_per_dest,
-                    )
-                    total_collected += dest_collected
-                    dest_stats[dest["name"]] = dest_collected
+                    try:
+                        dest_collected = await cls._crawl_destination(
+                            client=client,
+                            session=session,
+                            dest=dest,
+                            start_min=start_min,
+                            start_max=start_max,
+                            limit=max_offers_per_dest,
+                        )
+                        await session.commit()
+                        total_collected += dest_collected
+                        dest_stats[dest["name"]] = dest_collected
+                    except Exception as e:
+                        logger.error(f"Error crawling destination {dest['name']}: {e}")
+                        await session.rollback()
+                        dest_stats[dest["name"]] = 0
                     await asyncio.sleep(1.0)  # Gentle polite delay between destinations
-
-                await session.commit()
 
         logger.info(
             f"✅ [Normalized Crawler] Pass completed: {total_collected} benchmark snapshots ingested ({dest_stats})"

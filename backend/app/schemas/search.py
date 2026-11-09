@@ -4,8 +4,8 @@ from pydantic import BaseModel, Field
 
 
 class SearchDates(BaseModel):
-    start_date_min: date
-    start_date_max: date
+    start_date_min: Optional[date] = None
+    start_date_max: Optional[date] = None
 
 
 class SearchDuration(BaseModel):

@@ -5,7 +5,7 @@ tracks price drops, and allows users to register custom monitor presets.
 """
 import asyncio
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date, timedelta
 from typing import Dict, Any, List, Optional
 import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -208,8 +208,13 @@ class FilterMonitorService:
 
         try:
             logger.info(f"🛰️ [Hourly Scrape] Running monitor '{monitor.title}' ({monitor.id})...")
-            html = await LiveScraperService.fetch_page_html(monitor.target_url)
-            raw_offers = LiveScraperService.parse_offers_html(html or "")
+            # 1. First attempt: Direct JSON API (fast, robust, no JavaScript renderer required)
+            raw_offers = await LiveScraperService.fetch_offers_via_api(monitor.target_url)
+
+            # 2. Second attempt: HTML parsing fallback if API returned 0
+            if not raw_offers:
+                html = await LiveScraperService.fetch_page_html(monitor.target_url)
+                raw_offers = LiveScraperService.parse_offers_html(html or "")
 
             if not raw_offers:
                 logger.warning(f"No offers found for monitor {monitor.id}")
@@ -221,7 +226,11 @@ class FilterMonitorService:
             # Fabricate minimal SearchRequest to feed process_and_persist_offers
             dummy_req = SearchRequest(
                 destination=monitor.destination,
-                dates=SearchDates(),
+                filter_id=monitor.id,
+                dates=SearchDates(
+                    start_date_min=date.today(),
+                    start_date_max=date.today() + timedelta(days=180),
+                ),
                 duration=SearchDuration(min_nights=7, max_nights=16),
                 travelers=SearchTravelers(adults=2, children=1),
                 airports=["WAW"],
