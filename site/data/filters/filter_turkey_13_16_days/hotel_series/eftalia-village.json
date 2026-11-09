@@ -401,9 +401,14 @@
     "2026-11-09 14:29:24",
     "2026-11-09 15:13:29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "2026-11-09 15:50:20"
 =======
     "2026-11-09 16:08:51"
+>>>>>>> Stashed changes
+=======
+    "2026-11-09 15:50:20",
+    "2026-11-09 16:21:13"
 >>>>>>> Stashed changes
   ],
   "y": [
@@ -804,8 +809,13 @@
     11006.0,
     11006.0,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     11006.0
 =======
+    10845.0
+>>>>>>> Stashed changes
+=======
+    11006.0,
     10845.0
 >>>>>>> Stashed changes
   ],
@@ -1209,7 +1219,7 @@
   "median_p": 12052.416406325801,
   "min_p": 7056.0,
   "max_p": 15650.0,
-  "samples": 397,
+  "samples": 398,
   "alert_threshold": 8.0,
   "trip_dates_label": "21.10.2026 - 04.11.2026",
   "display_price_ceiling": 10000.0,
