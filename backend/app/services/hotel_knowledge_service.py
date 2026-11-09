@@ -97,12 +97,15 @@ class HotelKnowledgeService:
     ) -> Dict[str, Any]:
         cls.load_kb()
 
-        specs = cls._match_entry(hotel_name, cls._specs_cache or {}) or {}
+        specs_raw = cls._match_entry(hotel_name, cls._specs_cache or {}) or {}
+        specs = specs_raw.get("specs", specs_raw) if isinstance(specs_raw, dict) else {}
+        passport = specs.get("passport", {}) if isinstance(specs, dict) else {}
         rep = cls._match_entry(hotel_name, cls._rep_cache or {}) or {}
         gallery = cls._match_entry(hotel_name, cls._galleries_cache or {}) or []
 
-        # Photos
-        gallery_photos = [g.get("url") if isinstance(g, dict) else g for g in gallery if g]
+        # Photos: prefer passport or specs gallery_photos if available
+        raw_photos = passport.get("gallery_photos") or specs.get("gallery_photos") or gallery
+        gallery_photos = [g.get("url") if isinstance(g, dict) else g for g in raw_photos if g]
         if not gallery_photos:
             gallery_photos = [
                 "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
@@ -119,22 +122,44 @@ class HotelKnowledgeService:
         youtube_search_url = f"https://www.youtube.com/results?search_query={enc_yt}"
 
         # Ratings
-        ta_rating = rep.get("ta_rating") or (specs.get("rating") if specs else 4.5)
-        ta_reviews = rep.get("ta_review_count") or (specs.get("review_count") if specs else 1250)
+        ta_rating = (
+            passport.get("ta_rating")
+            or specs.get("tripadvisor_rating")
+            or rep.get("ta_rating")
+            or (specs.get("rating") if specs else 4.5)
+        )
+        ta_reviews = (
+            passport.get("ta_reviews")
+            or specs.get("tripadvisor_reviews")
+            or rep.get("ta_review_count")
+            or (specs.get("review_count") if specs else 1250)
+        )
 
         # Specs details
-        beach_line = specs.get("beach_line", 1)
-        beach_type = specs.get("beach_type", "песчано-галечный пляж")
-        sea_entry = specs.get("sea_entry", "пологий вход в воду")
-        has_aquapark = bool(specs.get("aquapark") or "aqua" in hotel_name.lower())
-        has_heated_pools = bool(
-            specs.get("heated_pools") or rep.get("winter_suitability", {}).get("heated_pools")
+        beach_line = passport.get("beach_line") or specs.get("beach_line", 1)
+        beach_type = passport.get("beach_type") or specs.get("beach_type", "песчано-галечный пляж")
+        sea_entry = passport.get("sea_entry") or specs.get("sea_entry", "пологий вход в воду")
+        has_aquapark = (
+            passport.get("has_aquapark")
+            if "has_aquapark" in passport
+            else bool(specs.get("aquapark") or "aqua" in hotel_name.lower())
         )
-        food_concept = specs.get("food_concept", "All Inclusive (Шведский стол)")
+        has_heated_pools = (
+            passport.get("has_heated_pools")
+            if "has_heated_pools" in passport
+            else bool(
+                specs.get("heated_pools_winter")
+                or specs.get("heated_pools")
+                or rep.get("winter_suitability", {}).get("heated_pools")
+            )
+        )
+        food_concept = passport.get("food_concept") or specs.get("food_concept", "All Inclusive (Шведский стол)")
 
         # Pros and Cons
         pros = []
-        if specs.get("highlights"):
+        if passport.get("pros"):
+            pros = [p for p in passport["pros"] if len(p) > 6][:3]
+        elif specs.get("highlights"):
             pros = [p for p in specs["highlights"] if len(p) > 6][:3]
         elif rep.get("pros"):
             pros = [p for p in rep["pros"] if len(p) > 6][:3]
@@ -148,7 +173,9 @@ class HotelKnowledgeService:
                 pros.insert(1, "Собственный аквапарк с водными горками для детей и взрослых")
 
         cons = []
-        if specs.get("caution_notes"):
+        if passport.get("cons"):
+            cons = [c for c in passport["cons"] if len(c) > 6][:2]
+        elif specs.get("caution_notes"):
             cons = [c for c in specs["caution_notes"] if len(c) > 6][:2]
         elif rep.get("cons_and_red_flags"):
             cons = [c for c in rep["cons_and_red_flags"] if len(c) > 6][:2]
@@ -161,7 +188,7 @@ class HotelKnowledgeService:
                 cons = ["Пляжные полотенца выдаются по карточкам под депозит"]
 
         # AI Verdict
-        verdict = rep.get("verdict")
+        verdict = passport.get("verdict") or rep.get("verdict")
         if not verdict or len(verdict) < 20:
             if has_aquapark:
                 verdict = f"Отличный семейный комплекс {stars}★ с собственным аквапарком, насыщенной детской анимацией и комфортным пляжем."
@@ -171,8 +198,12 @@ class HotelKnowledgeService:
                 verdict = f"Проверенный и популярный отель {stars}★ с высоким индексом возвратных туристов и стабильным качеством отдыха."
 
         # Suitable For
-        suitable_for = "Семьи с детьми и пары" if (has_aquapark or has_heated_pools) else "Пары и спокойный пляжный отдых"
-        if stars >= 5:
+        suitable_for = (
+            passport.get("suitable_for")
+            or rep.get("suitable_for")
+            or ("Семьи с детьми и пары" if (has_aquapark or has_heated_pools) else "Пары и спокойный пляжный отдых")
+        )
+        if stars >= 5 and not passport.get("suitable_for"):
             suitable_for = "Премиальный семейный отдых и требовательные путешественники"
 
         # AI Price & Action Signal
@@ -196,43 +227,48 @@ class HotelKnowledgeService:
                 f"Рекомендуется подождать коррекции тарифов или рассмотреть альтернативные отели-двойники."
             )
 
-        # Rich Infrastructure Structure
-        transfer_min = specs.get("transfer_minutes") or 35
-        infra_rich = {
-            "beach": {
-                "line": f"{beach_line}-я линия",
-                "type": beach_type,
-                "entry": sea_entry,
-                "pier": "Деревянный пирс с шезлонгами и спуском в воду" if beach_line == 1 else "Пирс отсутствует",
-                "facilities": "Шезлонги, зонтики и пляжные матрасы предоставляются бесплатно",
-            },
-            "pools": {
-                "aquapark": "Собственный аквапарк (водные горки для взрослых и детей)" if has_aquapark else "Аквапарк отсутствует",
-                "heated": "Бассейн с подогревом в зимний/весенний сезон" if has_heated_pools else "Открытые пресноводные бассейны без подогрева",
-                "children_pool": "Детский бассейн с безопасной глубиной и мини-горкой",
-            },
-            "dining": {
-                "concept": food_concept,
-                "main_restaurant": "Главный ресторан: шведский стол (европейская, турецкая, средиземноморская кухня)",
-                "a_la_carte": "Рестораны A la Carte (итальянский, рыбный, османский) по предварительной записи",
-                "bars": "Бар у бассейна, лобби-бар 24ч, снек-бар на пляже",
-            },
-            "kids": {
-                "miniclub": "Мини-клуб для детей от 4 до 12 лет с профессиональными аниматорами",
-                "playground": "Открытая игровая площадка в тени",
-                "services": "Детские стульчики в ресторане, кроватки по запросу",
-            },
-            "spa_sport": {
-                "spa": "SPA-центр: турецкий хаммам, сауна, массажные кабинеты",
-                "fitness": "Тренажерный зал с кардио- и силовыми тренажерами",
-                "sport": "Настольный теннис, пляжный волейбол, дартс, утренняя йога",
-            },
-            "comfort": {
-                "wifi": "Wi-Fi на всей территории и в номерах",
-                "rooms": "Индивидуальный кондиционер, сейф, балкон/терраса, мини-бар, спутниковое ТВ",
-                "transfer": f"Ориентировочное время трансфера из аэропорта: ~{transfer_min} минут",
-            },
-        }
+        # Rich Infrastructure Structure: prefer verified infra_rich from passport or specs
+        infra_rich = passport.get("infra_rich") or specs.get("infrastructure")
+        if not infra_rich or not isinstance(infra_rich, dict):
+            transfer_min = specs.get("transfer_minutes") or 35
+            infra_rich = {
+                "beach": {
+                    "line": f"{beach_line}-я линия",
+                    "type": beach_type,
+                    "entry": sea_entry,
+                    "pier": "Деревянный пирс с шезлонгами и спуском в воду" if beach_line == 1 else "Пирс отсутствует",
+                    "equipment": "Шезлонги, зонтики и пляжные матрасы предоставляются бесплатно",
+                },
+                "pools": {
+                    "pools_count": "Несколько открытых бассейнов с пресной водой",
+                    "aquapark": "Собственный аквапарк (водные горки для взрослых и детей)" if has_aquapark else "Аквапарк отсутствует",
+                    "heated": "Бассейн с подогревом в зимний/весенний сезон" if has_heated_pools else "Открытые пресноводные бассейны без подогрева",
+                    "children_pool": "Детский бассейн с безопасной глубиной и мини-горкой",
+                },
+                "food": {
+                    "concept": food_concept,
+                    "main_buffet": "Главный ресторан: шведский стол (европейская, восточная кухня)",
+                    "alacarte": "Рестораны A la Carte по предварительной записи",
+                    "bars": "Бар у бассейна, лобби-бар, снек-бар",
+                },
+                "kids": {
+                    "club": "Мини-клуб для детей от 4 до 12 лет с аниматорами",
+                    "pool": "Мелкий детский бассейн",
+                    "playground": "Открытая игровая площадка",
+                },
+                "sport_spa": {
+                    "spa": "SPA-центр: турецкий хаммам, сауна, массажные кабинеты",
+                    "fitness": "Тренажерный зал с кардио- и силовыми тренажерами",
+                    "watersports": "Снорклинг, прокат снаряжения, водные виды спорта",
+                },
+                "comfort": {
+                    "wifi": "Wi-Fi на всей территории и в номерах",
+                    "room_amenities": "Индивидуальный кондиционер, сейф, балкон/терраса, мини-бар, спутниковое ТВ",
+                    "distance": f"Ориентировочное время трансфера из аэропорта: ~{transfer_min} минут",
+                },
+            }
+
+        ai_hotel_summary = passport.get("ai_hotel_summary") or verdict
 
         return {
             "specs": specs,

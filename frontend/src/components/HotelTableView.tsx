@@ -211,9 +211,14 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                           ))}
                         </div>
                         <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                          <span className="spec-badge spec-beach text-[10px] font-bold px-1.5 py-0.5 rounded-md">🏖️ 1 линия</span>
-                          {hotel.hotel_name.toLowerCase().includes("aqua") && (
+                          <span className="spec-badge spec-beach text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+                            🏖️ {hotel.beach_line || hotel.specs?.beach_line || 1} линия
+                          </span>
+                          {(hotel.has_aquapark || hotel.specs?.has_aquapark || hotel.hotel_name.toLowerCase().includes("aqua")) && (
                             <span className="spec-badge spec-aqua text-[10px] font-bold px-1.5 py-0.5 rounded-md">🎢 Аквапарк</span>
+                          )}
+                          {(hotel.has_heated_pools || hotel.specs?.has_heated_pools) && (
+                            <span className="spec-badge text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200">🔥 Подогрев</span>
                           )}
                         </div>
                       </div>

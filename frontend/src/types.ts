@@ -57,6 +57,10 @@ export interface SearchHotelItem {
   main_image_url?: string;
   ta_rating?: number;
   ta_reviews?: number;
+  beach_line?: number;
+  beach_type?: string;
+  has_aquapark?: boolean;
+  has_heated_pools?: boolean;
   specs?: Record<string, any>;
   current_offer: OfferSummary;
   intelligence: HotelIntelligence;
@@ -254,6 +258,10 @@ export interface HotelCatalogCard {
   deal_score: number;
   deal_confidence: string;
   badges: string[];
+  beach_line?: number;
+  beach_type?: string;
+  has_aquapark?: boolean;
+  has_heated_pools?: boolean;
   cheapest_checkin_date?: string;
   cheapest_duration_nights: number;
   cheapest_airport_code: string;

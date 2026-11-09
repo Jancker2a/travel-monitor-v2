@@ -777,170 +777,175 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           {/* TAB 3: Расширенная Инфраструктура */}
           {activeTab === "infra" && (
             <div className="drawer-tab-panel active" id="tabPanel-infra">
-              <div className="infra-rich-grid">
-                {/* 1. Beach */}
-                <div className="infra-cat-card">
-                  <div className="infra-cat-header">
-                    <span>🏖️</span>
-                    <h4>Пляж и море</h4>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Линия и берег</span>
-                    <span className="infra-item-val">
-                      {typeof passport?.infra_rich?.beach?.line === "number"
-                        ? `${passport.infra_rich.beach.line}-я линия`
-                        : "1-я линия"}
-                      , {typeof passport?.infra_rich?.beach?.type === "string"
-                        ? passport.infra_rich.beach.type
-                        : "Собственный песчано-галечный"}
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Заход в море</span>
-                    <span className="infra-item-val">
-                      {typeof passport?.infra_rich?.beach?.entry === "string"
-                        ? passport.infra_rich.beach.entry
-                        : "Пологий песчаный вход"}
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Оснащение пляжа</span>
-                    <span className="infra-item-val">
-                      Шезлонги, зонтики и пляжный бар бесплатно
-                    </span>
-                  </div>
-                </div>
+              {(() => {
+                const ir = passport?.infra_rich || {};
+                const b = ir.beach || {};
+                const p = ir.pools || {};
+                const f = ir.food || ir.dining || {};
+                const k = ir.kids || {};
+                const s = ir.sport_spa || ir.spa_sport || {};
+                const c = ir.comfort || {};
 
-                {/* 2. Pools */}
-                <div className="infra-cat-card">
-                  <div className="infra-cat-header">
-                    <span>🏊</span>
-                    <h4>Бассейны и водные горки</h4>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Открытые бассейны</span>
-                    <span className="infra-item-val">
-                      {passport?.infra_rich?.pools?.pools_count || "Несколько открытых бассейнов с пресной водой"}
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Подогрев</span>
-                    <span className="infra-item-val">
-                      {passport?.has_heated_pools ? "Крытый бассейн с подогревом" : "Бассейны без подогрева"}
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Аквапарк</span>
-                    <span className="infra-item-val">
-                      {passport?.has_aquapark ? "Водные горки для взрослых и детей" : "Без водных горок"}
-                    </span>
-                  </div>
-                </div>
+                return (
+                  <div className="infra-rich-grid">
+                    {/* 1. Beach */}
+                    <div className="infra-cat-card">
+                      <div className="infra-cat-header">
+                        <span>🏖️</span>
+                        <h4>Пляж и море</h4>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Линия и берег</span>
+                        <span className="infra-item-val">
+                          {b.line || (passport?.beach_line ? `${passport.beach_line}-я линия` : "1-я линия")}, {b.type || passport?.beach_type || "Собственный пляж"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Заход в море</span>
+                        <span className="infra-item-val">
+                          {b.entry || passport?.sea_entry || "Пологий песчаный вход"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Оснащение пляжа</span>
+                        <span className="infra-item-val">
+                          {b.equipment || b.facilities || "Шезлонги, зонтики и бар на пляже бесплатно"}
+                        </span>
+                      </div>
+                    </div>
 
-                {/* 3. Food */}
-                <div className="infra-cat-card">
-                  <div className="infra-cat-header">
-                    <span>🍽️</span>
-                    <h4>Питание и рестораны</h4>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Концепция</span>
-                    <span className="infra-item-val">
-                      <strong>{passport?.food_concept || "All Inclusive"}</strong>
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Главный ресторан</span>
-                    <span className="infra-item-val">
-                      Шведский стол, блюда международной кухни, гриль
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">A la Carte и бары</span>
-                    <span className="infra-item-val">
-                      Рестораны a la carte, лобби-бар и бар у бассейна
-                    </span>
-                  </div>
-                </div>
+                    {/* 2. Pools */}
+                    <div className="infra-cat-card">
+                      <div className="infra-cat-header">
+                        <span>🏊</span>
+                        <h4>Бассейны и водные горки</h4>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Открытые бассейны</span>
+                        <span className="infra-item-val">
+                          {p.pools_count || "Несколько открытых бассейнов с пресной водой"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Подогрев</span>
+                        <span className="infra-item-val">
+                          {p.heated || (passport?.has_heated_pools ? "Бассейн с подогревом в прохладный сезон" : "Бассейны без подогрева")}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Аквапарк</span>
+                        <span className="infra-item-val">
+                          {p.aquapark || (passport?.has_aquapark ? "Водные горки для взрослых и детей" : "Без водных горок")}
+                        </span>
+                      </div>
+                    </div>
 
-                {/* 4. Kids */}
-                <div className="infra-cat-card">
-                  <div className="infra-cat-header">
-                    <span>👶</span>
-                    <h4>Для детей и семей</h4>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Мини-клуб</span>
-                    <span className="infra-item-val">
-                      Детский клуб от 4 до 12 лет с аниматорами
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Детский бассейн</span>
-                    <span className="infra-item-val">
-                      Мелкий детский бассейн с навесом от солнца
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Площадка и меню</span>
-                    <span className="infra-item-val">
-                      Игровая площадка, стульчики и детское меню
-                    </span>
-                  </div>
-                </div>
+                    {/* 3. Food */}
+                    <div className="infra-cat-card">
+                      <div className="infra-cat-header">
+                        <span>🍽️</span>
+                        <h4>Питание и рестораны</h4>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Концепция</span>
+                        <span className="infra-item-val">
+                          <strong>{f.concept || passport?.food_concept || "All Inclusive"}</strong>
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Главный ресторан</span>
+                        <span className="infra-item-val">
+                          {f.main_buffet || f.main_restaurant || "Шведский стол, блюда международной кухни, гриль"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">A la Carte и бары</span>
+                        <span className="infra-item-val">
+                          {f.alacarte || f.bars || "Рестораны a la carte, лобби-бар и бар у бассейна"}
+                        </span>
+                      </div>
+                    </div>
 
-                {/* 5. Sport & Spa */}
-                <div className="infra-cat-card">
-                  <div className="infra-cat-header">
-                    <span>💆</span>
-                    <h4>Спа, спорт и активности</h4>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Спа-центр</span>
-                    <span className="infra-item-val">
-                      Сауна, турецкий хаммам, джакузи и массаж
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Фитнес и спорт</span>
-                    <span className="infra-item-val">
-                      Тренажерный зал, пляжный волейбол, аэробика
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Водные виды</span>
-                    <span className="infra-item-val">
-                      Снорклинг, прокат инвентаря, водные развлечения
-                    </span>
-                  </div>
-                </div>
+                    {/* 4. Kids */}
+                    <div className="infra-cat-card">
+                      <div className="infra-cat-header">
+                        <span>👶</span>
+                        <h4>Для детей и семей</h4>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Мини-клуб</span>
+                        <span className="infra-item-val">
+                          {k.club || k.miniclub || "Детский клуб от 4 до 12 лет с аниматорами"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Детский бассейн</span>
+                        <span className="infra-item-val">
+                          {k.pool || "Мелкий детский бассейн с навесом от солнца"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Площадка и сервис</span>
+                        <span className="infra-item-val">
+                          {k.playground || k.services || "Игровая площадка, стульчики и детское меню"}
+                        </span>
+                      </div>
+                    </div>
 
-                {/* 6. Comfort & Service */}
-                <div className="infra-cat-card">
-                  <div className="infra-cat-header">
-                    <span>🌐</span>
-                    <h4>Удобства и сервис</h4>
+                    {/* 5. Sport & Spa */}
+                    <div className="infra-cat-card">
+                      <div className="infra-cat-header">
+                        <span>💆</span>
+                        <h4>Спа, спорт и активности</h4>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Спа-центр</span>
+                        <span className="infra-item-val">
+                          {s.spa || "Сауна, турецкий хаммам, джакузи и массаж"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Фитнес и спорт</span>
+                        <span className="infra-item-val">
+                          {s.fitness || s.sport || "Тренажерный зал, пляжный волейбол, аэробика"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Водные виды</span>
+                        <span className="infra-item-val">
+                          {s.watersports || "Снорклинг, прокат инвентаря, водные развлечения"}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 6. Comfort & Service */}
+                    <div className="infra-cat-card">
+                      <div className="infra-cat-header">
+                        <span>🌐</span>
+                        <h4>Удобства и сервис</h4>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Интернет Wi-Fi</span>
+                        <span className="infra-item-val">
+                          {c.wifi || "Бесплатный Wi-Fi на территории и в номерах"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Номера</span>
+                        <span className="infra-item-val">
+                          {c.room_amenities || c.rooms || "Кондиционер, сейф, балкон/терраса, мини-бар"}
+                        </span>
+                      </div>
+                      <div className="infra-item-line">
+                        <span className="infra-item-lbl">Трансфер и сервис</span>
+                        <span className="infra-item-val">
+                          {c.distance || c.transfer || "Круглосуточная стойка регистрации, трансфер ~30 мин"}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Интернет Wi-Fi</span>
-                    <span className="infra-item-val">
-                      Бесплатный Wi-Fi на территории и в номерах
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Номера</span>
-                    <span className="infra-item-val">
-                      Кондиционер, сейф, балкон/терраса, мини-бар
-                    </span>
-                  </div>
-                  <div className="infra-item-line">
-                    <span className="infra-item-lbl">Сервис</span>
-                    <span className="infra-item-val">
-                      Круглосуточная стойка регистрации, уборка номеров
-                    </span>
-                  </div>
-                </div>
-              </div>
+                );
+              })()}
             </div>
           )}
 

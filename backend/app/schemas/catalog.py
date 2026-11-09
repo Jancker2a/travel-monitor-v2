@@ -21,6 +21,10 @@ class HotelCatalogCard(BaseModel):
     deal_score: int = 50
     deal_confidence: str = "Medium"
     badges: List[str] = Field(default_factory=list)
+    beach_line: Optional[int] = 1
+    beach_type: Optional[str] = None
+    has_aquapark: Optional[bool] = False
+    has_heated_pools: Optional[bool] = False
     cheapest_checkin_date: Optional[Union[str, date]] = None
     cheapest_duration_nights: int = 7
     cheapest_airport_code: str = "WAW"

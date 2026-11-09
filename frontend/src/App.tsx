@@ -556,6 +556,16 @@ function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
     main_image_url: c.main_image_url,
     ta_rating: c.ta_rating,
     ta_reviews: c.ta_reviews,
+    beach_line: c.beach_line,
+    beach_type: c.beach_type,
+    has_aquapark: c.has_aquapark,
+    has_heated_pools: c.has_heated_pools,
+    specs: {
+      beach_line: c.beach_line,
+      beach_type: c.beach_type,
+      has_aquapark: c.has_aquapark,
+      has_heated_pools: c.has_heated_pools,
+    },
     current_offer: {
       cohort_hash: `${c.hotel_id}_${c.cheapest_checkin_date || "date"}_${nights}`,
       total_price_pln: c.current_min_price,

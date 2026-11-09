@@ -1,14 +1,18 @@
 import logging
+import re
 import statistics
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List, Optional, Tuple, Set
 from datetime import datetime, timedelta, timezone
+import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
 logger = logging.getLogger("travel_monitor_2.catalog")
 
 from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
+from app.services.hotel_deal_score import compute_hotel_deal_metrics
+from app.services.hotel_knowledge_service import HotelKnowledgeService
 
 _CATALOG_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
 _CACHE_TTL_SECONDS = 180  # 3 minutes in-memory cache
@@ -92,6 +96,7 @@ class CatalogService:
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
+        join_col = "cohort_id" if is_pg else "cohort_hash"
 
         # 1. Find the latest recorded scrape time for this filter
         stmt = text(f"SELECT MAX(ps.recorded_at) FROM price_snapshots ps WHERE {filter_expr}")
@@ -136,7 +141,7 @@ class CatalogService:
                     ps.recorded_at,
                     ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
                 FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+                JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
                 WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
@@ -178,9 +183,30 @@ class CatalogService:
 
         hotel_ids = [r[0] for r in active_rows]
 
-        # 3. Batch fetch historical min/max aggregate stats directly in SQL
-        placeholders = ",".join(f":h{i}" for i in range(len(hotel_ids)))
-        h_params = {f"h{i}": hid for i, hid in enumerate(hotel_ids)}
+        # 3. Expand hotel IDs to query variants (e.g. viva-sharm and viva-sharm-hotel)
+        def _get_id_variants(hid: str) -> Set[str]:
+            res = {hid}
+            base = re.sub(r"-(hotel|resort|spa|village|palace|beach)$", "", hid)
+            res.add(base)
+            res.add(f"{base}-hotel")
+            res.add(f"{base}-resort")
+            return res
+
+        all_query_hids: Set[str] = set()
+        variant_to_primary: Dict[str, Set[str]] = {}
+        for hid in hotel_ids:
+            vars_set = _get_id_variants(hid)
+            all_query_hids.update(vars_set)
+            for v in vars_set:
+                if v not in variant_to_primary:
+                    variant_to_primary[v] = set()
+                variant_to_primary[v].add(hid)
+
+        query_hids_list = list(all_query_hids)
+
+        # Batch fetch historical min/max aggregate stats directly in SQL
+        placeholders = ",".join(f":h{i}" for i in range(len(query_hids_list)))
+        h_params = {f"h{i}": hid for i, hid in enumerate(query_hids_list)}
         h_params["fids"] = fids
 
         stats_sql = f"""
@@ -189,7 +215,7 @@ class CatalogService:
                 MIN(ps.total_price_pln) as hist_min,
                 MAX(ps.total_price_pln) as hist_max
             FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+            JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
             WHERE {filter_expr}
               AND oc.hotel_id IN ({placeholders})
             GROUP BY oc.hotel_id;
@@ -200,9 +226,19 @@ class CatalogService:
             s_stmt = s_stmt.bindparams(bindparam("fids", expanding=True))
 
         stats_res = await db.execute(s_stmt, h_params)
-        hotel_stats = {r[0]: (float(r[1]), float(r[2])) for r in stats_res.fetchall()}
+        hotel_stats: Dict[str, Tuple[float, float]] = {}
+        for r in stats_res.fetchall():
+            row_hid = r[0]
+            r_min = float(r[1])
+            r_max = float(r[2])
+            for prim in variant_to_primary.get(row_hid, {row_hid}):
+                if prim not in hotel_stats:
+                    hotel_stats[prim] = (r_min, r_max)
+                else:
+                    cur_min, cur_max = hotel_stats[prim]
+                    hotel_stats[prim] = (min(cur_min, r_min), max(cur_max, r_max))
 
-        # 3b. Fetch recent 30-day snapshots for 24h/7d change and median calculation (fast & bounded)
+        # 3b. Fetch recent 30-day snapshots for 24h/7d change, median, and Deal Score
         recent_cutoff = (max_dt - timedelta(days=30)) if is_pg else (max_dt - timedelta(days=30)).isoformat()
         h_params_recent = dict(h_params)
         h_params_recent["recent_cutoff"] = recent_cutoff
@@ -213,7 +249,7 @@ class CatalogService:
                 ps.recorded_at,
                 ps.total_price_pln
             FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+            JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
             WHERE {filter_expr}
               AND oc.hotel_id IN ({placeholders})
               AND ps.recorded_at >= :recent_cutoff
@@ -227,11 +263,9 @@ class CatalogService:
         hist_res = await db.execute(h_stmt, h_params_recent)
         hist_rows = hist_res.fetchall()
 
-        # Group history points by hotel_id
+        # Group history points by primary hotel_id
         hotel_history: Dict[str, List[Tuple[datetime, float]]] = {}
-        for h_id, r_at, p_val in hist_rows:
-            if h_id not in hotel_history:
-                hotel_history[h_id] = []
+        for r_hid, r_at, p_val in hist_rows:
             try:
                 if isinstance(r_at, str):
                     ts_clean = r_at.replace("Z", "+00:00").replace(" ", "T")
@@ -244,7 +278,14 @@ class CatalogService:
                     dt = dt.replace(tzinfo=timezone.utc)
             except Exception:
                 continue
-            hotel_history[h_id].append((dt, float(p_val)))
+
+            for prim in variant_to_primary.get(r_hid, {r_hid}):
+                if prim not in hotel_history:
+                    hotel_history[prim] = []
+                hotel_history[prim].append((dt, float(p_val)))
+
+        for prim in hotel_history:
+            hotel_history[prim].sort(key=lambda x: x[0])
 
         # 4. Construct catalog cards with metrics and badges
         cards = []
@@ -313,28 +354,45 @@ class CatalogService:
                 else 0.0
             )
 
-            # Deal Score calculation
-            rel_disc = (typical_med - curr_price) / typical_med if typical_med > 0 else 0.0
-            score_discount = _clamp(50 + rel_disc * 200, 0, 100)
+            # Knowledge base enrichment (accurate beach line, TripAdvisor rating, and infrastructure)
+            dossier = HotelKnowledgeService.get_hotel_dossier(
+                hotel_name=disp_name,
+                destination=country,
+                country=country,
+                stars=stars_val or 4,
+                current_price=curr_price,
+            )
+            final_ta_rating = (
+                float(ta_rating)
+                if ta_rating
+                else (float(dossier["ta_rating"]) if dossier.get("ta_rating") else None)
+            )
+            final_ta_reviews = (
+                int(ta_reviews)
+                if ta_reviews
+                else (int(dossier["ta_reviews"]) if dossier.get("ta_reviews") else 0)
+            )
+            beach_line = dossier.get("beach_line", 1)
+            beach_type = dossier.get("beach_type", "песчано-галечный пляж")
+            has_aquapark = dossier.get("has_aquapark", False)
+            has_heated_pools = dossier.get("has_heated_pools", False)
 
-            # Bonus for recent price drop
-            momentum_bonus = 0
-            if chg_24h < -3.0:
-                momentum_bonus = 15
-            elif chg_24h > 3.0:
-                momentum_bonus = -10
-
-            # TripAdvisor quality blend
-            ta_bonus = 0
-            if ta_rating and float(ta_rating) >= 4.5:
-                ta_bonus = 8
-            elif ta_rating and float(ta_rating) >= 4.0:
-                ta_bonus = 4
-
-            raw_score = score_discount * 0.70 + (50 + momentum_bonus) * 0.20 + (50 + ta_bonus) * 0.10
-            deal_score = int(round(_clamp(raw_score, 0, 100)))
-
-            confidence = "High" if len(hist_pts) >= 20 else ("Medium" if len(hist_pts) >= 8 else "Low")
+            # Deal Score calculation using mathematical V1 model (plateau segments, volatility, TA blend)
+            if hist_pts:
+                df_hist = pd.DataFrame(hist_pts, columns=["scraped_at", "price"])
+                deal_metrics = compute_hotel_deal_metrics(
+                    df_hist,
+                    latest_price=curr_price,
+                    time_col="scraped_at",
+                    price_col="price",
+                    ta_rating=final_ta_rating,
+                    ta_review_count=final_ta_reviews,
+                )
+                deal_score = int(deal_metrics.get("deal_score", 50))
+                confidence = deal_metrics.get("confidence", "Medium")
+            else:
+                deal_score = 50
+                confidence = "Low"
 
             # Badges
             badges = []
@@ -358,8 +416,8 @@ class CatalogService:
                 "display_name": disp_name,
                 "country": country,
                 "stars": stars_val or 4,
-                "ta_rating": float(ta_rating) if ta_rating else None,
-                "ta_reviews": int(ta_reviews or 0),
+                "ta_rating": final_ta_rating,
+                "ta_reviews": final_ta_reviews,
                 "main_image_url": img_url,
                 "current_min_price": curr_price,
                 "typical_median_price": typical_med,
@@ -371,6 +429,10 @@ class CatalogService:
                 "deal_score": deal_score,
                 "deal_confidence": confidence,
                 "badges": badges,
+                "beach_line": beach_line,
+                "beach_type": beach_type,
+                "has_aquapark": has_aquapark,
+                "has_heated_pools": has_heated_pools,
                 "cheapest_checkin_date": checkin_str,
                 "cheapest_duration_nights": dur_nights or 7,
                 "cheapest_airport_code": airport_code or "WAW",
