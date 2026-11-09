@@ -13,8 +13,23 @@ ALIAS_MAP = {
     "turkey_13_16": "turkey_13_16_days",
     "egypt_autumn_7_10": "egypt_autumn_2026_7_10_days",
     "egypt_autumn_13_16": "egypt_autumn_2026_13_16_days",
+    "egypt_ny_dec24_2026_7_10": "egypt_ny_dec24_2026_7_10_days",
+    "egypt_ny_dec28_2026_7_10": "egypt_ny_dec28_2026_7_10_days",
     "greece_7_10": "greece_7_10_days",
+    "greece_13_16": "greece_13_16_days",
+    "filter_cyprus_7_10": "cyprus_7_10",
+    "turkey_vacation_jul18_2026": "turkey_vacation_jul18",
 }
+
+
+def resolve_filter_id(filter_id: str) -> str:
+    if not filter_id:
+        return filter_id
+    if filter_id in ALIAS_MAP:
+        return ALIAS_MAP[filter_id]
+    if not filter_id.endswith("_days") and f"{filter_id}_days" in ALIAS_MAP.values():
+        return f"{filter_id}_days"
+    return filter_id
 
 
 class TimelineService:
@@ -31,7 +46,7 @@ class TimelineService:
         For each hourly scrape run, finds minimum price per hotel, sorts ascending,
         takes Top-10 hotels, and computes avg, min, and max price corridor.
         """
-        canonical_filter_id = ALIAS_MAP.get(filter_id, filter_id)
+        canonical_filter_id = resolve_filter_id(filter_id)
 
         # Build time constraint
         time_clause = ""
@@ -134,3 +149,4 @@ class TimelineService:
             "timeline": timeline_points,
             "stats": stats,
         }
+

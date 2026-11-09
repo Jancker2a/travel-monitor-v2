@@ -281,8 +281,8 @@ class WatchlistService:
             raise HTTPException(status_code=404, detail="No cohorts found for this hotel")
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
-        from app.services.timeline_service import ALIAS_MAP
-        canonical_fid = ALIAS_MAP.get(filter_id, filter_id) if filter_id else None
+        from app.services.timeline_service import resolve_filter_id
+        canonical_fid = resolve_filter_id(filter_id) if filter_id else None
         scoped_cohorts = []
         if canonical_fid:
             scoped_cohorts = [c for c in all_cohorts if c.filter_id == canonical_fid]

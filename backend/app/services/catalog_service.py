@@ -7,14 +7,7 @@ from sqlalchemy import text
 
 logger = logging.getLogger("travel_monitor_2.catalog")
 
-ALIAS_MAP = {
-    "turkey_7_10": "turkey_7_10_days",
-    "turkey_9_11": "turkey_9_11_days",
-    "turkey_13_16": "turkey_13_16_days",
-    "egypt_autumn_7_10": "egypt_autumn_2026_7_10_days",
-    "egypt_autumn_13_16": "egypt_autumn_2026_13_16_days",
-    "greece_7_10": "greece_7_10_days",
-}
+from app.services.timeline_service import resolve_filter_id
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:
@@ -42,7 +35,7 @@ class CatalogService:
         Retrieves live catalog cards for a filter with Deal Score, 24h/7d price changes,
         TripAdvisor ratings, and badges calculated directly against historical database.
         """
-        canonical_fid = ALIAS_MAP.get(filter_id, filter_id)
+        canonical_fid = resolve_filter_id(filter_id)
 
         # 1. Find the latest recorded scrape time for this filter
         time_res = await db.execute(
@@ -303,3 +296,4 @@ class CatalogService:
             "total_hotels": len(filtered_cards),
             "hotels": filtered_cards,
         }
+

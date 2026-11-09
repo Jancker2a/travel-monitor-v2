@@ -30,3 +30,4 @@ class TimelineResponse(BaseModel):
     points_count: int
     timeline: List[TimelinePoint]
     stats: Optional[TimelineStats] = None
+

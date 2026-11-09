@@ -38,3 +38,4 @@ async def test_market_oracle_api():
         assert data["filter_id"] == "7_10_days"
         assert "headline" in data
         assert "strategic_directive" in data
+

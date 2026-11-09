@@ -201,3 +201,102 @@ export interface MarketOverview {
   min_current_price: number;
 }
 
+// -------------------------------------------------------------
+// V2 REST API Dashboard Types (Mathematical & Visual Parity)
+// -------------------------------------------------------------
+
+export interface Top10HotelItem {
+  name: string;
+  price: number;
+  position: number;
+}
+
+export interface TimelinePoint {
+  time: string;
+  avg_price: number;
+  min_price: number;
+  max_price: number;
+  top10_hotels?: Top10HotelItem[];
+}
+
+export interface TimelineStats {
+  current_avg_top10: number;
+  historical_min_avg: number;
+  historical_max_avg: number;
+  overall_trend: "UP" | "DOWN" | "FLAT" | string;
+  last_updated: string;
+  change_24h_pct?: number;
+  change_7d_pct?: number;
+}
+
+export interface TimelineResponse {
+  filter_id: string;
+  points_count: number;
+  timeline: TimelinePoint[];
+  stats?: TimelineStats;
+}
+
+export interface HotelCatalogCard {
+  hotel_id: string;
+  display_name: string;
+  country: string;
+  stars: number;
+  ta_rating?: number;
+  ta_reviews: number;
+  main_image_url?: string;
+  current_min_price: number;
+  typical_median_price: number;
+  historical_min_price: number;
+  historical_max_price: number;
+  delta_vs_typical_pct: number;
+  change_24h_pct: number;
+  change_7d_pct: number;
+  deal_score: number;
+  deal_confidence: string;
+  badges: string[];
+  cheapest_checkin_date?: string;
+  cheapest_duration_nights: number;
+  cheapest_airport_code: string;
+  cheapest_offer_url?: string;
+  last_updated: string;
+}
+
+export interface HotelCatalogResponse {
+  filter_id: string;
+  total_hotels: number;
+  hotels: HotelCatalogCard[];
+}
+
+export interface MarketOraclePick {
+  hotel_id: string;
+  hotel_name: string;
+  price: number;
+  badge: string;
+  reason: string;
+  booking_url?: string;
+}
+
+export interface MarketOracleAnomaly {
+  type: string;
+  title: string;
+  text: string;
+}
+
+export interface MarketOracleData {
+  filter_id: string;
+  title: string;
+  headline: string;
+  market_phase: string;
+  charter_dynamics: string;
+  floor_status: string;
+  strategic_directive: string;
+  buy_now_recommendation?: {
+    status?: string;
+    label?: string;
+    explanation?: string;
+    top_picks?: MarketOraclePick[];
+  };
+  key_anomalies?: (string | MarketOracleAnomaly)[];
+}
+
+

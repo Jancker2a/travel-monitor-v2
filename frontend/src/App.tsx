@@ -17,6 +17,7 @@ import {
   WatchlistItem,
   PriceDropItem,
   AirportStat,
+  HotelCatalogCard,
 } from "./types";
 import {
   searchTours,
@@ -25,6 +26,7 @@ import {
   deleteWatchlistItem,
   getTopPriceDrops,
   getAirportComparison,
+  getFilterHotelsCatalog,
 } from "./services/api";
 import { Bell, Menu, Radio, Sparkles } from "lucide-react";
 
@@ -500,6 +502,54 @@ const INITIAL_FILTERS: FilterState = {
   onlyFavorites: false,
 };
 
+function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
+  const duration = c.cheapest_duration_nights || 7;
+  const nights = duration > 0 ? duration : 7;
+  return {
+    hotel_id: c.hotel_id,
+    hotel_name: c.display_name,
+    stars: c.stars || 4,
+    region: c.country,
+    country: c.country,
+    main_image_url: c.main_image_url,
+    ta_rating: c.ta_rating,
+    ta_reviews: c.ta_reviews,
+    current_offer: {
+      cohort_hash: `${c.hotel_id}_${c.cheapest_checkin_date || "date"}_${nights}`,
+      total_price_pln: c.current_min_price,
+      price_per_night_pax: Math.round(c.current_min_price / nights / 2),
+      departure_date: c.cheapest_checkin_date || "",
+      duration_nights: nights,
+      airport: c.cheapest_airport_code || "WAW",
+      booking_url: c.cheapest_offer_url,
+    },
+    intelligence: {
+      deal_score: c.deal_score,
+      deal_badge:
+        c.badges && c.badges.length > 0
+          ? c.badges[0]
+          : c.deal_score >= 80
+          ? "🔥 Hot"
+          : "✅ Good",
+      hopper_verdict:
+        c.deal_score >= 80
+          ? "BUY NOW"
+          : c.deal_score < 45
+          ? "OVERPRICED"
+          : "WAIT",
+      hopper_confidence: c.deal_confidence === "High" ? 0.9 : 0.7,
+      recommendation:
+        c.badges && c.badges.length > 0
+          ? c.badges.join(" • ")
+          : "Стабильная цена",
+      drop_48h_pct: c.change_24h_pct,
+      historic_min_pln: c.historical_min_price,
+      typical_median_pln: c.typical_median_price,
+    },
+    history_sparkline: [],
+  };
+}
+
 export const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"filter" | "search" | "arbitrage">("filter");
@@ -545,13 +595,25 @@ export const App: React.FC = () => {
   }, []);
 
   const loadFilterResults = async (filterId: string) => {
-    const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
     setIsLoading(true);
     try {
+      const catResp = await getFilterHotelsCatalog(filterId);
+      if (catResp.hotels && catResp.hotels.length > 0) {
+        setResults(catResp.hotels.map(catalogCardToSearchItem));
+        return;
+      }
+      const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
       const resp = await searchTours(preset.searchReq);
       setResults(resp.results);
     } catch (err: any) {
-      console.error("Filter search error:", err);
+      console.warn("Catalog fetch failed, falling back to search:", err);
+      try {
+        const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
+        const resp = await searchTours(preset.searchReq);
+        setResults(resp.results);
+      } catch (e) {
+        console.error("Filter search error:", e);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -890,8 +952,10 @@ export const App: React.FC = () => {
 
         {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
         <AiMarketBriefing
-          filterTitle={currentPreset.chips.dates}
+          filterId={activeTab === "filter" ? activeFilterId : undefined}
+          filterTitle={currentPreset.title}
           buyNowCount={heroKpi.buyNowCount}
+          onOpenPassport={(hotelId) => setActiveHotelPassport(hotelId)}
         />
 
         {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}

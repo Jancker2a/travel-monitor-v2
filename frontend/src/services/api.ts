@@ -6,6 +6,9 @@ import {
   PriceDropItem,
   AirportStat,
   MarketOverview,
+  TimelineResponse,
+  HotelCatalogResponse,
+  MarketOracleData,
 } from "../types";
 
 const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || "";
@@ -166,4 +169,59 @@ export async function getEarlyBookingAnalytics(): Promise<any> {
   }
   return resp.json();
 }
+
+// -------------------------------------------------------------
+// V2 Dedicated High-Performance Dashboard API Endpoints
+// -------------------------------------------------------------
+
+export async function getFilterTop10Timeline(
+  filterId: string,
+  range: string = "all",
+  ceilingPln?: number
+): Promise<TimelineResponse> {
+  const params = new URLSearchParams();
+  if (range && range !== "all") params.append("range", range);
+  if (ceilingPln) params.append("ceiling_pln", String(ceilingPln));
+  const q = params.toString() ? `?${params.toString()}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/filters/${encodeURIComponent(filterId)}/top10-timeline${q}`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки таймлайна ТОП-10 (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getFilterMarketOracle(filterId: string): Promise<MarketOracleData> {
+  const resp = await fetch(`${API_BASE}/api/v2/filters/${encodeURIComponent(filterId)}/oracle`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки AI Oracle брифинга (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getFilterHotelsCatalog(
+  filterId: string,
+  params?: {
+    sortBy?: string;
+    order?: string;
+    stars?: number;
+    search?: string;
+    minPrice?: number;
+    maxPrice?: number;
+  }
+): Promise<HotelCatalogResponse> {
+  const qParams = new URLSearchParams();
+  if (params?.sortBy) qParams.append("sort_by", params.sortBy);
+  if (params?.order) qParams.append("order", params.order);
+  if (params?.stars) qParams.append("stars", String(params.stars));
+  if (params?.search) qParams.append("search", params.search);
+  if (params?.minPrice) qParams.append("min_price", String(params.minPrice));
+  if (params?.maxPrice) qParams.append("max_price", String(params.maxPrice));
+  const q = qParams.toString() ? `?${qParams.toString()}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/filters/${encodeURIComponent(filterId)}/hotels${q}`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки каталога отелей (${resp.status})`);
+  }
+  return resp.json();
+}
+
 

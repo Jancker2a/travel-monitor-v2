@@ -31,3 +31,4 @@ class HotelCatalogResponse(BaseModel):
     filter_id: str
     total_hotels: int
     hotels: List[HotelCatalogCard]
+

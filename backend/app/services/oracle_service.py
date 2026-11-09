@@ -4,7 +4,7 @@ from datetime import datetime, date, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
-from app.services.timeline_service import ALIAS_MAP
+from app.services.timeline_service import resolve_filter_id
 from app.services import ai_market_oracle
 
 logger = logging.getLogger("travel_monitor_2.oracle")
@@ -18,7 +18,7 @@ class OracleService:
         Computes market phase, flight dynamics, floor breaker statistics,
         and 'If buying now' top recommendations with exact parity to v1.
         """
-        canonical_fid = ALIAS_MAP.get(filter_id, filter_id)
+        canonical_fid = resolve_filter_id(filter_id)
 
         # 1. Fetch monitor metadata
         m_sql = "SELECT id, title, destination FROM filter_monitors WHERE id = :fid"
@@ -76,6 +76,7 @@ class OracleService:
         # Calculate days to departure
         today = date.today()
         days_list = []
+        valid_dates = []
         for r in rows:
             c_date_str = r[4]
             if c_date_str:
@@ -88,12 +89,15 @@ class OracleService:
                     d_diff = (c_date - today).days
                     if d_diff >= 0:
                         days_list.append(d_diff)
+                        valid_dates.append(c_date)
                 except Exception:
                     pass
 
         min_days = min(days_list) if days_list else 30
         max_days = max(days_list) if days_list else 45
         med_days = days_list[len(days_list) // 2] if days_list else 35
+        nearest_dep = min(valid_dates).strftime("%d.%m") if valid_dates else ""
+        furthest_dep = max(valid_dates).strftime("%d.%m") if valid_dates else ""
 
         # Destination context and climate advice
         dest_advice = {
@@ -145,6 +149,8 @@ class OracleService:
                 "min_days_to_departure": min_days,
                 "max_days_to_departure": max_days,
                 "median_days_to_departure": med_days,
+                "nearest_departure_date": nearest_dep,
+                "furthest_departure_date": furthest_dep,
                 "is_wide_window": (max_days - min_days) > 10,
                 "destination_context": dest_advice,
             },
@@ -181,3 +187,4 @@ class OracleService:
             "buy_now_recommendation": macro.get("buy_now_recommendation", {}),
             "key_anomalies": macro.get("key_anomalies", []),
         }
+
