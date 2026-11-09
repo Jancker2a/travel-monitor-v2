@@ -4,7 +4,7 @@ from datetime import datetime, date, timezone, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
-from app.services.timeline_service import resolve_filter_id
+from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
 from app.services import ai_market_oracle
 
 logger = logging.getLogger("travel_monitor_2.oracle")
@@ -19,6 +19,9 @@ class OracleService:
         and 'If buying now' top recommendations with exact parity to v1.
         """
         canonical_fid = resolve_filter_id(filter_id)
+        fids = get_all_filter_id_variants(filter_id)
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
         # 1. Fetch monitor metadata
         m_sql = "SELECT id, title, destination FROM filter_monitors WHERE id = :fid"
@@ -34,29 +37,12 @@ class OracleService:
         dest = m_row[2] if m_row else "egypt"
 
         # 2. Fetch latest offers for this filter
-        time_res = await db.execute(
-            text("""
-                SELECT MAX(ps.recorded_at) 
-                FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
-            """),
-            {"fid": canonical_fid},
-        )
+        stmt = text(f"SELECT MAX(ps.recorded_at) FROM price_snapshots ps WHERE {filter_expr}")
+        if not is_pg:
+            from sqlalchemy import bindparam
+            stmt = stmt.bindparams(bindparam("fids", expanding=True))
+        time_res = await db.execute(stmt, {"fids": fids})
         max_ts = time_res.scalar()
-
-        if not max_ts and canonical_fid != filter_id:
-            time_res = await db.execute(
-                text("""
-                    SELECT MAX(ps.recorded_at) 
-                    FROM price_snapshots ps
-                    JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-                    WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
-                """),
-                {"fid": filter_id},
-            )
-            max_ts = time_res.scalar()
-            canonical_fid = filter_id
 
         if not max_ts:
             return {
@@ -82,10 +68,9 @@ class OracleService:
         if max_dt.tzinfo is None:
             max_dt = max_dt.replace(tzinfo=timezone.utc)
 
-        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         cutoff = (max_dt - timedelta(hours=4)) if is_pg else (max_dt - timedelta(hours=4)).isoformat()
 
-        offers_sql = """
+        offers_sql = f"""
             WITH ranked_offers AS (
                 SELECT 
                     h.hotel_id,
@@ -102,7 +87,7 @@ class OracleService:
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
-                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+                WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
             )
             SELECT 
@@ -119,13 +104,18 @@ class OracleService:
             WHERE rn = 1
             ORDER BY current_price ASC;
         """
-        res = await db.execute(text(offers_sql), {"fid": canonical_fid, "cutoff": cutoff})
+        o_stmt = text(offers_sql)
+        if not is_pg:
+            from sqlalchemy import bindparam
+            o_stmt = o_stmt.bindparams(bindparam("fids", expanding=True))
+
+        res = await db.execute(o_stmt, {"fids": fids, "cutoff": cutoff})
         rows = res.fetchall()
 
         if not rows:
             # Fallback to 24h cutoff
             cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
-            res = await db.execute(text(offers_sql), {"fid": canonical_fid, "cutoff": cutoff_24h})
+            res = await db.execute(o_stmt, {"fids": fids, "cutoff": cutoff_24h})
             rows = res.fetchall()
 
         if not rows:
@@ -195,14 +185,18 @@ class OracleService:
         })
 
         # Calculate floor saturation (hotels at season minimum)
-        hist_min_sql = """
+        hist_min_sql = f"""
             SELECT oc.hotel_id, MIN(ps.total_price_pln) as hist_min
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+            WHERE {filter_expr}
             GROUP BY oc.hotel_id;
         """
-        h_res = await db.execute(text(hist_min_sql), {"fid": canonical_fid})
+        hm_stmt = text(hist_min_sql)
+        if not is_pg:
+            from sqlalchemy import bindparam
+            hm_stmt = hm_stmt.bindparams(bindparam("fids", expanding=True))
+        h_res = await db.execute(hm_stmt, {"fids": fids})
         hist_mins = dict(h_res.fetchall())
 
         floor_count = sum(

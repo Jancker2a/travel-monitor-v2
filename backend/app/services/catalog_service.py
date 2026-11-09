@@ -7,7 +7,7 @@ from sqlalchemy import text
 
 logger = logging.getLogger("travel_monitor_2.catalog")
 
-from app.services.timeline_service import resolve_filter_id
+from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:
@@ -36,31 +36,17 @@ class CatalogService:
         TripAdvisor ratings, and badges calculated directly against historical database.
         """
         canonical_fid = resolve_filter_id(filter_id)
+        fids = get_all_filter_id_variants(filter_id)
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
         # 1. Find the latest recorded scrape time for this filter
-        time_res = await db.execute(
-            text("""
-                SELECT MAX(ps.recorded_at) 
-                FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
-            """),
-            {"fid": canonical_fid},
-        )
+        stmt = text(f"SELECT MAX(ps.recorded_at) FROM price_snapshots ps WHERE {filter_expr}")
+        if not is_pg:
+            from sqlalchemy import bindparam
+            stmt = stmt.bindparams(bindparam("fids", expanding=True))
+        time_res = await db.execute(stmt, {"fids": fids})
         max_ts = time_res.scalar()
-
-        if not max_ts and canonical_fid != filter_id:
-            time_res = await db.execute(
-                text("""
-                    SELECT MAX(ps.recorded_at) 
-                    FROM price_snapshots ps
-                    JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-                    WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
-                """),
-                {"fid": filter_id},
-            )
-            max_ts = time_res.scalar()
-            canonical_fid = filter_id
 
         if not max_ts:
             return {"filter_id": filter_id, "total_hotels": 0, "hotels": []}
@@ -76,11 +62,10 @@ class CatalogService:
         if max_dt.tzinfo is None:
             max_dt = max_dt.replace(tzinfo=timezone.utc)
 
-        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         cutoff = (max_dt - timedelta(hours=4)) if is_pg else (max_dt - timedelta(hours=4)).isoformat()
 
         # 2. Query active hotels and their cheapest offer in the latest scrape run (using window partition)
-        active_sql = """
+        active_sql = f"""
             WITH ranked_offers AS (
                 SELECT 
                     h.hotel_id,
@@ -100,7 +85,7 @@ class CatalogService:
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
-                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+                WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
             )
             SELECT 
@@ -121,13 +106,18 @@ class CatalogService:
             WHERE rn = 1
             ORDER BY current_price ASC;
         """
-        active_res = await db.execute(text(active_sql), {"fid": canonical_fid, "cutoff": cutoff})
+        a_stmt = text(active_sql)
+        if not is_pg:
+            from sqlalchemy import bindparam
+            a_stmt = a_stmt.bindparams(bindparam("fids", expanding=True))
+
+        active_res = await db.execute(a_stmt, {"fids": fids, "cutoff": cutoff})
         active_rows = active_res.fetchall()
 
         if not active_rows:
             # Wider window fallback if last scrape was slightly sparse
             cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
-            active_res = await db.execute(text(active_sql), {"fid": canonical_fid, "cutoff": cutoff_24h})
+            active_res = await db.execute(a_stmt, {"fids": fids, "cutoff": cutoff_24h})
             active_rows = active_res.fetchall()
 
         if not active_rows:
@@ -138,7 +128,7 @@ class CatalogService:
         # 3. Batch fetch all historical snapshots for these hotels under this filter
         placeholders = ",".join(f":h{i}" for i in range(len(hotel_ids)))
         h_params = {f"h{i}": hid for i, hid in enumerate(hotel_ids)}
-        h_params["fid"] = canonical_fid
+        h_params["fids"] = fids
 
         hist_sql = f"""
             SELECT 
@@ -147,11 +137,16 @@ class CatalogService:
                 ps.total_price_pln
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+            WHERE {filter_expr}
               AND oc.hotel_id IN ({placeholders})
             ORDER BY ps.recorded_at ASC;
         """
-        hist_res = await db.execute(text(hist_sql), h_params)
+        h_stmt = text(hist_sql)
+        if not is_pg:
+            from sqlalchemy import bindparam
+            h_stmt = h_stmt.bindparams(bindparam("fids", expanding=True))
+
+        hist_res = await db.execute(h_stmt, h_params)
         hist_rows = hist_res.fetchall()
 
         # Group history points by hotel_id

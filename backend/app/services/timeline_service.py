@@ -32,6 +32,34 @@ def resolve_filter_id(filter_id: str) -> str:
     return filter_id
 
 
+def get_all_filter_id_variants(filter_id: str) -> List[str]:
+    if not filter_id:
+        return []
+    variants = set()
+    raw = filter_id.strip()
+    variants.add(raw)
+    if raw.startswith("filter_"):
+        variants.add(raw[7:])
+    else:
+        variants.add(f"filter_{raw}")
+
+    canonical = resolve_filter_id(raw)
+    variants.add(canonical)
+    if canonical.startswith("filter_"):
+        variants.add(canonical[7:])
+    else:
+        variants.add(f"filter_{canonical}")
+
+    for k, v in ALIAS_MAP.items():
+        if raw in (k, v) or canonical in (k, v):
+            variants.add(k)
+            variants.add(v)
+            variants.add(f"filter_{k}")
+            variants.add(f"filter_{v}")
+
+    return list(variants)
+
+
 class TimelineService:
     @classmethod
     async def get_top10_timeline(
@@ -46,13 +74,13 @@ class TimelineService:
         For each hourly scrape run, finds minimum price per hotel, sorts ascending,
         takes Top-10 hotels, and computes avg, min, and max price corridor.
         """
-        canonical_filter_id = resolve_filter_id(filter_id)
+        fids = get_all_filter_id_variants(filter_id)
 
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
 
         # Build time constraint
         time_clause = ""
-        params: Dict[str, Any] = {"fid": canonical_filter_id}
+        params: Dict[str, Any] = {"fids": fids}
 
         if range_param == "7d":
             cutoff_dt = datetime.now(timezone.utc) - timedelta(days=7)
@@ -74,29 +102,47 @@ class TimelineService:
             else "substr(ps.recorded_at, 1, 13) || ':00:00Z'"
         )
 
-        # Query all snapshots for this filter grouped by hourly run bucket and hotel
-        sql = f"""
-            SELECT 
-                {bucket_expr} as run_time,
-                h.display_name as hotel_name,
-                MIN(ps.total_price_pln) as min_hotel_price
-            FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            JOIN hotels h ON oc.hotel_id = h.hotel_id
-            WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
-              {time_clause}
-              {ceiling_clause}
-            GROUP BY {bucket_expr}, h.hotel_id, h.display_name
-            ORDER BY run_time ASC;
-        """
-        res = await db.execute(text(sql), params)
-        rows = res.fetchall()
+        filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
-        if not rows and canonical_filter_id != filter_id:
-            # Fallback to literal filter_id
-            params["fid"] = filter_id
-            res = await db.execute(text(sql), params)
-            rows = res.fetchall()
+        # Query Top-10 cheapest hotels per hourly run using CTE for high performance
+        sql = f"""
+            WITH hotel_runs AS (
+                SELECT 
+                    {bucket_expr} as run_time,
+                    oc.hotel_id,
+                    MIN(ps.total_price_pln) as min_hotel_price
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                WHERE {filter_expr}
+                  {time_clause}
+                  {ceiling_clause}
+                GROUP BY {bucket_expr}, oc.hotel_id
+            ),
+            ranked AS (
+                SELECT 
+                    run_time,
+                    hotel_id,
+                    min_hotel_price,
+                    ROW_NUMBER() OVER (PARTITION BY run_time ORDER BY min_hotel_price ASC) as rn
+                FROM hotel_runs
+            )
+            SELECT 
+                r.run_time,
+                h.display_name as hotel_name,
+                r.min_hotel_price,
+                r.rn
+            FROM ranked r
+            JOIN hotels h ON r.hotel_id = h.hotel_id
+            WHERE r.rn <= 10
+            ORDER BY r.run_time ASC, r.rn ASC;
+        """
+        stmt = text(sql)
+        if not is_pg:
+            from sqlalchemy import bindparam
+            stmt = stmt.bindparams(bindparam("fids", expanding=True))
+
+        res = await db.execute(stmt, params)
+        rows = res.fetchall()
 
         # Group rows by hourly run_time
         runs: Dict[str, List[Tuple[str, float]]] = {}
@@ -110,8 +156,6 @@ class TimelineService:
         for r_time, h_list in runs.items():
             if not h_list:
                 continue
-            # Sort hotels by price ascending, break ties deterministically by hotel name
-            h_list.sort(key=lambda x: (x[1], x[0]))
             top10 = h_list[:10]
             prices = [item[1] for item in top10]
             avg_price = round(sum(prices) / len(prices), 1)
