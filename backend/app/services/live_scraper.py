@@ -1,7 +1,7 @@
 import re
 import html as ihtml
 import logging
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from typing import Dict, Any, List, Optional, Tuple
 import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -118,10 +118,44 @@ class LiveScraperService:
                 api_params["price[min]"] = float(qs["priceFrom"][0])
             if "priceTo" in qs:
                 api_params["price[max]"] = float(qs["priceTo"][0])
-            if "startDateMin" in qs:
-                api_params["startDate[min]"] = to_iso(qs["startDateMin"][0])
-            if "startDateMax" in qs:
-                api_params["startDate[max]"] = to_iso(qs["startDateMax"][0])
+            def parse_date(d_str: str) -> Optional[date]:
+                parts = d_str.split("-")
+                if len(parts) == 3:
+                    try:
+                        return date(int(parts[2]), int(parts[1]), int(parts[0]))
+                    except Exception:
+                        pass
+                try:
+                    return date.fromisoformat(d_str)
+                except Exception:
+                    return None
+
+            today = date.today()
+            start_min_d = parse_date(qs["startDateMin"][0]) if "startDateMin" in qs else None
+            start_max_d = parse_date(qs["startDateMax"][0]) if "startDateMax" in qs else None
+
+            if start_max_d and start_max_d < today:
+                # The search window was in the past (e.g. rolling filter).
+                # Auto-roll window forward from tomorrow keeping equivalent span.
+                window_span = max(7, (start_max_d - start_min_d).days) if start_min_d else 23
+                new_min = today + timedelta(days=1)
+                new_max = today + timedelta(days=window_span)
+                api_params["startDate[min]"] = new_min.isoformat()
+                api_params["startDate[max]"] = new_max.isoformat()
+            elif start_min_d and start_min_d < today:
+                # Start date passed, slide min to today
+                api_params["startDate[min]"] = today.isoformat()
+                if start_max_d:
+                    api_params["startDate[max]"] = start_max_d.isoformat()
+            else:
+                if start_min_d:
+                    api_params["startDate[min]"] = start_min_d.isoformat()
+                elif "startDateMin" in qs:
+                    api_params["startDate[min]"] = to_iso(qs["startDateMin"][0])
+                if start_max_d:
+                    api_params["startDate[max]"] = start_max_d.isoformat()
+                elif "startDateMax" in qs:
+                    api_params["startDate[max]"] = to_iso(qs["startDateMax"][0])
             if "children" in qs:
                 for i, ch in enumerate(qs["children"][0].split(",")):
                     api_params[f"children[{i}]"] = to_iso(ch.strip())
