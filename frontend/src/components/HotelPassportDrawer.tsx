@@ -221,8 +221,6 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     window.Plotly.react(chartContainerRef.current, [trace], layout, config);
   }, [activeTab, passport, historyMode, historyRange, normalizedData]);
 
-  if (!hotelId) return null;
-
   const photos = passport?.gallery_photos?.length
     ? passport.gallery_photos
     : [
