@@ -169,21 +169,21 @@ class SearchService:
             return []
 
         # Batched retrieval of price snapshots to eliminate N+1 latency
-        cohort_hashes = [c.cohort_hash for c, _ in cohort_rows]
+        cohort_ids = [c.cohort_id for c, _ in cohort_rows]
         snaps_by_cohort = defaultdict(list)
         snap_stmt = (
             select(PriceSnapshot)
-            .where(PriceSnapshot.cohort_hash.in_(cohort_hashes))
+            .where(PriceSnapshot.cohort_id.in_(cohort_ids))
             .order_by(PriceSnapshot.recorded_at.desc())
         )
         all_snaps = (await db.execute(snap_stmt)).scalars().all()
         for s in all_snaps:
-            if len(snaps_by_cohort[s.cohort_hash]) < 20:
-                snaps_by_cohort[s.cohort_hash].append(s)
+            if len(snaps_by_cohort[s.cohort_id]) < 20:
+                snaps_by_cohort[s.cohort_id].append(s)
 
         items: List[SearchHotelItem] = []
         for cohort, hotel in cohort_rows:
-            snaps = snaps_by_cohort.get(cohort.cohort_hash, [])
+            snaps = snaps_by_cohort.get(cohort.cohort_id, [])
             if not snaps:
                 continue
 

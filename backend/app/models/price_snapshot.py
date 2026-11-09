@@ -16,7 +16,7 @@ class PriceSnapshot(Base):
     __tablename__ = "price_snapshots"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    cohort_hash = Column(String(32), ForeignKey("offer_cohorts.cohort_hash", ondelete="CASCADE"), nullable=False, index=True)
+    cohort_id = Column(Integer, ForeignKey("offer_cohorts.cohort_id", ondelete="CASCADE"), nullable=False, index=True)
     filter_id = Column(String(64), nullable=True, index=True)
     recorded_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
     total_price_pln = Column(Float, nullable=False)
@@ -29,7 +29,7 @@ class PriceSnapshot(Base):
 
     __table_args__ = (
         Index("idx_snapshot_filter_time", "filter_id", "recorded_at"),
-        Index("idx_snapshot_cohort_time", "cohort_hash", "recorded_at"),
+        Index("idx_snapshot_cohort_time", "cohort_id", "recorded_at"),
     )
 
     def __repr__(self) -> str:

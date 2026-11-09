@@ -85,7 +85,7 @@ class OracleService:
                     ps.recorded_at,
                     ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
                 FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
                 WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
@@ -188,7 +188,7 @@ class OracleService:
         hist_min_sql = f"""
             SELECT oc.hotel_id, MIN(ps.total_price_pln) as hist_min
             FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
             WHERE {filter_expr}
             GROUP BY oc.hotel_id;
         """

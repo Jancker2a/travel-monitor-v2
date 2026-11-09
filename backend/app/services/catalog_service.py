@@ -83,7 +83,7 @@ class CatalogService:
                     ps.recorded_at,
                     ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
                 FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
                 WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
@@ -136,7 +136,7 @@ class CatalogService:
                 ps.recorded_at,
                 ps.total_price_pln
             FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
             WHERE {filter_expr}
               AND oc.hotel_id IN ({placeholders})
             ORDER BY ps.recorded_at ASC;

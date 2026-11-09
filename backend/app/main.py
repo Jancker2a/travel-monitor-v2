@@ -52,7 +52,7 @@ async def lifespan(app: FastAPI):
                     UPDATE price_snapshots ps 
                     SET filter_id = oc.destination_code 
                     FROM offer_cohorts oc 
-                    WHERE ps.cohort_hash = oc.cohort_hash 
+                    WHERE ps.cohort_id = oc.cohort_id 
                       AND (ps.filter_id IS NULL OR ps.filter_id = '');
                 """))
                 await conn.execute(text("""

@@ -25,10 +25,10 @@ class ArbitrageService:
         # 1. Fetch latest price per cohort
         subq = (
             select(
-                PriceSnapshot.cohort_hash,
+                PriceSnapshot.cohort_id,
                 PriceSnapshot.total_price_pln,
                 func.row_number().over(
-                    partition_by=PriceSnapshot.cohort_hash,
+                    partition_by=PriceSnapshot.cohort_id,
                     order_by=PriceSnapshot.recorded_at.desc(),
                 ).label("rn"),
             )
@@ -49,7 +49,7 @@ class ArbitrageService:
                 subq.c.total_price_pln,
             )
             .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
-            .join(subq, and_(OfferCohort.cohort_hash == subq.c.cohort_hash, subq.c.rn == 1))
+            .join(subq, and_(OfferCohort.cohort_id == subq.c.cohort_id, subq.c.rn == 1))
         )
         res = await db.execute(stmt)
         rows = res.all()

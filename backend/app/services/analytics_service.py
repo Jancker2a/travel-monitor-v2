@@ -19,26 +19,26 @@ class AnalyticsService:
 
         query = text(f"""
             WITH recent_snaps AS (
-                SELECT ps.cohort_hash, ps.total_price_pln, ps.recorded_at,
-                       ROW_NUMBER() OVER (PARTITION BY ps.cohort_hash ORDER BY ps.recorded_at DESC) as rn
+                SELECT ps.cohort_id, ps.total_price_pln, ps.recorded_at,
+                       ROW_NUMBER() OVER (PARTITION BY ps.cohort_id ORDER BY ps.recorded_at DESC) as rn
                 FROM price_snapshots ps
                 WHERE ps.recorded_at >= {cutoff_expr}
             ),
             latest_two AS (
                 SELECT 
-                    c1.cohort_hash,
+                    c1.cohort_id,
                     c1.total_price_pln as curr_price,
                     c2.total_price_pln as prev_price,
                     (c2.total_price_pln - c1.total_price_pln) as drop_amount,
                     ((c2.total_price_pln - c1.total_price_pln) / c2.total_price_pln * 100) as drop_pct
                 FROM recent_snaps c1
-                JOIN recent_snaps c2 ON c1.cohort_hash = c2.cohort_hash AND c2.rn = 2
+                JOIN recent_snaps c2 ON c1.cohort_id = c2.cohort_id AND c2.rn = 2
                 WHERE c1.rn = 1 AND (c2.total_price_pln - c1.total_price_pln) >= :min_drop
             )
-            SELECT lt.*, c.duration_nights, c.checkin_date, c.airport_code, c.offer_url,
+            SELECT lt.*, c.cohort_hash, c.duration_nights, c.checkin_date, c.airport_code, c.offer_url,
                    h.hotel_id, h.display_name, h.country, h.region, h.stars, h.main_image_url
             FROM latest_two lt
-            JOIN offer_cohorts c ON lt.cohort_hash = c.cohort_hash
+            JOIN offer_cohorts c ON lt.cohort_id = c.cohort_id
             JOIN hotels h ON c.hotel_id = h.hotel_id
             ORDER BY lt.drop_amount DESC
             LIMIT :lim;
@@ -103,7 +103,7 @@ class AnalyticsService:
                     c.hotel_id,
                     MIN(s.total_price_pln) as hotel_min_price
                 FROM price_snapshots s
-                JOIN offer_cohorts c ON s.cohort_hash = c.cohort_hash
+                JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
                 WHERE c.destination_code IN :dest_codes
                 GROUP BY {date_expr}, c.hotel_id
             ),
@@ -160,7 +160,7 @@ class AnalyticsService:
                    AVG(s.total_price_pln) as avg_price,
                    AVG(s.price_per_night_per_pax) as avg_night_pax
             FROM price_snapshots s
-            JOIN offer_cohorts c ON s.cohort_hash = c.cohort_hash
+            JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
             JOIN hotels h ON c.hotel_id = h.hotel_id
             WHERE s.recorded_at >= {cutoff_expr}
             {filter_clause}
@@ -190,7 +190,7 @@ class AnalyticsService:
         cutoff_expr = "NOW() - INTERVAL '60 days'" if is_pg else "datetime('now', '-60 days')"
 
         query = text(f"""
-            SELECT {day_expr} as day, COUNT(DISTINCT cohort_hash) as count
+            SELECT {day_expr} as day, COUNT(DISTINCT cohort_id) as count
             FROM price_snapshots
             WHERE recorded_at >= {cutoff_expr}
             GROUP BY {day_expr}

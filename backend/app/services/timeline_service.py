@@ -112,7 +112,7 @@ class TimelineService:
                     oc.hotel_id,
                     MIN(ps.total_price_pln) as min_hotel_price
                 FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
                 WHERE {filter_expr}
                   {time_clause}
                   {ceiling_clause}

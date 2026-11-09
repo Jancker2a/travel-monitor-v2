@@ -33,7 +33,8 @@ def compute_cohort_hash(
 class OfferCohort(Base):
     __tablename__ = "offer_cohorts"
 
-    cohort_hash = Column(String(32), primary_key=True, index=True)
+    cohort_id = Column(Integer, primary_key=True, autoincrement=True)
+    cohort_hash = Column(String(32), unique=True, nullable=False, index=True)
     filter_id = Column(String(64), nullable=True, index=True)
     hotel_id = Column(String(128), ForeignKey("hotels.hotel_id", ondelete="CASCADE"), nullable=False, index=True)
     destination_code = Column(String(64), nullable=False, index=True)

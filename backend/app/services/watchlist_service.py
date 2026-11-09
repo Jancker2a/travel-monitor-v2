@@ -72,7 +72,7 @@ class WatchlistService:
         # 3. Retrieve latest snapshot
         snap_stmt = (
             select(PriceSnapshot)
-            .where(PriceSnapshot.cohort_hash == req.cohort_hash)
+            .where(PriceSnapshot.cohort_id == cohort.cohort_id)
             .order_by(PriceSnapshot.recorded_at.desc())
             .limit(1)
         )
@@ -128,7 +128,7 @@ class WatchlistService:
         for watch_item, cohort, hotel in rows:
             snap_stmt = (
                 select(PriceSnapshot)
-                .where(PriceSnapshot.cohort_hash == cohort.cohort_hash)
+                .where(PriceSnapshot.cohort_id == cohort.cohort_id)
                 .order_by(PriceSnapshot.recorded_at.desc())
                 .limit(1)
             )
@@ -202,7 +202,7 @@ class WatchlistService:
             # Get last 2 snapshots
             snap_stmt = (
                 select(PriceSnapshot)
-                .where(PriceSnapshot.cohort_hash == cohort.cohort_hash)
+                .where(PriceSnapshot.cohort_id == cohort.cohort_id)
                 .order_by(PriceSnapshot.recorded_at.desc())
                 .limit(2)
             )
@@ -306,15 +306,15 @@ class WatchlistService:
             top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
             scoped_cohorts = [c for c in all_cohorts if c.destination_code == top_dest] if top_dest else all_cohorts
 
-        scoped_hashes = {c.cohort_hash for c in scoped_cohorts}
-        cohort_by_hash = {c.cohort_hash: c for c in all_cohorts}
+        scoped_cohort_ids = {c.cohort_id for c in scoped_cohorts}
+        cohort_by_id = {c.cohort_id: c for c in all_cohorts}
 
         # 4. Fetch all snapshots for all cohorts (to populate packages_map)
-        all_hashes = [c.cohort_hash for c in all_cohorts]
+        all_cohort_ids = [c.cohort_id for c in all_cohorts]
         from sqlalchemy import bindparam
         snap_query = (
             select(PriceSnapshot)
-            .where(PriceSnapshot.cohort_hash.in_(all_hashes))
+            .where(PriceSnapshot.cohort_id.in_(all_cohort_ids))
             .order_by(PriceSnapshot.recorded_at.asc())
         )
         snap_rows = (await db.execute(snap_query)).scalars().all()
@@ -322,7 +322,7 @@ class WatchlistService:
         packages_map: Dict[str, Dict[str, Any]] = {}
         # Keep latest snapshot for each cohort package
         for snap in snap_rows:
-            cohort = cohort_by_hash.get(snap.cohort_hash)
+            cohort = cohort_by_id.get(snap.cohort_id)
             if not cohort:
                 continue
             checkin_d = (
@@ -348,7 +348,7 @@ class WatchlistService:
         # Group snapshots by hourly bucket and take MIN price per bucket
         hourly_map: Dict[str, Dict[str, Any]] = {}
         for snap in snap_rows:
-            if snap.cohort_hash not in scoped_hashes:
+            if snap.cohort_id not in scoped_cohort_ids:
                 continue
             rec_dt = (
                 datetime.fromisoformat(snap.recorded_at)
@@ -356,7 +356,7 @@ class WatchlistService:
                 else snap.recorded_at or datetime.utcnow()
             )
             bucket_key = rec_dt.strftime("%Y-%m-%d %H:00")
-            cohort = cohort_by_hash[snap.cohort_hash]
+            cohort = cohort_by_id[snap.cohort_id]
             checkin_d = (
                 datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
                 if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date

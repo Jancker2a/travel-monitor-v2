@@ -430,7 +430,7 @@ class SiteRebuilderService:
                 PriceSnapshot.recorded_at,
                 OfferCohort.offer_url,
             )
-            .join(OfferCohort, PriceSnapshot.cohort_hash == OfferCohort.cohort_hash)
+            .join(OfferCohort, PriceSnapshot.cohort_id == OfferCohort.cohort_id)
             .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
             .where(OfferCohort.destination_code == monitor.destination)
             .order_by(PriceSnapshot.recorded_at.desc())

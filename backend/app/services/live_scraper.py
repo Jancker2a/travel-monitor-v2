@@ -459,12 +459,15 @@ class LiveScraperService:
                     last_seen_at=now_dt,
                 )
                 db.add(cohort_entity)
+                await db.flush()
             else:
                 cohort_entity.last_seen_at = now_dt
                 if req.filter_id and not cohort_entity.filter_id:
                     cohort_entity.filter_id = req.filter_id
                 if off["offer_url"]:
                     cohort_entity.offer_url = off["offer_url"]
+                if not cohort_entity.cohort_id:
+                    await db.flush()
 
             seen_cohorts[cohort_hash] = cohort_entity
 
@@ -473,7 +476,7 @@ class LiveScraperService:
             price_pax_night = off["price"] / (max(1, off["duration_nights"]) * pax_count)
 
             snapshot = PriceSnapshot(
-                cohort_hash=cohort_hash,
+                cohort_id=cohort_entity.cohort_id,
                 filter_id=req.filter_id,
                 recorded_at=now_dt,
                 total_price_pln=off["price"],
@@ -486,7 +489,7 @@ class LiveScraperService:
             # 4. Compute Intelligence & Sparkline from Historical Snapshots
             snap_stmt = (
                 select(PriceSnapshot.total_price_pln)
-                .where(PriceSnapshot.cohort_hash == cohort_hash)
+                .where(PriceSnapshot.cohort_id == cohort_entity.cohort_id)
                 .order_by(PriceSnapshot.recorded_at.desc())
                 .limit(20)
             )
