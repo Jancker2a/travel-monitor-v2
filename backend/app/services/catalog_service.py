@@ -39,52 +39,45 @@ class CatalogService:
 
         # 1. Find the latest recorded scrape time for this filter
         time_res = await db.execute(
-            text("SELECT MAX(recorded_at) FROM price_snapshots WHERE filter_id = :fid"),
+            text("""
+                SELECT MAX(ps.recorded_at) 
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+            """),
             {"fid": canonical_fid},
         )
-        max_ts_str = time_res.scalar()
+        max_ts = time_res.scalar()
 
-        if not max_ts_str and canonical_fid != filter_id:
+        if not max_ts and canonical_fid != filter_id:
             time_res = await db.execute(
-                text("SELECT MAX(recorded_at) FROM price_snapshots WHERE filter_id = :fid"),
+                text("""
+                    SELECT MAX(ps.recorded_at) 
+                    FROM price_snapshots ps
+                    JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                    WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+                """),
                 {"fid": filter_id},
             )
-            max_ts_str = time_res.scalar()
+            max_ts = time_res.scalar()
             canonical_fid = filter_id
 
-        if not max_ts_str:
+        if not max_ts:
             return {"filter_id": filter_id, "total_hotels": 0, "hotels": []}
 
-        # 2. Query active hotels and their cheapest offer in the latest scrape run (within 2h of max_ts)
-        active_sql = """
-            SELECT 
-                h.hotel_id,
-                h.display_name,
-                h.country,
-                h.stars,
-                h.ta_rating,
-                h.ta_reviews,
-                h.main_image_url,
-                oc.checkin_date,
-                oc.duration_nights,
-                oc.airport_code,
-                oc.offer_url,
-                MIN(ps.total_price_pln) as current_price,
-                MAX(ps.recorded_at) as recorded_at
-            FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            JOIN hotels h ON oc.hotel_id = h.hotel_id
-            WHERE ps.filter_id = :fid
-              AND ps.recorded_at >= datetime(:max_ts, '-3 hours')
-            GROUP BY h.hotel_id
-            ORDER BY current_price ASC;
-        """
-        active_res = await db.execute(text(active_sql), {"fid": canonical_fid, "max_ts": max_ts_str})
-        active_rows = active_res.fetchall()
+        if isinstance(max_ts, str):
+            ts_str = max_ts.replace("Z", "+00:00").replace(" ", "T")
+            if "+" not in ts_str and not ts_str.endswith("Z"):
+                ts_str += "+00:00"
+            max_dt = datetime.fromisoformat(ts_str)
+        else:
+            max_dt = max_ts
 
-        if not active_rows:
-            # Wider window fallback if last scrape was slightly sparse
-            active_sql_fallback = """
+        cutoff = (max_dt - timedelta(hours=4)).isoformat()
+
+        # 2. Query active hotels and their cheapest offer in the latest scrape run (using window partition)
+        active_sql = """
+            WITH ranked_offers AS (
                 SELECT 
                     h.hotel_id,
                     h.display_name,
@@ -97,17 +90,40 @@ class CatalogService:
                     oc.duration_nights,
                     oc.airport_code,
                     oc.offer_url,
-                    MIN(ps.total_price_pln) as current_price,
-                    MAX(ps.recorded_at) as recorded_at
+                    ps.total_price_pln as current_price,
+                    ps.recorded_at,
+                    ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
-                WHERE ps.filter_id = :fid
-                  AND ps.recorded_at >= datetime(:max_ts, '-24 hours')
-                GROUP BY h.hotel_id
-                ORDER BY current_price ASC;
-            """
-            active_res = await db.execute(text(active_sql_fallback), {"fid": canonical_fid, "max_ts": max_ts_str})
+                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+                  AND ps.recorded_at >= :cutoff
+            )
+            SELECT 
+                hotel_id,
+                display_name,
+                country,
+                stars,
+                ta_rating,
+                ta_reviews,
+                main_image_url,
+                checkin_date,
+                duration_nights,
+                airport_code,
+                offer_url,
+                current_price,
+                recorded_at
+            FROM ranked_offers
+            WHERE rn = 1
+            ORDER BY current_price ASC;
+        """
+        active_res = await db.execute(text(active_sql), {"fid": canonical_fid, "cutoff": cutoff})
+        active_rows = active_res.fetchall()
+
+        if not active_rows:
+            # Wider window fallback if last scrape was slightly sparse
+            cutoff_24h = (max_dt - timedelta(hours=24)).isoformat()
+            active_res = await db.execute(text(active_sql), {"fid": canonical_fid, "cutoff": cutoff_24h})
             active_rows = active_res.fetchall()
 
         if not active_rows:
@@ -116,7 +132,6 @@ class CatalogService:
         hotel_ids = [r[0] for r in active_rows]
 
         # 3. Batch fetch all historical snapshots for these hotels under this filter
-        # SQLite supports passing parameters via dynamically generated placeholders
         placeholders = ",".join(f":h{i}" for i in range(len(hotel_ids)))
         h_params = {f"h{i}": hid for i, hid in enumerate(hotel_ids)}
         h_params["fid"] = canonical_fid
@@ -128,7 +143,7 @@ class CatalogService:
                 ps.total_price_pln
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            WHERE ps.filter_id = :fid
+            WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
               AND oc.hotel_id IN ({placeholders})
             ORDER BY ps.recorded_at ASC;
         """
@@ -137,13 +152,17 @@ class CatalogService:
 
         # Group history points by hotel_id
         hotel_history: Dict[str, List[Tuple[datetime, float]]] = {}
-        for h_id, r_at_str, p_val in hist_rows:
+        for h_id, r_at, p_val in hist_rows:
             if h_id not in hotel_history:
                 hotel_history[h_id] = []
             try:
-                # Clean timestamp parsing
-                ts_clean = r_at_str.replace("Z", "+00:00").replace(" ", "T")
-                dt = datetime.fromisoformat(ts_clean)
+                if isinstance(r_at, str):
+                    ts_clean = r_at.replace("Z", "+00:00").replace(" ", "T")
+                    if "+" not in ts_clean and not ts_clean.endswith("Z"):
+                        ts_clean += "+00:00"
+                    dt = datetime.fromisoformat(ts_clean)
+                else:
+                    dt = r_at
                 if dt.tzinfo is None:
                     dt = dt.replace(tzinfo=timezone.utc)
             except Exception:

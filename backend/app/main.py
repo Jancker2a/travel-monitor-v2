@@ -33,6 +33,36 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing database tables for Travel Monitor 2.0...")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        # Auto-migrate columns for Postgres / existing databases
+        for tbl in ["offer_cohorts", "price_snapshots"]:
+            try:
+                await conn.execute(text(f"ALTER TABLE {tbl} ADD COLUMN IF NOT EXISTS filter_id VARCHAR;"))
+            except Exception:
+                pass
+        try:
+            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_filter_time ON price_snapshots(filter_id, recorded_at);"))
+            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_hotel ON offer_cohorts(filter_id, hotel_id);"))
+        except Exception:
+            pass
+
+        # Backfill filter_id from destination_code if NULL
+        try:
+            if engine.dialect.name == "postgresql":
+                await conn.execute(text("""
+                    UPDATE price_snapshots ps 
+                    SET filter_id = oc.destination_code 
+                    FROM offer_cohorts oc 
+                    WHERE ps.cohort_hash = oc.cohort_hash 
+                      AND (ps.filter_id IS NULL OR ps.filter_id = '');
+                """))
+                await conn.execute(text("""
+                    UPDATE offer_cohorts 
+                    SET filter_id = destination_code 
+                    WHERE (filter_id IS NULL OR filter_id = '');
+                """))
+        except Exception as mig_err:
+            logger.warning(f"Note on column backfill: {mig_err}")
+
     logger.info("Database schema initialized successfully.")
 
     # Seed canonical v1 filter monitors

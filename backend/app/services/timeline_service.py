@@ -66,19 +66,26 @@ class TimelineService:
             ceiling_clause = "AND ps.total_price_pln <= :ceiling_pln"
             params["ceiling_pln"] = ceiling_pln
 
+        is_pg = db.bind.dialect.name == "postgresql"
+        bucket_expr = (
+            "to_char(ps.recorded_at, 'YYYY-MM-DD\"T\"HH24:00:00\"Z\"')"
+            if is_pg
+            else "substr(ps.recorded_at, 1, 13) || ':00:00Z'"
+        )
+
         # Query all snapshots for this filter grouped by hourly run bucket and hotel
         sql = f"""
             SELECT 
-                substr(ps.recorded_at, 1, 13) || ':00:00Z' as run_time,
+                {bucket_expr} as run_time,
                 h.display_name as hotel_name,
                 MIN(ps.total_price_pln) as min_hotel_price
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
             JOIN hotels h ON oc.hotel_id = h.hotel_id
-            WHERE ps.filter_id = :fid
+            WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
               {time_clause}
               {ceiling_clause}
-            GROUP BY substr(ps.recorded_at, 1, 13), h.hotel_id
+            GROUP BY {bucket_expr}, h.hotel_id, h.display_name
             ORDER BY run_time ASC;
         """
         res = await db.execute(text(sql), params)

@@ -34,27 +34,95 @@ class OracleService:
         dest = m_row[2] if m_row else "egypt"
 
         # 2. Fetch latest offers for this filter
+        time_res = await db.execute(
+            text("""
+                SELECT MAX(ps.recorded_at) 
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+            """),
+            {"fid": canonical_fid},
+        )
+        max_ts = time_res.scalar()
+
+        if not max_ts and canonical_fid != filter_id:
+            time_res = await db.execute(
+                text("""
+                    SELECT MAX(ps.recorded_at) 
+                    FROM price_snapshots ps
+                    JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                    WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+                """),
+                {"fid": filter_id},
+            )
+            max_ts = time_res.scalar()
+            canonical_fid = filter_id
+
+        if not max_ts:
+            return {
+                "filter_id": filter_id,
+                "title": title,
+                "headline": "Данные обновляются",
+                "market_phase": "Ожидание данных",
+                "charter_dynamics": "Сбор актуальных предложений для этого направления продолжается...",
+                "floor_status": "",
+                "strategic_directive": "Проверьте фильтр через несколько минут.",
+                "buy_now_recommendation": {"has_worthy_deals": False, "top_picks": []},
+                "key_anomalies": [],
+            }
+
+        if isinstance(max_ts, str):
+            ts_str = max_ts.replace("Z", "+00:00").replace(" ", "T")
+            if "+" not in ts_str and not ts_str.endswith("Z"):
+                ts_str += "+00:00"
+            max_dt = datetime.fromisoformat(ts_str)
+        else:
+            max_dt = max_ts
+
+        cutoff = (max_dt - timedelta(hours=4)).isoformat()
+
         offers_sql = """
+            WITH ranked_offers AS (
+                SELECT 
+                    h.hotel_id,
+                    h.display_name,
+                    h.ta_rating,
+                    h.ta_reviews,
+                    oc.checkin_date,
+                    oc.duration_nights,
+                    oc.airport_code,
+                    oc.offer_url,
+                    ps.total_price_pln as current_price,
+                    ps.recorded_at,
+                    ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
+                JOIN hotels h ON oc.hotel_id = h.hotel_id
+                WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
+                  AND ps.recorded_at >= :cutoff
+            )
             SELECT 
-                h.hotel_id,
-                h.display_name,
-                h.ta_rating,
-                h.ta_reviews,
-                oc.checkin_date,
-                oc.duration_nights,
-                oc.airport_code,
-                oc.offer_url,
-                MIN(ps.total_price_pln) as current_price
-            FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            JOIN hotels h ON oc.hotel_id = h.hotel_id
-            WHERE ps.filter_id = :fid
-              AND ps.recorded_at >= datetime((SELECT MAX(recorded_at) FROM price_snapshots WHERE filter_id = :fid), '-4 hours')
-            GROUP BY h.hotel_id
+                hotel_id,
+                display_name,
+                ta_rating,
+                ta_reviews,
+                checkin_date,
+                duration_nights,
+                airport_code,
+                offer_url,
+                current_price
+            FROM ranked_offers
+            WHERE rn = 1
             ORDER BY current_price ASC;
         """
-        res = await db.execute(text(offers_sql), {"fid": canonical_fid})
+        res = await db.execute(text(offers_sql), {"fid": canonical_fid, "cutoff": cutoff})
         rows = res.fetchall()
+
+        if not rows:
+            # Fallback to 24h cutoff
+            cutoff_24h = (max_dt - timedelta(hours=24)).isoformat()
+            res = await db.execute(text(offers_sql), {"fid": canonical_fid, "cutoff": cutoff_24h})
+            rows = res.fetchall()
 
         if not rows:
             return {
@@ -127,7 +195,7 @@ class OracleService:
             SELECT oc.hotel_id, MIN(ps.total_price_pln) as hist_min
             FROM price_snapshots ps
             JOIN offer_cohorts oc ON ps.cohort_hash = oc.cohort_hash
-            WHERE ps.filter_id = :fid
+            WHERE (ps.filter_id = :fid OR oc.destination_code = :fid)
             GROUP BY oc.hotel_id;
         """
         h_res = await db.execute(text(hist_min_sql), {"fid": canonical_fid})
