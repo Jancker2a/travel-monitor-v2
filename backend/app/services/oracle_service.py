@@ -1,5 +1,6 @@
 import logging
-from typing import Dict, Any, Optional
+import time
+from typing import Dict, Any, Optional, Tuple
 from datetime import datetime, date, timezone, timedelta
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
@@ -8,6 +9,9 @@ from app.services.timeline_service import resolve_filter_id, get_all_filter_id_v
 from app.services import ai_market_oracle
 
 logger = logging.getLogger("travel_monitor_2.oracle")
+
+_ORACLE_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
+_ORACLE_CACHE_TTL = 300.0  # 5 minutes
 
 
 class OracleService:
@@ -19,6 +23,11 @@ class OracleService:
         and 'If buying now' top recommendations with exact parity to v1.
         """
         canonical_fid = resolve_filter_id(filter_id)
+        now_ts = time.time()
+        if canonical_fid in _ORACLE_CACHE:
+            c_time, c_data = _ORACLE_CACHE[canonical_fid]
+            if now_ts - c_time < _ORACLE_CACHE_TTL:
+                return c_data
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
@@ -242,7 +251,7 @@ class OracleService:
         report = ai_market_oracle.generate_rule_based_briefing(market_context)
         macro = report.get("macro_briefing", {})
 
-        return {
+        res = {
             "filter_id": filter_id,
             "title": title,
             "headline": macro.get("headline", ""),
@@ -253,4 +262,6 @@ class OracleService:
             "buy_now_recommendation": macro.get("buy_now_recommendation", {}),
             "key_anomalies": macro.get("key_anomalies", []),
         }
+        _ORACLE_CACHE[canonical_fid] = (now_ts, res)
+        return res
 

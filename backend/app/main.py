@@ -57,6 +57,24 @@ async def _async_background_db_maintenance():
     except Exception as mig_err:
         logger.warning(f"Note on background column backfill: {mig_err}")
 
+    # Prewarm in-memory caches for high-traffic endpoints so first requests are instantaneous
+    logger.info("Prewarming in-memory caches for high-traffic endpoints...")
+    async with AsyncSessionLocal() as db:
+        try:
+            from app.services.analytics_service import AnalyticsService
+            from app.services.catalog_service import CatalogService
+            from app.services.oracle_service import OracleService
+            await AnalyticsService.get_top_price_drops(db, limit=10)
+            await AnalyticsService.get_offers_count_timeline(db)
+            await AnalyticsService.get_airport_comparison(db, "turkey")
+            await CatalogService.get_filter_hotels(db, "turkey_7_10")
+            await OracleService.get_filter_oracle(db, "turkey_7_10")
+            await CatalogService.get_filter_hotels(db, "egypt_sharm_dec20_29_1p")
+            await OracleService.get_filter_oracle(db, "egypt_sharm_dec20_29_1p")
+            logger.info("✅ Cache prewarming completed successfully.")
+        except Exception as e:
+            logger.warning(f"Note on cache prewarming: {e}")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -71,7 +89,10 @@ async def lifespan(app: FastAPI):
                 pass
         try:
             await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_filter_time ON price_snapshots(filter_id, recorded_at);"))
+            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_cohort_time ON price_snapshots(cohort_id, recorded_at);"))
+            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_price_snapshots_rec_at ON price_snapshots(recorded_at DESC);"))
             await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_hotel ON offer_cohorts(filter_id, hotel_id);"))
+            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_id ON offer_cohorts(filter_id);"))
         except Exception:
             pass
 

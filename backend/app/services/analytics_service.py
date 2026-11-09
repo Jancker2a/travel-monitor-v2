@@ -1,10 +1,16 @@
 import logging
-from typing import List, Dict, Any, Optional
+import time
+from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
 logger = logging.getLogger("travel_monitor_2.analytics")
+
+_TOP_DROPS_CACHE: Dict[Tuple[int, float], Tuple[float, List[Dict[str, Any]]]] = {}
+_AIRPORT_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
+_OFFERS_COUNT_CACHE: Optional[Tuple[float, List[Dict[str, Any]]]] = None
+_ANALYTICS_CACHE_TTL = 300.0  # 5 minutes
 
 
 class AnalyticsService:
@@ -14,8 +20,15 @@ class AnalyticsService:
         cls, db: AsyncSession, limit: int = 12, min_drop_pln: float = 150.0
     ) -> List[Dict[str, Any]]:
         """Returns top tours with the sharpest price drops between their latest 2 snapshots."""
+        cache_key = (limit, min_drop_pln)
+        now_ts = time.time()
+        if cache_key in _TOP_DROPS_CACHE:
+            c_time, c_data = _TOP_DROPS_CACHE[cache_key]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
+
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
-        cutoff_expr = "NOW() - INTERVAL '7 days'" if is_pg else "datetime('now', '-7 days')"
+        cutoff_expr = "NOW() - INTERVAL '48 hours'" if is_pg else "datetime('now', '-48 hours')"
 
         query = text(f"""
             WITH recent_snaps AS (
@@ -65,6 +78,7 @@ class AnalyticsService:
                 "drop_pct": round(float(r["drop_pct"]), 1),
                 "booking_url": r["offer_url"],
             })
+        _TOP_DROPS_CACHE[cache_key] = (now_ts, results)
         return results
 
     @classmethod
@@ -137,6 +151,7 @@ class AnalyticsService:
                 "min_price": round(float(r["min_price"]), 0) if r["min_price"] is not None else 0.0,
                 "max_price": round(float(r["max_price"]), 0) if r["max_price"] is not None else 0.0,
             })
+        _TOP_DROPS_CACHE[cache_key] = (now_ts, results)
         return results
 
     @classmethod
@@ -144,6 +159,13 @@ class AnalyticsService:
         cls, db: AsyncSession, destination: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """Calculates average and minimum package price grouped by departure airport."""
+        cache_key = (destination or "all").lower().strip()
+        now_ts = time.time()
+        if cache_key in _AIRPORT_CACHE:
+            c_time, c_data = _AIRPORT_CACHE[cache_key]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
+
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         cutoff_expr = "NOW() - INTERVAL '7 days'" if is_pg else "datetime('now', '-7 days')"
 
@@ -180,11 +202,19 @@ class AnalyticsService:
                 "avg_price_pln": round(float(r["avg_price"]), 0) if r["avg_price"] is not None else 0.0,
                 "avg_night_pax": round(float(r["avg_night_pax"]), 0) if r["avg_night_pax"] is not None else 0.0,
             })
+        _AIRPORT_CACHE[cache_key] = (now_ts, results)
         return results
 
     @classmethod
     async def get_offers_count_timeline(cls, db: AsyncSession) -> List[Dict[str, Any]]:
         """Returns daily count of unique tracked offers for the offers count timeline."""
+        global _OFFERS_COUNT_CACHE
+        now_ts = time.time()
+        if _OFFERS_COUNT_CACHE is not None:
+            c_time, c_data = _OFFERS_COUNT_CACHE
+            if now_ts - c_time < 600.0:
+                return c_data
+
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         day_expr = "TO_CHAR(recorded_at, 'YYYY-MM-DD')" if is_pg else "strftime('%Y-%m-%d', recorded_at)"
         cutoff_expr = "NOW() - INTERVAL '60 days'" if is_pg else "datetime('now', '-60 days')"
@@ -198,7 +228,9 @@ class AnalyticsService:
         """)
         res = await db.execute(query)
         rows = res.mappings().all()
-        return [{"day": str(r["day"]), "count": int(r["count"])} for r in rows]
+        results = [{"day": str(r["day"]), "count": int(r["count"])} for r in rows]
+        _OFFERS_COUNT_CACHE = (now_ts, results)
+        return results
 
     @classmethod
     async def get_early_booking_analytics(cls, db: AsyncSession) -> Dict[str, Any]:

@@ -41,15 +41,18 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
   const ebSurvRef = useRef<HTMLDivElement>(null);
   const offersCountRef = useRef<HTMLDivElement>(null);
 
-  // Load early booking and timeline data
+  // Defer secondary heavy analytics so critical hotel table and hero chart load instantly
   useEffect(() => {
-    getOffersCountTimeline()
-      .then((data) => setOffersTimeline(data))
-      .catch((err) => console.warn("Failed to load offers timeline", err));
+    const timer = setTimeout(() => {
+      getOffersCountTimeline()
+        .then((data) => setOffersTimeline(data))
+        .catch((err) => console.warn("Failed to load offers timeline", err));
 
-    getEarlyBookingAnalytics()
-      .then((data) => setEarlyBooking(data))
-      .catch((err) => console.warn("Failed to load early booking analytics", err));
+      getEarlyBookingAnalytics()
+        .then((data) => setEarlyBooking(data))
+        .catch((err) => console.warn("Failed to load early booking analytics", err));
+    }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   // Multi-phase Plotly resize on accordion toggle

@@ -34,12 +34,17 @@ ALIAS_MAP = {
 
 def resolve_filter_id(filter_id: str) -> str:
     if not filter_id:
-        return filter_id
-    if filter_id in ALIAS_MAP:
-        return ALIAS_MAP[filter_id]
-    if not filter_id.endswith("_days") and f"{filter_id}_days" in ALIAS_MAP.values():
-        return f"{filter_id}_days"
-    return filter_id
+        return ""
+    clean = filter_id.lower().strip()
+    if clean.startswith("filter_"):
+        clean = clean[7:]
+    if clean in ALIAS_MAP:
+        clean = ALIAS_MAP[clean]
+    if clean.startswith("filter_"):
+        clean = clean[7:]
+    if not clean.endswith("_days") and f"{clean}_days" in ALIAS_MAP.values():
+        clean = f"{clean}_days"
+    return clean
 
 
 def get_all_filter_id_variants(filter_id: str) -> List[str]:

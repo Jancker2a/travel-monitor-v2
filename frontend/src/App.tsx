@@ -628,23 +628,22 @@ export const App: React.FC = () => {
   const currentPreset = FILTER_PRESETS[activeFilterId] || FILTER_PRESETS["turkey_7_10_days"];
 
   useEffect(() => {
-    // 1. Fetch user watchlist
+    // 1. Critical path: Load active filter catalog immediately
+    loadFilterResults("turkey_7_10");
+
+    // 2. User watchlist (lightweight)
     getWatchlist(CURRENT_USER_ID)
       .then((data) => setWatchlistItems(data.items))
       .catch((err) => console.warn("Watchlist fetch failed:", err));
 
-    // 2. Fetch top price drops
+    // 3. Background analytics (non-blocking for main table)
     getTopPriceDrops(10)
       .then((drops) => setTopDrops(drops))
       .catch((err) => console.warn("Top drops fetch failed:", err));
 
-    // 3. Fetch airport comparison stats
     getAirportComparison("turkey")
       .then((stats) => setAirportStats(stats))
       .catch((err) => console.warn("Airport stats fetch failed:", err));
-
-    // 4. Load initial filter results
-    loadFilterResults("turkey_7_10");
   }, []);
 
   const loadFilterResults = async (filterId: string) => {
