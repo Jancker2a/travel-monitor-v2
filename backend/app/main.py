@@ -45,21 +45,30 @@ async def lifespan(app: FastAPI):
         except Exception:
             pass
 
-        # Backfill filter_id from destination_code if NULL
+        # Backfill filter_id from destination_code if NULL (with fast existence guard)
         try:
             if engine.dialect.name == "postgresql":
-                await conn.execute(text("""
-                    UPDATE price_snapshots ps 
-                    SET filter_id = oc.destination_code 
-                    FROM offer_cohorts oc 
-                    WHERE ps.cohort_id = oc.cohort_id 
-                      AND (ps.filter_id IS NULL OR ps.filter_id = '');
-                """))
-                await conn.execute(text("""
-                    UPDATE offer_cohorts 
-                    SET filter_id = destination_code 
-                    WHERE (filter_id IS NULL OR filter_id = '');
-                """))
+                has_nulls = (await conn.execute(text(
+                    "SELECT 1 FROM price_snapshots WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
+                ))).scalar()
+                if has_nulls:
+                    logger.info("Backfilling filter_id for legacy price_snapshots...")
+                    await conn.execute(text("""
+                        UPDATE price_snapshots ps 
+                        SET filter_id = oc.destination_code 
+                        FROM offer_cohorts oc 
+                        WHERE ps.cohort_id = oc.cohort_id 
+                          AND (ps.filter_id IS NULL OR ps.filter_id = '');
+                    """))
+                has_cohort_nulls = (await conn.execute(text(
+                    "SELECT 1 FROM offer_cohorts WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
+                ))).scalar()
+                if has_cohort_nulls:
+                    await conn.execute(text("""
+                        UPDATE offer_cohorts 
+                        SET filter_id = destination_code 
+                        WHERE (filter_id IS NULL OR filter_id = '');
+                    """))
         except Exception as mig_err:
             logger.warning(f"Note on column backfill: {mig_err}")
 

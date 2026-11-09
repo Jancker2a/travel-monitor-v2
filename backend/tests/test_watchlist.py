@@ -33,16 +33,17 @@ async def test_watchlist_service_crud(setup_test_db):
             offer_url="https://fly.pl/wycieczka/hilton-sharm/123",
         )
         session.add(cohort)
+        await session.flush()
 
         # Snapshots: previous high price, then drop
         snap1 = PriceSnapshot(
-            cohort_hash="cohort_test_1234567890abcdef",
+            cohort_id=cohort.cohort_id,
             recorded_at=datetime(2026, 11, 1, 10, 0),
             total_price_pln=5500.0,
             price_per_night_per_pax=392.8,
         )
         snap2 = PriceSnapshot(
-            cohort_hash="cohort_test_1234567890abcdef",
+            cohort_id=cohort.cohort_id,
             recorded_at=datetime(2026, 11, 2, 10, 0),
             total_price_pln=4800.0,
             price_per_night_per_pax=342.8,
@@ -105,13 +106,15 @@ async def test_watchlist_api_endpoints(setup_test_db):
             duration_nights=7,
             airport_code="WAW",
         )
+        session.add_all([hotel, cohort])
+        await session.flush()
         snap = PriceSnapshot(
-            cohort_hash="rixos_hash_9876543210fedcba",
+            cohort_id=cohort.cohort_id,
             recorded_at=datetime.utcnow(),
             total_price_pln=12500.0,
             price_per_night_per_pax=892.8,
         )
-        session.add_all([hotel, cohort, snap])
+        session.add(snap)
         await session.commit()
 
     transport = ASGITransport(app=app)
