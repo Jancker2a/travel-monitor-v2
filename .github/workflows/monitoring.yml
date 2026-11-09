@@ -1,6 +1,6 @@
 name: Hourly Travel Monitor & Crawler
 
-on:
+"on":
   schedule:
     # Runs every hour at minute 17 (offset from the global :00 peak)
     - cron: "17 * * * *"
@@ -15,7 +15,8 @@ on:
       - main
     paths:
       - '.github/workflows/monitoring.yml'
-      - 'scripts/run_hourly_cron.py'
+      - 'scripts/**'
+      - 'backend/**'
 
 permissions:
   contents: write
@@ -95,10 +96,7 @@ jobs:
             echo "ℹ️ No database changes detected. Nothing to commit."
           else
             TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
-            COMMIT_MSG="🔄 Hourly crawl & snapshot update - ${TIMESTAMP} [skip ci]
-
-🤖 Automated by GitHub Actions Travel Monitor 2.0"
-            git commit -m "$COMMIT_MSG"
+            git commit -m "🔄 Hourly crawl & snapshot update - ${TIMESTAMP} [skip ci]" -m "🤖 Automated by GitHub Actions Travel Monitor 2.0"
             git push origin HEAD:${CURRENT_BRANCH}
             echo "✅ travel_monitor_v2.db successfully committed and pushed to ${CURRENT_BRANCH}."
           fi
