@@ -14,25 +14,34 @@ class AnalyticsService:
         cls, db: AsyncSession, limit: int = 12, min_drop_pln: float = 150.0
     ) -> List[Dict[str, Any]]:
         """Returns top tours with the sharpest price drops between their latest 2 snapshots."""
-        query = text("""
-            SELECT c.cohort_hash, h.hotel_id, h.display_name, h.country, h.region, h.stars,
-                   h.main_image_url, c.duration_nights, c.checkin_date, c.airport_code,
-                   s_prev.total_price_pln as prev_price,
-                   s_curr.total_price_pln as curr_price,
-                   (s_prev.total_price_pln - s_curr.total_price_pln) as drop_amount,
-                   ((s_prev.total_price_pln - s_curr.total_price_pln) / s_prev.total_price_pln * 100) as drop_pct,
-                   c.offer_url
-            FROM offer_cohorts c
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        cutoff_expr = "NOW() - INTERVAL '7 days'" if is_pg else "datetime('now', '-7 days')"
+
+        query = text(f"""
+            WITH recent_snaps AS (
+                SELECT ps.cohort_hash, ps.total_price_pln, ps.recorded_at,
+                       ROW_NUMBER() OVER (PARTITION BY ps.cohort_hash ORDER BY ps.recorded_at DESC) as rn
+                FROM price_snapshots ps
+                WHERE ps.recorded_at >= {cutoff_expr}
+            ),
+            latest_two AS (
+                SELECT 
+                    c1.cohort_hash,
+                    c1.total_price_pln as curr_price,
+                    c2.total_price_pln as prev_price,
+                    (c2.total_price_pln - c1.total_price_pln) as drop_amount,
+                    ((c2.total_price_pln - c1.total_price_pln) / c2.total_price_pln * 100) as drop_pct
+                FROM recent_snaps c1
+                JOIN recent_snaps c2 ON c1.cohort_hash = c2.cohort_hash AND c2.rn = 2
+                WHERE c1.rn = 1 AND (c2.total_price_pln - c1.total_price_pln) >= :min_drop
+            )
+            SELECT lt.*, c.duration_nights, c.checkin_date, c.airport_code, c.offer_url,
+                   h.hotel_id, h.display_name, h.country, h.region, h.stars, h.main_image_url
+            FROM latest_two lt
+            JOIN offer_cohorts c ON lt.cohort_hash = c.cohort_hash
             JOIN hotels h ON c.hotel_id = h.hotel_id
-            JOIN price_snapshots s_curr ON s_curr.id = (
-                SELECT MAX(id) FROM price_snapshots WHERE cohort_hash = c.cohort_hash
-            )
-            JOIN price_snapshots s_prev ON s_prev.id = (
-                SELECT MAX(id) FROM price_snapshots WHERE cohort_hash = c.cohort_hash AND id < s_curr.id
-            )
-            WHERE (s_prev.total_price_pln - s_curr.total_price_pln) >= :min_drop
-            ORDER BY drop_amount DESC
-            LIMIT :lim
+            ORDER BY lt.drop_amount DESC
+            LIMIT :lim;
         """)
         res = await db.execute(query, {"min_drop": min_drop_pln, "lim": limit})
         rows = res.mappings().all()
@@ -135,10 +144,13 @@ class AnalyticsService:
         cls, db: AsyncSession, destination: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """Calculates average and minimum package price grouped by departure airport."""
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        cutoff_expr = "NOW() - INTERVAL '7 days'" if is_pg else "datetime('now', '-7 days')"
+
         filter_clause = ""
         params: Dict[str, Any] = {}
         if destination:
-            filter_clause = "WHERE LOWER(c.destination_code) LIKE :dest OR LOWER(h.country) LIKE :dest"
+            filter_clause = "AND (LOWER(c.destination_code) LIKE :dest OR LOWER(h.country) LIKE :dest)"
             params["dest"] = f"%{destination.lower()}%"
 
         query = text(f"""
@@ -147,11 +159,10 @@ class AnalyticsService:
                    MIN(s.total_price_pln) as min_price,
                    AVG(s.total_price_pln) as avg_price,
                    AVG(s.price_per_night_per_pax) as avg_night_pax
-            FROM offer_cohorts c
+            FROM price_snapshots s
+            JOIN offer_cohorts c ON s.cohort_hash = c.cohort_hash
             JOIN hotels h ON c.hotel_id = h.hotel_id
-            JOIN price_snapshots s ON s.id = (
-                SELECT MAX(id) FROM price_snapshots WHERE cohort_hash = c.cohort_hash
-            )
+            WHERE s.recorded_at >= {cutoff_expr}
             {filter_clause}
             GROUP BY c.airport_code
             HAVING COUNT(*) >= 5
@@ -174,12 +185,14 @@ class AnalyticsService:
     @classmethod
     async def get_offers_count_timeline(cls, db: AsyncSession) -> List[Dict[str, Any]]:
         """Returns daily count of unique tracked offers for the offers count timeline."""
-        is_pg = db.bind.dialect.name == "postgresql"
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         day_expr = "TO_CHAR(recorded_at, 'YYYY-MM-DD')" if is_pg else "strftime('%Y-%m-%d', recorded_at)"
+        cutoff_expr = "NOW() - INTERVAL '60 days'" if is_pg else "datetime('now', '-60 days')"
 
         query = text(f"""
             SELECT {day_expr} as day, COUNT(DISTINCT cohort_hash) as count
             FROM price_snapshots
+            WHERE recorded_at >= {cutoff_expr}
             GROUP BY {day_expr}
             ORDER BY day ASC
         """)
@@ -219,13 +232,16 @@ class AnalyticsService:
     @classmethod
     async def get_market_overview(cls, db: AsyncSession) -> Dict[str, Any]:
         """Returns high-level market metrics: active hotels, cohorts, total tracked points, median price."""
-        query = text("""
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        cutoff_expr = "NOW() - INTERVAL '24 hours'" if is_pg else "datetime('now', '-24 hours')"
+
+        query = text(f"""
             SELECT 
                 (SELECT COUNT(*) FROM hotels) as total_hotels,
                 (SELECT COUNT(*) FROM offer_cohorts) as total_cohorts,
                 (SELECT COUNT(*) FROM price_snapshots) as total_snapshots,
-                (SELECT ROUND(CAST(AVG(total_price_pln) AS NUMERIC), 0) FROM price_snapshots WHERE id IN (SELECT MAX(id) FROM price_snapshots GROUP BY cohort_hash)) as avg_current_price,
-                (SELECT ROUND(CAST(MIN(total_price_pln) AS NUMERIC), 0) FROM price_snapshots WHERE id IN (SELECT MAX(id) FROM price_snapshots GROUP BY cohort_hash)) as min_current_price
+                (SELECT ROUND(CAST(AVG(total_price_pln) AS NUMERIC), 0) FROM price_snapshots WHERE recorded_at >= {cutoff_expr}) as avg_current_price,
+                (SELECT ROUND(CAST(MIN(total_price_pln) AS NUMERIC), 0) FROM price_snapshots WHERE recorded_at >= {cutoff_expr}) as min_current_price
         """)
         res = await db.execute(query)
         row = res.mappings().first()

@@ -43,7 +43,14 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
   }, [filterId, range]);
 
   useEffect(() => {
-    if (!chartRef.current || !window.Plotly || !dataPoints.length) return;
+    if (!chartRef.current || !dataPoints.length) return;
+    if (!window.Plotly) {
+      const timer = setTimeout(() => {
+        // force re-trigger effect once Plotly script has parsed
+        setDataPoints((prev) => [...prev]);
+      }, 200);
+      return () => clearTimeout(timer);
+    }
 
     const xVals = dataPoints.map((d) => d.time);
     const avgVals = dataPoints.map((d) => d.avg_price);
