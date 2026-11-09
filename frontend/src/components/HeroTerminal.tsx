@@ -112,7 +112,7 @@ export const HeroTerminal: React.FC<HeroTerminalProps> = ({
             <div className="kpi-card-number">
               {kpi.minPricePln ? `${kpi.minPricePln.toLocaleString("ru-RU")} zł` : "—"}
             </div>
-            <div className="kpi-card-title truncate max-w-[190px]" title={kpi.minPriceHotel || "Минимальная цена"}>
+            <div className="kpi-card-title truncate max-w-[280px]" title={kpi.minPriceHotel || "Минимальная цена"}>
               {kpi.minPriceHotel ? `${kpi.minPriceHotel} (${kpi.minPriceDate || ""})` : "Мин. цена в туре"}
             </div>
           </div>

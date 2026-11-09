@@ -69,7 +69,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
 
   return (
     <div className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-30">
-      <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1880px] mx-auto px-4 py-4 sm:px-6 lg:px-8">
         {/* Top Destination Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-3 scrollbar-none">
           <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-2 shrink-0">

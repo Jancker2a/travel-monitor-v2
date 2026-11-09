@@ -835,7 +835,7 @@ export const App: React.FC = () => {
 
       {/* Top Navbar */}
       <header className="bg-slate-900 text-white py-3 px-4 sm:px-6 border-b border-slate-800 sticky top-0 z-30 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-[1880px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
               id="sidebarToggle"
@@ -925,7 +925,7 @@ export const App: React.FC = () => {
       </header>
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full space-y-5">
+      <main className="max-w-[1880px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full space-y-6">
         {/* If in Search Tab */}
         {activeTab === "search" && (
           <div className="mb-4">
