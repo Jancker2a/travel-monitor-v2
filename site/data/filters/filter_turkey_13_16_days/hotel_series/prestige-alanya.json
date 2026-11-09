@@ -47,7 +47,8 @@
     "2026-09-03 07:09:45",
     "2026-10-07 09:23:57",
     "2026-11-09 08:56:04",
-    "2026-11-09 06:28:39"
+    "2026-11-09 06:28:39",
+    "2026-11-09 06:31:12"
   ],
   "y": [
     7920.0,
@@ -93,7 +94,8 @@
     13964.0,
     14765.0,
     6606.0,
-    6606.0
+    6606.0,
+    7947.0
   ],
   "hover": [
     "Проверка: 09.06.2026 08:49<br>Даты поездки: 11.06.2026 - 24.06.2026",
@@ -142,7 +144,7 @@
   "meta": {
     "dates": "14.10.2026 - 28.10.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,mahmutlar/armas-prestige/p_zPxs6O_lQyyDwsRTpJhFAAogVKFVx3wNYz2FmvdX0H0xS-Sf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIzjNQQVjHJmACagZKMC4yLjFyNpsBFQcXAFwDWAVWAkDKBhG2Jk-lGl0kU6snUgBelpQBS-1DYQBM5Yw6IJ7ImAkNAAISYwECC-8jkC4/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,mahmutlar/armas-prestige/pKFeAeUyjg5OlnfgUJZrpYAAogVKFVx3wNYz2FmvdX0H0xS0b5xQUesqvfpqnfURGWZ98qBE9SRVgwq9HF1wZIiz5QQViBJmACagZKMC4yLjFyNpsBFQkXAFwBWAVWAkDKBhG2Jk-lGl0kU6snUgBelpQBS-1DYQBM5Yw6INbHmAkNAAISYwECC1laaM0/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2018/03/Euphoria-Comfort-Beach-Alanya.jpg"
   },
   "deal_score": 52,
@@ -154,7 +156,7 @@
   "median_p": 14678.158722729668,
   "min_p": 6606.0,
   "max_p": 17388.0,
-  "samples": 44,
+  "samples": 45,
   "alert_threshold": 8.0,
   "trip_dates_label": "14.10.2026 - 28.10.2026",
   "display_price_ceiling": 10000.0,

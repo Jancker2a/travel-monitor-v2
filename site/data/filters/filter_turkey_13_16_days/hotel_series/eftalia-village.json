@@ -388,7 +388,8 @@
     "2026-10-17 16:24:18",
     "2026-10-17 17:28:58",
     "2026-11-09 08:56:04",
-    "2026-11-09 06:28:39"
+    "2026-11-09 06:28:39",
+    "2026-11-09 06:31:15"
   ],
   "y": [
     12201.0,
@@ -775,7 +776,8 @@
     11039.0,
     11039.0,
     7056.0,
-    7056.0
+    7056.0,
+    8532.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:47<br>Даты поездки: 12.06.2026 - 25.06.2026",
@@ -1165,7 +1167,7 @@
   "meta": {
     "dates": "21.10.2026 - 04.11.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/eftalia-village/pnIH59anANJYPka9Ja0C14AAogpj8tK8C9JuIvQ5d2lZzQ5eSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIkDdQQVjHJmACagVFLjIuMXI2mwEVBxcAXANYBVYCEZQBQLYFT9tAXSRTqydSAF6WlAFL7UNhAEzljDognsiYCQ0AAhJjAQIOF80Knw/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/eftalia-village/p043JyOnzMOYemI4fjz4kXAAogpj8tK8C9JuIvQ5d2lZzQ5Rc5ZyVIh1HRxt_4aSVg0dYqBE9SRVgwq9HF1wZI1EJQQVj5JmACagVFLjIuMXI2mwEVCRcAXAFYBVYCEZQBQLYFT9tAXSRTqydSAF6WlAFL7UNhAEzljDogoMiYCQ0AAhJjAQIOas8mKw/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Eftalia-Village-fly-pl.jpg"
   },
   "deal_score": 65,
@@ -1177,7 +1179,7 @@
   "median_p": 12052.416406325801,
   "min_p": 7056.0,
   "max_p": 15650.0,
-  "samples": 385,
+  "samples": 386,
   "alert_threshold": 8.0,
   "trip_dates_label": "21.10.2026 - 04.11.2026",
   "display_price_ceiling": 10000.0,

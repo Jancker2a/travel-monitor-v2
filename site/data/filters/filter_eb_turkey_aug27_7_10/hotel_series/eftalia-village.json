@@ -13,7 +13,8 @@
     "2026-11-06 12:32:21",
     "2026-11-07 01:14:10",
     "2026-11-09 08:56:04",
-    "2026-11-09 06:28:39"
+    "2026-11-09 06:28:39",
+    "2026-11-09 06:31:15"
   ],
   "y": [
     7704.0,
@@ -25,7 +26,8 @@
     7704.0,
     7704.0,
     7056.0,
-    7056.0
+    7056.0,
+    8532.0
   ],
   "hover": [
     "Проверка: 02.11.2026 13:10<br>Даты поездки: 31.08.2027 - 07.09.2027",
@@ -40,7 +42,7 @@
   "meta": {
     "dates": "31.08.2027 - 07.09.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/eftalia-village/pnIH59anANJYPka9Ja0C14AAogpj8tK8C9JuIvQ5d2lZzQ5eSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIkDdQQVjHJmACagVFLjIuMXI2mwEVBxcAXANYBVYCEZQBQLYFT9tAXSRTqydSAF6WlAFL7UNhAEzljDognsiYCQ0AAhJjAQIOF80Knw/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/eftalia-village/p043JyOnzMOYemI4fjz4kXAAogpj8tK8C9JuIvQ5d2lZzQ5Rc5ZyVIh1HRxt_4aSVg0dYqBE9SRVgwq9HF1wZI1EJQQVj5JmACagVFLjIuMXI2mwEVCRcAXAFYBVYCEZQBQLYFT9tAXSRTqydSAF6WlAFL7UNhAEzljDogoMiYCQ0AAhJjAQIOas8mKw/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702325/plain/cms/fileadmin/config_img/objects/1067/Eftalia-Village-fly-pl.jpg@webp"
   },
   "deal_score": 50,
@@ -51,8 +53,8 @@
   "confidence": "Medium",
   "median_p": 7702.320528948138,
   "min_p": 7056.0,
-  "max_p": 7704.0,
-  "samples": 10,
+  "max_p": 8532.0,
+  "samples": 11,
   "alert_threshold": 8.0,
   "trip_dates_label": "31.08.2027 - 07.09.2027",
   "display_price_ceiling": 12000.0,

@@ -7,13 +7,15 @@
     "2026-11-03 06:39:05",
     "2026-11-03 19:43:41",
     "2026-11-09 08:56:04",
-    "2026-11-09 06:28:39"
+    "2026-11-09 06:28:39",
+    "2026-11-09 06:31:18"
   ],
   "y": [
     9252.0,
     9252.0,
     7389.0,
-    7389.0
+    7389.0,
+    8793.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 08.07.2027",
@@ -22,7 +24,7 @@
   "meta": {
     "dates": "01.07.2027 - 08.07.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/pG6ItFYguvMe22WwVmolIuAAogmSdp3nqx48kGhMVexidcpXTnYfsuUcxPnvv8Sqw6L8oqBE9SRVgw-8_F1wZI3TlQQVjZJ2ACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaEOT7oyXSRTqydSAF6WlAFL7UNhAEzljDogpMiYCQ0AAhJjAQINz-JEuA/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/p8RvZPl4CBlUjjx4hbXF_iAAogmSdp3nqx48kGhMVexidcpRc5ZyVIh1HRxt_4aSVg0dYqBE9SRVgwq9HF1wZI2URQQVj5JmACagVFLjIuMXI2mwEVCRcAXAFYBVYCQMoGEaEOT7oyXSRTqydSAF6WlAFL7UNhAEzljDogoMiYCQ0AAhJjAQINN9VFsg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703185/plain/cms/fileadmin/config_img/objects/170328/Fun-Sun-Smart-Hane-Sun.webp@webp"
   },
   "deal_score": 50,
@@ -34,7 +36,7 @@
   "median_p": 9252.0,
   "min_p": 7389.0,
   "max_p": 9252.0,
-  "samples": 4,
+  "samples": 5,
   "alert_threshold": 8.0,
   "trip_dates_label": "01.07.2027 - 08.07.2027",
   "display_price_ceiling": 12000.0,

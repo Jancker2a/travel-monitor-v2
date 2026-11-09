@@ -1258,7 +1258,8 @@
     "2026-10-20 17:35:24",
     "2026-10-20 18:35:30",
     "2026-10-20 19:47:26",
-    "2026-10-20 20:32:30"
+    "2026-10-20 20:32:30",
+    "2026-11-09 06:31:27"
   ],
   "y": [
     5969.0,
@@ -2515,7 +2516,8 @@
     6457.0,
     6457.0,
     6457.0,
-    6457.0
+    6457.0,
+    9217.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:46<br>Даты поездки: 05.06.2026 - 13.06.2026",
@@ -3777,7 +3779,7 @@
   "meta": {
     "dates": "23.10.2026 - 31.10.2026",
     "duration": "9 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/aventura-park/pXU2GyICRrtOakewEiO7n5AAogxZS0Qc5vjV96iWVsaUauBeIuCyVvgkT7ZEOb7nM_iUcqBFZJVFgw0Ofe1gZIuTJQQVg1YAJyPxoAFQcXAFwDWAVAjwNT52tSAFuYHF7-d0vtQ2EATJ-2OQ3405gJIAFR3_Po7VhPqoM9XZTlpoGtAQIOYwECDbSU_RY/?operator=VITX&adults=2&children=2020-12-10&objectId=1977&durationFrom=7&durationTo=10&departureDate=2026-10-23&returnDate=2026-10-31&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/aventura-park/pnow-U4jUxgscP79KE8EBbAAogJjD0Knki4IZRrwZBUWzsmnhHcO5GNeW8-xz4ZSlgWLsqBFZJVFgwq9HF1wZIgUhQQVixJmACcj8aABUJFwBcAVgFQI8DU-drUgBbmBxe_ndL7UNhAEz4-UQNituNCSAAUfWo6O1YT6mDPV2N5aaBrQECDmMBAg3iW73l/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702369/plain/cms/fileadmin/config_img/objects/1977/Aventura-Park.webp@webp"
   },
   "deal_score": 72,
@@ -3788,8 +3790,8 @@
   "confidence": "High",
   "median_p": 7611.703287006057,
   "min_p": 5397.0,
-  "max_p": 9157.0,
-  "samples": 1255,
+  "max_p": 9217.0,
+  "samples": 1256,
   "alert_threshold": 8.0,
   "trip_dates_label": "23.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

@@ -1203,7 +1203,8 @@
     "2026-09-15 20:21:28",
     "2026-09-15 23:36:58",
     "2026-09-16 02:32:04",
-    "2026-09-16 08:12:34"
+    "2026-09-16 08:12:34",
+    "2026-11-09 06:31:26"
   ],
   "y": [
     14057.0,
@@ -2405,7 +2406,8 @@
     11157.0,
     11157.0,
     11157.0,
-    11157.0
+    11157.0,
+    9200.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:47<br>Даты поездки: 12.06.2026 - 26.06.2026",
@@ -3612,7 +3614,7 @@
   "meta": {
     "dates": "26.09.2026 - 10.10.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/vikingen-infinity-resort-spa/p_xeYzCp7C2nv8Kvs9guNSAAogWjseyCVXtULN83hrFkUMTpFcFhnj_NOefi1YpjGcwdAqBFZJVFgw1Oao1QZIlVdQQVjpAWACcj8aAFwKFQQXAFgBQI8DU-drUgBb2BdevnxL7UNhAEyTjj8go_uSCQ0AUYTZo-5YT-GeAl2U5aaBrQECDWMBAgyN8FEv/ofertasv/?filter[tourOperator]=VITX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/vikingen-infinity-resort-spa/p8LuBCaxsYdKzxlAYswRd2AAogMtRLTdzvhtOzIsi6_iDXU8GcvaTg1VwnT-c71iPWYbgqBE5LUkEwq9HF1wZI8EdQAViBJmADagJUSWoEV0FXMGoDQVlUchsWDiAKDBsTEd7UPg3GxpYJD04BEmMBDGMBAgzIGOj-/?operator=NKRA&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Vikingen-Infinity-Resort-Spa.jpg"
   },
   "deal_score": 0,
@@ -3622,9 +3624,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 16349.37109741935,
-  "min_p": 11157.0,
+  "min_p": 9200.0,
   "max_p": 18957.0,
-  "samples": 1200,
+  "samples": 1201,
   "alert_threshold": 8.0,
   "trip_dates_label": "26.09.2026 - 10.10.2026",
   "display_price_ceiling": 10000.0,

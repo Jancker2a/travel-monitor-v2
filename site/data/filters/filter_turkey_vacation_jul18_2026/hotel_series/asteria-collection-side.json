@@ -77,7 +77,8 @@
     "2026-07-14 09:21:12",
     "2026-07-14 12:17:28",
     "2026-11-09 08:56:04",
-    "2026-11-09 06:28:39"
+    "2026-11-09 06:28:39",
+    "2026-11-09 06:31:23"
   ],
   "y": [
     9779.0,
@@ -153,7 +154,8 @@
     10674.0,
     10674.0,
     7457.0,
-    7457.0
+    7457.0,
+    9072.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 21.07.2026 - 29.07.2026",
@@ -232,7 +234,7 @@
   "meta": {
     "dates": "25.07.2026 - 01.08.2026",
     "duration": "8 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/saray-regency-resort-spa/pSqnScoElU8GvcPJtD-AAUAAogAF69xW-L9-9ZXSDNtqZ8YeSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIoTpQQVjHJmACagVFLjIuMXI2mwEVBxcAWAhWAlwIQMIGEc0mT44aXSRTqydSAF6WlAFL7UNhAEzljDognsiYCQ0AAhJjAQILux4LXg/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/saray-regency-resort-spa/pfvhYeDbIi_yO9-1LzBzX9AAogAF69xW-L9-9ZXSDNtqZ8YZd0SXPCsa6pw4Dszzjp9dcqBE9SRVgwq9HF1wZI8EZQQVixJmACagVFLjIuMXI2mwEVCRcAWAZWAlwIQMIGEc0mT44aXSRTqydSAF6WlAFL7UNhAEzljDognciYCQ0AAhJjAQILhdGeeg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2016/11/Saray-Regency-Resort.jpg"
   },
   "deal_score": 31,
@@ -244,7 +246,7 @@
   "median_p": 9623.141481855639,
   "min_p": 7457.0,
   "max_p": 10674.0,
-  "samples": 74,
+  "samples": 75,
   "alert_threshold": 8.0,
   "trip_dates_label": "25.07.2026 - 01.08.2026",
   "display_price_ceiling": 10000.0,

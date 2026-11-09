@@ -5,11 +5,13 @@
   "hotel_name": "Beach Club Doganay",
   "x": [
     "2026-11-03 06:39:05",
-    "2026-11-03 19:43:41"
+    "2026-11-03 19:43:41",
+    "2026-11-09 06:31:22"
   ],
   "y": [
     10288.0,
-    10288.0
+    10288.0,
+    9059.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:39<br>Даты поездки: 07.07.2027 - 14.07.2027",
@@ -18,7 +20,7 @@
   "meta": {
     "dates": "07.07.2027 - 14.07.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pEanaf7JkxP6Fj0lJWkH28AAoguPDgvyIHU6GWGPsCLK0JPAAAAACGmwUAnJsFAAcAAAAqBFdFWlkwp9eo1wZIsFBQQVj9LWADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByP54BkwGUAZUBmAEfAAIBFgAcABcGEuUDT5lrTABAnBIRoyZL2G1QABvIpQEdovwSIBYN1-W-CQESYwELYwEDCtRGrdk/?operator=WEZY&adults=2&children=2020-08-12&objectId=1594&durationFrom=7&durationTo=10&departureDate=2027-07-07&returnDate=2027-07-14&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pWMQSURLA1oWvu-EaUIMeuAAoguPDgvyIHU6GWGPsCLK0JPAAAAABxlQUAN5wFAAkAAAAqBFdFWlkwq9HF1wZI40ZQQViBJmADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcIEusDT5FrTABAnBIRoyZLxJ8BUAAb3HMdjfASIMYNDYzjvgkBEmMBC2MBAwpY0hot/?operator=WEZY&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703331/plain/cms/fileadmin/config_img/objects/1594/Beach-Club-Doganay.webp@webp"
   },
   "deal_score": 50,
@@ -28,9 +30,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 10288.0,
-  "min_p": 10288.0,
+  "min_p": 9059.0,
   "max_p": 10288.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "07.07.2027 - 14.07.2027",
   "display_price_ceiling": 12000.0,

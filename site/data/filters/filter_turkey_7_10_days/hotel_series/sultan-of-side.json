@@ -628,7 +628,8 @@
     "2026-10-23 09:46:57",
     "2026-10-23 15:37:53",
     "2026-10-23 20:32:27",
-    "2026-10-24 00:23:12"
+    "2026-10-24 00:23:12",
+    "2026-11-09 06:31:28"
   ],
   "y": [
     6547.0,
@@ -1255,7 +1256,8 @@
     4597.0,
     4597.0,
     4597.0,
-    4597.0
+    4597.0,
+    9225.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:46<br>Даты поездки: 06.06.2026 - 13.06.2026",
@@ -1887,7 +1889,7 @@
   "meta": {
     "dates": "24.10.2026 - 31.10.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/sultans-of-side/pm1QNTgBPVcHNq2Zf8_50gAAogwwG2dSoXUVyRhmOndo-H7-0dN6SJvPf8zshA-R00vysqBEVYSU0w1rzv1gZI9SNQAVgBYAJqAkFJciEcEcnvBbkE-ec-qwQdG-_GJxiU8DUB24ypqggCEmMBAgyX0NZw/?operator=EXIM&adults=2&children=2020-12-10&objectId=1777&durationFrom=7&durationTo=10&departureDate=2026-10-24&returnDate=2026-10-31&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/sultans-of-side/pGBETD4ZkD7Gy1TJJBoz2iAAogv8bkHRMR7RGmvtcRbgGWjzH9vxDGK-mmXK6qZMMWODEqBEVYSU0wq9HF1wZIiUhQAViBJmACagJBSXIhHBHGsge5BMj5UKsEMBuCoUAYxYlVAdKQuvgOAhJjAQIMXaY3kQ/?operator=EXIM&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703903/plain/cms/fileadmin/config_img/objects/1777/Sultan-of-Side.webp@webp"
   },
   "deal_score": 85,
@@ -1899,7 +1901,7 @@
   "median_p": 7047.39161857441,
   "min_p": 4597.0,
   "max_p": 10472.0,
-  "samples": 625,
+  "samples": 626,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

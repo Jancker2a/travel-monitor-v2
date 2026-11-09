@@ -79,7 +79,8 @@
     "2026-07-07 21:56:27",
     "2026-07-07 23:30:43",
     "2026-07-08 02:02:15",
-    "2026-07-08 04:00:39"
+    "2026-07-08 04:00:39",
+    "2026-11-09 06:31:22"
   ],
   "y": [
     9401.0,
@@ -157,7 +158,8 @@
     9578.0,
     9578.0,
     9578.0,
-    9578.0
+    9578.0,
+    9059.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 19.07.2026 - 26.07.2026",
@@ -240,7 +242,7 @@
   "meta": {
     "dates": "22.07.2026 - 29.07.2026",
     "duration": "8 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pwC1eb1Aetvin-jsb15zihAAoguPDgvyIHU6GWGPsCLK0JPAAAAADiagQA9WoEAAcAAAAqBFdFWlkwy9620gZI6kpQQVjNAmADaglFbnRlciBBaXJyQp4BHwAcAQIAFgAXBhLlAxXtCBjmARM8FJADT_pcTABAnBIRoyZQ2G1LABvIpQEd_poOIBMN_fjCCQESYwELYwEDCvKOlLk/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pWMQSURLA1oWvu-EaUIMeuAAoguPDgvyIHU6GWGPsCLK0JPAAAAABxlQUAN5wFAAkAAAAqBFdFWlkwq9HF1wZI40ZQQViBJmADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcIEusDT5FrTABAnBIRoyZLxJ8BUAAb3HMdjfASIMYNDYzjvgkBEmMBC2MBAwpY0hot/?operator=WEZY&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Beach-Club-Doganay.jpg"
   },
   "deal_score": 42,
@@ -250,9 +252,9 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 9387.837957033771,
-  "min_p": 9076.0,
+  "min_p": 9059.0,
   "max_p": 9736.0,
-  "samples": 76,
+  "samples": 77,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.07.2026 - 29.07.2026",
   "display_price_ceiling": 10000.0,
