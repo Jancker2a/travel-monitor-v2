@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Plane, TrendingDown, ArrowRight, ExternalLink, RefreshCw, Star } from "lucide-react";
 import { getArbitrageDeals } from "../services/api";
+import { LoadingSpinner } from "./common/LoadingSpinner";
 
 export const GermanArbitrageView: React.FC = () => {
   const [deals, setDeals] = useState<any[]>([]);
@@ -69,10 +70,12 @@ export const GermanArbitrageView: React.FC = () => {
 
       {/* Deals Grid */}
       {isLoading ? (
-        <div className="py-20 flex flex-col items-center justify-center text-slate-400 gap-3">
-          <RefreshCw className="w-8 h-8 animate-spin text-blue-600" />
-          <p className="text-sm font-medium">Сканируем спреды цен Берлин vs Варшава...</p>
-        </div>
+        <LoadingSpinner
+          variant="card"
+          size="lg"
+          label="Сканируем спреды цен Берлин vs Варшава..."
+          description="Поиск арбитражных предложений немецких туроператоров (FTI Touristik, TUI Deutschland)"
+        />
       ) : deals.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {deals.map((d, idx) => (

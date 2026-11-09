@@ -31,6 +31,22 @@ ALIAS_MAP = {
     "turkey_vacation_jul18_2026": "turkey_vacation_jul18",
 }
 
+# Strict historical cutoffs for retired/archived seasonal filters to prevent
+# live scrapers or accidental late runs from corrupting historical series.
+ARCHIVED_FILTER_CUTOFFS: Dict[str, str] = {
+    "egypt_autumn_2026_13_16_days": "2026-10-18T23:59:59Z",
+    "filter_egypt_autumn_2026_13_16_days": "2026-10-18T23:59:59Z",
+    "egypt_autumn_13_16": "2026-10-18T23:59:59Z",
+    "filter_egypt_autumn_13_16": "2026-10-18T23:59:59Z",
+    "egypt_autumn_2026_7_10_days": "2026-10-19T23:59:59Z",
+    "filter_egypt_autumn_2026_7_10_days": "2026-10-19T23:59:59Z",
+    "egypt_autumn_7_10": "2026-10-19T23:59:59Z",
+    "filter_egypt_autumn_7_10": "2026-10-19T23:59:59Z",
+    "turkey_vacation_jul18_2026": "2026-07-25T23:59:59Z",
+    "turkey_vacation_jul18": "2026-07-25T23:59:59Z",
+    "filter_turkey_vacation_jul18_2026": "2026-07-25T23:59:59Z",
+}
+
 
 def resolve_filter_id(filter_id: str) -> str:
     if not filter_id:
@@ -119,6 +135,17 @@ class TimelineService:
             ceiling_clause = "AND ps.total_price_pln <= :ceiling_pln"
             params["ceiling_pln"] = ceiling_pln
 
+        archive_clause = ""
+        archive_cutoff = None
+        for v in [filter_id, canonical_fid] + fids:
+            if v in ARCHIVED_FILTER_CUTOFFS:
+                archive_cutoff = ARCHIVED_FILTER_CUTOFFS[v]
+                break
+        if archive_cutoff:
+            cutoff_dt = datetime.fromisoformat(archive_cutoff.replace("Z", "+00:00"))
+            archive_clause = "AND ps.recorded_at <= :archive_cutoff"
+            params["archive_cutoff"] = cutoff_dt if is_pg else archive_cutoff
+
         bucket_expr = (
             "to_char(ps.recorded_at, 'YYYY-MM-DD\"T\"HH24:00:00\"Z\"')"
             if is_pg
@@ -139,6 +166,7 @@ class TimelineService:
                 WHERE {filter_expr}
                   {time_clause}
                   {ceiling_clause}
+                  {archive_clause}
                 GROUP BY {bucket_expr}, oc.hotel_id
             ),
             ranked AS (

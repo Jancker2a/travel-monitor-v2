@@ -11,6 +11,7 @@ import { HotelPassportDrawer } from "./components/HotelPassportDrawer";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
 import { SearchHeader } from "./components/SearchHeader";
 import { GermanArbitrageView } from "./components/GermanArbitrageView";
+import { LoadingSpinner } from "./components/common/LoadingSpinner";
 import {
   SearchRequest,
   SearchHotelItem,
@@ -509,6 +510,48 @@ const FILTER_PRESETS: Record<
       duration: { min_nights: 7, max_nights: 11 },
       travelers: { adults: 2, children: 1, children_ages: [6] },
       airports: ["WAW", "RDO"],
+    },
+  },
+  egypt_autumn_2026_7_10_days: {
+    title: "📦 Египет — Осень 7–10 ночей (Архив)",
+    countryBadge: "📦 АРХИВ ТУРОВ",
+    destination: "egypt",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&durationFrom=7&durationTo=10&order=price",
+    chips: {
+      airports: "WAW, WMI, RDO",
+      dates: "10.10–19.10.2026",
+      party: "2 взр + 1 реб",
+      hotelClass: "4★ – 5★ All Inclusive",
+      budget: "Архив",
+    },
+    searchReq: {
+      destination: "egypt",
+      filter_id: "egypt_autumn_2026_7_10_days",
+      dates: { start_date_min: "2026-10-10", start_date_max: "2026-10-19" },
+      duration: { min_nights: 7, max_nights: 10 },
+      travelers: { adults: 2, children: 1, children_ages: [6] },
+      airports: ["WAW", "WMI", "RDO"],
+    },
+  },
+  egypt_autumn_2026_13_16_days: {
+    title: "📦 Египет — Осень 13–16 ночей (Архив)",
+    countryBadge: "📦 АРХИВ ТУРОВ",
+    destination: "egypt",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&durationFrom=13&durationTo=16&order=price",
+    chips: {
+      airports: "WAW, WMI, RDO",
+      dates: "10.10–18.10.2026",
+      party: "2 взр + 1 реб",
+      hotelClass: "4★ – 5★ All Inclusive",
+      budget: "Архив",
+    },
+    searchReq: {
+      destination: "egypt",
+      filter_id: "egypt_autumn_2026_13_16_days",
+      dates: { start_date_min: "2026-10-10", start_date_max: "2026-10-18" },
+      duration: { min_nights: 13, max_nights: 16 },
+      travelers: { adults: 2, children: 1, children_ages: [6] },
+      airports: ["WAW", "WMI", "RDO"],
     },
   },
   turkey_7_10_days: {
@@ -1048,6 +1091,7 @@ export const App: React.FC = () => {
         ) : viewMode === "table" ? (
           <HotelTableView
             hotels={filteredHotels}
+            isLoading={isLoading}
             onOpenPassport={(id) => setActiveHotelPassport(id)}
             onToggleWatchlist={handleToggleWatchlist}
             watchedCohortHashes={watchedCohortHashes}
@@ -1056,20 +1100,38 @@ export const App: React.FC = () => {
             onSort={handleSort}
           />
         ) : (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredHotels.map((hotel) => (
-                <HotelCard
-                  key={hotel.current_offer.cohort_hash}
-                  hotel={hotel}
-                  onOpenPassport={(id) => setActiveHotelPassport(id)}
-                  onToggleWatchlist={handleToggleWatchlist}
-                  isWatched={watchedCohortHashes.has(
-                    hotel.current_offer.cohort_hash
-                  )}
-                />
-              ))}
-            </div>
+          <div className="space-y-4 relative">
+            {isLoading && filteredHotels.length === 0 ? (
+              <LoadingSpinner
+                variant="skeleton-cards"
+                label="Загрузка карточек отелей..."
+                description="Синхронизация котировок и фотографий"
+              />
+            ) : (
+              <>
+                {isLoading && (
+                  <LoadingSpinner
+                    variant="overlay"
+                    size="lg"
+                    label="Обновление карточек отелей..."
+                    description="Синхронизация актуальных котировок"
+                  />
+                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {filteredHotels.map((hotel) => (
+                    <HotelCard
+                      key={hotel.current_offer.cohort_hash}
+                      hotel={hotel}
+                      onOpenPassport={(id) => setActiveHotelPassport(id)}
+                      onToggleWatchlist={handleToggleWatchlist}
+                      isWatched={watchedCohortHashes.has(
+                        hotel.current_offer.cohort_hash
+                      )}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         )}
       </main>

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { HotelPassport } from "../types";
 import { getHotelPassport, getHotelNormalizedHistory } from "../services/api";
+import { LoadingSpinner } from "./common/LoadingSpinner";
 
 declare global {
   interface Window {
@@ -297,6 +298,15 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         aria-labelledby="drawerHotelTitle"
         aria-modal="true"
       >
+        {isLoading && (
+          <LoadingSpinner
+            variant="overlay"
+            size="xl"
+            label="Загрузка паспорта отеля..."
+            description="Синхронизация истории цен, параметров инфраструктуры и отзывов TripAdvisor"
+            className="z-50 !bg-white/95"
+          />
+        )}
         {/* Header */}
         <div className="drawer-header">
           <div className="drawer-title-box">

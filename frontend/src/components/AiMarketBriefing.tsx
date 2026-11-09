@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Sparkles, Plane, Target, ExternalLink, BarChart2 } from "lucide-react";
+import { Sparkles, Plane, Target, ExternalLink, BarChart2, Loader2 } from "lucide-react";
 import { MarketOracleData, MarketOraclePick } from "../types";
 import { getFilterMarketOracle } from "../services/api";
+import { LoadingSpinner } from "./common/LoadingSpinner";
 
 interface AiMarketBriefingProps {
   filterId?: string;
@@ -76,7 +77,16 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
           <div className="ai-oracle-title-wrap">
             <div className="ai-oracle-title-row">
               <span className="ai-oracle-main-title">AI-анализ рынка и прогноз цен</span>
-              <span className="ai-phase-badge">{marketPhase}</span>
+              <span className="ai-phase-badge">
+                {isLoading ? (
+                  <span className="inline-flex items-center gap-1">
+                    <Loader2 className="w-3 h-3 animate-spin text-blue-600" />
+                    <span>Анализ...</span>
+                  </span>
+                ) : (
+                  marketPhase
+                )}
+              </span>
             </div>
             <div className="ai-oracle-subtitle">
               <strong className="ai-oracle-headline">{headline}</strong> • {oracleData?.title || filterTitle} • Rule-Based Deterministic Engine (Offline)
@@ -86,7 +96,15 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
         <span className="fold-chevron">⌄</span>
       </summary>
 
-      <div className="fold-content p-4 sm:p-5 space-y-4">
+      <div className="fold-content p-4 sm:p-5 space-y-4 relative min-h-[140px]">
+        {isLoading && (
+          <LoadingSpinner
+            variant="overlay"
+            size="md"
+            label="AI-анализ рынка и прогноз цен..."
+            description="Сканируем чартерную загрузку и определяем стратегию покупки"
+          />
+        )}
         {/* Row 1: Two Column Analysis */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Card 1: Flights & Price Dynamics */}

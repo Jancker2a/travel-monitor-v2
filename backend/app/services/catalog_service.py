@@ -103,12 +103,27 @@ class CatalogService:
         oc_filter_expr = "oc.filter_id = ANY(:fids)" if is_pg else "oc.filter_id IN :fids"
         join_col = "cohort_id" if is_pg else "cohort_hash"
 
+        from app.services.timeline_service import ARCHIVED_FILTER_CUTOFFS
+
+        archive_clause = ""
+        archive_cutoff = None
+        for v in [filter_id, canonical_fid] + fids:
+            if v in ARCHIVED_FILTER_CUTOFFS:
+                archive_cutoff = ARCHIVED_FILTER_CUTOFFS[v]
+                break
+
+        params: Dict[str, Any] = {"fids": fids}
+        if archive_cutoff:
+            cutoff_dt = datetime.fromisoformat(archive_cutoff.replace("Z", "+00:00"))
+            archive_clause = "AND ps.recorded_at <= :archive_cutoff"
+            params["archive_cutoff"] = cutoff_dt if is_pg else archive_cutoff
+
         # 1. Find the latest recorded scrape time for this filter using fast index scan
-        stmt = text(f"SELECT ps.recorded_at FROM price_snapshots ps WHERE {filter_expr} ORDER BY ps.recorded_at DESC LIMIT 1")
+        stmt = text(f"SELECT ps.recorded_at FROM price_snapshots ps WHERE {filter_expr} {archive_clause} ORDER BY ps.recorded_at DESC LIMIT 1")
         if not is_pg:
             from sqlalchemy import bindparam
             stmt = stmt.bindparams(bindparam("fids", expanding=True))
-        time_res = await db.execute(stmt, {"fids": fids})
+        time_res = await db.execute(stmt, params)
         max_ts = time_res.scalar()
 
         if not max_ts:

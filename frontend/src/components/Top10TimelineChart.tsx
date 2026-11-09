@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { getFilterTop10Timeline } from "../services/api";
 import { TimelinePoint, TimelineStats } from "../types";
 import { TrendingDown, TrendingUp, Minus, Calendar, Filter } from "lucide-react";
+import { LoadingSpinner } from "./common/LoadingSpinner";
 
 declare global {
   interface Window {
@@ -275,13 +276,31 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
         </div>
       )}
 
-      {/* Chart Canvas */}
-      <div
-        ref={chartRef}
-        id="avgTop10TimelineChart"
-        className="w-full"
-        style={{ height: "360px" }}
-      />
+      {/* Chart Canvas or Skeleton */}
+      {isLoading && dataPoints.length === 0 ? (
+        <LoadingSpinner
+          variant="skeleton-chart"
+          label="Построение графика ТОП-10 дешёвых предложений..."
+          description="Сбор и агрегация исторических котировок из базы данных"
+        />
+      ) : (
+        <div className="relative w-full">
+          {isLoading && (
+            <LoadingSpinner
+              variant="overlay"
+              size="lg"
+              label="Обновление диапазона..."
+              description="Пересчитываем ценовой коридор ТОП-10"
+            />
+          )}
+          <div
+            ref={chartRef}
+            id="avgTop10TimelineChart"
+            className="w-full"
+            style={{ height: "360px" }}
+          />
+        </div>
+      )}
     </section>
   );
 };

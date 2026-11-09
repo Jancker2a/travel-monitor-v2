@@ -1,9 +1,11 @@
 import React from "react";
 import { ExternalLink, Star, ArrowUpDown, ArrowUp, ArrowDown, Bell } from "lucide-react";
 import { SearchHotelItem } from "../types";
+import { LoadingSpinner } from "./common/LoadingSpinner";
 
 interface HotelTableViewProps {
   hotels: SearchHotelItem[];
+  isLoading?: boolean;
   onOpenPassport: (hotelId: string) => void;
   onToggleWatchlist: (hotel: SearchHotelItem) => void;
   watchedCohortHashes: Set<string>;
@@ -14,6 +16,7 @@ interface HotelTableViewProps {
 
 export const HotelTableView: React.FC<HotelTableViewProps> = ({
   hotels,
+  isLoading = false,
   onOpenPassport,
   onToggleWatchlist,
   watchedCohortHashes,
@@ -69,9 +72,24 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
         = пока мало истории. Confidence: Low / Medium / High — степень надежности оценки. TripAdvisor слегка сдвигает Deal Score; без отзывов влияние минимально.
       </div>
 
-      {/* Hotels Table */}
-      <div className="hotels-table-container">
-        <table className="hotels-table" id="hotelsTable">
+      {/* Hotels Table or Full Skeleton */}
+      {isLoading && hotels.length === 0 ? (
+        <LoadingSpinner
+          variant="skeleton-table"
+          label="Загрузка каталога отелей..."
+          description="Вычисляем актуальный Deal Score, 48ч динамику и исторический минимум"
+        />
+      ) : (
+        <div className="hotels-table-container relative">
+          {isLoading && (
+            <LoadingSpinner
+              variant="overlay"
+              size="lg"
+              label="Обновление каталога отелей..."
+              description="Синхронизация котировок и пересчёт Deal Score"
+            />
+          )}
+          <table className="hotels-table" id="hotelsTable">
           <thead>
             <tr className="bg-sky-50/80 border-b border-sky-100 text-sky-900 text-xs uppercase tracking-wider font-extrabold select-none">
               <th
@@ -361,6 +379,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 };

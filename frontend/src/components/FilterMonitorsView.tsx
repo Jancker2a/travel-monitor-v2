@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Radio, RefreshCw, Plus, ExternalLink, Clock, Sparkles, CheckCircle2, AlertCircle } from "lucide-react";
 import { getFilterMonitors, runMonitorNow, createCustomMonitor } from "../services/api";
+import { LoadingSpinner } from "./common/LoadingSpinner";
 
 interface MonitorItem {
   id: string;
@@ -156,8 +157,16 @@ export const FilterMonitorsView: React.FC<Props> = ({ onSelectMonitor }) => {
       </div>
 
       {/* Monitors Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredMonitors.map((m) => {
+      {isLoading && monitors.length === 0 ? (
+        <LoadingSpinner
+          variant="card"
+          size="lg"
+          label="Загрузка списка 24/7 мониторов..."
+          description="Получение актуальных статусов 22 канонических поисковых фильтров"
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredMonitors.map((m) => {
           const isRunning = runningId === m.id;
           return (
             <div
@@ -224,7 +233,8 @@ export const FilterMonitorsView: React.FC<Props> = ({ onSelectMonitor }) => {
             </div>
           );
         })}
-      </div>
+        </div>
+      )}
 
       {/* Add Custom Monitor Modal */}
       {isAddModalOpen && (

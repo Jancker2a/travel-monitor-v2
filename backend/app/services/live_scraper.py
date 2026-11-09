@@ -471,20 +471,22 @@ class LiveScraperService:
 
             seen_cohorts[cohort_hash] = cohort_entity
 
-            # 3. Insert Price Snapshot
+            # 3. Insert Price Snapshot (only for non-archived active filters)
             pax_count = max(1, req.travelers.adults + req.travelers.children)
             price_pax_night = off["price"] / (max(1, off["duration_nights"]) * pax_count)
 
-            snapshot = PriceSnapshot(
-                cohort_id=cohort_entity.cohort_id,
-                filter_id=req.filter_id,
-                recorded_at=now_dt,
-                total_price_pln=off["price"],
-                price_per_night_per_pax=round(price_pax_night, 2),
-                currency="PLN",
-                source="fly_pl",
-            )
-            db.add(snapshot)
+            from app.services.timeline_service import ARCHIVED_FILTER_CUTOFFS
+            if not (req.filter_id and req.filter_id in ARCHIVED_FILTER_CUTOFFS):
+                snapshot = PriceSnapshot(
+                    cohort_id=cohort_entity.cohort_id,
+                    filter_id=req.filter_id,
+                    recorded_at=now_dt,
+                    total_price_pln=off["price"],
+                    price_per_night_per_pax=round(price_pax_night, 2),
+                    currency="PLN",
+                    source="fly_pl",
+                )
+                db.add(snapshot)
 
             # 4. Compute Intelligence & Sparkline from Historical Snapshots
             snap_stmt = (
