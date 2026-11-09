@@ -288,7 +288,8 @@
     "2026-09-25 03:41:50",
     "2026-09-25 10:01:13",
     "2026-11-09 08:56:04",
-    "2026-11-09 06:28:39"
+    "2026-11-09 06:28:39",
+    "2026-11-09 09:39:30"
   ],
   "y": [
     5558.0,
@@ -574,6 +575,7 @@
     7313.0,
     7313.0,
     6840.0,
+    6692.0,
     6692.0,
     6692.0
   ],
@@ -877,10 +879,11 @@
   "median_p": 8641.095411174514,
   "min_p": 5558.0,
   "max_p": 11421.0,
-  "samples": 285,
+  "samples": 286,
   "alert_threshold": 8.0,
   "trip_dates_label": "30.09.2026 - 07.10.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_7_10_days.html"
+  "back_href": "index_filter_turkey_7_10_days.html",
+  "current_price": 6692.0
 }

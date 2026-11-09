@@ -14,7 +14,7 @@
     "2026-11-07 01:15:09",
     "2026-11-09 08:56:04",
     "2026-11-09 06:28:39",
-    "2026-11-09 06:31:12"
+    "2026-11-09 09:39:52"
   ],
   "y": [
     8132.0,
@@ -27,7 +27,7 @@
     8100.0,
     6606.0,
     6606.0,
-    7947.0
+    8100.0
   ],
   "hover": [
     "Проверка: 02.11.2026 13:11<br>Даты поездки: 05.07.2027 - 12.07.2027",
@@ -42,7 +42,7 @@
   "meta": {
     "dates": "05.07.2027 - 12.07.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,mahmutlar/armas-prestige/pKFeAeUyjg5OlnfgUJZrpYAAogVKFVx3wNYz2FmvdX0H0xS0b5xQUesqvfpqnfURGWZ98qBE9SRVgwq9HF1wZIiz5QQViBJmACagZKMC4yLjFyNpsBFQkXAFwBWAVWAkDKBhG2Jk-lGl0kU6snUgBelpQBS-1DYQBM5Yw6INbHmAkNAAISYwECC1laaM0/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,mahmutlar/armas-prestige/p_zPxs6O_lQyyDwsRTpJhFAAogVKFVx3wNYz2FmvdX0H0xS-Sf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIzjNQQVjHJmACagZKMC4yLjFyNpsBFQcXAFwDWAVWAkDKBhG2Jk-lGl0kU6snUgBelpQBS-1DYQBM5Yw6IJ7ImAkNAAISYwECC-8jkC4/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744706540/plain/cms/fileadmin/config_img/objects/195149/Euphoria-Comfort-Beach-Alanya.webp@webp"
   },
   "deal_score": 53,
@@ -59,5 +59,6 @@
   "trip_dates_label": "05.07.2027 - 12.07.2027",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html",
+  "current_price": 8100.0
 }

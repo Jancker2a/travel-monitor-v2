@@ -257,7 +257,8 @@
     "2026-07-30 17:24:54",
     "2026-07-30 21:31:29",
     "2026-07-31 04:10:24",
-    "2026-11-09 06:31:24"
+    "2026-11-09 09:38:28",
+    "2026-11-09 09:39:36"
   ],
   "y": [
     10637.0,
@@ -513,7 +514,8 @@
     19595.0,
     19595.0,
     19593.0,
-    9112.0
+    11462.0,
+    11462.0
   ],
   "hover": [
     "Проверка: 01.06.2026 16:39<br>Даты поездки: 12.06.2026 - 25.06.2026",
@@ -773,7 +775,7 @@
   "meta": {
     "dates": "15.08.2026 - 28.08.2026",
     "duration": "14 dni/13 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/eftalia-marin-resort/pHMoX6-g3b_eIqgn4OJ0c7AAogfgm0xghver0F_u6aGbICgraMEhKY_1ayuSgm7nBt6UYqBEVYSU0wq9HF1wZImEdQAViZJmACagNVQUlyIhwRlLIHqwSk-lC5BNIBG7ePQBjCllUB6Zi5-A4CEmMBAg5U68en/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/eftalia-marin-resort/pvY3k11Ho-vdz52IlQGgULAAogsugccXtL_smWJFZw0qSWCz-H-nQM6PKzRjvX_7lEv1sqBEVYSU0wl4iw0wZIiZkBUAFY5QJgAmoDVUFJciEcEaDvBbkEj55BqwR_G4rEJBj61jkB2dK08wgCEmMBAg5SoM3s/ofertasv/?filter[tourOperator]=EXIM&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Eftalia-Marin-Resort.jpg"
   },
   "deal_score": 25,
@@ -783,12 +785,13 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 13368.346270726359,
-  "min_p": 9112.0,
+  "min_p": 9440.0,
   "max_p": 19934.0,
-  "samples": 254,
+  "samples": 255,
   "alert_threshold": 8.0,
   "trip_dates_label": "15.08.2026 - 28.08.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_13_16_days.html"
+  "back_href": "index_filter_turkey_13_16_days.html",
+  "current_price": 11462.0
 }

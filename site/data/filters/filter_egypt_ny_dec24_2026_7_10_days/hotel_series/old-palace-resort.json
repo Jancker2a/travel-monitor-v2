@@ -11,7 +11,8 @@
     "2026-11-06 04:33:03",
     "2026-11-06 12:34:09",
     "2026-11-06 13:17:58",
-    "2026-11-09 08:56:15"
+    "2026-11-09 08:56:15",
+    "2026-11-09 09:40:03"
   ],
   "y": [
     10672.0,
@@ -21,6 +22,7 @@
     10644.0,
     10644.0,
     10644.0,
+    12893.0,
     12893.0
   ],
   "hover": [
@@ -47,10 +49,11 @@
   "median_p": 10748.603141758402,
   "min_p": 10644.0,
   "max_p": 12893.0,
-  "samples": 8,
+  "samples": 9,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 01.01.2027",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html",
+  "current_price": 12893.0
 }

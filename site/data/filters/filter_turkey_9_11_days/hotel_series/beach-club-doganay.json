@@ -1179,7 +1179,8 @@
     "2026-11-06 20:38:49",
     "2026-11-07 01:19:15",
     "2026-11-07 11:27:28",
-    "2026-11-09 06:31:22"
+    "2026-11-09 09:38:24",
+    "2026-11-09 09:39:34"
   ],
   "y": [
     9635.0,
@@ -2357,6 +2358,7 @@
     6723.0,
     6583.0,
     8332.0,
+    9059.0,
     9059.0
   ],
   "hover": [
@@ -3539,7 +3541,7 @@
   "meta": {
     "dates": "08.11.2026 - 18.11.2026",
     "duration": "11 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pWMQSURLA1oWvu-EaUIMeuAAoguPDgvyIHU6GWGPsCLK0JPAAAAABxlQUAN5wFAAkAAAAqBFdFWlkwq9HF1wZI40ZQQViBJmADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcIEusDT5FrTABAnBIRoyZLxJ8BUAAb3HMdjfASIMYNDYzjvgkBEmMBC2MBAwpY0hot/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pI3-hITmjKVdh_hawfR1AKAAogMnWEK98eSVcDIqCxldAQogAAAADlvwUAcbQEAAoAHAAqBFdFWlkwlvq71wZIjEFQQVgNYANqCUVudGVyIEFpcmoEMDYwMHJFngGTAR8AAgEcABYEFwUS6gMU4gQVhwEYmwFMjWRPAECcEhGjJkvEnwFQACDpoRAd9JYEG-T2XQ2r298IARJjAQ1jAQMMrjsnwg/?operator=WEZY&adults=2&children=2020-08-12&objectId=1594&durationFrom=9&durationTo=11&departureDate=2026-11-08&returnDate=2026-11-18&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=10&nights=10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703331/plain/cms/fileadmin/config_img/objects/1594/Beach-Club-Doganay.webp@webp"
   },
   "deal_score": 92,
@@ -3551,10 +3553,11 @@
   "median_p": 9861.587951895723,
   "min_p": 6512.0,
   "max_p": 13936.0,
-  "samples": 1176,
+  "samples": 1177,
   "alert_threshold": 8.0,
   "trip_dates_label": "08.11.2026 - 18.11.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_9_11_days.html"
+  "back_href": "index_filter_turkey_9_11_days.html",
+  "current_price": 9059.0
 }

@@ -955,7 +955,8 @@
     "2026-11-07 08:45:44",
     "2026-11-07 11:26:20",
     "2026-11-07 13:08:05",
-    "2026-11-09 06:31:22"
+    "2026-11-09 09:38:28",
+    "2026-11-09 09:39:36"
   ],
   "y": [
     10004.0,
@@ -1909,7 +1910,8 @@
     9321.0,
     9321.0,
     9321.0,
-    9059.0
+    11452.0,
+    11452.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:47<br>Даты поездки: 13.06.2026 - 26.06.2026",
@@ -2867,7 +2869,7 @@
   "meta": {
     "dates": "08.11.2026 - 21.11.2026",
     "duration": "14 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pWMQSURLA1oWvu-EaUIMeuAAoguPDgvyIHU6GWGPsCLK0JPAAAAABxlQUAN5wFAAkAAAAqBFdFWlkwq9HF1wZI40ZQQViBJmADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfAAIBFgAcABcIEusDT5FrTABAnBIRoyZLxJ8BUAAb3HMdjfASIMYNDYzjvgkBEmMBC2MBAwpY0hot/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/py1PLQw59v1-fZWT5B4z7hAAoggvZrHaLdE6hIqMzzI1p7lAAAAADlvwUA37QEAA0AHAAqBFdFWlkwqam81wZI6UhQQVgLYANqCUVudGVyIEFpcmoEMDYwMHJDngGTAR8AAgEcABYEFwgS5wMU4gQVuwIYc0yBY08AQJwSEaMmS8SfAVAAG9xzIPuuDx2GlgQNj9K9CQESYwENYwEDDCbml8w/?operator=WEZY&adults=2&children=2020-12-10&objectId=1594&durationFrom=13&durationTo=16&departureDate=2026-11-08&returnDate=2026-11-21&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703331/plain/cms/fileadmin/config_img/objects/1594/Beach-Club-Doganay.webp@webp"
   },
   "deal_score": 95,
@@ -2877,12 +2879,13 @@
   "delta_avg": "-27.9%",
   "confidence": "High",
   "median_p": 12936.63518714532,
-  "min_p": 9059.0,
+  "min_p": 9086.0,
   "max_p": 17682.0,
-  "samples": 952,
+  "samples": 953,
   "alert_threshold": 8.0,
   "trip_dates_label": "08.11.2026 - 21.11.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_13_16_days.html"
+  "back_href": "index_filter_turkey_13_16_days.html",
+  "current_price": 11452.0
 }

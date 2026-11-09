@@ -80,7 +80,8 @@
     "2026-11-07 01:17:04",
     "2026-11-07 08:44:44",
     "2026-11-07 11:25:21",
-    "2026-11-07 13:07:08"
+    "2026-11-07 13:07:08",
+    "2026-11-09 09:40:08"
   ],
   "y": [
     4591.0,
@@ -157,6 +158,7 @@
     4986.0,
     4986.0,
     4986.0,
+    4982.0,
     4982.0,
     4982.0,
     4982.0
@@ -255,10 +257,11 @@
   "median_p": 4897.399931454874,
   "min_p": 4527.0,
   "max_p": 5047.0,
-  "samples": 77,
+  "samples": 78,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.12.2026 - 29.12.2026",
   "display_price_ceiling": 30000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_sharm_dec20_29_1p.html"
+  "back_href": "index_filter_egypt_sharm_dec20_29_1p.html",
+  "current_price": 4982.0
 }

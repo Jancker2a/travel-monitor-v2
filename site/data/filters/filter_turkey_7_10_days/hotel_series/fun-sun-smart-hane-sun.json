@@ -1056,7 +1056,7 @@
     "2026-10-23 09:46:57",
     "2026-11-09 08:56:04",
     "2026-11-09 06:28:39",
-    "2026-11-09 06:31:18"
+    "2026-11-09 09:39:30"
   ],
   "y": [
     7124.0,
@@ -2111,7 +2111,7 @@
     4253.0,
     7389.0,
     7389.0,
-    8793.0
+    7389.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:46<br>Даты поездки: 05.06.2026 - 12.06.2026",
@@ -3168,7 +3168,7 @@
   "meta": {
     "dates": "23.10.2026 - 30.10.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/p8RvZPl4CBlUjjx4hbXF_iAAogmSdp3nqx48kGhMVexidcpRc5ZyVIh1HRxt_4aSVg0dYqBE9SRVgwq9HF1wZI2URQQVj5JmACagVFLjIuMXI2mwEVCRcAXAFYBVYCQMoGEaEOT7oyXSRTqydSAF6WlAFL7UNhAEzljDogoMiYCQ0AAhJjAQINN9VFsg/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/pG6ItFYguvMe22WwVmolIuAAogmSdp3nqx48kGhMVexidcpXTnYfsuUcxPnvv8Sqw6L8oqBE9SRVgw-8_F1wZI3TlQQVjZJ2ACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaEOT7oyXSRTqydSAF6WlAFL7UNhAEzljDogpMiYCQ0AAhJjAQINz-JEuA/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703185/plain/cms/fileadmin/config_img/objects/170328/Fun-Sun-Smart-Hane-Sun.webp@webp"
   },
   "deal_score": 92,
@@ -3185,5 +3185,6 @@
   "trip_dates_label": "23.10.2026 - 30.10.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_7_10_days.html"
+  "back_href": "index_filter_turkey_7_10_days.html",
+  "current_price": 7389.0
 }

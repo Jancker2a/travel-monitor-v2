@@ -5,10 +5,12 @@
   "hotel_name": "MALIKIA RESORT ABU DABBAB",
   "x": [
     "2026-11-02 00:50:59",
-    "2026-11-09 08:56:15"
+    "2026-11-09 08:56:15",
+    "2026-11-09 09:40:06"
   ],
   "y": [
     12672.0,
+    13690.0,
     13690.0
   ],
   "hover": [
@@ -29,10 +31,11 @@
   "median_p": 12672.0,
   "min_p": 12672.0,
   "max_p": 13690.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 05.01.2027",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html",
+  "current_price": 13690.0
 }

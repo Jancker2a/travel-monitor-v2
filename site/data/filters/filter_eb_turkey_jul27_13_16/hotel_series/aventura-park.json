@@ -12,7 +12,7 @@
     "2026-11-05 23:48:41",
     "2026-11-06 12:33:15",
     "2026-11-07 01:15:06",
-    "2026-11-09 06:31:27"
+    "2026-11-09 09:40:55"
   ],
   "y": [
     12337.0,
@@ -23,7 +23,7 @@
     12337.0,
     12337.0,
     12337.0,
-    9217.0
+    12517.0
   ],
   "hover": [
     "Проверка: 02.11.2026 13:11<br>Даты поездки: 01.07.2027 - 15.07.2027",
@@ -38,7 +38,7 @@
   "meta": {
     "dates": "01.07.2027 - 15.07.2027",
     "duration": "15 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/aventura-park/pnow-U4jUxgscP79KE8EBbAAogJjD0Knki4IZRrwZBUWzsmnhHcO5GNeW8-xz4ZSlgWLsqBFZJVFgwq9HF1wZIgUhQQVixJmACcj8aABUJFwBcAVgFQI8DU-drUgBbmBxe_ndL7UNhAEz4-UQNituNCSAAUfWo6O1YT6mDPV2N5aaBrQECDmMBAg3iW73l/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/aventura-park/pF_zP5-BMSVItm1GMtaCLiAAogJjD0Knki4IZRrwZBUWzsmj-tZClfiXWZ_SojLpnzlJIqBFZJVFgwjtu51wZIsWBQQVifLGACcj8aAFwKFQQXAFgBQI8DU-drUgBbmBxe_ndLgRJhAEzkq0Ug7duNCQ0AUZKo6O1YT_KAL13Ej9OLhQECDmMBAg1NLHmT/?operator=VITX&adults=2&children=2020-08-12&objectId=1977&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-15&departureLocation=Warszawa+-+Radom&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702369/plain/cms/fileadmin/config_img/objects/1977/Aventura-Park.webp@webp"
   },
   "deal_score": 50,
@@ -48,12 +48,13 @@
   "delta_avg": "+0.0%",
   "confidence": "Medium",
   "median_p": 12337.0,
-  "min_p": 9217.0,
-  "max_p": 12337.0,
+  "min_p": 12337.0,
+  "max_p": 12517.0,
   "samples": 9,
   "alert_threshold": 8.0,
   "trip_dates_label": "01.07.2027 - 15.07.2027",
   "display_price_ceiling": 16000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html",
+  "current_price": 12517.0
 }

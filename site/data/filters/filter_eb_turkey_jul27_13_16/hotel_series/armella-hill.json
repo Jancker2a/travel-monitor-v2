@@ -6,10 +6,12 @@
   "x": [
     "2026-11-02 13:11:46",
     "2026-11-03 06:39:01",
-    "2026-11-03 19:43:41"
+    "2026-11-03 19:43:41",
+    "2026-11-09 09:40:55"
   ],
   "y": [
     13663.0,
+    14182.0,
     14182.0,
     14182.0
   ],
@@ -33,10 +35,11 @@
   "median_p": 13974.27534750579,
   "min_p": 13663.0,
   "max_p": 14182.0,
-  "samples": 3,
+  "samples": 4,
   "alert_threshold": 8.0,
   "trip_dates_label": "01.07.2027 - 14.07.2027",
   "display_price_ceiling": 16000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html",
+  "current_price": 14182.0
 }

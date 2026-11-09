@@ -19,6 +19,7 @@ from app.models.price_snapshot import PriceSnapshot
 from app.services.live_scraper import LiveScraperService
 from app.schemas.search import SearchRequest, SearchDates, SearchDuration, SearchTravelers
 from app.services.canonical_monitors_data import CANONICAL_MONITORS
+from app.services.site_rebuilder import SiteRebuilderService
 
 logger = logging.getLogger("travel_monitor_2.monitors")
 
@@ -131,6 +132,12 @@ class FilterMonitorService:
             monitor.last_min_price_pln = min(prices) if prices else None
             await db.commit()
 
+            # Synchronize HTML dashboard, Plotly charts, and hotel series
+            try:
+                SiteRebuilderService.record_monitor_scrape_run(monitor.id, raw_offers, monitor.last_scraped_at)
+            except Exception as re_err:
+                logger.warning(f"Could not update site artifacts for monitor {monitor.id}: {re_err}")
+
             logger.info(f"✅ Monitor '{monitor.id}' completed: {len(saved_items)} offers saved (min: {monitor.last_min_price_pln} zł)")
             return {
                 "monitor_id": monitor.id,
@@ -142,8 +149,12 @@ class FilterMonitorService:
 
         except Exception as e:
             logger.error(f"Error scraping monitor {monitor.id}: {e}")
-            monitor.last_status = "ERROR"
-            await db.commit()
+            try:
+                await db.rollback()
+                monitor.last_status = "ERROR"
+                await db.commit()
+            except Exception:
+                pass
             return {"monitor_id": monitor.id, "status": "ERROR", "error": str(e)}
 
     @classmethod
@@ -152,15 +163,20 @@ class FilterMonitorService:
         logger.info("⏰ Starting Hourly Filters Monitoring Pass across all active filters...")
         async with AsyncSessionLocal() as db:
             await cls.init_default_monitors(db)
-            stmt = select(FilterMonitor).where(FilterMonitor.is_active == True, FilterMonitor.is_hourly == True)
+            stmt = select(FilterMonitor.id).where(FilterMonitor.is_active == True, FilterMonitor.is_hourly == True)
             res = await db.execute(stmt)
-            monitors = res.scalars().all()
+            monitor_ids = res.scalars().all()
 
-            results = []
-            for m in monitors:
-                r = await cls.run_single_monitor(db, m.id)
-                results.append(r)
-                await asyncio.sleep(2.0)  # Gentle polite delay between filters
+        results = []
+        for m_id in monitor_ids:
+            try:
+                async with AsyncSessionLocal() as single_db:
+                    r = await cls.run_single_monitor(single_db, m_id)
+                    results.append(r)
+            except Exception as loop_err:
+                logger.error(f"Failed monitor pass for {m_id}: {loop_err}")
+                results.append({"monitor_id": m_id, "status": "ERROR", "error": str(loop_err)})
+            await asyncio.sleep(1.5)  # Gentle polite delay between filters
 
         logger.info(f"🏁 Hourly Monitoring Pass completed for {len(results)} filters.")
         return results

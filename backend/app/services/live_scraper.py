@@ -146,7 +146,7 @@ class LiveScraperService:
             headers = {
                 "User-Agent": cls.DEFAULT_HEADERS["User-Agent"],
                 "Accept": "application/json, text/plain, */*",
-                "Referer": url,
+                "Referer": "https://fly.pl/szukaj-wycieczek/",
             }
 
             async with httpx.AsyncClient(headers=headers, timeout=15.0) as client:
@@ -354,13 +354,18 @@ class LiveScraperService:
         items: List[SearchHotelItem] = []
         destination_country = req.destination.capitalize()
 
+        seen_hotels: Dict[str, Hotel] = {}
+        seen_cohorts: Dict[str, OfferCohort] = {}
+
         for off in raw_offers:
             hotel_id = slugify(off["hotel_name"])
             
-            # 1. Upsert / fetch Hotel
-            h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
-            h_res = await db.execute(h_stmt)
-            hotel_entity = h_res.scalar_one_or_none()
+            # 1. Upsert / fetch Hotel (with in-batch deduplication)
+            hotel_entity = seen_hotels.get(hotel_id)
+            if not hotel_entity:
+                h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
+                h_res = await db.execute(h_stmt)
+                hotel_entity = h_res.scalar_one_or_none()
 
             if not hotel_entity:
                 hotel_entity = Hotel(
@@ -380,6 +385,8 @@ class LiveScraperService:
                 if off["ta_rating"] and not hotel_entity.ta_rating:
                     hotel_entity.ta_rating = off["ta_rating"]
 
+            seen_hotels[hotel_id] = hotel_entity
+
             # 2. Compute Cohort Signature
             cohort_hash = compute_cohort_hash(
                 hotel_id=hotel_id,
@@ -390,10 +397,12 @@ class LiveScraperService:
                 board_basis=off["board_basis"],
             )
 
-            # Upsert Cohort
-            c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash == cohort_hash)
-            c_res = await db.execute(c_stmt)
-            cohort_entity = c_res.scalar_one_or_none()
+            # Upsert Cohort (with in-batch deduplication)
+            cohort_entity = seen_cohorts.get(cohort_hash)
+            if not cohort_entity:
+                c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash == cohort_hash)
+                c_res = await db.execute(c_stmt)
+                cohort_entity = c_res.scalar_one_or_none()
 
             now_dt = datetime.utcnow()
             if not cohort_entity:
@@ -418,6 +427,8 @@ class LiveScraperService:
                 cohort_entity.last_seen_at = now_dt
                 if off["offer_url"]:
                     cohort_entity.offer_url = off["offer_url"]
+
+            seen_cohorts[cohort_hash] = cohort_entity
 
             # 3. Insert Price Snapshot
             pax_count = max(1, req.travelers.adults + req.travelers.children)
