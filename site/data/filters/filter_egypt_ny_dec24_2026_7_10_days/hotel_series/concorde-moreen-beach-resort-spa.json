@@ -205,7 +205,8 @@
     "2026-10-29 20:07:09",
     "2026-10-30 00:27:37",
     "2026-10-30 07:40:27",
-    "2026-10-30 09:45:47"
+    "2026-10-30 09:45:47",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     9265.0,
@@ -409,7 +410,8 @@
     10194.0,
     10194.0,
     10550.0,
-    10540.0
+    10540.0,
+    13717.0
   ],
   "hover": [
     "Проверка: 28.08.2026 21:50<br>Даты поездки: 30.12.2026 - 06.01.2027",
@@ -618,7 +620,7 @@
   "meta": {
     "dates": "12.26.2026 - 06.01.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/concorde-moreen-beach-spa-resort/p5gdMk-CWJWVFUG2TIN2m_AAogGwbuvOuKYBMlU0rHcs58qQcWTlhlrOGDRE6Ss_AhNMEqBE5LUkEwv7KR1wZIrFJQAVivC2ADagJBSWoEV01JMGoDUk1Gch0WDiAKDBujDxGv1D4NkO-VCQ-sRQESYwEMYwECDEik6Yo/?operator=NKRA&adults=2&children=2020-12-10&objectId=76703&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/concorde-moreen-beach-spa-resort/pqsiJFV8Z711e1JT3qsSTpAAogSmO33jwxEu-jcqEvu2G19l2OrSfKh26GHWKNbYYMFKEqBFZJVFgwrpXG1wZIlWtQQVjHCGACckAaABUHFwBcA1gFQI8DW5eFAV7melK8FFMAS7EvYQBM8YsuDfD_owkgAFHfqpT23wFP3u43XZz4r_klAgxjAQILknE4Gg/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701165/plain/cms/fileadmin/config_img/objects/76703/Concorde-Moreen-Beach-Resort-Spa-fly-pl.jpg@webp"
   },
   "deal_score": 38,
@@ -629,8 +631,8 @@
   "confidence": "High",
   "median_p": 9754.956254005274,
   "min_p": 8889.0,
-  "max_p": 10957.0,
-  "samples": 202,
+  "max_p": 13717.0,
+  "samples": 203,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 06.01.2027",
   "display_price_ceiling": 11000.0,

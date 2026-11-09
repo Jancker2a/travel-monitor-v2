@@ -85,7 +85,9 @@
     "2026-10-19 06:58:55",
     "2026-10-19 12:18:06",
     "2026-10-20 09:46:29",
-    "2026-10-20 09:55:30"
+    "2026-10-20 09:55:30",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     5526.0,
@@ -169,7 +171,9 @@
     4886.0,
     4887.0,
     5301.0,
-    5301.0
+    5301.0,
+    7634.0,
+    7634.0
   ],
   "hover": [
     "Проверка: 06.06.2026 13:21<br>Даты поездки: 10.06.2026 - 17.06.2026",
@@ -258,7 +262,7 @@
   "meta": {
     "dates": "24.10.2026 - 31.10.2026",
     "duration": "8 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,kiris/miarosa-kemer-beach-12/ppKMZlJkY9kNQx3S7NTVm_AAogLAXa5DNRef8VpQaZj8xfdsBT9HTATqnDHdIJOHBJxz8qBE9SRVgw87zc1gZItSlQQVhYYAJqBkM1LjIuMXI2mwEVBxcAWAhWAlwIQMIGEd8LT_w0XSRTqydSAF6WlAFL7UNhAEzljDogs_2XCQ0AAhJjAQIM5aPy9g/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,kiris/miarosa-kemer-beach-12/pn1hi6INhaWSg5KSRRKSknAAog23XBDxzsOoYwWAan4J3bFnEqM1PGutPGESI998fKBCgqBEpPSVAwo5XG1wZI0jtQQVj3JmACagMxMnByQpsBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABG1c0ywmTkNoMiYCSAAAcHKr5jkqtCcMAINYwECC7hE75M/?operator=JOIP&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2024/07/miarosa-kemer-beach.jpg"
   },
   "deal_score": 62,
@@ -269,8 +273,8 @@
   "confidence": "High",
   "median_p": 5815.920548629304,
   "min_p": 4886.0,
-  "max_p": 7479.0,
-  "samples": 82,
+  "max_p": 7634.0,
+  "samples": 84,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

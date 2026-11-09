@@ -871,7 +871,8 @@
     "2026-10-26 12:12:04",
     "2026-10-28 20:00:13",
     "2026-10-29 00:23:28",
-    "2026-10-29 07:02:06"
+    "2026-10-29 07:02:06",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10457.0,
@@ -1741,7 +1742,8 @@
     7557.0,
     9157.0,
     9157.0,
-    9157.0
+    9157.0,
+    12177.0
   ],
   "hover": [
     "Проверка: 27.07.2026 10:55<br>Даты поездки: 15.10.2026 - 22.10.2026",
@@ -2616,7 +2618,7 @@
   "meta": {
     "dates": "29.10.2026 - 05.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-beach-spa/pttGVsHVxobd-4rJW-_mDWAAogKFow8M_eHPjRMAGcsUMrCgfo0SaB-n0J-U8pey-Jo5wqBFZJVFgw5MKL1wZIxUdQQVj6__________8BYAJyQBoAFQcXAFwDWAVAjwNbvZcBU5EZUgBer09L7UNhAEyltjkN-NOYCSAAUdmP5fuPAU-j9QddkITz83UCDGMBAguTKZ8q/?operator=VITX&adults=2&children=2020-12-10&objectId=6930&durationFrom=7&durationTo=10&departureDate=2026-10-29&returnDate=2026-11-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-beach-spa/pRAy-BStgSqYcpBpNHlW6KAAogz7_wltJ9Yqa_w6lls5ezet_XwCYNeOv_OmngaPJtjJEqBFZJVFgwrpXG1wZIkV9QQVivCGACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS-1DYQBM8YsuDe__owkgAFGWjuX7jwFPo_UHXZCE8_N1AgxjAQILGFK5nw/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701041/plain/cms/fileadmin/config_img/objects/6930/Titanic-Beach-Spa-Aqua-Park-fly-pl.jpg@webp"
   },
   "deal_score": 63,
@@ -2627,8 +2629,8 @@
   "confidence": "High",
   "median_p": 9687.196689761482,
   "min_p": 7557.0,
-  "max_p": 10457.0,
-  "samples": 868,
+  "max_p": 12177.0,
+  "samples": 869,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.10.2026 - 05.11.2026",
   "display_price_ceiling": 11000.0,

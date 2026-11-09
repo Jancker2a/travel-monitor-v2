@@ -811,7 +811,8 @@
     "2026-10-20 09:46:15",
     "2026-10-20 09:55:15",
     "2026-10-20 17:37:48",
-    "2026-10-20 18:39:05"
+    "2026-10-20 18:39:05",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     9552.0,
@@ -1621,7 +1622,8 @@
     10123.0,
     10123.0,
     10123.0,
-    10123.0
+    10123.0,
+    13878.0
   ],
   "hover": [
     "Проверка: 27.07.2026 10:55<br>Даты поездки: 11.10.2026 - 18.10.2026",
@@ -2436,7 +2438,7 @@
   "meta": {
     "dates": "28.10 - 5.11",
     "duration": "9 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tropitel-naama-bay/pG-cMgXRsgOaXv29GS6q49AAogD7wSLTmk8QHgQGcRSrkJbgnONtVru22jgjQb1IFSv-IqBEpPSVAwyrLe1gZIi09QQVivAWACagMwMllyQpsBFAEVBhcBXAJYBVYCQMoGXeIBT0kR5MUBS4oEYQBepzBSpiBTAEyssDoNt_2XCSABAY63-PiE5tKgMAINYwEAC6wJGl4/?operator=JOIP&adults=2&children=2020-12-10&objectId=612&durationFrom=7&durationTo=10&departureDate=2026-10-28&returnDate=2026-11-05&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=8&nights=8",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tropitel-naama-bay/pr4ihrpLrUkKjp3UQuz6e-AAoglgnAO-axLCJ-pI8kpQ5d2Lf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZItmxQQVjHCGACagdFUzMuMi4xcjabARUHFwBcA1gFVgJAygYRxA1dnwtPJF654wFTpiBSAEvHI2EATOWMOiD8_pcJDQACEmMBAgtDdCZk/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701104/plain/cms/fileadmin/config_img/objects/612/Naama-Bay.webp@webp"
   },
   "deal_score": 33,
@@ -2447,8 +2449,8 @@
   "confidence": "High",
   "median_p": 9069.337708219258,
   "min_p": 8010.0,
-  "max_p": 10707.0,
-  "samples": 808,
+  "max_p": 13878.0,
+  "samples": 809,
   "alert_threshold": 8.0,
   "trip_dates_label": "28.10 - 5.11",
   "display_price_ceiling": 11000.0,

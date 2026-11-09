@@ -142,7 +142,8 @@
     "2026-11-07 01:17:04",
     "2026-11-07 08:44:44",
     "2026-11-07 11:25:21",
-    "2026-11-07 13:07:08"
+    "2026-11-07 13:07:08",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     4074.0,
@@ -283,7 +284,8 @@
     4339.0,
     4336.0,
     4336.0,
-    4336.0
+    4336.0,
+    12407.0
   ],
   "hover": [
     "Проверка: 17.10.2026 18:12<br>Даты поездки: 20.12.2026 - 27.12.2026",
@@ -429,7 +431,7 @@
   "meta": {
     "dates": "22.12.2026 - 29.12.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pC-o1S1el66j8hGMg_37KwAAogBXRj530CFFxGLM9HbS6YZFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8Ki81wZI8CFQQVirCGABagNDR21yP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQBL7skBYQBepzARyxdS2whTAEyssDoN-f6XCSAAAeGbkKCTicygMAENY5uuoIU/?operator=JOIP&adults=1&objectId=24723&durationFrom=7&durationTo=15&departureDate=2026-12-22&returnDate=2026-12-29&departureLocation=Katowice&catering=breakfast&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pnxWJE0l8HXh2VIRExWk4BAAogxKYK-1mRHsmS8RYh8tiufbf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZI92BQQVjHCGACagVFLjIuMXI2mwEVBxcAXAhYAFYCQMoGEfUMXe4LTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQIL_8pTKw/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701095/plain/cms/fileadmin/config_img/objects/24723/Il-Mercato-Hotel-Spa-Sharm-El-Sheikh.webp@webp"
   },
   "deal_score": 51,
@@ -440,8 +442,8 @@
   "confidence": "High",
   "median_p": 4191.773687798187,
   "min_p": 3767.0,
-  "max_p": 4536.0,
-  "samples": 139,
+  "max_p": 12407.0,
+  "samples": 140,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.12.2026 - 29.12.2026",
   "display_price_ceiling": 30000.0,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T21:25:02.658819",
+  "generated_at": "2026-11-09T09:01:27.734749+00:00",
   "stats": {
     "total_hotels": 1732,
     "total_countries": 5,
@@ -14,7 +14,7 @@
       "hotel_name": "Royal Savoy",
       "country": "Египет",
       "destination": "Шарм-эль-Шейх",
-      "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2024/07/royal-savoy-sharm-el-sheikh.jpg",
+      "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2024/07/royal-savoy-sharm-el-shei",
       "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-savoy-sharm-el-sheikh-12/piK-W9lf1cY-rU3XjXDq66AAogB2bPXJ9EjkiJTQf7CCsh__b83YJtyQGKi9jeS82-_G0qBEJWQkUwqafO1gZIzDRQAVjwC2ABagJCQnIeHBH8-QEb1PRDGOutGqsEmtcnuQQiAZvul7kEARJj_Yz8Iw/ofertasv/?filter[tourOperator]=BVBE&filter%5Bperson%5D=1",
       "rating": 4.5,
       "reviews_count": 1831,

@@ -706,7 +706,9 @@
     "2026-10-11 08:04:07",
     "2026-10-11 15:09:02",
     "2026-10-11 20:15:10",
-    "2026-10-12 00:11:36"
+    "2026-10-12 00:11:36",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     10553.0,
@@ -1411,7 +1413,9 @@
     10103.0,
     10103.0,
     10103.0,
-    10103.0
+    10103.0,
+    7389.0,
+    7389.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:47<br>Даты поездки: 03.06.2026 - 16.06.2026",
@@ -2121,7 +2125,7 @@
   "meta": {
     "dates": "16.10.2026 - 29.10.2026",
     "duration": "14 dni/13 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/pSkgvjohb68VgGcKgymhuuAAogmSdp3nqx48kGhMVexidcpQAe0O17Zskoy-0kLSVdw2sqBE9SRVgwqpOw1gZI905QQVhhYAJqBUUuMi4xcjabAVwKFQMXAFgCVgJAygYRoQ5PujJdJFKrJ1MAXpaUAWHtQ0sATOWMOiCr_ZcJDQACEmMBAg1PeiQ5/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/pG6ItFYguvMe22WwVmolIuAAogmSdp3nqx48kGhMVexidcpXTnYfsuUcxPnvv8Sqw6L8oqBE9SRVgw-8_F1wZI3TlQQVjZJ2ACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaEOT7oyXSRTqydSAF6WlAFL7UNhAEzljDogpMiYCQ0AAhJjAQINz-JEuA/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Fun-Sun-Smart-Hane-Sun.jpg"
   },
   "deal_score": 81,
@@ -2131,9 +2135,9 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 12619.442669373479,
-  "min_p": 8033.0,
+  "min_p": 7389.0,
   "max_p": 18086.0,
-  "samples": 703,
+  "samples": 705,
   "alert_threshold": 8.0,
   "trip_dates_label": "16.10.2026 - 29.10.2026",
   "display_price_ceiling": 10000.0,

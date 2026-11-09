@@ -4,10 +4,12 @@
   "slug": "xperience-kiroseiz-premier",
   "hotel_name": "Xperience Kiroseiz Premier",
   "x": [
-    "2026-10-05 04:12:30"
+    "2026-10-05 04:12:30",
+    "2026-11-09 08:56:15"
   ],
   "y": [
-    10520.0
+    10520.0,
+    13968.0
   ],
   "hover": [
     "Проверка: 05.10.2026 04:12<br>Даты поездки: 10.10.2026 - 24.10.2026"
@@ -15,7 +17,7 @@
   "meta": {
     "dates": "10.10.2026 - 24.10.2026",
     "duration": "16 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pTLkTeW5-8fmOXf1b8pXrLAAogGoT9H0OXI1hh5IOf9xInhAAAAABhhAQAf4QEAA4AAAAqBFdFWlkwj4-M1gZImFJQQVh1YANqCUVudGVyIEFpcmoEMDIxMGoEMDc0MGoEMDAwNXI_ngGTAZQBmAEfABwBAgAWBBcJEs8EFYwLEfBpQMgHS9NRUABMzVBPABvjVB29kA8gHg2TyMIJARJjAQxjAQIFyLSe6Q/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pS_C-E3dF3PjPeOQ_KGiHBAAogw6eSNT6MO8JgvaVjLDIRr7f37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZIkG1QQVjHCGACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEc4NXZULTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQIL_s-JAg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/11/Xperience-Kiroseiz-Premier-fly-pl-3.jpg"
   },
   "deal_score": 50,
@@ -26,8 +28,8 @@
   "confidence": "Low",
   "median_p": 10520.0,
   "min_p": 10520.0,
-  "max_p": 10520.0,
-  "samples": 1,
+  "max_p": 13968.0,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "10.10.2026 - 24.10.2026",
   "display_price_ceiling": 11000.0,

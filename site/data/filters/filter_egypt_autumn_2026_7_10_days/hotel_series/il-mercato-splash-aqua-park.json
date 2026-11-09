@@ -321,7 +321,8 @@
     "2026-10-28 14:15:37",
     "2026-10-28 20:00:13",
     "2026-10-29 00:23:28",
-    "2026-10-29 07:02:06"
+    "2026-10-29 07:02:06",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     8067.0,
@@ -641,7 +642,8 @@
     7885.0,
     7885.0,
     9338.0,
-    9640.0
+    9640.0,
+    12407.0
   ],
   "hover": [
     "Проверка: 27.07.2026 09:29<br>Даты поездки: 17.10.2026 - 24.10.2026",
@@ -966,7 +968,7 @@
   "meta": {
     "dates": "29.10.2026 - 07.11.2026",
     "duration": "10 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pR2uw0xAkeN82NSJjKF5nrAAogoymw7zjnf3WTRXJmZD4fBiDkYx4l9-TWJrsIkLGzW_sqBEtPTVQw5MKL1wZIqEtQAVj6__________8BYAJqAkFJch8cEegaqwTr4gG5BBUYvKsEG9b3IwGH1t0eAgBjAQIFTy7QSQ/?operator=KOMT&adults=2&children=2020-12-10&objectId=24723&durationFrom=7&durationTo=10&departureDate=2026-10-29&returnDate=2026-11-07&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=9&nights=9",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pnxWJE0l8HXh2VIRExWk4BAAogxKYK-1mRHsmS8RYh8tiufbf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZI92BQQVjHCGACagVFLjIuMXI2mwEVBxcAXAhYAFYCQMoGEfUMXe4LTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQIL_8pTKw/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701095/plain/cms/fileadmin/config_img/objects/24723/Il-Mercato-Hotel-Spa-Sharm-El-Sheikh.webp@webp"
   },
   "deal_score": 22,
@@ -977,8 +979,8 @@
   "confidence": "High",
   "median_p": 8077.648978516843,
   "min_p": 6413.0,
-  "max_p": 9753.0,
-  "samples": 318,
+  "max_p": 12407.0,
+  "samples": 319,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.10.2026 - 07.11.2026",
   "display_price_ceiling": 11000.0,

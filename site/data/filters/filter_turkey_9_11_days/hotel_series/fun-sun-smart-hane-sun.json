@@ -790,7 +790,9 @@
     "2026-10-21 17:37:26",
     "2026-10-22 03:42:31",
     "2026-10-22 09:09:24",
-    "2026-10-22 10:13:14"
+    "2026-10-22 10:13:14",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     9027.0,
@@ -1579,7 +1581,9 @@
     6341.0,
     6341.0,
     6183.0,
-    6183.0
+    6183.0,
+    7389.0,
+    7389.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 20.06.2026 - 29.06.2026",
@@ -2373,7 +2377,7 @@
   "meta": {
     "dates": "22.10.2026 - 31.10.2026",
     "duration": "10 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/p4GM--Xdoq9SWvSzGxBX4IAAogmSdp3nqx48kGhMVexidcpX5cR80ijkdeCW39zetVaVcqBE9SRVgwn4vn1gZIpzBQQVj4__________8BYAJqBUUuMi4xcjabARUJFwBcAVgFVgJAygYRoQ5PujJdJFOrJ1IAXpaUAUvtQ2EATOWMOiCx_ZcJDQACEmMBAg0koOqK/?operator=OREX&adults=2&children=2020-08-12&objectId=170328&durationFrom=9&durationTo=11&departureDate=2026-10-22&returnDate=2026-10-31&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=9&nights=9",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/hane-sun/pG6ItFYguvMe22WwVmolIuAAogmSdp3nqx48kGhMVexidcpXTnYfsuUcxPnvv8Sqw6L8oqBE9SRVgw-8_F1wZI3TlQQVjZJ2ACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaEOT7oyXSRTqydSAF6WlAFL7UNhAEzljDogpMiYCQ0AAhJjAQINz-JEuA/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703185/plain/cms/fileadmin/config_img/objects/170328/Fun-Sun-Smart-Hane-Sun.webp@webp"
   },
   "deal_score": 92,
@@ -2385,7 +2389,7 @@
   "median_p": 9219.722871555045,
   "min_p": 5589.0,
   "max_p": 13869.0,
-  "samples": 787,
+  "samples": 789,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

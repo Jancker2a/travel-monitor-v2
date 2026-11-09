@@ -286,7 +286,9 @@
     "2026-09-24 21:22:19",
     "2026-09-25 01:19:14",
     "2026-09-25 03:41:50",
-    "2026-09-25 10:01:13"
+    "2026-09-25 10:01:13",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     5558.0,
@@ -571,7 +573,9 @@
     7313.0,
     7313.0,
     7313.0,
-    6840.0
+    6840.0,
+    6692.0,
+    6692.0
   ],
   "hover": [
     "Проверка: 06.06.2026 13:21<br>Даты поездки: 10.06.2026 - 17.06.2026",
@@ -861,7 +865,7 @@
   "meta": {
     "dates": "30.09.2026 - 07.10.2026",
     "duration": "8 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,bayraklidede/ephesus-princess/pXU5A9GbQOZ2wVlRT1wKr4AAog-Lv4_AmyY6xluz_battTyYijLea1jwPOMjgnoxsLfCkqBE9SRVgwzNTY1QZIuDVQQVhvYAJqB01PRy4yLjFyNpsBFQcXAFwDWAVWAkDKBhGpMk_SIl0kU4EZUgBeoI4BS-1DYQBM5Yw6INX8lwkNAAISYwECC-36lKY/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kusadasi,bayraklidede/ephesus-princess/pLrnMLEFTBsGXPCpEdP4MlAAog-Lv4_AmyY6xluz_battTyWS9eQpdmkWuRRjxdWbXImQqBE9SRVgwo5XG1wZIpDRQQVivJmACagdNT0cuMi4xcjabARUHFwBcA1gFVgJAygYRqTJP0iJdJFOBGVIAXqCOAUvtQ2EATOWMOiCdyJgJDQACEmMBAgvfqOqa/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/12/Labranda-Ephesus-Princess.jpg"
   },
   "deal_score": 92,
@@ -873,7 +877,7 @@
   "median_p": 8641.095411174514,
   "min_p": 5558.0,
   "max_p": 11421.0,
-  "samples": 283,
+  "samples": 285,
   "alert_threshold": 8.0,
   "trip_dates_label": "30.09.2026 - 07.10.2026",
   "display_price_ceiling": 10000.0,

@@ -5,11 +5,13 @@
   "hotel_name": "Calimera Blend Paradise",
   "x": [
     "2026-09-27 03:37:18",
-    "2026-09-27 08:36:47"
+    "2026-09-27 08:36:47",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10143.0,
-    10143.0
+    10143.0,
+    12697.0
   ],
   "hover": [
     "Проверка: 27.09.2026 03:37<br>Даты поездки: 29.12.2026 - 05.01.2027",
@@ -18,7 +20,7 @@
   "meta": {
     "dates": "29.12.2026 - 05.01.2027",
     "duration": "9 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/calimera-blend-paradise-12/pVB-t2--T_HJWyuJy7TtkQAAognKd_DvlqBoSOSUb5d-7BhgbyY4eWR3p7KMyqfZ_qYPQqBEVDQ1gw__Li1QZIn09QAVixEWACagJBSXIgHBHSTLkEls4YqwQBGMuLLRuw00EBoc_XhAICEmMBAgxS3Ya0/ofertasv/?filter[tourOperator]=ECCX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/calimera-blend-paradise-12/pEGsmcYcpdctPBpqY6M_bkAAogmNcFS2besrYziljxBpzBAN_XwCYNeOv_OmngaPJtjJEqBFZJVFgwrpXG1wZImWNQQVivCGACckAaABUHFwBcA1gFQI8DW5eFAVO3K1IAXq9PS-1DYQBM8YsuDe__owkgAFG-hrT7jwFP-_w4XZCE8_N1AgxjAQILZwwMqw/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2022/08/Calimera-Blend-Paradise.jpg"
   },
   "deal_score": 50,
@@ -29,8 +31,8 @@
   "confidence": "Low",
   "median_p": 10143.0,
   "min_p": 10143.0,
-  "max_p": 10143.0,
-  "samples": 2,
+  "max_p": 12697.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.12.2026 - 05.01.2027",
   "display_price_ceiling": 11000.0,

@@ -5,11 +5,15 @@
   "hotel_name": "Dedeman Kemer Resort",
   "x": [
     "2026-11-03 06:37:51",
-    "2026-11-03 19:42:14"
+    "2026-11-03 19:42:14",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     9276.0,
-    9866.0
+    9866.0,
+    7395.0,
+    7395.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:37<br>Даты поездки: 31.08.2027 - 07.09.2027",
@@ -18,7 +22,7 @@
   "meta": {
     "dates": "01.08.2027 - 08.08.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pGUnZVciG-oeGFEIs1EU5LAAogAuojzgWJlFLw3u8eMWSODfljZ1w5FUKDrmi_BylVZOgqBEpPSVAw2Nao1wZIik1QQVjVMmACagMzcWtyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABGLnQFM2u84DeTJmAkgAAH07seQpcjTnDACDWMBAgbIpueH/?operator=JOIP&adults=2&children=2020-08-12&objectId=204765&durationFrom=7&durationTo=10&departureDate=2027-08-01&returnDate=2027-08-08&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pKiGvFl2OF07BA2uGbiDygAAogAuojzgWJlFLw3u8eMWSODUJ8a7QQweyHATmJxjka8ZMqBEpPSVAwo5XG1wZI4zlQQVivJmACagMzcWtyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABGLnQFM2u84DZ3ImAkgAAGp6LuQpcjTnDACDWMBAgYVBNRi/?operator=JOIP&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707341/plain/cms/fileadmin/config_img/objects/204765/club-jovia-kemer-ex-armir-resort.webp@webp"
   },
   "deal_score": 48,
@@ -28,9 +32,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 9571.0,
-  "min_p": 9276.0,
+  "min_p": 7395.0,
   "max_p": 9866.0,
-  "samples": 2,
+  "samples": 4,
   "alert_threshold": 8.0,
   "trip_dates_label": "01.08.2027 - 08.08.2027",
   "display_price_ceiling": 12000.0,

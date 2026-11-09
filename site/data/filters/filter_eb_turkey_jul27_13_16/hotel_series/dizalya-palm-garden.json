@@ -5,11 +5,15 @@
   "hotel_name": "Dizalya Palm Garden",
   "x": [
     "2026-11-03 06:39:01",
-    "2026-11-03 19:43:41"
+    "2026-11-03 19:43:41",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     16306.0,
-    16306.0
+    16306.0,
+    7623.0,
+    7623.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:39<br>Даты поездки: 31.07.2027 - 14.08.2027",
@@ -18,7 +22,7 @@
   "meta": {
     "dates": "31.07.2027 - 14.08.2027",
     "duration": "15 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/dizalya-palm-garden/pdblF0T7fNR5xdr0hAfCyeAAogDte61uX0zVI2qLCJpVITU0XuKgUOJUCZh91wUs0qFJgqBFJOQlcwn9eo1wZIsn9QQVi9MmACagRGeGNZaiYxNiwyMzQsMjgzLDI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1LDUzMHI7nwGeAVYKFQQXAFgBCiZAogcR-iYQ2DcZe1LhB1MATKG-AUviGWEAD7zhRh2bBQ2s74sJIAACC2MBAgrrVhkw/?operator=RNBW&adults=2&children=2020-08-12&objectId=104987&durationFrom=13&durationTo=16&departureDate=2027-07-31&returnDate=2027-08-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=14&nights=14",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/dizalya-palm-garden/pQAqo6x1Pg55I3JaOn1f5jAAogDte61uX0zVI2qLCJpVITUyYSJfzI6ab3ivK0uVyLG9kqBFJOQlcwo5XG1wZIxztQQVi3KGACagRGeGNZcjmfARUHFwBWA1gFCiZAogcR-iYQ2DcZe1PhB1IATKG-AUviGWEAHefORw-fBCCHgosJDQACC2MBAgoSy3rW/?operator=RNBW&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703385/plain/cms/fileadmin/config_img/objects/104987/Dizalya-Palm-Garden-fly-pl.jpg@webp"
   },
   "deal_score": 0,
@@ -28,9 +32,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 16306.0,
-  "min_p": 16306.0,
+  "min_p": 7623.0,
   "max_p": 16306.0,
-  "samples": 2,
+  "samples": 4,
   "alert_threshold": 8.0,
   "trip_dates_label": "31.07.2027 - 14.08.2027",
   "display_price_ceiling": 16000.0,

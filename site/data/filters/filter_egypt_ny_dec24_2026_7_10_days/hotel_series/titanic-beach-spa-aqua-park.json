@@ -47,7 +47,8 @@
     "2026-09-29 15:08:23",
     "2026-09-29 20:45:55",
     "2026-09-30 04:15:17",
-    "2026-09-30 10:11:58"
+    "2026-09-30 10:11:58",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10691.0,
@@ -93,7 +94,8 @@
     10523.0,
     10523.0,
     10523.0,
-    10667.0
+    10667.0,
+    12177.0
   ],
   "hover": [
     "Проверка: 10.09.2026 21:51<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -144,7 +146,7 @@
   "meta": {
     "dates": "24.12.2026 - 31.12.2026",
     "duration": "9 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-beach-spa/paph_6H41dGgmPxwdCq49jAAoglcVgEJ93SzhbvEmxdjQkUEa-WtljEXgfX-OSnJ4bppMqBEVDQ1gwz4jz1QZIq1NQAVjvD2ACagJBSXIgHBHyJ7kExfIYqwQTGL-2Lxupu0QBjIqrjwICAGMBAgtSKqzm/ofertasv/?filter[tourOperator]=ECCX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-beach-spa/pRAy-BStgSqYcpBpNHlW6KAAogz7_wltJ9Yqa_w6lls5ezet_XwCYNeOv_OmngaPJtjJEqBFZJVFgwrpXG1wZIkV9QQVivCGACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS-1DYQBM8YsuDe__owkgAFGWjuX7jwFPo_UHXZCE8_N1AgxjAQILGFK5nw/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Titanic-Beach-Spa-Aqua-Park-fly-pl.jpg"
   },
   "deal_score": 51,
@@ -155,8 +157,8 @@
   "confidence": "High",
   "median_p": 10687.389872770525,
   "min_p": 10523.0,
-  "max_p": 10923.0,
-  "samples": 44,
+  "max_p": 12177.0,
+  "samples": 45,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.12.2026 - 31.12.2026",
   "display_price_ceiling": 11000.0,

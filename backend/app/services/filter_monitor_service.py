@@ -18,131 +18,9 @@ from app.models.hotel import Hotel
 from app.models.price_snapshot import PriceSnapshot
 from app.services.live_scraper import LiveScraperService
 from app.schemas.search import SearchRequest, SearchDates, SearchDuration, SearchTravelers
+from app.services.canonical_monitors_data import CANONICAL_MONITORS
 
 logger = logging.getLogger("travel_monitor_2.monitors")
-
-CANONICAL_MONITORS = [
-    {
-        "id": "turkey_7_10",
-        "group_id": "turkey",
-        "title": "Турция • 7–10 дней",
-        "subtitle": "WAW/RDO • 2+1 • сбор 4–20k PLN • показ ≤10k",
-        "destination": "turkey",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom"
-            "&startDateMin=31-05-2027&startDateMax=23-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price"
-        ),
-    },
-    {
-        "id": "turkey_9_11",
-        "group_id": "turkey",
-        "title": "Турция • 9–11 дней",
-        "subtitle": "WAW/WMI/RDO • 2+1 • сбор 4.6–20k PLN • Все Включено",
-        "destination": "turkey",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin"
-            "&startDateMin=31-05-2027&startDateMax=23-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&categoryRating=50&durationFrom=9&durationTo=11&priceFrom=4600&priceTo=20000&order=price"
-        ),
-    },
-    {
-        "id": "turkey_13_16",
-        "group_id": "turkey",
-        "title": "Турция • 13–16 дней",
-        "subtitle": "WAW/RDO • 2+1 • длительный отдых • 4–20k PLN",
-        "destination": "turkey",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom"
-            "&startDateMin=31-05-2027&startDateMax=23-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price"
-        ),
-    },
-    {
-        "id": "egypt_autumn_7_10",
-        "group_id": "egypt",
-        "title": "Египет • осень • 7–10 дней",
-        "subtitle": "WAW/WMI/RDO • 2+1 • сбор 4–20k PLN • Красное море",
-        "destination": "egypt",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin"
-            "&startDateMin=10-10-2026&startDateMax=05-11-2026&returnDate=15-11-2026&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price"
-        ),
-    },
-    {
-        "id": "egypt_autumn_13_16",
-        "group_id": "egypt",
-        "title": "Египет • осень • 13–16 дней",
-        "subtitle": "WAW/WMI/RDO • 2+1 • длительный отдых 13–16 дн.",
-        "destination": "egypt",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin"
-            "&startDateMin=10-10-2026&startDateMax=05-11-2026&returnDate=20-11-2026&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price"
-        ),
-    },
-    {
-        "id": "greece_7_10",
-        "group_id": "greece",
-        "title": "Греция • 7–10 дней",
-        "subtitle": "Любой аэропорт • Крит / Родос • 4–20k PLN",
-        "destination": "greece",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&departureLocation="
-            "&startDateMin=01-06-2027&startDateMax=25-06-2027&returnDate=05-07-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price"
-        ),
-    },
-    {
-        "id": "eb_turkey_jul27_7_10",
-        "group_id": "early_booking",
-        "title": "Раннее бронирование 2027 • Турция (Июль)",
-        "subtitle": "Летний пик 2027 • 7–10 дн. • фиксация скидок раннего старта",
-        "destination": "turkey",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa"
-            "&startDateMin=01-07-2027&startDateMax=20-07-2027&returnDate=30-07-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&order=price"
-        ),
-    },
-    {
-        "id": "eb_egypt_aug27_7_10",
-        "group_id": "early_booking",
-        "title": "Раннее бронирование 2027 • Египет (Август)",
-        "subtitle": "Август 2027 • 7–10 дн. • Шарм / Хургада",
-        "destination": "egypt",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa"
-            "&startDateMin=01-08-2027&startDateMax=20-08-2027&returnDate=30-08-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&order=price"
-        ),
-    },
-    {
-        "id": "arbitrage_turkey_ber",
-        "group_id": "arbitrage",
-        "title": "Немецкий арбитраж • Турция (Берлин BER vs Польша)",
-        "subtitle": "Вылеты из Берлина • сравнение с польскими чартерами • экономия до -35%",
-        "destination": "turkey",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Berlin"
-            "&startDateMin=31-05-2027&startDateMax=23-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&order=price"
-        ),
-    },
-    {
-        "id": "arbitrage_egypt_ber",
-        "group_id": "arbitrage",
-        "title": "Немецкий арбитраж • Египет (Берлин BER vs Польша)",
-        "subtitle": "Вылеты из Берлина в Египет • немецкие туроператоры TUI/FTI/Alltours",
-        "destination": "egypt",
-        "target_url": (
-            "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Berlin"
-            "&startDateMin=10-10-2026&startDateMax=05-11-2026&returnDate=15-11-2026&adults=2&children=10-12-2020"
-            "&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&order=price"
-        ),
-    },
-]
 
 
 class FilterMonitorService:
@@ -166,6 +44,14 @@ class FilterMonitorService:
                     created_by="system",
                 )
                 db.add(m)
+            else:
+                existing.group_id = item["group_id"]
+                existing.title = item["title"]
+                existing.subtitle = item["subtitle"]
+                existing.destination = item["destination"]
+                existing.target_url = item["target_url"]
+                existing.is_active = True
+                existing.is_hourly = True
         await db.commit()
         logger.info(f"Initialized {len(CANONICAL_MONITORS)} canonical v1 filter monitors.")
 
@@ -265,6 +151,7 @@ class FilterMonitorService:
         """Pass executed by background scheduler every hour for all active filters."""
         logger.info("⏰ Starting Hourly Filters Monitoring Pass across all active filters...")
         async with AsyncSessionLocal() as db:
+            await cls.init_default_monitors(db)
             stmt = select(FilterMonitor).where(FilterMonitor.is_active == True, FilterMonitor.is_hourly == True)
             res = await db.execute(stmt)
             monitors = res.scalars().all()

@@ -460,7 +460,8 @@
     "2026-08-26 18:13:11",
     "2026-08-26 20:52:49",
     "2026-08-26 23:31:07",
-    "2026-08-27 04:27:27"
+    "2026-08-27 04:27:27",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10837.0,
@@ -919,7 +920,8 @@
     10987.0,
     10987.0,
     10987.0,
-    10987.0
+    10987.0,
+    13464.0
   ],
   "hover": [
     "Проверка: 01.08.2026 02:16<br>Даты поездки: 22.10.2026 - 05.11.2026",
@@ -1383,7 +1385,7 @@
   "meta": {
     "dates": "18.10.2026 - 01.11.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-luxury-resort-9/pwcHm0C4tGtzk8T9EQy965AAoguf9y-lqlmGB2zVG0NLYcOh0APwV3_Z8JjF1DUPhPaJQqBEVYSU0wj8G-1AZI61VQAVjdCWACaglTdXBlciBVQUlyIxwRxvYGuQS7xz2rBMmMChvY3DsYy5xRAamqkLMNAgBjAQINK8OzQQ/ofertasv/?filter[tourOperator]=EXIM&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-luxury-resort-9/pIYfXu5YEenwzWKyUVrCwfAAognRhp1ifD7n5hYXkS3uPQGmHHVjCm54QuAuAPbfe-gAMqBE9SRVgwrpXG1wZImGlQQVi_CWACagVFLjIuMXI1mwEVCBcAWAdWAlwIQMIGXZsPTyQRgiJT0HtSAF6vT0vtQ2EATOWMOiCB_5cJDQACEmMBAg0gWmu7/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://datacfstatic.merlinx.pl/EXIM/IMG/113478/d4eb92cfe350c7a33d54f02107ec3a32db9ef7ad1d4e95c8b7b4944e33e5d7b4.webp"
   },
   "deal_score": 47,
@@ -1394,8 +1396,8 @@
   "confidence": "High",
   "median_p": 10808.814110127945,
   "min_p": 10657.0,
-  "max_p": 10987.0,
-  "samples": 457,
+  "max_p": 13464.0,
+  "samples": 458,
   "alert_threshold": 8.0,
   "trip_dates_label": "18.10.2026 - 01.11.2026",
   "display_price_ceiling": 11000.0,

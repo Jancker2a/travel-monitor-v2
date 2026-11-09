@@ -1198,7 +1198,9 @@
     "2026-10-15 20:33:07",
     "2026-10-16 00:34:19",
     "2026-10-16 03:39:36",
-    "2026-10-16 09:27:20"
+    "2026-10-16 09:27:20",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     10922.0,
@@ -2395,7 +2397,9 @@
     10989.0,
     10989.0,
     11273.0,
-    10332.0
+    10332.0,
+    7457.0,
+    7457.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:47<br>Даты поездки: 03.06.2026 - 16.06.2026",
@@ -3597,7 +3601,7 @@
   "meta": {
     "dates": "17.10.2026 - 31.10.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/saray-regency-resort-spa/pxKVs00UtCJSyC6Obj0jQwAAogAF69xW-L9-9ZXSDNtqZ8Yc63f4mXDNSGTkWe2S4PF6QqBE9SRVgw26PH1gZI3FBQQVgQYAJqBUUuMi4xcjabARUOFwBYAVYCXAhAwgYRzSZPjhpdJFOrJ1IAXpaUAUvtQ2EATOWMOiCs_ZcJDQACEmMBAgvp_iQ8/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/saray-regency-resort-spa/pSqnScoElU8GvcPJtD-AAUAAogAF69xW-L9-9ZXSDNtqZ8YeSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIoTpQQVjHJmACagVFLjIuMXI2mwEVBxcAWAhWAlwIQMIGEc0mT44aXSRTqydSAF6WlAFL7UNhAEzljDognsiYCQ0AAhJjAQILux4LXg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2016/11/Saray-Regency-Resort.jpg"
   },
   "deal_score": 88,
@@ -3607,9 +3611,9 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 14528.735576967943,
-  "min_p": 9455.0,
+  "min_p": 7457.0,
   "max_p": 19674.0,
-  "samples": 1195,
+  "samples": 1197,
   "alert_threshold": 8.0,
   "trip_dates_label": "17.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

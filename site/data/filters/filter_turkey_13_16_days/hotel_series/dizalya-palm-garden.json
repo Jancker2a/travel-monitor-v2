@@ -1285,7 +1285,9 @@
     "2026-10-10 17:33:52",
     "2026-10-10 22:14:31",
     "2026-10-11 01:43:50",
-    "2026-10-11 08:04:07"
+    "2026-10-11 08:04:07",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     13127.0,
@@ -2569,7 +2571,9 @@
     17642.0,
     17642.0,
     17642.0,
-    17642.0
+    17642.0,
+    7623.0,
+    7623.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:47<br>Даты поездки: 03.06.2026 - 17.06.2026",
@@ -3858,7 +3862,7 @@
   "meta": {
     "dates": "17.10.2026 - 31.10.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/dizalya-palm-garden/pjXQTNMYxfKSeXeZCpwyZuAAogzRceiYgWFtxQ5kht1Kh2ptMArxVMZe6mIObQ7W4J3wEqBFJOQlcwjM6s1gZI6okBUEFYiQFgAmoERnhjWWoNQUxMX0lOQ0xVU0lWRWoXMjk2LDM4MCw0NzcsNDgzLDQ4NCw0ODVyPJ8BlgGeARUOFwBYAQomQKIHEfomGcAwEJkHU9sIUgBMob4BS-IZYQAdppVBD_UBIPbykAkNAAILYwECCm-a9jg/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/dizalya-palm-garden/pQAqo6x1Pg55I3JaOn1f5jAAogDte61uX0zVI2qLCJpVITUyYSJfzI6ab3ivK0uVyLG9kqBFJOQlcwo5XG1wZIxztQQVi3KGACagRGeGNZcjmfARUHFwBWA1gFCiZAogcR-iYQ2DcZe1PhB1IATKG-AUviGWEAHefORw-fBCCHgosJDQACC2MBAgoSy3rW/?operator=RNBW&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/04/Dizalya-Palm-Garden-fly-pl.jpg"
   },
   "deal_score": 0,
@@ -3868,9 +3872,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 15272.932734983586,
-  "min_p": 11877.0,
+  "min_p": 7623.0,
   "max_p": 19212.0,
-  "samples": 1282,
+  "samples": 1284,
   "alert_threshold": 8.0,
   "trip_dates_label": "17.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

@@ -4,10 +4,12 @@
   "slug": "jaz-palmariva-beach",
   "hotel_name": "Jaz Palmariva Beach",
   "x": [
-    "2026-07-27 09:30:20"
+    "2026-07-27 09:30:20",
+    "2026-11-09 08:56:15"
   ],
   "y": [
-    14190.0
+    14190.0,
+    13541.0
   ],
   "hover": [
     "Проверка: 27.07.2026 09:30<br>Даты поездки: 18.10.2026 - 01.11.2026"
@@ -15,7 +17,7 @@
   "meta": {
     "dates": "18.10.2026 - 01.11.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/club-azur/p5AUkIc9e6x7KR8TUcj1stAAogCWFwWgOoVYdTTosBec3BDgAAAADlggQATLsEAA4AAAAqBFdFWlkwlJKc0wZI7m5QQVjAD2ADaglFbnRlciBBaXJqBDAwMTVqBDAwMDBqBDAwMDByQp4BlAGVAZgBHwACARwAFgQXCRLmAxOoCkCFc0_LMkwAS5yTAVAAEcSvAhu1ch3knAwg53ANztrBCQESYwENYwECBVjCueo/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/club-azur/paXUWincEF5BDJzzOvI6zrAAogoUr5F-B2H2Jqo52BeMH9GejDAr5XINyOsbv3ugeYN0gqBFNGUEwwrpXG1wZI5WlQQVivCGACciULAhUFIgUSIlzMAkAuDcDP1AlR1_q99gNb0Jmu_OUBAhJjAQYM9vmjpQ/?operator=SFPL&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/07/Labranda-Club-Makadi-ex-Club-Azur-fly-pl.jpg"
   },
   "deal_score": 0,
@@ -25,9 +27,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 14190.0,
-  "min_p": 14190.0,
+  "min_p": 13541.0,
   "max_p": 14190.0,
-  "samples": 1,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "18.10.2026 - 01.11.2026",
   "display_price_ceiling": 11000.0,

@@ -10,7 +10,9 @@
     "2026-11-05 09:03:43",
     "2026-11-05 23:48:44",
     "2026-11-06 12:33:15",
-    "2026-11-07 01:15:09"
+    "2026-11-07 01:15:09",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     9403.0,
@@ -19,7 +21,9 @@
     8626.0,
     8626.0,
     8626.0,
-    8620.0
+    8620.0,
+    7395.0,
+    7395.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:39<br>Даты поездки: 07.07.2027 - 14.07.2027",
@@ -33,7 +37,7 @@
   "meta": {
     "dates": "03.07.2027 - 10.07.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pU6tmlPwlagDSvDXmdrL8vAAogAuojzgWJlFLw3u8eMWSODVGSBs05HxepNkccblPbFhYqBEpPSVAwktu51wZIrENQQVjPLGACagMzcWtyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABGLnQFM2u84DYLJmAkgAAHli8CQpcjTnDACDWMBAgZk27ii/?operator=JOIP&adults=2&children=2020-08-12&objectId=204765&durationFrom=7&durationTo=10&departureDate=2027-07-03&returnDate=2027-07-10&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pKiGvFl2OF07BA2uGbiDygAAogAuojzgWJlFLw3u8eMWSODUJ8a7QQweyHATmJxjka8ZMqBEpPSVAwo5XG1wZI4zlQQVivJmACagMzcWtyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABGLnQFM2u84DZ3ImAkgAAGp6LuQpcjTnDACDWMBAgYVBNRi/?operator=JOIP&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707341/plain/cms/fileadmin/config_img/objects/204765/club-jovia-kemer-ex-armir-resort.webp@webp"
   },
   "deal_score": 62,
@@ -43,9 +47,9 @@
   "delta_avg": "-1.2%",
   "confidence": "Low",
   "median_p": 8723.622064426134,
-  "min_p": 8620.0,
+  "min_p": 7395.0,
   "max_p": 9403.0,
-  "samples": 7,
+  "samples": 9,
   "alert_threshold": 8.0,
   "trip_dates_label": "03.07.2027 - 10.07.2027",
   "display_price_ceiling": 12000.0,

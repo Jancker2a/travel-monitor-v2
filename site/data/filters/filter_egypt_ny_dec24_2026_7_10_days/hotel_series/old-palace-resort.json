@@ -10,7 +10,8 @@
     "2026-10-15 00:27:06",
     "2026-11-06 04:33:03",
     "2026-11-06 12:34:09",
-    "2026-11-06 13:17:58"
+    "2026-11-06 13:17:58",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10672.0,
@@ -19,7 +20,8 @@
     10884.0,
     10644.0,
     10644.0,
-    10644.0
+    10644.0,
+    12893.0
   ],
   "hover": [
     "Проверка: 08.09.2026 09:41<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -33,7 +35,7 @@
   "meta": {
     "dates": "12.26.2026 - 01.01.2027",
     "duration": "9 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/old-palace-resort/pAqjjXLSSn9YQIF9fasZKmAAogH_3jwf8U2DIif760Bspa-a4l3-lULG69CvLTTUqTvRIqBEJWQkUw_Iq31wZIlFNQAVjzCGACagJBSXIhHBGytAEbj6FEGOmnGLkEsfgoqwRvAd6pvZgEAhJjAQILc825yA/?operator=BVBE&adults=2&children=2020-12-10&objectId=4842&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/old-palace-resort/pVXJS3_98k7iav99kSGdMgAAogHHXS8c3sOcQ5khmaGL65LejDAr5XINyOsbv3ugeYN0gqBFNGUEwwrpXG1wZI3WRQQVivCGACciILAhUFIgQSI1zMAkAuW-fwUQ3Z3oIJUbetvvYDAhJjAQULSor08Q/?operator=SFPL&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703165/plain/cms/fileadmin/config_img/objects/4842/Old-Palace-Resort-Sahl-Hasheesh.webp@webp"
   },
   "deal_score": 51,
@@ -44,8 +46,8 @@
   "confidence": "Low",
   "median_p": 10748.603141758402,
   "min_p": 10644.0,
-  "max_p": 10884.0,
-  "samples": 7,
+  "max_p": 12893.0,
+  "samples": 8,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 01.01.2027",
   "display_price_ceiling": 11000.0,

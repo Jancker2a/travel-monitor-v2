@@ -5,11 +5,13 @@
   "hotel_name": "Sirena Beach Resort & Spa",
   "x": [
     "2026-10-28 06:59:41",
-    "2026-10-28 10:52:07"
+    "2026-10-28 10:52:07",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10774.0,
-    10774.0
+    10774.0,
+    14081.0
   ],
   "hover": [
     "Проверка: 28.10.2026 06:59<br>Даты поездки: 12.26.2026 - 06.01.2027",
@@ -18,7 +20,7 @@
   "meta": {
     "dates": "12.26.2026 - 06.01.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/movenpick-sirena-beach-13/pm_QtYpE7t--iBQ3ho_cKNAAognlvqeY6u1XrwfHFienWo6bG5kgRBbNLWpKMQZ3cq5joqBE9BU0kwzIuH1wZIllRQAVjeC2ACagNBSWxyIRwRwcABuQTI4w-rBAcb1uEPGNbqEwGyyPmnAgIAYwECDCHvPZo/?operator=OASI&adults=2&children=2020-12-10&objectId=6380&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/movenpick-sirena-beach-13/peTCzeEcKJViiOdnoZw_hPAAog4rUAFiDW8DclHS65webjxS2W-HefqKNbQFDtSxqIbTEqBFNGUEwwrpXG1wZIgW5QQVinCWACciULAhUFIgYSJ1zGAkAuDcXP1AlbosCy3QVRibCOmdoBAhJjAQYNe01rsg/?operator=SFPL&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/OASI/IMG/24641/cb70c581a64dd7b9b4e30e191a832b706e8d5c593e226b487ccc95fd8161c468.webp@webp"
   },
   "deal_score": 50,
@@ -29,8 +31,8 @@
   "confidence": "Low",
   "median_p": 10774.0,
   "min_p": 10774.0,
-  "max_p": 10774.0,
-  "samples": 2,
+  "max_p": 14081.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 06.01.2027",
   "display_price_ceiling": 11000.0,

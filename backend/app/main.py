@@ -243,6 +243,19 @@ async def run_single_monitor_now(monitor_id: str, db: AsyncSession = Depends(get
     return await FilterMonitorService.run_single_monitor(db, monitor_id)
 
 
+@app.post("/api/v2/monitors/run-all-now")
+async def run_all_monitors_now(db: AsyncSession = Depends(get_db)):
+    """Triggers an immediate hourly pass across all 22 active canonical monitors."""
+    return await FilterMonitorService.run_all_hourly_monitors()
+
+
+@app.post("/api/v2/monitors/rebuild-dashboards")
+async def rebuild_dashboards_on_server(db: AsyncSession = Depends(get_db)):
+    """Rebuilds HTML dashboards, hotel series, and catalog on the server from DB snapshots."""
+    from app.services.site_rebuilder import SiteRebuilderService
+    return await SiteRebuilderService.rebuild_all(db)
+
+
 @app.post("/api/v2/monitors")
 async def create_custom_monitor(data: dict, db: AsyncSession = Depends(get_db)):
     """Registers a new user-defined filter for hourly monitoring."""

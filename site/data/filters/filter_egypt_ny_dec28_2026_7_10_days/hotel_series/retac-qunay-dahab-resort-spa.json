@@ -55,7 +55,8 @@
     "2026-11-03 19:48:13",
     "2026-11-04 03:31:38",
     "2026-11-04 17:27:38",
-    "2026-11-04 19:48:11"
+    "2026-11-04 19:48:11",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10987.0,
@@ -109,7 +110,8 @@
     10657.0,
     10657.0,
     10657.0,
-    10657.0
+    10657.0,
+    11547.0
   ],
   "hover": [
     "Проверка: 14.10.2026 00:59<br>Даты поездки: 29.12.2026 - 05.01.2027",
@@ -168,7 +170,7 @@
   "meta": {
     "dates": "12.26.2026 - 05.01.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/le-meridien-dahab-bay/p4-6wQHL2DERdYq8ghpbw8AAogC2GWWoGmQubsCdzu48v0WjwT7RlUfXMzs7Cg2TnkgBgqBFZJVFgw7_ut1wZIoVNQQViVCmACagpBRUdTU0hKUFQ2agpSTVNEREJWUDAwagxHRE5TU0hEUDMwMDJqDFNTSEdETkRQMzAwMnI0kQGbAZ0BjwEaABcHFQBcA1gFQI8DS82iAWEAXrBdUqYgUwBM16s4INWDmgkNAAIMYwECCwlkWZc/?operator=VITX&adults=2&children=2020-12-10&objectId=1456&durationFrom=7&durationTo=10&departureDate=2026-12-29&returnDate=2027-01-05&departureLocation=Gda%C5%84sk&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/le-meridien-dahab-bay/pLX0jqnJ_M9J5GZNsgnxD_AAogHHX0Xd6jyeoLx9poaWwdbrf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZIm1pQQVjHCGACagZETS4yLjFyNpsBFQcXAFgIXAJWAEDKBhGxDV2yC08kXrnjAVOmIFIAS8cjYQBM5Yw6IPz-lwkNAAISYwECC_cG6HE/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702354/plain/cms/fileadmin/config_img/objects/1456/Retac-Qunay-Dahab.webp@webp"
   },
   "deal_score": 47,
@@ -179,8 +181,8 @@
   "confidence": "High",
   "median_p": 10184.906744642083,
   "min_p": 9227.0,
-  "max_p": 10987.0,
-  "samples": 52,
+  "max_p": 11547.0,
+  "samples": 53,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 05.01.2027",
   "display_price_ceiling": 11000.0,

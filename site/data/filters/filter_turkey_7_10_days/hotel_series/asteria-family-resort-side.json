@@ -1220,7 +1220,9 @@
     "2026-10-23 00:31:14",
     "2026-10-23 03:40:57",
     "2026-10-23 09:46:57",
-    "2026-10-23 15:37:53"
+    "2026-10-23 15:37:53",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     6422.0,
@@ -2439,7 +2441,9 @@
     4568.0,
     4568.0,
     4568.0,
-    4095.0
+    4095.0,
+    7700.0,
+    7700.0
   ],
   "hover": [
     "Проверка: 31.05.2026 11:46<br>Даты поездки: 05.06.2026 - 12.06.2026",
@@ -3663,7 +3667,7 @@
   "meta": {
     "dates": "24.10.2026 - 31.10.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,kizilagac/euphoria-palm-beach/p4H87gRfiz-UBn8SU-c9-WAAogCYQvkJbJPBQdHzSOVWLU1sBT9HTATqnDHdIJOHBJxz8qBE9SRVgw48bt1gZI_x9QQVgKYAJqBjUxLjIuMXI2mwEVBxcAWAhWAlwIQMIGEbUmT6YaXSRTqydSAF6WlAFL7UNhAEzljDogs_2XCQ0AAhJjAQILFwU-ug/?operator=OREX&adults=2&children=2020-12-10&objectId=107121&durationFrom=7&durationTo=10&departureDate=2026-10-24&returnDate=2026-10-31&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,kizilagac/euphoria-palm-beach/pNPpjxJ3Kl9JcW29H19_fpAAogCYQvkJbJPBQdHzSOVWLU1uSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIlDxQQVjHJmACagY1MS4yLjFyNpsBFQcXAFgIVgJcCEDCBhG1Jk-mGl0kU6snUgBelpQBS-1DYQBM5Yw6IJ7ImAkNAAISYwECC8Vzj1k/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703217/plain/cms/fileadmin/config_img/objects/107121/Euphoria-Palm-Beach.webp@webp"
   },
   "deal_score": 92,
@@ -3675,7 +3679,7 @@
   "median_p": 8548.561315970497,
   "min_p": 4095.0,
   "max_p": 11844.0,
-  "samples": 1217,
+  "samples": 1219,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

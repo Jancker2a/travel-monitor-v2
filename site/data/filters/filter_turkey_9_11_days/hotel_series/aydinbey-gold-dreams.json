@@ -1047,7 +1047,9 @@
     "2026-10-15 20:31:49",
     "2026-10-16 00:33:49",
     "2026-10-16 03:39:20",
-    "2026-10-16 09:26:22"
+    "2026-10-16 09:26:22",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     12436.0,
@@ -2093,7 +2095,9 @@
     10969.0,
     10969.0,
     10969.0,
-    10969.0
+    10969.0,
+    7264.0,
+    7264.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 27.06.2026 - 08.07.2026",
@@ -3144,7 +3148,7 @@
   "meta": {
     "dates": "17.10.2026 - 28.10.2026",
     "duration": "12 dni/11 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/aydinbey-gold-dreams/plOo5LKqSaKXyYVhJoYQt4AAogWYb3WAbZl2VSFsMb-QQqghTqXHjwCLCJQSu3TS63pt0qBFJOQlcwwKPH1gZI2VVQQVgQYAJqBENBZ1FqDUFMTF9JTkNMVVNJVkVqFzI5NiwzODAsNDc3LDQ4Myw0ODQsNDg1cjyfAZYBngEVCxcAWAQKFkCyBxGkLRmWKlP0D1IAENUPTMyuAUviGWEAD_GIQR21DCDr9JAJDQACDWMBAgzfTzjY/ofertasv/?filter[tourOperator]=RNBW&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20200812&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/aydinbey-gold-dreams/p-wd8loXDJ4z5yf_u2oFpXAAogGBAE8A22XNiGhFhtXu9FeyOQvkglbtwqN8LtMAnJdesqBFJOQlcwo5XG1wZI4DhQQVj3JmACagRDQWdRcjqfARUHFwBWA1gFChZAsgcRpC0ZqTJT4QdSABDVD0zMrgFL4hlhAA-q4UYdnQUgvu6LCQ0AAg1jAQIMK_PQlg/?operator=RNBW&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Aydinbey-Gold-Dreams.jpg"
   },
   "deal_score": 71,
@@ -3154,9 +3158,9 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 12516.63602737007,
-  "min_p": 8315.0,
+  "min_p": 7264.0,
   "max_p": 15785.0,
-  "samples": 1044,
+  "samples": 1046,
   "alert_threshold": 8.0,
   "trip_dates_label": "17.10.2026 - 28.10.2026",
   "display_price_ceiling": 10000.0,

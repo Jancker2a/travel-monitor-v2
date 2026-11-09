@@ -1225,7 +1225,9 @@
     "2026-10-21 17:37:26",
     "2026-10-22 03:42:31",
     "2026-10-22 09:09:24",
-    "2026-10-22 10:13:14"
+    "2026-10-22 10:13:14",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     10215.0,
@@ -2449,7 +2451,9 @@
     6093.0,
     6093.0,
     5904.0,
-    5904.0
+    5904.0,
+    7457.0,
+    7457.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 02.07.2026 - 11.07.2026",
@@ -3678,7 +3682,7 @@
   "meta": {
     "dates": "22.10.2026 - 31.10.2026",
     "duration": "10 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/saray-regency-resort-spa/pYgYHi9IMKq4DONnxcJM-5AAogAF69xW-L9-9ZXSDNtqZ8YX5cR80ijkdeCW39zetVaVcqBE9SRVgwn4vn1gZIkC5QQVj4__________8BYAJqBUUuMi4xcjabARUJFwBYBlYCXAhAwgYRzSZPjhpdJFOrJ1IAXpaUAUvtQ2EATOWMOiCx_ZcJDQACEmMBAgtZvkoE/?operator=OREX&adults=2&children=2020-08-12&objectId=5005&durationFrom=9&durationTo=11&departureDate=2026-10-22&returnDate=2026-10-31&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=9&nights=9",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/saray-regency-resort-spa/pSqnScoElU8GvcPJtD-AAUAAogAF69xW-L9-9ZXSDNtqZ8YeSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZIoTpQQVjHJmACagVFLjIuMXI2mwEVBxcAWAhWAlwIQMIGEc0mT44aXSRTqydSAF6WlAFL7UNhAEzljDognsiYCQ0AAhJjAQILux4LXg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744705300/plain/cms/fileadmin/config_img/objects/5005/Saray-Regency-Resort.webp@webp"
   },
   "deal_score": 92,
@@ -3690,7 +3694,7 @@
   "median_p": 10373.508148326257,
   "min_p": 5904.0,
   "max_p": 15287.0,
-  "samples": 1222,
+  "samples": 1224,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.10.2026 - 31.10.2026",
   "display_price_ceiling": 10000.0,

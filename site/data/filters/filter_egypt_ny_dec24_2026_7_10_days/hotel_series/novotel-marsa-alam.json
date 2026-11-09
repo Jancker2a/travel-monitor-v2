@@ -213,7 +213,8 @@
     "2026-10-28 10:52:05",
     "2026-10-29 07:03:19",
     "2026-10-29 12:50:32",
-    "2026-10-30 00:27:37"
+    "2026-10-30 00:27:37",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10033.0,
@@ -425,7 +426,8 @@
     10928.0,
     10137.0,
     10405.0,
-    10177.0
+    10177.0,
+    12897.0
   ],
   "hover": [
     "Проверка: 27.08.2026 17:41<br>Даты поездки: 28.12.2026 - 04.01.2027",
@@ -642,7 +644,7 @@
   "meta": {
     "dates": "12.26.2026 - 06.01.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/novotel-marsa-alam/pN59W3G8ApPYddtfLCRe-ZAAoggcc9q52mu266-QYB-LuOW7bH7gPOM3Cw3fkCl9uJdrkqBEJWQkUw7ayP1wZIwU9QAVi4C2ACagJBSXIhHBHO-QEb9u9DGMP5GasEz_AnuQQGAaD2qrMEAhJjAQYLr8Pk4g/?operator=BVBE&adults=2&children=2020-12-10&objectId=174947&durationFrom=7&durationTo=10&departureDate=2026-12-30&returnDate=2027-01-06&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/novotel-marsa-alam/pj5tqdhbbhaRMsA00tigg7AAog05sDiSTkxvPTZOJ_d57e0O3tAfEkfPLIvEPAkXKu4HMqBFZJVFgwrpXG1wZI4WRQQVjfCGACckAaABUHFwBcA1gFQI8DW5eFAV7melK8FFMAS7EvYQBM8YsuDfH_owkgAFHK1rP23wFP7cIYXZz4r_klAg1jAQIMBuPd7Q/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704376/plain/cms/fileadmin/config_img/objects/174947/Novotel-Marsa-Alam.webp@webp"
   },
   "deal_score": 45,
@@ -653,8 +655,8 @@
   "confidence": "High",
   "median_p": 9777.339500471235,
   "min_p": 8752.0,
-  "max_p": 10928.0,
-  "samples": 210,
+  "max_p": 12897.0,
+  "samples": 211,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 06.01.2027",
   "display_price_ceiling": 11000.0,

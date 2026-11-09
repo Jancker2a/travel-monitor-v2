@@ -826,7 +826,8 @@
     "2026-10-21 13:02:33",
     "2026-10-21 13:33:08",
     "2026-10-21 15:12:15",
-    "2026-10-21 17:40:03"
+    "2026-10-21 17:40:03",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     8671.0,
@@ -1651,7 +1652,8 @@
     8150.0,
     8150.0,
     8312.0,
-    8312.0
+    8312.0,
+    13802.0
   ],
   "hover": [
     "Проверка: 27.07.2026 10:55<br>Даты поездки: 17.10.2026 - 24.10.2026",
@@ -2481,7 +2483,7 @@
   "meta": {
     "dates": "27.10.2026 - 03.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pHx8cTUqQ_zNTBEcFf43WcAAogjAeNzLOQZJPs-RoA5AfFvHb6-M-63DqmxRqPbNTEi2wqBE9SRVgw1rnj1gZI-EBQQViAAWACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEboNXakLTyRLkrMBYQBepzBSpiBTAEyssDoNtv2XCSAAAhJjAQINIIX2ew/?operator=OREX&adults=2&children=2020-12-10&objectId=138&durationFrom=7&durationTo=10&departureDate=2026-10-27&returnDate=2026-11-03&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pRT6KwH4DmaBmjfK0BQtZ5AAogjAeNzLOQZJPs-RoA5AfFvLf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZI6mtQQVjHCGACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEboNXakLTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQINucmlgQ/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701103/plain/cms/fileadmin/config_img/objects/138/Parrotel-Beach-Resort.webp@webp"
   },
   "deal_score": 52,
@@ -2492,8 +2494,8 @@
   "confidence": "High",
   "median_p": 8340.677237622886,
   "min_p": 6493.0,
-  "max_p": 9413.0,
-  "samples": 823,
+  "max_p": 13802.0,
+  "samples": 824,
   "alert_threshold": 8.0,
   "trip_dates_label": "27.10.2026 - 03.11.2026",
   "display_price_ceiling": 11000.0,

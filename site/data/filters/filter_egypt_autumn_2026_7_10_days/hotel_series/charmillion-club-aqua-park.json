@@ -795,7 +795,8 @@
     "2026-10-21 13:02:33",
     "2026-10-21 13:33:08",
     "2026-10-21 15:12:15",
-    "2026-10-21 17:40:03"
+    "2026-10-21 17:40:03",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     9036.0,
@@ -1589,7 +1590,8 @@
     8307.0,
     8307.0,
     8510.0,
-    8469.0
+    8469.0,
+    14180.0
   ],
   "hover": [
     "Проверка: 27.07.2026 09:29<br>Даты поездки: 10.10.2026 - 17.10.2026",
@@ -2388,7 +2390,7 @@
   "meta": {
     "dates": "27.10.2026 - 03.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pqQOhA24qzB4vo61DKxVhEAAogv47aQFzKleo4BmQRilBzBHb6-M-63DqmxRqPbNTEi2wqBE9SRVgw1rnj1gZIlUJQQViAAWACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaINXcELTyRLkrMBYQBepzBSpiBTAEyssDoNtv2XCSAAAhJjAQIM_kwP8w/?operator=OREX&adults=2&children=2020-12-10&objectId=103848&durationFrom=7&durationTo=10&departureDate=2026-10-27&returnDate=2026-11-03&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pbnxQV85vK9hHgdh2XvGhiAAogv47aQFzKleo4BmQRilBzBLf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZI5G5QQVjHCGACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaINXcELTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQIMxywv4g/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701107/plain/cms/fileadmin/config_img/objects/103848/Charmillion-Club-Aqua-Park.webp@webp"
   },
   "deal_score": 77,
@@ -2399,8 +2401,8 @@
   "confidence": "High",
   "median_p": 9351.939824319656,
   "min_p": 8307.0,
-  "max_p": 10938.0,
-  "samples": 792,
+  "max_p": 14180.0,
+  "samples": 793,
   "alert_threshold": 8.0,
   "trip_dates_label": "27.10.2026 - 03.11.2026",
   "display_price_ceiling": 11000.0,

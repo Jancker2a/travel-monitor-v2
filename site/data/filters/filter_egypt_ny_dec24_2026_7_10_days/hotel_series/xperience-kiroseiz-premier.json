@@ -419,7 +419,8 @@
     "2026-11-07 01:16:08",
     "2026-11-07 08:43:33",
     "2026-11-07 11:24:18",
-    "2026-11-07 13:06:08"
+    "2026-11-07 13:06:08",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10522.0,
@@ -837,7 +838,8 @@
     10391.0,
     10383.0,
     10383.0,
-    10383.0
+    10383.0,
+    13968.0
   ],
   "hover": [
     "Проверка: 26.08.2026 10:30<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -1260,7 +1262,7 @@
   "meta": {
     "dates": "24.12.2026 - 31.12.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pcYhUhWsC9quYmTLrzQ2jPAAogc5qsI0a47M53bgGd0dOQ4vs-3vUnd3M9xTgZ8fjGt70qBEpPSVAwtai81wZIj1FQQVjbCGACagNDR21yQpsBFAEVBhcAXANYBVYCQMoGT6sCXQBelfoBEeYSUsANUwBL6SZhAEzDiToN-_6XCSAAAeWN2PiyiNSgMAINYwEAC2w0-74/?operator=JOIP&adults=2&children=2020-12-10&objectId=175980&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pS_C-E3dF3PjPeOQ_KGiHBAAogw6eSNT6MO8JgvaVjLDIRr7f37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZIkG1QQVjHCGACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEc4NXZULTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQIL_s-JAg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704488/plain/cms/fileadmin/config_img/objects/175980/Xperience-Kiroseiz-Premier-fly-pl-3.jpg@webp"
   },
   "deal_score": 62,
@@ -1271,8 +1273,8 @@
   "confidence": "High",
   "median_p": 10260.638825338168,
   "min_p": 8085.0,
-  "max_p": 10911.0,
-  "samples": 416,
+  "max_p": 13968.0,
+  "samples": 417,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.12.2026 - 31.12.2026",
   "display_price_ceiling": 11000.0,

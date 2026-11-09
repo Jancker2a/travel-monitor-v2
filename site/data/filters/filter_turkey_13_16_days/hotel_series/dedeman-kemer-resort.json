@@ -1039,7 +1039,9 @@
     "2026-10-18 16:29:40",
     "2026-10-18 17:08:18",
     "2026-10-18 17:39:53",
-    "2026-10-18 18:02:40"
+    "2026-10-18 18:02:40",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     10131.0,
@@ -2077,7 +2079,9 @@
     10227.0,
     10227.0,
     10227.0,
-    10227.0
+    10227.0,
+    7395.0,
+    7395.0
   ],
   "hover": [
     "Проверка: 04.06.2026 13:03<br>Даты поездки: 06.06.2026 - 19.06.2026",
@@ -3120,7 +3124,7 @@
   "meta": {
     "dates": "19.10.2026 - 01.11.2026",
     "duration": "14 dni/13 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pi1TR7-8krYF0RJnen-rGtAAog32DZjsTIZy1-aMa0MbPE9AAAAAADYwQA578FAA0AAQAqBFdFWlkwo9vT1gZI809QQVgHYANqCUVudGVyIEFpcnJGngEfABwBAgAWABcMEucDE_EEFRkYmwEU6wFMgWNPAECcElDnxQFLABGvrQEdzNENIOS5BRvihz4N0sn_CAESYwEMYwEDBmos4Oc/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pKiGvFl2OF07BA2uGbiDygAAogAuojzgWJlFLw3u8eMWSODUJ8a7QQweyHATmJxjka8ZMqBEpPSVAwo5XG1wZI4zlQQVivJmACagMzcWtyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABGLnQFM2u84DZ3ImAkgAAGp6LuQpcjTnDACDWMBAgYVBNRi/?operator=JOIP&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2024/07/club-jovia-kemer-ex-armir-resort.jpg"
   },
   "deal_score": 85,
@@ -3130,9 +3134,9 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 13980.908420107367,
-  "min_p": 9616.0,
+  "min_p": 7395.0,
   "max_p": 18409.0,
-  "samples": 1036,
+  "samples": 1038,
   "alert_threshold": 8.0,
   "trip_dates_label": "19.10.2026 - 01.11.2026",
   "display_price_ceiling": 10000.0,

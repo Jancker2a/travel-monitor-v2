@@ -105,7 +105,9 @@
     "2026-10-16 09:24:08",
     "2026-10-16 15:24:57",
     "2026-10-17 13:04:03",
-    "2026-10-20 03:58:19"
+    "2026-10-20 03:58:19",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     7853.0,
@@ -209,7 +211,9 @@
     5241.0,
     5241.0,
     4683.0,
-    5040.0
+    5040.0,
+    7528.0,
+    7528.0
   ],
   "hover": [
     "Проверка: 10.07.2026 01:18<br>Даты поездки: 23.07.2026 - 30.07.2026",
@@ -318,7 +322,7 @@
   "meta": {
     "dates": "21.10.2026 - 28.10.2026",
     "duration": "8 dni/7 nocy",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/timo-resort/pf6ivFyrgj-LlLJN0kOd8SAAog2II_ihSTe6AZy7C9GhiWtKiNaK6dlmKrkf9EXuXcb9gqBE9SRVgwvJXb1gZIsCdQQVgWYAJqBUUuMi4xcjWbARUHFwBYCFYCXAgReUDJBU_HOF0kU78vUgBelpQBS4ESYQBM0b46ILD9lwkNAAISYwECCw1xkgg/ofertasv/?filter[tourOperator]=OREX&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/timo-resort/pS6DE3o8FufQJhHUDkiEbbAAogh2NMAqtj0R-0T8EjSf4Yc3JNmvYR-AMih0SwJx8rLGkqBEpPSVAwo5XG1wZI6DpQQViPJ2ACagMwMkxyQpsBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgER8UBL_AJhAEzljDoNociYCSAAAcrog9mEicycMAINYwECC0beU6g/?operator=JOIP&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2015/12/Timo-Resort-fly-pl.jpg"
   },
   "deal_score": 81,
@@ -330,7 +334,7 @@
   "median_p": 7372.745960545687,
   "min_p": 4683.0,
   "max_p": 9653.0,
-  "samples": 102,
+  "samples": 104,
   "alert_threshold": 8.0,
   "trip_dates_label": "21.10.2026 - 28.10.2026",
   "display_price_ceiling": 10000.0,

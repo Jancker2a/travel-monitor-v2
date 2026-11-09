@@ -1126,7 +1126,9 @@
     "2026-10-25 08:36:02",
     "2026-10-25 09:11:14",
     "2026-10-25 09:54:46",
-    "2026-10-25 10:52:34"
+    "2026-10-25 10:52:34",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     6225.0,
@@ -2251,7 +2253,9 @@
     4989.0,
     4989.0,
     4989.0,
-    4989.0
+    4989.0,
+    7395.0,
+    7395.0
   ],
   "hover": [
     "Проверка: 01.06.2026 02:06<br>Даты поездки: 06.06.2026 - 13.06.2026",
@@ -3381,7 +3385,7 @@
   "meta": {
     "dates": "25.10.2026 - 01.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pJmv4M90GgHczivUw9_YaRAAog32DZjsTIZy1-aMa0MbPE9AAAAADTdAQA578FAAcAAQAqBFdFWlkw5qL31gZI_SZQQVj3__________8BYANqCUVudGVyIEFpcnJGngEfABwBAgAWABcGEu0DFYoFGJsBE2QU_gNMimBPAECcElDnxQFLABGvrQEdnPUNIJSWBRvihz4N2Mn_CAESYwEMYwEDBiLrqMs/?operator=WEZY&adults=2&children=2020-12-10&objectId=204765&durationFrom=7&durationTo=10&departureDate=2026-10-25&returnDate=2026-11-01&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/armir-resort-10/pKiGvFl2OF07BA2uGbiDygAAogAuojzgWJlFLw3u8eMWSODUJ8a7QQweyHATmJxjka8ZMqBEpPSVAwo5XG1wZI4zlQQVivJmACagMzcWtyQ5sBFAEXBhUAXANYBVYCQMoGU6poUgBPtQ1dAF7hhgFL7UNhABGLnQFM2u84DZ3ImAkgAAGp6LuQpcjTnDACDWMBAgYVBNRi/?operator=JOIP&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707341/plain/cms/fileadmin/config_img/objects/204765/club-jovia-kemer-ex-armir-resort.webp@webp"
   },
   "deal_score": 92,
@@ -3393,7 +3397,7 @@
   "median_p": 8052.916541105943,
   "min_p": 4989.0,
   "max_p": 11133.0,
-  "samples": 1123,
+  "samples": 1125,
   "alert_threshold": 8.0,
   "trip_dates_label": "25.10.2026 - 01.11.2026",
   "display_price_ceiling": 10000.0,

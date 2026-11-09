@@ -11,7 +11,9 @@
     "2026-11-05 09:03:43",
     "2026-11-05 23:48:44",
     "2026-11-06 12:33:15",
-    "2026-11-07 01:15:09"
+    "2026-11-07 01:15:09",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     8283.0,
@@ -21,7 +23,9 @@
     8283.0,
     8283.0,
     8283.0,
-    8283.0
+    8283.0,
+    7264.0,
+    7264.0
   ],
   "hover": [
     "Проверка: 02.11.2026 13:11<br>Даты поездки: 31.07.2027 - 07.08.2027",
@@ -36,7 +40,7 @@
   "meta": {
     "dates": "31.07.2027 - 07.08.2027",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/aydinbey-gold-dreams/p2w5VeySofTvW07mOFCf9KAAogGBAE8A22XNiGhFhtXu9FezqUQuGj_XEJBL_jJzt7NOIqBFJOQlcwktu51wZI20BQQVjvMWACagRDQWdRcjqfARUHFwBWA1gFChZAsgcRpC0ZqTJT4QdSABDVD0zMrgFL4hlhAA-64UYdnQUgrO-LCQ0AAg1jAQIMOoJJvQ/?operator=RNBW&adults=2&children=2020-08-12&objectId=4945&durationFrom=7&durationTo=10&departureDate=2027-07-31&returnDate=2027-08-07&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,turkler/aydinbey-gold-dreams/p-wd8loXDJ4z5yf_u2oFpXAAogGBAE8A22XNiGhFhtXu9FeyOQvkglbtwqN8LtMAnJdesqBFJOQlcwo5XG1wZI4DhQQVj3JmACagRDQWdRcjqfARUHFwBWA1gFChZAsgcRpC0ZqTJT4QdSABDVD0zMrgFL4hlhAA-q4UYdnQUgvu6LCQ0AAg1jAQIMK_PQlg/?operator=RNBW&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702413/plain/cms/fileadmin/config_img/objects/4945/Aydinbey-Gold-Dreams.webp@webp"
   },
   "deal_score": 52,
@@ -46,9 +50,9 @@
   "delta_avg": "+0.0%",
   "confidence": "Medium",
   "median_p": 8283.0,
-  "min_p": 8283.0,
+  "min_p": 7264.0,
   "max_p": 8283.0,
-  "samples": 8,
+  "samples": 10,
   "alert_threshold": 8.0,
   "trip_dates_label": "31.07.2027 - 07.08.2027",
   "display_price_ceiling": 12000.0,

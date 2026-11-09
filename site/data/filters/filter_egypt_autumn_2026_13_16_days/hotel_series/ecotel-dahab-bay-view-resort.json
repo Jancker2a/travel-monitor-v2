@@ -4,10 +4,12 @@
   "slug": "ecotel-dahab-bay-view-resort",
   "hotel_name": "Ecotel Dahab Bay View Resort",
   "x": [
-    "2026-08-09 20:27:33"
+    "2026-08-09 20:27:33",
+    "2026-11-09 08:56:15"
   ],
   "y": [
-    10734.0
+    10734.0,
+    13572.0
   ],
   "hover": [
     "Проверка: 09.08.2026 20:27<br>Даты поездки: 10.10.2026 - 24.10.2026"
@@ -15,7 +17,7 @@
   "meta": {
     "dates": "10.10.2026 - 24.10.2026",
     "duration": "15 dni/14 nocy",
-    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/mercure-dahab-bay-view/p86Eee_6Aj0AkUZvRZ9U38AAogDte7oCU9PhRJZzBhNtOfRwAAAACZhAQAt4QEAA4AEgAqBFdFWlkwmo3j0wZI7lNQQVi9C2ADaglFbnRlciBBaXJqBDA4MDByQ54BlQEfAAIBHAAWBBcJEuYDGIUFE80BFMkEEbwdQNZUTKCiAU8AS8cjUAAbu8gMHdb5AiAeDdvHwgkBEmMBDGMBAgV5v5jo/ofertasv/?filter[tourOperator]=WEZY&filter%5Bperson%5D=2&filter%5BchildAge%5D%5B1%5D=20201210&filter%5Bchild%5D=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/mercure-dahab-bay-view/punn2VK841fXyN4c9NLaAhAAogpOqJ7KtEfJlPe3o6yCzTOQAAAADQuwQA6rsEAAcAEgAqBFdFWlkwrpXG1wZIhGpQQVjfCGADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRoB5A1lRMoKIBTwBLxyNQABu7yAwdjegDIBoNgNvBCQESYwEMYwEGC2vkC2U/?operator=WEZY&adults=2&children=2020-12-10",
     "image_url": "https://fly.pl/cdn/photo/assets/uploads/582/278/2014/09/Ecotel-Dahab-Resort.jpg"
   },
   "deal_score": 50,
@@ -26,8 +28,8 @@
   "confidence": "Low",
   "median_p": 10734.0,
   "min_p": 10734.0,
-  "max_p": 10734.0,
-  "samples": 1,
+  "max_p": 13572.0,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "10.10.2026 - 24.10.2026",
   "display_price_ceiling": 11000.0,

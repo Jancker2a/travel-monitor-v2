@@ -18,7 +18,8 @@
     "2026-10-28 10:52:05",
     "2026-10-28 14:16:51",
     "2026-10-28 20:01:30",
-    "2026-10-29 00:24:44"
+    "2026-10-29 00:24:44",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10769.0,
@@ -35,7 +36,8 @@
     9399.0,
     9399.0,
     9399.0,
-    9399.0
+    9399.0,
+    14180.0
   ],
   "hover": [
     "Проверка: 14.10.2026 09:53<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -57,7 +59,7 @@
   "meta": {
     "dates": "24.12.2026 - 31.12.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pyaTeQwR68lzR7tKSWBJITAAoga3cg-TU_LZquKDld0uMpybfyi7D4Of8dkk1PUBb31j4qBE5LUkEwwYiK1wZIt0lQAVjACmADagJBSWoEV01JMGoDU1NIchwWDiAKDBujDxH80j4NvfCVCQ8HARJjAQxjAQIMPwPefQ/?operator=NKRA&adults=2&children=2020-12-10&objectId=103848&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pbnxQV85vK9hHgdh2XvGhiAAogv47aQFzKleo4BmQRilBzBLf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZI5G5QQVjHCGACagVFLjIuMXI2mwEVBxcAXANYBVYCQMoGEaINXcELTyReueMBU6YgUgBLxyNhAEzljDog_P6XCQ0AAhJjAQIMxywv4g/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701107/plain/cms/fileadmin/config_img/objects/103848/Charmillion-Club-Aqua-Park.webp@webp"
   },
   "deal_score": 66,
@@ -68,8 +70,8 @@
   "confidence": "Medium",
   "median_p": 10026.792919996462,
   "min_p": 9399.0,
-  "max_p": 10769.0,
-  "samples": 15,
+  "max_p": 14180.0,
+  "samples": 16,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.12.2026 - 31.12.2026",
   "display_price_ceiling": 11000.0,

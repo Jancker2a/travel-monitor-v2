@@ -6,12 +6,16 @@
   "x": [
     "2026-11-02 13:11:46",
     "2026-11-03 06:39:01",
-    "2026-11-03 19:43:41"
+    "2026-11-03 19:43:41",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     12402.0,
     14314.0,
-    14314.0
+    14314.0,
+    7659.0,
+    7659.0
   ],
   "hover": [
     "Проверка: 02.11.2026 13:11<br>Даты поездки: 19.07.2027 - 01.08.2027",
@@ -21,7 +25,7 @@
   "meta": {
     "dates": "01.07.2027 - 14.07.2027",
     "duration": "14 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/gul-beach/pKI4PnvDyA8kPda351Y-36AAogSGYBV2SsVgC9bSk66e24ugAAAABsoAUAPJwFAA0AAQAqBFdFWlkwhdeo1wZI6m9QQVjtLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQZ4BkwGUAZUBmAEfAAIBFgAcABcMEucDT5FrTABAnBIR0h9LlaYBUAAgtPETHbAIG4OmHg3-taAJARJjAQxjAQMLAjYXjg/?operator=WEZY&adults=2&children=2020-08-12&objectId=6991&durationFrom=13&durationTo=16&departureDate=2027-07-01&returnDate=2027-07-14&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=13&nights=13",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/gul-beach/pQyKZ9LMElPuX4k6orQBOTAAognAg0qD8_JIYKvD2Knu0ybOSf8Of9KaGuXrwWGxSHffEqBE9SRVgwo5XG1wZI6ztQQVjHJmACagZDNS4yLjFyNpsBFQcXAFgIVgJcCEDCBhGNF0_OKV0kU6snUgBelpQBS-1DYQBM5Yw6IJ7ImAkNAAISYwECCx7IsCU/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744702292/plain/cms/fileadmin/config_img/objects/6991/Armas-Gul-Beach-ex-Otium-Gul-Beach-Resort-fly-pl.webp@webp"
   },
   "deal_score": 48,
@@ -31,9 +35,9 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 13548.74077925062,
-  "min_p": 12402.0,
+  "min_p": 7659.0,
   "max_p": 14314.0,
-  "samples": 3,
+  "samples": 5,
   "alert_threshold": 8.0,
   "trip_dates_label": "01.07.2027 - 14.07.2027",
   "display_price_ceiling": 16000.0,

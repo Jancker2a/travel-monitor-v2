@@ -714,7 +714,9 @@
     "2026-10-22 10:13:14",
     "2026-10-22 14:07:37",
     "2026-10-22 20:43:42",
-    "2026-10-23 03:42:10"
+    "2026-10-23 03:42:10",
+    "2026-11-09 08:56:04",
+    "2026-11-09 06:28:39"
   ],
   "y": [
     6734.0,
@@ -1427,7 +1429,9 @@
     6558.0,
     6558.0,
     6424.0,
-    6424.0
+    6424.0,
+    7239.0,
+    7239.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 20.06.2026 - 29.06.2026",
@@ -2145,7 +2149,7 @@
   "meta": {
     "dates": "23.10.2026 - 01.11.2026",
     "duration": "10 dni",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,mahmutlar/sun-star-beach-resort/pYpKe2Zfv2kxoZ8wwRWk_4AAog-JPk0-xfzmrpRMgID6MoRQAAAADkbQQA578FAAkAFgAqBFdFWlkw9vbq1gZImDJQQVj___________8BYANqCUVudGVyIEFpcmoEMDY1MHJDngGTAR8AAgEcABYEFwQS6wMU3QQVLRibARHaWUySC08AQJwSS-fFAVAAG4Q2HdjeDiCDpAUNuNG9CQESYwEMYwEDCwdWsDo/?operator=WEZY&adults=2&children=2020-08-12&objectId=174169&durationFrom=9&durationTo=11&departureDate=2026-10-23&returnDate=2026-11-01&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=9&nights=9",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,mahmutlar/sun-star-beach-resort/pSif6CwjPIJwou-uBCbyI5AAog-JPk0-xfzmrpRMgID6MoRQAAAAAbnAUAN5wFAAcAAQAqBFdFWlkwo5XG1wZIxzhQQVivJmADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByP54BkwGUAZUBmAEfABwBAgAWBBcCEu0DEf9fTJILTwBAnBJL58UBUAAbhDYdj7sTIBwN0-O-CQESYwEMYwEDC3U4enA/?operator=WEZY&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744704308/plain/cms/fileadmin/config_img/objects/174169/Sun-Star-Beach-Resort.jpg@webp"
   },
   "deal_score": 92,
@@ -2157,7 +2161,7 @@
   "median_p": 8276.597913398753,
   "min_p": 6118.0,
   "max_p": 11788.0,
-  "samples": 711,
+  "samples": 713,
   "alert_threshold": 8.0,
   "trip_dates_label": "23.10.2026 - 01.11.2026",
   "display_price_ceiling": 10000.0,

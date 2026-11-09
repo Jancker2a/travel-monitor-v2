@@ -22,6 +22,7 @@ if backend_path not in sys.path:
 from sqlalchemy import text
 from app.database import AsyncSessionLocal
 from app.services.filter_monitor_service import FilterMonitorService
+from app.services.site_rebuilder import SiteRebuilderService
 from app.services.normalized_crawler import NormalizedCrawlerService
 from app.services.watchlist_service import WatchlistService
 from app.services.scheduler import scheduler
@@ -78,16 +79,25 @@ async def main():
     except Exception as e:
         logger.error(f"❌ Error in Filter Monitors: {e}", exc_info=True)
 
-    # 2. Run Normalized Benchmark Crawler (1p / 8n, today+20d)
-    logger.info(">>> STEP 2: Running Normalized Benchmark Crawler...")
+    # 2. Rebuild Dashboards and Hotel Series for Server & UI
+    logger.info(">>> STEP 2: Rebuilding Static HTML Dashboards & Hotel Series...")
+    try:
+        async with AsyncSessionLocal() as db:
+            rebuild_res = await SiteRebuilderService.rebuild_all(db)
+            logger.info(f"✅ Dashboard Rebuild completed: {len(rebuild_res.get('updated_dashboards', []))} dashboards refreshed.")
+    except Exception as e:
+        logger.error(f"❌ Error during dashboard rebuild: {e}", exc_info=True)
+
+    # 3. Run Normalized Benchmark Crawler (1p / 8n, today+20d)
+    logger.info(">>> STEP 3: Running Normalized Benchmark Crawler...")
     try:
         crawler_result = await NormalizedCrawlerService.run_crawler_cycle(max_offers_per_dest=25)
         logger.info(f"✅ Normalized Crawler completed: {crawler_result.get('total_collected', 0)} snapshots collected.")
     except Exception as e:
         logger.error(f"❌ Error in Normalized Crawler: {e}", exc_info=True)
 
-    # 3. Check Watchlist Price Drop Triggers & Dispatch Telegram Alerts
-    logger.info(">>> STEP 3: Evaluating Watchlists & Telegram Alerts...")
+    # 4. Check Watchlist Price Drop Triggers & Dispatch Telegram Alerts
+    logger.info(">>> STEP 4: Evaluating Watchlists & Telegram Alerts...")
     try:
         async with AsyncSessionLocal() as db:
             alerts = await WatchlistService.check_watchlist_triggers(db)

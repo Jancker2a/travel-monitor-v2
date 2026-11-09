@@ -169,7 +169,8 @@
     "2026-10-20 09:46:15",
     "2026-10-20 09:55:15",
     "2026-10-20 17:37:48",
-    "2026-10-20 18:39:05"
+    "2026-10-20 18:39:05",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     9216.0,
@@ -337,7 +338,8 @@
     8912.0,
     8912.0,
     9987.0,
-    9987.0
+    9987.0,
+    12677.0
   ],
   "hover": [
     "Проверка: 15.09.2026 03:36<br>Даты поездки: 27.10.2026 - 03.11.2026",
@@ -510,7 +512,7 @@
   "meta": {
     "dates": "22.10 - 29.10",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/dessole-pyramisa-beach-resort-ex-pyramisa-beach-r/p45eo1_ny5vQHUlvcYFo_NAAog-bsBAd2ga5j52_oWmdC6Cw8kdBg8B_tRCgD4-QD486QqBEpPSVAwxbLe1gZIg05QQVgfYAJqA0x6U3JCmwEUARUFFwFcA1gFVgJAygZPqwFdAFLmqwFTAEuIH2EAXqcwEZUeTL2yOg2x_ZcJIAEBtNP86KSJzKAwAg1jAQALegChNQ/?operator=JOIP&adults=2&children=2020-12-10&objectId=561&durationFrom=7&durationTo=10&departureDate=2026-10-22&returnDate=2026-10-29&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/dessole-pyramisa-beach-resort-ex-pyramisa-beach-r/pqiGTLE5wTkrRWlMTwRxiwAAogacChAdUby50IMr-XI9R5_9_XwCYNeOv_OmngaPJtjJEqBFZJVFgwrpXG1wZIhWNQQVivCGACckAaABUHFwBcA1gFQI8DW5eFAVO3K1IAXq9PS-1DYQBM8YsuDe__owkgAFHO_dr7jwFP64USXZCE8_N1AgxjAQILCPJONg/?operator=VITX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744703358/plain/cms/fileadmin/config_img/objects/561/Pyramisa-Beach-Resort-Sahl-Hasheesh.webp@webp"
   },
   "deal_score": 39,
@@ -521,8 +523,8 @@
   "confidence": "High",
   "median_p": 9465.425352949918,
   "min_p": 8519.0,
-  "max_p": 10760.0,
-  "samples": 166,
+  "max_p": 12677.0,
+  "samples": 167,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.10 - 29.10",
   "display_price_ceiling": 11000.0,

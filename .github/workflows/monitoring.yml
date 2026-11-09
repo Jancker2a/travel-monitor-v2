@@ -91,14 +91,14 @@ jobs:
             git stash drop 2>/dev/null || true
           fi
 
-          git add travel_monitor_v2.db
+          git add site/ travel_monitor_v2.db
           if git diff --staged --quiet; then
-            echo "ℹ️ No database changes detected. Nothing to commit."
+            echo "ℹ️ No changes detected. Nothing to commit."
           else
             TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
-            git commit -m "🔄 Hourly crawl & snapshot update - ${TIMESTAMP} [skip ci]" -m "🤖 Automated by GitHub Actions Travel Monitor 2.0"
+            git commit -m "🔄 Hourly crawl & dashboard rebuild - ${TIMESTAMP} [skip ci]" -m "🤖 Automated by GitHub Actions Travel Monitor 2.0"
             git push origin HEAD:${CURRENT_BRANCH}
-            echo "✅ travel_monitor_v2.db successfully committed and pushed to ${CURRENT_BRANCH}."
+            echo "✅ site/ and travel_monitor_v2.db successfully committed and pushed to ${CURRENT_BRANCH}."
           fi
 
       - name: Summary report

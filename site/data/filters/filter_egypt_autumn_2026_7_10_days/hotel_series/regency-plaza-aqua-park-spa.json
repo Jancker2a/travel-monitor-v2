@@ -827,7 +827,8 @@
     "2026-10-21 13:02:33",
     "2026-10-21 13:33:08",
     "2026-10-21 15:12:15",
-    "2026-10-21 17:40:03"
+    "2026-10-21 17:40:03",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     8287.0,
@@ -1653,7 +1654,8 @@
     7578.0,
     7538.0,
     7740.0,
-    7740.0
+    7740.0,
+    12285.0
   ],
   "hover": [
     "Проверка: 27.07.2026 10:55<br>Даты поездки: 20.10.2026 - 28.10.2026",
@@ -2484,7 +2486,7 @@
   "meta": {
     "dates": "27.10.2026 - 03.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/regency-plaza/pYhY6hXG7_Mz7vCFDG59-bAAogTqAbUKS06hRZ8MuVe5LpDHb6-M-63DqmxRqPbNTEi2wqBE9SRVgw1rnj1gZIvDxQQViAAWACagdCV1IuMi4xcjabARUHFwBcA1gFVgJAygYR1Atdjw1PJEuSswFhAF6nMFKmIFMATKywOg22_ZcJIAACEmMBAg2uEdLF/?operator=OREX&adults=2&children=2020-12-10&objectId=589&durationFrom=7&durationTo=10&departureDate=2026-10-27&returnDate=2026-11-03&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/regency-plaza/pkDtRx14IMHqNEuK3d9ntuAAogTqAbUKS06hRZ8MuVe5LpDLf37cpOe0DmvZ02N0B-NqQqBE9SRVgwrpXG1wZI_V9QQVjHCGACagdCV1IuMi4xcjabARUHFwBcA1gFVgJAygYR1Atdjw1PJF654wFTpiBSAEvHI2EATOWMOiD8_pcJDQACEmMBAg32bH88/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701092/plain/cms/fileadmin/config_img/objects/589/Regency-Plaza-Aqua-Park-Spa-fly-pl.webp@webp"
   },
   "deal_score": 45,
@@ -2495,8 +2497,8 @@
   "confidence": "High",
   "median_p": 7258.545407588462,
   "min_p": 5447.0,
-  "max_p": 9034.0,
-  "samples": 824,
+  "max_p": 12285.0,
+  "samples": 825,
   "alert_threshold": 8.0,
   "trip_dates_label": "27.10.2026 - 03.11.2026",
   "display_price_ceiling": 11000.0,

@@ -734,7 +734,8 @@
     "2026-10-28 14:15:37",
     "2026-10-28 20:00:13",
     "2026-10-29 00:23:28",
-    "2026-10-29 07:02:06"
+    "2026-10-29 07:02:06",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     8955.0,
@@ -1467,7 +1468,8 @@
     8914.0,
     8914.0,
     8914.0,
-    8914.0
+    8914.0,
+    13541.0
   ],
   "hover": [
     "Проверка: 27.07.2026 09:29<br>Даты поездки: 11.10.2026 - 18.10.2026",
@@ -2205,7 +2207,7 @@
   "meta": {
     "dates": "29.10.2026 - 05.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/club-azur/p2KFm1mRpJPSS_PYRYJQAeAAogMk5AXvz13oWKUGQUf0xWxQAAAAAaiAQAUboEAAcAGAAqBFdFWlkw5MKL1wZI0kVQQVj6__________8BYANqE0xPVCBQb2xpc2ggQWlybGluZXNqBDA3NDVyQ54BkwEfAAIBHAAWBBcCEu0DFYkHFAoY1AJAxnNPyzJMAEuckwFQABvKURH63QEdzpkNILdkDdTcwQkBEmMBDWMBAgWAogMe/?operator=WEZY&adults=2&children=2020-12-10&objectId=7354&durationFrom=7&durationTo=10&departureDate=2026-10-29&returnDate=2026-11-05&departureLocation=Warszawa&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/club-azur/paXUWincEF5BDJzzOvI6zrAAogoUr5F-B2H2Jqo52BeMH9GejDAr5XINyOsbv3ugeYN0gqBFNGUEwwrpXG1wZI5WlQQVivCGACciULAhUFIgUSIlzMAkAuDcDP1AlR1_q99gNb0Jmu_OUBAhJjAQYM9vmjpQ/?operator=SFPL&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701041/plain/cms/fileadmin/config_img/objects/7354/Labranda-Club-Makadi-ex-Club-Azur-fly-pl.jpg@webp"
   },
   "deal_score": 41,
@@ -2216,8 +2218,8 @@
   "confidence": "High",
   "median_p": 8456.19399875143,
   "min_p": 7119.0,
-  "max_p": 9896.0,
-  "samples": 731,
+  "max_p": 13541.0,
+  "samples": 732,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.10.2026 - 05.11.2026",
   "display_price_ceiling": 11000.0,

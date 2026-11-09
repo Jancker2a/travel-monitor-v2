@@ -7,13 +7,15 @@
     "2026-11-03 19:47:50",
     "2026-11-06 04:33:03",
     "2026-11-06 12:34:09",
-    "2026-11-06 13:17:58"
+    "2026-11-06 13:17:58",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     10746.0,
     10940.0,
     10550.0,
-    10940.0
+    10940.0,
+    14107.0
   ],
   "hover": [
     "Проверка: 03.11.2026 19:47<br>Даты поездки: 12.26.2026 - 01.01.2027",
@@ -24,7 +26,7 @@
   "meta": {
     "dates": "12.26.2026 - 01.01.2027",
     "duration": "9 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-makadi-bay-12/pwwXSFYKPLcUCUWhEsQV4iAAogR4k-U_zOymZg0bmO3nT-b64l3-lULG69CvLTTUqTvRIqBEJWQkUw_Iq31wZIvFVQAVjzCGACagNVQUlyIRwRntQBG4zkRBj24xm5BLvZJqsEbwGZn5i5BAISYwEDC4hnVKk/?operator=BVBE&adults=2&children=2020-12-10&objectId=216695&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-makadi-bay-12/pNxRmsxU3Wsjx3Uv1b2AidAAog1NCCqNW_TkuwCJPC5e2EfR6wH3x9Cp1vdNr3f5K2WCQqBFJOQlcwrpXG1wZIm25QQVivCGACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRnjIZ4ClMjS8QjwRT-xxSAEuckwFhAA_jkkUdLSDQ-IwJDQACDGMBAgvBn4OF/?operator=RNBW&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744707557/plain/cms/fileadmin/config_img/objects/216695/xanadu-makadi-bay.webp@webp"
   },
   "deal_score": 49,
@@ -35,8 +37,8 @@
   "confidence": "Low",
   "median_p": 10834.820348442585,
   "min_p": 10550.0,
-  "max_p": 10940.0,
-  "samples": 4,
+  "max_p": 14107.0,
+  "samples": 5,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 01.01.2027",
   "display_price_ceiling": 11000.0,

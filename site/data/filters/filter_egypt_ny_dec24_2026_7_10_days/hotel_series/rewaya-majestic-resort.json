@@ -433,7 +433,8 @@
     "2026-11-07 01:16:08",
     "2026-11-07 08:43:33",
     "2026-11-07 11:24:18",
-    "2026-11-07 13:06:08"
+    "2026-11-07 13:06:08",
+    "2026-11-09 08:56:15"
   ],
   "y": [
     8807.0,
@@ -865,7 +866,8 @@
     9338.0,
     9338.0,
     9358.0,
-    9257.0
+    9257.0,
+    13590.0
   ],
   "hover": [
     "Проверка: 26.08.2026 10:30<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -1302,7 +1304,7 @@
   "meta": {
     "dates": "12.26.2026 - 01.01.2027",
     "duration": "9 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-majestic-resort-10/pmEIGBEfjEJ2TMRZrdw24yAAogL6Xa2guzctrkBz4kyyHBJr26M4lZ0TmK_1aTPorq4NMqBEVYSU0wtai81wZIqUhQAVjbCGACagNVQUlyIRwRnP8GqwTEqUu5BEQbvZ9AGIbmRwGnz9SrDQISYwECDffY69Y/?operator=EXIM&adults=2&children=2020-12-10&objectId=233282&durationFrom=7&durationTo=10&departureDate=2026-12-24&returnDate=2026-12-31&departureLocation=Warszawa+-+Modlin&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-majestic-resort-10/pKQEcpXhvPKRc3GUHNqZ6NAAogpVwGKzSNjsa4hWB3jDQ9_WHHVjCm54QuAuAPbfe-gAMqBE9SRVgwrpXG1wZIlmpQQVi_CWACagVFLjIuMXI2mwEVCBcAWAdWAlwIQMIGXZsPTyQR8RxT4YABUgBer09L7UNhAEzljDoggf-XCQ0AAhJjAQINLgTPpg/?operator=OREX&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:800:0/plain/EXIM/IMG/114588/e3a15b238b2d30f27199dd0e48d3c85c0bc5e06a1c321d66bdb885dd7a89e111.webp@webp"
   },
   "deal_score": 64,
@@ -1313,8 +1315,8 @@
   "confidence": "High",
   "median_p": 9515.118772279693,
   "min_p": 7173.0,
-  "max_p": 10992.0,
-  "samples": 430,
+  "max_p": 13590.0,
+  "samples": 431,
   "alert_threshold": 8.0,
   "trip_dates_label": "12.26.2026 - 01.01.2027",
   "display_price_ceiling": 11000.0,

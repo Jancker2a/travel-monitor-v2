@@ -4,10 +4,12 @@
   "slug": "albatros-makadi-resort",
   "hotel_name": "ALBATROS MAKADI RESORT",
   "x": [
-    "2026-10-29 15:51:19"
+    "2026-10-29 15:51:19",
+    "2026-11-09 08:56:15"
   ],
   "y": [
-    7908.0
+    7908.0,
+    13733.0
   ],
   "hover": [
     "Проверка: 29.10.2026 15:51<br>Даты поездки: 29.10.2026 - 05.11.2026"
@@ -15,7 +17,7 @@
   "meta": {
     "dates": "29.10.2026 - 05.11.2026",
     "duration": "8 dni",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/harmony-makadi-bay/pRmhTSgPEuFd5VhKPYLDTrAAoglBiTW7wQUW0P1KVRmhSy9wAAAACBhwQAHroEAAcAGAAqBFdFWlkw7bqN1wZI5D1QQVjy__________8BYANqCUVudGVyIEFpcmoEMDAxNWoEMDkwMHJBngGUAZUBHwAcAQIAFgQXAhFHEo8EGIAFE-8DQNVzTMsyTwBLiB9QAB2NvBAgnWUb95UeDZDHowkBEmMBDWMBAgw8Q-Qm/?operator=WEZY&adults=2&children=2020-12-10&objectId=565&durationFrom=7&durationTo=10&departureDate=2026-10-29&returnDate=2026-11-05&departureLocation=Katowice&catering=all_inclusive&transport=accommodation_flight&duration=7&nights=7",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/harmony-makadi-bay/pcgtG57ErVqMbjV9o7kDmCAAogUy7fmrJbVl9lFZS4E62gvOjDAr5XINyOsbv3ugeYN0gqBFNGUEwwrpXG1wZIpWtQQVivCGACciILAhUFIgUSIlzMAkAuW-uXJw3Vt60JUeuevfYDAhJjAQIMWHgxoQ/?operator=SFPL&adults=2&children=2020-12-10",
     "image_url": "https://cdn-1.fly.pl/_/rs:fit:1920:1080/q:78/cb:1744701150/plain/cms/fileadmin/config_img/objects/565/Harmony-Makadi-Bay-fly-pl.jpg@webp"
   },
   "deal_score": 50,
@@ -26,8 +28,8 @@
   "confidence": "Low",
   "median_p": 7908.0,
   "min_p": 7908.0,
-  "max_p": 7908.0,
-  "samples": 1,
+  "max_p": 13733.0,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.10.2026 - 05.11.2026",
   "display_price_ceiling": 11000.0,
