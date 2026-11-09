@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Union
+from datetime import date, datetime
 
 
 class HotelCatalogCard(BaseModel):
@@ -20,11 +21,11 @@ class HotelCatalogCard(BaseModel):
     deal_score: int = 50
     deal_confidence: str = "Medium"
     badges: List[str] = Field(default_factory=list)
-    cheapest_checkin_date: Optional[str] = None
+    cheapest_checkin_date: Optional[Union[str, date]] = None
     cheapest_duration_nights: int = 7
     cheapest_airport_code: str = "WAW"
     cheapest_offer_url: Optional[str] = None
-    last_updated: str
+    last_updated: Union[str, datetime]
 
 
 class HotelCatalogResponse(BaseModel):

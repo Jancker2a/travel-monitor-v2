@@ -266,6 +266,9 @@ class CatalogService:
             if ta_rating and float(ta_rating) >= 4.5:
                 badges.append(f"Жемчужина {ta_rating}★")
 
+            checkin_str = checkin_dt.isoformat() if hasattr(checkin_dt, "isoformat") else (str(checkin_dt) if checkin_dt else None)
+            last_updated_str = last_rec_at.isoformat() if hasattr(last_rec_at, "isoformat") else (str(last_rec_at) if last_rec_at else "")
+
             cards.append({
                 "hotel_id": h_id,
                 "display_name": disp_name,
@@ -284,11 +287,11 @@ class CatalogService:
                 "deal_score": deal_score,
                 "deal_confidence": confidence,
                 "badges": badges,
-                "cheapest_checkin_date": checkin_dt,
+                "cheapest_checkin_date": checkin_str,
                 "cheapest_duration_nights": dur_nights or 7,
                 "cheapest_airport_code": airport_code or "WAW",
                 "cheapest_offer_url": offer_url,
-                "last_updated": last_rec_at,
+                "last_updated": last_updated_str,
             })
 
         # 5. Apply filters
