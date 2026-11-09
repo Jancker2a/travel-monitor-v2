@@ -214,8 +214,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 <tr key={offer.cohort_hash} className="group">
                   {/* Hotel Cell */}
                   <td>
-                    <div className="flex items-start gap-3">
-                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/80 shadow-2xs">
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-xs">
                         <img
                           src={
                             hotel.main_image_url ||
@@ -229,25 +229,25 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                       <div className="min-w-0">
                         <div
                           onClick={() => onOpenPassport(hotel.hotel_id)}
-                          className="font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[13.5px] leading-snug line-clamp-1"
+                          className="font-black text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[15px] sm:text-[16.5px] leading-snug line-clamp-1 tracking-tight"
                           title={`${hotel.hotel_name} — открыть паспорт`}
                         >
                           {hotel.hotel_name}
                         </div>
-                        <div className="flex items-center gap-0.5 text-amber-400 mt-1">
+                        <div className="flex items-center gap-1 text-amber-400 mt-1">
                           {Array.from({ length: hotel.stars || 4 }).map((_, i) => (
-                            <Star key={i} className="w-3 h-3 fill-current" />
+                            <Star key={i} className="w-3.5 h-3.5 fill-current" />
                           ))}
                         </div>
-                        <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                          <span className="spec-badge spec-beach text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          <span className="spec-badge spec-beach text-[11.5px] font-extrabold px-2 py-0.5 rounded-lg border border-sky-200">
                             🏖️ {hotel.beach_line || hotel.specs?.beach_line || 1} линия
                           </span>
                           {(hotel.has_aquapark || hotel.specs?.has_aquapark || hotel.hotel_name.toLowerCase().includes("aqua")) && (
-                            <span className="spec-badge spec-aqua text-[10px] font-bold px-1.5 py-0.5 rounded-md">🎢 Аквапарк</span>
+                            <span className="spec-badge spec-aqua text-[11.5px] font-extrabold px-2 py-0.5 rounded-lg border border-cyan-200">🎢 Аквапарк</span>
                           )}
                           {(hotel.has_heated_pools || hotel.specs?.has_heated_pools) && (
-                            <span className="spec-badge text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200">🔥 Подогрев</span>
+                            <span className="spec-badge text-[11.5px] font-extrabold px-2 py-0.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">🔥 Подогрев</span>
                           )}
                         </div>
                       </div>
@@ -256,29 +256,31 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                   {/* Price */}
                   <td>
-                    <div className="text-[15.5px] font-black text-slate-900 whitespace-nowrap tracking-tight">
+                    <div className="text-[18px] sm:text-[21px] font-black text-slate-900 whitespace-nowrap tracking-tight">
                       {offer.total_price_pln.toLocaleString("ru-RU")} zł
                     </div>
-                    <div className="text-xs text-slate-500 font-medium mt-0.5">
+                    <div className="text-[13px] text-slate-500 font-bold mt-0.5">
                       {offer.price_per_night_pax} zł/ночь
                     </div>
                   </td>
 
                   {/* Deal Score */}
                   <td>
-                    <span className={`text-xs font-black px-2.5 py-1 rounded-full border shadow-2xs whitespace-nowrap ${dealPillClass}`}>
+                    <span className={`text-[13px] sm:text-[14px] font-black px-3.5 py-1.5 rounded-full border shadow-2xs whitespace-nowrap ${dealPillClass}`}>
                       {dealText}
                     </span>
                   </td>
 
                   {/* Forecast */}
                   <td style={{ textAlign: "center" }}>
-                    {forecastPill}
+                    <div className="text-[12.5px] font-black">
+                      {forecastPill}
+                    </div>
                   </td>
 
                   {/* TripAdvisor */}
                   <td style={{ textAlign: "center" }}>
-                    <div className="inline-flex items-center gap-1 text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 font-black text-xs shadow-2xs">
+                    <div className="inline-flex items-center gap-1.5 text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-black text-[13px] shadow-2xs">
                       <span>● {hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}</span>
                     </div>
                   </td>
@@ -286,62 +288,62 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   {/* Δ 48ч */}
                   <td style={{ textAlign: "center" }}>
                     {delta48 < 0 ? (
-                      <span className="delta-down text-xs font-black px-2 py-0.5 rounded-md text-emerald-700 bg-emerald-50 border border-emerald-200/80">
+                      <span className="delta-down text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200">
                         ↓ {delta48.toFixed(1)}%
                       </span>
                     ) : delta48 > 0 ? (
-                      <span className="delta-up text-xs font-black px-2 py-0.5 rounded-md text-rose-700 bg-rose-50 border border-rose-200/80">
+                      <span className="delta-up text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200">
                         ↑ +{delta48.toFixed(1)}%
                       </span>
                     ) : (
-                      <span className="delta-flat text-xs font-bold text-slate-400">—</span>
+                      <span className="delta-flat text-[13px] font-bold text-slate-400">—</span>
                     )}
                   </td>
 
                   {/* Δ к средней */}
                   <td style={{ textAlign: "center" }}>
                     {deltaAvg < 0 ? (
-                      <span className="delta-down text-xs font-black px-2 py-0.5 rounded-md text-emerald-700 bg-emerald-50 border border-emerald-200/80">
+                      <span className="delta-down text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200">
                         ↓ {deltaAvg.toFixed(1)}%
                       </span>
                     ) : deltaAvg > 0 ? (
-                      <span className="delta-up text-xs font-black px-2 py-0.5 rounded-md text-rose-700 bg-rose-50 border border-rose-200/80">
+                      <span className="delta-up text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200">
                         ↑ +{deltaAvg.toFixed(1)}%
                       </span>
                     ) : (
-                      <span className="delta-flat text-xs font-bold text-slate-400">0%</span>
+                      <span className="delta-flat text-[13px] font-bold text-slate-400">0%</span>
                     )}
                   </td>
 
                   {/* Region */}
-                  <td className="text-xs font-semibold text-slate-700 truncate">
+                  <td className="text-[13px] font-bold text-slate-700 truncate">
                     {hotel.region || "Анталья"}
                   </td>
 
                   {/* Dates */}
                   <td>
-                    <div className="text-xs font-bold text-slate-900 whitespace-nowrap">
+                    <div className="text-[13.5px] font-black text-slate-900 whitespace-nowrap">
                       {offer.departure_date}
                     </div>
-                    <div className="text-[11px] text-blue-600 font-extrabold uppercase tracking-wide mt-0.5">
+                    <div className="text-[12px] text-blue-700 font-black bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md inline-block uppercase tracking-wide mt-1">
                       {offer.airport}
                     </div>
                   </td>
 
                   {/* Duration */}
                   <td style={{ textAlign: "center" }}>
-                    <span className="inline-block text-xs font-black text-slate-800 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200/70">
+                    <span className="inline-block text-[13px] font-black text-slate-800 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
                       {offer.duration_nights}н
                     </span>
                   </td>
 
                   {/* Actions / Links */}
                   <td>
-                    <div className="flex items-center justify-end gap-1.5">
+                    <div className="flex items-center justify-end gap-2">
                       <button
                         type="button"
                         onClick={() => onOpenPassport(hotel.hotel_id)}
-                        className="px-3 py-1.5 text-xs font-black text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 shadow-2xs transition-colors whitespace-nowrap"
+                        className="px-3.5 py-2 text-[13px] font-black text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 shadow-2xs hover:shadow-xs transition-all whitespace-nowrap"
                         title="Открыть AI Паспорт отеля справа"
                       >
                         Паспорт
@@ -350,14 +352,14 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                       <button
                         type="button"
                         onClick={() => onToggleWatchlist(hotel)}
-                        className={`p-2 rounded-xl border transition-colors ${
+                        className={`p-2.5 rounded-xl border transition-all ${
                           isWatched
-                            ? "bg-amber-500 text-white border-amber-600 shadow-2xs"
+                            ? "bg-amber-500 text-white border-amber-600 shadow-xs"
                             : "bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200"
                         }`}
                         title={isWatched ? "В отслеживаемых" : "Поставить на радар"}
                       >
-                        <Bell className="w-3.5 h-3.5" />
+                        <Bell className="w-4 h-4" />
                       </button>
 
                       {offer.booking_url && (
@@ -365,10 +367,10 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                           href={offer.booking_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-blue-600 border border-slate-200 shadow-2xs transition-colors"
+                          className="p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-blue-600 border border-slate-200 shadow-2xs transition-all"
                           title="Открыть на Fly.pl"
                         >
-                          <ExternalLink className="w-3.5 h-3.5" />
+                          <ExternalLink className="w-4 h-4" />
                         </a>
                       )}
                     </div>
