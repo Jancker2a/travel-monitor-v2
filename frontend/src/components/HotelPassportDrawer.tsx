@@ -132,7 +132,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         height: 320,
         paper_bgcolor: "transparent",
         plot_bgcolor: "transparent",
-        xaxis: { gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
+        xaxis: { type: "date", gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
         yaxis: { title: "Эталон (PLN)", gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
         shapes: [
           { type: "line", y0: minP, y1: minP, x0: 0, x1: 1, xref: "paper", line: { color: "#10b981", width: 1.5, dash: "dot" } },
@@ -141,7 +141,11 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         font: { family: "Inter, sans-serif", size: 11 },
       };
 
-      window.Plotly.react(chartContainerRef.current, [trace], layout, { responsive: true, displayModeBar: false });
+      try {
+        window.Plotly.react(chartContainerRef.current, [trace], layout, { responsive: true, displayModeBar: false });
+      } catch (e) {
+        console.warn("Plotly normalized chart error:", e);
+      }
       return;
     }
 
@@ -209,6 +213,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       paper_bgcolor: "transparent",
       plot_bgcolor: "transparent",
       xaxis: {
+        type: "date",
         gridcolor: "#f1f5f9",
         tickfont: { size: 10, color: "#64748b" },
       },
@@ -245,7 +250,11 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       displayModeBar: false,
     };
 
-    window.Plotly.react(chartContainerRef.current, [trace], layout, config);
+    try {
+      window.Plotly.react(chartContainerRef.current, [trace], layout, config);
+    } catch (e) {
+      console.warn("Plotly tour chart error:", e);
+    }
   }, [activeTab, passport, historyMode, historyRange, normalizedData]);
 
   const photos = passport?.gallery_photos?.length

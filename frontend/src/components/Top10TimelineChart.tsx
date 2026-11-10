@@ -140,6 +140,7 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
       paper_bgcolor: "transparent",
       plot_bgcolor: "transparent",
       xaxis: {
+        type: "date",
         title: { text: "Время", font: { size: 12, color: "#64748b" } },
         gridcolor: "#f1f5f9",
         tickfont: { size: 11, color: "#64748b" },
@@ -156,12 +157,16 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
       displayModeBar: false,
     };
 
-    window.Plotly.react(
-      chartRef.current,
-      [traceMin, traceMax, traceAvg],
-      layout,
-      config
-    );
+    try {
+      window.Plotly.react(
+        chartRef.current,
+        [traceMin, traceMax, traceAvg],
+        layout,
+        config
+      );
+    } catch (err) {
+      console.warn("Plotly timeline render error:", err);
+    }
 
     const handleResize = () => {
       if (chartRef.current && window.Plotly) {

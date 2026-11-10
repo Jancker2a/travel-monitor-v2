@@ -98,6 +98,7 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
       paper_bgcolor: "transparent",
       plot_bgcolor: "transparent",
       xaxis: {
+        type: "date",
         gridcolor: "#f1f5f9",
         tickfont: { color: "#64748b", size: 10 },
         showline: true,
@@ -121,7 +122,11 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
       displayModeBar: false,
     };
 
-    window.Plotly.react(chartRef.current, [trace], layout, config);
+    try {
+      window.Plotly.react(chartRef.current, [trace], layout, config);
+    } catch (e) {
+      console.warn("Plotly modal chart error:", e);
+    }
 
     // Multi-phase resize per project web standards
     const timers = [40, 150, 350].map((delay) =>
