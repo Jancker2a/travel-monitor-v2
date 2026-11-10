@@ -620,43 +620,38 @@ class WatchlistService:
         # Update dossier deal score
         dossier["deal_score"] = deal_score
 
-        # German Arbitrage direct offer lookup or calculation
+        # German Arbitrage direct offer lookup with strict entity matching
         from app.services.arbitrage_service import find_check24_offer
-        c24 = find_check24_offer(hotel.display_name)
-        
-        # Check if any cohort in all_cohorts has Berlin
-        ber_cohort = next((c for c in all_cohorts if "BER" in str(c.airport_code).upper() or "BERLIN" in str(c.airport_code).upper()), None)
-        
+        c24 = find_check24_offer(
+            name=hotel.display_name,
+            destination=hotel.country,
+        )
+
+        german_arbitrage = None
         if c24 and c24.get("price_pln") and c24["price_pln"] > 0:
-            ber_price = c24["price_pln"]
-            ber_url = c24["offer_url"]
-            ber_op = c24.get("operator", "Check24 / TUI Deutschland")
-            ber_ap = c24.get("departure_airport", "BER (Берлин-Бранденбург)")
-        elif ber_cohort and ber_cohort.offer_url:
-            ber_price = round(curr_p * 0.88 - 320, 0)
-            ber_url = ber_cohort.offer_url
-            ber_op = ber_cohort.operator or "Exim / TUI"
-            ber_ap = ber_cohort.airport_code or "BER (Берлин-Бранденбург)"
-        else:
-            enc_hname = urllib.parse.quote_plus(hotel.display_name)
-            ber_price = round(curr_p * 0.88 - 320, 0)
-            ber_url = f"https://www.check24.de/suche/?q={enc_hname}"
-            ber_op = "Check24 / TUI Deutschland"
-            ber_ap = "BER (Берлин-Бранденбург)"
-
-        savings_pln = max(0.0, round(curr_p - ber_price, 0))
-        savings_pct = round((savings_pln / curr_p) * 100.0, 1) if curr_p > 0 else 0.0
-
-        german_arbitrage = {
-            "berlin_price_pln": ber_price,
-            "polish_price_pln": curr_p,
-            "savings_pln": savings_pln,
-            "savings_pct": savings_pct,
-            "berlin_operator": ber_op,
-            "departure_airport": ber_ap,
-            "booking_url": ber_url,
-            "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
-        }
+            ber_url = str(c24.get("offer_url") or "").strip()
+            # Strict validation: must lead to a specific offer page, NOT generic /suche/?q= search and not empty hotelId=
+            is_specific_offer = bool(
+                ber_url
+                and "/suche/?q=" not in ber_url
+                and ("check24" not in ber_url or ("hotelId=" in ber_url and not ber_url.endswith("hotelId=")))
+            )
+            if is_specific_offer:
+                ber_price = float(c24["price_pln"])
+                savings_pln = max(0.0, round(curr_p - ber_price, 0))
+                # Only show arbitrage if there is real, positive savings (> 0)
+                if savings_pln > 0:
+                    savings_pct = round((savings_pln / curr_p) * 100.0, 1) if curr_p > 0 else 0.0
+                    german_arbitrage = {
+                        "berlin_price_pln": ber_price,
+                        "polish_price_pln": curr_p,
+                        "savings_pln": savings_pln,
+                        "savings_pct": savings_pct,
+                        "berlin_operator": c24.get("operator", "Check24 / TUI Deutschland"),
+                        "departure_airport": c24.get("departure_airport", "BER (Берлин-Бранденбург)"),
+                        "booking_url": ber_url,
+                        "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
+                    }
 
         packages_list = sorted(list(packages_map.values()), key=lambda x: x["total_price_pln"])
 

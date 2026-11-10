@@ -176,10 +176,7 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href={
-                      d.berlin_booking_url ||
-                      `https://www.check24.de/suche/?q=${encodeURIComponent(d.hotel_name)}`
-                    }
+                    href={d.berlin_booking_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-2 px-3 rounded-xl bg-[#034ea2] hover:bg-[#023b7a] text-white text-xs font-bold text-center flex items-center justify-center gap-1 transition-colors shadow-sm"

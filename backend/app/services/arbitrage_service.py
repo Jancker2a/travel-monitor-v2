@@ -408,6 +408,10 @@ class ArbitrageService:
                 if not ok:
                     continue
 
+                ber_url = str(de_o.get("offer_url") or "").strip()
+                if not ber_url or "/suche/?q=" in ber_url or ber_url.endswith("hotelId="):
+                    continue
+
                 p_ber = de_o["price_pln"]
                 friction_pln = DEFAULT_FRICTION_COST_PLN
                 diff_pln = pl_price - (p_ber + friction_pln)

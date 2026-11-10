@@ -91,6 +91,11 @@ def main():
                 item_dest = "Cyprus"
 
             url = str(row.get("offer_url", "")).strip()
+            # Enforce strict specific offer URL: discard generic search pages or empty hotelId=
+            if not url or "/suche/?q=" in url:
+                continue
+            if "check24" in url and not re.search(r"hotelId=\d+", url):
+                continue
             dur = str(row.get("duration", "")).strip()
             dates = str(row.get("dates", "")).strip()
             ad, ch = parse_travelers(url, dur)

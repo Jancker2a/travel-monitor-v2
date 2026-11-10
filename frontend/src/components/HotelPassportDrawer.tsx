@@ -872,8 +872,13 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 </div>
               </div>
 
-              {/* German Arbitrage highlight */}
-              {passport?.german_arbitrage && passport.german_arbitrage.savings_pln > 0 && (
+              {/* German Arbitrage highlight: ONLY shown when a verified specific offer URL exists and has real savings */}
+              {passport?.german_arbitrage &&
+                passport.german_arbitrage.savings_pln > 0 &&
+                passport.german_arbitrage.booking_url &&
+                !passport.german_arbitrage.booking_url.includes("/suche/?q=") &&
+                (!passport.german_arbitrage.booking_url.includes("check24") ||
+                  !passport.german_arbitrage.booking_url.endsWith("hotelId=")) && (
                 <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "12px", padding: "14px 16px", marginBottom: "16px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                     <div>
@@ -887,7 +892,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                         </span>
                       </div>
                       <div style={{ fontSize: "12px", color: "#3b82f6", marginTop: "4px" }}>
-                        Вылет из BER: <strong>{passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł</strong> ({passport.german_arbitrage.berlin_operator || "TUI / FTI Deutschland"})
+                        Вылет из BER: <strong>{passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł</strong> ({passport.german_arbitrage.berlin_operator || "Check24 / TUI Deutschland"})
                       </div>
                       <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
                         🚆 {passport.german_arbitrage.train_transfer_from_pl || "PKP Intercity Варшава/Познань -> Berlin Hbf"}
@@ -895,10 +900,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     </div>
                     <div>
                       <a
-                        href={
-                          passport.german_arbitrage.booking_url ||
-                          `https://www.check24.de/suche/?q=${encodeURIComponent(passport.display_name)}`
-                        }
+                        href={passport.german_arbitrage.booking_url}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -916,8 +918,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                         }}
                       >
                         <span>
-                          {passport.german_arbitrage.booking_url?.includes("check24")
-                            ? "🇩🇪 Предложение на Check24 (BER)"
+                          {passport.german_arbitrage.booking_url.includes("check24")
+                            ? "🇩🇪 Конкретный тур на Check24 (BER)"
                             : "🇩🇪 Вылет из Берлина (BER)"}
                         </span>
                         <span>↗</span>
