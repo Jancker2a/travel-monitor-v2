@@ -123,7 +123,7 @@ const HOTEL_STARS = [
   { val: 0, label: "Любые ★" },
   { val: 3, label: "3★+" },
   { val: 4, label: "4★+" },
-  { val: 5, label: "5★ Luxury" },
+  { val: 5, label: "5★" },
 ];
 
 export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
@@ -169,12 +169,23 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
   // 6. Catering, Stars, Price, Order
   const [catering, setCatering] = useState("all_inclusive");
   const [starsMin, setStarsMin] = useState(4);
-  const [maxPrice, setMaxPrice] = useState<number | undefined>(8000);
+  const [minPrice, setMinPrice] = useState<string>("");
+  const [maxPrice, setMaxPrice] = useState<string>("8000");
   const [orderBy, setOrderBy] = useState("price");
 
-  // Advanced toggles
-  const [forceLive, setForceLive] = useState(false);
+  // Advanced toggles: Default is LIVE mode
+  const [forceLive, setForceLive] = useState(true);
   const [showAdvanced, setShowAdvanced] = useState(false);
+
+  const handleMinPriceChange = (val: string) => {
+    const digits = val.replace(/\D/g, "");
+    setMinPrice(digits);
+  };
+
+  const handleMaxPriceChange = (val: string) => {
+    const digits = val.replace(/\D/g, "");
+    setMaxPrice(digits);
+  };
 
   // Current active destination definition
   const currentDestDef = useMemo(
@@ -364,8 +375,13 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
     if (starsMin > 0) {
       params.set("categoryRating", String(starsMin * 10));
     }
-    if (maxPrice && maxPrice > 0) {
-      params.set("priceTo", String(maxPrice));
+    const minP = minPrice ? Number(minPrice) : undefined;
+    const maxP = maxPrice ? Number(maxPrice) : undefined;
+    if (minP && minP > 0) {
+      params.set("priceFrom", String(minP));
+    }
+    if (maxP && maxP > 0) {
+      params.set("priceTo", String(maxP));
     }
 
     return `${base}?${params.toString()}`;
@@ -382,12 +398,15 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
     maxNights,
     catering,
     starsMin,
+    minPrice,
     maxPrice,
     orderBy,
   ]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const minP = minPrice ? Number(minPrice) : undefined;
+    const maxP = maxPrice ? Number(maxPrice) : undefined;
     onSearch({
       destination,
       region: region !== destination ? region : undefined,
@@ -407,7 +426,8 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
       airports: selectedAirports,
       catering: catering !== "all" ? catering : undefined,
       stars_min: starsMin > 0 ? starsMin : undefined,
-      price_max_pln: maxPrice,
+      price_min_pln: minP && minP > 0 ? minP : undefined,
+      price_max_pln: maxP && maxP > 0 ? maxP : undefined,
       order_by: orderBy,
       force_live_refresh: forceLive,
     });
@@ -426,9 +446,10 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
     setSelectedAirports(["WAW", "KTW", "KRK", "GDN", "WRO", "POZ"]);
     setCatering("all_inclusive");
     setStarsMin(4);
-    setMaxPrice(8000);
+    setMinPrice("");
+    setMaxPrice("8000");
     setOrderBy("price");
-    setForceLive(false);
+    setForceLive(true);
   };
 
   return (
@@ -883,23 +904,67 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
             </div>
           </div>
 
-          {/* Max Budget Ceiling */}
-          <div className="md:col-span-3 bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1.5">
+          {/* 8. Budget Range: От - До (PLN) with digits-only validation */}
+          <div className="md:col-span-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200 space-y-1.5">
             <label className="text-[11px] font-bold text-slate-700 flex items-center justify-between uppercase">
-              <span>8. Бюджет (до, PLN)</span>
-              <span className="text-emerald-600 font-extrabold text-xs">
-                {maxPrice ? `${maxPrice.toLocaleString()} zł` : "Без ограничений"}
+              <span>8. Бюджет тура (PLN)</span>
+              <span className="text-emerald-600 font-extrabold text-[11px]">
+                {minPrice || maxPrice
+                  ? `${minPrice ? `от ${Number(minPrice).toLocaleString("ru-RU")}` : "от 0"} ${
+                      maxPrice ? `до ${Number(maxPrice).toLocaleString("ru-RU")}` : ""
+                    } zł`
+                  : "Любой"}
               </span>
             </label>
+
+            {/* Inputs: От - До */}
+            <div className="grid grid-cols-2 gap-1.5">
+              <div className="relative">
+                <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400 uppercase">
+                  От
+                </span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={minPrice}
+                  onChange={(e) => handleMinPriceChange(e.target.value)}
+                  placeholder="0"
+                  className="w-full bg-white text-xs font-bold text-slate-800 pl-7 pr-6 py-1 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-semibold text-slate-400">
+                  zł
+                </span>
+              </div>
+              <div className="relative">
+                <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400 uppercase">
+                  До
+                </span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={maxPrice}
+                  onChange={(e) => handleMaxPriceChange(e.target.value)}
+                  placeholder="20 000"
+                  className="w-full bg-white text-xs font-bold text-slate-800 pl-7 pr-6 py-1 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                />
+                <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-semibold text-slate-400">
+                  zł
+                </span>
+              </div>
+            </div>
+
+            {/* Quick Presets */}
             <div className="flex items-center gap-1">
               {[5000, 8000, 10000, 15000].map((p) => (
                 <button
                   key={p}
                   type="button"
-                  onClick={() => setMaxPrice(p)}
-                  className={`flex-1 py-1 text-[10px] font-semibold rounded transition-colors ${
-                    maxPrice === p
-                      ? "bg-emerald-600 text-white"
+                  onClick={() => setMaxPrice(String(p))}
+                  className={`flex-1 py-0.5 text-[10px] font-semibold rounded transition-colors ${
+                    maxPrice === String(p)
+                      ? "bg-emerald-600 text-white font-bold"
                       : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
                   }`}
                 >
@@ -908,10 +973,13 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
               ))}
               <button
                 type="button"
-                onClick={() => setMaxPrice(undefined)}
-                className={`px-1.5 py-1 text-[10px] font-semibold rounded transition-colors ${
-                  maxPrice === undefined
-                    ? "bg-slate-800 text-white"
+                onClick={() => {
+                  setMinPrice("");
+                  setMaxPrice("");
+                }}
+                className={`px-1.5 py-0.5 text-[10px] font-semibold rounded transition-colors ${
+                  !minPrice && !maxPrice
+                    ? "bg-slate-800 text-white font-bold"
                     : "bg-white hover:bg-slate-100 text-slate-500 border border-slate-200"
                 }`}
               >

@@ -1255,33 +1255,38 @@ export const App: React.FC = () => {
           onQuickFilter={handleQuickFilter}
         />
 
-        {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
-        <AiMarketBriefing
-          filterId={activeTab === "filter" ? activeFilterId : undefined}
-          filterTitle={currentPreset.title}
-          buyNowCount={heroKpi.buyNowCount}
-          onOpenPassport={(hotelId) => setActiveHotelPassport(hotelId)}
-        />
+        {/* Dashboard folds (AI Analysis, Top-10 Timeline Chart, Analytics) - ONLY shown in filter monitoring mode */}
+        {activeTab === "filter" && (
+          <>
+            {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
+            <AiMarketBriefing
+              filterId={activeFilterId}
+              filterTitle={currentPreset.title}
+              buyNowCount={heroKpi.buyNowCount}
+              onOpenPassport={(hotelId) => setActiveHotelPassport(hotelId)}
+            />
 
-        {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
-        <Top10TimelineChart
-          filterId={activeTab === "filter" ? activeFilterId : undefined}
-          destination={currentPreset.destination}
-        />
+            {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
+            <Top10TimelineChart
+              filterId={activeFilterId}
+              destination={currentPreset.destination}
+            />
 
-        {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
-        <AnalyticsFold
-          hotels={results}
-          topDrops={topDrops}
-          airportStats={airportStats}
-          filterId={activeTab === "filter" ? activeFilterId : undefined}
-          onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
-          onFilterByDeparture={(depDate) => {
-            if (depDate) {
-              setTableFilters((prev) => ({ ...prev, search: depDate }));
-            }
-          }}
-        />
+            {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
+            <AnalyticsFold
+              hotels={results}
+              topDrops={topDrops}
+              airportStats={airportStats}
+              filterId={activeFilterId}
+              onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
+              onFilterByDeparture={(depDate) => {
+                if (depDate) {
+                  setTableFilters((prev) => ({ ...prev, search: depDate }));
+                }
+              }}
+            />
+          </>
+        )}
 
         {/* 5. Universal Toolbar: Вид (Карточки / Таблица / Арбитраж) + Фильтры */}
         <UniversalTableFilters

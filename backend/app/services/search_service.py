@@ -33,9 +33,10 @@ class SearchService:
     @classmethod
     async def search(cls, db: AsyncSession, req: SearchRequest) -> SearchResponse:
         search_id = f"srch_{uuid.uuid4().hex[:10]}"
-        
-        # 1. DB Cache Lookup
-        if not req.force_live_refresh:
+        is_interactive = not bool(req.filter_id)
+
+        # 1. Dashboard filter cache lookup (ONLY for preset filter tabs, never for interactive search)
+        if not is_interactive and not req.force_live_refresh:
             cached_items = await cls._lookup_cached_cohorts(db, req)
             if cached_items:
                 logger.info(f"Search {search_id}: cache HIT ({len(cached_items)} unique hotels found)")
@@ -46,20 +47,23 @@ class SearchService:
                     results=cached_items,
                 )
 
-        # 2. Live Scraper Fallback / Refresh
-        logger.info(f"Search {search_id}: cache MISS or refresh requested -> triggering live scraper")
+        # 2. Interactive Search & Force Live Refresh: ALWAYS query fresh results directly from Fly.pl
+        logger.info(f"Search {search_id}: running LIVE scraper query against Fly.pl")
         flypl_url = UniversalQueryBuilder.build_flypl_url(req)
-        
+
         html = await LiveScraperService.fetch_page_html(flypl_url)
         raw_offers = LiveScraperService.parse_offers_html(html or "")
-        
+
         if raw_offers:
             live_items = await LiveScraperService.process_and_persist_offers(db, req, raw_offers)
             # Deduplicate by hotel_id
             best_by_hotel: Dict[str, SearchHotelItem] = {}
             for item in live_items:
                 hid = item.hotel_id
-                if hid not in best_by_hotel or item.current_offer.total_price_pln < best_by_hotel[hid].current_offer.total_price_pln:
+                if (
+                    hid not in best_by_hotel
+                    or item.current_offer.total_price_pln < best_by_hotel[hid].current_offer.total_price_pln
+                ):
                     best_by_hotel[hid] = item
             deduped = sorted(list(best_by_hotel.values()), key=lambda x: x.current_offer.total_price_pln)
             return SearchResponse(
@@ -69,7 +73,17 @@ class SearchService:
                 results=deduped,
             )
 
-        # 3. Fallback: return best available cached records if live scraping was empty
+        # For interactive search, if Fly.pl returned 0 offers, do NOT mix in unrelated dashboard offers
+        if is_interactive:
+            logger.info(f"Search {search_id}: Live search returned 0 offers for {flypl_url}")
+            return SearchResponse(
+                search_id=search_id,
+                cached=False,
+                total_found=0,
+                results=[],
+            )
+
+        # 3. Fallback for dashboard filters only
         fallback_items = await cls._lookup_cached_cohorts(db, req)
         return SearchResponse(
             search_id=search_id,

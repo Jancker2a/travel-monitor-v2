@@ -528,6 +528,21 @@ class LiveScraperService:
             )
             snap_res = await db.execute(snap_stmt)
             recent_prices = [row[0] for row in snap_res.fetchall()]
+
+            # If this specific cohort is fresh, leverage hotel-wide historical snapshots from the DB
+            if len(recent_prices) < 3:
+                h_snap_stmt = (
+                    select(PriceSnapshot.total_price_pln)
+                    .join(OfferCohort, PriceSnapshot.cohort_id == OfferCohort.cohort_id)
+                    .where(OfferCohort.hotel_id == hotel_id)
+                    .order_by(PriceSnapshot.recorded_at.desc())
+                    .limit(50)
+                )
+                h_res = await db.execute(h_snap_stmt)
+                h_prices = [r[0] for r in h_res.fetchall()]
+                if h_prices:
+                    recent_prices = h_prices
+
             if not recent_prices:
                 recent_prices = [off["price"]]
 
