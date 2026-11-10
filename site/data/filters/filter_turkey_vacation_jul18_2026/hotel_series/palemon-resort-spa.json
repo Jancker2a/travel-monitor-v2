@@ -148,7 +148,8 @@
     "2026-07-17 07:13:51",
     "2026-07-17 09:30:08",
     "2026-07-17 12:07:07",
-    "2026-07-17 13:34:35"
+    "2026-07-17 13:34:35",
+    "2026-11-10 12:02:40"
   ],
   "y": [
     9606.0,
@@ -295,7 +296,8 @@
     9908.0,
     9908.0,
     9902.0,
-    9908.0
+    9908.0,
+    15492.0
   ],
   "hover": [
     "Проверка: 14.06.2026 12:36<br>Даты поездки: 19.07.2026 - 26.07.2026",
@@ -458,11 +460,12 @@
   "confidence": "High",
   "median_p": 9758.111035788379,
   "min_p": 9089.0,
-  "max_p": 10485.0,
-  "samples": 145,
+  "max_p": 15492.0,
+  "samples": 146,
   "alert_threshold": 8.0,
   "trip_dates_label": "20.07.2026 - 27.07.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_vacation_jul18.html"
+  "back_href": "index_filter_turkey_vacation_jul18.html",
+  "current_price": 15492.0
 }

@@ -4,10 +4,12 @@
   "slug": "royal-regency-club",
   "hotel_name": "Royal Regency Club",
   "x": [
-    "2026-10-15 00:27:14"
+    "2026-10-15 00:27:14",
+    "2026-11-10 12:05:08"
   ],
   "y": [
-    10700.0
+    10700.0,
+    6862.0
   ],
   "hover": [
     "Проверка: 15.10.2026 00:27<br>Даты поездки: 29.12.2026 - 05.01.2027"
@@ -25,12 +27,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 10700.0,
-  "min_p": 10700.0,
+  "min_p": 6862.0,
   "max_p": 10700.0,
-  "samples": 1,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.12.2026 - 05.01.2027",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_ny_dec28_2026_7_10_days.html",
+  "current_price": 6862.0
 }

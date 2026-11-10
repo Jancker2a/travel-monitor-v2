@@ -5,11 +5,13 @@
   "hotel_name": "SWISS INN RESORT HURGHADA",
   "x": [
     "2026-10-29 15:51:19",
-    "2026-11-09 08:56:15"
+    "2026-11-09 08:56:15",
+    "2026-11-10 12:04:53"
   ],
   "y": [
     7900.0,
-    12417.0
+    12417.0,
+    6122.0
   ],
   "hover": [
     "Проверка: 29.10.2026 15:51<br>Даты поездки: 29.10.2026 - 05.11.2026"
@@ -27,12 +29,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 7900.0,
-  "min_p": 7900.0,
+  "min_p": 6122.0,
   "max_p": 12417.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "29.10.2026 - 05.11.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html",
+  "current_price": 6122.0
 }
