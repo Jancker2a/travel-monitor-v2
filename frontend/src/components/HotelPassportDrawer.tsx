@@ -7,7 +7,7 @@ import {
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
-import { HotelPassport } from "../types";
+import { HotelPassport, SearchHotelItem } from "../types";
 import { getHotelPassport, getHotelNormalizedHistory } from "../services/api";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
@@ -20,12 +20,14 @@ declare global {
 interface HotelPassportDrawerProps {
   hotelId: string | null;
   filterId?: string | null;
+  hotelItem?: SearchHotelItem | null;
   onClose: () => void;
 }
 
 export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   hotelId,
   filterId,
+  hotelItem,
   onClose,
 }) => {
   const [passport, setPassport] = useState<HotelPassport | null>(null);
@@ -279,10 +281,34 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActivePhotoIdx((prev) => (prev - 1 + photos.length) % photos.length);
   };
 
-  const currentPrice = passport?.current_price_pln || 0;
-  const minPrice = passport?.all_time_min_pln || 0;
+  const currentPrice = hotelItem?.current_offer?.total_price_pln || passport?.current_price_pln || 0;
+  const minPrice = hotelItem?.intelligence?.historic_min_pln || passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
   const savings = maxPrice > currentPrice ? maxPrice - currentPrice : 0;
+
+  const currentDealScore = hotelItem?.intelligence?.deal_score ?? passport?.deal_score ?? 80;
+  const isBuySignal =
+    currentDealScore >= 80 ||
+    passport?.hopper_verdict === "BUY" ||
+    passport?.hopper_verdict === "BUY NOW" ||
+    passport?.hopper_verdict === "ПОКУПАТЬ" ||
+    hotelItem?.intelligence?.hopper_verdict === "ПОКУПАТЬ";
+  const isOverpricedSignal =
+    currentDealScore < 45 ||
+    passport?.hopper_verdict === "OVERPRICED" ||
+    hotelItem?.intelligence?.hopper_verdict === "ДОРОГО" ||
+    hotelItem?.intelligence?.hopper_verdict === "ЖДАТЬ";
+
+  let dealScoreBadgeText = "";
+  if (currentDealScore >= 85) dealScoreBadgeText = "🔥 Hot";
+  else if (currentDealScore >= 70) dealScoreBadgeText = "✅ Good";
+  else if (currentDealScore < 45) dealScoreBadgeText = "📈 Bad";
+
+  const verdictBadgeText = isBuySignal ? "🟢 ПОКУПАТЬ" : isOverpricedSignal ? "🔴 ДОРОГО" : "↔ СТАБИЛЬНО";
+  const verdictBadgeBg = isBuySignal ? "#ecfdf5" : isOverpricedSignal ? "#fef2f2" : "#f1f5f9";
+  const verdictBadgeColor = isBuySignal ? "#065f46" : isOverpricedSignal ? "#991b1b" : "#334155";
+
+  const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
 
   // Dynamic values depending on active filter range (7d / 30d / all)
   const rangeStats = useMemo(() => {
@@ -543,13 +569,13 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
               {/* Badges */}
               <div className="drawer-hero-badges" id="drawerHeroBadges" style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
                 <span className="badge" style={{ background: "#e0e7ff", color: "#3730a3", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                  Deal Score {passport?.deal_score || 82}/100
+                  Deal Score {currentDealScore}/100 {dealScoreBadgeText}
                 </span>
-                <span className="badge" style={{ background: "#ecfdf5", color: "#065f46", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                  {passport?.hopper_verdict === "BUY" ? "🟢 СИГНАЛ: ПОКУПАТЬ" : "↔ СТАБИЛЬНО"}
+                <span className="badge" style={{ background: verdictBadgeBg, color: verdictBadgeColor, padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
+                  {verdictBadgeText}
                 </span>
                 <span className="badge" style={{ background: "#fef3c7", color: "#92400e", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                  TripAdvisor {passport?.ta_rating ? `★ ${passport.ta_rating}` : "★ 4.5"}
+                  TripAdvisor {currentTaRating ? `★ ${currentTaRating}` : "★ 4.5"}
                 </span>
               </div>
 
@@ -563,8 +589,19 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       <div className="oracle-subtitle">Анализ отеля, инфраструктуры и текущей точки входа</div>
                     </div>
                   </div>
-                  <div className="oracle-deal-pill" id="drawerOraclePriceBadge" style={{ background: "#dcfce7", color: "#15803d", fontWeight: 700, padding: "4px 10px", borderRadius: "20px", fontSize: "11px" }}>
-                    🟢 Выгодно брать
+                  <div
+                    className="oracle-deal-pill"
+                    id="drawerOraclePriceBadge"
+                    style={{
+                      background: isBuySignal ? "#dcfce7" : isOverpricedSignal ? "#fee2e2" : "#f1f5f9",
+                      color: isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569",
+                      fontWeight: 700,
+                      padding: "4px 10px",
+                      borderRadius: "20px",
+                      fontSize: "11px",
+                    }}
+                  >
+                    {isBuySignal ? "🟢 Выгодно брать" : isOverpricedSignal ? "🔴 Дорого" : "↔ Нормальная цена"}
                   </div>
                 </div>
 
@@ -607,8 +644,12 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     </p>
                     <div className="oracle-meta-line" style={{ marginTop: "8px", fontSize: "11px" }}>
                       <span className="oracle-meta-lbl" style={{ color: "#64748b" }}>🔮 Сигнал Hopper: </span>
-                      <span className="oracle-meta-val" id="drawerAiActionSignal" style={{ fontWeight: 700, color: "#15803d" }}>
-                        {passport?.ai_action_signal || "Покупать сейчас"}
+                      <span
+                        className="oracle-meta-val"
+                        id="drawerAiActionSignal"
+                        style={{ fontWeight: 700, color: isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569" }}
+                      >
+                        {passport?.ai_action_signal || (isBuySignal ? "Покупать сейчас" : isOverpricedSignal ? "Ждать снижения" : "Следить за ценой")}
                       </span>
                     </div>
                   </div>

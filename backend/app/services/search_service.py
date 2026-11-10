@@ -194,29 +194,47 @@ class SearchService:
             hist_median = sorted(price_history)[len(price_history) // 2]
             curr_price = latest_snap.total_price_pln
 
-            # Intelligence logic
+            # Intelligence logic via canonical V1 deal score engine
             price_diff_ratio = (curr_price - hist_median) / hist_median if hist_median > 0 else 0.0
 
-            if curr_price <= hist_min and len(price_history) >= 3:
-                deal_score = 95
-                deal_badge = "SUPER_DEAL"
-                verdict = "BUY NOW"
-                recom = f"Абсолютный исторический минимум! Скидка от медианы: {abs(price_diff_ratio) * 100:.1f}%"
-            elif price_diff_ratio <= -0.08:
-                deal_score = 82
-                deal_badge = "GOOD_DEAL"
-                verdict = "BUY NOW"
-                recom = f"Отличная цена, ниже типичного уровня на {abs(price_diff_ratio) * 100:.0f}%."
-            elif price_diff_ratio <= 0.05:
-                deal_score = 65
-                deal_badge = "FAIR_PRICE"
-                verdict = "WAIT"
-                recom = "Стандартная рыночная цена. Возможны колебания."
-            else:
-                deal_score = 40
-                deal_badge = "OVERPRICED"
-                verdict = "OVERPRICED"
-                recom = f"Цена завышена на {price_diff_ratio * 100:.0f}% относительно обычного тарифа."
+            deal_score = 65
+            deal_badge = "FAIR_PRICE"
+            verdict = "WAIT"
+            recom = "Стандартная рыночная цена. Возможны колебания."
+
+            if snaps:
+                import pandas as pd
+                from app.services.hotel_deal_score import compute_hotel_deal_metrics
+
+                df_hist = pd.DataFrame([
+                    {"scraped_at": s.recorded_at, "price": s.total_price_pln}
+                    for s in snaps
+                ])
+                deal_metrics = compute_hotel_deal_metrics(
+                    df_hist,
+                    latest_price=curr_price,
+                    time_col="scraped_at",
+                    price_col="price",
+                    ta_rating=hotel.ta_rating or 4.5,
+                    ta_review_count=hotel.ta_reviews or 0,
+                )
+                deal_score = int(deal_metrics.get("deal_score", 65))
+                if deal_score >= 85:
+                    deal_badge = "SUPER_DEAL"
+                    verdict = "BUY NOW"
+                    recom = f"Абсолютно выгодное предложение! Deal Score: {deal_score}/100"
+                elif deal_score >= 80:
+                    deal_badge = "GOOD_DEAL"
+                    verdict = "BUY NOW"
+                    recom = f"Отличная цена, ниже типичного уровня. Deal Score: {deal_score}/100"
+                elif deal_score < 45:
+                    deal_badge = "OVERPRICED"
+                    verdict = "OVERPRICED"
+                    recom = f"Цена завышена относительно истории. Deal Score: {deal_score}/100"
+                else:
+                    deal_badge = "FAIR_PRICE"
+                    verdict = "WAIT"
+                    recom = "Стандартная рыночная цена. Возможны колебания."
 
             intelligence = HotelIntelligence(
                 deal_score=deal_score,

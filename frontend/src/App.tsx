@@ -1234,6 +1234,7 @@ export const App: React.FC = () => {
       <HotelPassportDrawer
         hotelId={activeHotelPassport}
         filterId={activeTab === "filter" ? activeFilterId : undefined}
+        hotelItem={results.find((h) => h.hotel_id === activeHotelPassport) || null}
         onClose={() => setActiveHotelPassport(null)}
       />
 

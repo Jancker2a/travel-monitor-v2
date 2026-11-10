@@ -557,28 +557,68 @@ class WatchlistService:
         med_p = sorted(prices)[len(prices) // 2] if prices else 0.0
         curr_p = prices[-1] if prices else min_p
 
-        # Hopper score calculation
+        # Knowledge Base Dossier
+        dossier = HotelKnowledgeService.get_hotel_dossier(
+            hotel_name=hotel.display_name,
+            destination=hotel.region or "turkey",
+            country=hotel.country,
+            stars=hotel.stars or 4,
+            current_price=curr_p,
+        )
+
+        final_ta_rating = (
+            float(hotel.ta_rating)
+            if hotel.ta_rating
+            else (float(dossier["ta_rating"]) if dossier.get("ta_rating") else 4.5)
+        )
+        final_ta_reviews = (
+            int(hotel.ta_reviews)
+            if hotel.ta_reviews
+            else (int(dossier["ta_reviews"]) if dossier.get("ta_reviews") else 0)
+        )
+
+        # Hopper score calculation using canonical V1 statistical engine (hotel_deal_score)
         deal_score = 75
         deal_badge = "GOOD_DEAL"
         verdict = "BUY NOW"
-        if med_p > 0:
-            diff_ratio = (curr_p - med_p) / med_p
-            if curr_p <= min_p and len(prices) >= 3:
-                deal_score = 96
+
+        if history_points:
+            import pandas as pd
+            from app.services.hotel_deal_score import compute_hotel_deal_metrics
+
+            max_dt = history_points[-1].recorded_at
+            cutoff_dt = max_dt - timedelta(days=30)
+            pts_30d = [p for p in history_points if p.recorded_at >= cutoff_dt]
+            eval_pts = pts_30d if len(pts_30d) >= 3 else history_points
+
+            df_hist = pd.DataFrame([
+                {"scraped_at": p.recorded_at, "price": p.total_price_pln}
+                for p in eval_pts
+            ])
+            deal_metrics = compute_hotel_deal_metrics(
+                df_hist,
+                latest_price=curr_p,
+                time_col="scraped_at",
+                price_col="price",
+                ta_rating=final_ta_rating,
+                ta_review_count=final_ta_reviews,
+            )
+            deal_score = int(deal_metrics.get("deal_score", 75))
+            if deal_score >= 85:
                 deal_badge = "SUPER_DEAL"
                 verdict = "BUY NOW"
-            elif diff_ratio <= -0.06:
-                deal_score = 84
+            elif deal_score >= 80:
                 deal_badge = "GOOD_DEAL"
                 verdict = "BUY NOW"
-            elif diff_ratio <= 0.05:
-                deal_score = 65
-                deal_badge = "FAIR_PRICE"
-                verdict = "WAIT"
-            else:
-                deal_score = 42
+            elif deal_score < 45:
                 deal_badge = "OVERPRICED"
                 verdict = "OVERPRICED"
+            else:
+                deal_badge = "FAIR_PRICE"
+                verdict = "WAIT"
+
+        # Update dossier deal score
+        dossier["deal_score"] = deal_score
 
         # German Arbitrage direct offer lookup or calculation
         from app.services.arbitrage_service import find_check24_offer
@@ -617,16 +657,6 @@ class WatchlistService:
             "booking_url": ber_url,
             "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
         }
-
-        # Knowledge Base Dossier
-        dossier = HotelKnowledgeService.get_hotel_dossier(
-            hotel_name=hotel.display_name,
-            destination=hotel.region or "turkey",
-            country=hotel.country,
-            stars=hotel.stars or 4,
-            current_price=curr_p,
-            deal_score=deal_score,
-        )
 
         packages_list = sorted(list(packages_map.values()), key=lambda x: x["total_price_pln"])
 
