@@ -5,11 +5,19 @@
   "hotel_name": "Seaden Quality Resort & Spa",
   "x": [
     "2026-07-20 16:04:12",
+<<<<<<< Updated upstream
     "2026-11-10 13:17:06"
   ],
   "y": [
     14544.0,
     9014.0
+=======
+    "2026-11-10 13:52:47"
+  ],
+  "y": [
+    14544.0,
+    9059.0
+>>>>>>> Stashed changes
   ],
   "hover": [
     "Проверка: 20.07.2026 16:04<br>Даты поездки: 25.07.2026 - 01.08.2026"
@@ -27,7 +35,11 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 14544.0,
+<<<<<<< Updated upstream
   "min_p": 9014.0,
+=======
+  "min_p": 9059.0,
+>>>>>>> Stashed changes
   "max_p": 14544.0,
   "samples": 2,
   "alert_threshold": 8.0,
@@ -35,5 +47,9 @@
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
   "back_href": "index_filter_turkey_vacation_jul18.html",
+<<<<<<< Updated upstream
   "current_price": 9014.0
+=======
+  "current_price": 9059.0
+>>>>>>> Stashed changes
 }
