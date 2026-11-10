@@ -1100,7 +1100,43 @@ export const App: React.FC = () => {
             onSort={handleSort}
           />
         ) : (
-          <div className="space-y-4 relative">
+          <div className="space-y-4 relative" id="cardsSection">
+            {/* Cards Section Header */}
+            <div className="flex items-center justify-between">
+              <h3 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                <span>🏨</span>
+                <span>Все отели • клик по карточке откроет паспорт справа</span>
+              </h3>
+              <span className="text-sm text-slate-500 font-semibold">
+                Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b> отелей
+              </span>
+            </div>
+
+            {/* Deal Score Legend */}
+            <div className="deal-legend bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 text-xs text-slate-700 leading-relaxed shadow-2xs">
+              <strong className="text-slate-900 font-bold">Как читать Deal Score:</strong>{" "}
+              <span className="inline-flex items-center gap-0.5 font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+                🔥 Hot
+              </span>{" "}
+              = очень сильная возможность,{" "}
+              <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                ✅ Good
+              </span>{" "}
+              = хороший момент,{" "}
+              <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                ↔ Normal
+              </span>{" "}
+              = обычный уровень (~50),{" "}
+              <span className="inline-flex items-center gap-0.5 font-extrabold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">
+                📈 Bad
+              </span>{" "}
+              = подорожало за 48ч и vs средней,{" "}
+              <span className="inline-flex items-center gap-0.5 font-extrabold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
+                ⏳ Warm-up
+              </span>{" "}
+              = пока мало истории. Confidence: Low / Medium / High — степень надежности оценки. TripAdvisor слегка сдвигает Deal Score; без отзывов влияние минимально.
+            </div>
+
             {isLoading && filteredHotels.length === 0 ? (
               <LoadingSpinner
                 variant="skeleton-cards"
@@ -1117,7 +1153,7 @@ export const App: React.FC = () => {
                     description="Синхронизация актуальных котировок"
                   />
                 )}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
                   {filteredHotels.map((hotel) => (
                     <HotelCard
                       key={hotel.current_offer.cohort_hash}
