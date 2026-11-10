@@ -820,20 +820,50 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
               {/* German Arbitrage highlight */}
               {passport?.german_arbitrage && passport.german_arbitrage.savings_pln > 0 && (
-                <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "10px", padding: "12px 14px", marginBottom: "16px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "12px", padding: "14px 16px", marginBottom: "16px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
                     <div>
-                      <div style={{ fontSize: "12px", fontWeight: 800, color: "#1e40af" }}>
-                        🌍 Арбитраж через Берлин (BER)
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <span style={{ fontSize: "16px" }}>🇩🇪</span>
+                        <span style={{ fontSize: "13px", fontWeight: 800, color: "#1e40af" }}>
+                          Арбитраж через Берлин (BER)
+                        </span>
+                        <span style={{ background: "#2563eb", color: "#ffffff", padding: "2px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 800 }}>
+                          Выгода {passport.german_arbitrage.savings_pln.toLocaleString("ru-RU")} zł
+                        </span>
                       </div>
-                      <div style={{ fontSize: "11px", color: "#3b82f6", marginTop: "2px" }}>
-                        Вылет из BER: {passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł ({passport.german_arbitrage.berlin_operator})
+                      <div style={{ fontSize: "12px", color: "#3b82f6", marginTop: "4px" }}>
+                        Вылет из BER: <strong>{passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł</strong> ({passport.german_arbitrage.berlin_operator || "TUI / FTI Deutschland"})
+                      </div>
+                      <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
+                        🚆 {passport.german_arbitrage.train_transfer_from_pl || "PKP Intercity Варшава/Познань -> Berlin Hbf"}
                       </div>
                     </div>
-                    <div style={{ textAlign: "right" }}>
-                      <span style={{ background: "#2563eb", color: "#ffffff", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 800 }}>
-                        Экономия {passport.german_arbitrage.savings_pln.toLocaleString("ru-RU")} zł
-                      </span>
+                    <div>
+                      <a
+                        href={
+                          passport.german_arbitrage.booking_url ||
+                          `https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName=${encodeURIComponent(passport.display_name)}&order=price`
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          background: "#1d4ed8",
+                          color: "#ffffff",
+                          padding: "8px 14px",
+                          borderRadius: "8px",
+                          fontSize: "12px",
+                          fontWeight: 700,
+                          textDecoration: "none",
+                          boxShadow: "0 2px 4px rgba(29, 78, 216, 0.2)",
+                        }}
+                      >
+                        <span>Найти вылет из BER</span>
+                        <span>↗</span>
+                      </a>
                     </div>
                   </div>
                 </div>

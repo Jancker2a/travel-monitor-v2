@@ -28,6 +28,7 @@ import {
   getTopPriceDrops,
   getAirportComparison,
   getFilterHotelsCatalog,
+  getArbitrageDeals,
 } from "./services/api";
 import { Bell, Menu, Radio, Sparkles } from "lucide-react";
 
@@ -661,6 +662,7 @@ export const App: React.FC = () => {
 
   const [topDrops, setTopDrops] = useState<PriceDropItem[]>([]);
   const [airportStats, setAirportStats] = useState<AirportStat[]>([]);
+  const [arbitrageCount, setArbitrageCount] = useState<number>(0);
 
   // Filter state
   const [tableFilters, setTableFilters] = useState<FilterState>(INITIAL_FILTERS);
@@ -687,6 +689,10 @@ export const App: React.FC = () => {
     getAirportComparison("turkey")
       .then((stats) => setAirportStats(stats))
       .catch((err) => console.warn("Airport stats fetch failed:", err));
+
+    getArbitrageDeals(300)
+      .then((deals) => setArbitrageCount(deals.length))
+      .catch((err) => console.warn("Arbitrage count fetch failed:", err));
   }, []);
 
   const loadFilterResults = async (filterId: string) => {
@@ -1083,6 +1089,7 @@ export const App: React.FC = () => {
           onFilterChange={setTableFilters}
           onClear={() => setTableFilters(INITIAL_FILTERS)}
           regions={availableRegions}
+          arbitrageCount={arbitrageCount}
         />
 
         {/* 6. Mode Switch Views */}

@@ -141,9 +141,30 @@ export const GermanArbitrageView: React.FC = () => {
               </div>
 
               {/* Bottom CTA */}
-              <div className="px-4 pb-4 pt-1">
-                <div className="w-full py-2 px-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold text-center">
+              <div className="px-4 pb-4 pt-1 space-y-2">
+                <div className="w-full py-1.5 px-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold text-center">
                   {d.verdict}
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={d.berlin_booking_url || `https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName=${encodeURIComponent(d.hotel_name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold text-center flex items-center justify-center gap-1 transition-colors shadow-sm"
+                  >
+                    <span>🇩🇪 Вылет BER</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={d.polish_booking_url || `https://fly.pl/szukaj-wycieczek/?hotelName=${encodeURIComponent(d.hotel_name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-1 transition-colors border border-slate-200"
+                    title="Сравнить с вылетом из Польши"
+                  >
+                    <span>🇵🇱 PL</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             </div>

@@ -5,7 +5,9 @@ Compares departures from Berlin (BER) against Polish hubs (WAW, KTW, WRO, POZ)
 to find price discrepancies and identify massive savings via German operators.
 """
 import logging
-from typing import Dict, Any, List, Optional
+import time
+from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timedelta, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_, func
 
@@ -15,14 +17,30 @@ from app.models.hotel import Hotel
 
 logger = logging.getLogger("travel_monitor_2.arbitrage")
 
+_ARBITRAGE_CACHE: Dict[float, Tuple[float, List[Dict[str, Any]]]] = {}
+_CACHE_TTL_SECONDS = 600  # 10 minutes cache
+
 
 class ArbitrageService:
     @classmethod
     async def get_arbitrage_deals(
-        cls, db: AsyncSession, min_savings_pln: float = 300.0, limit: int = 30
+        cls, db: AsyncSession, min_savings_pln: float = 300.0, limit: int = 50
     ) -> List[Dict[str, Any]]:
         """Finds identical hotels and date windows where Berlin departures are significantly cheaper."""
-        # 1. Fetch latest price per cohort
+        now_ts = time.time()
+        if min_savings_pln in _ARBITRAGE_CACHE:
+            c_time, c_deals = _ARBITRAGE_CACHE[min_savings_pln]
+            if now_ts - c_time < _CACHE_TTL_SECONDS:
+                return c_deals[:limit]
+
+        # 1. Fetch only recent snapshots (last 14 days) to keep query ultra fast
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        recent_cutoff = (
+            datetime.now(timezone.utc) - timedelta(days=14)
+            if is_pg
+            else (datetime.utcnow() - timedelta(days=14)).isoformat()
+        )
+
         subq = (
             select(
                 PriceSnapshot.cohort_id,
@@ -32,6 +50,7 @@ class ArbitrageService:
                     order_by=PriceSnapshot.recorded_at.desc(),
                 ).label("rn"),
             )
+            .where(PriceSnapshot.recorded_at >= recent_cutoff)
             .subquery()
         )
 
@@ -46,6 +65,7 @@ class ArbitrageService:
                 OfferCohort.checkin_date,
                 OfferCohort.duration_nights,
                 OfferCohort.operator,
+                OfferCohort.offer_url,
                 subq.c.total_price_pln,
             )
             .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
@@ -57,7 +77,7 @@ class ArbitrageService:
         # Group by (hotel_id, checkin_date, duration_nights)
         grouped: Dict[str, Dict[str, Any]] = {}
         for r in rows:
-            hotel_id, name, country, stars, img, airport, checkin, nights, operator, price = r
+            hotel_id, name, country, stars, img, airport, checkin, nights, operator, offer_url, price = r
             if not checkin or price <= 0:
                 continue
 
@@ -78,7 +98,7 @@ class ArbitrageService:
                     "polish_offers": [],
                 }
 
-            entry = {"airport": airport, "price_pln": price, "operator": operator}
+            entry = {"airport": airport, "price_pln": price, "operator": operator, "offer_url": offer_url}
             if is_berlin:
                 grouped[key]["berlin_offers"].append(entry)
             else:
@@ -98,6 +118,8 @@ class ArbitrageService:
             diff_pln = p_pl - p_ber
             if diff_pln >= min_savings_pln:
                 savings_pct = (diff_pln / p_pl) * 100.0
+                ber_url = cheapest_ber.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName={g['hotel_name'].replace(' ', '+')}"
+                pl_url = cheapest_pl.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?hotelName={g['hotel_name'].replace(' ', '+')}"
                 deals.append({
                     "hotel_id": g["hotel_id"],
                     "hotel_name": g["hotel_name"],
@@ -106,17 +128,20 @@ class ArbitrageService:
                     "main_image_url": g["main_image_url"],
                     "checkin_date": g["checkin_date"],
                     "duration_nights": g["duration_nights"],
-                    "berlin_airport": cheapest_ber["airport"],
+                    "berlin_airport": cheapest_ber["airport"] or "BER",
                     "berlin_price_pln": p_ber,
-                    "berlin_operator": cheapest_ber["operator"],
-                    "polish_airport": cheapest_pl["airport"],
+                    "berlin_operator": cheapest_ber["operator"] or "TUI / FTI",
+                    "berlin_booking_url": ber_url,
+                    "polish_airport": cheapest_pl["airport"] or "WAW",
                     "polish_price_pln": p_pl,
-                    "polish_operator": cheapest_pl["operator"],
+                    "polish_operator": cheapest_pl["operator"] or "PL Operator",
+                    "polish_booking_url": pl_url,
                     "savings_pln": round(diff_pln, 0),
                     "savings_pct": round(savings_pct, 1),
-                    "verdict": f"Выгода: -{round(diff_pln):,} zł (-{savings_pct:.0f}%)",
+                    "verdict": f"Выгода: {round(diff_pln):,} zł (-{savings_pct:.0f}%)",
                 })
 
         deals.sort(key=lambda x: x["savings_pln"], reverse=True)
+        _ARBITRAGE_CACHE[min_savings_pln] = (now_ts, deals)
         return deals[:limit]
 

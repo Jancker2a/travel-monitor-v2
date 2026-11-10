@@ -410,23 +410,30 @@ class WatchlistService:
                 if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
                 else datetime.utcnow().date()
             )
-            checkout_d = checkin_d + timedelta(days=cohort.duration_nights)
-            packages_map[cohort.cohort_hash] = {
-                "cohort_hash": cohort.cohort_hash,
-                "destination_code": cohort.destination_code,
-                "airport": cohort.airport_code,
-                "airport_code": cohort.airport_code,
-                "departure_date": str(checkin_d),
-                "checkin_date": str(checkin_d),
-                "checkout_date": str(checkout_d),
-                "duration_nights": cohort.duration_nights,
-                "adults": cohort.adults,
-                "children": cohort.children,
-                "total_price_pln": snap.total_price_pln,
-                "price_per_night_pax": round(snap.price_per_night_per_pax, 1),
-                "operator": cohort.operator or "Touroperator",
-                "booking_url": cohort.offer_url,
-            }
+            # Deduplicate by unique travel flight combination (departure date, duration, airport)
+            # keeping the cheapest live price for each slot
+            today_date = datetime.utcnow().date()
+            if checkin_d < today_date:
+                continue
+
+            dedup_key = f"{checkin_d}_{cohort.duration_nights}_{cohort.airport_code}"
+            if dedup_key not in packages_map or snap.total_price_pln < packages_map[dedup_key]["total_price_pln"]:
+                packages_map[dedup_key] = {
+                    "cohort_hash": cohort.cohort_hash,
+                    "destination_code": cohort.destination_code,
+                    "airport": cohort.airport_code,
+                    "airport_code": cohort.airport_code,
+                    "departure_date": str(checkin_d),
+                    "checkin_date": str(checkin_d),
+                    "checkout_date": str(checkout_d),
+                    "duration_nights": cohort.duration_nights,
+                    "adults": cohort.adults,
+                    "children": cohort.children,
+                    "total_price_pln": snap.total_price_pln,
+                    "price_per_night_pax": round(snap.price_per_night_per_pax, 1),
+                    "operator": cohort.operator or "Touroperator",
+                    "booking_url": cohort.offer_url or f"https://fly.pl/szukaj-wycieczek/?hotelName={hotel.display_name.replace(' ', '+')}",
+                }
 
         # 5. Build clean, non-oscillating history points for scoped cohorts
         # Group snapshots by hourly bucket and take MIN price per bucket
@@ -503,6 +510,7 @@ class WatchlistService:
                 verdict = "OVERPRICED"
 
         # German Arbitrage simulation / lookup
+        enc_hname = hotel.display_name.replace(" ", "+")
         german_arbitrage = {
             "berlin_price_pln": round(curr_p * 0.88 - 320, 0),
             "polish_price_pln": curr_p,
@@ -510,6 +518,7 @@ class WatchlistService:
             "savings_pct": 14.5,
             "berlin_operator": "FTI Touristik / TUI Deutschland",
             "departure_airport": "BER (Берлин-Бранденбург)",
+            "booking_url": f"https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName={enc_hname}&order=price",
             "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
         }
 

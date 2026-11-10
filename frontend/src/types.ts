@@ -124,6 +124,7 @@ export interface GermanArbitrageData {
   savings_pct: number;
   berlin_operator: string;
   departure_airport: string;
+  booking_url?: string;
   train_transfer_from_pl: string;
 }
 

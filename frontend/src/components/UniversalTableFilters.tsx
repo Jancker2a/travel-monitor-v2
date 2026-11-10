@@ -28,7 +28,7 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
   onFilterChange,
   onClear,
   regions,
-  arbitrageCount = 18,
+  arbitrageCount,
 }) => {
   return (
     <div className="space-y-3.5" id="globalFiltersWrap">
@@ -75,9 +75,11 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
           >
             <Globe className="w-4 h-4 text-blue-600" />
             <span>Арбитраж BER</span>
-            <span className="px-2 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700">
-              {arbitrageCount}
-            </span>
+            {arbitrageCount != null && arbitrageCount > 0 && (
+              <span className="px-2 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700">
+                {arbitrageCount}
+              </span>
+            )}
           </button>
         </div>
       </div>

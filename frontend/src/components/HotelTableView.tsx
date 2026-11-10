@@ -127,12 +127,14 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("ta_rating")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[75px]"
-                style={{ width: "6%" }}
-                title="TripAdvisor"
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[105px]"
+                style={{ width: "8%" }}
+                title="Рейтинг отеля на TripAdvisor"
               >
                 <div className="flex items-center justify-center gap-1.5">
-                  <span>🦉</span>
+                  <span className="font-extrabold text-[11px] tracking-tight text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-md border border-emerald-300">
+                    TripAdvisor
+                  </span>
                   {renderSortIcon("ta_rating")}
                 </div>
               </th>
@@ -291,8 +293,9 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                   {/* TripAdvisor */}
                   <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
-                    <div className="inline-flex items-center gap-1.5 text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-black text-[13px] shadow-2xs">
-                      <span>● {hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}</span>
+                    <div className="inline-flex items-center gap-1 text-emerald-900 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-300 font-extrabold text-[12.5px] shadow-2xs" title={`TripAdvisor: ${hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}/5`}>
+                      <span className="text-emerald-600 font-black">★</span>
+                      <span>{hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}</span>
                     </div>
                   </td>
 
