@@ -12,7 +12,11 @@
     "stars": 2,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12590/1605bddcc03f917bb2f4382277e51e65957c1efa290679285a632574f61743f3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12590/1605bddcc03f917bb2f4382277e51e65957c1efa290679285a632574f61743f3.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/san-remo-larnaka/pA-IB6e_FEq28qCQ8QSVrRAAogBmT-Ns3LbUBsxfyUoUrsfVP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwtKbM1wZI6BFQAVibB2ABagJCQnIeHBGuYrkE54cRqwSTARvi2wsY7qERAbO51YgCARJjPlKEmg/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/san-remo-larnaka/pA-IB6e_FEq28qCQ8QSVrRAAogBmT-Ns3LbUBsxfyUoUrsfVP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwgrjM1wZI6BFQAViaB2ABagJCQnIeHBGuYrkE54cRqwSTARvi2wsY7qERAbO51YgCARJjrvoHfA/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -29,7 +33,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7795/36b62c4d41d8360ff2c4cecde9123d70bd722a929661d8ef5c17fc6fd086d41a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7795/36b62c4d41d8360ff2c4cecde9123d70bd722a929661d8ef5c17fc6fd086d41a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/navarria-limassol/pF2B60pbSewlpdb06LzmDJAAog9C5ZPiVlNwIGs97Sa4NCtG3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwtKbM1wZI8xFQAVibB2ABagJCQnIdHBHzPLkEzJIYqwQBGM3DLBvjuj8Bs5Xv_QEBEmOKOTwH/?operator=ECCX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/navarria-limassol/pF2B60pbSewlpdb06LzmDJAAog9C5ZPiVlNwIGs97Sa4NCtG3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwgrjM1wZI8xFQAViaB2ABagJCQnIdHBHzPLkEzJIYqwQBGM3DLBvjuj8Bs5Xv_QEBEmN2bwD7/?operator=ECCX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -46,7 +54,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/122799/de8fc49da15e1e1202af08dce0b597f5ba9ed067deaafb7f62b3528faff0676b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/122799/de8fc49da15e1e1202af08dce0b597f5ba9ed067deaafb7f62b3528faff0676b.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,alsancak/riverside-garden-resort/pTqyYQRp7KpZZ_Yp4q1PrJAAog6EkkOY7oXui9KwMA_efWj49mKqBriCeZOESpa6rC3JgqBEVYSU0wtKbM1wZIjxJQAVibB2ABagJST3IeHBGvvwerBIqfSLkEFhvGtUoY85RGAdixuuQNAQBjjfqgtg/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,alsancak/riverside-garden-resort/pTqyYQRp7KpZZ_Yp4q1PrJAAog6EkkOY7oXui9KwMA_efWj49mKqBriCeZOESpa6rC3JgqBEVYSU0wgrjM1wZIjxJQAViaB2ABagJST3IeHBGvvwerBIqfSLkEFhvGtUoY85RGAdixuuQNAQBjfDB73A/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -69,7 +81,7 @@
   },
   {
     "hotel_name": "Livadhiotis City Hotel",
-    "price": 2548.0,
+    "price": 2588.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -80,7 +92,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28874/4fdf4def1e2a12668699665a829ba7c58a13abfbaf403df8b2f8e407a749ea0c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28874/4fdf4def1e2a12668699665a829ba7c58a13abfbaf403df8b2f8e407a749ea0c.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/livadhiotis-city/p9oOnoC_vbZ3uFi-4nuWfWAAogXE6sRMKWhZQO4JJSZTGIPedgDnNGwloEY5x4oZKv9bUqBEJWQlgwtKbM1wZI9BNQAVibB2ABagJCQnIeHBHK4QEb5aRAGO6wFbkE2e0zqwQQAdqTrtQDARJj_L0p-A/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/livadhiotis-city/p9oOnoC_vbZ3uFi-4nuWfWAAogXE6sRMKWhZQO4JJSZTGIPedgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZInBRQAViaB2ABagJCQnIeHBHK4QEb5aRAGO6wFbkE2e0zqwQQAdqTrtQDARJjGswleg/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -120,7 +136,7 @@
   },
   {
     "hotel_name": "Veronica",
-    "price": 2684.0,
+    "price": 2664.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -131,7 +147,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/29889/4d09a16e499d3a84943df6632630a6134d1008e111ae7b41e3bef67a3964de66.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/29889/4d09a16e499d3a84943df6632630a6134d1008e111ae7b41e3bef67a3964de66.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,paphos,c/veronica-paphos/pYczkPKVcOqbcaViLTDXA7AAog6xytUcp7AeiH6DQO3yS4eVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtKbM1wZI_BRQAVibB2ABagJCQnIeHBHB6QEb6qpEGK3AG7kEircjqwQlAZXHoc0EARJjZJrhJg/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,paphos,c/veronica-paphos/pYczkPKVcOqbcaViLTDXA7AAog6xytUcp7AeiH6DQO3yS4eVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZI6BRQAViaB2ABagJCQnIeHBHB6QEb6qpEGK3AG7kEircjqwQlAZXHoc0EARJjBuxiGQ/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -165,7 +185,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28862/f8a2004e70f1e2a084fa8de1670ac08e3645f40427b4407dc4e2d9b7dd1f0b07.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28862/f8a2004e70f1e2a084fa8de1670ac08e3645f40427b4407dc4e2d9b7dd1f0b07.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,protaras/protaras-plaza-15/pgnGIXKD5e_POY1koAgd4rAAogPj00FdjU97UZ8nYrcVAf8-dgDnNGwloEY5x4oZKv9bUqBEJWQlgwtKbM1wZIjBZQAVibB2ABagJCQnIeHBG-4QEbnatAGOTOI7kEt8klqwQQAZG1wfgEARJjL7-7Bw/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,protaras/protaras-plaza-15/pgnGIXKD5e_POY1koAgd4rAAogPj00FdjU97UZ8nYrcVAf8-dgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZIjBZQAViaB2ABagJCQnIeHBG-4QEbnatAGOTOI7kEt8klqwQQAZG1wfgEARJjX3D4bw/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -188,7 +212,7 @@
   },
   {
     "hotel_name": "Avlida Hotel",
-    "price": 3005.0,
+    "price": 2985.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -199,7 +223,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28868/5ce3f923bedf39c01f80af40b62e321dad90937fa207cbbe1eff8e593a59edac.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28868/5ce3f923bedf39c01f80af40b62e321dad90937fa207cbbe1eff8e593a59edac.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/avlida/p2R3g9lQOrU-qawYMa4rK6AAogSOwnLMP966tepDazz9i9o1xdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtKbM1wZIvRdQAVibB2ABagJCQnIeHBHE4QEbq-dAGN7MF7kElfYqqwQlAafW0PADARJj8KFLKA/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/avlida/p2R3g9lQOrU-qawYMa4rK6AAogSOwnLMP966tepDazz9i9o1xdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZIqRdQAViaB2ABagJCQnIeHBHE4QEbq-dAGN7MF7kElfYqqwQlAafW0PADARJjnGuVHg/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -216,13 +244,17 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124921/bc579119b93892ff1aad8a8eccbbc992f060e9f8b0860a9d64786eec3a5176c0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124921/bc579119b93892ff1aad8a8eccbbc992f060e9f8b0860a9d64786eec3a5176c0.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,agios-georgios/top-set/px4HhCbQ95ylKNGFVgNLWBAAogesM1FKh0qZqkqKwT2BtLcY9mKqBriCeZOESpa6rC3JgqBEVYSU0wtKbM1wZIwRdQAVibB2ABagJCQnIeHBH5zwerBMCOSLkEFhvI9k0Y2I9NAaif8NQOAQBjJTbhCQ/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,agios-georgios/top-set/px4HhCbQ95ylKNGFVgNLWBAAogesM1FKh0qZqkqKwT2BtLcY9mKqBriCeZOESpa6rC3JgqBEVYSU0wgrjM1wZIwRdQAViaB2ABagJCQnIeHBH5zwerBMCOSLkEFhvI9k0Y2I9NAaif8NQOAQBj-idsKw/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
   {
     "hotel_name": "Dionysos Central Hotel",
-    "price": 3061.0,
+    "price": 3041.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -233,7 +265,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28881/75ede12c8449df6b4c788ac815e3870c4af3eca5452c95a56099c75b7a9f8e74.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28881/75ede12c8449df6b4c788ac815e3870c4af3eca5452c95a56099c75b7a9f8e74.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/dionysos-central/pNdqa6ue6sfZytM1sgG_1BAAogE_j95_ihKKCW7G_2j5n7llxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtKbM1wZI9RdQAVibB2ABagJCQnIeHBHR4QEbktZEGKKoH7kE3asfqwQlAeexsvkEARJjjPHV7g/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/dionysos-central/pNdqa6ue6sfZytM1sgG_1BAAogE_j95_ihKKCW7G_2j5n7llxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZI4RdQAViaB2ABagJCQnIeHBHR4QEbktZEGKKoH7kE3asfqwQlAeexsvkEARJjeSyqKQ/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -250,7 +286,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12100/df790f8724c6aafec891a7a7491664c44d858e1f474ba1dfad5822374ed0377d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12100/df790f8724c6aafec891a7a7491664c44d858e1f474ba1dfad5822374ed0377d.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/park-beach/pFqH1VNyRlQr8HxfthTMs6AAog0J-OH4TnJNf_hj-xzZh5g3GJU-lXebVZTndWBydBWV8qBE9BU0kwtKbM1wZI9xdQAVibB2ABagJCQnIdHBHEXqsEifwPuQQkG7DrDBiroREByMv8iAIBEmNXJh_o/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/park-beach/pFqH1VNyRlQr8HxfthTMs6AAog0J-OH4TnJNf_hj-xzZh5g3GJU-lXebVZTndWBydBWV8qBE9BU0kwgrjM1wZI9xdQAViaB2ABagJCQnIdHBHEXqsEifwPuQQkG7DrDBiroREByMv8iAIBEmOshHeY/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -284,13 +324,17 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124881/0ca7f55139d01bc0b05e2b0b523221168bdbca975711749d43d7482257b12cb7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124881/0ca7f55139d01bc0b05e2b0b523221168bdbca975711749d43d7482257b12cb7.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,kyrenia/altinkaya-resort/pHRQ7_vl-07lR0CkbyGv3MAAogqLMjC1n7_XSDiZqlzhKsz49mKqBriCeZOESpa6rC3JgqBEVYSU0wtKbM1wZI1xhQAVibB2ABagJCQnIeHBHRzwerBOiOSLkEFhu4800Y2I9NAaD68dQOAQBjcYxr7w/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,kyrenia/altinkaya-resort/pHRQ7_vl-07lR0CkbyGv3MAAogqLMjC1n7_XSDiZqlzhKsz49mKqBriCeZOESpa6rC3JgqBEVYSU0wgrjM1wZI1xhQAViaB2ABagJCQnIeHBHRzwerBOiOSLkEFhu4800Y2I9NAaD68dQOAQBjc9vJIQ/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
   {
     "hotel_name": "Kapetanios Limassol Hotel",
-    "price": 3290.0,
+    "price": 3270.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -301,11 +345,16 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30690/1a6c489f454f1b95f65f03c3898a782375f35fe12e93d5bcad84b215f0cca969.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30690/1a6c489f454f1b95f65f03c3898a782375f35fe12e93d5bcad84b215f0cca969.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/kapetanios/p2ucnG-4IctrkszUSTQP6XAAog9hmsb0PN8pV-sH3_IAydOVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtKbM1wZI2hlQAVibB2ABagJCQnIeHBHi7wEbtd5BGIetF7kExJAqqwQlAbWRnPkDAQBj_ig3BQ/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/kapetanios/p2ucnG-4IctrkszUSTQP6XAAog9hmsb0PN8pV-sH3_IAydOVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZIxhlQAViaB2ABagJCQnIeHBHi7wEbtd5BGIetF7kExJAqqwQlAbWRnPkDAQBjhoSxOQ/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Atlantica Oasis",
     "price": 3300.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -323,8 +372,10 @@
     "operator": "Oasis Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Theo Sunset Bay Hotel",
-    "price": 3329.0,
+    "price": 3289.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -335,24 +386,34 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028022/1322078cbb78483d240845b04c44a99a02fe75b20bb55f98f2a87ae22ef061d9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028022/1322078cbb78483d240845b04c44a99a02fe75b20bb55f98f2a87ae22ef061d9.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,kisonerga/theo-sunset-bay-holiday-village-10/p2u05KcvhVexmjivnNoyh8AAogO0iPBdS1j0E5pjR_ZRzcW_RpW184mFARoHKBhj4GykIqBE5LUkEwtKbM1wZIgRpQAVibB2ABagJCQmoES1RXMGoDUEZPchgWDiAKDBGq3z4NrfOVCQ8HG-qehRsBEmPBx7_3/?operator=NKRA&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,kisonerga/theo-sunset-bay-holiday-village-10/p2u05KcvhVexmjivnNoyh8AAogO0iPBdS1j0E5pjR_ZRzcW_RpW184mFARoHKBhj4GykIqBE5LUkEwgrjM1wZI2RlQAViaB2ABagJCQmoES1RXMGoDUEZPchgWDiAKDBGq3z4NrfOVCQ8HG-qehRsBEmNds9bL/?operator=NKRA&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
   },
   {
-    "hotel_name": "Lebay Beach Hotel",
-    "price": 3398.0,
+    "hotel_name": "Atlantica Oasis",
+    "price": 3290.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
     "duration": "7 nocy",
     "duration_nights": 7,
-    "departure_airport": "Kraków",
+    "departure_airport": "Katowice",
     "board_basis": "Śniadania",
     "stars": 4,
+<<<<<<< Updated upstream
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/33381/68c6da07a6129ee6c37d32f460ea3cd4dc121fe9171241f64984f4545dc318d6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/33381/68c6da07a6129ee6c37d32f460ea3cd4dc121fe9171241f64984f4545dc318d6.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,oroklini/lebay-beach/p_OaQtMJPHUArV4ZtH-s0iAAoglm8SQwzZ5PNimun3EKVX6edgDnNGwloEY5x4oZKv9bUqBEJWQlgwtKbM1wZIxhpQAVibB2ABagJCQnIeHBHlhAIby9FHGPCJHrkE1sQjqwQQAYLgm5UFARJj0eXvUA/?operator=BVBX&adults=1",
+=======
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/32824/64a30ac78c926e17c075008074c66e71f9684942461dd8438b7463cc801a9013.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/32824/64a30ac78c926e17c075008074c66e71f9684942461dd8438b7463cc801a9013.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/atlantica-oasis-garden-12/pjj5gg7yoElCo9JCKoVKS9AAogXNZLAt-gHsmt5qFsTi_C5FxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZI2hlQAViaB2ABagJCQnIeHBG4gAIbke1FGKLsG7kE97EhqwQlAbrZ3eIEARJjXPUosQ/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -369,11 +430,35 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12594/10861913ee8932593d4f1b7de8ba4c80bef349109b8ad74847bcd7eb8660151a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12594/10861913ee8932593d4f1b7de8ba4c80bef349109b8ad74847bcd7eb8660151a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,larnaca/larco/pu_aBA3v7iUz3s8sc5WFpgAAoggHYXsZcE74OrZukVjEUrFVP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwtKbM1wZI1hpQAVibB2ABagJCQnIeHBGyYrkE44cRqwSTARvW1gsYxpoRAaSg-4cCARJjpAgIaQ/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,larnaca/larco/pu_aBA3v7iUz3s8sc5WFpgAAoggHYXsZcE74OrZukVjEUrFVP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwgrjM1wZI1hpQAViaB2ABagJCQnIeHBGyYrkE44cRqwSTARvW1gsYxpoRAaSg-4cCARJjKtrisw/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
   {
+<<<<<<< Updated upstream
+=======
+    "hotel_name": "Lebay Beach Hotel",
+    "price": 3438.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Kraków",
+    "board_basis": "Śniadania",
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/33381/68c6da07a6129ee6c37d32f460ea3cd4dc121fe9171241f64984f4545dc318d6.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/33381/68c6da07a6129ee6c37d32f460ea3cd4dc121fe9171241f64984f4545dc318d6.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,oroklini/lebay-beach/p_OaQtMJPHUArV4ZtH-s0iAAoglm8SQwzZ5PNimun3EKVX6edgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZI7hpQAViaB2ABagJCQnIeHBHlhAIby9FHGPCJHrkE1sQjqwQQAYLgm5UFARJjeaUO7w/?operator=BVBX&adults=1",
+    "ta_rating": null,
+    "operator": "Best Reisen Group"
+  },
+  {
+>>>>>>> Stashed changes
     "hotel_name": "Limanaki Beach Hotel & Suites",
     "price": 3469.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -386,7 +471,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114307/01a9bb0fa7969c4a128f33106e1facd33465a04c4b541e5706bb4ed5b7865229.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114307/01a9bb0fa7969c4a128f33106e1facd33465a04c4b541e5706bb4ed5b7865229.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,ajia-napa/limanaki-beach/pIjLS-1XuCPuRSqup8rIVAAAog-VQ_eh74WNLmIR5gZ-2G449mKqBriCeZOESpa6rC3JgqBEVYSU0wtKbM1wZIjRtQAVibB2ABagJCQnIeHBGD_QarBLbhSLkEFhuYgj4Y-aVHAdPx5fcMARJjl7TxXQ/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,ajia-napa/limanaki-beach/pIjLS-1XuCPuRSqup8rIVAAAog-VQ_eh74WNLmIR5gZ-2G449mKqBriCeZOESpa6rC3JgqBEVYSU0wgrjM1wZIjRtQAViaB2ABagJCQnIeHBGD_QarBLbhSLkEFhuYgj4Y-aVHAdPx5fcMARJjzUHrAA/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -420,13 +509,17 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12564/1a7efcd98ccc791b15340b58017a98661d74c7acffadbb94afa45451fe659ce0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12564/1a7efcd98ccc791b15340b58017a98661d74c7acffadbb94afa45451fe659ce0.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/atlantica-miramare-beach/pUQx4eFccg5u9K3FIpmFm3AAogucV6lMO5Vp6Woec84a4VvnGJU-lXebVZTndWBydBWV8qBE9BU0kwtKbM1wZIkh1QAVibB2ABagJCQnIdHBGUYqsEufgPuQQkG_asDxj0wBABpLn0lAIBEmMr_erI/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/atlantica-miramare-beach/pUQx4eFccg5u9K3FIpmFm3AAogucV6lMO5Vp6Woec84a4VvnGJU-lXebVZTndWBydBWV8qBE9BU0kwgrjM1wZIkh1QAViaB2ABagJCQnIdHBGUYqsEufgPuQQkG_asDxj0wBABpLn0lAIBEmMe_K8L/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
   {
     "hotel_name": "Constantinos The Great Beach",
-    "price": 3998.0,
+    "price": 4038.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -437,13 +530,17 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28863/a918c7050709646746d2092d4e66f95c58931658920b0c0e86bf85805429558e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28863/a918c7050709646746d2092d4e66f95c58931658920b0c0e86bf85805429558e.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,protaras/constantinos-the-great/pTbQ2wwHs_AFyTYeQQZXJHAAogn3GGR_qumjp7rChKPRjNjudgDnNGwloEY5x4oZKv9bUqBEJWQlgwtKbM1wZInh9QAVibB2ABagJIQnIeHBG_4QEbxKdAGN2uFbkElu0zqwQQAcDhr9QDARJjr2FgYA/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,protaras/constantinos-the-great/pTbQ2wwHs_AFyTYeQQZXJHAAogn3GGR_qumjp7rChKPRjNjudgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZIxh9QAViaB2ABagJIQnIeHBG_4QEbxKdAGN2uFbkElu0zqwQQAcDhr9QDARJj-Sv69Q/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
   {
     "hotel_name": "Mayfair Gardens",
-    "price": 4074.0,
+    "price": 4054.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -454,7 +551,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28884/6db405f6e67b871c887b34810180610bbcdd7e842621f45974e8494b950aa0d1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28884/6db405f6e67b871c887b34810180610bbcdd7e842621f45974e8494b950aa0d1.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/mayfair-gardens/pYxSeh9G1e6TImt4Cao0U-AAog8kqHRIh2BjjwB84heSPVJVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtKbM1wZI6h9QAVibB2ABagJBSXIeHBHU4QEbpKlAGJasFbkE1NQtqwQlAe-MtNQDARJj7iZQfA/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/mayfair-gardens/pYxSeh9G1e6TImt4Cao0U-AAog8kqHRIh2BjjwB84heSPVJVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZI1h9QAViaB2ABagJBSXIeHBHU4QEbpKlAGJasFbkE1NQtqwQlAe-MtNQDARJjmKfGHw/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -471,7 +572,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12269/e18f9b646831b33425f59368ee0e3498a479bdc0f488868d5be19c0d57f4581c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12269/e18f9b646831b33425f59368ee0e3498a479bdc0f488868d5be19c0d57f4581c.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/poseidonia-beach/ppddfclPEDmBsUxYAMZIgjAAogccOclYoLTxoKc1vyNwhKLHGJU-lXebVZTndWBydBWV8qBE9BU0kwtKbM1wZItCBQAVibB2ABagJCQnIdHBHtX6sE4PoPuQQkG8frDBjCoREBsoLIiAIBEmNjW_d3/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/poseidonia-beach/ppddfclPEDmBsUxYAMZIgjAAogccOclYoLTxoKc1vyNwhKLHGJU-lXebVZTndWBydBWV8qBE9BU0kwgrjM1wZItCBQAViaB2ABagJCQnIdHBHtX6sE4PoPuQQkG8frDBjCoREBsoLIiAIBEmNuq9Qo/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -493,6 +598,7 @@
     "operator": "TOP Touristik"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Lordos Beach Hotel & Spa",
     "price": 4237.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -510,6 +616,8 @@
     "operator": "Best Reisen Group"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Mayfair Hotel",
     "price": 4244.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -539,11 +647,16 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/21183/cb58899ea977b34fd43fa10791497bd0a115aa471c6ac798a1e3c76727de9fdf.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/21183/cb58899ea977b34fd43fa10791497bd0a115aa471c6ac798a1e3c76727de9fdf.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/cyprotel-cypria-maris/pPgS_rlZvYcC3_mDj-ONpuAAog0nDIrH3e7Pcl6s2WpQYNQXGJU-lXebVZTndWBydBWV8qBE9BU0kwtKbM1wZIpiFQAVibB2ABagJCQnIeHBG_pQGrBI61D7kEJBv66QwYm58RAbPRh4gCARJjCJaCog/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/cyprotel-cypria-maris/pPgS_rlZvYcC3_mDj-ONpuAAog0nDIrH3e7Pcl6s2WpQYNQXGJU-lXebVZTndWBydBWV8qBE9BU0kwgrjM1wZIpiFQAViaB2ABagJCQnIeHBG_pQGrBI61D7kEJBv66QwYm58RAbPRh4gCARJjliXM3A/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Eleni Holiday Resort",
     "price": 4311.0,
     "dates": "2026-12-28 - 2027-01-04",
@@ -557,6 +670,21 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28871/369226c149cc4edc6895525305d7de19d564f90ee9826dd7336228a2443abcee.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28871/369226c149cc4edc6895525305d7de19d564f90ee9826dd7336228a2443abcee.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,chlorakas/eleni-holiday-village-12/pgF34B4JZ02XWA-KraiviJAAogz5M_SvMTC0G9ELQ3mhI9-I3sJ3lP_99HlAB4o62bHDkqBEJWQlgwtKbM1wZI1yFQAVjzCGABagJIQnIeHBHH4QEb7qZAGIOHH7kEsPojqwQmAbvDosUEARJjKF1Fpw/?operator=BVBX&adults=1",
+=======
+    "hotel_name": "Lordos Beach Hotel & Spa",
+    "price": 4277.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Kraków",
+    "board_basis": "Śniadania",
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30694/e53d1b283e24b26f790e3c5001f1a5585add32ea214806d8803317cc87df24b7.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30694/e53d1b283e24b26f790e3c5001f1a5585add32ea214806d8803317cc87df24b7.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,oroklini/lordos-beach/p61cuTC2h_T_gIryguySW6AAogNW5IUNGEuwRtSXdyRZc9SOdgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZItSFQAViaB2ABagJCQnIeHBHm7wEb1OBBGKn9HbkEk9cpqwQQAeDSz8wEAQBjBa32zQ/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -573,11 +701,52 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7728/68e67c5731617353a651a0d46960a4eed946a25aa67ebd83e6f0d9760cf5dff7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7728/68e67c5731617353a651a0d46960a4eed946a25aa67ebd83e6f0d9760cf5dff7.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,yeroskipou/constantinou-bros-athena-royal/p6DwroCz_2xvqTRT21qtCcAAogfzmLeXMpGutLTv0ufksb21BFmCzzO7Nm3A8sJeilILYqBEVDQ1gwtKbM1wZI6SFQAVizB2ABagJCQnIdHBGwPLkE5ZQYqwQzGNrdLRuD1kEBs6X_hAIBEmPjfCko/?operator=ECCX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,yeroskipou/constantinou-bros-athena-royal/p6DwroCz_2xvqTRT21qtCcAAogfzmLeXMpGutLTv0ufksb21BFmCzzO7Nm3A8sJeilILYqBEVDQ1gwgrjM1wZI6SFQAViyB2ABagJCQnIdHBGwPLkE5ZQYqwQzGNrdLRuD1kEBs6X_hAIBEmPQ8zH4/?operator=ECCX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
   {
+<<<<<<< Updated upstream
+=======
+    "hotel_name": "Eleni Holiday Resort",
+    "price": 4334.0,
+    "dates": "2026-12-26 - 2027-01-02",
+    "checkin_date": "2026-12-26",
+    "checkout_date": "2027-01-02",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Kraków",
+    "board_basis": "Śniadania i obiadokolacje",
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28871/369226c149cc4edc6895525305d7de19d564f90ee9826dd7336228a2443abcee.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28871/369226c149cc4edc6895525305d7de19d564f90ee9826dd7336228a2443abcee.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,chlorakas/eleni-holiday-village-12/pf6kgv55XP9vMMY_YNgRsiAAogz5M_SvMTC0G9ELQ3mhI9-CfPGGS3uyKrH4ayEUzrR_UqBEJWQlgwgrjM1wZI7iFQAVjCCGABagJIQnIeHBHH4QEb7qZAGIOHH7kEuPsjqwQXAbvCosUEARJjs-TGyQ/?operator=BVBX&adults=1",
+    "ta_rating": null,
+    "operator": "Best Reisen Group"
+  },
+  {
+    "hotel_name": "Sun Hall Hotel",
+    "price": 4403.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Kraków",
+    "board_basis": "Śniadanie",
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11955/2a6bd63c86bc49e0d06b686e09bedcffbb4c6219edc9673de51254fd76a26463.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11955/2a6bd63c86bc49e0d06b686e09bedcffbb4c6219edc9673de51254fd76a26463.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/sun-hall-larnaka/pKRYKTUm34Ss6m9gKjpeuTAAogvfRQbn5DFlpeJOmu5SsUuVP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwgrjM1wZIsyJQAViaB2ABagJCQnIeHBGzXbkE4owRqwSTARvR3AsYxaIRAar28IkCARJjh2ooEQ/?operator=OASI&adults=1",
+    "ta_rating": null,
+    "operator": "Oasis Tours"
+  },
+  {
+>>>>>>> Stashed changes
     "hotel_name": "Leonardo Boutique Hotel Larnaca",
     "price": 4403.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -590,11 +759,16 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28876/0fa54ef33a5d28d079feefac70c1cb23dfb63122e0b1739813947d9ffe545e5a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28876/0fa54ef33a5d28d079feefac70c1cb23dfb63122e0b1739813947d9ffe545e5a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/leonardo-boutique-larnaca-15/pZ-lMqsw8XbSJI8vCa3h8FAAog6LiOmv6cdS9R6rFXMTh8sOdgDnNGwloEY5x4oZKv9bUqBEJWQlgwtKbM1wZIsyJQAVibB2ABagJCQnIeHBHM4QEb_aRAGN6wFbkEz-0zqwQQAe7FrtQDARJj3nf6Mg/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/leonardo-boutique-larnaca-15/pZ-lMqsw8XbSJI8vCa3h8FAAog6LiOmv6cdS9R6rFXMTh8sOdgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZIsyJQAViaB2ABagJCQnIeHBHM4QEb_aRAGN6wFbkEz-0zqwQQAe7FrtQDARJjpJSzKA/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Sun Hall Hotel",
     "price": 4403.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -612,6 +786,8 @@
     "operator": "Oasis Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Radisson Beach Resort",
     "price": 4469.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -624,7 +800,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30397/4f3110e149c3d0d858d9cea9c2607f2f3fd64d8dfe234e7d604f14482ed63ba1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30397/4f3110e149c3d0d858d9cea9c2607f2f3fd64d8dfe234e7d604f14482ed63ba1.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/louis-princess-beach/pZ_TXoJmD20WC4w-nsfcXLAAogAiwz-6aTSZrjr-laPXnitedgDnNGwloEY5x4oZKv9bUqBEJWQlgwtKbM1wZI9SJQAVibB2ABagJCQnIeHBG97QEb2qdEGMHEH7kEnsslqwQQAZnduPgEARJjmJCjHA/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,c/louis-princess-beach/pZ_TXoJmD20WC4w-nsfcXLAAogAiwz-6aTSZrjr-laPXnitedgDnNGwloEY5x4oZKv9bUqBEJWQlgwgrjM1wZI9SJQAViaB2ABagJCQnIeHBG97QEb2qdEGMHEH7kEnsslqwQQAZnduPgEARJjexdQvg/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -641,7 +821,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7727/1a124822960eb336f272aa1a49a2a02afa2f664ad0038184a44e516e47acec4c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7727/1a124822960eb336f272aa1a49a2a02afa2f664ad0038184a44e516e47acec4c.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/athena-beach-paphos/pyhoKNoBTvz0polyEHpSukAAogQSYx-CxqVy4tcOPCqNyFyG3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwtKbM1wZI9SJQAVibB2ABagJIQnIdHBGvPLkEkJMYqwQBGK3fLRup1kEBkd76hAIBEmPVJ07h/?operator=ECCX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/athena-beach-paphos/pyhoKNoBTvz0polyEHpSukAAogQSYx-CxqVy4tcOPCqNyFyG3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwgrjM1wZI9SJQAViaB2ABagJIQnIdHBGvPLkEkJMYqwQBGK3fLRup1kEBkd76hAIBEmMNvvMa/?operator=ECCX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -658,7 +842,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11734/3b523dc2be32ccbfde3ad05e58dce10f459222103555c65e43b677fca0a59a23.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11734/3b523dc2be32ccbfde3ad05e58dce10f459222103555c65e43b677fca0a59a23.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,ajia-napa/chrysomare/p9zIfx2ZYTNG-fgjd2_ezlAAogkvL4IFSvLZkEtvYvigzwJlP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwtKbM1wZIjiRQAVibB2ABagJIQnIeHBHWW7kEv44RqwSTARuY1wsYopsRAYXOoIcCARJjH7sYtg/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,ajia-napa/chrysomare/p9zIfx2ZYTNG-fgjd2_ezlAAogkvL4IFSvLZkEtvYvigzwJlP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwgrjM1wZIjiRQAViaB2ABagJIQnIeHBHWW7kEv44RqwSTARuY1wsYopsRAYXOoIcCARJjbwcIXQ/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -675,11 +863,35 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/113172/46185d9ee501b763abbc3ee77d05ae24979b475320de2b311dd957f4520680ef.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/113172/46185d9ee501b763abbc3ee77d05ae24979b475320de2b311dd957f4520680ef.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,paphos,c/daphne-paphos/p2rl2aQnvaPPyoVC-zNg-FAAogOpPH6wAZ6Vsc1P9SH4mDJtuAq09OmfcynwUXqzusLh4qBEVYSU0wtKbM1wZIsyRQAVibB2ABagJST3IeHBGU9Aa5BKXjSasERhuXqDcYz6BAAZy-vugLARJj79aUOA/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,paphos,c/daphne-paphos/p2rl2aQnvaPPyoVC-zNg-FAAogOpPH6wAZ6Vsc1P9SH4mDJtuAq09OmfcynwUXqzusLh4qBEVYSU0wgrjM1wZIsyRQAViaB2ABagJST3IeHBGU9Aa5BKXjSasERhuXqDcYz6BAAZy-vugLARJj19MCIQ/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
   {
+<<<<<<< Updated upstream
+=======
+    "hotel_name": "Louis Phaethon Beach",
+    "price": 4698.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Katowice",
+    "board_basis": "All Inclusive",
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28873/d17a3464abe6f34326e2aabead1e6d894caae979bf76d697fa0e4892c6a04faa.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28873/d17a3464abe6f34326e2aabead1e6d894caae979bf76d697fa0e4892c6a04faa.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,paphos,kato-pafos/louis-phaethon-beach/pTHMqjpJG-AYjZtDoK_PpSAAogaHNE2Z1nyiONkUSAUWVQMFxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZI2iRQAViaB2ABagJBSXIeHBHJ4QEbg6tAGIzSI7kEiq0fqwQlAcL3ofkEARJjLaDvUA/?operator=BVBX&adults=1",
+    "ta_rating": null,
+    "operator": "Best Reisen Group"
+  },
+  {
+>>>>>>> Stashed changes
     "hotel_name": "Salamis Bay Conti Hotel & Casino",
     "price": 6420.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -692,11 +904,16 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6432/a7bc0096fb4e17890778295530c00836184df7ce1170bdbb3a2586666496d52d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6432/a7bc0096fb4e17890778295530c00836184df7ce1170bdbb3a2586666496d52d.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/salamis-bay-conti/pyrovVmkPbBaGV7MnsVM-lAAogWMnvCxq6YGv4kuiiws7belXP7OcqA03RzWcLrX0-VU8qBEJWUFIwtKbM1wZI4iRQAVibB2ABagJVSXIdHBGgMhv9gAYYt8YOqwTdkhe5BBUBvr6U5gEBAGOK0mFW/?operator=BVPR&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/salamis-bay-conti/pyrovVmkPbBaGV7MnsVM-lAAogWMnvCxq6YGv4kuiiws7belXP7OcqA03RzWcLrX0-VU8qBEJWUFIwgrjM1wZI4iRQAViaB2ABagJVSXIdHBGgMhv9gAYYt8YOqwTdkhe5BBUBvr6U5gEBAGMeBwSE/?operator=BVPR&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Prima Holiday"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Louis Phaethon Beach",
     "price": 4718.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -714,6 +931,8 @@
     "operator": "Best Reisen Group"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Thalassa Boutique Hotel & Spa",
     "price": 4928.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -726,7 +945,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9523/50cd81ea1b74ecab3df07642111cf75e09ba8319f547d1e7ebfcfe8e4d60b79f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9523/50cd81ea1b74ecab3df07642111cf75e09ba8319f547d1e7ebfcfe8e4d60b79f.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,coral-bay/thalassa-boutique-13/pnx1joNCV-R3cAsx2DMiH8AAogyiPe3-Ui8M-6W_l-Vx0hym3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwtKbM1wZIwCZQAVibB2ABagJCQnIdHBGzSrkEjIUYqwQBGNTELBvFikIB163R_QEBEmOIs26L/?operator=ECCX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,coral-bay/thalassa-boutique-13/pnx1joNCV-R3cAsx2DMiH8AAogyiPe3-Ui8M-6W_l-Vx0hym3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwgrjM1wZIwCZQAViaB2ABagJCQnIdHBGzSrkEjIUYqwQBGNTELBvFikIB163R_QEBEmPWKZSi/?operator=ECCX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -743,7 +966,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11737/491c53ee24aaa26d0ee0f16e7b140b349040cdbeba39a5ff2c115703f773ee5a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11737/491c53ee24aaa26d0ee0f16e7b140b349040cdbeba39a5ff2c115703f773ee5a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,paphos,c/king-evelthon-beach/p_nfyBLY5pS4TiBrjqihe7AAogQakzxplWC36_9Jdn5Gy2OHGJU-lXebVZTndWBydBWV8qBE9BU0kwtKbM1wZI5iZQAVibB2ABagJIQnIdHBHZW6sE9P4PuQQkG-DpDBj0nhEB8oyMiAIBEmOtdJk_/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,paphos,c/king-evelthon-beach/p_nfyBLY5pS4TiBrjqihe7AAogQakzxplWC36_9Jdn5Gy2OHGJU-lXebVZTndWBydBWV8qBE9BU0kwgrjM1wZI5iZQAViaB2ABagJIQnIdHBHZW6sE9P4PuQQkG-DpDBj0nhEB8oyMiAIBEmPPonD7/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -760,9 +987,30 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6514/8f88b6f7887124df16f21992dc7d2231d0330f88300a4e47e28289eaf753661f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6514/8f88b6f7887124df16f21992dc7d2231d0330f88300a4e47e28289eaf753661f.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/kaya-artemis/pwt2SmZ3Sn77DtWJ9AcsvaAAoguqBNMKgXglGvHfD5zUt6rVXP7OcqA03RzWcLrX0-VU8qBEJWUFIwtKbM1wZIpidQAVibB2ABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEfIyG-SWBxjsrw-rBO-SFbkEFQH8zseBAgEAY3zIKB0/?operator=BVPR&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/kaya-artemis/pwt2SmZ3Sn77DtWJ9AcsvaAAoguqBNMKgXglGvHfD5zUt6rVXP7OcqA03RzWcLrX0-VU8qBEJWUFIwgrjM1wZIpidQAViaB2ABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEfIyG-SWBxjsrw-rBO-SFbkEFQH8zseBAgEAY0CRUpQ/?operator=BVPR&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Prima Holiday"
+  },
+  {
+    "hotel_name": "St Raphael Resort",
+    "price": 5048.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Katowice",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30749/ffd16532608a908c6729c876b3d2fa88ab73e76e5714117731fc9181b1cc0632.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30749/ffd16532608a908c6729c876b3d2fa88ab73e76e5714117731fc9181b1cc0632.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/st-raphael-resort-limassol/pj4rVVxemo6utfAE5v2-HzAAogCBKpatWTvOtWaVX1eu8L-lxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZIuCdQAViaB2ABagJCQnIeHBGd8AEbt-JBGOiqF7kEpo4qqwQlAY-upPkDAQBjtggh5g/?operator=BVBX&adults=1",
+    "ta_rating": null,
+    "operator": "Best Reisen Group"
   },
   {
     "hotel_name": "Polis 1907",
@@ -777,11 +1025,16 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/PFOPOLI/b062ddb879924555a5d3285f1a2fce143dbeb24e40afe0ef4dc5ccfcdef18c19.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/PFOPOLI/b062ddb879924555a5d3285f1a2fce143dbeb24e40afe0ef4dc5ccfcdef18c19.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,polis/polis-1907-9/pl2kwZYjl79iB96Cg6VXlrAAogTvK6VnxEy3HyAqYFkWF4an2h68Z88W1sfmShWNQdwhIqBFZJVFgwtKbM1wZIwydQQVibB2ABagxQT1pQRk9EUDcwMzVqDFBGT1BPWkRQNzAzNXI2nQGPARoAFwcVAFgIXABAjwNSpv4BUwBe1wFLeGEAW4IcTJXPFA25470JIABR48bxl84BAQxjmvHWnw/?operator=VITX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,polis/polis-1907-9/pl2kwZYjl79iB96Cg6VXlrAAogTvK6VnxEy3HyAqYFkWF4an2h68Z88W1sfmShWNQdwhIqBFZJVFgwgrjM1wZIwydQQViaB2ABagxQT1pQRk9EUDcwMzVqDFBGT1BPWkRQNzAzNXI2nQGPARoAFwcVAFgIXABAjwNSpv4BUwBe1wFLeGEAW4IcTJXPFA25470JIABR48bxl84BAQxj3wmrKQ/?operator=VITX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "St Raphael Resort",
     "price": 5068.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -799,8 +1052,10 @@
     "operator": "Best Reisen Group"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Alexander The Great Beach",
-    "price": 5118.0,
+    "price": 5098.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -811,7 +1066,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28859/39a3c087badbe8ef4ad2452d11054f8247550345e99f5d607dfae1f5aac38c2a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28859/39a3c087badbe8ef4ad2452d11054f8247550345e99f5d607dfae1f5aac38c2a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/alexander-the-great-beach-paphos/peFhc-xsvSlzP2BHT_MZDYAAogezTbgmZKxtpq3-hnChCkSVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtKbM1wZI_idQAVibB2ABagNIQityHhwRu-EBG-KoQBiryx65BJq2JKsEJQHlwqPNBAESY42cuHE/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/alexander-the-great-beach-paphos/peFhc-xsvSlzP2BHT_MZDYAAogezTbgmZKxtpq3-hnChCkSVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwgrjM1wZI6idQAViaB2ABagNIQityHhwRu-EBG-KoQBiryx65BJq2JKsEJQHlwqPNBAESY0Wwpn4/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -828,7 +1087,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12262/7698418b196f92ccd0c785d9e790666742e8418c502b16c8edfa8d951bae570c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12262/7698418b196f92ccd0c785d9e790666742e8418c502b16c8edfa8d951bae570c.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,oroklini/golden-bay-beach/pclRMcJJaxUPNLNLtYE7WfAAogku9zzNo3wYwV6u6IhkdzR1P1lXNxvkXt3Ootd_pgu0QqBE9BU0kwtKbM1wZI9yhQAVibB2ABagJCQnIeHBHmX7kEr4oRqwSTARuyjQ4YvvgPAZe9tpECARJjMQnVEw/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,larnaka,oroklini/golden-bay-beach/pclRMcJJaxUPNLNLtYE7WfAAogku9zzNo3wYwV6u6IhkdzR1P1lXNxvkXt3Ootd_pgu0QqBE9BU0kwgrjM1wZI9yhQAViaB2ABagJCQnIeHBHmX7kEr4oRqwSTARuyjQ4YvvgPAZe9tpECARJjWVYp-g/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -845,7 +1108,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/115185/fec23af8ea80efd516f0e46c9d610213203673c5e5146a9f5d147b237fde292f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/115185/fec23af8ea80efd516f0e46c9d610213203673c5e5146a9f5d147b237fde292f.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/grand-sapphire-resort-14/pOGJYr-5RD3_r_6EZotc0xAAog4hy0sfeu-SC6geo1aewyOI9mKqBriCeZOESpa6rC3JgqBEVYSU0wtKbM1wZIiylQAVibB2ABagNVQUlyHhwR8YMHqwTI2ki5BBYb3-dDGKuBSQHvupu9DQEAY3eFKNw/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/grand-sapphire-resort-14/pOGJYr-5RD3_r_6EZotc0xAAog4hy0sfeu-SC6geo1aewyOI9mKqBriCeZOESpa6rC3JgqBEVYSU0wgrjM1wZIiylQAViaB2ABagNVQUlyHhwR8YMHqwTI2ki5BBYb3-dDGKuBSQHvupu9DQEAY7jF8XM/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -862,7 +1129,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124894/614f76147be0bed4e1b451423f28873897614ccb4bf82e0556f91a2b50391e36.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124894/614f76147be0bed4e1b451423f28873897614ccb4bf82e0556f91a2b50391e36.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,kirenia/grand-pasha-casino/pUwkPBQOfA_-BoQWgkgzDdAAogf2JRGxlTXUANRFq968XCTI9mKqBriCeZOESpa6rC3JgqBEVYSU0wtabM1wZIqSlQAVibB2ABagJST3IeHBHezwerBNuOSLkEFhvi9E0Y2I9NAZzV8tQOAQBjRWiQjg/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,kirenia/grand-pasha-casino/pUwkPBQOfA_-BoQWgkgzDdAAogf2JRGxlTXUANRFq968XCTI9mKqBriCeZOESpa6rC3JgqBEVYSU0whLjM1wZIqSlQAViaB2ABagJST3IeHBHezwerBNuOSLkEFhvi9E0Y2I9NAZzV8tQOAQBjWQJ_Jg/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -879,7 +1150,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124882/dc1cced6f700484ab15a69415351b1d81991b13fe0e4b1636137b224fc3c13f1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124882/dc1cced6f700484ab15a69415351b1d81991b13fe0e4b1636137b224fc3c13f1.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/arkin-palm-beach/pKqID4_17l1E2rxl3rQCJDAAog5wVdOvlp9XlB8V6fTyqEdo9mKqBriCeZOESpa6rC3JgqBEVYSU0wtabM1wZIvSlQAVibB2ABagJCQnIeHBHSzwerBOeOSLkEFhvQ800Y2I9NAfGOk9UOAQBjFxOXVg/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/arkin-palm-beach/pKqID4_17l1E2rxl3rQCJDAAog5wVdOvlp9XlB8V6fTyqEdo9mKqBriCeZOESpa6rC3JgqBEVYSU0whLjM1wZIvSlQAViaB2ABagJCQnIeHBHSzwerBOeOSLkEFhvQ800Y2I9NAfGOk9UOAQBjDhG50A/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -896,7 +1171,11 @@
     "stars": 4,
     "main_image_url": "",
     "image_url": "",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,pafos/leonardo-plaza-cypria-maris-beach-hotel/pYakEPfgdWvWXH_ferasNjAAogWOho80yTMi2N7wJjA1pIYKXzeiRbC_3XukCVvB70jr8qBFRPUFQwtabM1wZImytQQVjDCGABcjEdAQ8AFQYXAFgIXABWAkDKBluOkQFLtzphAFKkL1MAXtcBDc_P0gkgAFHV79oKARBjKzTQXg/?operator=TOPT&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,pafos/leonardo-plaza-cypria-maris-beach-hotel/pYakEPfgdWvWXH_ferasNjAAogWOho80yTMi2N7wJjA1pIYKXzeiRbC_3XukCVvB70jr8qBFRPUFQwhLjM1wZImytQQVjCCGABcjEdAQ8AFQYXAFgIXABWAkDKBluOkQFLtzphAFKkL1MAXtcBDc_P0gkgAFHV79oKARBjvmFyeQ/?operator=TOPT&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "TOP Touristik"
   },
@@ -913,7 +1192,11 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124895/58369709bbaa711fe199021a52ed56c1df21a19b1b7704e6c798316a347493c9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124895/58369709bbaa711fe199021a52ed56c1df21a19b1b7704e6c798316a347493c9.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/grand-sapphire-city-9/p5bU8rRPyini9idpVk9s29AAogEm8u3crITzm4ndn5WJ8rMI9mKqBriCeZOESpa6rC3JgqBEVYSU0wtabM1wZIwStQAVibB2ABagJCQnIeHBHfzwerBNqOSLkEFhvs9E0Y2I9NAZPF9dQOAQBjRzPq3w/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,famagusta/grand-sapphire-city-9/p5bU8rRPyini9idpVk9s29AAogEm8u3crITzm4ndn5WJ8rMI9mKqBriCeZOESpa6rC3JgqBEVYSU0whLjM1wZIwStQAViaB2ABagJCQnIeHBHfzwerBNqOSLkEFhvs9E0Y2I9NAZPF9dQOAQBjUD2IzQ/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -936,7 +1219,7 @@
   },
   {
     "hotel_name": "NYX Hotel Limassol",
-    "price": 5698.0,
+    "price": 5678.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -947,13 +1230,17 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28858/3803bdce6c0957b268c9a237e08eb6bd680037a399457561f67903f42e3e9f61.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28858/3803bdce6c0957b268c9a237e08eb6bd680037a399457561f67903f42e3e9f61.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/nyx-limassol-by-leonardo-12/pXK3Jp0Z7MhrR65_cr5gAKAAogj0_EhmiM08dKpGE4IqTcsVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwtabM1wZIwixQAVibB2ABagJCQnIeHBG64QEb3aVAGKe9IrkEpMcgqwQlAYnD4eoEARJjkSMaQA/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/nyx-limassol-by-leonardo-12/pXK3Jp0Z7MhrR65_cr5gAKAAogj0_EhmiM08dKpGE4IqTcsVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwhLjM1wZIrixQAViaB2ABagJCQnIeHBG64QEb3aVAGKe9IrkEpMcgqwQlAYnD4eoEARJjufuanQ/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
   {
     "hotel_name": "Aphrodite Hills Resort",
-    "price": 5759.0,
+    "price": 5729.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -964,7 +1251,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028021/71e4540c28b9939df7a3db7c360ea1f448a197fee8d5e0d791ecae24cda8f305.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028021/71e4540c28b9939df7a3db7c360ea1f448a197fee8d5e0d791ecae24cda8f305.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/aphrodite-hills-villas-13/p2wWYu-iSN3-A3o6PM_n04AAoglhRY7C1wjEys-cmssDBKmvRpW184mFARoHKBhj4GykIqBE5LUkEwtabM1wZI_yxQAVibB2ABagJCQmoES1RXMGoDUEZPchgWDiAKDBGp3z4NrvOVCQ8HG5-ghRsBEmPBIxdS/?operator=NKRA&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/aphrodite-hills-villas-13/p2wWYu-iSN3-A3o6PM_n04AAoglhRY7C1wjEys-cmssDBKmvRpW184mFARoHKBhj4GykIqBE5LUkEwhLjM1wZI4SxQAViaB2ABagJCQmoES1RXMGoDUEZPchgWDiAKDBGp3z4NrvOVCQ8HG5-ghRsBEmNtgxv2/?operator=NKRA&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -986,6 +1277,26 @@
     "operator": "TOP Touristik"
   },
   {
+<<<<<<< Updated upstream
+=======
+    "hotel_name": "Ivi Mare - Designed for Adults by Louis Hotels",
+    "price": 6012.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Katowice",
+    "board_basis": "Śniadania i obiadokolacje",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30406/4e6b755c24fc216153b2f9fca28e1dc66c7ef3d537e9e8bc7ddaaabafcc0a3bd.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/30406/4e6b755c24fc216153b2f9fca28e1dc66c7ef3d537e9e8bc7ddaaabafcc0a3bd.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/louis-ivi-mare/p_wUBpqD8w-c4HtCW3BZIVAAog4NyZwxsezc6lqluL03zBaVxdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwhLjM1wZI_C5QAViaB2ABagJIQnIeHBHG7QEb1sVBGNKuIbkE9KkgqwQlAZXhm-wEARJjM3SkDQ/?operator=BVBX&adults=1",
+    "ta_rating": null,
+    "operator": "Best Reisen Group"
+  },
+  {
+>>>>>>> Stashed changes
     "hotel_name": "Limak Cyprus Deluxe",
     "price": 8724.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -998,11 +1309,16 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6428/bbe44bd3db3650ae1b4283a144c43c4ae12f1ebbe0a1ab5de7e435fe0c5a228b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6428/bbe44bd3db3650ae1b4283a144c43c4ae12f1ebbe0a1ab5de7e435fe0c5a228b.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/limak-bafra/pbHiLYCakDXn1xRGeFpUZ7AAogtjJVe9p_EsnvTNhYld8Mn1XP7OcqA03RzWcLrX0-VU8qBEJWUFIwtabM1wZIkC9QAVibB2ABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEZwyG8KXBxjsrw-rBOeSFbkEFQG4ztOBAgEAY1x_4DI/?operator=BVPR&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/limak-bafra/pbHiLYCakDXn1xRGeFpUZ7AAogtjJVe9p_EsnvTNhYld8Mn1XP7OcqA03RzWcLrX0-VU8qBEJWUFIwhLjM1wZIkC9QAViaB2ABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEZwyG8KXBxjsrw-rBOeSFbkEFQG4ztOBAgEAYwF9THY/?operator=BVPR&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Prima Holiday"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Ivi Mare - Designed for Adults by Louis Hotels",
     "price": 6032.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -1020,6 +1336,8 @@
     "operator": "Best Reisen Group"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "GRANDRESORT by Leonardo Hotels",
     "price": 6050.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -1032,7 +1350,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/24691/87aea7dd3ed8ff612fbfbaf97b3e7025d8c021513d85d1c3eea3d006b3d060d1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/24691/87aea7dd3ed8ff612fbfbaf97b3e7025d8c021513d85d1c3eea3d006b3d060d1.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/grand-resort-limassol/pGF5b3jfPpaUMXYPOA3ni5AAogs-qxC5KdtjpdM7OoywI5snGJU-lXebVZTndWBydBWV8qBE9BU0kwtabM1wZIoi9QAVibB2ABagJCQnIeHBHzwAGrBNqZD7kEJBv_6AwY650RAa6U0YcCARJjYa2GXA/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/grand-resort-limassol/pGF5b3jfPpaUMXYPOA3ni5AAogs-qxC5KdtjpdM7OoywI5snGJU-lXebVZTndWBydBWV8qBE9BU0kwhLjM1wZIoi9QAViaB2ABagJCQnIeHBHzwAGrBNqZD7kEJBv_6AwY650RAa6U0YcCARJj3QyxTQ/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -1049,7 +1371,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/1637/703b8134414d44a553bd48d384ddf8eca70676c3c162480db9cccec3910abfa3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/1637/703b8134414d44a553bd48d384ddf8eca70676c3c162480db9cccec3910abfa3.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,catalkoy/acapulco-resort/pvUOag02MVtB3AL2UKYvQ7AAog7V0CpytFHXapEb5dN0dZqx1L4XUMAAFaGBawLp6xZoYqBFJOQlcwtabM1wZI1DFQQVjDCGABagJCd3I1nwEVBxcAVgNYBQoFQMMHEY4FEK8GGd5QTLYfS8xPYQBSlgVTAB28uEYPFyCNwowJDQABDGN4r1eL/?operator=RNBW&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,catalkoy/acapulco-resort/pvUOag02MVtB3AL2UKYvQ7AAog7V0CpytFHXapEb5dN0dZqx1L4XUMAAFaGBawLp6xZoYqBFJOQlcwhLjM1wZI1DFQQVjCCGABagJCd3I1nwEVBxcAVgNYBQoFQMMHEY4FEK8GGd5QTLYfS8xPYQBSlgVTAB28uEYPFyCNwowJDQABDGNzAzR_/?operator=RNBW&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
@@ -1066,7 +1392,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6551/1ccd15e5613acb08839586f314e41e1658cd232668e5b768ee3ad7225a30ba08.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/6551/1ccd15e5613acb08839586f314e41e1658cd232668e5b768ee3ad7225a30ba08.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/concorde-vokolida/ptamr8bNeM3V6lozaD-4VOAAoghR771g9vVL2T-3DMFk3D_FXP7OcqA03RzWcLrX0-VU8qBEJWUFIwtabM1wZIoDJQAVibB2ABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEZczG8GWBxjsrw-rBO2SFbkEFQHI_tKBAgEAYyKONoA/?operator=BVPR&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,vokolida/concorde-vokolida/ptamr8bNeM3V6lozaD-4VOAAoghR771g9vVL2T-3DMFk3D_FXP7OcqA03RzWcLrX0-VU8qBEJWUFIwhLjM1wZIoDJQAViaB2ABahNBbGwgaW5jbHVzaXZlIFVsdHJhch0cEZczG8GWBxjsrw-rBO2SFbkEFQHI_tKBAgEAYxLYeeM/?operator=BVPR&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Prima Holiday"
   },
@@ -1083,7 +1413,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/3348/ad49c4198c1491266a656ddd2b5e89ac1210900e21ad3e9d2ceae5b2166e1660.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/3348/ad49c4198c1491266a656ddd2b5e89ac1210900e21ad3e9d2ceae5b2166e1660.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,wyc-objazdowe,wyc-objazdowe/mozaika-z-afrodyta/pLm94IUrF2nqpYu0gJLA7bAAogIc31RfPfECYOKaSn4bnki8wfvA2LQV28bFb0zgmd9fkqBFJOQlcwtabM1wZItDJQQVibB2ABcjYKARUGFwBWBFgEX5cDQLEEEb0SEPoTGeI1TKMfUvdUUwBh_m5LAB2oyUUPLw2EwowJIAABAmN4gPiI/?operator=RNBW&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,wyc-objazdowe,wyc-objazdowe/mozaika-z-afrodyta/pLm94IUrF2nqpYu0gJLA7bAAogIc31RfPfECYOKaSn4bnki8wfvA2LQV28bFb0zgmd9fkqBFJOQlcwhLjM1wZItDJQQViaB2ABcjYKARUGFwBWBFgEX5cDQLEEEb0SEPoTGeI1TKMfUvdUUwBh_m5LAB2oyUUPLw2EwowJIAABAmPTnaUu/?operator=RNBW&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
@@ -1117,7 +1451,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11951/3450dea5e1746105895f526f4099d6569c2d4157f980e03d2bbef83b7f37d4b9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11951/3450dea5e1746105895f526f4099d6569c2d4157f980e03d2bbef83b7f37d4b9.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/almyra/pPTN-jUyuzUm6-BSe75zkGAAog9f7B03nK4_CCyDqqP8g3pHGJU-lXebVZTndWBydBWV8qBE9BU0kwtabM1wZI6jZQAVibB2ABagJCQnIdHBGvXasEnv0PuQQkG-blDBi-mBEBx8LdigIBEmMCqhnh/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/almyra/pPTN-jUyuzUm6-BSe75zkGAAog9f7B03nK4_CCyDqqP8g3pHGJU-lXebVZTndWBydBWV8qBE9BU0kwhLjM1wZI6jZQAViaB2ABagJCQnIdHBGvXasEnv0PuQQkG-blDBi-mBEBx8LdigIBEmM7uXro/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -1134,7 +1472,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12258/032558c5ebc3377cd700103edbbfda9c42caa239c4348bee06f7e212c6181e5a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12258/032558c5ebc3377cd700103edbbfda9c42caa239c4348bee06f7e212c6181e5a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/amathus-beach-limassol/pyTBzecsB9d4kLjX8GZLvxAAogCBX9JAGFxAymTNE5BRY3OnGJU-lXebVZTndWBydBWV8qBE9BU0kwtabM1wZIvzdQAVibB2ABagJCQnIdHBHiX6sE6_oPuQQkG_XDDxiWqREBkN7CmQIBEmMmmIX_/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/amathus-beach-limassol/pyTBzecsB9d4kLjX8GZLvxAAogCBX9JAGFxAymTNE5BRY3OnGJU-lXebVZTndWBydBWV8qBE9BU0kwhLjM1wZIvzdQAViaB2ABagJCQnIdHBHiX6sE6_oPuQQkG_XDDxiWqREBkN7CmQIBEmNRORAx/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -1151,7 +1493,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7805/4c59890ca18ee50e3d0618f27e8acb8b7551d3335fdbbbb9953f0c760b6fe680.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7805/4c59890ca18ee50e3d0618f27e8acb8b7551d3335fdbbbb9953f0c760b6fe680.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/olympic-lagoon-resort-paphos/p3r6ZEFqV2GGseFEU4YKXAAAogwGHKEdTgx3pU8XjWtL9CMG3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwtabM1wZI-TdQAVibB2ABagJVQXIdHBH9PLkEwpIYqwQBGObDLBv4uz8BhKfk_QEBEmOsbcxP/?operator=ECCX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,paphos/olympic-lagoon-resort-paphos/p3r6ZEFqV2GGseFEU4YKXAAAogwGHKEdTgx3pU8XjWtL9CMG3wZp0fXDWLVuJ0ubYOe18qBEVDQ1gwhLjM1wZI-TdQAViaB2ABagJVQXIdHBH9PLkEwpIYqwQBGObDLBv4uz8BhKfk_QEBEmPyOXD3/?operator=ECCX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -1173,6 +1519,7 @@
     "operator": "TOP Touristik"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "King Jason Paphos",
     "price": 7339.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -1190,6 +1537,8 @@
     "operator": "Itaka"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Adams Beach Hotel D",
     "price": 7339.0,
     "dates": "2026-12-19 - 2026-12-26",
@@ -1202,24 +1551,52 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11958/5edd210ec22e64733c332b7e4c24de7cd7d988d26ac7adf05682c021a8914abf.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/11958/5edd210ec22e64733c332b7e4c24de7cd7d988d26ac7adf05682c021a8914abf.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,c/adams-beach/psZuBnYYtQjXcIHxoxhdm_AAogJqr56p3Ndv5_cisdV97h3lP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwtabM1wZIqzlQAVibB2ABagJCQnIeHBG2XbkE34wRqwSTARvVzQ4Yj6ASAdfdy58CARJjgbHipw/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,ayia-napa,c/adams-beach/psZuBnYYtQjXcIHxoxhdm_AAogJqr56p3Ndv5_cisdV97h3lP1lXNxvkXt3Ootd_pgu0QqBE9BU0kwhLjM1wZIqzlQAViaB2ABagJCQnIeHBG2XbkE34wRqwSTARvVzQ4Yj6ASAdfdy58CARJjyUX2rw/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
   {
-    "hotel_name": "Amavi Made for Two Hotel  (Adults Only)",
-    "price": 7449.0,
+<<<<<<< Updated upstream
+=======
+    "hotel_name": "King Jason Paphos",
+    "price": 7339.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
     "duration": "7 nocy",
     "duration_nights": 7,
-    "departure_airport": "Kraków",
+    "departure_airport": "Poznań",
+    "board_basis": "All inclusive",
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/PFOJASO/fe118df9323fb0204c5c9cf534120b07d0a319f42643b901788070c1611ea812.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/PFOJASO/fe118df9323fb0204c5c9cf534120b07d0a319f42643b901788070c1611ea812.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/the-king-jason-ex-louis-king-jason-11/pe1Z1f7gEwyLDKNVgeQsxtAAogjzUv-cXXcGMvDuPl7PSio32h68Z88W1sfmShWNQdwhIqBFZJVFgwhLjM1wZIqzlQQViaB2ABagxQT1pQRk9EUDcwMzVqDFBGT1BPWkRQNzAzNXI2nQGPARoAFwcVAFwDWAVAjwNSpv4BUwBe1wFLeGEAW8IdTNXNFA25470JIABRhbDfl84BARJjP01Avg/?operator=VITX&adults=1",
+    "ta_rating": null,
+    "operator": "Itaka"
+  },
+  {
+>>>>>>> Stashed changes
+    "hotel_name": "Amavi Made for Two Hotel  (Adults Only)",
+    "price": 7446.0,
+    "dates": "2026-12-19 - 2026-12-26",
+    "checkin_date": "2026-12-19",
+    "checkout_date": "2026-12-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Katowice",
     "board_basis": "Śniadania",
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28861/d8b5151301d1de41559f1341d4976a83a35105f312c78a6d8c9343d3bc6dafef.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBX/IMG/28861/d8b5151301d1de41559f1341d4976a83a35105f312c78a6d8c9343d3bc6dafef.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/amavi/p-u8pUBcD2aZXpuEQJMqbwAAogn05awoLNBFk_MXBQWetpU0QJdLQ665HXHNXZ68hgMxYqBEJWQlgwtabM1wZImTpQAVibB2ABagJCQnIeHBG94QEbzehAGOuhF7kEnJ4rqwRmAYb4se0DARJjn9jkPQ/?operator=BVBX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/amavi/pt-cAc7nldnT1qLY8r9XTBAAogn05awoLNBFk_MXBQWetpU1xdAGJ2_3Uu3qCJRcuwyAAqBEJWQlgwhLjM1wZIljpQAViaB2ABagJCQnIeHBG94QEbzehAGOuhF7kE7Z8rqwQlAfb2se0DARJjC2pT_A/?operator=BVBX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen Group"
   },
@@ -1242,7 +1619,7 @@
   },
   {
     "hotel_name": "Leonardo Plaza Cypria Maris Beach Hotelc& Spa",
-    "price": 7729.0,
+    "price": 7700.0,
     "dates": "2026-12-19 - 2026-12-26",
     "checkin_date": "2026-12-19",
     "checkout_date": "2026-12-26",
@@ -1253,7 +1630,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028257/024e7692c1af1af1ab328e6c2061b5170e830edbe4ae1588db54135238e9e5dd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028257/024e7692c1af1af1ab328e6c2061b5170e830edbe4ae1588db54135238e9e5dd.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/leonardo-cypria-maris-ex-riu-13/pUy9qzHrIIhkVQm9_kldfoAAogoajIChaF7zKwYiOdM-KdzfRpW184mFARoHKBhj4GykIqBE5LUkEwtabM1wZIsTxQAVibB2ABagJCQmoES1RXMGoDUEZPchgWDiAKDBGV4T4NwvGVCQ8HG4OhhRsBEmPdP9kI/?operator=NKRA&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/leonardo-cypria-maris-ex-riu-13/pUy9qzHrIIhkVQm9_kldfoAAogoajIChaF7zKwYiOdM-KdzfRpW184mFARoHKBhj4GykIqBE5LUkEwhLjM1wZIlDxQAViaB2ABagJCQmoES1RXMGoDUEZPchgWDiAKDBGV4T4NwvGVCQ8HG4OhhRsBEmNG6-Np/?operator=NKRA&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1287,7 +1668,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124884/48134c0748c3a7b13ef1713b465d26fb7b125fe9572fd835728c50d5e586b29a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124884/48134c0748c3a7b13ef1713b465d26fb7b125fe9572fd835728c50d5e586b29a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,catalkoy/malpas/pB9O4_0MW5v-jH_NPVQhpvAAogsMRHKuMe1Te7krQ8PPkb2I9mKqBriCeZOESpa6rC3JgqBEVYSU0wtabM1wZI60BQAVibB2ABagJBSXIeHBHUzwerBOWOSLkEFhvm800Y2I9NAZzv6NQOAQBjv0GALg/?operator=EXIM&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,cypr-polnocny,catalkoy/malpas/pB9O4_0MW5v-jH_NPVQhpvAAogsMRHKuMe1Te7krQ8PPkb2I9mKqBriCeZOESpa6rC3JgqBEVYSU0whLjM1wZI60BQAViaB2ABagJBSXIeHBHUzwerBOWOSLkEFhvm800Y2I9NAZzv6NQOAQBjpljkQg/?operator=EXIM&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1304,7 +1689,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12261/bb9c48d1acba11d965d79423a05d6041fa68c923adf44ffaac3c93d4f1294dae.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/12261/bb9c48d1acba11d965d79423a05d6041fa68c923adf44ffaac3c93d4f1294dae.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/four-seasons-limassol/pMknFvCW0i_W2viFh6q5B-AAogcnDFqRuIMiY90MSaLsZBZHGJU-lXebVZTndWBydBWV8qBE9BU0kwtabM1wZI_UFQAVibB2ABagJCQnIdHBHlX6sE6PoPuQQkG4PEDxjJvBEB-aL_mQIBEmOYu1AO/?operator=OASI&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/four-seasons-limassol/pMknFvCW0i_W2viFh6q5B-AAogcnDFqRuIMiY90MSaLsZBZHGJU-lXebVZTndWBydBWV8qBE9BU0kwhLjM1wZI_UFQAViaB2ABagJCQnIdHBHlX6sE6PoPuQQkG4PEDxjJvBEB-aL_mQIBEmOWC37Y/?operator=OASI&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -1355,7 +1744,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HBX1154084/fdd2099699d459762f2cb8868f343f4288d4eee9755d0b516f8031680a1ed616.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HBX1154084/fdd2099699d459762f2cb8868f343f4288d4eee9755d0b516f8031680a1ed616.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,kisonerga/serbellas-boutique-pafos-9/psbADkwNh66ML0BTuvL8RCAAogmNjxqwpcvMp6MbNuwyZPAn2h68Z88W1sfmShWNQdwhIqBFZJVFgwtabM1wZIs2VQQVibB2ABagpIQlgxMTU0MDg0agZEQlQuRFhqDFBPWlBGT0RQNzAzNWoMUEZPUE9aRFA3MDM1cjCRAZsBnQGPARoAFwcVAFwIWABAjwNTpv4BUgBe1wFLeGEATIXLOCDLg5oJDQABDWNe_8NR/?operator=VITX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,kisonerga/serbellas-boutique-pafos-9/psbADkwNh66ML0BTuvL8RCAAogmNjxqwpcvMp6MbNuwyZPAn2h68Z88W1sfmShWNQdwhIqBFZJVFgwhLjM1wZIs2VQQViaB2ABagpIQlgxMTU0MDg0agZEQlQuRFhqDFBPWlBGT0RQNzAzNWoMUEZPUE9aRFA3MDM1cjCRAZsBnQGPARoAFwcVAFwIWABAjwNTpv4BUgBe1wFLeGEATIXLOCDLg5oJDQABDWOfN16j/?operator=VITX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1372,7 +1765,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HBX645238/9a0a18863ee486044421702671a3c1f0657895d7971e0bd5bfa13e8e97a4d137.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HBX645238/9a0a18863ee486044421702671a3c1f0657895d7971e0bd5bfa13e8e97a4d137.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/amara/pQJAhZMtbc-cGEiEWU3hYwAAog2CiPLgsxlevMfSsP0HXou3ImGe7j12M-OokKN5JU03IqBFZJVFgwtabM1wZIz3hQQVibB2ABaglIQlg2NDUyMzhqCURCVC5EWC1WTWoMS1RXTENBRFA3MDM3agxMQ0FLVFdEUDcwMzdyMZEBmwGdAY8BGgAXBxUAXAhYAECPA0vWzwFhAFKWBVMAXpErTP3LOCDLg5oJDQABEmNYDxvl/?operator=VITX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/amara/pQJAhZMtbc-cGEiEWU3hYwAAog2CiPLgsxlevMfSsP0HXou3ImGe7j12M-OokKN5JU03IqBFZJVFgwhLjM1wZIz3hQQViaB2ABaglIQlg2NDUyMzhqCURCVC5EWC1WTWoMS1RXTENBRFA3MDM3agxMQ0FLVFdEUDcwMzdyMZEBmwGdAY8BGgAXBxUAXAhYAECPA0vWzwFhAFKWBVMAXpErTP3LOCDLg5oJDQABEmO18WMV/?operator=VITX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1389,7 +1786,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/WBB535452/d4c91d0e444b4e513bff7bd337639db850db8ce59e27c1cc0188098666b4f0b5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/WBB535452/d4c91d0e444b4e513bff7bd337639db850db8ce59e27c1cc0188098666b4f0b5.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/city-of-dreams-mediterranean-10/pmkFMlaEQIA9u0GcuPoUchAAog8GvVuADNl6K9Bkvj3FDEZnImGe7j12M-OokKN5JU03IqBFZJVFgwtabM1wZIj3tQQVibB2ABaglXQkI1MzU0NTJqCTc4MTk3LlNURGoMS1RXTENBRFA3MDM3agxMQ0FLVFdEUDcwMzdyMZEBmwGdAY8BGgAXBxUAXAhYAECPA0vWzwFhAFKWBVMAXpErTP3LOCDLg5oJDQABDWNVLsoY/?operator=VITX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,limassol,c/city-of-dreams-mediterranean-10/pmkFMlaEQIA9u0GcuPoUchAAog8GvVuADNl6K9Bkvj3FDEZnImGe7j12M-OokKN5JU03IqBFZJVFgwhLjM1wZIj3tQQViaB2ABaglXQkI1MzU0NTJqCTc4MTk3LlNURGoMS1RXTENBRFA3MDM3agxMQ0FLVFdEUDcwMzdyMZEBmwGdAY8BGgAXBxUAXAhYAECPA0vWzwFhAFKWBVMAXpErTP3LOCDLg5oJDQABDWOAh9Zz/?operator=VITX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1406,7 +1807,11 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HBX911537/281ebce92facffdfbcfb47f464bb48306d1ec36f632c0c64268f2529ddb69ef4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HBX911537/281ebce92facffdfbcfb47f464bb48306d1ec36f632c0c64268f2529ddb69ef4.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/minthis-resort-14/pq5pS6pYWaCbmxqlyxrLViAAogjLVW0ixpSBHfJnP_-ggKgX2h68Z88W1sfmShWNQdwhIqBFZJVFgwtabM1wZIsYcBUEFYmwdgAWoJSEJYOTExNTM3agZGQU0uR1ZqDFBPWlBGT0RQNzAzNWoMUEZPUE9aRFA3MDM1cjCRAZsBnQGPARoAFwcVAFwIWABAjwNTpv4BUgBe1wFLeGEATIXLOCDLg5oJDQABDWPxdwZz/?operator=VITX&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/cypr,pafos,c/minthis-resort-14/pq5pS6pYWaCbmxqlyxrLViAAogjLVW0ixpSBHfJnP_-ggKgX2h68Z88W1sfmShWNQdwhIqBFZJVFgwhLjM1wZIsYcBUEFYmgdgAWoJSEJYOTExNTM3agZGQU0uR1ZqDFBPWlBGT0RQNzAzNWoMUEZPUE9aRFA3MDM1cjCRAZsBnQGPARoAFwcVAFwIWABAjwNTpv4BUgBe1wFLeGEATIXLOCDLg5oJDQABDWNXXEJt/?operator=VITX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   }
