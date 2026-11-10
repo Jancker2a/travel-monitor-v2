@@ -6,6 +6,7 @@ to find price discrepancies and identify massive savings via German operators.
 """
 import logging
 import time
+import urllib.parse
 from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime, timedelta, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -118,8 +119,11 @@ class ArbitrageService:
             diff_pln = p_pl - p_ber
             if diff_pln >= min_savings_pln:
                 savings_pct = (diff_pln / p_pl) * 100.0
-                ber_url = cheapest_ber.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName={g['hotel_name'].replace(' ', '+')}"
-                pl_url = cheapest_pl.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?hotelName={g['hotel_name'].replace(' ', '+')}"
+                enc_h = urllib.parse.quote_plus(g['hotel_name'])
+                ber_url = cheapest_ber.get("offer_url")
+                if not ber_url or "fly.pl" in ber_url:
+                    ber_url = f"https://www.check24.de/suche/?q={enc_h}"
+                pl_url = cheapest_pl.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?hotelName={enc_h}"
                 deals.append({
                     "hotel_id": g["hotel_id"],
                     "hotel_name": g["hotel_name"],

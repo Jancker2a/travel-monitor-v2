@@ -2,6 +2,7 @@ import uuid
 import logging
 import time
 import re
+import urllib.parse
 from collections import defaultdict
 from datetime import datetime, date, timedelta
 from typing import List, Optional, Tuple, Dict, Any
@@ -580,15 +581,15 @@ class WatchlistService:
                 verdict = "OVERPRICED"
 
         # German Arbitrage simulation / lookup
-        enc_hname = hotel.display_name.replace(" ", "+")
+        enc_hname = urllib.parse.quote_plus(hotel.display_name)
         german_arbitrage = {
             "berlin_price_pln": round(curr_p * 0.88 - 320, 0),
             "polish_price_pln": curr_p,
             "savings_pln": round(curr_p - (curr_p * 0.88 - 320), 0),
             "savings_pct": 14.5,
-            "berlin_operator": "FTI Touristik / TUI Deutschland",
+            "berlin_operator": "Check24 / TUI Deutschland",
             "departure_airport": "BER (Берлин-Бранденбург)",
-            "booking_url": f"https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName={enc_hname}&order=price",
+            "booking_url": f"https://www.check24.de/suche/?q={enc_hname}",
             "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
         }
 

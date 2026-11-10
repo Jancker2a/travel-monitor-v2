@@ -842,8 +842,9 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     <div>
                       <a
                         href={
-                          passport.german_arbitrage.booking_url ||
-                          `https://fly.pl/szukaj-wycieczek/?departureLocation=Berlin&hotelName=${encodeURIComponent(passport.display_name)}&order=price`
+                          passport.german_arbitrage.booking_url && !passport.german_arbitrage.booking_url.includes("fly.pl")
+                            ? passport.german_arbitrage.booking_url
+                            : `https://www.check24.de/suche/?q=${encodeURIComponent(passport.display_name)}`
                         }
                         target="_blank"
                         rel="noopener noreferrer"
@@ -851,17 +852,17 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           display: "inline-flex",
                           alignItems: "center",
                           gap: "6px",
-                          background: "#1d4ed8",
+                          background: "#034ea2",
                           color: "#ffffff",
                           padding: "8px 14px",
                           borderRadius: "8px",
                           fontSize: "12px",
                           fontWeight: 700,
                           textDecoration: "none",
-                          boxShadow: "0 2px 4px rgba(29, 78, 216, 0.2)",
+                          boxShadow: "0 2px 4px rgba(3, 78, 162, 0.25)",
                         }}
                       >
-                        <span>Найти вылет из BER</span>
+                        <span>🇩🇪 Проверить на Check24 (BER)</span>
                         <span>↗</span>
                       </a>
                     </div>
