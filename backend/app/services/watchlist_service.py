@@ -355,10 +355,17 @@ class WatchlistService:
         # Resolve related hotel_ids (canonical hotel, aliases, renames)
         related_hotel_ids = await cls._find_related_hotel_ids(db, hotel)
 
-        # 2. Fetch all cohorts for this hotel and related aliases (DB-agnostic: PG uses cohort_id, SQLite uses cohort_hash)
+        # 2. Fetch all cohorts for this hotel and related aliases (DB-agnostic: detect if price_snapshots uses cohort_hash or cohort_id)
         from types import SimpleNamespace
-        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
-        join_col = "cohort_id" if is_pg else "cohort_hash"
+        join_col = "cohort_id"
+        try:
+            if db.bind and db.bind.dialect.name == "sqlite":
+                pragma_res = await db.execute(text("PRAGMA table_info(price_snapshots)"))
+                pragma_cols = {r[1] for r in pragma_res.fetchall()}
+                if "cohort_hash" in pragma_cols:
+                    join_col = "cohort_hash"
+        except Exception:
+            pass
 
         placeholders = ",".join(f":h{i}" for i in range(len(related_hotel_ids)))
         h_params = {f"h{i}": hid for i, hid in enumerate(related_hotel_ids)}
