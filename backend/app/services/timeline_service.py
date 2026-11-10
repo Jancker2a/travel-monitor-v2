@@ -158,6 +158,16 @@ class TimelineService:
             else "substr(ps.recorded_at, 1, 13) || ':00:00Z'"
         )
 
+        join_col = "cohort_id"
+        if not is_pg:
+            try:
+                pragma_res = await db.execute(text("PRAGMA table_info(price_snapshots)"))
+                pragma_cols = {r[1] for r in pragma_res.fetchall()}
+                if "cohort_hash" in pragma_cols:
+                    join_col = "cohort_hash"
+            except Exception:
+                pass
+
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
         # Query Top-10 cheapest hotels per hourly run using CTE for high performance
@@ -168,7 +178,7 @@ class TimelineService:
                     oc.hotel_id,
                     MIN(ps.total_price_pln) as min_hotel_price
                 FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+                JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                 WHERE {filter_expr}
                   {time_clause}
                   {ceiling_clause}
