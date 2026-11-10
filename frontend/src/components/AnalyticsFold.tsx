@@ -11,8 +11,8 @@ import {
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
-import { SearchHotelItem, PriceDropItem, AirportStat } from "../types";
-import { getOffersCountTimeline, getEarlyBookingAnalytics } from "../services/api";
+import { SearchHotelItem, PriceDropItem, AirportStat, FilterDeparturesData } from "../types";
+import { getOffersCountTimeline, getEarlyBookingAnalytics, getFilterDepartures } from "../services/api";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
 declare global {
@@ -26,6 +26,8 @@ interface AnalyticsFoldProps {
   topDrops: PriceDropItem[];
   airportStats: AirportStat[];
   onSelectHotel: (hotelId: string) => void;
+  filterId?: string;
+  onFilterByDeparture?: (departureDate: string) => void;
 }
 
 export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
@@ -33,10 +35,14 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
   topDrops,
   airportStats,
   onSelectHotel,
+  filterId,
+  onFilterByDeparture,
 }) => {
   const [activeAlertTab, setActiveAlertTab] = useState<"drops" | "hikes" | "history">("drops");
   const [offersTimeline, setOffersTimeline] = useState<{ day: string; count: number }[]>([]);
   const [earlyBooking, setEarlyBooking] = useState<any>(null);
+  const [departuresData, setDeparturesData] = useState<FilterDeparturesData | null>(null);
+  const [loadingDepartures, setLoadingDepartures] = useState(false);
 
   const ebTrajRef = useRef<HTMLDivElement>(null);
   const ebSurvRef = useRef<HTMLDivElement>(null);
@@ -55,6 +61,16 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Fetch filter-specific departures radar & late-buy history
+  useEffect(() => {
+    if (!filterId) return;
+    setLoadingDepartures(true);
+    getFilterDepartures(filterId)
+      .then((data) => setDeparturesData(data))
+      .catch((err) => console.warn("Failed to load filter departures", err))
+      .finally(() => setLoadingDepartures(false));
+  }, [filterId]);
 
   // Multi-phase Plotly resize on accordion toggle
   const triggerResize = () => {
@@ -285,12 +301,103 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
       </summary>
 
       <div className="p-4 sm:p-6 space-y-4 bg-slate-50/50">
+        {/* 0. ТЕКУЩИЕ И БЛИЖАЙШИЕ ВЫЛЕТЫ (Radar) */}
+        {departuresData && departuresData.active_departures && departuresData.active_departures.length > 0 && (
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🛫</span>
+                  <h3 className="text-base font-bold text-slate-900 tracking-tight">Ближайшие и горящие вылеты</h3>
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Мониторинг ближайших дат вылета. Горящие вылеты с падением цен выделены ярким фоном и огоньком. Нажмите на карточку для фильтрации.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg">
+                  {departuresData.stats.active_count} активных
+                </span>
+                {departuresData.stats.hot_count > 0 && (
+                  <span className="text-xs font-semibold px-2.5 py-1 bg-red-100 text-red-700 rounded-lg flex items-center gap-1">
+                    🔥 {departuresData.stats.hot_count} горящих
+                  </span>
+                )}
+                {departuresData.stats.best_p10 > 0 && (
+                  <span className="text-xs font-semibold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg">
+                    деш. 10% от {departuresData.stats.best_p10.toLocaleString("ru-RU")} zł
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Departure Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+              {departuresData.active_departures.map((dep, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => onFilterByDeparture?.(dep.departure_date)}
+                  className={`p-3.5 rounded-xl border transition-all cursor-pointer hover:shadow-md ${
+                    dep.status_cls === "hot"
+                      ? "bg-red-50/70 border-red-200 hover:border-red-400 hover:bg-red-50"
+                      : dep.status_cls === "warm"
+                      ? "bg-amber-50/60 border-amber-200 hover:border-amber-400 hover:bg-amber-50"
+                      : "bg-white border-slate-200 hover:border-blue-300 hover:bg-blue-50/20"
+                  }`}
+                  role="button"
+                  tabIndex={0}
+                  title="Нажмите, чтобы отфильтровать отели по этой дате вылета"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="font-bold text-slate-900 text-sm flex items-center gap-1 truncate">
+                      {dep.status_cls === "hot" ? "🔥" : "📍"} {dep.region}
+                    </span>
+                    <span
+                      className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border whitespace-nowrap ${
+                        dep.status_cls === "hot"
+                          ? "bg-red-100 text-red-800 border-red-300"
+                          : dep.status_cls === "warm"
+                          ? "bg-amber-100 text-amber-800 border-amber-300"
+                          : "bg-slate-100 text-slate-700 border-slate-200"
+                      }`}
+                    >
+                      {dep.status_label}
+                    </span>
+                  </div>
+
+                  <div className="text-[11px] text-slate-600 space-y-0.5 mb-2.5">
+                    <div className="font-medium text-slate-800">
+                      {dep.departure_date} {dep.return_date ? `→ ${dep.return_date}` : ""} · {dep.nights} ночей
+                    </div>
+                    <div className="text-slate-500 font-semibold">{dep.days_label}</div>
+                  </div>
+
+                  <div className="text-[11px] text-emerald-700 font-medium bg-emerald-50/80 px-2 py-1 rounded-md mb-2 truncate border border-emerald-100">
+                    {dep.delta_text}
+                  </div>
+
+                  <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-100 text-slate-500">
+                    <span>
+                      ср: <strong className="text-slate-700">{dep.median_price.toLocaleString("ru-RU")} zł</strong>
+                    </span>
+                    <span>
+                      10%: <strong className="text-slate-900 font-bold">{dep.p10_price.toLocaleString("ru-RU")} zł</strong>
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* 1. ИСТОРИЯ ГОРЯЧИХ ВЫЛЕТОВ */}
         <details className="dashboard-fold bg-white border border-slate-200" id="departureHistoryFold">
           <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
             <div className="flex items-center gap-2">
               <Flame className="w-4 h-4 text-orange-500" />
-              <span>История горячих вылетов (99)</span>
+              <span>
+                История горячих вылетов ({departuresData?.hot_history?.length ?? hotDepartureCases.length})
+              </span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-xs text-slate-500 font-medium">Только прошедшие hot/late-buy кейсы</span>
@@ -301,9 +408,9 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
             <p className="text-xs text-slate-500 mb-3">
               Архив уже наступивших вылетов, где за последнюю неделю до старта заметно падали цены. Нажмите на строку для раскрытия деталей.
             </p>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto max-h-[460px] overflow-y-auto scrollbar-thin">
               <table className="w-full text-left border-collapse text-xs">
-                <thead>
+                <thead className="sticky top-0 z-10">
                   <tr className="border-b border-slate-200 bg-slate-50 text-slate-600 font-semibold uppercase">
                     <th className="py-2.5 px-3">Вылет</th>
                     <th className="py-2.5 px-3">За сколько</th>
@@ -312,8 +419,16 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {hotDepartureCases.map((c, i) => (
-                    <tr key={i} className="hover:bg-slate-50/80 cursor-pointer transition-colors">
+                  {(departuresData?.hot_history && departuresData.hot_history.length > 0
+                    ? departuresData.hot_history
+                    : hotDepartureCases
+                  ).map((c, i) => (
+                    <tr
+                      key={i}
+                      onClick={() => onFilterByDeparture?.(c.dates?.split(" ")[0] || "")}
+                      className="hover:bg-slate-50/80 cursor-pointer transition-colors"
+                      title="Показать предложения по этой дате"
+                    >
                       <td className="py-2.5 px-3">
                         <div className="font-bold text-slate-900">{c.departure}</div>
                         <div className="text-[11px] text-slate-500">{c.dates}</div>
@@ -327,8 +442,12 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
                         <span className="inline-block bg-orange-100 text-orange-800 font-bold px-1.5 py-0.5 rounded text-[11px] mr-2">
                           Score {c.score}
                         </span>
-                        <span>деш. 10%: <strong>{c.p10.toLocaleString("ru-RU")} zł</strong></span>
-                        <div className="text-[10px] text-slate-400">мин. {c.min} · ср. {c.median} · {c.hotelsCount} отелей</div>
+                        <span>
+                          деш. 10%: <strong>{c.p10.toLocaleString("ru-RU")} zł</strong>
+                        </span>
+                        <div className="text-[10px] text-slate-400">
+                          мин. {c.min} · ср. {c.median} · {c.hotelsCount} отелей
+                        </div>
                       </td>
                     </tr>
                   ))}

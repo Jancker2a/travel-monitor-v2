@@ -1,5 +1,7 @@
 import logging
 import time
+import json
+from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -12,6 +14,7 @@ _AIRPORT_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
 _TOP10_ANALYTICS_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
 _OFFERS_COUNT_CACHE: Optional[Tuple[float, List[Dict[str, Any]]]] = None
 _MARKET_OVERVIEW_CACHE: Optional[Tuple[float, Dict[str, Any]]] = None
+_DEPARTURES_KB: Optional[Dict[str, Any]] = None
 _ANALYTICS_CACHE_TTL = 900.0  # 15 minutes cache
 
 
@@ -317,3 +320,44 @@ class AnalyticsService:
         results = dict(row) if row else {}
         _MARKET_OVERVIEW_CACHE = (now_ts, results)
         return results
+
+    @classmethod
+    def get_filter_departures(cls, filter_id: str) -> Dict[str, Any]:
+        """Returns active upcoming departure radar and historical late-buy cases for the active filter."""
+        from app.services.canonical_filters import resolve_filter_spec
+
+        global _DEPARTURES_KB
+        if _DEPARTURES_KB is None:
+            kb_path = Path(__file__).resolve().parent.parent / "knowledge" / "departures_kb.json"
+            if kb_path.exists():
+                try:
+                    with open(kb_path, "r", encoding="utf-8") as f:
+                        _DEPARTURES_KB = json.load(f)
+                except Exception as e:
+                    logger.error(f"Error loading departures_kb.json: {e}")
+                    _DEPARTURES_KB = {}
+            else:
+                _DEPARTURES_KB = {}
+
+        spec = resolve_filter_spec(filter_id)
+        candidates = [filter_id]
+        if spec:
+            candidates.extend(spec.get("destination_codes", []))
+            candidates.append(f"filter_{filter_id}")
+        
+        found_data = None
+        for c in candidates:
+            if c in _DEPARTURES_KB:
+                found_data = _DEPARTURES_KB[c]
+                break
+
+        if not found_data:
+            found_data = {"hot_history": [], "active_departures": [], "stats": {}}
+
+        return {
+            "filter_id": filter_id,
+            "active_departures": found_data.get("active_departures", []),
+            "hot_history": found_data.get("hot_history", []),
+            "stats": found_data.get("stats", {})
+        }
+

@@ -9,6 +9,7 @@ import {
   TimelineResponse,
   HotelCatalogResponse,
   MarketOracleData,
+  FilterDeparturesData,
 } from "../types";
 
 const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || "";
@@ -223,5 +224,14 @@ export async function getFilterHotelsCatalog(
   }
   return resp.json();
 }
+
+export async function getFilterDepartures(filterId: string): Promise<FilterDeparturesData> {
+  const resp = await fetch(`${API_BASE}/api/v2/filters/${encodeURIComponent(filterId)}/departures`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки вылетов фильтра (${resp.status})`);
+  }
+  return resp.json();
+}
+
 
 

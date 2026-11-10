@@ -1078,7 +1078,13 @@ export const App: React.FC = () => {
           hotels={results}
           topDrops={topDrops}
           airportStats={airportStats}
+          filterId={activeTab === "filter" ? activeFilterId : undefined}
           onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
+          onFilterByDeparture={(depDate) => {
+            if (depDate) {
+              setTableFilters((prev) => ({ ...prev, search: depDate }));
+            }
+          }}
         />
 
         {/* 5. Universal Toolbar: Вид (Карточки / Таблица / Арбитраж) + Фильтры */}

@@ -388,6 +388,14 @@ async def get_filter_market_oracle(filter_id: str, db: AsyncSession = Depends(ge
     return await OracleService.get_filter_oracle(db, filter_id=filter_id)
 
 
+@app.get("/api/v2/filters/{filter_id}/departures")
+async def get_filter_departures(filter_id: str):
+    """
+    Active upcoming departure radar and historical late-buy cases for the active filter.
+    """
+    return AnalyticsService.get_filter_departures(filter_id)
+
+
 @app.get("/api/v2/filters/{filter_id}/hotels", response_model=HotelCatalogResponse)
 async def get_filter_hotels_catalog(
     filter_id: str,

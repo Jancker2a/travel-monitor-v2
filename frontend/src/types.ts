@@ -310,4 +310,52 @@ export interface MarketOracleData {
   key_anomalies?: (string | MarketOracleAnomaly)[];
 }
 
+export interface ActiveDepartureItem {
+  departure_key: string;
+  region: string;
+  country: string;
+  departure_date: string;
+  return_date: string;
+  nights: number;
+  days_to_departure: number | null;
+  days_label: string;
+  hotel_count: number;
+  min_price: number;
+  median_price: number;
+  p10_price: number;
+  hot_score: number;
+  status_label: string;
+  status_cls: "hot" | "warm" | "calm";
+  delta_text: string;
+  avg_deal_score: number;
+  hot_deal_count: number;
+}
+
+export interface HotDepartureHistoryItem {
+  departure_key: string;
+  departure: string;
+  dates: string;
+  daysBefore: string;
+  drop: string;
+  seenAt: string;
+  score: number;
+  p10: number;
+  min: number;
+  median: number;
+  hotelsCount: number;
+}
+
+export interface FilterDeparturesData {
+  filter_id: string;
+  active_departures: ActiveDepartureItem[];
+  hot_history: HotDepartureHistoryItem[];
+  stats: {
+    history_count: number;
+    active_count: number;
+    hot_count: number;
+    best_p10: number;
+  };
+}
+
+
 
