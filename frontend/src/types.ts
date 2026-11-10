@@ -246,6 +246,7 @@ export interface HotelCatalogCard {
   hotel_id: string;
   display_name: string;
   country: string;
+  region?: string;
   stars: number;
   ta_rating?: number;
   ta_reviews: number;

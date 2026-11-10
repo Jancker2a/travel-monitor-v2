@@ -41,6 +41,7 @@ const FILTER_PRESETS: Record<
     countryBadge: string;
     destination: string;
     targetUrl: string;
+    displayPriceCeiling?: number;
     chips: {
       airports: string;
       dates: string;
@@ -55,6 +56,7 @@ const FILTER_PRESETS: Record<
     title: "🇹🇷 Турция — 7–10 ночей (2 взр + 1 реб)",
     countryBadge: "🇹🇷 ТУРЦИЯ",
     destination: "turkey",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, RDO",
@@ -76,6 +78,7 @@ const FILTER_PRESETS: Record<
     title: "🇹🇷 Турция — 9–11 ночей (Все Включено)",
     countryBadge: "🇹🇷 ТУРЦИЯ",
     destination: "turkey",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-01-2026&startDateMax=22-01-2026&returnDate=31-01-2026&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=9&durationTo=11&priceFrom=4610&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
@@ -97,13 +100,14 @@ const FILTER_PRESETS: Record<
     title: "🇹🇷 Турция — 13–16 ночей (Длительный)",
     countryBadge: "🇹🇷 ТУРЦИЯ ДЛИТЕЛЬНЫЙ",
     destination: "turkey",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2026&startDateMax=17-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, RDO",
       dates: "Июнь 2027",
       party: "2 взр + 1 реб",
       hotelClass: "4★ – 5★ All Inclusive",
-      budget: "до 14 000 zł",
+      budget: "до 10 000 zł",
     },
     searchReq: {
       destination: "turkey",
@@ -118,6 +122,7 @@ const FILTER_PRESETS: Record<
     title: "🇪🇬 Египет — 7–10 ночей (2 взр + 1 реб)",
     countryBadge: "🇪🇬 ЕГИПЕТ 7–10 ДНЕЙ",
     destination: "egypt",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=28-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
@@ -265,6 +270,7 @@ const FILTER_PRESETS: Record<
     title: "🇬🇷 Греция — 7–10 ночей (5★ All Inclusive)",
     countryBadge: "🇬🇷 ГРЕЦИЯ",
     destination: "greece",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&startDateMin=10-11-2026&startDateMax=03-12-2026&returnDate=10-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "Все аэропорты Польши",
@@ -286,13 +292,14 @@ const FILTER_PRESETS: Record<
     title: "🇬🇷 Греция — 13–16 ночей (5★ All Inclusive)",
     countryBadge: "🇬🇷 ГРЕЦИЯ ДЛИТЕЛЬНЫЙ",
     destination: "greece",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&startDateMin=10-11-2026&startDateMax=24-11-2026&returnDate=10-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "Все аэропорты Польши",
       dates: "Ноябрь – Декабрь 2026",
       party: "2 взр + 1 реб",
       hotelClass: "5★ All Inclusive",
-      budget: "до 14 000 zł",
+      budget: "до 10 000 zł",
     },
     searchReq: {
       destination: "greece",
@@ -307,6 +314,7 @@ const FILTER_PRESETS: Record<
     title: "🇨🇾 Кипр — 7–10 ночей (1 взрослый)",
     countryBadge: "🇨🇾 КИПР",
     destination: "cyprus",
+    displayPriceCeiling: 6000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=10:&departureLocation=Bydgoszcz,Gdańsk,Katowice,Kraków,Lublin,Łódź,Poznań,Rzeszów,Szczecin,Warszawa,Wrocław,ZielonaGóra&adults=1&offerTypes=accommodation_flight&durationFrom=7&durationTo=10&priceFrom=0&priceTo=30000&order=price",
     chips: {
       airports: "9 аэропортов Польши",
@@ -580,6 +588,7 @@ const FILTER_PRESETS: Record<
     title: "🇬🇷 Греция — 7–10 ночей (5★ All Inclusive)",
     countryBadge: "🇬🇷 ГРЕЦИЯ",
     destination: "greece",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&startDateMin=10-11-2026&startDateMax=03-12-2026&returnDate=10-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "Все аэропорты Польши",
@@ -601,13 +610,14 @@ const FILTER_PRESETS: Record<
     title: "🇬🇷 Греция — 13–16 ночей (5★ All Inclusive)",
     countryBadge: "🇬🇷 ГРЕЦИЯ ДЛИТЕЛЬНЫЙ",
     destination: "greece",
+    displayPriceCeiling: 10000,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&startDateMin=10-11-2026&startDateMax=24-11-2026&returnDate=10-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "Все аэропорты Польши",
       dates: "Ноябрь – Декабрь 2026",
       party: "2 взр + 1 реб",
       hotelClass: "5★ All Inclusive",
-      budget: "до 14 000 zł",
+      budget: "до 10 000 zł",
     },
     searchReq: {
       destination: "greece",
@@ -637,7 +647,7 @@ function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
     hotel_id: c.hotel_id,
     hotel_name: c.display_name,
     stars: c.stars || 4,
-    region: c.country,
+    region: c.region || c.country,
     country: c.country,
     main_image_url: c.main_image_url,
     ta_rating: c.ta_rating,
@@ -740,12 +750,14 @@ export const App: React.FC = () => {
   const loadFilterResults = async (filterId: string) => {
     setIsLoading(true);
     try {
-      const catResp = await getFilterHotelsCatalog(filterId);
+      const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
+      const catResp = await getFilterHotelsCatalog(filterId, {
+        maxPrice: preset?.displayPriceCeiling,
+      });
       if (catResp.hotels && catResp.hotels.length > 0) {
         setResults(catResp.hotels.map(catalogCardToSearchItem));
         return;
       }
-      const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
       const resp = await searchTours(preset.searchReq);
       setResults(resp.results);
     } catch (err: any) {
@@ -851,6 +863,8 @@ export const App: React.FC = () => {
       if (tableFilters.priceMax) {
         const maxP = parseFloat(tableFilters.priceMax);
         if (h.current_offer.total_price_pln > maxP) return false;
+      } else if (activeTab === "filter" && currentPreset?.displayPriceCeiling) {
+        if (h.current_offer.total_price_pln > currentPreset.displayPriceCeiling) return false;
       }
 
       // Recommendation

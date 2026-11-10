@@ -8,6 +8,7 @@ and identifies correct resort regions from hotel names, slugs, and associated co
 import asyncio
 import asyncpg
 import sqlite3
+import re
 from pathlib import Path
 
 SUPABASE_URL = "postgresql://postgres.diwrmsoiyhxbfzwrtumi:5J4VB6%2BiU%25UkCZb@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
@@ -23,90 +24,72 @@ TURKEY_KW = [
     "avsallar", "okurcalar", "incekum", "turunc", "icmeler", "turkey", "turcja"
 ]
 GREECE_KW = [
-    "crete", "rhodes", "kos", "corfu", "zakynthos", "chalkidiki", "chania",
-    "heraklion", "rethymno", "hersonissos", "malia", "faliraki", "lindos",
-    "kallithea", "ialyssos", "kolymbia", "mastichari", "kardamena", "tigaki",
-    "greece", "grecja"
+    "athens", "ateny", "attyka", "attica", "vravrona", "crete", "rhodes", "kos", "corfu",
+    "zakynthos", "chalkidiki", "chania", "heraklion", "rethymno", "hersonissos", "malia",
+    "faliraki", "lindos", "kallithea", "ialyssos", "kolymbia", "mastichari", "kardamena",
+    "tigaki", "greece", "grecja", "olympic", "fix", "peloponnese"
 ]
 CYPRUS_KW = [
     "ayia napa", "protaras", "paphos", "larnaca", "limassol", "cyprus", "cypr"
 ]
 
 
+def has_kw(kw: str, text: str) -> bool:
+    # Match as full word or token separated by spaces/hyphens/underscores
+    return bool(re.search(rf"(?:^|[\s\-_]){re.escape(kw)}(?:$|[\s\-_])", text))
+
+
 def detect_country_and_region(name: str, hid: str, fids: list, curr_c: str, curr_r: str):
     name_l = (name or "").lower()
     hid_l = (hid or "").lower()
-    text = f"{name_l} {hid_l}"
+    text = f" {name_l} {hid_l} "
 
     country = None
     region = curr_r or ""
 
-    # 1. Check Keywords
-    for kw in EGYPT_KW:
-        if kw in text:
-            country = "Египет"
-            if "sharm" in text: region = "Шарм-эль-Шейх"
-            elif "hurghada" in text: region = "Хургада"
-            elif "marsa" in text: region = "Марса-Алам"
-            elif "makadi" in text: region = "Макади Бэй"
-            elif "el gouna" in text: region = "Эль-Гуна"
-            elif "soma bay" in text: region = "Сома Бэй"
-            elif "safaga" in text: region = "Сафага"
-            elif "dahab" in text: region = "Дахаб"
-            elif "taba" in text: region = "Таба"
-            break
+    # Priority 0: Check Associated Cohort Filters first if they are specific
+    fids_str = " ".join(str(f).lower() for f in fids) if fids else ""
+    if "greece" in fids_str:
+        country = "Греция"
+    elif "cyprus" in fids_str:
+        country = "Кипр"
+    elif "turkey" in fids_str:
+        country = "Турция"
 
-    if not country:
-        for kw in TURKEY_KW:
-            if kw in text:
-                country = "Турция"
-                if any(x in text for x in ["alanya", "konakli", "avsallar", "okurcalar", "incekum"]): region = "Аланья"
-                elif any(x in text for x in ["kemer", "tekirova", "beldibi", "goynuk"]): region = "Кемер"
-                elif "side" in text: region = "Сиде"
-                elif "belek" in text: region = "Белек"
-                elif any(x in text for x in ["lara", "antalya"]): region = "Анталья"
-                elif "bodrum" in text: region = "Бодрум"
-                elif any(x in text for x in ["marmaris", "turunc", "icmeler"]): region = "Мармарис"
-                elif "fethiye" in text: region = "Фетхие"
-                elif "kusadasi" in text: region = "Кушадасы"
-                elif "didim" in text: region = "Дидим"
-                break
-
+    # Priority 1: Check Greece Keywords
     if not country:
         for kw in GREECE_KW:
-            if kw in text:
+            if has_kw(kw, text) or (len(kw) >= 5 and kw in text):
                 country = "Греция"
-                if any(x in text for x in ["crete", "chania", "heraklion", "rethymno", "hersonissos", "malia"]): region = "Крит"
-                elif any(x in text for x in ["rhodes", "faliraki", "lindos", "kallithea", "ialyssos", "kolymbia"]): region = "Родос"
-                elif any(x in text for x in ["kos", "mastichari", "kardamena", "tigaki"]): region = "Кос"
-                elif "corfu" in text: region = "Корфу"
-                elif "zakynthos" in text: region = "Закинф"
                 break
 
+    # Priority 2: Check Egypt Keywords
+    if not country:
+        for kw in EGYPT_KW:
+            if has_kw(kw, text) or (len(kw) >= 5 and kw in text):
+                country = "Египет"
+                break
+
+    # Priority 3: Check Turkey Keywords
+    if not country:
+        for kw in TURKEY_KW:
+            if has_kw(kw, text) or (len(kw) >= 5 and kw in text):
+                country = "Турция"
+                break
+
+    # Priority 4: Check Cyprus Keywords
     if not country:
         for kw in CYPRUS_KW:
-            if kw in text:
+            if has_kw(kw, text) or (len(kw) >= 5 and kw in text):
                 country = "Кипр"
-                if "ayia napa" in text: region = "Айя-Напа"
-                elif "protaras" in text: region = "Протарас"
-                elif "paphos" in text: region = "Пафос"
-                elif "larnaca" in text: region = "Ларнака"
-                elif "limassol" in text: region = "Лимассол"
                 break
 
-    # 2. Check Associated Cohort Filters if country still not determined
-    if not country and fids:
-        fids_str = " ".join(str(f).lower() for f in fids)
-        if any(x in fids_str for x in ["egypt", "7_10_days", "13_16_days", "sharm"]):
+    # Fallback to fids
+    if not country and fids_str:
+        if any(x in fids_str for x in ["egypt", "filter_7_10_days", "filter_13_16_days", "sharm"]):
             country = "Египет"
-        elif "turkey" in fids_str:
-            country = "Турция"
-        elif "greece" in fids_str:
-            country = "Греция"
-        elif "cyprus" in fids_str:
-            country = "Кипр"
 
-    # 3. Fallback translation of current country
+    # Fallback to current country string
     if not country:
         c_low = (curr_c or "").lower()
         if "turk" in c_low or "турц" in c_low: country = "Турция"
@@ -114,7 +97,59 @@ def detect_country_and_region(name: str, hid: str, fids: list, curr_c: str, curr
         elif "gree" in c_low or "грец" in c_low: country = "Греция"
         elif "cypr" in c_low or "кипр" in c_low: country = "Кипр"
         elif "spain" in c_low or "испан" in c_low: country = "Испания"
-        else: country = curr_c or "Египет"
+        else: country = "Греция" if "greece" in fids_str else (curr_c or "Египет")
+
+    # Region determination based on resolved country
+    if country == "Греция":
+        if any(has_kw(x, text) or x in text for x in ["athens", "ateny", "fix", "olympic"]):
+            region = "Афины"
+        elif any(has_kw(x, text) or x in text for x in ["attyka", "attica", "vravrona", "dolce"]):
+            region = "Аттика"
+        elif any(has_kw(x, text) or x in text for x in ["crete", "chania", "heraklion", "rethymno", "hersonissos", "malia"]):
+            region = "Крит"
+        elif any(has_kw(x, text) or x in text for x in ["rhodes", "faliraki", "lindos", "kallithea", "ialyssos", "kolymbia"]):
+            region = "Родос"
+        elif any(has_kw(x, text) or x in text for x in ["kos", "mastichari", "kardamena", "tigaki"]):
+            region = "Кос"
+        elif "corfu" in text:
+            region = "Корфу"
+        elif "zakynthos" in text:
+            region = "Закинф"
+        elif not region or region in ("Сиде", "Кемер", "Аланья", "Хургада", "Шарм-эль-Шейх"):
+            region = "Афины"
+
+    elif country == "Египет":
+        if "sharm" in text: region = "Шарм-эль-Шейх"
+        elif "hurghada" in text: region = "Хургада"
+        elif "marsa" in text: region = "Марса-Алам"
+        elif "makadi" in text: region = "Макади Бэй"
+        elif "el gouna" in text: region = "Эль-Гуна"
+        elif "soma bay" in text: region = "Сома Бэй"
+        elif "safaga" in text: region = "Сафага"
+        elif "dahab" in text: region = "Дахаб"
+        elif "taba" in text: region = "Таба"
+        elif not region: region = "Шарм-эль-Шейх"
+
+    elif country == "Турция":
+        if any(has_kw(x, text) or x in text for x in ["alanya", "konakli", "avsallar", "okurcalar", "incekum"]): region = "Аланья"
+        elif any(has_kw(x, text) or x in text for x in ["kemer", "tekirova", "beldibi", "goynuk"]): region = "Кемер"
+        elif has_kw("side", text): region = "Сиде"
+        elif has_kw("belek", text): region = "Белек"
+        elif any(has_kw(x, text) or x in text for x in ["lara", "antalya"]): region = "Анталья"
+        elif has_kw("bodrum", text): region = "Бодрум"
+        elif any(has_kw(x, text) or x in text for x in ["marmaris", "turunc", "icmeler"]): region = "Мармарис"
+        elif has_kw("fethiye", text): region = "Фетхие"
+        elif has_kw("kusadasi", text): region = "Кушадасы"
+        elif has_kw("didim", text): region = "Дидим"
+        elif not region or region in ("Афины", "Аттика", "Крит", "Родос"): region = "Анталья"
+
+    elif country == "Кипр":
+        if "ayia napa" in text: region = "Айя-Напа"
+        elif "protaras" in text: region = "Протарас"
+        elif "paphos" in text: region = "Пафос"
+        elif "larnaca" in text: region = "Ларнака"
+        elif "limassol" in text: region = "Лимассол"
+        elif not region: region = "Пафос"
 
     return country, region
 
@@ -150,7 +185,7 @@ async def run_clean():
         WHERE hotel_id = $3
     """, updates)
 
-    # Also update offer_cohorts destination_code where filter is egypt/turkey/greece/cyprus
+    # Offer Cohorts synchronization
     await conn.execute("""
         UPDATE offer_cohorts
         SET destination_code = 'egypt'
@@ -183,9 +218,15 @@ async def run_clean():
     for s in stats:
         print(f"  {s['country']}: {s['count']}")
 
-    # Verify Jaz Sharm Dreams
-    jaz = await conn.fetchrow("SELECT hotel_id, display_name, country, region FROM hotels WHERE hotel_id = 'jaz-sharm-dreams'")
-    print(f"\nJaz Sharm Dreams verification: {dict(jaz) if jaz else 'Not found'}")
+    # Verify Athens Hotels
+    athens_hotels = await conn.fetch("""
+        SELECT hotel_id, display_name, country, region 
+        FROM hotels 
+        WHERE hotel_id IN ('nlh-fix', 'zeus-wyndham-grand-athens', 'zeus-essence-wyndham-athens-residence', 'royal-olympic', 'zeus-dolce-athens-ex-hotel-dolce-attica-riviera-resort')
+    """)
+    print("\nAthens hotels verification:")
+    for h in athens_hotels:
+        print(f"  {h['display_name']} -> {h['country']} • {h['region']}")
 
     await conn.close()
 
@@ -204,4 +245,3 @@ async def run_clean():
 
 if __name__ == "__main__":
     asyncio.run(run_clean())
-

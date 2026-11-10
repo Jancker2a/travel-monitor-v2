@@ -11,6 +11,7 @@ from sqlalchemy import text, select
 logger = logging.getLogger("travel_monitor_2.catalog")
 
 from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
+from app.services.canonical_filters import get_filter_display_ceiling
 from app.services.hotel_deal_score import compute_hotel_deal_metrics
 from app.services.hotel_knowledge_service import HotelKnowledgeService
 
@@ -58,6 +59,13 @@ class CatalogService:
             _CATALOG_CACHE[canonical_fid] = (now_ts, cards)
 
         # 5. Apply filters
+        # Enforce canonical display ceiling if max_price was not explicitly specified
+        effective_max_price = max_price
+        if effective_max_price is None:
+            effective_max_price = get_filter_display_ceiling(filter_id) or get_filter_display_ceiling(canonical_fid)
+        elif effective_max_price <= 0:
+            effective_max_price = None  # Explicit override to show all
+
         filtered_cards = list(cards)
         if stars:
             filtered_cards = [c for c in filtered_cards if c["stars"] == stars]
@@ -66,8 +74,8 @@ class CatalogService:
             filtered_cards = [c for c in filtered_cards if sq in c["display_name"].lower()]
         if min_price is not None:
             filtered_cards = [c for c in filtered_cards if c["current_min_price"] >= min_price]
-        if max_price is not None:
-            filtered_cards = [c for c in filtered_cards if c["current_min_price"] <= max_price]
+        if effective_max_price is not None:
+            filtered_cards = [c for c in filtered_cards if c["current_min_price"] <= effective_max_price]
 
         # 6. Sorting
         reverse_order = order.lower() == "desc"
@@ -149,6 +157,7 @@ class CatalogService:
                     h.hotel_id,
                     h.display_name,
                     h.country,
+                    h.region,
                     h.stars,
                     h.ta_rating,
                     h.ta_reviews,
@@ -170,6 +179,7 @@ class CatalogService:
                 hotel_id,
                 display_name,
                 country,
+                region,
                 stars,
                 ta_rating,
                 ta_reviews,
@@ -316,6 +326,7 @@ class CatalogService:
                 h_id,
                 disp_name,
                 country,
+                region,
                 stars_val,
                 ta_rating,
                 ta_reviews,
@@ -454,6 +465,7 @@ class CatalogService:
                 "hotel_id": h_id,
                 "display_name": disp_name,
                 "country": country,
+                "region": region or country,
                 "stars": stars_val or 4,
                 "ta_rating": final_ta_rating,
                 "ta_reviews": final_ta_reviews,

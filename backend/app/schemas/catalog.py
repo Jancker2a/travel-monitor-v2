@@ -7,6 +7,7 @@ class HotelCatalogCard(BaseModel):
     hotel_id: str
     display_name: str
     country: str
+    region: Optional[str] = None
     stars: int
     ta_rating: Optional[float] = None
     ta_reviews: int = 0

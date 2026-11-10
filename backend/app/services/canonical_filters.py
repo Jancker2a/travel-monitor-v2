@@ -306,3 +306,52 @@ def resolve_filter_spec(filter_id: Optional[str]) -> Optional[Dict[str, Any]]:
             return spec
     return None
 
+
+DEFAULT_PRICE_CEILINGS: Dict[str, float] = {
+    "turkey_7_10": 10000.0,
+    "turkey_7_10_days": 10000.0,
+    "turkey_9_11": 10000.0,
+    "turkey_13_16": 10000.0,
+    "turkey_vacation_jul18_2026": 10000.0,
+    "egypt_7_10": 10000.0,
+    "egypt_13_16": 10000.0,
+    "egypt_autumn_7_10": 11000.0,
+    "egypt_autumn_13_16": 11000.0,
+    "egypt_autumn_2026_7_10_days": 11000.0,
+    "egypt_autumn_2026_13_16_days": 11000.0,
+    "egypt_sharm_dec20_29_1p": 30000.0,
+    "egypt_ny_dec24_2026_7_10": 11000.0,
+    "egypt_ny_dec28_2026_7_10": 11000.0,
+    "greece_7_10": 10000.0,
+    "greece_7_10_days": 10000.0,
+    "greece_13_16": 10000.0,
+    "greece_13_16_days": 10000.0,
+    "filter_cyprus_7_10": 6000.0,
+    "cyprus_7_10": 6000.0,
+    "eb_turkey_jul27_7_10": 12000.0,
+    "eb_turkey_jul27_13_16": 16000.0,
+    "eb_turkey_aug27_7_10": 12000.0,
+    "eb_egypt_jul27_7_10": 12000.0,
+    "eb_egypt_aug27_7_10": 12000.0,
+    "eb_egypt_oct27_7_10": 12000.0,
+    "eb_greece_jul27_7_10": 12000.0,
+    "eb_greece_aug27_7_10": 12000.0,
+}
+
+
+def get_filter_display_ceiling(filter_id: Optional[str]) -> Optional[float]:
+    """Returns canonical display price ceiling in PLN for the given filter."""
+    if not filter_id:
+        return None
+    key = filter_id.lower().strip()
+    if key in DEFAULT_PRICE_CEILINGS:
+        return DEFAULT_PRICE_CEILINGS[key]
+    key_clean = key.replace("filter_", "")
+    for k, ceil in DEFAULT_PRICE_CEILINGS.items():
+        if k.replace("filter_", "") == key_clean:
+            return ceil
+    spec = resolve_filter_spec(filter_id)
+    if spec and "display_price_ceiling" in spec:
+        return float(spec["display_price_ceiling"])
+    return None
+
