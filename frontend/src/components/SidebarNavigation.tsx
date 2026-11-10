@@ -83,6 +83,16 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       ],
     },
     {
+      group: "📏 Эталоны (1 взр • +3 нед)",
+      icon: "📏",
+      items: [
+        { id: "benchmark_turkey_1p_7_8", title: "Турция 7–8 дн (1 взр)" },
+        { id: "benchmark_egypt_1p_7_8", title: "Египет 7–8 дн (1 взр)" },
+        { id: "benchmark_greece_1p_7_8", title: "Греция 7–8 дн (1 взр)" },
+        { id: "benchmark_cyprus_1p_7_8", title: "Кипр 7–8 дн (1 взр)" },
+      ],
+    },
+    {
       group: "🏷️ Раннее бронирование 2027",
       icon: "🏷️",
       items: [
