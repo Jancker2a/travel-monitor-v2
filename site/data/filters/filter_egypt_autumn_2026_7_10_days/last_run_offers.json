@@ -12,7 +12,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2746/32be1fc67133aeaa73f5943092cbc9e24c1086a5c7e11dba89ccd4892be5d51f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2746/32be1fc67133aeaa73f5943092cbc9e24c1086a5c7e11dba89ccd4892be5d51f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/floriana-dream-lagoon/pmel8QI4oEe1nkrln-4kNfAAogCBBrYiyNM3YbPxv6UmQ9NEy_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZIlS5QQVieA2ACagYwWi4yLjFyNpsBFQcXAFwDWAVWAkDKBhHfDl2kFU8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDZHOr7Q/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/floriana-dream-lagoon/pmel8QI4oEe1nkrln-4kNfAAogCBBrYiyNM3YbPxv6UmQ9NEy_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZIlS5QQViZA2ACagYwWi4yLjFyNpsBFQcXAFwDWAVWAkDKBhHfDl2kFU8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDVqSPLc/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -29,7 +29,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3419/434f655ad2a2dfe6cbdef2e751d154354722ecb8bd5b88925b3c7e21ce025325.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3419/434f655ad2a2dfe6cbdef2e751d154354722ecb8bd5b88925b3c7e21ce025325.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/amarina-queen-resort-12/peVLD3Ymzjku1GZgiSGEbzAAoguGpm1udahtSKGC-ZJV5130y_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZIlDNQQVieA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhGAFF2DEE8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDAn4T7k/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/amarina-queen-resort-12/peVLD3Ymzjku1GZgiSGEbzAAoguGpm1udahtSKGC-ZJV5130y_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZIlDNQQViZA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhGAFF2DEE8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDOltjUo/?operator=OREX&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Anex Tour Poland"
+  },
+  {
+    "hotel_name": "Amarina Jannah Resort & Aqua Park",
+    "price": 6647.0,
+    "dates": "2026-11-28 - 2026-12-05",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-05",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3540/879df9a4dcacf0aa91f68c1894d7d610f712c827356edf52bacd6de8d9eaf7fe.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3540/879df9a4dcacf0aa91f68c1894d7d610f712c827356edf52bacd6de8d9eaf7fe.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/amarina-jannah-resort-aquapark-15/ppZtC7MwvVrAdXwy-ijJfTAAoglI_bfrxNVHG-711XDtZjg0y_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZI9zNQQViZA2ACagZDNS4yLjFyNpsBFQcXAFwDWAVWAkDKBhH5FF2KD08kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDONv6H4/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -46,43 +63,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/5707/fb9e6f300d4d1d78252b0e49eadbf686872c5dda97faa0e339aed3921e9898a3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/5707/fb9e6f300d4d1d78252b0e49eadbf686872c5dda97faa0e339aed3921e9898a3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/mercure-dahab-bay-view/p3sg4z4hzjxmBzhZNUzZBmAAogpOqJ7KtEfJlPe3o6yCzTOQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZIsjRQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRoB5A1lRMoKIBTwBLxyNQABu7yAwdiegDIBoNotrBCQESYwEMYwECBbu64z4/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/mercure-dahab-bay-view/p3sg4z4hzjxmBzhZNUzZBmAAogpOqJ7KtEfJlPe3o6yCzTOQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZIsjRQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRoB5A1lRMoKIBTwBLxyNQABu7yAwdiegDIBoNotrBCQESYwEMYwECBfusfP0/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
-  },
-  {
-    "hotel_name": "Amarina Jannah Resort & Aqua Park",
-    "price": 6728.0,
-    "dates": "2026-11-28 - 2026-12-05",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-05",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3540/879df9a4dcacf0aa91f68c1894d7d610f712c827356edf52bacd6de8d9eaf7fe.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3540/879df9a4dcacf0aa91f68c1894d7d610f712c827356edf52bacd6de8d9eaf7fe.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/amarina-jannah-resort-aquapark-15/ppZtC7MwvVrAdXwy-ijJfTAAoglI_bfrxNVHG-711XDtZjg0y_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZIyDRQQVieA2ACagZDNS4yLjFyNpsBFQcXAFwDWAVWAkDKBhH5FF2KD08kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDM3wMPo/?operator=OREX&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Anex Tour Poland"
-  },
-  {
-    "hotel_name": "Sentido Akassia Beach",
-    "price": 6813.0,
-    "dates": "2026-11-28 - 2026-12-05",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-05",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/55/600cf9d7c9e2cf255d79735abb44f000e9d3ba63bfbb3ae374e87f9bf05c1bc5.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/55/600cf9d7c9e2cf255d79735abb44f000e9d3ba63bfbb3ae374e87f9bf05c1bc5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/lti-akassia-beach-2/pMfZsij99HJh_hoxfdwOZ3AAogWsj03FuK88D0OuhDCSx3N0y_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZInTVQQVieA2ACagYxUy4yLjFyNZsBFQcXAFwDWAVWAhEmQKQGXYMkTyRemdgBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQIN_z9o3g/?operator=OREX&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Anex Tour Poland"
   },
   {
     "hotel_name": "Amarina Jannah Height Resort & Aqua Park",
@@ -97,7 +80,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7363/e78adf30e69be04419259dc8934c39fa4c91ca8562e8997f6c2ea09973805bff.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7363/e78adf30e69be04419259dc8934c39fa4c91ca8562e8997f6c2ea09973805bff.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/amarina-jannah-heights-resort-aqua-park/pJpBfxZPQ0htsh2zBxIWryAAogziFoWQPdl1TNGrGL9pJBDUy_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZIhTZQQVieA2ACagdRSUkuMi4xcjabARUHFwBcA1gFVgJAygZdgyRPJBHBDl7YyQFTvBRSAEuxL2EATOWMOiCb_pcJDQACEmMBAgx0_lqS/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/amarina-jannah-heights-resort-aqua-park/pJpBfxZPQ0htsh2zBxIWryAAogziFoWQPdl1TNGrGL9pJBDUy_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZIhTZQQViZA2ACagdRSUkuMi4xcjabARUHFwBcA1gFVgJAygZdgyRPJBHBDl7YyQFTvBRSAEuxL2EATOWMOiCb_pcJDQACEmMBAgyJ87xl/?operator=OREX&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Anex Tour Poland"
+  },
+  {
+    "hotel_name": "Sentido Akassia Beach",
+    "price": 6935.0,
+    "dates": "2026-11-28 - 2026-12-05",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-05",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/55/600cf9d7c9e2cf255d79735abb44f000e9d3ba63bfbb3ae374e87f9bf05c1bc5.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/55/600cf9d7c9e2cf255d79735abb44f000e9d3ba63bfbb3ae374e87f9bf05c1bc5.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/lti-akassia-beach-2/pMfZsij99HJh_hoxfdwOZ3AAogWsj03FuK88D0OuhDCSx3N0y_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZIlzZQQViZA2ACagYxUy4yLjFyNZsBFQcXAFwDWAVWAhEmQKQGXYMkTyRemdgBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQINdp8aTg/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -114,7 +114,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114652/6b3ae6f53594420a7d91dbf61a218c28cc233b551fcc68f5cf45104dc6e25f42.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114652/6b3ae6f53594420a7d91dbf61a218c28cc233b551fcc68f5cf45104dc6e25f42.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/caribbean-world-soma-bay/p8iP2tZzZQwuCjrcCpE6_PAAogEZ4akhBZBEDvv1fHmHDkqxoi_GQsklzghzk33M9vOa8qBEVYSU0w0Z7N1wZIsThQAVi2A2ACagJBSXIhHBHc_wa5BMfKR6sELBu8lUQYucNJAabJtLgNAgBjAQIGpj4HWQ/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/caribbean-world-soma-bay/p8iP2tZzZQwuCjrcCpE6_PAAogEZ4akhBZBEDvv1fHmHDkqxoi_GQsklzghzk33M9vOa8qBEVYSU0wi7XO1wZIsThQAVixA2ACagJBSXIhHBHc_wa5BMfKR6sELBu8lUQYucNJAabJtLgNAgBjAQIGQudWlA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -131,24 +131,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2319/c3cfc01847cc6be912ca77e9a3b88ce806c438c3ac82c8584065343f51ac740a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2319/c3cfc01847cc6be912ca77e9a3b88ce806c438c3ac82c8584065343f51ac740a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/fantazia-resort/pC8HSrPbWzu_8oOqLbp8qBAAogZpUFhD_bvyWhpRuvUUW0TEy_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZIuzhQQVieA2ACagZEUS4yLjFyNpsBFQcXAFwDWAVWAkDKBhG0C13PGE8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDFJ7n6o/?operator=OREX&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Anex Tour Poland"
-  },
-  {
-    "hotel_name": "Swissotel Resort El Quseir",
-    "price": 7277.0,
-    "dates": "2026-11-28 - 2026-12-05",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-05",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3656/5fa9e40dccbc70060e3e75b64e4e3caa19e608b77d34edf217ed2983031f8ecc.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3656/5fa9e40dccbc70060e3e75b64e4e3caa19e608b77d34edf217ed2983031f8ecc.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/radisson-blu-resort-el-quseir/pU2svW7mX7fv7132m2l9fEAAogUznc4aYMLrrNJL1bvwg8nEy_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZI7ThQQVieA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhHtFV2WDk8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECC5NIVtE/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/fantazia-resort/pC8HSrPbWzu_8oOqLbp8qBAAogZpUFhD_bvyWhpRuvUUW0TEy_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZIuzhQQViZA2ACagZEUS4yLjFyNpsBFQcXAFwDWAVWAkDKBhG0C13PGE8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDIkRkuc/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -165,9 +148,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108331/47170af13502131b7b7d23ecf494e622a96110e1a4bfcf3019d7db4830283601.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108331/47170af13502131b7b7d23ecf494e622a96110e1a4bfcf3019d7db4830283601.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/utopia-blue-resort-13/p4U9-e5sZRxUiRU9qjNDliAAogo4Wxkzzq5CT_VvtS8EIccGmMn9ULaiDp0j2KgDoAJL4qBEVYSU0w0Z7N1wZI7ThQAVieA2ACagJBSXIhHBGrzga5BICFSKsEGRvFljQYi6hHAcPSxv4LAgBjAQIMuTHBuQ/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/utopia-blue-resort-13/p4U9-e5sZRxUiRU9qjNDliAAogo4Wxkzzq5CT_VvtS8EIccGmMn9ULaiDp0j2KgDoAJL4qBEVYSU0wi7XO1wZI7ThQAViZA2ACagJBSXIhHBGrzga5BICFSKsEGRvFljQYi6hHAcPSxv4LAgBjAQIMGC3VZw/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
+  },
+  {
+    "hotel_name": "Swissotel Resort El Quseir",
+    "price": 7277.0,
+    "dates": "2026-11-28 - 2026-12-05",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-05",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3656/5fa9e40dccbc70060e3e75b64e4e3caa19e608b77d34edf217ed2983031f8ecc.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3656/5fa9e40dccbc70060e3e75b64e4e3caa19e608b77d34edf217ed2983031f8ecc.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/radisson-blu-resort-el-quseir/pU2svW7mX7fv7132m2l9fEAAogUznc4aYMLrrNJL1bvwg8nEy_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZI7ThQQViZA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhHtFV2WDk8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECC60pCYY/?operator=OREX&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Anex Tour Poland"
   },
   {
     "hotel_name": "Amarina Abu Soma Resort",
@@ -182,7 +182,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108286/603dfede94a0d53f4de998042a9b457f29e8c935a5ddb3c22dafc0ffc8f6bb97.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108286/603dfede94a0d53f4de998042a9b457f29e8c935a5ddb3c22dafc0ffc8f6bb97.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/amarina-abu-soma-resort/p0gQt8pEEmuV20XeokBWikAAogQe9WE5BpfaRxgdGjP8S-3Roi_GQsklzghzk33M9vOa8qBEVYSU0w0Z7N1wZIvTlQAVi2A2ACagJBSXIhHBH-zQa5BKX8R6sELBuqkTQYpYJIAbijwYUMAgBjAQIOQe54TA/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/amarina-abu-soma-resort/p0gQt8pEEmuV20XeokBWikAAogQe9WE5BpfaRxgdGjP8S-3Roi_GQsklzghzk33M9vOa8qBEVYSU0wi7XO1wZIvTlQAVixA2ACagJBSXIhHBH-zQa5BKX8R6sELBuqkTQYpYJIAbijwYUMAgBjAQIOeVXHJw/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -199,7 +199,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/21/a7168337ee55467420ca12184bbe3858731cc3d881a287801e3460e248385a18.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/21/a7168337ee55467420ca12184bbe3858731cc3d881a287801e3460e248385a18.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/amc-royal-ex-amc-azur-resort/pIwLnxM6WMb9q-I5ssGtDZAAogEeD8sdM0_6YSeso2VpnVR2z2l0R4KdsclpijcJxFcPYqBE9SRVgw0Z7N1wZIvjlQQVjuAmACagVFLjIuMXI1mwEVBxcAXANYBVYCEQRAxgZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCZ_pcJDQACEmMBAgzJtpkn/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/amc-royal-ex-amc-azur-resort/pIwLnxM6WMb9q-I5ssGtDZAAogEeD8sdM0_6YSeso2VpnVR2z2l0R4KdsclpijcJxFcPYqBE9SRVgwi7XO1wZIvjlQQVjpAmACagVFLjIuMXI1mwEVBxcAXANYBVYCEQRAxgZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCZ_pcJDQACEmMBAgybFuZ5/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -216,24 +216,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/61/cfc8b0006f0c9f9e94d1fb39657f814d9f29e83357b12d03c573db7924074372.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/61/cfc8b0006f0c9f9e94d1fb39657f814d9f29e83357b12d03c573db7924074372.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/novotel-marsa-alam/p_ufrqqiVJkiKj9nnETCHsAAog9Eq_kXUAzHxGnYdCPd3O7Ey_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZIwjlQQVieA2ACagZENi4yLjFyNZsBFQcXAFwDWAVWAhEsQJ4GXYMkTyRemdgBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQILvCo8Iw/?operator=OREX&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Anex Tour Poland"
-  },
-  {
-    "hotel_name": "Rewaya Luxury Resort",
-    "price": 7443.0,
-    "dates": "2026-11-19 - 2026-11-26",
-    "checkin_date": "2026-11-19",
-    "checkout_date": "2026-11-26",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "Super UAI",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7196/98632a66aafed855a3e14a56bb184588a24fd60292558013accfa38c141d9a9b.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7196/98632a66aafed855a3e14a56bb184588a24fd60292558013accfa38c141d9a9b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-luxury-resort-9/paPcP9VhsGMXNbRSXFiS_QAAognRhp1ifD7n5hYXkS3uPQGvWtM8qAxQtS1IhxytkZSNYqBE9SRVgw0Z7N1wZIkzpQQVjGAWACagVFLjIuMXI1mwEVBxcAWAhWAlwIQMIGXZsPTyQRgiJT0HtSAF6vT0vtQ2EATOWMOiCS_pcJDQACEmMBAg1Cz13S/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/novotel-marsa-alam/p_ufrqqiVJkiKj9nnETCHsAAog9Eq_kXUAzHxGnYdCPd3O7Ey_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZIwjlQQViZA2ACagZENi4yLjFyNZsBFQcXAFwDWAVWAhEsQJ4GXYMkTyRemdgBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQILpvqX3A/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -250,7 +233,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/877/f15ea61bf69fd908cd2e6ebf4056bccf1122618030d573bd053df919754c0589.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/877/f15ea61bf69fd908cd2e6ebf4056bccf1122618030d573bd053df919754c0589.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/movenpick-soma-bay/p1IYlaXIpwK-x89b5AL1dyAAog1xC40B2Cc-pKOz-wGL-X52z2l0R4KdsclpijcJxFcPYqBE9SRVgw0Z7N1wZIkzpQQVjuAmACagdCSzQuMi4xcjWbARUHFwBcA1gFVgJAygYREl2JD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECC64bdNc/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/movenpick-soma-bay/p1IYlaXIpwK-x89b5AL1dyAAog1xC40B2Cc-pKOz-wGL-X52z2l0R4KdsclpijcJxFcPYqBE9SRVgwi7XO1wZIkzpQQVjpAmACagdCSzQuMi4xcjWbARUHFwBcA1gFVgJAygYREl2JD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECC1Wc8Hg/?operator=OREX&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Anex Tour Poland"
+  },
+  {
+    "hotel_name": "Rewaya Luxury Resort",
+    "price": 7443.0,
+    "dates": "2026-11-19 - 2026-11-26",
+    "checkin_date": "2026-11-19",
+    "checkout_date": "2026-11-26",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Super UAI",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7196/98632a66aafed855a3e14a56bb184588a24fd60292558013accfa38c141d9a9b.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7196/98632a66aafed855a3e14a56bb184588a24fd60292558013accfa38c141d9a9b.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-luxury-resort-9/paPcP9VhsGMXNbRSXFiS_QAAognRhp1ifD7n5hYXkS3uPQGvWtM8qAxQtS1IhxytkZSNYqBE9SRVgwi7XO1wZIkzpQQVjBAWACagVFLjIuMXI1mwEVBxcAWAhWAlwIQMIGXZsPTyQRgiJT0HtSAF6vT0vtQ2EATOWMOiCS_pcJDQACEmMBAg2FBj-m/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -267,7 +267,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2633/d97e62d04aeb5e89c23045521f86a2978ab19893f7cb17c6f8fc359a31c4197b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2633/d97e62d04aeb5e89c23045521f86a2978ab19893f7cb17c6f8fc359a31c4197b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/concorde-moreen-beach-spa-resort/pYUqcdKmi8_MBNgf8nbSx7AAogRv_RICAUWApNhZrT6PeqL0y_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZI1zpQQVieA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhHuDV2VFk8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECCxNGEQs/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/concorde-moreen-beach-spa-resort/pYUqcdKmi8_MBNgf8nbSx7AAogRv_RICAUWApNhZrT6PeqL0y_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZI1zpQQViZA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhHuDV2VFk8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECC04o_G8/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -284,7 +284,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/4086/84033a56e54a876bbfcf95fdcffdcb44fa662da5d6fe3d2e8f63b5593c9ebbb7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/4086/84033a56e54a876bbfcf95fdcffdcb44fa662da5d6fe3d2e8f63b5593c9ebbb7.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pcGNA-UIL_twVwBX77m1FnAAogGVKN6FUArqmgHydhHVm1gQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZI8TpQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAXBhYLEuIDFNcGFUYYmgMRyxFAq2FMoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIFVQ7fbA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pcGNA-UIL_twVwBX77m1FnAAogGVKN6FUArqmgHydhHVm1gQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZI8TpQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAXBhYLEuIDFNcGFUYYmgMRyxFAq2FMoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIF08G2cg/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -301,7 +301,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/6539/6cf3081617d8ad864924d4cef6931a4d48846a07be390f742cd3a1edb00fcdb7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/6539/6cf3081617d8ad864924d4cef6931a4d48846a07be390f742cd3a1edb00fcdb7.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-majestic-resort-10/pd8RhyW6hlmaX45VCa4LxjAAogpVwGKzSNjsa4hWB3jDQ9_fWtM8qAxQtS1IhxytkZSNYqBE9SRVgw0Z7N1wZIhDtQQVjGAWACagVFLjIuMXI2mwEVBxcAWAhWAlwIQMIGXZsPTyQR8RxT4YABUgBer09L7UNhAEzljDogkv6XCQ0AAhJjAQINWhIJsA/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/rewaya-majestic-resort-10/pd8RhyW6hlmaX45VCa4LxjAAogpVwGKzSNjsa4hWB3jDQ9_fWtM8qAxQtS1IhxytkZSNYqBE9SRVgwi7XO1wZIhDtQQVjBAWACagVFLjIuMXI2mwEVBxcAWAhWAlwIQMIGXZsPTyQR8RxT4YABUgBer09L7UNhAEzljDogkv6XCQ0AAhJjAQIN-fH6VA/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -318,7 +318,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/4182/1ef9c86d11693647e939cb737f22cce804d231aa168ee20c6f26dd80af3da34d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/4182/1ef9c86d11693647e939cb737f22cce804d231aa168ee20c6f26dd80af3da34d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/calimera-blend-paradise-12/plaoxFOUMff5EktZyfIV6qAAogK7r8cK-0x3HM01EJDq6GG2z2l0R4KdsclpijcJxFcPYqBE9SRVgw0Z7N1wZIwztQQVjuAmACagZENi4yLjFyNpsBFQcXAFwDWAVWAkDKBl2bD08kEbwKU5aTAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDJ3qqjE/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/calimera-blend-paradise-12/plaoxFOUMff5EktZyfIV6qAAogK7r8cK-0x3HM01EJDq6GG2z2l0R4KdsclpijcJxFcPYqBE9SRVgwi7XO1wZIwztQQVjpAmACagZENi4yLjFyNpsBFQcXAFwDWAVWAkDKBl2bD08kEbwKU5aTAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDJpu6B8/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -335,7 +335,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGJPB/8c02f1c5480b35029ddc0c39e27b72ced06b2211d67c23fe43fadaa520432009.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGJPB/8c02f1c5480b35029ddc0c39e27b72ced06b2211d67c23fe43fadaa520432009.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/club-azur/p5ekjxD_zvb1msJZx0dskhAAogvsONlYlM2f2vMeJu0HNxOr9je5eY7pDPcLULBjC_xewqBFNGUEww0Z7N1wZI0TtQQVjuAmACciQLAhUFIgUSIlzMAkAuDd7O1AlRufu99gNb1P_hvwICEmMBAgWCRedr/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/club-azur/p5ekjxD_zvb1msJZx0dskhAAogvsONlYlM2f2vMeJu0HNxOr9je5eY7pDPcLULBjC_xewqBFNGUEwwi7XO1wZI0TtQQVjpAmACciQLAhUFIgUSIlzMAkAuDd7O1AlRufu99gNb1P_hvwICEmMBAgUIQSWD/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
@@ -352,7 +352,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3216/86c44a9a8004959be2f4ed092ee91d3286d5e121550a04aac54449146091b82b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/3216/86c44a9a8004959be2f4ed092ee91d3286d5e121550a04aac54449146091b82b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/movenpick-sirena-beach-13/pmQWz9T0bJNHb9GylB-9dmAAog076nl4RWijuzEntFRyCOaEy_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZI2TtQQVieA2ACagdHS1guMi4xcjabARUHFwBcA1gFVgJAygYRtRJdzhFPJF6Z2AFTvBRSAEuxL2EATOWMOiCb_pcJDQACEmMBAgxrLdas/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/movenpick-sirena-beach-13/pmQWz9T0bJNHb9GylB-9dmAAog076nl4RWijuzEntFRyCOaEy_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZI2TtQQViZA2ACagdHS1guMi4xcjabARUHFwBcA1gFVgJAygYRtRJdzhFPJF6Z2AFTvBRSAEuxL2EATOWMOiCb_pcJDQACEmMBAgyO5IVJ/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -369,7 +369,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9099/3a31e1a96987fe083514c466a435279a3c3177347b014957d0ffb87474462691.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9099/3a31e1a96987fe083514c466a435279a3c3177347b014957d0ffb87474462691.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/le-meridien-dahab-bay/pFt1H6b3C7pQH74TecSXWUAAogJxsSPi7XtJdaEz2X4A_36QAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZI2ztQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMR4DhAljpMoKIBTwBLxyNQABvU4gId8M0NIBoNotrBCQESYwEMYwECBYYWQNI/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/le-meridien-dahab-bay/pFt1H6b3C7pQH74TecSXWUAAogJxsSPi7XtJdaEz2X4A_36QAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZI2ztQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMR4DhAljpMoKIBTwBLxyNQABvU4gId8M0NIBoNotrBCQESYwEMYwECBb85qp8/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -386,7 +386,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3916/6fa4fb031736ba02beb791e0cc387ee37e282290e690fe5e2624d26022a6eb57.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3916/6fa4fb031736ba02beb791e0cc387ee37e282290e690fe5e2624d26022a6eb57.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/regency-plaza/paUKWJAFEFYWIl4ohAN3FaAAogFKhdLYTkkNoEwEco-mIZgQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZIkDxQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRoRBA1WJMoKIBTwBLxyNQAB3EsBAgGhvw0ngNsofJCAESYwEOYwECBvD-MMY/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/regency-plaza/paUKWJAFEFYWIl4ohAN3FaAAogFKhdLYTkkNoEwEco-mIZgQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZIkDxQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRoRBA1WJMoKIBTwBLxyNQAB3EsBAgGhvw0ngNsofJCAESYwEOYwECBpDm7c0/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -403,7 +403,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGPBRSH/9588b94b0f7f8c344d146e3a036f213d546c882e1272e9cbbaa5efcb3b34daca.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGPBRSH/9588b94b0f7f8c344d146e3a036f213d546c882e1272e9cbbaa5efcb3b34daca.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/dessole-pyramisa-beach-resort-ex-pyramisa-beach-r/pSVkCKblNxehxf100o9LAwAAogadfWWvp_deYdYhIOlPVm679je5eY7pDPcLULBjC_xewqBFNGUEww0Z7N1wZI0zxQQVjuAmACagpTVVBHVlBWU1NWciSbAQsCFQUiBBIjQPoCDd7O1AlclKL8ClHXoKCswSgCEmMBAgX_EJRQ/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/dessole-pyramisa-beach-resort-ex-pyramisa-beach-r/pSVkCKblNxehxf100o9LAwAAogadfWWvp_deYdYhIOlPVm679je5eY7pDPcLULBjC_xewqBFNGUEwwi7XO1wZI0zxQQVjpAmACagpTVVBHVlBWU1NWciSbAQsCFQUiBBIjQPoCDd7O1AlclKL8ClHXoKCswSgCEmMBAgXKUR-n/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
@@ -420,7 +420,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/5864/9963aa417602a2350b8a9899b63625c936944bc83bafd99f9e4aee023a92b152.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/5864/9963aa417602a2350b8a9899b63625c936944bc83bafd99f9e4aee023a92b152.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-fun-city/pUj8pH9Maf3kVAm8vMsIORAAoguhGM5ELFR5Wt9d_KMhu46QAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw0Z7N1wZIzT1QQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgYXABLtAxS8BRVkGN4CEfYgQLlTTMsyTwBLnJMBUAAd_K4QIBob0fgyDZnjjgkBEmMBDWMBAgYB5qP9/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-fun-city/pUj8pH9Maf3kVAm8vMsIORAAoguhGM5ELFR5Wt9d_KMhu46QAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwi7XO1wZIzT1QQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgYXABLtAxS8BRVkGN4CEfYgQLlTTMsyTwBLnJMBUAAd_K4QIBob0fgyDZnjjgkBEmMBDWMBAgaL7_KF/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -437,7 +437,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124744/94fbc74cba0bc4bf1569e77264628b93af20ca95e2f08277a11b12f1ca22bffb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124744/94fbc74cba0bc4bf1569e77264628b93af20ca95e2f08277a11b12f1ca22bffb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,al-dzuna/creek-hotel-residences-9/pe5TAGbDmGNyYHxRK_gZr9AAogUo_TgWZKd5gjsB4UCVboW6uZrrjlg011eTGZhj4MIawqBEVYSU0w0Z7N1wZI2T1QAVjuAmACagJBSXIhHBHIzge5BIf3RqsEHBuzo04YypFMAZyygb8OAgBjAQILE7Ok7w/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,al-dzuna/creek-hotel-residences-9/pe5TAGbDmGNyYHxRK_gZr9AAogUo_TgWZKd5gjsB4UCVboW6uZrrjlg011eTGZhj4MIawqBEVYSU0wi7XO1wZI2T1QAVjpAmACagJBSXIhHBHIzge5BIf3RqsEHBuzo04YypFMAZyygb8OAgBjAQILjY2npA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -454,7 +454,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/184/ed294e3d7ec7e2de8528e50bedc181aa74f189a6cbeb948343ad79922f7b342c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/184/ed294e3d7ec7e2de8528e50bedc181aa74f189a6cbeb948343ad79922f7b342c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sonesta-pharaoh/p3Zz-bwH7n4isPuA-h3EEAAAogiX2Ocd6Ky6T1sPY3wE0MlgAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw0Z7N1wZI5D1QQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckGeAZMBHwAcAQIAFgQXAhGxARK8AhS8BRVkGN4CQK90TMsyTwBLnJMBUAAbnDEd4P0PIBoN6tvBCQESYwEOYwECBUs8ltQ/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sonesta-pharaoh/p3Zz-bwH7n4isPuA-h3EEAAAogiX2Ocd6Ky6T1sPY3wE0MlgAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwi7XO1wZI5D1QQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckGeAZMBHwAcAQIAFgQXAhGxARK8AhS8BRVkGN4CQK90TMsyTwBLnJMBUAAbnDEd4P0PIBoN6tvBCQESYwEOYwECBaM8Vw4/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -471,7 +471,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7950/d993d7ba7d8dc9bf7a2d502a5e47679833d66ef9e2310b208bf5c232d90d2715.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/7950/d993d7ba7d8dc9bf7a2d502a5e47679833d66ef9e2310b208bf5c232d90d2715.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,marsa-alam/momento-resort-aqua-park-by-gewan/pY4CQVVJ1KxXFdpkjnCiI1AAognPaHMViRB1JFYshWINrwkUy_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZI7D1QQVieA2ACagVYLjIuMXI2mwEVBxcAXANYBVYCQMoGXYMkTyQRjBNejcUBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQILpjpeug/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,marsa-alam/momento-resort-aqua-park-by-gewan/pY4CQVVJ1KxXFdpkjnCiI1AAognPaHMViRB1JFYshWINrwkUy_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZI7D1QQViZA2ACagVYLjIuMXI2mwEVBxcAXANYBVYCQMoGXYMkTyQRjBNejcUBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQILBscf5A/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -488,7 +488,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2706/f892eb1939e974901d95449c12df4e26b8d0fcaae8fb826e251a6d179e7b2bf5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2706/f892eb1939e974901d95449c12df4e26b8d0fcaae8fb826e251a6d179e7b2bf5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/hilton-resort/pZbqrKtEpry3o1xsCGPHdoAAog5Dk1PinJWdrPSALHOp0PRGz2l0R4KdsclpijcJxFcPYqBE9SRVgw0Z7N1wZInT5QQVjuAmACagZDMC4yLjFyNZsBFQcXAFwDWAVWAkDKBhG3Dl1kTyRT0p0BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIL_VAgZg/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/hilton-resort/pZbqrKtEpry3o1xsCGPHdoAAog5Dk1PinJWdrPSALHOp0PRGz2l0R4KdsclpijcJxFcPYqBE9SRVgwi7XO1wZInT5QQVjpAmACagZDMC4yLjFyNZsBFQcXAFwDWAVWAkDKBhG3Dl1kTyRT0p0BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIL5bkeyQ/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -505,7 +505,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109770/f1f57be32b650363d7d95cbde8d5257452d3596722cb90c1435b89139ad0ce24.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109770/f1f57be32b650363d7d95cbde8d5257452d3596722cb90c1435b89139ad0ce24.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/jaz-aquamarine-ex-iberotel-aquamarine/p65zVDcXoIsvT1grvuTyiAAAog1x5mQ1s1HQMhLDAMnNp3n6uZrrjlg011eTGZhj4MIawqBEVYSU0w0Z7N1wZIqT5QAVjuAmACagJBSXIhHBHK2Qa5BIXsR6sEHBvI0TkYnL5CAbrUxv4LAgBjAQILDG0B-g/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/jaz-aquamarine-ex-iberotel-aquamarine/p65zVDcXoIsvT1grvuTyiAAAog1x5mQ1s1HQMhLDAMnNp3n6uZrrjlg011eTGZhj4MIawqBEVYSU0wi7XO1wZIqT5QAVjpAmACagJBSXIhHBHK2Qa5BIXsR6sEHBvI0TkYnL5CAbrUxv4LAgBjAQILyPsRiA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -522,7 +522,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/196/3cf9d74174b4c45d20f78ce6005f048502b5aecf96f9a54a8d618d4bcff4e6b0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/196/3cf9d74174b4c45d20f78ce6005f048502b5aecf96f9a54a8d618d4bcff4e6b0.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-palace-2/ppnIbOU1kMwPX5Kp-LOJKwAAogR49tuW5jtrdJ4JeJlH61XQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw0Z7N1wZIzz5QQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwAcAQIAFgAXBhG9ARKwAhS8BRVkGN4CQK90TMsyTwBLnJMBUAAd_K4QIBob-4BLDe_a9ggBEmMBDGMBAgVtKAlV/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-palace-2/ppnIbOU1kMwPX5Kp-LOJKwAAogR49tuW5jtrdJ4JeJlH61XQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwi7XO1wZIzz5QQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwAcAQIAFgAXBhG9ARKwAhS8BRVkGN4CQK90TMsyTwBLnJMBUAAd_K4QIBob-4BLDe_a9ggBEmMBDGMBAgUSTJ9S/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -539,7 +539,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFTULR/12c2a27c2d685cf2d840b90b85d0aba9ee8ec191962a0a39108a1efbb4171178.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFTULR/12c2a27c2d685cf2d840b90b85d0aba9ee8ec191962a0a39108a1efbb4171178.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/royal-tulip-beach-resort/pS31aFAkcy-qOYUkLoZInJAAogmigVGhXNA_nZ-8HwVQ_mHd_yWb25QULCtqituVS5NVcqBFZJVFgw0Z7N1wZI-T5QQVieA2ACckAaABUHFwBcA1gFQI8DW5eFAV7melK8FFMAS7EvYQBMkL45DfDMmAkgAFGnnMX23wFP8v0GXZz4r_klAg5jAQINzybkkA/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/royal-tulip-beach-resort/pS31aFAkcy-qOYUkLoZInJAAogmigVGhXNA_nZ-8HwVQ_mHd_yWb25QULCtqituVS5NVcqBFZJVFgwi7XO1wZI-T5QQViZA2ACckAaABUHFwBcA1gFQI8DW5eFAV7melK8FFMAS7EvYQBMkL45DfDMmAkgAFGnnMX23wFP8v0GXZz4r_klAg5jAQINX162bg/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -556,7 +556,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFROYA/9259c3c82671e2ac28452a7cc112d8a1008dc1f04cca4e64d2fbb31d8727393c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFROYA/9259c3c82671e2ac28452a7cc112d8a1008dc1f04cca4e64d2fbb31d8727393c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/royal-brayka-resort/psxkAI4fNGBKinStVEZaWnAAog71JnJQGgTAQbpPG5uiuu9d_yWb25QULCtqituVS5NVcqBFZJVFgw0Z7N1wZI-T5QQVieA2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fFK8FFMAS7EvYQBMkL45DfDMmAkgAFGKir_23wFPj5ANXZz4r_klAg5jAQINHpof2w/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/royal-brayka-resort/psxkAI4fNGBKinStVEZaWnAAog71JnJQGgTAQbpPG5uiuu9d_yWb25QULCtqituVS5NVcqBFZJVFgwi7XO1wZI-T5QQViZA2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fFK8FFMAS7EvYQBMkL45DfDMmAkgAFGKir_23wFPj5ANXZz4r_klAg5jAQINeLp_lw/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -573,7 +573,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/131/c33e95aa89b3474c370f6cce7eb3dedc075fb217f0bc11dd2daf3fb868582a5a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/131/c33e95aa89b3474c370f6cce7eb3dedc075fb217f0bc11dd2daf3fb868582a5a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pdMvylTzNc3Rd2EdrjP--vAAogwMfAeT83PFcVveeOcDPLUQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZIhD9QQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEXwS8QIU1wYVRhiaA0D2ckygogFPAEvHI1AAG8GBAh2Drw4gGg2i2sEJARJjAQ5jAQIG21OaSA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pdMvylTzNc3Rd2EdrjP--vAAogwMfAeT83PFcVveeOcDPLUQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZIhD9QQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEXwS8QIU1wYVRhiaA0D2ckygogFPAEvHI1AAG8GBAh2Drw4gGg2i2sEJARJjAQ5jAQIGl8540A/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -590,7 +590,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/17/36cf6fbed1ba06acc449eece87ad228ae62b2ee6788c389415671a44ad5319e6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/17/36cf6fbed1ba06acc449eece87ad228ae62b2ee6788c389415671a44ad5319e6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/sea-world-resort-marsa-alam/p4-KHzkEKgf4EaCv_EfvKOAAoglH5M-8BdR7GgDBAJD-qx3ky_jtnhHlSYGXysWzzO9yMqBE9SRVgw0Z7N1wZItj9QQVieA2ACagZESS4yLjFyNZsBFQcXAFwDWAVWAhEAQMoGXYMkTyRemdgBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQIMoxtHnQ/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/sea-world-resort-marsa-alam/p4-KHzkEKgf4EaCv_EfvKOAAoglH5M-8BdR7GgDBAJD-qx3ky_jtnhHlSYGXysWzzO9yMqBE9SRVgwi7XO1wZItj9QQViZA2ACagZESS4yLjFyNZsBFQcXAFwDWAVWAhEAQMoGXYMkTyRemdgBU7wUUgBLsS9hAEzljDogm_6XCQ0AAhJjAQIMYndp9A/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -607,7 +607,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/4642/af5be94817cd0bc1b02c8a804cbb4962d0af61beff1d9ca38491889fede73f7f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/4642/af5be94817cd0bc1b02c8a804cbb4962d0af61beff1d9ca38491889fede73f7f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/harmony-makadi-bay/p9JYY90BIcsSzZj4dduDNbAAogIQrTUHVWzB_WvjlMZr9Zxmz2l0R4KdsclpijcJxFcPYqBE9SRVgw0Z7N1wZIvz9QQVjuAmACagVYLjIuMXI2mwEVBxcAXANYBVYCQMoGXZsPTyQRiA5Tyo8BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIMniCMQA/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/harmony-makadi-bay/p9JYY90BIcsSzZj4dduDNbAAogIQrTUHVWzB_WvjlMZr9Zxmz2l0R4KdsclpijcJxFcPYqBE9SRVgwi7XO1wZIvz9QQVjpAmACagVYLjIuMXI2mwEVBxcAXANYBVYCQMoGXZsPTyQRiA5Tyo8BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIMUcHrsA/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -624,7 +624,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109758/4c65041d161e191e5fd149a422d6841cff429d95d13b4b9674f9bae67d6d1554.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109758/4c65041d161e191e5fd149a422d6841cff429d95d13b4b9674f9bae67d6d1554.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,madinat-coraya/resta-grand-resort/pCjqxYsrdQBaAu-Pn55BYBAAog7_vALg9GHzU_D7ERi-Ee5frOJZTGW3cimOmAE7dkBFkqBEVYSU0w0Z7N1wZI3T9QAVi-AmACagJBSXIhHBG-2Qa5BKLDS6sEGhvP9DUYmbpMAdHSvPIMAgBjAQIM4eDMHw/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,madinat-coraya/resta-grand-resort/pCjqxYsrdQBaAu-Pn55BYBAAog7_vALg9GHzU_D7ERi-Ee5frOJZTGW3cimOmAE7dkBFkqBEVYSU0wi7XO1wZI3T9QAVi5AmACagJBSXIhHBG-2Qa5BKLDS6sEGhvP9DUYmbpMAdHSvPIMAgBjAQIMHYqVWw/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -641,7 +641,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3936/e854ef6f5d0f135ca26c848c96cd927b036e1217e3d0da9ca1247a426c3da4cb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3936/e854ef6f5d0f135ca26c848c96cd927b036e1217e3d0da9ca1247a426c3da4cb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/stella-makadi-resort/ppVYTLhS41S1s3S8jIT3JVAAogHiJAoZf74L9_0cRUnoSp5AAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw0Z7N1wZIhUBQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckGeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CEe4RQMFiTMsyTwBLnJMBUAAbqjUd0vkPIBoN6tvBCQESYwEOYwECBetniqw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/stella-makadi-resort/ppVYTLhS41S1s3S8jIT3JVAAogHiJAoZf74L9_0cRUnoSp5AAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwi7XO1wZIhUBQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckGeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CEe4RQMFiTMsyTwBLnJMBUAAbqjUd0vkPIBoN6tvBCQESYwEOYwECBfBzlSc/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -658,7 +658,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3745/805097ee6854062b14810ddfa1a8e3eb122d5e466e17f8b7df79936c32772d19.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3745/805097ee6854062b14810ddfa1a8e3eb122d5e466e17f8b7df79936c32772d19.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-gardens-sharm-el-sheikh/pAkoX-ivGrWQz62W_XWKiWAAogIo0kOKxGO9nzUBY0m0U6HgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZIhkBQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR9g5AgGRMoKIBTwBLxyNQABuYYR2szw8gGg2i2sEJARJjAQ1jAQIF-uAg1Q/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-gardens-sharm-el-sheikh/pAkoX-ivGrWQz62W_XWKiWAAogIo0kOKxGO9nzUBY0m0U6HgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZIhkBQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR9g5AgGRMoKIBTwBLxyNQABuYYR2szw8gGg2i2sEJARJjAQ1jAQIFDGa5sQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -675,7 +675,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFLAZU/945c5e69b6a1da40e9718ae8d3eb8aa667a86064106826342b40a2046cf8adc4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFLAZU/945c5e69b6a1da40e9718ae8d3eb8aa667a86064106826342b40a2046cf8adc4.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/lazuli-13/pvy6Ep0_SGAN8w8gRlxK1_AAog4As6kVjWKyEEoysTAe63od_yWb25QULCtqituVS5NVcqBFZJVFgw0Z7N1wZIwUBQQVieA2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fFK8FFMAS7EvYQBMkL45DfDMmAkgAFHi8az23wFPt6gfXZz4r_klAg1jAQIMM3Z5Fw/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,al-kusajr/lazuli-13/pvy6Ep0_SGAN8w8gRlxK1_AAog4As6kVjWKyEEoysTAe63od_yWb25QULCtqituVS5NVcqBFZJVFgwi7XO1wZIwUBQQViZA2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fFK8FFMAS7EvYQBMkL45DfDMmAkgAFHi8az23wFPt6gfXZz4r_klAg1jAQIMPK1LHg/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -692,7 +692,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3362/d615cfe0cf3cb8a3e3d45d70bf7aea0c5508af39fca4f7ad6ddfa64136504793.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3362/d615cfe0cf3cb8a3e3d45d70bf7aea0c5508af39fca4f7ad6ddfa64136504793.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/imperial-shams-abu-soma/pxKCVI4J5CgjkJ25z41DdRAAogNNNA9c0oAJZVxrwu9olFmBmV_-hA3rD3I6yghEBTYSEqBEtPTVQw0Z7N1wZI1kBQAVi2A2ACagJBSXIfHBGiGrkEn9wBqwQZGJ_bBBv19SMBws6gHwIAYwECBYRS56Y/?operator=KOMT&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/imperial-shams-abu-soma/pxKCVI4J5CgjkJ25z41DdRAAogNNNA9c0oAJZVxrwu9olFmBmV_-hA3rD3I6yghEBTYSEqBEtPTVQwi7XO1wZI1kBQAVixA2ACagJBSXIfHBGiGrkEn9wBqwQZGJ_bBBv19SMBws6gHwIAYwECBedL-04/?operator=KOMT&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -709,7 +709,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124156/ef668f272f6ffa1e2a5ca0c908c0427c81954473a37803d6c0fa030e04ef3f5c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124156/ef668f272f6ffa1e2a5ca0c908c0427c81954473a37803d6c0fa030e04ef3f5c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-makadi-heights/psRd87bOkeKCXcQFpeB-NrAAoga6F0Gyf1-7-fPp4nzXKlBKuZrrjlg011eTGZhj4MIawqBEVYSU0w0Z7N1wZI6UBQAVjuAmACagNVQUlyIRwR_MkHuQTT-0arBBwbs4pNGNuITAH6vP2yDgIAYwECCw4xsVg/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-makadi-heights/psRd87bOkeKCXcQFpeB-NrAAoga6F0Gyf1-7-fPp4nzXKlBKuZrrjlg011eTGZhj4MIawqBEVYSU0wi7XO1wZI6UBQAVjpAmACagNVQUlyIRwR_MkHuQTT-0arBBwbs4pNGNuITAH6vP2yDgIAYwECCzO1hk4/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -726,7 +726,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/121029/8336dd3746571adb753296a9cc4933ccd1e8b933da8a85e94abd52c599c3514e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/121029/8336dd3746571adb753296a9cc4933ccd1e8b933da8a85e94abd52c599c3514e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-pearl-10/pMRcdnLvi0Ojzrf-CLv1uPAAogydXEWvTU8WKi71Q2fJ2-EauZrrjlg011eTGZhj4MIawqBEVYSU0w0Z7N1wZIkUFQAVjuAmACagNVQUlyIRwRxbEHuQSKlEerBBwb2_BJGIPGRgHap7TWDQIAYwECC1QGrek/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-pearl-10/pMRcdnLvi0Ojzrf-CLv1uPAAogydXEWvTU8WKi71Q2fJ2-EauZrrjlg011eTGZhj4MIawqBEVYSU0wi7XO1wZIkUFQAVjpAmACagNVQUlyIRwRxbEHuQSKlEerBBwb2_BJGIPGRgHap7TWDQIAYwECC8fIuEI/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -743,7 +743,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/63/6033394e021a0b0e0564231481f39b5b272edc172e3e2fb69f7de043f2d3a13b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/63/6033394e021a0b0e0564231481f39b5b272edc172e3e2fb69f7de043f2d3a13b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/old-palace-resort/puFiISM2RFBKohoSQZFPX9AAog0pVbGuC7csHiucSfl7KpM9347zibFfLLz-mISgn1GKsqBE9SRVgw0Z7N1wZIl0FQQVi2A2ACagVFLjIuMXI1mwEVBxcAXANYBVYCES5AnAZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCc_pcJDQACEmMBAgufPE9g/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/old-palace-resort/puFiISM2RFBKohoSQZFPX9AAog0pVbGuC7csHiucSfl7KpM9347zibFfLLz-mISgn1GKsqBE9SRVgwi7XO1wZIl0FQQVixA2ACagVFLjIuMXI1mwEVBxcAXANYBVYCES5AnAZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCc_pcJDQACEmMBAgvTCfKp/?operator=OREX&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Anex Tour Poland"
+  },
+  {
+    "hotel_name": "Pickalbatros Palace Resort Hurghada",
+    "price": 8415.0,
+    "dates": "2026-11-26 - 2026-12-03",
+    "checkin_date": "2026-11-26",
+    "checkout_date": "2026-12-03",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/16/44f120e5198bc954c885d1a5bfc6e6ad7ed57551be5622fcc17575ce3fa896a7.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/16/44f120e5198bc954c885d1a5bfc6e6ad7ed57551be5622fcc17575ce3fa896a7.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/albatros-palace/pL52D3_ICBEnoClpl6a9v_AAogo4E79kzyICjag_HBxxYZjGz2l0R4KdsclpijcJxFcPYqBE9SRVgwi7XO1wZI30FQQVjpAmACagZESS4yLjFyNZsBFQcXAFwDWAURAVYBQMoGXZsPTyRT0p0BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIM3qDncg/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -760,7 +777,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HRGTITA/fe5790ac1134463cc0ce2af4fd98fd473aa940d03ea580196e48cf576b61c3e6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HRGTITA/fe5790ac1134463cc0ce2af4fd98fd473aa940d03ea580196e48cf576b61c3e6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-beach-spa/pDKrFUSNmvt1tsdh4nXUL1AAogJ-JK4IGkudLArFFP2uddgGIc4J4LUPIg3Nu9TQzf2TEqBFZJVFgw0Z7N1wZIiUJQQVi2A2ACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS-1DYQBM8L05DZHNmAkgAFH1juX7jwFPpPUHXZCE8_N1AgxjAQILRDgWIg/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-beach-spa/pDKrFUSNmvt1tsdh4nXUL1AAogJ-JK4IGkudLArFFP2uddgGIc4J4LUPIg3Nu9TQzf2TEqBFZJVFgwi7XO1wZIiUJQQVixA2ACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS-1DYQBM8L05DZHNmAkgAFH1juX7jwFPpPUHXZCE8_N1AgxjAQILs4O8Tw/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -777,7 +794,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFSATA/31afa971865b64d8179addb3ba522e4daa17ade12e0e0085932003507814e13c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFSATA/31afa971865b64d8179addb3ba522e4daa17ade12e0e0085932003507814e13c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/labranda-sataya-marsa-alam-9/pv0TIk4qEOcjyXyP_2vDPUAAoge2oK_fVkcXwx7K-QByo4Zd_yWb25QULCtqituVS5NVcqBFZJVFgw0Z7N1wZIiUJQQVieA2ACckAaABUHFwBcA1gFQI8DW6eGAV7WeVK8FFMAS7EvYQBM6b05DZfNmAkgAFG258D23wFP47ILXZz4r_klAg1jAQIMSKRuog/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/labranda-sataya-marsa-alam-9/pv0TIk4qEOcjyXyP_2vDPUAAoge2oK_fVkcXwx7K-QByo4Zd_yWb25QULCtqituVS5NVcqBFZJVFgwi7XO1wZIiUJQQViZA2ACckAaABUHFwBcA1gFQI8DW6eGAV7WeVK8FFMAS7EvYQBM6b05DZfNmAkgAFG258D23wFP47ILXZz4r_klAg1jAQIMgaVYrg/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -794,7 +811,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6260/1438b9a4f03674d7dbe32a43b7388fa31081a52b96fba8a9f2dc59048a92dbe5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6260/1438b9a4f03674d7dbe32a43b7388fa31081a52b96fba8a9f2dc59048a92dbe5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/calimera-club-akassia-swiss-resort/paAR0bOiMHvRx0ryfQwjKnAAogu-04yuRoMC_zXSdVXjCTmQAAAABWuQQAcLkEAAcAAQAqBFdFWlkw0Z7N1wZIo0JQQVi2A2ADaglFbnRlciBBaXJqBDA5NDVyQ54BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDEbQfQK1QTLaWAU8AS7EvUAAb5asCHen_DSAaDZnfwQkBEmMBDGMBAgXqUePq/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/calimera-club-akassia-swiss-resort/paAR0bOiMHvRx0ryfQwjKnAAogu-04yuRoMC_zXSdVXjCTmQAAAABWuQQAcLkEAAcAAQAqBFdFWlkwi7XO1wZIo0JQQVixA2ADaglFbnRlciBBaXJqBDA5NDVyQ54BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDEbQfQK1QTLaWAU8AS7EvUAAb5asCHen_DSAaDZnfwQkBEmMBDGMBAgUdcM2M/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -811,7 +828,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/7568/fc0369efd2ef8ee939f05c139a260075b829455ef5770110221a74e1923f451c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/7568/fc0369efd2ef8ee939f05c139a260075b829455ef5770110221a74e1923f451c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pPmYuev25nmviFKEpo0RKyAAogOxa6-hz0AxcdpF8RRb-zugAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZIvkJQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR5SxAkUZMoKIBTwBLxyNQABvyMB3S_w8gGg2i2sEJARJjAQ1jAQIFWyU9pA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pPmYuev25nmviFKEpo0RKyAAogOxa6-hz0AxcdpF8RRb-zugAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZIvkJQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR5SxAkUZMoKIBTwBLxyNQABvyMB3S_w8gGg2i2sEJARJjAQ1jAQIF1_6pbA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -828,26 +845,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/28415/778bb2e0d9acbf30fb1f6c067a65edae03ca4140d77b65bf480d2313f45dad6c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/28415/778bb2e0d9acbf30fb1f6c067a65edae03ca4140d77b65bf480d2313f45dad6c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-regency-club/pE7l9pRihBQDtvM_sgnklkAAogh3bITooQ9auZAKfkFn6pkQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw0Z7N1wZIvkJQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBFgAcABcGEu0DFNcGFUYYmgNA9nIR3lxMwkVPAEvHI1AAHcSwECAaG7Lacw3w_80IARJjAQ5jAQIGvTfu7w/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-regency-club/pE7l9pRihBQDtvM_sgnklkAAogh3bITooQ9auZAKfkFn6pkQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwi7XO1wZIvkJQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBFgAcABcGEu0DFNcGFUYYmgNA9nIR3lxMwkVPAEvHI1AAHcSwECAaG7Lacw3w_80IARJjAQ5jAQIGmXw1Pw/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
-  },
-  {
-    "hotel_name": "Pickalbatros Palace Resort Hurghada",
-    "price": 8541.0,
-    "dates": "2026-11-26 - 2026-12-03",
-    "checkin_date": "2026-11-26",
-    "checkout_date": "2026-12-03",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/16/44f120e5198bc954c885d1a5bfc6e6ad7ed57551be5622fcc17575ce3fa896a7.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/16/44f120e5198bc954c885d1a5bfc6e6ad7ed57551be5622fcc17575ce3fa896a7.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/albatros-palace/pL52D3_ICBEnoClpl6a9v_AAogo4E79kzyICjag_HBxxYZjGz2l0R4KdsclpijcJxFcPYqBE9SRVgw0Z7N1wZI3UJQQVjuAmACagZESS4yLjFyNZsBFQcXAFwDWAURAVYBQMoGXZsPTyRT0p0BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIMZL-slA/?operator=OREX&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Anex Tour Poland"
   },
   {
     "hotel_name": "AURORA ORIENTAL RESORT",
@@ -862,7 +862,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3914/a66cdc4673365abb0a88b79a030e76c39f246175792753386477ec523559746b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3914/a66cdc4673365abb0a88b79a030e76c39f246175792753386477ec523559746b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/oriental-resort/phA9D0it2ZqMTAXq_2YzCEAAog7T9WSIFRVsW1m1GSrNgczAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI_UJQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRnxBA12JMoKIBTwBLxyNQABvf9Akd5bsGIBoNotrBCQESYwENYwECBS481Us/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/oriental-resort/phA9D0it2ZqMTAXq_2YzCEAAog7T9WSIFRVsW1m1GSrNgczAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI_UJQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRnxBA12JMoKIBTwBLxyNQABvf9Akd5bsGIBoNotrBCQESYwENYwECBWD71ZM/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -879,7 +879,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/150/332790db759fbfeb9f9cd7757ef35a186c310269fdeb568a3370e44e3e776187.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/150/332790db759fbfeb9f9cd7757ef35a186c310269fdeb568a3370e44e3e776187.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-parkland/p9ikyAaGGJUn-yJKq86zmjAAog5bD_kaJOMDQ0iZsdUgap8QAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIzUNQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEY8BEt4CFNcGFUYYmgNA9nJMoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIF88qrFQ/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-parkland/p9ikyAaGGJUn-yJKq86zmjAAog5bD_kaJOMDQ0iZsdUgap8QAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIzUNQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEY8BEt4CFNcGFUYYmgNA9nJMoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIF0lG90Q/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -896,7 +896,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124746/88124b8b2d9d09c2050319c77aaf352909e3c07d7165b60d25fe1d392d1f42fd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124746/88124b8b2d9d09c2050319c77aaf352909e3c07d7165b60d25fe1d392d1f42fd.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/marriott-hurghada-beach-resort/piYhtOcHvwPS3l2qOeCdmsAAogR5vLS3KPpbmUgmsc_2iBmKuZrrjlg011eTGZhj4MIawqBEVYSU0w1J7N1wZI0UNQAVjuAmACagJBSXIhHBHKzge5BIX3RqsEHBv3o04YnpFMAfWHgr8OAgBjAQILZfwpOA/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/marriott-hurghada-beach-resort/piYhtOcHvwPS3l2qOeCdmsAAogR5vLS3KPpbmUgmsc_2iBmKuZrrjlg011eTGZhj4MIawqBEVYSU0wjbXO1wZI0UNQAVjpAmACagJBSXIhHBHKzge5BIX3RqsEHBv3o04YnpFMAfWHgr8OAgBjAQILTIZ24A/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -913,7 +913,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/57/84456d75a8e4d3b605c67ea604594fe41373321e417a9a90eca4d16831f50647.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/57/84456d75a8e4d3b605c67ea604594fe41373321e417a9a90eca4d16831f50647.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-beach-sharm-el-sheikh/pe8-elvcC70ESD5ys42sLVAAoguSpVYdUZpP_WRrIJTKaNkwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIg0RQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCETISuwMU1wYVRhiaA0D2ckygogFPAEvHI1AAG6n3Ax2buQwgGg2i2sEJARJjAQxjAQIF0EAUtQ/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-beach-sharm-el-sheikh/pe8-elvcC70ESD5ys42sLVAAoguSpVYdUZpP_WRrIJTKaNkwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIg0RQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCETISuwMU1wYVRhiaA0D2ckygogFPAEvHI1AAG6n3Ax2buQwgGg2i2sEJARJjAQxjAQIFvUYavA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -930,7 +930,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108322/cf3c14898a23b0b49569de311369928ab20dff35cd198358119db51d531b20bd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108322/cf3c14898a23b0b49569de311369928ab20dff35cd198358119db51d531b20bd.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/serenity-sky-arc-10/pyxcrdQO19hoMceLwNhbL2AAog6EZi0QMYYzKid3IM6ubEoauZrrjlg011eTGZhj4MIawqBEVYSU0w1J7N1wZIjURQAVjuAmACagJBSXIhHBGizga5BK33R6sEHBvamjQY6_1HAbS6wYUMAgBjAQIG3Q4Xpw/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/serenity-sky-arc-10/pyxcrdQO19hoMceLwNhbL2AAog6EZi0QMYYzKid3IM6ubEoauZrrjlg011eTGZhj4MIawqBEVYSU0wjbXO1wZIjURQAVjpAmACagJBSXIhHBGizga5BK33R6sEHBvamjQY6_1HAbS6wYUMAgBjAQIGtjX53Q/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -947,7 +947,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/30306/4b462f168d7e757539d193efa5d3ca428cf399b4b210f716b8e7934db59c0317.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/30306/4b462f168d7e757539d193efa5d3ca428cf399b4b210f716b8e7934db59c0317.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/laguna-beach-marsa-alam/pnNGsfLn-_y06vPzljc2ctAAogJJU9OfTw6aO_XPL_KvITigAAAABWuQQAcLkEAAcAAQAqBFdFWlkw1J7N1wZInURQQVi2A2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDQOFvEcFrTPUqTwBLsS9QAB3OqxAgGhvgxGMNuZreCAESYwEMYwECBQYpLW4/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/laguna-beach-marsa-alam/pnNGsfLn-_y06vPzljc2ctAAogJJU9OfTw6aO_XPL_KvITigAAAABWuQQAcLkEAAcAAQAqBFdFWlkwjbXO1wZInURQQVixA2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDQOFvEcFrTPUqTwBLsS9QAB3OqxAgGhvgxGMNuZreCAESYwEMYwECBZEg6bQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -964,7 +964,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGSRMR/4b0ae415d8bf260f9a37b816e197a62e9eff1c05be388dbe0fa94d5460864268.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGSRMR/4b0ae415d8bf260f9a37b816e197a62e9eff1c05be388dbe0fa94d5460864268.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/sunrise-select-royal-makadi/phPZuiUhQ6Uc8iPdD2DQQ6AAogyAvLUZt0-bn_IbCBzByhkb9je5eY7pDPcLULBjC_xewqBFNGUEww1J7N1wZIp0RQQVjuAmACciMLAhUFIgQSI1zMAkAuW-fwUQ333YIJUd374vuPAQISYwEEC7WIniM/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/sunrise-select-royal-makadi/phPZuiUhQ6Uc8iPdD2DQQ6AAogyAvLUZt0-bn_IbCBzByhkb9je5eY7pDPcLULBjC_xewqBFNGUEwwjbXO1wZIp0RQQVjpAmACciMLAhUFIgQSI1zMAkAuW-fwUQ333YIJUd374vuPAQISYwEEC8nfaSY/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
@@ -981,7 +981,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114511/cff83b670af774236b0082d57df7c35d74d25c45be2628a03ac45a194b560a47.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114511/cff83b670af774236b0082d57df7c35d74d25c45be2628a03ac45a194b560a47.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/pickalbatros-villaggio-resort-portofino-15/pLewXwUIFLMfs4GPUQvwFlAAog27NVxeSAWyvVuaQwrfQxvfrOJZTGW3cimOmAE7dkBFkqBEVYSU0w1J7N1wZItURQAVi-AmACagJBSXIhHBHP_ga5BJGeS6sEGhv-kzwY3oxHAdme8PsMAgBjAQIMQS-rVg/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/pickalbatros-villaggio-resort-portofino-15/pLewXwUIFLMfs4GPUQvwFlAAog27NVxeSAWyvVuaQwrfQxvfrOJZTGW3cimOmAE7dkBFkqBEVYSU0wjbXO1wZItURQAVi5AmACagJBSXIhHBHP_ga5BJGeS6sEGhv-kzwY3oxHAdme8PsMAgBjAQIMI4E_xA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -998,7 +998,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGSGB/486acd758141e2fcb1259d0ca602ed7cea4e4d90d0ef1d0b358c5440c6480b01.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGSGB/486acd758141e2fcb1259d0ca602ed7cea4e4d90d0ef1d0b358c5440c6480b01.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sunrise-select-garden-beach-resort-spa/phPW9MnaNKQcxnDm-VJcLdAAogewv1WPTH-uS-xasjWwyMZlrqE28BRZhGdEhQD1mfvTQqBFNGUEww1J7N1wZIu0RQQVi2A2ACciILAhUFIgQSI1zMAkAuW9eRUg2KvYIJUYLUvvYDAhJjAQQLPH9gGg/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sunrise-select-garden-beach-resort-spa/phPW9MnaNKQcxnDm-VJcLdAAogewv1WPTH-uS-xasjWwyMZlrqE28BRZhGdEhQD1mfvTQqBFNGUEwwjbXO1wZIu0RQQVixA2ACciILAhUFIgQSI1zMAkAuW9eRUg2KvYIJUYLUvvYDAhJjAQQLgYAcxg/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
@@ -1015,26 +1015,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGAVLR/ab1bddd009061dd9e52e7ec37dff78fbe67217d200d370b3ec9f948a7df69ec9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGAVLR/ab1bddd009061dd9e52e7ec37dff78fbe67217d200d370b3ec9f948a7df69ec9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/the-v-luxury-resort-13/pWsX3wspoZYEICCK9r9zmkAAogQ13GXXJR46BWQ_KAOVJNpb9je5eY7pDPcLULBjC_xewqBFNGUEww1J7N1wZI7URQQVjuAmACciMLAhUFIgQSI0D6AltHXOuuAg2sn9IJUfmCsPuPAQISYwECBTjHVSY/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/the-v-luxury-resort-13/pWsX3wspoZYEICCK9r9zmkAAogQ13GXXJR46BWQ_KAOVJNpb9je5eY7pDPcLULBjC_xewqBFNGUEwwjbXO1wZI7URQQVjpAmACciMLAhUFIgQSI0D6AltHXOuuAg2sn9IJUfmCsPuPAQISYwECBWZWtBY/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
-  },
-  {
-    "hotel_name": "CLEOPATRA LUXURY RESORT MAKADI BAY",
-    "price": 8885.0,
-    "dates": "2026-11-28 - 2026-12-05",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-05",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "Half Board",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9055/94871b2e82fa05be11ff7b9e77e432249135945a57791590e0b89f70edd3f2d8.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9055/94871b2e82fa05be11ff7b9e77e432249135945a57791590e0b89f70edd3f2d8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/cleopatra-luxury-resort-makadi-bay/punhlRVByOKmzuK1E7J71vAAogU1zlVth-REym9EF9sccWEQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1J7N1wZItUVQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFwYWDhLfAxS8BRVkGN4CEe05QMI6TMsyTwBLnJMBUAAd_K4QIBoblKl6DdayxwgBEmMBDWMBAgadIhDE/?operator=WEZY&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Coral Travel"
   },
   {
     "hotel_name": "RENAISSANCE SHARM EL SHEIKH GOLDEN VIEW BEACH RESORT",
@@ -1049,7 +1032,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/135/279f386a9a91887da2eefb7106dccce781b66227948195cc436e21ac704b2881.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/135/279f386a9a91887da2eefb7106dccce781b66227948195cc436e21ac704b2881.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/renaissance-golden-view-beach/pqMHp8Vh2q3MpDisAd_JrVAAogyQqQJ5gZAr4dLNGlenmR_QAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZItUVQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQJ4BkwEfABwBAgAXBhYLEXUS7QIU1wYVRhiaA0D2ckygogFPAEvHI1AAG8c1Hf36DyAaDaLawQkBEmMBDGMBAgUljgzB/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/renaissance-golden-view-beach/pqMHp8Vh2q3MpDisAd_JrVAAogyQqQJ5gZAr4dLNGlenmR_QAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZItUVQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQJ4BkwEfABwBAgAXBhYLEXUS7QIU1wYVRhiaA0D2ckygogFPAEvHI1AAG8c1Hf36DyAaDaLawQkBEmMBDGMBAgX_LPVE/?operator=WEZY&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "CLEOPATRA LUXURY RESORT MAKADI BAY",
+    "price": 8885.0,
+    "dates": "2026-11-28 - 2026-12-05",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-05",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Half Board",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9055/94871b2e82fa05be11ff7b9e77e432249135945a57791590e0b89f70edd3f2d8.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9055/94871b2e82fa05be11ff7b9e77e432249135945a57791590e0b89f70edd3f2d8.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/cleopatra-luxury-resort-makadi-bay/punhlRVByOKmzuK1E7J71vAAogU1zlVth-REym9EF9sccWEQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwjbXO1wZItUVQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFwYWDhLfAxS8BRVkGN4CEe05QMI6TMsyTwBLnJMBUAAd_K4QIBoblKl6DdayxwgBEmMBDWMBAgaiTduV/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1066,7 +1066,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGMAML/434b675af4059c21bf2d81ba27c01750127407d3f9d49f5552fc97be9f04cc2c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/HRGMAML/434b675af4059c21bf2d81ba27c01750127407d3f9d49f5552fc97be9f04cc2c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sentido-mamlouk-palace-resort-ex-sunrise/p7Q2cf5adt2vcOfecfvRKJAAogI7vm3dy7OgiOeBzxIUp6_L9je5eY7pDPcLULBjC_xewqBFNGUEww1J7N1wZI20VQQVjuAmACciULAhUFIgYSIUD6AlyyrwJbtcFPDffdgglRx8TQ-48BAhJjAQQNbTqPpQ/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/sentido-mamlouk-palace-resort-ex-sunrise/p7Q2cf5adt2vcOfecfvRKJAAogI7vm3dy7OgiOeBzxIUp6_L9je5eY7pDPcLULBjC_xewqBFNGUEwwjbXO1wZI20VQQVjpAmACciULAhUFIgYSIUD6AlyyrwJbtcFPDffdgglRx8TQ-48BAhJjAQQNGIzzeg/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
@@ -1083,7 +1083,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109780/d09b77fa22adc38475fade64dd211774d23a744f545ea18796073e9750f8c62b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109780/d09b77fa22adc38475fade64dd211774d23a744f545ea18796073e9750f8c62b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/pickalbatros-vita-resort-portofino-11/pBoWEqqq34nwDnlbesv55oAAogIOnnxbALzK7npoefnhvLBPrOJZTGW3cimOmAE7dkBFkqBEVYSU0w1J7N1wZI6UVQAVi-AmACagJBSXIhHBHU2Qa5BIzDS6sEGhvo9DUYprtMAbWBvPIMAgBjAQIM7EeQ9g/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/pickalbatros-vita-resort-portofino-11/pBoWEqqq34nwDnlbesv55oAAogIOnnxbALzK7npoefnhvLBPrOJZTGW3cimOmAE7dkBFkqBEVYSU0wjbXO1wZI6UVQAVi5AmACagJBSXIhHBHU2Qa5BIzDS6sEGhvo9DUYprtMAbWBvPIMAgBjAQIM6z47xA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1100,7 +1100,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11182/36d1cd1b14355463d00035528ab030970bba72bdc638e7bfc469a70e4b54e18b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11182/36d1cd1b14355463d00035528ab030970bba72bdc638e7bfc469a70e4b54e18b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/gemma-resort/p4cPkwOPltCbN6HBNbeiD7AAogaVPXdyVtXuaEQ6I-siYA8wAAAABWuQQAcLkEAAcAAQAqBFdFWlkw1J7N1wZI-UVQQVi2A2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDEe5FQPMpTLaWAU8AS7EvUAAb5DEd6vkPIBoNmd_BCQESYwEOYwECBqG5eKE/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/gemma-resort/p4cPkwOPltCbN6HBNbeiD7AAogaVPXdyVtXuaEQ6I-siYA8wAAAABWuQQAcLkEAAcAAQAqBFdFWlkwjbXO1wZI-UVQQVixA2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDEe5FQPMpTLaWAU8AS7EvUAAb5DEd6vkPIBoNmd_BCQESYwEOYwECBv6-xPA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1117,7 +1117,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3367/738af9d0302e872b7a6402f4d4d26376535e932f1a5a4513e8bd5aadaf0f429f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3367/738af9d0302e872b7a6402f4d4d26376535e932f1a5a4513e8bd5aadaf0f429f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/iberotel-makadi-saraya/pDHMWBA5HtENX6pgdC68w4AAog-RF6zeSzZThx0L02pg7f8xmV_-hA3rD3I6yghEBTYSEqBEtPTVQw1J7N1wZI-0VQAVi2A2ACagJBSXIfHBGnGrkEmtwBqwQZGKbdBBvO0iMB5vSjHwIAYwECBWngPg8/?operator=KOMT&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/iberotel-makadi-saraya/pDHMWBA5HtENX6pgdC68w4AAog-RF6zeSzZThx0L02pg7f8xmV_-hA3rD3I6yghEBTYSEqBEtPTVQwjbXO1wZI-0VQAVixA2ACagJBSXIfHBGnGrkEmtwBqwQZGKbdBBvO0iMB5vSjHwIAYwECBY98-ts/?operator=KOMT&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -1134,7 +1134,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/4085/7859e6c43bfaeeaa3689bee195c1a71533ef7971450236705c4ffc7972c9389c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/4085/7859e6c43bfaeeaa3689bee195c1a71533ef7971450236705c4ffc7972c9389c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-sport-15/pqU1fIwCN2e67G5hUQspusAAog1ZL7qsPZBWDtfXJcSXPNPAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIhkZQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRyhFArGFMoKIBTwBLxyNQABu0gwIdkK0OIBoNotrBCQESYwEMYwECBU32P-M/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-sport-15/pqU1fIwCN2e67G5hUQspusAAog1ZL7qsPZBWDtfXJcSXPNPAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIhkZQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRyhFArGFMoKIBTwBLxyNQABu0gwIdkK0OIBoNotrBCQESYwEMYwECBTRhsII/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1151,7 +1151,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108284/f6d3a8303fa24bf0a523ef1c13714a35e11fe07660e5db5793f49ef3c611c337.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/108284/f6d3a8303fa24bf0a523ef1c13714a35e11fe07660e5db5793f49ef3c611c337.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/el-kasr-sahl-hasheesh-10/p5TpbUHWwc0Ctq35_-xRVfAAogSU3wAQbxmfx3zKrahHyC0Roi_GQsklzghzk33M9vOa8qBEVYSU0w1J7N1wZIkUZQAVi2A2ACagJBSXIhHBH8zQa5BKf8R6sELBvSkDQY-oJIAZSgwYUMAhJjAQIHqfibAQ/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/el-kasr-sahl-hasheesh-10/p5TpbUHWwc0Ctq35_-xRVfAAogSU3wAQbxmfx3zKrahHyC0Roi_GQsklzghzk33M9vOa8qBEVYSU0wjbXO1wZIkUZQAVixA2ACagJBSXIhHBH8zQa5BKf8R6sELBvSkDQY-oJIAZSgwYUMAhJjAQIHtf2PeA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1168,7 +1168,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/14/ad735d170e2985963ae8fd33c75ee50876eb0a76f5b575d913822c4ec8e2e45d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/14/ad735d170e2985963ae8fd33c75ee50876eb0a76f5b575d913822c4ec8e2e45d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/citadel-azur-resort/prDp-bcNK3aVUkvTXzZSw7AAogvH4sEjttdjsgR3ydiVCyvGz2l0R4KdsclpijcJxFcPYqBE9SRVgw1J7N1wZIm0ZQQVjuAmACagdHSzUuMi4xcjWbARUHFwBcAxEEWAFWAkDKBl2bD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDPMmEkE/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/citadel-azur-resort/prDp-bcNK3aVUkvTXzZSw7AAogvH4sEjttdjsgR3ydiVCyvGz2l0R4KdsclpijcJxFcPYqBE9SRVgwjbXO1wZIm0ZQQVjpAmACagdHSzUuMi4xcjWbARUHFwBcAxEEWAFWAkDKBl2bD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDIfviUo/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1185,7 +1185,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/45030/f21dd508bccb7083e59505b78cdb5dcfe084c51905b8e9190ea5266a880f57ef.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/45030/f21dd508bccb7083e59505b78cdb5dcfe084c51905b8e9190ea5266a880f57ef.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/iberotel-makadi-club-oasis/pXQXRJa2q_1XjwKz9Rg-29AAogEyhwybzsx2KVyX3sgn_FursuXcmHXt6hJ-3HYO02e4cqBEpPSVAw1J7N1wZIuUZQQVi2A2ACckMUARUGFwBcA1gFVgJAygZdqwFPAFupA1O9qAFSAF6vT0vtQ2EAEd4YTIf0OSCc_pcJDQAB0bDg-IKn1KAwAg1jAQAMca6t6g/?operator=JOIP&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/iberotel-makadi-club-oasis/pXQXRJa2q_1XjwKz9Rg-29AAogEyhwybzsx2KVyX3sgn_FursuXcmHXt6hJ-3HYO02e4cqBEpPSVAwjbXO1wZIuUZQQVixA2ACckMUARUGFwBcA1gFVgJAygZdqwFPAFupA1O9qAFSAF6vT0vtQ2EAEd4YTIf0OSCc_pcJDQAB0bDg-IKn1KAwAg1jAQAMVGdQ3w/?operator=JOIP&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1202,7 +1202,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3930/92e02cca28a4fa608f13167885879a765e9d3ce6e7799f37d057a5e53a3e9ab2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3930/92e02cca28a4fa608f13167885879a765e9d3ce6e7799f37d057a5e53a3e9ab2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-mountain-resort-12/piWUe2FHiYqzyONfkABVntAAogr2vhMHj4b0XXUF8bSNyfygAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIykZQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrxBAx2JMoKIBTwBLxyNQABuxgwIdk60OIBoNotrBCQESYwEMYwECBUk3yjQ/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-mountain-resort-12/piWUe2FHiYqzyONfkABVntAAogr2vhMHj4b0XXUF8bSNyfygAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIykZQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrxBAx2JMoKIBTwBLxyNQABuxgwIdk60OIBoNotrBCQESYwEMYwECBewMv3E/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1219,7 +1219,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/62/852a493cf54b5154c90439d1a2a6a41ef5923eb62bdeb5fe5928d572233fe0ac.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/62/852a493cf54b5154c90439d1a2a6a41ef5923eb62bdeb5fe5928d572233fe0ac.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-plaza-resort/psGsUp0rXn4LALjnQEclJ2AAogUPkgU-aGsZ2uZ3l5MUHLnwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI8UZQQVieA2ADaglFbnRlciBBaXJqBDA4MTByP54BkwEfABwBAgAWBBcCETcbURLlAhTXBhVGGJoDQPZyT6CiAUwAS8cjUAAdxLAQIBoNotrBCQESYwEMYwECBefbBIU/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-plaza-resort/psGsUp0rXn4LALjnQEclJ2AAogUPkgU-aGsZ2uZ3l5MUHLnwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI8UZQQViZA2ADaglFbnRlciBBaXJqBDA4MTByP54BkwEfABwBAgAWBBcCETcbURLlAhTXBhVGGJoDQPZyT6CiAUwAS8cjUAAdxLAQIBoNotrBCQESYwEMYwECBaur4MY/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1236,7 +1236,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/17974/3000a0ecd4f7918637e15a5d7db4c8bfd2e79e690f3d1b2c5ed8fd854d5f66d9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/17974/3000a0ecd4f7918637e15a5d7db4c8bfd2e79e690f3d1b2c5ed8fd854d5f66d9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadi-aquaviva/p_F9eDVIcMhsvs2m3bT8qQAAogGL-6JR2aLmR39B9ujlT1zwAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1J7N1wZI-EZQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CQK90EZULTLYnTwBLnJMBUAAd_K4QIBobsolADbjSgQkBEmMBDWMBAwxuDoNs/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadi-aquaviva/p_F9eDVIcMhsvs2m3bT8qQAAogGL-6JR2aLmR39B9ujlT1zwAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwjbXO1wZI-EZQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CQK90EZULTLYnTwBLnJMBUAAd_K4QIBobsolADbjSgQkBEmMBDWMBAwzmQfGk/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1253,7 +1253,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/33/4dfb31b4c052258ebc4eb0d59fe25d439442c98e9044ddb54370d860cb8beb01.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/33/4dfb31b4c052258ebc4eb0d59fe25d439442c98e9044ddb54370d860cb8beb01.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/dana-beach/pZPvsj5DfAsLflFj8Tdt3hAAogKRV2KrjQVDcvUDOFIrWCOGz2l0R4KdsclpijcJxFcPYqBE9SRVgw1J7N1wZIi0dQQVjuAmACagdHS08uMi4xcjWbARUHFwBcA1gFVgIREEC6Bl2bD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDKjh0y4/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/dana-beach/pZPvsj5DfAsLflFj8Tdt3hAAogKRV2KrjQVDcvUDOFIrWCOGz2l0R4KdsclpijcJxFcPYqBE9SRVgwjbXO1wZIi0dQQVjpAmACagdHS08uMi4xcjWbARUHFwBcA1gFVgIREEC6Bl2bD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDI6h8lY/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1270,7 +1270,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/RMFMAD/7f9f5b65c3396ac5522abbe2553db923d1a0b76cfd307671522600c96bda031a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/RMFMAD/7f9f5b65c3396ac5522abbe2553db923d1a0b76cfd307671522600c96bda031a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/el-malikia-resort-abu-dabbab-ex-sol-y-mar/puhuiTTxRIvdfnFdxCHp-MAAog0AMkqd3zpFBtFNI0hHg3FhejiOYgvei6HNx8KsAWiRMqBFNGUEww1J7N1wZIo0dQQVi-AmACciILAhUFIgYSJ1zGAkAuW4f0UQ3V2oIJUZGv5JIGAhJjAQIGMcvirg/?operator=SFPL&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/el-malikia-resort-abu-dabbab-ex-sol-y-mar/puhuiTTxRIvdfnFdxCHp-MAAog0AMkqd3zpFBtFNI0hHg3FhejiOYgvei6HNx8KsAWiRMqBFNGUEwwjbXO1wZIo0dQQVi5AmACciILAhUFIgYSJ1zGAkAuW4f0UQ3V2oIJUZGv5JIGAhJjAQIGY9mr7A/?operator=SFPL&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
@@ -1287,7 +1287,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFREEF/3f6c953925c0f56b0ec79ac6933787932355130bd4758f0c4b13f0dc9a8bbd42.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RMFREEF/3f6c953925c0f56b0ec79ac6933787932355130bd4758f0c4b13f0dc9a8bbd42.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/reef-oasis-suakin-resort-11/pmP5vLI9xW_GGJTBd-7xb9AAogjvb2vhf-UkN1LDGgr0Lxk9_yWb25QULCtqituVS5NVcqBFZJVFgw1J7N1wZIxUdQQVieA2ACckAaABUHFwBcA1gFQI8DW6eGAV7WeVK8FFMAS7EvYQBM6b05DZfNmAkgAFGfn7723wFP-voNXZz4r_klAgxjAQILe1tyhQ/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/reef-oasis-suakin-resort-11/pmP5vLI9xW_GGJTBd-7xb9AAogjvb2vhf-UkN1LDGgr0Lxk9_yWb25QULCtqituVS5NVcqBFZJVFgwjbXO1wZIxUdQQViZA2ACckAaABUHFwBcA1gFQI8DW6eGAV7WeVK8FFMAS7EvYQBM6b05DZfNmAkgAFGfn7723wFP-voNXZz4r_klAgxjAQILfYDuBw/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1304,7 +1304,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3911/d722b16f6693f812b0bb9442ef5c93a471288262c38b055abe1c462d52962a39.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3911/d722b16f6693f812b0bb9442ef5c93a471288262c38b055abe1c462d52962a39.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-y-mar-naama-bay/ptsdSjTe1qYJpEXEsWHuc2AAoggym6YnPjYGJ5zhspmCUMOgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI7kdQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRnBBA2mJMoKIBTwBLxyNQABvf9Akd5bsGIBoNotrBCQESYwENYwEDBbO9c04/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-y-mar-naama-bay/ptsdSjTe1qYJpEXEsWHuc2AAoggym6YnPjYGJ5zhspmCUMOgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI7kdQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRnBBA2mJMoKIBTwBLxyNQABvf9Akd5bsGIBoNotrBCQESYwENYwEDBaaklpM/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1321,7 +1321,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6531/060627a948944680fb5b5bfe03ea577d59a87f08c34001bee42dbe7e18211416.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6531/060627a948944680fb5b5bfe03ea577d59a87f08c34001bee42dbe7e18211416.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-sea-breeze/pASuCa2skE1ejTFDNO4o-DAAogz_NtT_Rsg9Fry8o3BTNsHQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI90dQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR2CRAnk5MoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIFd1YRQw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-sea-breeze/pASuCa2skE1ejTFDNO4o-DAAogz_NtT_Rsg9Fry8o3BTNsHQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI90dQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR2CRAnk5MoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIF3CCsoQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1338,7 +1338,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2561/16f297c51852e0c49d9e914dd25121c510077577c0eea4881463c66f4c684840.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2561/16f297c51852e0c49d9e914dd25121c510077577c0eea4881463c66f4c684840.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/hilton-marsa-alam-nubian-resort/p53qTb1nHav3JuIQLcu62EAAogZJjfKNJ5BJ5ect68px_UYky_jtnhHlSYGXysWzzO9yMqBE9SRVgw1J7N1wZI_EdQQVieA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhGmDV3dFk8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDVv8VLE/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/hilton-marsa-alam-nubian-resort/p53qTb1nHav3JuIQLcu62EAAogZJjfKNJ5BJ5ect68px_UYky_jtnhHlSYGXysWzzO9yMqBE9SRVgwjbXO1wZI_EdQQViZA2ACagZESS4yLjFyNpsBFQcXAFwDWAVWAkDKBhGmDV3dFk8kXpnYAVO8FFIAS7EvYQBM5Yw6IJv-lwkNAAISYwECDVfq4zE/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1355,7 +1355,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/50000/016312109bdf3ac56bf59e704998f2ccada21f5ba15ee8055a6e9ae1b5d55f98.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/50000/016312109bdf3ac56bf59e704998f2ccada21f5ba15ee8055a6e9ae1b5d55f98.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/aqua-mondo-resort-14/pjKlq8cfBMdFyoU-rWj21kAAoguRz_osIhMSOgy4z2Ag5HLgAAAAA3uwQAUbsEAAcAAAAqBFdFWlkw1J7N1wZIgEhQQVi2A2ADaglFbnRlciBBaXJyQ54BHwAcAQIAFgAXBhLtAxO-BhTJBBUPGJUDQIJvTMsyTwBQnJMBSwARyD8d5-8PIBobyec0De_zjAkBEmMBDGMBAgsXeV0i/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/aqua-mondo-resort-14/pjKlq8cfBMdFyoU-rWj21kAAoguRz_osIhMSOgy4z2Ag5HLgAAAAA3uwQAUbsEAAcAAAAqBFdFWlkwjbXO1wZIgEhQQVixA2ADaglFbnRlciBBaXJyQ54BHwAcAQIAFgAXBhLtAxO-BhTJBBUPGJUDQIJvTMsyTwBQnJMBSwARyD8d5-8PIBobyec0De_zjAkBEmMBDGMBAgtGg6Os/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1372,7 +1372,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/19943/a77a01bd0cab5fd88c7dabe2d6a1894b31b9a6e5f55524726097fe49006f7200.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/19943/a77a01bd0cab5fd88c7dabe2d6a1894b31b9a6e5f55524726097fe49006f7200.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/royal-albatros-moderna/p9YJvjfFLq-iiYGj8njwNOAAogx2SDLFIG38XF2Xd84QKmcwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIj0hQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nIRxhpM2ocBTwBLxyNQABvHmgMd_ZUNIBoNotrBCQESYwENYwEEDPSngEs/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/royal-albatros-moderna/p9YJvjfFLq-iiYGj8njwNOAAogx2SDLFIG38XF2Xd84QKmcwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIj0hQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nIRxhpM2ocBTwBLxyNQABvHmgMd_ZUNIBoNotrBCQESYwENYwEEDP_XFIY/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1389,7 +1389,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3919/6e04d6e56712fcd0afa25215f75cda2cf62e957d1def7278c69aaeeea9bc65bd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3919/6e04d6e56712fcd0afa25215f75cda2cf62e957d1def7278c69aaeeea9bc65bd.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/the-cleopatra-luxury-resort-collection/pQmtUcqjRaBbt36Rr1rgSBAAogzpv_BWS_QxT8CwS1YootfQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIrEhQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRpBBA0mJMoKIBTwBLxyNQAB3EsBAgGhuchgQNhtS9CQESYwEMYwECBQL7DsU/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/the-cleopatra-luxury-resort-collection/pQmtUcqjRaBbt36Rr1rgSBAAogzpv_BWS_QxT8CwS1YootfQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIrEhQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRpBBA0mJMoKIBTwBLxyNQAB3EsBAgGhuchgQNhtS9CQESYwEMYwECBXjy1Qo/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1406,7 +1406,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/158/db82ca8cb45b20b2631a8844633812ee66051c80b82dca5ede9bd9f7ffacbb4e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/158/db82ca8cb45b20b2631a8844633812ee66051c80b82dca5ede9bd9f7ffacbb4e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/movenpick-resort-hurghada-ex-continental-resort/pOhsB0g4BxLL-klFsoV2mbAAogtTRgwWXreAy_zn22eR6YDQAAAAA3uwQAUbsEAAcAAAAqBFdFWlkw1J7N1wZIskhQQVi2A2ADaglFbnRlciBBaXJyQ54BHwAcAQIAFgQXAhGXARLWAhO-BhTJBBUPGJUDQIJvT8syTABQnJMBSwAdr68QIBobvocnDfrTmgkBEmMBDGMBBAvscPMR/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/movenpick-resort-hurghada-ex-continental-resort/pOhsB0g4BxLL-klFsoV2mbAAogtTRgwWXreAy_zn22eR6YDQAAAAA3uwQAUbsEAAcAAAAqBFdFWlkwjbXO1wZIskhQQVixA2ADaglFbnRlciBBaXJyQ54BHwAcAQIAFgQXAhGXARLWAhO-BhTJBBUPGJUDQIJvT8syTABQnJMBSwAdr68QIBobvocnDfrTmgkBEmMBDGMBBAuNU-mE/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1423,7 +1423,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/42/6ca8dd2fa9f768008cf6fceb54d8bc133a64ef342a2d1f76b245186a9ec0d7d4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/42/6ca8dd2fa9f768008cf6fceb54d8bc133a64ef342a2d1f76b245186a9ec0d7d4.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-beach-rotana-tiran/pwM_csSzcLoQxeovKQ3GQFAAogLb-uNvcAXalAPI0s6gpfNwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI60hQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWABcGESMSygMU1wYVRhiaA0D2ckygogFPAEvHI1AAHcSwECAaG72cfg3lvcMIARJjAQxjAQIFSnbRqw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-beach-rotana-tiran/pwM_csSzcLoQxeovKQ3GQFAAogLb-uNvcAXalAPI0s6gpfNwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI60hQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWABcGESMSygMU1wYVRhiaA0D2ckygogFPAEvHI1AAHcSwECAaG72cfg3lvcMIARJjAQxjAQIFsPKooQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1440,7 +1440,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10/62a451b4bfc941eeef423648e960e0a0651d15e6b1f727e2ea6ff4649f3dc7d8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10/62a451b4bfc941eeef423648e960e0a0651d15e6b1f727e2ea6ff4649f3dc7d8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/crowne-plaza-sahara-sands-resort/pf8UfjddW-OGhR3uomdI1zAAogLLaKvXzm7RSYmRbV1RK44AAAAABWuQQAcLkEAAcAAQAqBFdFWlkw1J7N1wZIgUlQQVi2A2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfABwBAgAWBBcCEQMS6gMUlQgVkwIYpANA4W9MtpYBTwBLsS9QAB3OqxAgGhu8rQQN3bG9CQESYwENYwECDAEDR2g/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/crowne-plaza-sahara-sands-resort/pf8UfjddW-OGhR3uomdI1zAAogLLaKvXzm7RSYmRbV1RK44AAAAABWuQQAcLkEAAcAAQAqBFdFWlkwjbXO1wZIgUlQQVixA2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfABwBAgAWBBcCEQMS6gMUlQgVkwIYpANA4W9MtpYBTwBLsS9QAB3OqxAgGhu8rQQN3bG9CQESYwENYwECDPjA5Fk/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1457,7 +1457,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6251/d85c5fc11338594034dd3885155d125c69114a32308d7904b49f3824c4b431ab.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6251/d85c5fc11338594034dd3885155d125c69114a32308d7904b49f3824c4b431ab.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/dahab-resort/pkyAgrabjuVJaK0z_Igw7jAAogTlAzvJC2SVTF3QymencMZAAAAADLuwQA5bsEAAcAEgAqBFdFWlkw1J7N1wZInElQQVj2AWADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRwCJAtlBMoKIBTwBLxyNQABvPiwMd9KQNIBoNnNrBCQESYwEMYwECBVvqJmw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,dahab,c/dahab-resort/pkyAgrabjuVJaK0z_Igw7jAAogTlAzvJC2SVTF3QymencMZAAAAADLuwQA5bsEAAcAEgAqBFdFWlkwjbXO1wZInElQQVjxAWADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRwCJAtlBMoKIBTwBLxyNQABvPiwMd9KQNIBoNnNrBCQESYwEMYwECBZmUOKM/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1474,7 +1474,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124748/8ada47f2ac953a6f4083165e27feec1fc0a2202d72377a4d5d6c1ab2dac45b3c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124748/8ada47f2ac953a6f4083165e27feec1fc0a2202d72377a4d5d6c1ab2dac45b3c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,el-gouna/moevenpick-resort-spa-el-gouna/pLOGo-gILUSazi_fUoFW-JAAogVTeJ3mFZB9vbCkBfTXYqxxoi_GQsklzghzk33M9vOa8qBEVYSU0w1J7N1wZItUlQAVi2A2ACagJBSXIhHBHMzge5BNf7RqsELBurn04YlJFMAfWHgr8OAgBjAQILfCluOQ/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,el-gouna/moevenpick-resort-spa-el-gouna/pLOGo-gILUSazi_fUoFW-JAAogVTeJ3mFZB9vbCkBfTXYqxxoi_GQsklzghzk33M9vOa8qBEVYSU0wjbXO1wZItUlQAVixA2ACagJBSXIhHBHMzge5BNf7RqsELBurn04YlJFMAfWHgr8OAgBjAQILkUDukA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1491,7 +1491,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR8USU/b3d714b6aa9cc90d9266edcabebde1c28acc6146c68269343c4739ed7084093d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR8USU/b3d714b6aa9cc90d9266edcabebde1c28acc6146c68269343c4739ed7084093d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/tolip-family-park-15/pltuC0oCSugqivTCImIIf0AAogyRA3O1QoTRJ_XQDRiVuWzLFrMSP0fL1EROuUNUxahekqBFZJVFgw1J7N1wZI8UlQQVi2A2ACagpBRUdDQVI4VVNVagpKUzAwREJHVjAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBYCFwPQIADU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwECC0Q-XT0/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/tolip-family-park-15/pltuC0oCSugqivTCImIIf0AAogyRA3O1QoTRJ_XQDRiVuWzLFrMSP0fL1EROuUNUxahekqBFZJVFgwjbXO1wZI8UlQQVixA2ACagpBRUdDQVI4VVNVagpKUzAwREJHVjAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBYCFwPQIADU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwECC7-yCgE/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1508,7 +1508,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/6695/8d11a25e0577e814674c983065004e3cec66d1bda956f5ef94b258b9820a2f83.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/6695/8d11a25e0577e814674c983065004e3cec66d1bda956f5ef94b258b9820a2f83.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/rehana-port-ghalib-resort/p8nwxP9dYZvl6x3Y5tPhiQAAogPtr0djRpKsp7UXv082fUQV52ILKUKIgWVnm_44xcwy0qBFJOQlcw1J7N1wZI-klQQVieA2ACagREUTBkcjqfARUHFwBWA1gFCs0BQPsFEdAsGfUtEIQYTOIZU9WDAVIAS7EvYQAdgp5FDzMgy-yMCQ0AAg5jAQIFJVXmkA/?operator=RNBW&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,port-ghalib/rehana-port-ghalib-resort/p8nwxP9dYZvl6x3Y5tPhiQAAogPtr0djRpKsp7UXv082fUQV52ILKUKIgWVnm_44xcwy0qBFJOQlcwjbXO1wZI-klQQViZA2ACagREUTBkcjqfARUHFwBWA1gFCs0BQPsFEdAsGfUtEIQYTOIZU9WDAVIAS7EvYQAdgp5FDzMgy-yMCQ0AAg5jAQIFxEWa5w/?operator=RNBW&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
@@ -1525,7 +1525,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/50799/56ac41832795d708e25e043912ff33556ab40ee72436f62ac549598a7108fc56.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/50799/56ac41832795d708e25e043912ff33556ab40ee72436f62ac549598a7108fc56.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-resort-sharm-el-sheikh/ppzWpyjfoStoC0rITik7A3AAognKn94yXlJGwLWkgtOlD9mwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIhUpQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABHnRR3d6g8gGhuD_wMNn9u9CQESYwEMYwECBYHqMZc/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-resort-sharm-el-sheikh/ppzWpyjfoStoC0rITik7A3AAognKn94yXlJGwLWkgtOlD9mwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIhUpQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABHnRR3d6g8gGhuD_wMNn9u9CQESYwEMYwECBQUgUmI/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1542,7 +1542,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/191/52bd3a14c51a1d31ee82f56e8a9a2c3fd55a58795f6ba0861b5b5e0b7c8c96d0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/191/52bd3a14c51a1d31ee82f56e8a9a2c3fd55a58795f6ba0861b5b5e0b7c8c96d0.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/desert-rose/p94gMx04O-Q_3sGzXF-gcMAAogj3nSWPz_Bd3N4oGdRlJ8dQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1J7N1wZIq0pQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwAcAQIAFgQXAhG4ARK1AhS8BRVkGN4CQK90TMsyTwBLnJMBUAAd_K4QIBobrLNvDb6o0ggBEmMBDmMBAgWNtxvG/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/desert-rose/p94gMx04O-Q_3sGzXF-gcMAAogj3nSWPz_Bd3N4oGdRlJ8dQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwjbXO1wZIq0pQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwAcAQIAFgQXAhG4ARK1AhS8BRVkGN4CQK90TMsyTwBLnJMBUAAd_K4QIBobrLNvDb6o0ggBEmMBDmMBAgX6zntd/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1559,7 +1559,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3744/e6ea4d28b8880adfd43b1c74aac416a60b40708341ca31834a7d02f285dbdeb4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3744/e6ea4d28b8880adfd43b1c74aac416a60b40708341ca31834a7d02f285dbdeb4.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sea-club-sharm-el-sheikh/pq6lPnhXONFVCSsBf-iKVZAAog372LO1IOKr-9MWowDSdMZgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIykpQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR9Q5AgWRMoKIBTwBLxyNQABvkMR3g_g8gGg2i2sEJARJjAQ1jAQIFVlgcnA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sea-club-sharm-el-sheikh/pq6lPnhXONFVCSsBf-iKVZAAog372LO1IOKr-9MWowDSdMZgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIykpQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMR9Q5AgWRMoKIBTwBLxyNQABvkMR3g_g8gGg2i2sEJARJjAQ1jAQIFeRDNSA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1576,24 +1576,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/74918/23d0a9e2ee76b224e8cab226bd9eaac038e3ab0c123c087cf283e1ebc9177112.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/74918/23d0a9e2ee76b224e8cab226bd9eaac038e3ab0c123c087cf283e1ebc9177112.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-golf/pw5pFzSBCLXSs4HSmwBlgDAAogV0_Qf78WmVCOutSCln5hzgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI5UpQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQ54BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABGeggIdpq4OIBobmpZ_DYjEwggBEmMBDWMBBAzSEA8Z/?operator=WEZY&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Coral Travel"
-  },
-  {
-    "hotel_name": "PICKALBATROS LAGUNA VISTA HOTEL-SSH",
-    "price": 9597.0,
-    "dates": "2026-11-28 - 2026-12-05",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-05",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/114/24f6c84a4e974d714c26ed9d5a4bfdcf56bf3e036f4fd31d36ca2b813bb08a35.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/114/24f6c84a4e974d714c26ed9d5a4bfdcf56bf3e036f4fd31d36ca2b813bb08a35.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/laguna-vista-beach/pJazW02p3Uy2MgmPPGgy7oAAogDQdmmT7AeIz4lf8BqhuWOgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZI_UpQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEWsSggMU1wYVRhiaA0D2ckygogFPAEvHI1AAG8eaAx39lQ0gGg2i2sEJARJjAQ1jAQQMxCpokA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-golf/pw5pFzSBCLXSs4HSmwBlgDAAogV0_Qf78WmVCOutSCln5hzgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI5UpQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQ54BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABGeggIdpq4OIBobmpZ_DYjEwggBEmMBDWMBBAz6a2Iu/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1610,9 +1593,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124655/73b271a00f0f861c8b2b600315824ad79cfa469b2a0426a3ff2e26d8abe7866d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124655/73b271a00f0f861c8b2b600315824ad79cfa469b2a0426a3ff2e26d8abe7866d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/cleopatra-signature-marsa-alam-12/p5NvPz_htFuhabee9HVZwUAAogn2Tir87RQAYi_D_kRm-i5tq1Y2NuZMs-5cS56gXNpwgqBEVYSU0w1J7N1wZI_UpQAViWAWACagJBSXIhHBHvzQe5BPDOSqsEGhvnsUoYk6FMAbGXn74OAgBjAQIM43mhkg/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/cleopatra-signature-marsa-alam-12/p5NvPz_htFuhabee9HVZwUAAogn2Tir87RQAYi_D_kRm-i5tq1Y2NuZMs-5cS56gXNpwgqBEVYSU0wjbXO1wZI_UpQAViRAWACagJBSXIhHBHvzQe5BPDOSqsEGhvnsUoYk6FMAbGXn74OAgBjAQIMjMuevw/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
+  },
+  {
+    "hotel_name": "PICKALBATROS LAGUNA VISTA HOTEL-SSH",
+    "price": 9597.0,
+    "dates": "2026-11-28 - 2026-12-05",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-05",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/114/24f6c84a4e974d714c26ed9d5a4bfdcf56bf3e036f4fd31d36ca2b813bb08a35.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/114/24f6c84a4e974d714c26ed9d5a4bfdcf56bf3e036f4fd31d36ca2b813bb08a35.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/laguna-vista-beach/pJazW02p3Uy2MgmPPGgy7oAAogDQdmmT7AeIz4lf8BqhuWOgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZI_UpQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEWsSggMU1wYVRhiaA0D2ckygogFPAEvHI1AAG8eaAx39lQ0gGg2i2sEJARJjAQ1jAQQMqw0P5Q/?operator=WEZY&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Coral Travel"
   },
   {
     "hotel_name": "CONCORDE EL SALAM FRONT AREA",
@@ -1627,7 +1627,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9965/a62bc48b52dc36cd9db63ed0e12ad3e58d767a7ffac8fcc61dca399a2d2a1e84.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9965/a62bc48b52dc36cd9db63ed0e12ad3e58d767a7ffac8fcc61dca399a2d2a1e84.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-front-12/p2BBqBVYrf1Z_-B8Mk_k6WAAogt11xlAQXekhiY73q7DQ2GAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1J7N1wZIkUtQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRwj9AtDNMoKIBTwBLxyNQABuxgwIdk60OIBoNotrBCQESYwEMYwECBS3lwAc/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-front-12/p2BBqBVYrf1Z_-B8Mk_k6WAAogt11xlAQXekhiY73q7DQ2GAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwjbXO1wZIkUtQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRwj9AtDNMoKIBTwBLxyNQABuxgwIdk60OIBoNotrBCQESYwEMYwECBVUA9og/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1644,7 +1644,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3368/c0ea03e6acfefd4a04b5cfb0db6d51a07708bb51cbde1bb3b99a2a97418b887d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3368/c0ea03e6acfefd4a04b5cfb0db6d51a07708bb51cbde1bb3b99a2a97418b887d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/iberotel-makadi-saraya-palms/pT6OVWV7TAZq8H2jo9gD82AAogD6IXi0eQf6Kfx90frAAWChmV_-hA3rD3I6yghEBTYSEqBEtPTVQw1J7N1wZInUtQAVi2A2ACagJBSXIfHBGoGrkEmdwBqwQZGN3dBBur0iMBz8qkHwIAYwECBRhqtaE/?operator=KOMT&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/iberotel-makadi-saraya-palms/pT6OVWV7TAZq8H2jo9gD82AAogD6IXi0eQf6Kfx90frAAWChmV_-hA3rD3I6yghEBTYSEqBEtPTVQwjbXO1wZInUtQAVixA2ACagJBSXIfHBGoGrkEmdwBqwQZGN3dBBur0iMBz8qkHwIAYwECBX4Riwo/?operator=KOMT&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -1661,7 +1661,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/27296/bc176871c4e47883bbf9d49711d2798abe88eef2cdee07dbb31604f6712b7f08.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/27296/bc176871c4e47883bbf9d49711d2798abe88eef2cdee07dbb31604f6712b7f08.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-royal/pkes2FKV8-Tyv9P0_jnUjyAAogK4NhTOFrFT5GnW6cb78h-QAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1J7N1wZIn0tQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckCeAZMBHwACARYAHAAXBhLtAxS8BRVkGN4CQK90TMsyTwARtCFL6HFQABvgxQ8dnGkgGg3q28EJARJjAQxjAQIFHTkpcg/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/titanic-royal/pkes2FKV8-Tyv9P0_jnUjyAAogK4NhTOFrFT5GnW6cb78h-QAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwjbXO1wZIn0tQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckCeAZMBHwACARYAHAAXBhLtAxS8BRVkGN4CQK90TMsyTwARtCFL6HFQABvgxQ8dnGkgGg3q28EJARJjAQxjAQIFtdIs2Q/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1678,7 +1678,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/6513/61970b72b312ea6d0373821b3cb6271ebffe7a152e252532c893aa503ed99358.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/6513/61970b72b312ea6d0373821b3cb6271ebffe7a152e252532c893aa503ed99358.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,al-dzuna/double-tree-by-hilton-mangroovy-el-gouna-13/pfkg-O5uGxaDXjULpLpRW9AAogXZ8jrZD6XUWBcRiVGM01i9347zibFfLLz-mISgn1GKsqBE9SRVgw1J7N1wZImExQQVi2A2ACagdOVlcuMi4xcjabARUHFwBcA1gFVgJAygZdmw9PJBHXHFP7gAFSAF6vT0vtQ2EATOWMOiCc_pcJDQACEmMBAgulpduM/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,al-dzuna/double-tree-by-hilton-mangroovy-el-gouna-13/pfkg-O5uGxaDXjULpLpRW9AAogXZ8jrZD6XUWBcRiVGM01i9347zibFfLLz-mISgn1GKsqBE9SRVgwjbXO1wZImExQQVixA2ACagdOVlcuMi4xcjabARUHFwBcA1gFVgJAygZdmw9PJBHXHFP7gAFSAF6vT0vtQ2EATOWMOiCc_pcJDQACEmMBAgvhQpvS/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1695,7 +1695,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/74919/50f13cd83398010af227dbc92faf48acadbcec7da00375dce5862eaf0ad0182b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/74919/50f13cd83398010af227dbc92faf48acadbcec7da00375dce5862eaf0ad0182b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/golf-villas-sharm-el-sheikh-by-rixos-11/piXr8BuHJ4MVw9asi8S12tAAog2E196XlxGA2UMnICevtEFwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIp0xQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQ54BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABGfggIdpa4OIBobppZ_DfzDwggBEmMBDWMBBAyUR_OP/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/golf-villas-sharm-el-sheikh-by-rixos-11/piXr8BuHJ4MVw9asi8S12tAAog2E196XlxGA2UMnICevtEFwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIp0xQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQ54BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABGfggIdpa4OIBobppZ_DfzDwggBEmMBDWMBBAyA3CG_/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1712,7 +1712,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/18/4fa97d9c65012155d1a476a179ed33ab659d50dfa90607f569160c8050910230.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/18/4fa97d9c65012155d1a476a179ed33ab659d50dfa90607f569160c8050910230.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/albatros-white-beach/pSV-6oTR-cl89tYuRwVpeZAAogeJ9p-twAV5CF_o1rDYfHBGz2l0R4KdsclpijcJxFcPYqBE9SRVgw1p7N1wZIwExQQVjuAmACagVYLjIuMXI1mwEVBxcAXANYBVYCEQFAyQZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCZ_pcJDQACEmMBAgz9vZYr/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/albatros-white-beach/pSV-6oTR-cl89tYuRwVpeZAAogeJ9p-twAV5CF_o1rDYfHBGz2l0R4KdsclpijcJxFcPYqBE9SRVgwj7XO1wZIwExQQVjpAmACagVYLjIuMXI1mwEVBxcAXANYBVYCEQFAyQZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCZ_pcJDQACEmMBAgxAuoR7/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1729,7 +1729,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/126/9a821834d6f4080a3faac0dba5d0234c0905ac2204b096f0204aa00cfc409e47.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/126/9a821834d6f4080a3faac0dba5d0234c0905ac2204b096f0204aa00cfc409e47.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-island/pODnr4X8C_IhxHxHo9Jv2NAAogEh0oa32mZMMpMsgKgYuyggAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIw0xQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEXcS9gIU1wYVRhiaA0D2ckygogFPAEvHI1AAG6u7BB2Z9QsgGg2i2sEJARJjAQ5jAQIFV-h3aw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-island/pODnr4X8C_IhxHxHo9Jv2NAAogEh0oa32mZMMpMsgKgYuyggAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIw0xQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEXcS9gIU1wYVRhiaA0D2ckygogFPAEvHI1AAG6u7BB2Z9QsgGg2i2sEJARJjAQ5jAQIF_VfjQQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1746,7 +1746,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/127/904ea2548af9e6582d707bcb2ee7699d00b5b14d3e440575720663f97f147ba9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/127/904ea2548af9e6582d707bcb2ee7699d00b5b14d3e440575720663f97f147ba9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-village/pWkVOaMEzXy7xD7AfFvcUGAAogxIkI1i-xMb6UX5YK9Gr-AgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIzkxQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEXgS9QIU1wYVRhiaA0D2ckygogFPAEvHI1AAG6u7BB2Z9QsgGg2i2sEJARJjAQ5jAQIFBjHg5w/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-village/pWkVOaMEzXy7xD7AfFvcUGAAogxIkI1i-xMb6UX5YK9Gr-AgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIzkxQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEXgS9QIU1wYVRhiaA0D2ckygogFPAEvHI1AAG6u7BB2Z9QsgGg2i2sEJARJjAQ5jAQIF7TObPA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1763,7 +1763,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/15/f9fc76767c20255c1fa05603ae98fbb742a942adac5043de6651d9e562714d60.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/15/f9fc76767c20255c1fa05603ae98fbb742a942adac5043de6651d9e562714d60.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/neverland-by-albatros-9/po_QJOI3r3H5uAsIc6T5sOAAogzVhkThvOgRIQ1To0WEGgTWz2l0R4KdsclpijcJxFcPYqBE9SRVgw1p7N1wZIzkxQQVjuAmACagdRQzUuMi4xcjWbARUHFwBcA1gFEQBWAkDKBl2bD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDFfN_IQ/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/neverland-by-albatros-9/po_QJOI3r3H5uAsIc6T5sOAAogzVhkThvOgRIQ1To0WEGgTWz2l0R4KdsclpijcJxFcPYqBE9SRVgwj7XO1wZIzkxQQVjpAmACagdRQzUuMi4xcjWbARUHFwBcA1gFEQBWAkDKBl2bD08kU9KdAVIAXq9PS-1DYQBM5Yw6IJn-lwkNAAISYwECDHO_Wig/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1780,7 +1780,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/108/6feeaaa1f157831c28c03e4ca7ec123cb726ae7475e352be1878d7f9f1cc97d0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/108/6feeaaa1f157831c28c03e4ca7ec123cb726ae7475e352be1878d7f9f1cc97d0.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-beach-resort/p4jIALkgt8VSNWtwFZlvPbAAog7DJ_s8Wrc2dBo3_MAAmowQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI30xQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEWUSiAMU1wYVRhiaA0D2ckygogFPAEvHI1AAG7XaCR2P1gYgGg2i2sEJARJjAQ1jAQMFoC8rgA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-beach-resort/p4jIALkgt8VSNWtwFZlvPbAAog7DJ_s8Wrc2dBo3_MAAmowQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI30xQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEWUSiAMU1wYVRhiaA0D2ckygogFPAEvHI1AAG7XaCR2P1gYgGg2i2sEJARJjAQ1jAQMFbaWIeQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1797,7 +1797,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4648/aebd947571b39b7c0e2c35a16cb60adc7c2b8d86c45580bbc10fc4055e82f498.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4648/aebd947571b39b7c0e2c35a16cb60adc7c2b8d86c45580bbc10fc4055e82f498.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/ocean-breeze/pFlTG4n2xQAJSVTHUfQAbqAAogGMAnINCrnOxG3p6l-Lj3kFtIFyXgwiPdiX4z2-fBR74qBFJOQlcw1p7N1wZIqE1QQVjGAWACagRDQWdKcjmfARUHFwBWA1gFChhAsAcR0RwQ9R4ZuCBMjS9TiiFSAEuckwFhAA_ZkkUdLSDx94wJDQACDWMBAgZ_W3fX/?operator=RNBW&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/ocean-breeze/pFlTG4n2xQAJSVTHUfQAbqAAogGMAnINCrnOxG3p6l-Lj3kFtIFyXgwiPdiX4z2-fBR74qBFJOQlcwj7XO1wZIqE1QQVjBAWACagRDQWdKcjmfARUHFwBWA1gFChhAsAcR0RwQ9R4ZuCBMjS9TiiFSAEuckwFhAA_ZkkUdLSDx94wJDQACDWMBAga9_z_b/?operator=RNBW&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
@@ -1814,7 +1814,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/1179/9a1456b48199967f11f228714e48d02de28812f55cde052d90004345cf92d471.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/1179/9a1456b48199967f11f228714e48d02de28812f55cde052d90004345cf92d471.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/tropitel-sahl-hasheesh/ph5W_j1pFlmVQkJJkIqzgYAAogD0V5X8vbTSplapJY5KZ355G46RMt8mq3kqP7Sr2sYEoqBFJOQlcw1p7N1wZI3E1QQVi2A2ACagRCd2NkcjqfARUHFwBWA1gFCtABQPgFEcQBGbpaEPgYTJUWU4ohUgBLnJMBYQAP8a9FHQkgh9uMCQ0AAgxjAQIFAsTdWQ/?operator=RNBW&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/tropitel-sahl-hasheesh/ph5W_j1pFlmVQkJJkIqzgYAAogD0V5X8vbTSplapJY5KZ355G46RMt8mq3kqP7Sr2sYEoqBFJOQlcwj7XO1wZI3E1QQVixA2ACagRCd2NkcjqfARUHFwBWA1gFCtABQPgFEcQBGbpaEPgYTJUWU4ohUgBLnJMBYQAP8a9FHQkgh9uMCQ0AAgxjAQIFukLNhw/?operator=RNBW&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
@@ -1831,7 +1831,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/98/8aeba46d92a27d59e3444a284fb2e2b3f2d2327541c37b8c0d7b5725327973bf.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/98/8aeba46d92a27d59e3444a284fb2e2b3f2d2327541c37b8c0d7b5725327973bf.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-dreams-resort/phNiHkL2Dgru6S0y9vrPQaAAogbsmXZYP3zNBrHzWwGGo7pQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI9k1QQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEVsSkgMU1wYVRhiaA0D2ckygogFPAEvHI1AAG7fUAx2N3AwgGg2i2sEJARJjAQ1jAQMFoQK5hw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-dreams-resort/phNiHkL2Dgru6S0y9vrPQaAAogbsmXZYP3zNBrHzWwGGo7pQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI9k1QQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEVsSkgMU1wYVRhiaA0D2ckygogFPAEvHI1AAG7fUAx2N3AwgGg2i2sEJARJjAQ1jAQMF6FoYyQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1848,7 +1848,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/78607/ff72fb5c931dbc18823efd7f50428a741e9d563aeeb7fa7cfe352b856923b97f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/78607/ff72fb5c931dbc18823efd7f50428a741e9d563aeeb7fa7cfe352b856923b97f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-club-makadi-bay-11/pZb7ix-YPhsMaRK4v6rCs0AAogcl86-X_ikyoRjsFS_ezJLAAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1p7N1wZIs05QQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgYXABLtAxS8BRVkGN4CQK90T8syTABLnJMBUAAbzUgRutYBHfWPDiAaDerbwQkBEmMBDGMBAwt4s12c/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-club-makadi-bay-11/pZb7ix-YPhsMaRK4v6rCs0AAogcl86-X_ikyoRjsFS_ezJLAAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwj7XO1wZIs05QQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgYXABLtAxS8BRVkGN4CQK90T8syTABLnJMBUAAbzUgRutYBHfWPDiAaDerbwQkBEmMBDGMBAwvqEzjE/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1865,7 +1865,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3395/4e929a72c55ba07bd419fd4fc5f4ec88abd20fd7433df941ae2dc1bbab9385af.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3395/4e929a72c55ba07bd419fd4fc5f4ec88abd20fd7433df941ae2dc1bbab9385af.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/mirage-aqua-park-spa-cesar-palace/pZGSi7lPspD9jbLF4dKJ4wAAogKteDgSg3G8x_dMSWEEahNRmV_-hA3rD3I6yghEBTYSEqBEtPTVQw1p7N1wZIzU5QAVi2A2ACagJBSXIfHBHDGrkE_tsBqwQZGKnoBBvzyiMBg_-zHwIAYwEEC0bj3n8/?operator=KOMT&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/mirage-aqua-park-spa-cesar-palace/pZGSi7lPspD9jbLF4dKJ4wAAogKteDgSg3G8x_dMSWEEahNRmV_-hA3rD3I6yghEBTYSEqBEtPTVQwj7XO1wZIzU5QAVixA2ACagJBSXIfHBHDGrkE_tsBqwQZGKnoBBvzyiMBg_-zHwIAYwEEC2iMq9w/?operator=KOMT&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -1882,7 +1882,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/144/67de69bf3284eb311ec1848c98424e40282ae1f54da4859325997db14cb34cd2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/144/67de69bf3284eb311ec1848c98424e40282ae1f54da4859325997db14cb34cd2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/hilton-plaza-hurghada/pxJhxxiU0j8NIhaPcu5iYzAAogksiZjJkkvbnxgJwuM2CSpwAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1p7N1wZI705QQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwAcAQIAFgQXAhGJARLkAhS8BRVkGN4CQK90TMsyTwBLnJMBUAAbprIJHdb8BiAaDerbwQkBEmMBDGMBAgVtWc6s/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/hilton-plaza-hurghada/pxJhxxiU0j8NIhaPcu5iYzAAogksiZjJkkvbnxgJwuM2CSpwAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwj7XO1wZI705QQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwAcAQIAFgQXAhGJARLkAhS8BRVkGN4CQK90TMsyTwBLnJMBUAAbprIJHdb8BiAaDerbwQkBEmMBDGMBAgU73fFE/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1899,7 +1899,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9271/2f1f78b60174c598f1fc5b696a413fb0633ff5d108af84c81dbc64c22a3ff793.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9271/2f1f78b60174c598f1fc5b696a413fb0633ff5d108af84c81dbc64c22a3ff793.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/steigenberger-aqua-magic/pRBoMkrWO7Gt0xuOLUr_itAAogA-AkjIe23a5YvL_LADXSTQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1p7N1wZI_U5QQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckGeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CEcU7QOo4TMsyTwBLnJMBUAAbzSAdr44QIBoN6tvBCQESYwEMYwECC9CwPKU/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/steigenberger-aqua-magic/pRBoMkrWO7Gt0xuOLUr_itAAogA-AkjIe23a5YvL_LADXSTQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwj7XO1wZI_U5QQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckGeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CEcU7QOo4TMsyTwBLnJMBUAAbzSAdr44QIBoN6tvBCQESYwEMYwECC4EQlF0/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1916,7 +1916,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/15577/5172687654734e7bd365dfb8776477e87f2ffc05bef35066663f90cb1aedea4d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/15577/5172687654734e7bd365dfb8776477e87f2ffc05bef35066663f90cb1aedea4d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pCJrptKmQtPNQ34rJe2DIXAAogGoT9H0OXI1hh5IOf9xInhAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIhU9QQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrmtAyAdMoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIFtk6jWw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pCJrptKmQtPNQ34rJe2DIXAAogGoT9H0OXI1hh5IOf9xInhAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIhU9QQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrmtAyAdMoKIBTwBLxyNQABucMR2o_w8gGg2i2sEJARJjAQxjAQIFQkJRug/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1933,7 +1933,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR8UT2/84e511ad8345d593a58bdef46596d71afe86049ae99ad31a6e8778bf7e4a505b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR8UT2/84e511ad8345d593a58bdef46596d71afe86049ae99ad31a6e8778bf7e4a505b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/tolip-el-narges-15/pWizmL2iwLYBi1LhBCsgDQAAog1BQ7HRblOse3GT3nDQxj37FrMSP0fL1EROuUNUxahekqBFZJVFgw1p7N1wZImU9QQVi2A2ACagpBRUdDQVI4VVQyagpSTVNEREIwMDAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBcCFgAQI8DU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwEDC4ASdG0/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/tolip-el-narges-15/pWizmL2iwLYBi1LhBCsgDQAAog1BQ7HRblOse3GT3nDQxj37FrMSP0fL1EROuUNUxahekqBFZJVFgwj7XO1wZImU9QQVixA2ACagpBRUdDQVI4VVQyagpSTVNEREIwMDAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBcCFgAQI8DU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwEDC7NhEeo/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1950,7 +1950,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114371/c0f6f048d66b5c40a1a8f99511e797d6d138de108bb51238f324540a739151a3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114371/c0f6f048d66b5c40a1a8f99511e797d6d138de108bb51238f324540a739151a3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,el-gouna/steigenberger-golf/pAuBPNTaNiQhV13m_Dr1yaAAogZ5MJrIQtSQW7sd2S9ZOpdKuZrrjlg011eTGZhj4MIawqBEVYSU0w1p7N1wZIiVFQAVjuAmACagJCQnIhHBHD_Qa5BIzIR6sEHBu9pj8Y4bZGAZ6Cj_AMAgBjAQIMN65flg/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,el-gouna/steigenberger-golf/pAuBPNTaNiQhV13m_Dr1yaAAogZ5MJrIQtSQW7sd2S9ZOpdKuZrrjlg011eTGZhj4MIawqBEVYSU0wj7XO1wZIiVFQAVjpAmACagJCQnIhHBHD_Qa5BIzIR6sEHBu9pj8Y4bZGAZ6Cj_AMAgBjAQIMe2xrrA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1967,7 +1967,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109786/37ca9c7bddf56171d0d7f4378b2b7ff5f91ddf54bdf7c71b3f76ede9723f8a71.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109786/37ca9c7bddf56171d0d7f4378b2b7ff5f91ddf54bdf7c71b3f76ede9723f8a71.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/palm-royale-soma-bay/pbqf7xRy6-dyK4b0edvHqUAAogkxibFc0jKYUCAroK4yfLehoi_GQsklzghzk33M9vOa8qBEVYSU0w1p7N1wZIsVFQAVi2A2ACagJBSXIhHBHa2Qa5BMnwR6sELBv2zTkY5vRDAaf_yZIMAgBjAQINweYE8w/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/palm-royale-soma-bay/pbqf7xRy6-dyK4b0edvHqUAAogkxibFc0jKYUCAroK4yfLehoi_GQsklzghzk33M9vOa8qBEVYSU0wj7XO1wZIsVFQAVixA2ACagJBSXIhHBHa2Qa5BMnwR6sELBv2zTkY5vRDAaf_yZIMAgBjAQINrxcGpg/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1984,7 +1984,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/171/240d2dff25a3944657561d7c1075544034bfac85342fa0e020a2c291be926f5c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/171/240d2dff25a3944657561d7c1075544034bfac85342fa0e020a2c291be926f5c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tropitel-naama-bay/pn5J9E0oPtJRXlQg9BcZ6fAAogYbY948rCsBikyerseTHn3QAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI0FFQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfABwBAgAWBBcCEaQBEskCFNcGFUYYmgNA9nJMoKIBTwBLxyNQABuIpQEdvIsPIBoNotrBCQESYwEMYwECBcvu-BI/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tropitel-naama-bay/pn5J9E0oPtJRXlQg9BcZ6fAAogYbY948rCsBikyerseTHn3QAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI0FFQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfABwBAgAWBBcCEaQBEskCFNcGFUYYmgNA9nJMoKIBTwBLxyNQABuIpQEdvIsPIBoNotrBCQESYwEMYwECBd1-nks/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2001,7 +2001,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/84/c0fd656e6a8a6563fea34e1602c3b4a186d285126f1b4563c158ea91c9463ccb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/84/c0fd656e6a8a6563fea34e1602c3b4a186d285126f1b4563c158ea91c9463ccb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/la-residence-des-cascades/pQPsV4MFs238O_q_EuDBnNAAogszDWobjRDMhZFSJx39-siWz2l0R4KdsclpijcJxFcPYqBE9SRVgw1p7N1wZI41FQQVjuAmACagZETS4yLjFyNZsBFQcXAFwDWAVWAhFDQIcGXZsPTyRT0p0BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIMJS15QA/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,soma-bay/la-residence-des-cascades/pQPsV4MFs238O_q_EuDBnNAAogszDWobjRDMhZFSJx39-siWz2l0R4KdsclpijcJxFcPYqBE9SRVgwj7XO1wZI41FQQVjpAmACagZETS4yLjFyNZsBFQcXAFwDWAVWAhFDQIcGXZsPTyRT0p0BUgBer09L7UNhAEzljDogmf6XCQ0AAhJjAQIM79F48Q/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2018,7 +2018,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR2BHE/7339db7ab03bc5cad8c90b9450dc44ef3e7d20f99300f494b86dd02823544511.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR2BHE/7339db7ab03bc5cad8c90b9450dc44ef3e7d20f99300f494b86dd02823544511.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,kair,giza/hilton-pyramids-golf-resort/puQBJnvtjPqNR0hCvBGUzPAAog1-dBq0ypXSmwoj3JQrbsWbFrMSP0fL1EROuUNUxahekqBFZJVFgw1p7N1wZIgVJQQVi2A2ACagpBRUdDQVIyQkhFagpSTVNQVFdQVjAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBcCFgAQI8DU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwECC3_zaYM/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,kair,giza/hilton-pyramids-golf-resort/puQBJnvtjPqNR0hCvBGUzPAAog1-dBq0ypXSmwoj3JQrbsWbFrMSP0fL1EROuUNUxahekqBFZJVFgwj7XO1wZIgVJQQVixA2ACagpBRUdDQVIyQkhFagpSTVNQVFdQVjAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBcCFgAQI8DU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwECCwhLu6I/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2035,7 +2035,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/58596/0a8d81b80720c8ec1d4350cc6ef3fb5eead12d60bb6142da6a88fbdf7e91d0dc.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/58596/0a8d81b80720c8ec1d4350cc6ef3fb5eead12d60bb6142da6a88fbdf7e91d0dc.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/sunrise-anjum-resort-12/p3pwO284DRdv69jG9qw8ZBAAog4b2uM5PG5VPbf9e0Cjw8nQAAAABWuQQAcLkEAAcAAQAqBFdFWlkw1p7N1wZIsFJQQVi2A2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDQOFvT7aWAUwAS7EvUAAb1S0Rh1Ud8qgPIBoNmd_BCQESYwEMYwEEC2MEPJE/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/sunrise-anjum-resort-12/p3pwO284DRdv69jG9qw8ZBAAog4b2uM5PG5VPbf9e0Cjw8nQAAAABWuQQAcLkEAAcAAQAqBFdFWlkwj7XO1wZIsFJQQVixA2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDQOFvT7aWAUwAS7EvUAAb1S0Rh1Ud8qgPIBoNmd_BCQESYwEMYwEEC_64yiA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2052,7 +2052,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3929/1c836c69dc61714b3ef6c6fc358d21f6f63e97303313b2537ce90ccb9a1d341c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3929/1c836c69dc61714b3ef6c6fc358d21f6f63e97303313b2537ce90ccb9a1d341c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-beach-resort-10/pfITIYPQNYO91STbmllEPuAAogBrC134cM6L5qU_8KXP_P9gAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIyVJQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrhBAyGJMoKIBTwBLxyNQAB3EsBAgGhuV6V4NjfHiCAESYwEMYwECBTKooeA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-beach-resort-10/pfITIYPQNYO91STbmllEPuAAogBrC134cM6L5qU_8KXP_P9gAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIyVJQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrhBAyGJMoKIBTwBLxyNQAB3EsBAgGhuV6V4NjfHiCAESYwEMYwECBcIEqMM/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2069,7 +2069,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3912/a25804375bd5ced85c95a2fdac6ac6cf7d887fc27a80c4368e00c4ee9eaa2f2d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3912/a25804375bd5ced85c95a2fdac6ac6cf7d887fc27a80c4368e00c4ee9eaa2f2d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/stella-di-mare-beach-spa/pZ7Q1OIjdrglL_cZ93e0xuAAogZRQ-yZoJkgknOxgHYm6KlQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIzVJQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRnRBA2WJMoKIBTwBLxyNQABvz0wMd0dwMIBoNotrBCQESYwENYwECBYi3Z9E/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/stella-di-mare-beach-spa/pZ7Q1OIjdrglL_cZ93e0xuAAogZRQ-yZoJkgknOxgHYm6KlQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIzVJQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAXBhYOEt8DFNcGFUYYmgMRnRBA2WJMoKIBTwBLxyNQABvz0wMd0dwMIBoNotrBCQESYwENYwECBfLf6T8/?operator=WEZY&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "MONTE CARLO SHARM RESORT SPA & AQUA PARK",
+    "price": 10579.0,
+    "dates": "2026-11-28 - 2026-12-05",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-05",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10796/cb0846061d879a03bf18ac29b68605e5cb6b6472ec86961511bd6c9efcdf7a1f.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10796/cb0846061d879a03bf18ac29b68605e5cb6b6472ec86961511bd6c9efcdf7a1f.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/monte-carlo-ex-ritz-carlton/pQxf6BX_DX0UzcPa2d6RkiAAogwbpSidZ2V4ePUlpdp1ytCwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI01JQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBFgAcABcGEu0DFNcGFUYYmgMRgUZA9SxMoKIBTwBLxyNQABuqNR2a-w8gGg2i2sEJARJjAQxjAQMLo8HDCg/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2086,7 +2103,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/32/01f3a9f728c953b25d7f0f6c052788c0d1dc3af06bf9bfb72a2b79c75b815148.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/32/01f3a9f728c953b25d7f0f6c052788c0d1dc3af06bf9bfb72a2b79c75b815148.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/baron-resort-sharm-el-sheikh/phLXgftK2Hi9LpB125f-BHAAogqGonc30ltuIyKqW_eORu3gAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI4FJQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCERkS1AMU1wYVRhiaA0D2ckygogFPAEvHI1AAG_WCAh3PrQ4gGg2i2sEJARJjAQ1jAQIFnDtN7A/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/baron-resort-sharm-el-sheikh/phLXgftK2Hi9LpB125f-BHAAogqGonc30ltuIyKqW_eORu3gAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI4FJQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCERkS1AMU1wYVRhiaA0D2ckygogFPAEvHI1AAG_WCAh3PrQ4gGg2i2sEJARJjAQ1jAQIFBqTRzA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2103,7 +2120,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/49757/36d49fb51c9947fafa003fded822f69d29cc0e071af1906a6a7551e32bca7d2c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/49757/36d49fb51c9947fafa003fded822f69d29cc0e071af1906a6a7551e32bca7d2c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-makadi-bay-12/p5GgzcJgVOzg4delEXBzmCAAogdVR-_dZAGwNBH_Pd8ZXT5wAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1p7N1wZIslNQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARYAHAAXBhLtAxS8BRVkGN4CQK90T8syTABLnJMBUAAR1T0bqe8OHf6BASAaDerbwQkBEmMBDGMBAws3bURz/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/xanadu-makadi-bay-12/p5GgzcJgVOzg4delEXBzmCAAogdVR-_dZAGwNBH_Pd8ZXT5wAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwj7XO1wZIslNQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARYAHAAXBhLtAxS8BRVkGN4CQK90T8syTABLnJMBUAAR1T0bqe8OHf6BASAaDerbwQkBEmMBDGMBAwsaCnRX/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2120,26 +2137,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR2158/bc983d6760dcc2e12d8725e4a78b13c0dabaeac96f0ee42dad6801a75f00c158.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AEGCAR2158/bc983d6760dcc2e12d8725e4a78b13c0dabaeac96f0ee42dad6801a75f00c158.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/sonesta-cairo-13/predCrIgKFksOuwszPqrVIAAogQ_zUtX7_0TqOKjxvrgZ4tbFrMSP0fL1EROuUNUxahekqBFZJVFgw1p7N1wZI51NQQVi2A2ACagpBRUdDQVIyMTU4agpSTVNQREIwMDAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBcCFgAQI8DU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwECC-mRJjk/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,kair,c/sonesta-cairo-13/predCrIgKFksOuwszPqrVIAAogQ_zUtX7_0TqOKjxvrgZ4tbFrMSP0fL1EROuUNUxahekqBFZJVFgwj7XO1wZI51NQQVixA2ACagpBRUdDQVIyMTU4agpSTVNQREIwMDAwagxXQVdDQUlEUDEwMDVqDENBSVdBV0RQMTAwNXI0kQGbAZ0BjwEaABcHFQBcCFgAQI8DU5x5UgBe4YYBS-1DYQBMkIg4DfGCmgkgAQIMYwECCzLZG2E/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
-  },
-  {
-    "hotel_name": "MONTE CARLO SHARM RESORT SPA & AQUA PARK",
-    "price": 10847.0,
-    "dates": "2026-11-28 - 2026-12-05",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-05",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10796/cb0846061d879a03bf18ac29b68605e5cb6b6472ec86961511bd6c9efcdf7a1f.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10796/cb0846061d879a03bf18ac29b68605e5cb6b6472ec86961511bd6c9efcdf7a1f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/monte-carlo-ex-ritz-carlton/pQxf6BX_DX0UzcPa2d6RkiAAogwbpSidZ2V4ePUlpdp1ytCwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI31RQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBFgAcABcGEu0DFNcGFUYYmgMRgUZA9SxMoKIBTwBLxyNQABuqNR2a-w8gGg2i2sEJARJjAQxjAQMLPWWC8A/?operator=WEZY&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Coral Travel"
   },
   {
     "hotel_name": "JAZ LAMAYA RESORT",
@@ -2154,7 +2154,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14/a372b5d9b3e08461289cac8f600185c4869fcec70ce92f7de1e17d980457207d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14/a372b5d9b3e08461289cac8f600185c4869fcec70ce92f7de1e17d980457207d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,madinat-coraya/iberotel-lamaya-resort/pnkwUhGfqRQ6ELSX15q5UQAAognGoGK1EItd4zgQ1l6ZXShgAAAACrtwQAxbcEAAcAAQAqBFdFWlkw1p7N1wZIgFVQQVjuAmADaglFbnRlciBBaXJqBDA4MjByQZ4BkwEfABwBAgAWBBcCEQcS5gMUkwcVHhiQA0Dscky2lgFPAEuxL1AAHaOoECAaG7K1Mg2PrY8JARJjAQ1jAQMFC5Y7nA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,madinat-coraya/iberotel-lamaya-resort/pnkwUhGfqRQ6ELSX15q5UQAAognGoGK1EItd4zgQ1l6ZXShgAAAACrtwQAxbcEAAcAAQAqBFdFWlkwj7XO1wZIgFVQQVjpAmADaglFbnRlciBBaXJqBDA4MjByQZ4BkwEfABwBAgAWBBcCEQcS5gMUkwcVHhiQA0Dscky2lgFPAEuxL1AAHaOoECAaG7K1Mg2PrY8JARJjAQ1jAQMFeuYrUw/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2171,7 +2171,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124693/ae712010ae12bd572bd3b7b32b633e87f05689cd555e7d6dcdba2a3484074481.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124693/ae712010ae12bd572bd3b7b32b633e87f05689cd555e7d6dcdba2a3484074481.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,marsa-alam/fantazia-royal-resort/piAotE9v9PS2tcW2rb6hoEAAoguC7vBwRKfWk4c7xbNOPumfrOJZTGW3cimOmAE7dkBFkqBEVYSU0w1p7N1wZIh1VQAVi-AmABagJBSXIeHBGVzge5BMvOSqsEGhupuEoY0fVRAebYkoQPAwBjcqeIjA/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,marsa-alam/fantazia-royal-resort/piAotE9v9PS2tcW2rb6hoEAAoguC7vBwRKfWk4c7xbNOPumfrOJZTGW3cimOmAE7dkBFkqBEVYSU0wj7XO1wZIh1VQAVi5AmABagJBSXIeHBGVzge5BMvOSqsEGhupuEoY0fVRAebYkoQPAwBjePfbQQ/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -2188,7 +2188,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/22827/b2302002c22de5fc0af3be51463a8102b56afc88138ba2b3e1ef2265b218ef79.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/22827/b2302002c22de5fc0af3be51463a8102b56afc88138ba2b3e1ef2265b218ef79.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-aqua-park-sharm-el-sheikh/pbjQoDaYTzzCudbNKEDidnAAoglYus7D-c3HSeg5VvWb55agAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIpFVQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nIRijFMlnFPAEvHI1AAHcSwECAaG-C9JQ3CnJwJARJjAQ1jAQQMa-mBhQ/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-aqua-park-sharm-el-sheikh/pbjQoDaYTzzCudbNKEDidnAAoglYus7D-c3HSeg5VvWb55agAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIpFVQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgNA9nIRijFMlnFPAEvHI1AAHcSwECAaG-C9JQ3CnJwJARJjAQ1jAQQMrw8uew/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2205,7 +2205,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3923/a9a7ee67cd5f1eebbddcd23a0803fd9490ae5bd4f9cc5db4ecdc6cae7122ac6e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3923/a9a7ee67cd5f1eebbddcd23a0803fd9490ae5bd4f9cc5db4ecdc6cae7122ac6e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/cyrene-grand-hotel-ex-melia/pIstN7bVmgs_Jz576BFY79AAogYcD5xZ4tE4q8HRfCJFKipAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIkVZQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRqBBAzmJMoKIBTwBLxyNQABuG5wwdvskDIBoNotrBCQESYwENYwEEDNrZg_E/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/cyrene-grand-hotel-ex-melia/pIstN7bVmgs_Jz576BFY79AAogYcD5xZ4tE4q8HRfCJFKipAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIkVZQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRqBBAzmJMoKIBTwBLxyNQABuG5wwdvskDIBoNotrBCQESYwENYwEEDONgBoI/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2222,7 +2222,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HRGPRIM/689c5c0f2549c7016cce047365638daf0ba68bbb2127ecf2fa4c8dd7e917ea32.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HRGPRIM/689c5c0f2549c7016cce047365638daf0ba68bbb2127ecf2fa4c8dd7e917ea32.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/prima-life-makadi-bay/p_f709E3xIi3l-5SPWtkbMAAogbLakIV24_dQSP02dHLU1p7nUJ8t-bYDKH12-aAbiF08qBFZJVFgw1p7N1wZIsVZQQVjGAWACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS-1DYQBMjL45DevMmAkgAFGPtdr7jwFPk88SXZCE8_N1Ag9jAQIOaLvvwA/?operator=VITX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/prima-life-makadi-bay/p_f709E3xIi3l-5SPWtkbMAAogbLakIV24_dQSP02dHLU1p7nUJ8t-bYDKH12-aAbiF08qBFZJVFgwj7XO1wZIsVZQQVjBAWACckAaABUHFwBcA1gFQI8DW7-DAVOPLVIAXq9PS-1DYQBMjL45DevMmAkgAFGPtdr7jwFPk88SXZCE8_N1Ag9jAQIOgmzAdQ/?operator=VITX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2239,7 +2239,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/119/60a13e5941c71f43df55e0e556b38c644123c28d8f4e8015965d15624c295256.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/119/60a13e5941c71f43df55e0e556b38c644123c28d8f4e8015965d15624c295256.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-resort-and-casino/pkYJ9zmQDp6kkGf50Q6Y7eAAogeTfp25sxO5IKgjlCOpwSDAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZImldQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAXBhYLEWUS_QIU1wYVRhiaA0D2ckygogFPAEvHI1AAHcSwECAaG7DMfA3yjcUIARJjAQxjAQIFOXZrlw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-resort-and-casino/pkYJ9zmQDp6kkGf50Q6Y7eAAogeTfp25sxO5IKgjlCOpwSDAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZImldQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAXBhYLEWUS_QIU1wYVRhiaA0D2ckygogFPAEvHI1AAHcSwECAaG7DMfA3yjcUIARJjAQxjAQIFvCK6hw/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2256,7 +2256,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/96/e299a4dc1083aef4381cdd0f1c5c6c2ec039535fc5a26f8a29283c14b600abe1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/96/e299a4dc1083aef4381cdd0f1c5c6c2ec039535fc5a26f8a29283c14b600abe1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-rotana/pS4WgYa0UzgHFRz79T1rs-AAogOsi06g7SNUpzHUstliWS-gAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIu1dQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAXBhYLEU4SlAMU1wYVRhiaA0D2ckygogFPAEvHI1AAHcSwECAaG6qSHg34x6MJARJjAQxjAQIGISTpGA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-rotana/pS4WgYa0UzgHFRz79T1rs-AAogOsi06g7SNUpzHUstliWS-gAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIu1dQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAXBhYLEU4SlAMU1wYVRhiaA0D2ckygogFPAEvHI1AAHcSwECAaG6qSHg34x6MJARJjAQxjAQIGIV4F3A/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2273,7 +2273,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/5355/41e80442201b0298e4bf1c35848b2bd1b438a08a1395bb63ce36b1f63dec04a1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/5355/41e80442201b0298e4bf1c35848b2bd1b438a08a1395bb63ce36b1f63dec04a1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/jaz-asteria-beach-11/p1gcyDVYUxIbfItI4SONLMAAogdQWwHoFOjT_nE4kFPCh4nvWtM8qAxQtS1IhxytkZSNYqBE9SRVgw1p7N1wZI11dQQVjGAWACagdQNE4uMi4xcjabARUHFwBcA1gFVgJAygZdmw9PJBHRE1OBigFSAF6vT0vtQ2EATOWMOiCS_pcJDQACEmMBAgxZjNVi/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/jaz-asteria-beach-11/p1gcyDVYUxIbfItI4SONLMAAogdQWwHoFOjT_nE4kFPCh4nvWtM8qAxQtS1IhxytkZSNYqBE9SRVgwj7XO1wZI11dQQVjBAWACagdQNE4uMi4xcjabARUHFwBcA1gFVgJAygZdmw9PJBHRE1OBigFSAF6vT0vtQ2EATOWMOiCS_pcJDQACEmMBAgxzkOGA/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2290,26 +2290,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/24/9ad83ef56ff1acdd321c2bc8569a58443b311a7299030eb44c7dfaff7c7d6f25.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/24/9ad83ef56ff1acdd321c2bc8569a58443b311a7299030eb44c7dfaff7c7d6f25.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/baron-palace-resort-hurghada/pRXuTT80pTUg3_RNAWcVjvAAogGTCtMWdF4ZLIfZ3xLcnGm2z2l0R4KdsclpijcJxFcPYqBE9SRVgw1p7N1wZI7ldQQVjuAmACagVZLjIuMXI1mwEVBxcAWAhWAhEHXAFAwgZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCZ_pcJDQACEmMBAgxyrf4A/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,sahl-hasheesh/baron-palace-resort-hurghada/pRXuTT80pTUg3_RNAWcVjvAAogGTCtMWdF4ZLIfZ3xLcnGm2z2l0R4KdsclpijcJxFcPYqBE9SRVgwj7XO1wZI7ldQQVjpAmACagVZLjIuMXI1mwEVBxcAWAhWAhEHXAFAwgZdmw9PJFPSnQFSAF6vT0vtQ2EATOWMOiCZ_pcJDQACEmMBAgxHwIKN/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
-  },
-  {
-    "hotel_name": "SHERATON MIRAMAR RESORT EL GOUNA",
-    "price": 11257.0,
-    "dates": "2026-11-26 - 2026-12-03",
-    "checkin_date": "2026-11-26",
-    "checkout_date": "2026-12-03",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124752/d575ff98bc926597f640f2461db1d194787e84ffd54601d0c8a5001fa7dff765.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124752/d575ff98bc926597f640f2461db1d194787e84ffd54601d0c8a5001fa7dff765.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,el-gouna/sheraton-miramar-el-gouna/pV0wseYZk5-ne93vu9tNZgAAogvHXPZy_JC1RNbndAq9uC16uZrrjlg011eTGZhj4MIawqBEVYSU0w1p7N1wZI-VdQAVjuAmACagNVQUlyIRwR0M4HuQT_9karBBwb8aROGICRTAHNroK_DgIAYwECDH0ROVM/?operator=EXIM&adults=2&children=2020-12-10",
-    "ta_rating": null,
-    "operator": "Exim Tours"
   },
   {
     "hotel_name": "MOVENPICK RESORT SHARM EL SHEIKH",
@@ -2324,7 +2307,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/142/fce610361da37b8718d31c5034c6ba6db820177571d81ff61c292f1317a64379.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/142/fce610361da37b8718d31c5034c6ba6db820177571d81ff61c292f1317a64379.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/moevenpick-golf-club/pzDNpjeep2-_1T7pNX9cDZAAogmcUPASBNJdVXd0zwBI1ElwAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZInFhQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfABwBAgAWBBcCEYcBEuYCFNcGFUYYmgNA9nJMoKIBTwBLxyNQABuWrAMdroQNIBoNotrBCQESYwEMYwECBW5KBwo/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/moevenpick-golf-club/pzDNpjeep2-_1T7pNX9cDZAAogmcUPASBNJdVXd0zwBI1ElwAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZInFhQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfABwBAgAWBBcCEYcBEuYCFNcGFUYYmgNA9nJMoKIBTwBLxyNQABuWrAMdroQNIBoNotrBCQESYwEMYwECBXYqQDQ/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2341,7 +2324,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/75/a99b9151c89df214697c63e8cdbad6335388ecbd7efd9fcf8299e2ee60484b5d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/75/a99b9151c89df214697c63e8cdbad6335388ecbd7efd9fcf8299e2ee60484b5d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/jaz-casa-del-mar-beach-10/pR6pqx0lIo_SpHY0akdN3BAAogyPl25F-vsh1HWDAVkO9wlQAAAAA3uwQAUbsEAAcAAAAqBFdFWlkw1p7N1wZI5llQQVi2A2ADaglFbnRlciBBaXJyQp4BHwAcAQIAFgAXBhFEEqkDE74GFMkEFQ8YlQNAgm9PyzJMAFCckwFLAB2vrxAgGhvQuzIN6J-PCQESYwEMYwEDCxi4-CE/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/jaz-casa-del-mar-beach-10/pR6pqx0lIo_SpHY0akdN3BAAogyPl25F-vsh1HWDAVkO9wlQAAAAA3uwQAUbsEAAcAAAAqBFdFWlkwj7XO1wZI5llQQVixA2ADaglFbnRlciBBaXJyQp4BHwAcAQIAFgAXBhFEEqkDE74GFMkEFQ8YlQNAgm9PyzJMAFCckwFLAB2vrxAgGhvQuzIN6J-PCQESYwEMYwEDC2BoWZg/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2358,7 +2341,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11612/868f59a5223e66b36e91cc8174e5ae33bbe59f6be636987f9789fa3a500d46b6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11612/868f59a5223e66b36e91cc8174e5ae33bbe59f6be636987f9789fa3a500d46b6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-select-montemare/pfpbzXrVfMjCuh8wcHTtthAAognQS7A3VmW2gE4xVilBur-QAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZInlpQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRsUxAxSZMoKIBTwBLxyNQAB3EsBAgGhuviHoN89HHCAESYwEMYwEEC0z5j_Q/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-select-montemare/pfpbzXrVfMjCuh8wcHTtthAAognQS7A3VmW2gE4xVilBur-QAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZInlpQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRsUxAxSZMoKIBTwBLxyNQAB3EsBAgGhuviHoN89HHCAESYwEMYwEEC7a4sow/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2375,7 +2358,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/29224/298cef66b9221412a39dba292e521d786a5fbc67ec6f93eb54fae1d9daf3bf38.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/29224/298cef66b9221412a39dba292e521d786a5fbc67ec6f93eb54fae1d9daf3bf38.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/jaz-maraya/pEgqOyaMXwj2WlcsDlxeclAAog_LN3MP_WG0NxfSa6fwK8lQAAAABWuQQAcLkEAAcAAQAqBFdFWlkw1p7N1wZIp1tQQVi2A2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDQOFvEYdjTK8zTwBLsS9QABvFhwIdiaQOIBoNmd_BCQESYwENYwEDBYWIqPM/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/jaz-maraya/pEgqOyaMXwj2WlcsDlxeclAAog_LN3MP_WG0NxfSa6fwK8lQAAAABWuQQAcLkEAAcAAQAqBFdFWlkwj7XO1wZIp1tQQVixA2ADaglFbnRlciBBaXJqBDA5NDVyQp4BkwEfAAIBHAAWBBcCEu0DFJUIFZMCGKQDQOFvEYdjTK8zTwBLsS9QABvFhwIdiaQOIBoNmd_BCQESYwENYwEDBZC9aX0/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2392,7 +2375,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11018/f3cb222a880ba69240572377e64f54303378e9a5c17eabd00e3290c1b28ba50f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11018/f3cb222a880ba69240572377e64f54303378e9a5c17eabd00e3290c1b28ba50f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadina/p9gbHFGz5zGNVaQylPXEC5AAog7Bs8TuFPWqNJrSCKsmDVdQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkw1p7N1wZIzlxQQVieA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CEZhJQJcrTMsyTwBLnJMBUAAd_K4QIBob3bADDY2rvgkBEmMBDWMBAwUzdgZV/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/jaz-makadina/p9gbHFGz5zGNVaQylPXEC5AAog7Bs8TuFPWqNJrSCKsmDVdQAAAAAEuwQAHrsEAAcAAAAqBFdFWlkwj7XO1wZIzlxQQViZA2ADahNMT1QgUG9saXNoIEFpcmxpbmVzagQwNjMwckKeAZMBHwACARwAFgQXAhLtAxS8BRVkGN4CEZhJQJcrTMsyTwBLnJMBUAAd_K4QIBob3bADDY2rvgkBEmMBDWMBAwXTiMwV/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2409,7 +2392,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109769/74e3b6f599bcfd7b2c90a013c43f0422ea52eeeb223599666759f93d4d8c1977.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109769/74e3b6f599bcfd7b2c90a013c43f0422ea52eeeb223599666759f93d4d8c1977.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/iberotel-makadi-beach/pnxYnXnaxHnsGiKLfQHUqQAAogEBu26MhheksSENH_QBDzFhoi_GQsklzghzk33M9vOa8qBEVYSU0w1p7N1wZI011QAVi2A2ACagJBSXIhHBHJ2Qa5BNrwR6sELBvXzDkYssNCAeXY9oMMAgBjAQILuw1SCQ/?operator=EXIM&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/iberotel-makadi-beach/pnxYnXnaxHnsGiKLfQHUqQAAogEBu26MhheksSENH_QBDzFhoi_GQsklzghzk33M9vOa8qBEVYSU0wj7XO1wZI011QAVixA2ACagJBSXIhHBHJ2Qa5BNrwR6sELBvXzDkYssNCAeXY9oMMAgBjAQILMdNTtA/?operator=EXIM&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -2426,7 +2409,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/107/057b4f63dfc3eb6484cb83fb660c0582569324efe56c6aa1cad5727f15e1eea5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/107/057b4f63dfc3eb6484cb83fb660c0582569324efe56c6aa1cad5727f15e1eea5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-belvedere/plNPaWrRsYmGM4gEkHe-C7AAogL8UhYc-ekLJUwYRpK9K3rQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI6l1QQVieA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEWQSiQMU1wYVRhiaA0D2ckygogFPAEvHI1AAG5PUAx2x3AwgGg2i2sEJARJjAQ1jAQMFX9T_MQ/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-belvedere/plNPaWrRsYmGM4gEkHe-C7AAogL8UhYc-ekLJUwYRpK9K3rQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI6l1QQViZA2ADaglFbnRlciBBaXJqBDA4MTByQZ4BkwEfABwBAgAWBBcCEWQSiQMU1wYVRhiaA0D2ckygogFPAEvHI1AAG5PUAx2x3AwgGg2i2sEJARJjAQ1jAQMFFMROqw/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2443,7 +2426,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/54272/91262aa5a56a941411a4a2302db2c86e73160b6c0feb342564105cae4baeed8d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/54272/91262aa5a56a941411a4a2302db2c86e73160b6c0feb342564105cae4baeed8d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/swissotel-sharm-el-sheikh-14/p3g7dBRulQPnf9OAhQ9mlBAAogptmA1W54OQEuMi3LZM_rEgAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIzl5QQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBFgAcABcGEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABH4YB3Mzw8gGhuP2TUNk4GMCQESYwEMYwEDC4q39V0/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/swissotel-sharm-el-sheikh-14/p3g7dBRulQPnf9OAhQ9mlBAAogptmA1W54OQEuMi3LZM_rEgAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIzl5QQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBFgAcABcGEu0DFNcGFUYYmgNA9nJPoKIBTABLxyNQABH4YB3Mzw8gGhuP2TUNk4GMCQESYwEMYwEDC7I3jyM/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2460,7 +2443,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3370/e617140ce274cbff641469cab3a9e8108a2b441a53c171d11ffc4664d7348f3a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3370/e617140ce274cbff641469cab3a9e8108a2b441a53c171d11ffc4664d7348f3a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/royal-azur-resort/pH874dVqrDeehI_lUgCLwRAAogtNavYNBP318NYBbp9rm-_nF-RjRK6pbRzXkBWz0HvScqBEtPTVQw1p7N1wZI4V5QAVgeYAJqAkFJch8cEaoauQS22QGrBBkY-uAEG_HwIwG1_KQfAgBjAQIFJGIuvg/?operator=KOMT&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/royal-azur-resort/pH874dVqrDeehI_lUgCLwRAAogtNavYNBP318NYBbp9rm-_nF-RjRK6pbRzXkBWz0HvScqBEtPTVQwj7XO1wZI4V5QAVgZYAJqAkFJch8cEaoauQS22QGrBBkY-uAEG_HwIwG1_KQfAgBjAQIFFPJibQ/?operator=KOMT&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -2477,7 +2460,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2606/9f1d6ec4eb1a1dc4ce9756e5a02d467af666ebf9ec458f9b91d52ef4c47d9f4d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2606/9f1d6ec4eb1a1dc4ce9756e5a02d467af666ebf9ec458f9b91d52ef4c47d9f4d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/moevenpick-el-quseir/peQPthD775Gu9uE_3BwcMyAAogxddOUgsYPAXdxy6lyxv47ky_jtnhHlSYGXysWzzO9yMqBE9SRVgw1p7N1wZI8l5QQVieA2ACagdFWE0uMi4xcjabARUHFwBcA1gFVgJAygYR0w1dsBZPJF6Z2AFTvBRSAEuxL2EATOWMOiCb_pcJDQACEmMBAgv0Nd_U/?operator=OREX&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,marsa-alam,c/moevenpick-el-quseir/peQPthD775Gu9uE_3BwcMyAAogxddOUgsYPAXdxy6lyxv47ky_jtnhHlSYGXysWzzO9yMqBE9SRVgwj7XO1wZI8l5QQViZA2ACagdFWE0uMi4xcjabARUHFwBcA1gFVgJAygYR0w1dsBZPJF6Z2AFTvBRSAEuxL2EATOWMOiCb_pcJDQACEmMBAgs-w794/?operator=OREX&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2494,7 +2477,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3928/f3b4d415a8341e82d6567487447e70c531114a57399d576954418db984eeca93.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/3928/f3b4d415a8341e82d6567487447e70c531114a57399d576954418db984eeca93.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sultan-gardens-resort/pybMuq2m_hbn1KsUgz7zmvAAogM7OQN3pSV8G-RXFUHe9pOAAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZIg2BQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrRBAyWJMoKIBTwBLxyNQABv8gwIdyKwOIBoNotrBCQESYwEMYwECBf38MWw/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sultan-gardens-resort/pybMuq2m_hbn1KsUgz7zmvAAogM7OQN3pSV8G-RXFUHe9pOAAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZIg2BQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRrRBAyWJMoKIBTwBLxyNQABv8gwIdyKwOIBoNotrBCQESYwEMYwECBQKClS4/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2511,7 +2494,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8426/f53ef5477623e2e553362b829484702370e3a3a95d2570b94e2b8cb988006f5d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8426/f53ef5477623e2e553362b829484702370e3a3a95d2570b94e2b8cb988006f5d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sunrise-select-diamond-beach-resort/pE6pGalaht_T-YuOPrOKMOAAog6N5JB2bj2SvPCRGF-371cQAAAADMuwQA5rsEAAcAEgAqBFdFWlkw1p7N1wZI3mBQQVieA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRvzNAtz9MoKIBTwBLxyNQABu2mQEdjpcPIBoNotrBCQESYwEMYwEEC5unt6w/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sunrise-select-diamond-beach-resort/pE6pGalaht_T-YuOPrOKMOAAog6N5JB2bj2SvPCRGF-371cQAAAADMuwQA5rsEAAcAEgAqBFdFWlkwj7XO1wZI3mBQQViZA2ADaglFbnRlciBBaXJqBDA4MTByQp4BkwEfAAIBHAAWBBcCEu0DFNcGFUYYmgMRvzNAtz9MoKIBTwBLxyNQABu2mQEdjpcPIBoNotrBCQESYwEMYwEEC29_fTE/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2528,8 +2511,25 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14774/5c290cdd68ff7e6fed44e2dcad852305fbccbb8cdf6bcdb20e652eaacd1fda23.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14774/5c290cdd68ff7e6fed44e2dcad852305fbccbb8cdf6bcdb20e652eaacd1fda23.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/reef-oasis-blue-bay-resort/pMa3RJiTdFQRIjMKmNE1uJAAoghvVSyLRRydl4Ht2vb0b-FgAAAADKuwQA5LsEAAcAAAAqBFdFWlkw1p7N1wZI4WBQQVhOYANqCUVudGVyIEFpcmoEMDgxMHJCngGTAR8AAgEcABYGFwAS7QMU1wYVRhiaAxGLZUDrDUygogFPAEvHI1AAG7jSAh2K3g0gGg2W2sEJARJjAQxjAQILPXBUBA/?operator=WEZY&adults=2&children=2020-12-10",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/reef-oasis-blue-bay-resort/pMa3RJiTdFQRIjMKmNE1uJAAoghvVSyLRRydl4Ht2vb0b-FgAAAADKuwQA5LsEAAcAAAAqBFdFWlkwj7XO1wZI4WBQQVhJYANqCUVudGVyIEFpcmoEMDgxMHJCngGTAR8AAgEcABYGFwAS7QMU1wYVRhiaAxGLZUDrDUygogFPAEvHI1AAG7jSAh2K3g0gGg2W2sEJARJjAQxjAQIL09TOsA/?operator=WEZY&adults=2&children=2020-12-10",
     "ta_rating": null,
     "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "Aldiana Club Naga Bay",
+    "price": 12567.0,
+    "dates": "2026-11-26 - 2026-12-03",
+    "checkin_date": "2026-11-26",
+    "checkout_date": "2026-12-03",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124993/b1f5d26a903624c4b7c28f67d4a9bbc9a0cf5c691d37d2be60154e132614ef4b.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124993/b1f5d26a903624c4b7c28f67d4a9bbc9a0cf5c691d37d2be60154e132614ef4b.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,c/aldiana-club-naga-bay-9/pW8exhqCTU5nR36MDSWDeiAAogKQhmLbxx1tUS0O4n7YzeEquZrrjlg011eTGZhj4MIawqBEVYSU0wj7XO1wZIl2JQAVjpAmACagJBSXIhHBHB0Ae5BI71RqsEHBuQnU8Y369NAZXaidgOAgBjAQIF8u0t1Q/?operator=EXIM&adults=2&children=2020-12-10",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   }
 ]
