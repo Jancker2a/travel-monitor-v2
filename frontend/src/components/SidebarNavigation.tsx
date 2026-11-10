@@ -71,8 +71,8 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       group: "🇬🇷 Греция",
       icon: "🇬🇷",
       items: [
-        { id: "greece_7_10", title: "Крит и Родос 7–10 дней" },
-        { id: "greece_13_16", title: "Крит и Родос 13–16 дней" },
+        { id: "greece_7_10", title: "7–10 дней (5★ All Inclusive)" },
+        { id: "greece_13_16", title: "13–16 дней (5★ All Inclusive)" },
       ],
     },
     {
