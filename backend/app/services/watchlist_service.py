@@ -3,11 +3,11 @@ import logging
 import time
 import re
 from collections import defaultdict
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from typing import List, Optional, Tuple, Dict, Any
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, and_, desc, delete
+from sqlalchemy import select, and_, desc, delete, text
 
 from app.models.hotel import Hotel
 from app.models.cohort import OfferCohort
@@ -355,9 +355,55 @@ class WatchlistService:
         # Resolve related hotel_ids (canonical hotel, aliases, renames)
         related_hotel_ids = await cls._find_related_hotel_ids(db, hotel)
 
-        # 2. Fetch all cohorts for this hotel and related aliases
-        cohort_stmt = select(OfferCohort).where(OfferCohort.hotel_id.in_(related_hotel_ids))
-        all_cohorts = (await db.execute(cohort_stmt)).scalars().all()
+        # 2. Fetch all cohorts for this hotel and related aliases (DB-agnostic: PG uses cohort_id, SQLite uses cohort_hash)
+        from types import SimpleNamespace
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        join_col = "cohort_id" if is_pg else "cohort_hash"
+
+        placeholders = ",".join(f":h{i}" for i in range(len(related_hotel_ids)))
+        h_params = {f"h{i}": hid for i, hid in enumerate(related_hotel_ids)}
+
+        cohort_sql = f"""
+            SELECT 
+                {join_col} as cid,
+                cohort_hash,
+                filter_id,
+                hotel_id,
+                destination_code,
+                checkin_date,
+                checkout_date,
+                duration_nights,
+                airport_code,
+                board_basis,
+                room_type,
+                adults,
+                children,
+                operator,
+                offer_url
+            FROM offer_cohorts
+            WHERE hotel_id IN ({placeholders})
+        """
+        c_rows = (await db.execute(text(cohort_sql), h_params)).fetchall()
+        all_cohorts = [
+            SimpleNamespace(
+                cohort_id=r[0],
+                cohort_hash=r[1],
+                filter_id=r[2],
+                hotel_id=r[3],
+                destination_code=r[4],
+                checkin_date=str(r[5]) if r[5] else "",
+                checkout_date=str(r[6]) if r[6] else "",
+                duration_nights=int(r[7]) if r[7] else 7,
+                airport_code=r[8] or "WAW",
+                board_basis=r[9] or "All Inclusive",
+                room_type=r[10] or "Standard",
+                adults=int(r[11]) if r[11] else 2,
+                children=int(r[12]) if r[12] else 0,
+                operator=r[13] or "Touroperator",
+                offer_url=r[14] or "",
+            )
+            for r in c_rows
+        ]
         if not all_cohorts:
             raise HTTPException(status_code=404, detail="No cohorts found for this hotel")
 
@@ -389,15 +435,31 @@ class WatchlistService:
         scoped_cohort_ids = {c.cohort_id for c in scoped_cohorts}
         cohort_by_id = {c.cohort_id: c for c in all_cohorts}
 
-        # 4. Fetch all snapshots for all cohorts (to populate packages_map)
+        # 4. Fetch all snapshots for all cohorts (to populate packages_map and history)
         all_cohort_ids = [c.cohort_id for c in all_cohorts]
-        from sqlalchemy import bindparam
-        snap_query = (
-            select(PriceSnapshot)
-            .where(PriceSnapshot.cohort_id.in_(all_cohort_ids))
-            .order_by(PriceSnapshot.recorded_at.asc())
-        )
-        snap_rows = (await db.execute(snap_query)).scalars().all()
+        c_placeholders = ",".join(f":c{i}" for i in range(len(all_cohort_ids)))
+        c_params = {f"c{i}": cid for i, cid in enumerate(all_cohort_ids)}
+
+        snap_sql = f"""
+            SELECT 
+                {join_col} as cid,
+                recorded_at,
+                total_price_pln,
+                price_per_night_per_pax
+            FROM price_snapshots
+            WHERE {join_col} IN ({c_placeholders})
+            ORDER BY recorded_at ASC
+        """
+        s_rows = (await db.execute(text(snap_sql), c_params)).fetchall()
+        snap_rows = [
+            SimpleNamespace(
+                cohort_id=r[0],
+                recorded_at=r[1],
+                total_price_pln=float(r[2]),
+                price_per_night_per_pax=float(r[3]) if r[3] else float(r[2]) / 14.0,
+            )
+            for r in s_rows
+        ]
 
         packages_map: Dict[str, Dict[str, Any]] = {}
         # Keep latest snapshot for each cohort package
@@ -410,6 +472,7 @@ class WatchlistService:
                 if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
                 else datetime.utcnow().date()
             )
+            checkout_d = checkin_d + timedelta(days=cohort.duration_nights or 7)
             # Deduplicate by unique travel flight combination (departure date, duration, airport)
             # keeping the cheapest live price for each slot
             today_date = datetime.utcnow().date()
