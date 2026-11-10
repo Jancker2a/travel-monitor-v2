@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 from typing import Dict, Any, Optional, Tuple
 from datetime import datetime, date, timezone, timedelta
@@ -30,6 +31,7 @@ class OracleService:
                 return c_data
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        cohort_col = "cohort_id" if is_pg else "cohort_hash"
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
         # 1. Fetch monitor metadata
@@ -94,7 +96,7 @@ class OracleService:
                     ps.recorded_at,
                     ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
                 FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+                JOIN offer_cohorts oc ON ps.{cohort_col} = oc.{cohort_col}
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
                 WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
@@ -149,24 +151,27 @@ class OracleService:
         days_list = []
         valid_dates = []
         for r in rows:
-            c_date_str = r[4]
-            if c_date_str:
+            c_date_val = r[4]
+            if c_date_val:
                 try:
-                    c_date = (
-                        datetime.strptime(c_date_str, "%Y-%m-%d").date()
-                        if "-" in str(c_date_str)
-                        else today
-                    )
+                    if isinstance(c_date_val, datetime):
+                        c_date = c_date_val.date()
+                    elif isinstance(c_date_val, date):
+                        c_date = c_date_val
+                    elif "-" in str(c_date_val):
+                        c_date = datetime.strptime(str(c_date_val)[:10], "%Y-%m-%d").date()
+                    else:
+                        c_date = today
                     d_diff = (c_date - today).days
                     if d_diff >= 0:
                         days_list.append(d_diff)
                         valid_dates.append(c_date)
-                except Exception:
-                    pass
+                except Exception as e:
+                    logger.debug(f"Date parse error: {e}")
 
-        min_days = min(days_list) if days_list else 30
-        max_days = max(days_list) if days_list else 45
-        med_days = days_list[len(days_list) // 2] if days_list else 35
+        min_days = min(days_list) if days_list else 14
+        max_days = max(days_list) if days_list else 28
+        med_days = days_list[len(days_list) // 2] if days_list else 21
         nearest_dep = min(valid_dates).strftime("%d.%m") if valid_dates else ""
         furthest_dep = max(valid_dates).strftime("%d.%m") if valid_dates else ""
 
@@ -197,7 +202,7 @@ class OracleService:
         hist_min_sql = f"""
             SELECT oc.hotel_id, MIN(ps.total_price_pln) as hist_min
             FROM price_snapshots ps
-            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+            JOIN offer_cohorts oc ON ps.{cohort_col} = oc.{cohort_col}
             WHERE {filter_expr}
             GROUP BY oc.hotel_id;
         """
@@ -247,8 +252,32 @@ class OracleService:
             ],
         }
 
-        # Synthesize rule-based brief
-        report = ai_market_oracle.generate_rule_based_briefing(market_context)
+        # Synthesize intelligence: try LLM first if API key is present, fallback to deterministic engine
+        gem_key = os.getenv("GEMINI_API_KEY")
+        oai_key = os.getenv("OPENAI_API_KEY")
+        report = None
+
+        if gem_key:
+            try:
+                logger.info(f"Invoking Gemini LLM for filter {canonical_fid}...")
+                report = ai_market_oracle.call_gemini_oracle(market_context, gem_key)
+                if report and "macro_briefing" in report:
+                    report["macro_briefing"]["synthesized_by"] = "Google Gemini 2.5 Flash (Online)"
+            except Exception as e:
+                logger.warning(f"Gemini oracle call failed, falling back: {e}")
+
+        if not report and oai_key:
+            try:
+                logger.info(f"Invoking OpenAI LLM for filter {canonical_fid}...")
+                report = ai_market_oracle.call_openai_oracle(market_context, oai_key)
+                if report and "macro_briefing" in report:
+                    report["macro_briefing"]["synthesized_by"] = "OpenAI GPT-4o (Online)"
+            except Exception as e:
+                logger.warning(f"OpenAI oracle call failed, falling back: {e}")
+
+        if not report:
+            report = ai_market_oracle.generate_rule_based_briefing(market_context)
+
         macro = report.get("macro_briefing", {})
 
         res = {
@@ -261,6 +290,7 @@ class OracleService:
             "strategic_directive": macro.get("strategic_directive", ""),
             "buy_now_recommendation": macro.get("buy_now_recommendation", {}),
             "key_anomalies": macro.get("key_anomalies", []),
+            "synthesized_by": macro.get("synthesized_by", "Rule-Based Deterministic Engine (Offline)"),
         }
         _ORACLE_CACHE[canonical_fid] = (now_ts, res)
         return res

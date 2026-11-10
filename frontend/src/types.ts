@@ -301,6 +301,7 @@ export interface MarketOracleData {
   charter_dynamics: string;
   floor_status: string;
   strategic_directive: string;
+  synthesized_by?: string;
   buy_now_recommendation?: {
     status?: string;
     label?: string;

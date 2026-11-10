@@ -89,7 +89,7 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
               </span>
             </div>
             <div className="ai-oracle-subtitle">
-              <strong className="ai-oracle-headline">{headline}</strong> • {oracleData?.title || filterTitle} • Rule-Based Deterministic Engine (Offline)
+              <strong className="ai-oracle-headline">{headline}</strong> • {oracleData?.title || filterTitle} • {oracleData?.synthesized_by || "Rule-Based Deterministic Engine (Offline)"}
             </div>
           </div>
         </div>
@@ -147,7 +147,8 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
               <div className="ai-buy-now-titles">
                 <span className="ai-buy-now-kicker">ЕСЛИ ПОКУПАТЬ СЕЙЧАС:</span>
                 <span className="ai-buy-now-heading">
-                  {buyNowRecommendation?.explanation ||
+                  {(buyNowRecommendation as any)?.advice ||
+                    buyNowRecommendation?.explanation ||
                     (hasPicks
                       ? "Стоит выбрать из этих вариантов — самые удачные предложения по соотношению цена/качество прямо сейчас."
                       : "Выраженных аномалий нет. Рекомендуется поставить отели на мониторинг и подождать скидок.")}
@@ -159,7 +160,8 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
                 hasPicks ? "pill--active" : "pill--wait"
               }`}
             >
-              {buyNowRecommendation?.label ||
+              {(buyNowRecommendation as any)?.status_badge ||
+                buyNowRecommendation?.label ||
                 (hasPicks ? "🟢 ЕСТЬ ВЫГОДНЫЕ ВАРИАНТЫ" : "⏳ СПЕШИТЬ НЕ СТОИТ")}
             </span>
           </div>
@@ -168,7 +170,7 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
           {hasPicks && (
             <div className="ai-picks-grid mt-3">
               {topPicks.map((pick) => (
-                <div key={pick.hotel_id} className="ai-pick-card">
+                <div key={pick.hotel_id || pick.hotel_name} className="ai-pick-card">
                   <div className="ai-pick-header">
                     <span className="ai-pick-name">{pick.hotel_name}</span>
                     <span className="ai-pick-price">
@@ -177,7 +179,7 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
                   </div>
                   <div className="ai-pick-meta">
                     <span className="ai-pick-badge">{pick.badge}</span>
-                    <span className="ai-pick-why">{pick.reason}</span>
+                    <span className="ai-pick-why">{(pick as any).why_buy || pick.reason}</span>
                   </div>
                   <div className="ai-pick-actions">
                     {onOpenPassport && (

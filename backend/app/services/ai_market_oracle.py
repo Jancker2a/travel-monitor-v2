@@ -260,17 +260,26 @@ def generate_rule_based_briefing(market_context: Dict[str, Any]) -> Dict[str, An
             )
             headline = f"Вылеты {nearest_dep}–{furthest_dep}: на ближайшие даты цены падают, на дальние — стабильны"
         else:
-            phase_title = f"Спокойные цены ({nearest_dep}–{furthest_dep})"
+            date_range_str = f" ({nearest_dep}–{furthest_dep})" if (nearest_dep and furthest_dep) else (f" ({nearest_dep})" if nearest_dep else "")
+            phase_title = f"Спокойные цены{date_range_str}"
+            near_str = f" ({nearest_dep})" if nearest_dep else ""
+            fur_str = f"до {furthest_dep} ({max_d} дн.)" if furthest_dep else f"до {max_d} дн."
+            near_ref = f"на {nearest_dep}" if nearest_dep else "на ближайшие даты"
+            fur_ref = f"Для дальних дат ({furthest_dep})" if furthest_dep else "Для дальних дат"
             phase_desc = (
-                f"Ближайшие вылеты стартуют через {min_d} дн. ({nearest_dep}), а дальний край охватывает даты до {furthest_dep} ({max_d} дн.). "
+                f"Ближайшие вылеты стартуют через {min_d} дн.{near_str}, а дальний край охватывает даты {fur_str}. "
                 f"Вся подборка находится на стабильном уровне без резких скачков, средняя цена около {med_price:,.0f} zł. "
                 f"Подборка живая и регулярно обновляется."
             )
             directive = (
-                f"Спешить некуда, времени достаточно. За 10–14 дней до вылета на {nearest_dep} начнут появляться первые скидки. "
-                f"Для дальних дат ({furthest_dep}) сейчас имеет смысл бронировать только самые популярные отели, где быстро кончаются номера."
+                f"Спешить некуда, времени достаточно. За 10–14 дней до вылета {near_ref} начнут появляться первые скидки. "
+                f"{fur_ref} сейчас имеет смысл бронировать только самые популярные отели, где быстро кончаются номера."
             )
-            headline = f"Вылеты {nearest_dep}–{furthest_dep}: цены стабильные, спешить с покупкой не нужно"
+            headline = (
+                f"Вылеты {nearest_dep}–{furthest_dep}: цены стабильные, спешить с покупкой не нужно"
+                if (nearest_dep and furthest_dep)
+                else "Цены стабильные, спешить с покупкой не нужно"
+            )
     else:
         if min_d <= 3:
             phase_title = f"Горящие туры (вылет через {min_d} дн.)"
