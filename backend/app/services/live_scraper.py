@@ -2,7 +2,7 @@ import asyncio
 import re
 import html as ihtml
 import logging
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 from typing import Dict, Any, List, Optional, Tuple
 import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -417,6 +417,7 @@ class LiveScraperService:
         """Computes intelligence against historical data, persists new records, and constructs response models."""
         items: List[SearchHotelItem] = []
         destination_country = req.destination.capitalize()
+        batch_recorded_at = datetime.now(timezone.utc)
 
         seen_hotels: Dict[str, Hotel] = {}
         seen_cohorts: Dict[str, OfferCohort] = {}
@@ -469,7 +470,7 @@ class LiveScraperService:
                 c_res = await db.execute(c_stmt)
                 cohort_entity = c_res.scalar_one_or_none()
 
-            now_dt = datetime.utcnow()
+            now_dt = batch_recorded_at
             if not cohort_entity:
                 cohort_entity = OfferCohort(
                     cohort_hash=cohort_hash,
