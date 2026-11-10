@@ -95,13 +95,13 @@ class FilterMonitorService:
 
         try:
             logger.info(f"🛰️ [Hourly Scrape] Running monitor '{monitor.title}' ({monitor.id})...")
-            # 1. First attempt: Direct JSON API (fast, robust, no JavaScript renderer required)
-            raw_offers = await LiveScraperService.fetch_offers_via_api(monitor.target_url)
+            # 1. First attempt: Direct JSON API (multi-page, deep coverage up to 150 offers)
+            raw_offers = await LiveScraperService.fetch_offers_via_api(monitor.target_url, max_offers=150)
 
             # 2. Second attempt: HTML parsing fallback if API returned 0
             if not raw_offers:
                 html = await LiveScraperService.fetch_page_html(monitor.target_url)
-                raw_offers = LiveScraperService.parse_offers_html(html or "")
+                raw_offers = LiveScraperService.parse_offers_html(html or "", max_offers=150)
 
             if not raw_offers:
                 logger.warning(f"No offers found for monitor {monitor.id}")
@@ -110,7 +110,15 @@ class FilterMonitorService:
                 await db.commit()
                 return {"monitor_id": monitor.id, "status": "NO_OFFERS", "offers_found": 0}
 
-            # Fabricate minimal SearchRequest to feed process_and_persist_offers
+            # Resolve filter specification for adults, children, duration
+            from app.services.canonical_filters import resolve_filter_spec
+            spec = resolve_filter_spec(monitor.id) or {}
+            adults_cnt = spec.get("adults", 2)
+            children_cnt = spec.get("children", 1)
+            dur_min = spec.get("duration_min", 7)
+            dur_max = spec.get("duration_max", 16)
+            airports_lst = spec.get("airports") or ["WAW"]
+
             dummy_req = SearchRequest(
                 destination=monitor.destination,
                 filter_id=monitor.id,
@@ -118,9 +126,9 @@ class FilterMonitorService:
                     start_date_min=date.today(),
                     start_date_max=date.today() + timedelta(days=180),
                 ),
-                duration=SearchDuration(min_nights=7, max_nights=16),
-                travelers=SearchTravelers(adults=2, children=1),
-                airports=["WAW"],
+                duration=SearchDuration(min_nights=dur_min, max_nights=dur_max),
+                travelers=SearchTravelers(adults=adults_cnt, children=children_cnt),
+                airports=airports_lst,
             )
 
             saved_items = await LiveScraperService.process_and_persist_offers(db, dummy_req, raw_offers)

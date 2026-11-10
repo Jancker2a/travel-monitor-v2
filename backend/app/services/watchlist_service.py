@@ -410,11 +410,15 @@ class WatchlistService:
                 if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
                 else datetime.utcnow().date()
             )
+            checkout_d = checkin_d + timedelta(days=cohort.duration_nights)
             packages_map[cohort.cohort_hash] = {
                 "cohort_hash": cohort.cohort_hash,
                 "destination_code": cohort.destination_code,
                 "airport": cohort.airport_code,
+                "airport_code": cohort.airport_code,
                 "departure_date": str(checkin_d),
+                "checkin_date": str(checkin_d),
+                "checkout_date": str(checkout_d),
                 "duration_nights": cohort.duration_nights,
                 "adults": cohort.adults,
                 "children": cohort.children,

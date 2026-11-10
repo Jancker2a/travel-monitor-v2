@@ -813,7 +813,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       ? (rangeStats.pureNight || normalizedData?.stats?.pure_hotel_night_rate
                           ? `~${Math.round(rangeStats.pureNight || normalizedData?.stats?.pure_hotel_night_rate)} zł/н`
                           : "—")
-                      : rangeStats.savings > 0 ? `-${Math.round(rangeStats.savings).toLocaleString("ru-RU")} zł` : "0 zł"}
+                      : rangeStats.savings > 0 ? `${Math.round(rangeStats.savings).toLocaleString("ru-RU")} zł` : "0 zł"}
                   </div>
                 </div>
               </div>
@@ -1023,63 +1023,80 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 Вылеты в текущем фильтре:
               </div>
 
-              <div style={{ overflowX: "auto", marginBottom: "20px" }}>
+              <div style={{ maxHeight: "420px", overflowY: "auto", overflowX: "auto", marginBottom: "20px", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
                 <table className="packages-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}>
-                  <thead>
-                    <tr style={{ background: "#f8fafc", borderBottom: "1px solid #e2e8f0", textAlign: "left" }}>
-                      <th style={{ padding: "8px 12px" }}>Даты поездки</th>
-                      <th style={{ padding: "8px 12px" }}>Длит.</th>
-                      <th style={{ padding: "8px 12px" }}>Аэропорт</th>
-                      <th style={{ padding: "8px 12px" }}>Цена</th>
-                      <th style={{ padding: "8px 12px" }}>Бронь</th>
+                  <thead style={{ position: "sticky", top: 0, zIndex: 10 }}>
+                    <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0", textAlign: "left" }}>
+                      <th style={{ padding: "10px 12px", color: "#475569", fontWeight: 700, background: "#f8fafc" }}>Даты поездки</th>
+                      <th style={{ padding: "10px 12px", color: "#475569", fontWeight: 700, background: "#f8fafc" }}>Длит.</th>
+                      <th style={{ padding: "10px 12px", color: "#475569", fontWeight: 700, background: "#f8fafc" }}>Аэропорт</th>
+                      <th style={{ padding: "10px 12px", color: "#475569", fontWeight: 700, background: "#f8fafc" }}>Цена</th>
+                      <th style={{ padding: "10px 12px", color: "#475569", fontWeight: 700, background: "#f8fafc" }}>Бронь</th>
                     </tr>
                   </thead>
                   <tbody id="drawerPackagesTbody">
-                    {(passport?.available_packages || [
-                      {
-                        checkin_date: "2026-11-14",
-                        checkout_date: "2026-11-24",
-                        duration_nights: 10,
-                        airport_code: "WAW",
-                        total_price_pln: currentPrice,
-                        booking_url: "https://fly.pl",
-                      },
-                      {
-                        checkin_date: "2026-11-17",
-                        checkout_date: "2026-11-24",
-                        duration_nights: 7,
-                        airport_code: "WAW",
-                        total_price_pln: Math.round(currentPrice * 0.82),
-                        booking_url: "https://fly.pl",
-                      },
-                    ]).map((pkg: any, idx: number) => (
-                      <tr key={idx} style={{ borderBottom: "1px solid #f1f5f9" }}>
-                        <td style={{ padding: "8px 12px", fontWeight: 600 }}>{pkg.checkin_date} – {pkg.checkout_date}</td>
-                        <td style={{ padding: "8px 12px" }}>{pkg.duration_nights}н</td>
-                        <td style={{ padding: "8px 12px" }}>{pkg.airport_code}</td>
-                        <td style={{ padding: "8px 12px", fontWeight: 700, color: "#0f172a" }}>
-                          {pkg.total_price_pln.toLocaleString("ru-RU")} zł
-                        </td>
-                        <td style={{ padding: "8px 12px" }}>
-                          <a
-                            href={pkg.booking_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              display: "inline-block",
-                              background: "#0284c7",
-                              color: "#fff",
-                              padding: "4px 10px",
-                              borderRadius: "6px",
-                              textDecoration: "none",
-                              fontWeight: 700,
-                            }}
-                          >
-                            Бронь ↗
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
+                    {(passport?.available_packages && passport.available_packages.length > 0
+                      ? passport.available_packages
+                      : [
+                          {
+                            checkin_date: "2026-11-14",
+                            checkout_date: "2026-11-24",
+                            duration_nights: 10,
+                            airport_code: "WAW",
+                            total_price_pln: currentPrice,
+                            booking_url: "https://fly.pl",
+                          },
+                          {
+                            checkin_date: "2026-11-17",
+                            checkout_date: "2026-11-24",
+                            duration_nights: 7,
+                            airport_code: "WAW",
+                            total_price_pln: Math.round(currentPrice * 0.82),
+                            booking_url: "https://fly.pl",
+                          },
+                        ]
+                    ).map((pkg: any, idx: number) => {
+                      const dep = pkg.checkin_date || pkg.departure_date;
+                      const ret = pkg.checkout_date;
+                      const dateText = dep ? (ret ? `${dep} – ${ret}` : dep) : "—";
+                      const airportText = pkg.airport_code || pkg.airport || "WAW";
+                      const durText = pkg.duration_nights ? `${pkg.duration_nights}н` : "—";
+                      const priceVal = pkg.total_price_pln || pkg.price || currentPrice;
+                      const bookUrl = pkg.booking_url || pkg.url || "https://fly.pl";
+                      return (
+                        <tr key={idx} style={{ borderBottom: "1px solid #f1f5f9" }}>
+                          <td style={{ padding: "8px 12px", fontWeight: 600, color: "#1e293b", whiteSpace: "nowrap" }}>{dateText}</td>
+                          <td style={{ padding: "8px 12px", color: "#475569" }}>{durText}</td>
+                          <td style={{ padding: "8px 12px", color: "#475569" }}>
+                            <span style={{ background: "#f1f5f9", padding: "2px 6px", borderRadius: "4px", fontSize: "11px", fontWeight: 600 }}>
+                              {airportText}
+                            </span>
+                          </td>
+                          <td style={{ padding: "8px 12px", fontWeight: 700, color: "#0f172a", whiteSpace: "nowrap" }}>
+                            {Math.round(priceVal).toLocaleString("ru-RU")} zł
+                          </td>
+                          <td style={{ padding: "8px 12px" }}>
+                            <a
+                              href={bookUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                display: "inline-block",
+                                background: "#0284c7",
+                                color: "#fff",
+                                padding: "4px 10px",
+                                borderRadius: "6px",
+                                textDecoration: "none",
+                                fontWeight: 700,
+                                fontSize: "11px",
+                              }}
+                            >
+                              Бронь ↗
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

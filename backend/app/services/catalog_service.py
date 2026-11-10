@@ -72,9 +72,9 @@ class CatalogService:
         # 6. Sorting
         reverse_order = order.lower() == "desc"
         if sort_by == "deal_score":
-            filtered_cards.sort(key=lambda x: x["deal_score"], reverse=not reverse_order)
+            filtered_cards.sort(key=lambda x: x["deal_score"], reverse=reverse_order)
         elif sort_by == "ta_rating":
-            filtered_cards.sort(key=lambda x: (x["ta_rating"] or 0, x["ta_reviews"]), reverse=not reverse_order)
+            filtered_cards.sort(key=lambda x: (x["ta_rating"] or 0, x["ta_reviews"]), reverse=reverse_order)
         elif sort_by in ("discount_48h", "delta48"):
             filtered_cards.sort(key=lambda x: x.get("change_48h_pct", 0.0), reverse=reverse_order)
         elif sort_by == "delta_avg":
@@ -140,7 +140,7 @@ class CatalogService:
         if max_dt.tzinfo is None:
             max_dt = max_dt.replace(tzinfo=timezone.utc)
 
-        cutoff = (max_dt - timedelta(hours=4)) if is_pg else (max_dt - timedelta(hours=4)).isoformat()
+        cutoff = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
 
         # 2. Query active hotels and their cheapest offer in the latest scrape run (using window partition)
         active_sql = f"""
@@ -159,7 +159,7 @@ class CatalogService:
                     oc.offer_url,
                     ps.total_price_pln as current_price,
                     ps.recorded_at,
-                    ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.total_price_pln ASC, ps.recorded_at DESC) as rn
+                    ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.recorded_at DESC, ps.total_price_pln ASC) as rn
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                 JOIN hotels h ON oc.hotel_id = h.hotel_id

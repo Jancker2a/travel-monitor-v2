@@ -117,7 +117,7 @@ CANONICAL_MONITORS = [
         "group_id": "early_booking",
         "title": "Греция • Август 2027 • 7–10 дн.",
         "subtitle": "🏷️ First Minute Tracker • 01.08–31.08.2027 • WAW/WMI/RDO • 2+1",
-        "destination": "turkey",
+        "destination": "greece",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-08-2027&startDateMax=31-08-2027&returnDate=14-09-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=25000&order=price"
     },
     {
@@ -125,7 +125,7 @@ CANONICAL_MONITORS = [
         "group_id": "early_booking",
         "title": "Греция • Июль 2027 • 7–10 дн.",
         "subtitle": "🏷️ First Minute Tracker • 01.07–31.07.2027 • WAW/WMI/RDO • 2+1",
-        "destination": "turkey",
+        "destination": "greece",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-07-2027&startDateMax=31-07-2027&returnDate=14-08-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=25000&order=price"
     },
     {
@@ -133,7 +133,7 @@ CANONICAL_MONITORS = [
         "group_id": "early_booking",
         "title": "Египет • Август 2027 • 7–10 дн.",
         "subtitle": "🏷️ First Minute Tracker • 01.08–31.08.2027 • WAW/WMI/RDO • 2+1",
-        "destination": "turkey",
+        "destination": "egypt",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-08-2027&startDateMax=31-08-2027&returnDate=14-09-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=25000&order=price"
     },
     {
@@ -141,7 +141,7 @@ CANONICAL_MONITORS = [
         "group_id": "early_booking",
         "title": "Египет • Июль 2027 • 7–10 дн.",
         "subtitle": "🏷️ First Minute Tracker • 01.07–31.07.2027 • WAW/WMI/RDO • 2+1",
-        "destination": "turkey",
+        "destination": "egypt",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-07-2027&startDateMax=31-07-2027&returnDate=14-08-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=25000&order=price"
     },
     {
@@ -149,7 +149,7 @@ CANONICAL_MONITORS = [
         "group_id": "early_booking",
         "title": "Египет • Октябрь 2027 • 7–10 дн.",
         "subtitle": "🏷️ First Minute Tracker • 01.10–31.10.2027 • WAW/WMI/RDO • 2+1",
-        "destination": "turkey",
+        "destination": "egypt",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-10-2027&startDateMax=31-10-2027&returnDate=14-11-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=25000&order=price"
     },
     {

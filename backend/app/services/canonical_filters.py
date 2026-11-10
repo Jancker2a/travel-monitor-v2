@@ -7,7 +7,7 @@ from typing import Dict, Any, List, Optional
 
 CANONICAL_FILTERS: Dict[str, Dict[str, Any]] = {
     "turkey_7_10": {
-        "destination_codes": ["filter_turkey_7_10_days", "filter_7_10_days"],
+        "destination_codes": ["filter_turkey_7_10_days"],
         "country": "Турция",
         "destination": "turkey",
         "adults": 2,
@@ -18,7 +18,7 @@ CANONICAL_FILTERS: Dict[str, Dict[str, Any]] = {
         "title": "🇹🇷 Турция — 7–10 ночей (2 взр + 1 реб)",
     },
     "turkey_7_10_days": {
-        "destination_codes": ["filter_turkey_7_10_days", "filter_7_10_days"],
+        "destination_codes": ["filter_turkey_7_10_days"],
         "country": "Турция",
         "destination": "turkey",
         "adults": 2,
@@ -84,7 +84,7 @@ CANONICAL_FILTERS: Dict[str, Dict[str, Any]] = {
         "title": "🇪🇬 Египет — 13–16 ночей (2 взр + 1 реб)",
     },
     "egypt_autumn_7_10": {
-        "destination_codes": ["filter_7_10_days", "7_10_days"],
+        "destination_codes": ["filter_egypt_autumn_2026_7_10_days", "egypt_autumn_2026_7_10_days"],
         "country": "Египет",
         "destination": "egypt",
         "adults": 2,
@@ -95,7 +95,7 @@ CANONICAL_FILTERS: Dict[str, Dict[str, Any]] = {
         "title": "🇪🇬 Египет — 7–10 ночей (Красное море)",
     },
     "egypt_autumn_13_16": {
-        "destination_codes": ["filter_13_16_days", "13_16_days"],
+        "destination_codes": ["filter_egypt_autumn_2026_13_16_days", "egypt_autumn_2026_13_16_days"],
         "country": "Египет",
         "destination": "egypt",
         "adults": 2,

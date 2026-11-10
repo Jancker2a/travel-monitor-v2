@@ -1,3 +1,4 @@
+import asyncio
 import re
 import html as ihtml
 import logging
@@ -86,8 +87,8 @@ class LiveScraperService:
     }
 
     @classmethod
-    async def fetch_offers_via_api(cls, url: str, max_offers: int = 50) -> List[Dict[str, Any]]:
-        """Parses Fly.pl search URL and directly queries Fly.pl JSON search API."""
+    async def fetch_offers_via_api(cls, url: str, max_offers: int = 150) -> List[Dict[str, Any]]:
+        """Parses Fly.pl search URL and directly queries Fly.pl JSON search API with multi-page support."""
         try:
             parsed = urlparse(url)
             qs = parse_qs(parsed.query)
@@ -98,7 +99,7 @@ class LiveScraperService:
 
             api_params: Dict[str, Any] = {
                 "pager[page]": 1,
-                "pager[size]": min(50, max_offers),
+                "pager[size]": 50,
                 "priceType": "total",
                 "totalPrice": 1,
                 "pager[orderBy][0][field]": "price",
@@ -118,6 +119,7 @@ class LiveScraperService:
                 api_params["price[min]"] = float(qs["priceFrom"][0])
             if "priceTo" in qs:
                 api_params["price[max]"] = float(qs["priceTo"][0])
+
             def parse_date(d_str: str) -> Optional[date]:
                 parts = d_str.split("-")
                 if len(parts) == 3:
@@ -134,11 +136,11 @@ class LiveScraperService:
             start_min_d = parse_date(qs["startDateMin"][0]) if "startDateMin" in qs else None
             start_max_d = parse_date(qs["startDateMax"][0]) if "startDateMax" in qs else None
 
-            if start_max_d and start_max_d < today:
-                # The search window was in the past (e.g. rolling filter).
-                # Auto-roll window forward from tomorrow keeping equivalent span.
-                window_span = max(7, (start_max_d - start_min_d).days) if start_min_d else 23
-                new_min = today + timedelta(days=1)
+            if start_max_d and start_max_d <= today:
+                # The search window was in the past (rolling filter).
+                # Auto-roll window forward from today keeping equivalent span (default 23 days).
+                window_span = max(7, (start_max_d - start_min_d).days) if (start_min_d and start_max_d) else 23
+                new_min = today
                 new_max = today + timedelta(days=window_span)
                 api_params["startDate[min]"] = new_min.isoformat()
                 api_params["startDate[max]"] = new_max.isoformat()
@@ -156,6 +158,7 @@ class LiveScraperService:
                     api_params["startDate[max]"] = start_max_d.isoformat()
                 elif "startDateMax" in qs:
                     api_params["startDate[max]"] = to_iso(qs["startDateMax"][0])
+
             if "children" in qs:
                 for i, ch in enumerate(qs["children"][0].split(",")):
                     api_params[f"children[{i}]"] = to_iso(ch.strip())
@@ -183,47 +186,74 @@ class LiveScraperService:
                 "Referer": "https://fly.pl/szukaj-wycieczek/",
             }
 
-            async with httpx.AsyncClient(headers=headers, timeout=15.0) as client:
-                resp = await client.get("https://fly.pl/api/fqs/v1/offers/search", params=api_params)
-                if resp.status_code == 200:
-                    payload = resp.json().get("data", {})
-                    raw_list = payload.get("offers", []) if isinstance(payload, dict) else []
-                    results = []
-                    for o in raw_list[:max_offers]:
-                        hotel_name = o.get("name") or o.get("unifiedName") or ""
-                        if not hotel_name:
-                            continue
-                        price_num = float(o.get("total") or o.get("price") or 0.0)
-                        if price_num <= 0:
-                            continue
-                        dep_date = (o.get("departureDate") or "")[:10]
-                        ret_date = (o.get("returnDate") or "")[:10]
-                        dates_str = f"{dep_date} - {ret_date}" if dep_date else ""
-                        checkin_d, checkout_d = parse_departure_date(dates_str)
-                        nights = int(o.get("nights") or o.get("duration") or 7)
-                        stars_val = int(o.get("categoryRating", 40)) // 10 if o.get("categoryRating") else 4
-                        thumb = o.get("thumbnailUrl") or (o.get("imagesUrl")[0] if o.get("imagesUrl") else "")
-                        pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
-                        ta_r = float(o["rating"]) if o.get("rating") else None
-                        board = o.get("serviceDesc") or "All Inclusive"
-                        results.append({
-                            "hotel_name": hotel_name,
-                            "price": price_num,
-                            "dates": dates_str,
-                            "checkin_date": checkin_d or date.today(),
-                            "checkout_date": checkout_d,
-                            "duration": f"{nights} nocy",
-                            "duration_nights": nights,
-                            "departure_airport": o.get("departureLocation") or o.get("departureCode") or "WAW",
-                            "board_basis": board,
-                            "stars": stars_val,
-                            "main_image_url": thumb,
-                            "image_url": thumb,
-                            "offer_url": pub_url,
-                            "ta_rating": ta_r,
-                            "operator": o.get("operatorName") or o.get("operator") or "",
-                        })
-                    return results
+            results = []
+            seen_offers = set()
+            page = 1
+            max_pages = min(5, (max_offers + 49) // 50)
+
+            async with httpx.AsyncClient(headers=headers, timeout=25.0) as client:
+                while page <= max_pages and len(results) < max_offers:
+                    api_params["pager[page]"] = page
+                    try:
+                        resp = await client.get("https://fly.pl/api/fqs/v1/offers/search", params=api_params)
+                        if resp.status_code != 200:
+                            break
+                        payload = resp.json().get("data", {})
+                        raw_list = payload.get("offers", []) if isinstance(payload, dict) else []
+                        if not raw_list:
+                            break
+
+                        for o in raw_list:
+                            hotel_name = o.get("name") or o.get("unifiedName") or ""
+                            if not hotel_name:
+                                continue
+                            price_num = float(o.get("total") or o.get("price") or 0.0)
+                            if price_num <= 0:
+                                continue
+                            dep_date = (o.get("departureDate") or "")[:10]
+                            ret_date = (o.get("returnDate") or "")[:10]
+                            dates_str = f"{dep_date} - {ret_date}" if dep_date else ""
+
+                            # Deduplication key across pages
+                            dedup_key = (hotel_name.lower().strip(), dep_date, price_num)
+                            if dedup_key in seen_offers:
+                                continue
+                            seen_offers.add(dedup_key)
+
+                            checkin_d, checkout_d = parse_departure_date(dates_str)
+                            nights = int(o.get("nights") or o.get("duration") or 7)
+                            stars_val = int(o.get("categoryRating", 40)) // 10 if o.get("categoryRating") else 4
+                            thumb = o.get("thumbnailUrl") or (o.get("imagesUrl")[0] if o.get("imagesUrl") else "")
+                            pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
+                            ta_r = float(o["rating"]) if o.get("rating") else None
+                            board = o.get("serviceDesc") or "All Inclusive"
+                            results.append({
+                                "hotel_name": hotel_name,
+                                "price": price_num,
+                                "dates": dates_str,
+                                "checkin_date": checkin_d or date.today(),
+                                "checkout_date": checkout_d,
+                                "duration": f"{nights} nocy",
+                                "duration_nights": nights,
+                                "departure_airport": o.get("departureLocation") or o.get("departureCode") or "WAW",
+                                "board_basis": board,
+                                "stars": stars_val,
+                                "main_image_url": thumb,
+                                "image_url": thumb,
+                                "offer_url": pub_url,
+                                "ta_rating": ta_r,
+                                "operator": o.get("operatorName") or o.get("operator") or "",
+                            })
+                            if len(results) >= max_offers:
+                                break
+
+                        page += 1
+                        await asyncio.sleep(0.2)
+                    except Exception as page_err:
+                        logger.warning(f"Error fetching page {page} for {url}: {page_err}")
+                        break
+
+            return results
         except Exception as e:
             logger.warning(f"Direct Fly.pl JSON API search failed for {url}: {e}")
         return []
