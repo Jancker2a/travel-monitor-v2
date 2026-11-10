@@ -723,6 +723,7 @@ export const App: React.FC = () => {
   const handleSelectFilter = (filterId: string) => {
     setActiveFilterId(filterId);
     setActiveTab("filter");
+    setTableFilters(INITIAL_FILTERS);
     loadFilterResults(filterId);
     setIsSidebarOpen(false);
   };
