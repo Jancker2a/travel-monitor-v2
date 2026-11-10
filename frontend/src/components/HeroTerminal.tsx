@@ -17,9 +17,24 @@ interface HeroTerminalProps {
     minPriceHotel?: string;
     minPriceDate?: string;
     buyNowCount?: number;
+    dropped48hCount?: number;
+    dropped48hMaxPln?: number;
+    dropped48hMaxPct?: number;
+    dropped48hTopHotel?: string;
     dropped48hPln?: number;
     lastUpdatedText?: string;
   };
+  activeQuickFilter?: "buy_now" | "drops" | null;
+  onQuickFilter?: (filterType: "buy_now" | "drops") => void;
+}
+
+function pluralizeHotels(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod100 >= 11 && mod100 <= 19) return `${n} отелей`;
+  if (mod10 === 1) return `${n} отель`;
+  if (mod10 >= 2 && mod10 <= 4) return `${n} отеля`;
+  return `${n} отелей`;
 }
 
 export const HeroTerminal: React.FC<HeroTerminalProps> = ({
@@ -34,6 +49,8 @@ export const HeroTerminal: React.FC<HeroTerminalProps> = ({
     budget: "до 12 000 zł",
   },
   kpi,
+  activeQuickFilter,
+  onQuickFilter,
 }) => {
   return (
     <section className="hero-terminal" id="heroTerminal">
@@ -119,31 +136,79 @@ export const HeroTerminal: React.FC<HeroTerminalProps> = ({
         </div>
 
         {/* KPI 2: Buy Now Count */}
-        <div className="kpi-card-white" id="heroKpiBuyNow">
+        <div
+          className={`kpi-card-white cursor-pointer transition-all hover:border-emerald-300 hover:shadow-md select-none ${
+            activeQuickFilter === "buy_now" ? "ring-2 ring-emerald-500 bg-emerald-50/40" : ""
+          }`}
+          id="heroKpiBuyNow"
+          onClick={() => onQuickFilter?.("buy_now")}
+          title="Нажмите, чтобы отфильтровать отели с Deal Score 80+ (рекомендовано к покупке)"
+        >
           <div className="kpi-card-icon-box kpi-icon--buy">
             <Flame className="w-5 h-5" />
           </div>
           <div className="kpi-card-info">
             <div className="kpi-card-number text-emerald-600">
-              {kpi.buyNowCount !== undefined ? `${kpi.buyNowCount} отелей` : "—"}
+              {kpi.buyNowCount !== undefined ? pluralizeHotels(kpi.buyNowCount) : "—"}
             </div>
-            <div className="kpi-card-title">
-              К покупке сейчас (Score 80+)
+            <div className="kpi-card-title flex items-center gap-1">
+              <span>К покупке сейчас</span>
+              <span className="text-[10px] font-black bg-emerald-100 text-emerald-800 px-1 py-0.2 rounded">
+                Score 80+
+              </span>
             </div>
           </div>
         </div>
 
         {/* KPI 3: Dropped in 48h */}
-        <div className="kpi-card-white" id="heroKpiDrops48h">
+        <div
+          className={`kpi-card-white cursor-pointer transition-all hover:border-blue-300 hover:shadow-md select-none ${
+            activeQuickFilter === "drops" ? "ring-2 ring-blue-500 bg-blue-50/40" : ""
+          }`}
+          id="heroKpiDrops48h"
+          onClick={() => onQuickFilter?.("drops")}
+          title={
+            kpi.dropped48hCount && kpi.dropped48hCount > 0
+              ? `Нажмите, чтобы показать ${kpi.dropped48hCount} отелей со скидками за последние 48ч`
+              : "За последние 48 часов снижений цен не зафиксировано"
+          }
+        >
           <div className="kpi-card-icon-box kpi-icon--drop">
             <TrendingDown className="w-5 h-5" />
           </div>
-          <div className="kpi-card-info">
-            <div className="kpi-card-number text-blue-600">
-              {kpi.dropped48hPln ? `−${kpi.dropped48hPln.toLocaleString("ru-RU")} zł` : "Стабильно"}
+          <div className="kpi-card-info min-w-0">
+            <div className="kpi-card-number text-blue-600 flex items-baseline gap-1.5 flex-wrap">
+              {kpi.dropped48hCount && kpi.dropped48hCount > 0 ? (
+                <>
+                  <span>{pluralizeHotels(kpi.dropped48hCount)}</span>
+                  {kpi.dropped48hMaxPln && kpi.dropped48hMaxPln > 0 ? (
+                    <span className="text-xs font-bold text-blue-500/90 whitespace-nowrap">
+                      (до −{kpi.dropped48hMaxPln.toLocaleString("ru-RU")} zł)
+                    </span>
+                  ) : null}
+                </>
+              ) : (
+                <span className="text-slate-600">0 отелей</span>
+              )}
             </div>
-            <div className="kpi-card-title">
-              Подешевели за 48ч
+            <div
+              className="kpi-card-title truncate max-w-[280px]"
+              title={
+                kpi.dropped48hTopHotel
+                  ? `Максимальное снижение: ${kpi.dropped48hTopHotel} (−${kpi.dropped48hMaxPln || 0} zł / −${kpi.dropped48hMaxPct || 0}%)`
+                  : undefined
+              }
+            >
+              {kpi.dropped48hCount && kpi.dropped48hCount > 0 && kpi.dropped48hTopHotel ? (
+                <span>
+                  Топ: <b className="text-slate-800 font-bold">{kpi.dropped48hTopHotel}</b>{" "}
+                  {kpi.dropped48hMaxPct ? (
+                    <span className="text-emerald-600 font-extrabold">(−{kpi.dropped48hMaxPct}%)</span>
+                  ) : null}
+                </span>
+              ) : (
+                <span>Цены стабильны за 48ч</span>
+              )}
             </div>
           </div>
         </div>

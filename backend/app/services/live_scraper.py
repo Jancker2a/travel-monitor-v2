@@ -568,7 +568,7 @@ class LiveScraperService:
                 hopper_verdict=verdict,
                 hopper_confidence=0.88 if len(recent_prices) >= 5 else 0.65,
                 recommendation=recom,
-                drop_48h_pct=round(-price_diff_ratio * 100, 1) if price_diff_ratio < 0 else 0.0,
+                drop_48h_pct=round(price_diff_ratio * 100, 1),
                 historic_min_pln=hist_min,
                 typical_median_pln=hist_median,
                 german_arbitrage_diff_pln=None,

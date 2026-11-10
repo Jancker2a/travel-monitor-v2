@@ -905,11 +905,17 @@ export const App: React.FC = () => {
       }
 
       // Change
-      if (tableFilters.change === "decrease" && h.intelligence.drop_48h_pct >= 0) {
-        return false;
+      if (tableFilters.change === "decrease") {
+        const drop = h.intelligence.drop_48h_pct ?? 0;
+        if (drop > -0.5) return false;
       }
-      if (tableFilters.change === "stable" && h.intelligence.drop_48h_pct !== 0) {
-        return false;
+      if (tableFilters.change === "increase") {
+        const drop = h.intelligence.drop_48h_pct ?? 0;
+        if (drop < 0.5) return false;
+      }
+      if (tableFilters.change === "stable") {
+        const drop = Math.abs(h.intelligence.drop_48h_pct ?? 0);
+        if (drop >= 0.5) return false;
       }
 
       // Region
@@ -970,6 +976,10 @@ export const App: React.FC = () => {
         minPriceHotel: "—",
         minPriceDate: "",
         buyNowCount: 0,
+        dropped48hCount: 0,
+        dropped48hMaxPln: 0,
+        dropped48hMaxPct: 0,
+        dropped48hTopHotel: "",
         dropped48hPln: 0,
         lastUpdatedText: "5 мин. назад",
       };
@@ -980,22 +990,56 @@ export const App: React.FC = () => {
     )[0];
 
     const buyNowHotels = results.filter((h) => h.intelligence.deal_score >= 80);
-    const dropHotel = results.find((h) => h.intelligence.drop_48h_pct > 0);
+
+    // Filter hotels with noticeable price drops over last 48h (ignore <= 0.3% / tiny rounding noise)
+    const droppedHotels = results
+      .filter((h) => (h.intelligence.drop_48h_pct ?? 0) <= -0.5)
+      .map((h) => {
+        const pct = Math.abs(h.intelligence.drop_48h_pct);
+        const savingPln = Math.round(h.current_offer.total_price_pln * (pct / 100));
+        return {
+          hotel: h,
+          pct,
+          savingPln,
+        };
+      })
+      .sort((a, b) => b.savingPln - a.savingPln);
+
+    const topDrop = droppedHotels[0] || null;
 
     return {
       minPricePln: minOffer ? minOffer.current_offer.total_price_pln : 0,
       minPriceHotel: minOffer ? minOffer.hotel_name : "",
       minPriceDate: minOffer ? minOffer.current_offer.departure_date : "",
       buyNowCount: buyNowHotels.length,
-      dropped48hPln: dropHotel
-        ? Math.round(
-            dropHotel.current_offer.total_price_pln *
-              (dropHotel.intelligence.drop_48h_pct / 100)
-          )
-        : 420,
+      dropped48hCount: droppedHotels.length,
+      dropped48hMaxPln: topDrop ? topDrop.savingPln : 0,
+      dropped48hMaxPct: topDrop ? Math.round(topDrop.pct) : 0,
+      dropped48hTopHotel: topDrop ? topDrop.hotel.hotel_name : "",
+      dropped48hPln: topDrop ? topDrop.savingPln : 0,
       lastUpdatedText: "12 мин. назад",
     };
   }, [results]);
+
+  const activeQuickFilter = useMemo<"buy_now" | "drops" | null>(() => {
+    if (tableFilters.recommendation === "hot") return "buy_now";
+    if (tableFilters.change === "decrease") return "drops";
+    return null;
+  }, [tableFilters.recommendation, tableFilters.change]);
+
+  const handleQuickFilter = (type: "buy_now" | "drops") => {
+    if (type === "buy_now") {
+      setTableFilters((prev) => ({
+        ...prev,
+        recommendation: prev.recommendation === "hot" ? "" : "hot",
+      }));
+    } else if (type === "drops") {
+      setTableFilters((prev) => ({
+        ...prev,
+        change: prev.change === "decrease" ? "" : "decrease",
+      }));
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
@@ -1119,6 +1163,8 @@ export const App: React.FC = () => {
           targetUrl={activeTab === "filter" ? currentPreset.targetUrl : undefined}
           chips={activeTab === "filter" ? currentPreset.chips : undefined}
           kpi={heroKpi}
+          activeQuickFilter={activeQuickFilter}
+          onQuickFilter={handleQuickFilter}
         />
 
         {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
