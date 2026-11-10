@@ -913,10 +913,16 @@
     "2026-11-04 07:22:18",
 <<<<<<< Updated upstream
     "2026-11-10 09:59:04",
+<<<<<<< Updated upstream
     "2026-11-10 09:43:02"
 =======
     "2026-11-10 10:23:40",
     "2026-11-10 10:15:04"
+>>>>>>> Stashed changes
+=======
+    "2026-11-10 09:43:02",
+    "2026-11-10 10:47:15",
+    "2026-11-10 10:37:47"
 >>>>>>> Stashed changes
   ],
   "y": [
@@ -1829,8 +1835,14 @@
     9377.0,
 <<<<<<< Updated upstream
     9377.0,
+<<<<<<< Updated upstream
     9377.0
 =======
+    9517.0,
+    9517.0
+>>>>>>> Stashed changes
+=======
+    9377.0,
     9517.0,
     9517.0
 >>>>>>> Stashed changes
@@ -2759,14 +2771,18 @@
   "median_p": 11084.609125809206,
   "min_p": 7637.0,
   "max_p": 13406.0,
-  "samples": 909,
+  "samples": 911,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.11.2026 - 01.12.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
   "back_href": "index_filter_turkey_7_10_days.html",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "current_price": 9377.0
+=======
+  "current_price": 9517.0
+>>>>>>> Stashed changes
 =======
   "current_price": 9517.0
 >>>>>>> Stashed changes

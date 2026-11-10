@@ -66,9 +66,14 @@
     "2026-07-10 04:11:04",
     "2026-07-10 08:11:40",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "2026-11-10 09:53:09"
 =======
     "2026-11-10 10:21:22"
+>>>>>>> Stashed changes
+=======
+    "2026-11-10 09:53:09",
+    "2026-11-10 10:49:41"
 >>>>>>> Stashed changes
   ],
   "y": [
@@ -134,8 +139,13 @@
     9788.0,
     11295.0,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     9377.0
 =======
+    9517.0
+>>>>>>> Stashed changes
+=======
+    9377.0,
     9517.0
 >>>>>>> Stashed changes
   ],
@@ -221,14 +231,18 @@
   "min_p": 9517.0,
 >>>>>>> Stashed changes
   "max_p": 11709.0,
-  "samples": 62,
+  "samples": 63,
   "alert_threshold": 8.0,
   "trip_dates_label": "23.07.2026 - 30.07.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
   "back_href": "index_filter_turkey_vacation_jul18.html",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "current_price": 9377.0
+=======
+  "current_price": 9517.0
+>>>>>>> Stashed changes
 =======
   "current_price": 9517.0
 >>>>>>> Stashed changes

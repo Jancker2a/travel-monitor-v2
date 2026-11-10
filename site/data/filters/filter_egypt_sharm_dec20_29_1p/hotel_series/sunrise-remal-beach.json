@@ -34,9 +34,14 @@
     "2026-11-04 03:32:02",
     "2026-11-04 07:20:18",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "2026-11-10 09:49:47"
 =======
     "2026-11-10 10:19:54"
+>>>>>>> Stashed changes
+=======
+    "2026-11-10 09:49:47",
+    "2026-11-10 10:48:02"
 >>>>>>> Stashed changes
   ],
   "y": [
@@ -70,8 +75,13 @@
     10917.0,
     10917.0,
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     10688.0
 =======
+    10760.0
+>>>>>>> Stashed changes
+=======
+    10688.0,
     10760.0
 >>>>>>> Stashed changes
   ],
@@ -121,14 +131,18 @@
   "median_p": 9558.624284963773,
   "min_p": 8939.0,
   "max_p": 11515.0,
-  "samples": 30,
+  "samples": 31,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.12.2026 - 29.12.2026",
   "display_price_ceiling": 30000.0,
   "history_price_ceiling": 20000.0,
   "back_href": "index_filter_egypt_sharm_dec20_29_1p.html",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "current_price": 10688.0
+=======
+  "current_price": 10760.0
+>>>>>>> Stashed changes
 =======
   "current_price": 10760.0
 >>>>>>> Stashed changes
