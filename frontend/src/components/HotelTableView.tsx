@@ -94,8 +94,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
             <tr className="bg-sky-50/80 border-b border-sky-100 text-sky-900 text-xs uppercase tracking-wider font-extrabold select-none">
               <th
                 onClick={() => onSort("hotel")}
-                className="cursor-pointer hover:text-blue-900 pl-4 py-3 rounded-l-xl transition-colors min-w-[280px]"
-                style={{ width: "22%" }}
+                className="cursor-pointer hover:text-blue-900 pl-4 py-3 rounded-l-xl transition-colors min-w-[340px]"
+                style={{ width: "30%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>ОТЕЛЬ</span>
@@ -104,8 +104,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("price")}
-                className="cursor-pointer hover:text-blue-900 py-3 transition-colors min-w-[130px]"
-                style={{ width: "12%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 transition-colors min-w-[115px]"
+                style={{ width: "11%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>ЦЕНА</span>
@@ -114,21 +114,21 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("deal_score")}
-                className="cursor-pointer hover:text-blue-900 py-3 transition-colors min-w-[125px]"
-                style={{ width: "10%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 transition-colors min-w-[105px]"
+                style={{ width: "9%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>DEAL SCORE</span>
                   {renderSortIcon("deal_score")}
                 </div>
               </th>
-              <th style={{ width: "10%", textAlign: "center" }} className="py-3 min-w-[115px]">
+              <th style={{ width: "8%", textAlign: "center" }} className="py-3 min-w-[95px]">
                 ПРОГНОЗ
               </th>
               <th
                 onClick={() => onSort("ta_rating")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[105px]"
-                style={{ width: "8%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[85px]"
+                style={{ width: "7%" }}
                 title="Рейтинг отеля на TripAdvisor"
               >
                 <div className="flex items-center justify-center gap-1.5">
@@ -140,8 +140,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("delta48")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[100px]"
-                style={{ width: "7%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[75px]"
+                style={{ width: "6%" }}
                 title="Изменение цены за последние 48 часов"
               >
                 <div className="flex items-center justify-center gap-1.5">
@@ -151,8 +151,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("delta_avg")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[110px]"
-                style={{ width: "7%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[80px]"
+                style={{ width: "6%" }}
                 title="Отклонение от типичной (плато) средней цены отеля"
               >
                 <div className="flex items-center justify-center gap-1.5">
@@ -160,16 +160,16 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   {renderSortIcon("delta_avg")}
                 </div>
               </th>
-              <th style={{ width: "8%" }} className="py-3 min-w-[90px]">
+              <th style={{ width: "7%" }} className="py-3 min-w-[85px]">
                 РЕГИОН
               </th>
-              <th style={{ width: "10%" }} className="py-3 min-w-[125px]">
+              <th style={{ width: "9%" }} className="py-3 min-w-[110px]">
                 ДАТЫ
               </th>
-              <th style={{ width: "5%", textAlign: "center" }} className="py-3 min-w-[70px]">
+              <th style={{ width: "4%", textAlign: "center" }} className="py-3 min-w-[55px]">
                 ДЛИТ.
               </th>
-              <th style={{ width: "14%", textAlign: "right" }} className="py-3 pr-4 rounded-r-xl min-w-[195px]">
+              <th style={{ width: "11%", textAlign: "right" }} className="py-3 pr-4 rounded-r-xl min-w-[145px]">
                 ССЫЛКА
               </th>
             </tr>
@@ -227,9 +227,9 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   className="group cursor-pointer hover:bg-sky-50/60 transition-colors"
                 >
                   {/* Hotel Cell */}
-                  <td className="pl-4">
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-xs">
+                  <td className="pl-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs">
                         <img
                           src={
                             hotel.main_image_url ||
@@ -240,27 +240,27 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                           loading="lazy"
                         />
                       </div>
-                      <div className="min-w-0">
+                      <div className="min-w-0 flex-1">
                         <div
-                          className="font-black text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[15px] sm:text-[16.5px] leading-snug line-clamp-1 tracking-tight"
+                          className="font-black text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[14.5px] sm:text-[15.5px] leading-snug line-clamp-2 break-words tracking-tight"
                           title={`${hotel.hotel_name} — открыть паспорт`}
                         >
                           {hotel.hotel_name}
                         </div>
-                        <div className="flex items-center gap-1 text-amber-400 mt-1">
+                        <div className="flex items-center gap-1 text-amber-400 mt-0.5">
                           {Array.from({ length: hotel.stars || 4 }).map((_, i) => (
-                            <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                            <Star key={i} className="w-3 h-3 fill-current" />
                           ))}
                         </div>
-                        <div className="flex items-center gap-2 mt-2 flex-wrap">
-                          <span className="spec-badge spec-beach text-[11.5px] font-extrabold px-2 py-0.5 rounded-lg border border-sky-200">
+                        <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
+                          <span className="spec-badge spec-beach text-[11px] font-extrabold px-1.5 py-0.5 rounded-md border border-sky-200">
                             🏖️ {hotel.beach_line || hotel.specs?.beach_line || 1} линия
                           </span>
                           {(hotel.has_aquapark || hotel.specs?.has_aquapark || hotel.hotel_name.toLowerCase().includes("aqua")) && (
-                            <span className="spec-badge spec-aqua text-[11.5px] font-extrabold px-2 py-0.5 rounded-lg border border-cyan-200">🎢 Аквапарк</span>
+                            <span className="spec-badge spec-aqua text-[11px] font-extrabold px-1.5 py-0.5 rounded-md border border-cyan-200">🎢 Аквапарк</span>
                           )}
                           {(hotel.has_heated_pools || hotel.specs?.has_heated_pools) && (
-                            <span className="spec-badge text-[11.5px] font-extrabold px-2 py-0.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">🔥 Подогрев</span>
+                            <span className="spec-badge text-[11px] font-extrabold px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200">🔥 Подогрев</span>
                           )}
                         </div>
                       </div>
