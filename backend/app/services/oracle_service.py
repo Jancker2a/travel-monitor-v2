@@ -255,26 +255,34 @@ class OracleService:
         # Synthesize intelligence: try LLM first if API key is present, fallback to deterministic engine
         gem_key = os.getenv("GEMINI_API_KEY")
         oai_key = os.getenv("OPENAI_API_KEY")
+        provider_pref = os.getenv("LLM_PROVIDER", "").lower()
         report = None
 
-        if gem_key:
-            try:
-                logger.info(f"Invoking Gemini LLM for filter {canonical_fid}...")
-                report = ai_market_oracle.call_gemini_oracle(market_context, gem_key)
-                if report and "macro_briefing" in report:
-                    report["macro_briefing"]["synthesized_by"] = "Google Gemini 2.5 Flash (Online)"
-            except Exception as e:
-                logger.warning(f"Gemini oracle call failed, falling back: {e}")
-
-        if not report and oai_key:
+        # 1. If OpenAI is explicitly preferred or only OpenAI is configured
+        if (provider_pref == "openai" or not gem_key) and oai_key:
             try:
                 logger.info(f"Invoking OpenAI LLM for filter {canonical_fid}...")
                 report = ai_market_oracle.call_openai_oracle(market_context, oai_key)
-                if report and "macro_briefing" in report:
-                    report["macro_briefing"]["synthesized_by"] = "OpenAI GPT-4o (Online)"
             except Exception as e:
-                logger.warning(f"OpenAI oracle call failed, falling back: {e}")
+                logger.warning(f"OpenAI oracle call failed: {e}")
 
+        # 2. Otherwise try Gemini
+        if not report and gem_key:
+            try:
+                logger.info(f"Invoking Gemini LLM for filter {canonical_fid}...")
+                report = ai_market_oracle.call_gemini_oracle(market_context, gem_key)
+            except Exception as e:
+                logger.warning(f"Gemini oracle call failed, falling back: {e}")
+
+        # 3. Fallback to OpenAI if Gemini was attempted and failed
+        if not report and oai_key:
+            try:
+                logger.info(f"Falling back to OpenAI LLM for filter {canonical_fid}...")
+                report = ai_market_oracle.call_openai_oracle(market_context, oai_key)
+            except Exception as e:
+                logger.warning(f"OpenAI fallback call failed: {e}")
+
+        # 4. Final fallback to rule-based engine
         if not report:
             report = ai_market_oracle.generate_rule_based_briefing(market_context)
 

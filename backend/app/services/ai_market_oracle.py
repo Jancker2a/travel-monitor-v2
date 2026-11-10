@@ -1026,12 +1026,11 @@ def call_openai_oracle(
     explicit_model = model or os.getenv("OPENAI_MODEL")
     if explicit_model:
         target_models.append(explicit_model)
-        # At most 1 fallback if explicit model fails with HTTP error
-        fallback = "gpt-5.4-mini" if explicit_model != "gpt-5.4-mini" else "gpt-4o-mini"
+        fallback = "gpt-4o-mini" if explicit_model != "gpt-4o-mini" else "gpt-4o"
         if fallback not in target_models:
             target_models.append(fallback)
     else:
-        target_models = ["gpt-5.4-mini", "gpt-4o-mini"]
+        target_models = ["gpt-4o-mini", "gpt-4o"]
 
     llm_context = {
         "filter_id": market_context.get("filter_id"),
