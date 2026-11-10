@@ -213,6 +213,10 @@ class TimelineService:
         for r_time, h_list in runs.items():
             if not h_list:
                 continue
+            # Skip incomplete scrape runs that have fewer than 3 hotels when substantial history exists,
+            # preventing distorted spikes in the Top-10 average curve.
+            if len(h_list) < 3 and len(runs) >= 5:
+                continue
             top10 = h_list[:10]
             prices = [item[1] for item in top10]
             avg_price = round(sum(prices) / len(prices), 1)

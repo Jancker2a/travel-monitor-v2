@@ -16,12 +16,17 @@ export interface SearchTravelers {
 
 export interface SearchRequest {
   destination: string;
+  region?: string;
   filter_id?: string;
   dates: SearchDates;
   duration: SearchDuration;
   travelers: SearchTravelers;
   airports: string[];
+  catering?: string;
+  stars_min?: number;
+  price_min_pln?: number;
   price_max_pln?: number;
+  order_by?: string;
   force_live_refresh?: boolean;
 }
 

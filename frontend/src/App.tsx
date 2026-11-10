@@ -1399,7 +1399,14 @@ export const App: React.FC = () => {
       <HotelPassportDrawer
         hotelId={activeHotelPassport}
         filterId={activeTab === "filter" ? activeFilterId : undefined}
-        hotelItem={results.find((h) => h.hotel_id === activeHotelPassport) || null}
+        hotelItem={
+          results.find(
+            (h) =>
+              h.hotel_id === activeHotelPassport ||
+              (activeHotelPassport &&
+                h.hotel_name.trim().toLowerCase() === activeHotelPassport.trim().toLowerCase())
+          ) || null
+        }
         onClose={() => setActiveHotelPassport(null)}
       />
 

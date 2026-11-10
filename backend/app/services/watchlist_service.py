@@ -587,14 +587,9 @@ class WatchlistService:
             import pandas as pd
             from app.services.hotel_deal_score import compute_hotel_deal_metrics
 
-            max_dt = history_points[-1].recorded_at
-            cutoff_dt = max_dt - timedelta(days=30)
-            pts_30d = [p for p in history_points if p.recorded_at >= cutoff_dt]
-            eval_pts = pts_30d if len(pts_30d) >= 3 else history_points
-
             df_hist = pd.DataFrame([
                 {"scraped_at": p.recorded_at, "price": p.total_price_pln}
-                for p in eval_pts
+                for p in history_points
             ])
             deal_metrics = compute_hotel_deal_metrics(
                 df_hist,

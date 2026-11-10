@@ -47,6 +47,36 @@ class TestUniversalQueryBuilder(unittest.TestCase):
         self.assertEqual(h1, h2)
         self.assertEqual(len(h1), 32)
 
+    def test_build_flypl_url_full_flypl_parity(self):
+        req = SearchRequest(
+            destination="turkey",
+            region="turkey_antalya",
+            dates=SearchDates(
+                start_date_min=date(2026, 12, 1),
+                start_date_max=date(2026, 12, 8),
+            ),
+            duration=SearchDuration(min_nights=7, max_nights=8),
+            travelers=SearchTravelers(adults=1, children=0),
+            airports=["WAW", "KTW", "BER"],
+            catering="all_inclusive",
+            stars_min=4,
+            price_min_pln=1000,
+            price_max_pln=8000,
+            order_by="price",
+        )
+        url = UniversalQueryBuilder.build_flypl_url(req)
+        self.assertIn("destinationLocation=39_3", url)
+        self.assertIn("departureLocation=Warszawa%2CKatowice%2CBerlin", url)
+        self.assertIn("startDateMin=01-12-2026", url)
+        self.assertIn("startDateMax=08-12-2026", url)
+        self.assertIn("adults=1", url)
+        self.assertIn("catering=all_inclusive", url)
+        self.assertIn("categoryRating=40", url)
+        self.assertIn("priceFrom=1000", url)
+        self.assertIn("priceTo=8000", url)
+        self.assertIn("order=price", url)
+
+
 
 if __name__ == "__main__":
     unittest.main()

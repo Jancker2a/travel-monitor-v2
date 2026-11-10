@@ -21,12 +21,17 @@ class SearchTravelers(BaseModel):
 
 class SearchRequest(BaseModel):
     destination: str = Field(description="Country or region slug, e.g. 'egypt', 'turkey', 'greece'")
+    region: Optional[str] = None
     filter_id: Optional[str] = None
     dates: SearchDates
     duration: SearchDuration = Field(default_factory=SearchDuration)
     travelers: SearchTravelers = Field(default_factory=SearchTravelers)
     airports: List[str] = Field(default_factory=lambda: ["WAW", "KTW"])
+    catering: Optional[str] = None
+    stars_min: Optional[int] = None
+    price_min_pln: Optional[float] = None
     price_max_pln: Optional[float] = None
+    order_by: Optional[str] = "price"
     force_live_refresh: bool = False
 
 
