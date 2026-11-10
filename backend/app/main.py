@@ -465,9 +465,19 @@ async def create_custom_monitor(data: dict, db: AsyncSession = Depends(get_db)):
 
 
 @app.get("/api/v2/arbitrage")
-async def get_arbitrage_deals(db: AsyncSession = Depends(get_db), min_savings: float = 300.0):
+async def get_arbitrage_deals(
+    db: AsyncSession = Depends(get_db),
+    min_savings: float = 300.0,
+    filter_id: Optional[str] = None,
+    country: Optional[str] = None,
+):
     """Compares German departures (Berlin BER) against Polish airports to find cross-border arbitrage."""
-    return await ArbitrageService.get_arbitrage_deals(db, min_savings_pln=min_savings)
+    return await ArbitrageService.get_arbitrage_deals(
+        db,
+        min_savings_pln=min_savings,
+        filter_id=filter_id,
+        country=country,
+    )
 
 
 # Mount static site (V1 dashboard & landing) and React SPA frontend

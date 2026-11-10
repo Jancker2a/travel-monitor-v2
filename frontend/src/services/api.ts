@@ -147,8 +147,17 @@ export async function createCustomMonitor(data: any): Promise<any> {
   return resp.json();
 }
 
-export async function getArbitrageDeals(minSavings: number = 300): Promise<any[]> {
-  const resp = await fetch(`${API_BASE}/api/v2/arbitrage?min_savings=${minSavings}`);
+export async function getArbitrageDeals(
+  minSavings: number = 300,
+  filterId?: string | null,
+  country?: string | null
+): Promise<any[]> {
+  const params = new URLSearchParams();
+  params.set("min_savings", String(minSavings));
+  if (filterId) params.set("filter_id", filterId);
+  if (country) params.set("country", country);
+
+  const resp = await fetch(`${API_BASE}/api/v2/arbitrage?${params.toString()}`);
   if (!resp.ok) {
     throw new Error(`Ошибка загрузки немецкого арбитража (${resp.status})`);
   }

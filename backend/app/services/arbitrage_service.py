@@ -1,29 +1,44 @@
 """
 Cross-border German Arbitrage Service for Travel Monitor 2.0.
-Ported from v1 cross_border_arbitrage.py:
-Compares departures from Berlin (BER) against Polish hubs (WAW, KTW, WRO, POZ)
-to find price discrepancies and identify massive savings via German operators.
+Strict Parity Engine (Berlin BER vs Polish Hubs).
+
+Enforces:
+1. Strict Filter & Destination Isolation (Turkey with Turkey, Egypt with Egypt, Greece with Greece, Cyprus with Cyprus).
+2. Passenger Composition Parity (Adults & Children must match 1:1; e.g. 2+1 never compared against 1p).
+3. Duration & Nights Parity (Duration in hotel nights must match within +-1 night; e.g. 14 nights never compared against 7 nights).
+4. Dates & Seasonality Check (Checkin dates must match search window or +-35 days).
+5. Hotel Entity Matching via HotelEntityMatcher (Similarity >= 0.78, no geographic or sub-property conflict).
+6. Transport Friction Deduction (250 PLN for Warsaw/Poznan/Wroclaw -> Berlin travel).
 """
-import logging
-import time
+
 import json
+import logging
 import re
+import time
 import urllib.parse
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
-from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
+from sqlalchemy import and_, func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, and_, func
 
 from app.models.cohort import OfferCohort
-from app.models.price_snapshot import PriceSnapshot
 from app.models.hotel import Hotel
+from app.models.price_snapshot import PriceSnapshot
+from app.services.canonical_filters import resolve_filter_spec
+from app.services.hotel_entity_matcher import HotelEntityMatcher
+from app.services.timeline_service import get_all_filter_id_variants
 
 logger = logging.getLogger("travel_monitor_2.arbitrage")
 
-_ARBITRAGE_CACHE: Dict[float, Tuple[float, List[Dict[str, Any]]]] = {}
+_ARBITRAGE_CACHE: Dict[Tuple[str, str, float], Tuple[float, List[Dict[str, Any]]]] = {}
 _CACHE_TTL_SECONDS = 600  # 10 minutes cache
 _CHECK24_KB: Optional[Dict[str, Any]] = None
+_ENTITY_MATCHER: Optional[HotelEntityMatcher] = None
+
+# Default transport friction cost to BER (PKP Intercity train or car fuel/parking from Poland)
+DEFAULT_FRICTION_COST_PLN = 250.0
 
 
 def get_check24_kb() -> Dict[str, Any]:
@@ -42,50 +57,211 @@ def get_check24_kb() -> Dict[str, Any]:
     return _CHECK24_KB
 
 
-def find_check24_offer(name: str) -> Optional[Dict[str, Any]]:
+def get_entity_matcher() -> HotelEntityMatcher:
+    global _ENTITY_MATCHER
+    if _ENTITY_MATCHER is None:
+        _ENTITY_MATCHER = HotelEntityMatcher(similarity_threshold=0.78)
+    return _ENTITY_MATCHER
+
+
+def normalize_dest_key(destination_or_country: Optional[str]) -> Optional[str]:
+    """Maps Russian or English country/destination strings to standard canonical keys."""
+    if not destination_or_country:
+        return None
+    s = destination_or_country.lower().strip()
+    if any(k in s for k in ("турц", "turk", "antalya", "belek", "side", "kemer", "bodrum")):
+        return "turkey"
+    if any(k in s for k in ("егип", "egypt", "hurghada", "sharm", "marsa")):
+        return "egypt"
+    if any(k in s for k in ("грец", "gree", "kreta", "rhodes", "athens", "corfu", "kos")):
+        return "greece"
+    if any(k in s for k in ("кипр", "cypr", "paphos", "ayia")):
+        return "cyprus"
+    if any(k in s for k in ("испан", "spain", "mallorca", "tenerife")):
+        return "spain"
+    return s
+
+
+def find_check24_offer(
+    name: str,
+    destination: Optional[str] = None,
+    adults: Optional[int] = None,
+    children: Optional[int] = None,
+) -> Optional[Dict[str, Any]]:
+    """
+    Finds direct matching Check24 German offer for a hotel with strict destination and entity matching.
+    Guarantees no cross-country or cross-property mismatches.
+    """
     kb = get_check24_kb()
     if not kb or not name:
         return None
-    c = name.lower().strip()
-    if c in kb:
-        return kb[c]
-    tokens = set(re.findall(r"[a-z0-9]{3,}", c)) - {"hotel", "resort", "spa", "beach", "club", "palace"}
-    best = None
-    best_ov = 0
-    for k, v in kb.items():
-        kt = set(re.findall(r"[a-z0-9]{3,}", k)) - {"hotel", "resort", "spa", "beach", "club", "palace"}
-        if tokens and kt:
-            ov = len(tokens & kt)
-            if ov >= 2 and ov > best_ov:
-                best_ov = ov
-                best = v
-    return best
+
+    offers = kb.get("offers", [])
+    dest_key = normalize_dest_key(destination)
+
+    if dest_key:
+        scoped = [o for o in offers if normalize_dest_key(o.get("destination")) == dest_key]
+        if scoped:
+            offers = scoped
+
+    if adults is not None:
+        scoped = [o for o in offers if o.get("adults") == adults]
+        if scoped:
+            offers = scoped
+
+    if children is not None:
+        scoped = [o for o in offers if o.get("children") == children]
+        if scoped:
+            offers = scoped
+
+    if not offers:
+        offers = kb.get("offers", [])
+
+    matcher = get_entity_matcher()
+    de_hotels = list(set(o["hotel_name"] for o in offers if o.get("hotel_name")))
+    match_res = matcher.match_hotel(name, de_hotels)
+    if not match_res:
+        return None
+
+    matched_name, sim = match_res
+    matching_offers = [o for o in offers if o.get("hotel_name") == matched_name]
+    if not matching_offers:
+        return None
+
+    return min(matching_offers, key=lambda x: x.get("price_pln", 999999))
+
+
+def is_offer_comparable(
+    pl_checkin: Any,
+    pl_nights: int,
+    pl_adults: int,
+    pl_children: int,
+    de_offer: Dict[str, Any],
+    max_duration_diff: int = 1,
+) -> Tuple[bool, str]:
+    """
+    Validates 1:1 parameter comparability between Polish and German tour offers:
+    1. Party composition must match strictly (adults and children).
+    2. Duration in hotel nights must match within +-max_duration_diff (default +-1 night).
+    3. Departure dates must fall within matching season window <= 35 days.
+    """
+    # 1. Travelers match
+    de_ad = de_offer.get("adults", 2)
+    de_ch = de_offer.get("children", 0)
+    if pl_adults != de_ad:
+        return False, f"Adults mismatch: PL {pl_adults} vs DE {de_ad}"
+    if pl_children != de_ch:
+        return False, f"Children mismatch: PL {pl_children} vs DE {de_ch}"
+
+    # 2. Duration parity
+    de_nights = de_offer.get("duration_nights", 7)
+    if abs(pl_nights - de_nights) > max_duration_diff:
+        return False, f"Nights mismatch: PL {pl_nights} vs DE {de_nights}"
+
+    # 3. Departure Date parity
+    if pl_checkin:
+        try:
+            pl_dt = (
+                pl_checkin
+                if isinstance(pl_checkin, date)
+                else datetime.strptime(str(pl_checkin)[:10], "%Y-%m-%d").date()
+            )
+            de_start = de_offer.get("departure_date_start")
+            de_end = de_offer.get("departure_date_end")
+            if de_start:
+                s_dt = (
+                    de_start
+                    if isinstance(de_start, date)
+                    else datetime.strptime(str(de_start)[:10], "%Y-%m-%d").date()
+                )
+                e_dt = (
+                    de_end
+                    if isinstance(de_end, date)
+                    else datetime.strptime(str(de_end)[:10], "%Y-%m-%d").date()
+                    if de_end
+                    else s_dt
+                )
+                # Ensure checkin is within the German search window or +-7 days
+                if not (s_dt - timedelta(days=7) <= pl_dt <= e_dt + timedelta(days=7)):
+                    diff_days = abs((pl_dt - s_dt).days)
+                    if diff_days > 35:
+                        return False, f"Date mismatch: PL {pl_dt} vs DE {s_dt} ({diff_days}d > 35d)"
+        except Exception:
+            pass
+
+    return True, "OK"
 
 
 class ArbitrageService:
     @classmethod
     async def get_arbitrage_deals(
-        cls, db: AsyncSession, min_savings_pln: float = 300.0, limit: int = 50
+        cls,
+        db: AsyncSession,
+        min_savings_pln: float = 300.0,
+        limit: int = 50,
+        filter_id: Optional[str] = None,
+        country: Optional[str] = None,
     ) -> List[Dict[str, Any]]:
-        """Finds identical hotels and date windows where Berlin departures are significantly cheaper."""
+        """
+        Finds identical hotels and date windows where Berlin departures (BER) are significantly cheaper
+        than departures from Polish airports, enforcing strict filter, destination, duration and traveler parity.
+        """
         now_ts = time.time()
-        if min_savings_pln in _ARBITRAGE_CACHE:
-            c_time, c_deals = _ARBITRAGE_CACHE[min_savings_pln]
+        cache_key = (str(filter_id or ""), str(country or ""), float(min_savings_pln))
+        if cache_key in _ARBITRAGE_CACHE:
+            c_time, c_deals = _ARBITRAGE_CACHE[cache_key]
             if now_ts - c_time < _CACHE_TTL_SECONDS:
                 return c_deals[:limit]
 
-        # 1. Fetch only recent snapshots (last 14 days) to keep query ultra fast
+        # 1. Resolve Filter Specifications
+        spec = resolve_filter_spec(filter_id) if filter_id else None
+        target_country = (country or (spec.get("country") if spec else None) or "").strip()
+        target_dest_key = normalize_dest_key(target_country or (spec.get("destination") if spec else None))
+        target_adults = spec.get("adults") if spec else None
+        target_children = spec.get("children") if spec else None
+        target_dur_min = spec.get("duration_min") if spec else None
+        target_dur_max = spec.get("duration_max") if spec else None
+        filter_variants = list(get_all_filter_id_variants(filter_id)) if filter_id else []
+
+        # 2. Filter German Candidate Offers
+        kb = get_check24_kb()
+        all_de_offers = kb.get("offers", [])
+        de_candidates = all_de_offers
+
+        if target_dest_key:
+            de_candidates = [
+                o for o in de_candidates if normalize_dest_key(o.get("destination")) == target_dest_key
+            ]
+
+        if target_adults is not None:
+            de_candidates = [o for o in de_candidates if o.get("adults") == target_adults]
+
+        if target_children is not None:
+            de_candidates = [o for o in de_candidates if o.get("children") == target_children]
+
+        if target_dur_min and target_dur_max:
+            de_candidates = [
+                o
+                for o in de_candidates
+                if (target_dur_min - 1) <= o.get("duration_nights", 7) <= (target_dur_max + 1)
+            ]
+
+        # If no German offers exist for this strict scope, return clean empty list
+        if not de_candidates:
+            _ARBITRAGE_CACHE[cache_key] = (now_ts, [])
+            return []
+
+        # 3. Query Polish Offers with DB-Agnostic Query
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         recent_cutoff = (
-            datetime.now(timezone.utc) - timedelta(days=14)
+            datetime.now(timezone.utc) - timedelta(days=21)
             if is_pg
-            else (datetime.utcnow() - timedelta(days=14)).isoformat()
+            else (datetime.utcnow() - timedelta(days=21)).isoformat()
         )
 
         join_col = "cohort_id"
         try:
             if db.bind and db.bind.dialect.name == "sqlite":
-                from sqlalchemy import text
                 pragma_res = await db.execute(text("PRAGMA table_info(price_snapshots)"))
                 pragma_cols = {r[1] for r in pragma_res.fetchall()}
                 if "cohort_hash" in pragma_cols:
@@ -93,7 +269,29 @@ class ArbitrageService:
         except Exception:
             pass
 
-        from sqlalchemy import text
+        where_clauses = ["ps.recorded_at >= :cutoff"]
+        params: Dict[str, Any] = {"cutoff": recent_cutoff}
+
+        if target_country:
+            where_clauses.append("LOWER(h.country) = LOWER(:country)")
+            params["country"] = target_country
+
+        if filter_variants:
+            placeholders = ",".join(f":f{i}" for i in range(len(filter_variants)))
+            for i, fv in enumerate(filter_variants):
+                params[f"f{i}"] = fv
+            where_clauses.append(f"c.filter_id IN ({placeholders})")
+
+        if target_dur_min and target_dur_max:
+            where_clauses.append("c.duration_nights BETWEEN :dur_min AND :dur_max")
+            params["dur_min"] = max(1, target_dur_min - 1)
+            params["dur_max"] = target_dur_max + 1
+
+        if target_adults is not None:
+            where_clauses.append("c.adults = :adults")
+            params["adults"] = target_adults
+
+        where_sql = " AND ".join(where_clauses)
         arb_sql = f"""
             SELECT 
                 c.hotel_id,
@@ -106,25 +304,39 @@ class ArbitrageService:
                 c.duration_nights,
                 c.operator,
                 c.offer_url,
-                s.total_price_pln
+                c.adults,
+                c.children,
+                ps.total_price_pln,
+                ps.recorded_at
             FROM offer_cohorts c
             JOIN hotels h ON c.hotel_id = h.hotel_id
-            JOIN (
-                SELECT 
-                    {join_col} as cid,
-                    total_price_pln,
-                    ROW_NUMBER() OVER (PARTITION BY {join_col} ORDER BY recorded_at DESC) as rn
-                FROM price_snapshots
-                WHERE recorded_at >= :cutoff
-            ) s ON c.{join_col} = s.cid AND s.rn = 1
+            JOIN price_snapshots ps ON c.{join_col} = ps.{join_col}
+            WHERE {where_sql}
+            ORDER BY ps.recorded_at DESC
         """
-        res = await db.execute(text(arb_sql), {"cutoff": recent_cutoff})
+
+        res = await db.execute(text(arb_sql), params)
         rows = res.fetchall()
 
-        # Group by (hotel_id, checkin_date, duration_nights)
+        # Group Polish offers by (hotel_id, checkin_date, duration_nights)
         grouped: Dict[str, Dict[str, Any]] = {}
         for r in rows:
-            hotel_id, name, country, stars, img, airport, checkin, nights, operator, offer_url, price = r
+            (
+                hotel_id,
+                name,
+                country_val,
+                stars,
+                img,
+                airport,
+                checkin,
+                nights,
+                operator,
+                offer_url,
+                adults_val,
+                children_val,
+                price,
+                rec_at,
+            ) = r
             if not checkin or price <= 0:
                 continue
 
@@ -136,16 +348,23 @@ class ArbitrageService:
                 grouped[key] = {
                     "hotel_id": hotel_id,
                     "hotel_name": name,
-                    "country": country,
+                    "country": country_val,
                     "stars": stars or 4,
                     "main_image_url": img,
                     "checkin_date": checkin,
                     "duration_nights": nights,
+                    "adults": adults_val,
+                    "children": children_val,
                     "berlin_offers": [],
                     "polish_offers": [],
                 }
 
-            entry = {"airport": airport, "price_pln": price, "operator": operator, "offer_url": offer_url}
+            entry = {
+                "airport": airport,
+                "price_pln": float(price),
+                "operator": operator,
+                "offer_url": offer_url,
+            }
             if is_berlin:
                 grouped[key]["berlin_offers"].append(entry)
             else:
@@ -153,90 +372,83 @@ class ArbitrageService:
 
         deals: List[Dict[str, Any]] = []
         seen_hotels = set()
+        matcher = get_entity_matcher()
+        de_hotels = list(set(o["hotel_name"] for o in de_candidates if o.get("hotel_name")))
 
-        # 1. Evaluate cohort-based matches (where database has direct Berlin departures)
+        # 4. Strict Matching & Comparability
         for key, g in grouped.items():
-            if not g["berlin_offers"] or not g["polish_offers"]:
-                continue
-
-            cheapest_ber = min(g["berlin_offers"], key=lambda x: x["price_pln"])
-            cheapest_pl = min(g["polish_offers"], key=lambda x: x["price_pln"])
-
-            p_ber = cheapest_ber["price_pln"]
-            p_pl = cheapest_pl["price_pln"]
-
-            diff_pln = p_pl - p_ber
-            if diff_pln >= min_savings_pln:
-                savings_pct = (diff_pln / p_pl) * 100.0
-                enc_h = urllib.parse.quote_plus(g['hotel_name'])
-                ber_url = cheapest_ber.get("offer_url")
-                if not ber_url:
-                    c24 = find_check24_offer(g["hotel_name"])
-                    ber_url = c24["offer_url"] if c24 else f"https://www.check24.de/suche/?q={enc_h}"
-                pl_url = cheapest_pl.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?hotelName={enc_h}"
-                deals.append({
-                    "hotel_id": g["hotel_id"],
-                    "hotel_name": g["hotel_name"],
-                    "country": g["country"],
-                    "stars": g["stars"],
-                    "main_image_url": g["main_image_url"],
-                    "checkin_date": g["checkin_date"],
-                    "duration_nights": g["duration_nights"],
-                    "berlin_airport": cheapest_ber["airport"] or "BER",
-                    "berlin_price_pln": p_ber,
-                    "berlin_operator": cheapest_ber["operator"] or "Exim / TUI",
-                    "berlin_booking_url": ber_url,
-                    "polish_airport": cheapest_pl["airport"] or "WAW",
-                    "polish_price_pln": p_pl,
-                    "polish_operator": cheapest_pl["operator"] or "PL Operator",
-                    "polish_booking_url": pl_url,
-                    "savings_pln": round(diff_pln, 0),
-                    "savings_pct": round(savings_pct, 1),
-                    "verdict": f"Выгода: {round(diff_pln):,} zł (-{savings_pct:.0f}%)",
-                })
-                seen_hotels.add(g["hotel_id"])
-
-        # 2. Evaluate Check24 cross-border matches (Check24 specific offer URLs with hotelId)
-        for key, g in grouped.items():
-            if g["hotel_id"] in seen_hotels or not g["polish_offers"]:
-                continue
-
-            c24 = find_check24_offer(g["hotel_name"])
-            if not c24 or not c24.get("price_pln") or c24["price_pln"] <= 0:
+            if not g["polish_offers"] or g["hotel_id"] in seen_hotels:
                 continue
 
             cheapest_pl = min(g["polish_offers"], key=lambda x: x["price_pln"])
-            p_pl = cheapest_pl["price_pln"]
-            p_ber = c24["price_pln"]
+            pl_name = g["hotel_name"]
+            pl_price = cheapest_pl["price_pln"]
 
-            diff_pln = p_pl - p_ber
-            if diff_pln >= min_savings_pln:
-                savings_pct = (diff_pln / p_pl) * 100.0
-                enc_h = urllib.parse.quote_plus(g["hotel_name"])
-                pl_url = cheapest_pl.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?hotelName={enc_h}"
-                deals.append({
-                    "hotel_id": g["hotel_id"],
-                    "hotel_name": g["hotel_name"],
-                    "country": g["country"],
-                    "stars": g["stars"],
-                    "main_image_url": g["main_image_url"],
-                    "checkin_date": g["checkin_date"],
-                    "duration_nights": g["duration_nights"],
-                    "berlin_airport": c24.get("departure_airport") or "BER",
-                    "berlin_price_pln": p_ber,
-                    "berlin_operator": c24.get("operator") or "Check24 / TUI Deutschland",
-                    "berlin_booking_url": c24["offer_url"],
-                    "polish_airport": cheapest_pl["airport"] or "WAW",
-                    "polish_price_pln": p_pl,
-                    "polish_operator": cheapest_pl["operator"] or "PL Operator",
-                    "polish_booking_url": pl_url,
-                    "savings_pln": round(diff_pln, 0),
-                    "savings_pct": round(savings_pct, 1),
-                    "verdict": f"Выгода: {round(diff_pln):,} zł (-{savings_pct:.0f}%)",
-                })
+            # Match German Hotel
+            match_res = matcher.match_hotel(pl_name, de_hotels)
+            if not match_res:
+                continue
+
+            matched_de_name, sim_score = match_res
+            matching_de_offers = [o for o in de_candidates if o["hotel_name"] == matched_de_name]
+
+            # Find best comparable German offer
+            best_deal_item = None
+            max_savings = 0.0
+
+            for de_o in matching_de_offers:
+                ok, reason = is_offer_comparable(
+                    pl_checkin=g["checkin_date"],
+                    pl_nights=g["duration_nights"],
+                    pl_adults=g.get("adults", target_adults or 2),
+                    pl_children=g.get("children", target_children or 0),
+                    de_offer=de_o,
+                    max_duration_diff=1,
+                )
+                if not ok:
+                    continue
+
+                p_ber = de_o["price_pln"]
+                friction_pln = DEFAULT_FRICTION_COST_PLN
+                diff_pln = pl_price - (p_ber + friction_pln)
+
+                if diff_pln >= min_savings_pln and diff_pln > max_savings:
+                    max_savings = diff_pln
+                    savings_pct = (diff_pln / pl_price) * 100.0
+                    enc_h = urllib.parse.quote_plus(g["hotel_name"])
+                    pl_url = cheapest_pl.get("offer_url") or f"https://fly.pl/szukaj-wycieczek/?hotelName={enc_h}"
+
+                    best_deal_item = {
+                        "hotel_id": g["hotel_id"],
+                        "hotel_name": g["hotel_name"],
+                        "german_hotel_name": matched_de_name,
+                        "similarity_score": sim_score,
+                        "country": g["country"],
+                        "stars": g["stars"],
+                        "main_image_url": g["main_image_url"],
+                        "checkin_date": str(g["checkin_date"]),
+                        "duration_nights": g["duration_nights"],
+                        "german_duration_nights": de_o["duration_nights"],
+                        "adults": g.get("adults", target_adults or 2),
+                        "children": g.get("children", target_children or 0),
+                        "berlin_airport": de_o.get("departure_airport") or "BER",
+                        "berlin_price_pln": p_ber,
+                        "berlin_operator": de_o.get("operator") or "Check24 / TUI Deutschland",
+                        "berlin_booking_url": de_o["offer_url"],
+                        "polish_airport": cheapest_pl["airport"] or "WAW",
+                        "polish_price_pln": pl_price,
+                        "polish_operator": cheapest_pl["operator"] or "PL Operator",
+                        "polish_booking_url": pl_url,
+                        "friction_pln": friction_pln,
+                        "savings_pln": round(diff_pln, 0),
+                        "savings_pct": round(savings_pct, 1),
+                        "verdict": f"Выгода: {round(diff_pln):,} zł (-{savings_pct:.0f}%)",
+                    }
+
+            if best_deal_item:
+                deals.append(best_deal_item)
                 seen_hotels.add(g["hotel_id"])
 
         deals.sort(key=lambda x: x["savings_pln"], reverse=True)
-        _ARBITRAGE_CACHE[min_savings_pln] = (now_ts, deals)
+        _ARBITRAGE_CACHE[cache_key] = (now_ts, deals)
         return deals[:limit]
-

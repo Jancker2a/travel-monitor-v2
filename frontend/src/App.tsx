@@ -741,11 +741,28 @@ export const App: React.FC = () => {
     getAirportComparison("turkey")
       .then((stats) => setAirportStats(stats))
       .catch((err) => console.warn("Airport stats fetch failed:", err));
-
-    getArbitrageDeals(300)
-      .then((deals) => setArbitrageCount(deals.length))
-      .catch((err) => console.warn("Arbitrage count fetch failed:", err));
   }, []);
+
+  useEffect(() => {
+    const preset = FILTER_PRESETS[activeFilterId];
+    const country =
+      preset?.destination === "turkey"
+        ? "Турция"
+        : preset?.destination === "egypt"
+        ? "Египет"
+        : preset?.destination === "greece"
+        ? "Греция"
+        : preset?.destination === "cyprus"
+        ? "Кипр"
+        : undefined;
+
+    getArbitrageDeals(300, activeTab === "filter" ? activeFilterId : undefined, country)
+      .then((deals) => setArbitrageCount(deals.length))
+      .catch((err) => {
+        console.warn("Arbitrage count fetch failed:", err);
+        setArbitrageCount(0);
+      });
+  }, [activeTab, activeFilterId]);
 
   const loadFilterResults = async (filterId: string) => {
     setIsLoading(true);
@@ -1145,7 +1162,21 @@ export const App: React.FC = () => {
 
         {/* 6. Mode Switch Views */}
         {viewMode === "arbitrage" ? (
-          <GermanArbitrageView />
+          <GermanArbitrageView
+            filterId={activeTab === "filter" ? activeFilterId : undefined}
+            country={
+              FILTER_PRESETS[activeFilterId]?.destination === "turkey"
+                ? "Турция"
+                : FILTER_PRESETS[activeFilterId]?.destination === "egypt"
+                ? "Египет"
+                : FILTER_PRESETS[activeFilterId]?.destination === "greece"
+                ? "Греция"
+                : FILTER_PRESETS[activeFilterId]?.destination === "cyprus"
+                ? "Кипр"
+                : undefined
+            }
+            filterTitle={FILTER_PRESETS[activeFilterId]?.title}
+          />
         ) : viewMode === "table" ? (
           <HotelTableView
             hotels={filteredHotels}
