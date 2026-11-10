@@ -5,7 +5,11 @@
   "hotel_name": "Baron Palace Resort (Sahl Hasheesh)",
   "x": [
     "2026-07-27 09:30:20",
+<<<<<<< Updated upstream
     "2026-11-10 09:56:28"
+=======
+    "2026-11-10 10:24:20"
+>>>>>>> Stashed changes
   ],
   "y": [
     21117.0,

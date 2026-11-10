@@ -65,7 +65,11 @@
     "2026-07-10 01:19:01",
     "2026-07-10 04:11:04",
     "2026-07-10 08:11:40",
+<<<<<<< Updated upstream
     "2026-11-10 09:53:09"
+=======
+    "2026-11-10 10:21:22"
+>>>>>>> Stashed changes
   ],
   "y": [
     11547.0,
@@ -129,7 +133,11 @@
     9788.0,
     9788.0,
     11295.0,
+<<<<<<< Updated upstream
     9377.0
+=======
+    9517.0
+>>>>>>> Stashed changes
   ],
   "hover": [
     "Проверка: 03.07.2026 11:03<br>Даты поездки: 22.07.2026 - 29.07.2026",
@@ -207,7 +215,11 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 11493.380020255127,
+<<<<<<< Updated upstream
   "min_p": 9377.0,
+=======
+  "min_p": 9517.0,
+>>>>>>> Stashed changes
   "max_p": 11709.0,
   "samples": 62,
   "alert_threshold": 8.0,
@@ -215,5 +227,9 @@
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
   "back_href": "index_filter_turkey_vacation_jul18.html",
+<<<<<<< Updated upstream
   "current_price": 9377.0
+=======
+  "current_price": 9517.0
+>>>>>>> Stashed changes
 }

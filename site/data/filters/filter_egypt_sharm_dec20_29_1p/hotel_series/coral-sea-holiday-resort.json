@@ -33,7 +33,11 @@
     "2026-11-03 19:48:19",
     "2026-11-04 03:32:02",
     "2026-11-04 07:20:18",
+<<<<<<< Updated upstream
     "2026-11-10 09:49:47"
+=======
+    "2026-11-10 10:19:54"
+>>>>>>> Stashed changes
   ],
   "y": [
     7252.0,
@@ -65,7 +69,11 @@
     7329.0,
     6927.0,
     6927.0,
+<<<<<<< Updated upstream
     6827.0
+=======
+    6835.0
+>>>>>>> Stashed changes
   ],
   "hover": [
     "Проверка: 17.10.2026 18:12<br>Даты поездки: 20.12.2026 - 27.12.2026",
@@ -111,7 +119,11 @@
   "delta_avg": "—",
   "confidence": "High",
   "median_p": 7245.405408096606,
+<<<<<<< Updated upstream
   "min_p": 6827.0,
+=======
+  "min_p": 6835.0,
+>>>>>>> Stashed changes
   "max_p": 7329.0,
   "samples": 30,
   "alert_threshold": 8.0,
@@ -119,5 +131,9 @@
   "display_price_ceiling": 30000.0,
   "history_price_ceiling": 20000.0,
   "back_href": "index_filter_egypt_sharm_dec20_29_1p.html",
+<<<<<<< Updated upstream
   "current_price": 6827.0
+=======
+  "current_price": 6835.0
+>>>>>>> Stashed changes
 }
