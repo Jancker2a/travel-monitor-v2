@@ -425,6 +425,27 @@ body {
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
+/* Tooltip Safeguard: Never display empty tooltips */
+.hopper-pill:not([data-tip])::after,
+.hopper-pill:not([data-tip])::before,
+.hopper-pill[data-tip=""]::after,
+.hopper-pill[data-tip=""]::before,
+.th-tip:not([data-tip])::after,
+.th-tip:not([data-tip])::before,
+.th-tip[data-tip=""]::after,
+.th-tip[data-tip=""]::before {
+  display: none !important;
+  content: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.hopper-pill[data-tip]:not([data-tip=""]):hover::after,
+.hopper-pill[data-tip]:not([data-tip=""]):hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Specs Badges */
 .spec-badge {
   display: inline-flex;

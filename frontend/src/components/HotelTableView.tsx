@@ -192,17 +192,25 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 dealText = `${intel.deal_score} 📈 Bad`;
               }
 
-              // Forecast pill
+              // Forecast tip & pill
+              const forecastTip = intel.recommendation
+                ? `Прогноз Hopper AI: ${intel.recommendation}`
+                : intel.deal_score >= 80
+                ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
+                : intel.deal_score < 45 || intel.hopper_verdict === "OVERPRICED"
+                ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
+                : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
+
               let forecastPill = (
-                <span className="hopper-pill wait">🟡 ЖДАТЬ</span>
+                <span className="hopper-pill wait" data-tip={forecastTip}>🟡 ЖДАТЬ</span>
               );
               if (intel.deal_score >= 80) {
                 forecastPill = (
-                  <span className="hopper-pill buy-now">🟢 ПОКУПАТЬ</span>
+                  <span className="hopper-pill buy-now" data-tip={forecastTip}>🟢 ПОКУПАТЬ</span>
                 );
               } else if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45) {
                 forecastPill = (
-                  <span className="hopper-pill overpriced">🔴 ДОРОГО</span>
+                  <span className="hopper-pill overpriced" data-tip={forecastTip}>🔴 ДОРОГО</span>
                 );
               }
 
@@ -215,7 +223,6 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   key={offer.cohort_hash}
                   onClick={() => onOpenPassport(hotel.hotel_id)}
                   className="group cursor-pointer hover:bg-sky-50/60 transition-colors"
-                  title={`Кликните по строке, чтобы открыть AI Паспорт ${hotel.hotel_name}`}
                 >
                   {/* Hotel Cell */}
                   <td className="pl-4">

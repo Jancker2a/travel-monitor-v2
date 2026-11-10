@@ -42,21 +42,38 @@ export const HotelCard: React.FC<Props> = ({
     dealBadgeText = `${score} 📈 Bad`;
   }
 
-  // Forecast pill
+  // Forecast tip & pill
+  const forecastTip = intelligence.recommendation
+    ? `Прогноз Hopper AI: ${intelligence.recommendation}`
+    : score >= 80
+    ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
+    : score < 45 || intelligence.hopper_verdict === "OVERPRICED"
+    ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
+    : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
+
   let forecastPill = (
-    <span className="hopper-pill wait text-[11px] font-black px-2 py-0.5 rounded-md">
+    <span
+      className="hopper-pill wait text-[11px] font-black px-2 py-0.5 rounded-md"
+      data-tip={forecastTip}
+    >
       🟡 ЖДАТЬ
     </span>
   );
   if (score >= 80) {
     forecastPill = (
-      <span className="hopper-pill buy-now text-[11px] font-black px-2 py-0.5 rounded-md">
+      <span
+        className="hopper-pill buy-now text-[11px] font-black px-2 py-0.5 rounded-md"
+        data-tip={forecastTip}
+      >
         🟢 ПОКУПАТЬ
       </span>
     );
   } else if (intelligence.hopper_verdict === "OVERPRICED" || score < 45) {
     forecastPill = (
-      <span className="hopper-pill overpriced text-[11px] font-black px-2 py-0.5 rounded-md">
+      <span
+        className="hopper-pill overpriced text-[11px] font-black px-2 py-0.5 rounded-md"
+        data-tip={forecastTip}
+      >
         🔴 ДОРОГО
       </span>
     );
@@ -92,7 +109,6 @@ export const HotelCard: React.FC<Props> = ({
     <div
       onClick={() => onOpenPassport(hotel.hotel_id)}
       className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-xl hover:border-sky-300 transition-all duration-300 flex flex-col h-full group cursor-pointer relative select-none"
-      title={`Кликните, чтобы открыть AI Паспорт ${hotel.hotel_name}`}
     >
       {/* 1. Hotel Image with Floating Badges */}
       <div className="relative w-full h-48 sm:h-52 shrink-0 bg-slate-100 overflow-hidden">

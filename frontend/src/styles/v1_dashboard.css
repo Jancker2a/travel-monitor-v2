@@ -2461,8 +2461,18 @@
             transition: opacity .18s ease, visibility .18s ease;
             z-index: 10000;
         }
-        .hopper-pill:hover::after,
-        .hopper-pill:hover::before {
+        .hopper-pill:not([data-tip])::after,
+        .hopper-pill:not([data-tip])::before,
+        .hopper-pill[data-tip=""]::after,
+        .hopper-pill[data-tip=""]::before {
+            display: none !important;
+            content: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        .hopper-pill[data-tip]:not([data-tip=""]):hover::after,
+        .hopper-pill[data-tip]:not([data-tip=""]):hover::before {
             opacity: 1;
             visibility: visible;
         }
