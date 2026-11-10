@@ -580,16 +580,41 @@ class WatchlistService:
                 deal_badge = "OVERPRICED"
                 verdict = "OVERPRICED"
 
-        # German Arbitrage simulation / lookup
-        enc_hname = urllib.parse.quote_plus(hotel.display_name)
+        # German Arbitrage direct offer lookup or calculation
+        from app.services.arbitrage_service import find_check24_offer
+        c24 = find_check24_offer(hotel.display_name)
+        
+        # Check if any cohort in all_cohorts has Berlin
+        ber_cohort = next((c for c in all_cohorts if "BER" in str(c.airport_code).upper() or "BERLIN" in str(c.airport_code).upper()), None)
+        
+        if c24 and c24.get("price_pln") and c24["price_pln"] > 0:
+            ber_price = c24["price_pln"]
+            ber_url = c24["offer_url"]
+            ber_op = c24.get("operator", "Check24 / TUI Deutschland")
+            ber_ap = c24.get("departure_airport", "BER (Берлин-Бранденбург)")
+        elif ber_cohort and ber_cohort.offer_url:
+            ber_price = round(curr_p * 0.88 - 320, 0)
+            ber_url = ber_cohort.offer_url
+            ber_op = ber_cohort.operator or "Exim / TUI"
+            ber_ap = ber_cohort.airport_code or "BER (Берлин-Бранденбург)"
+        else:
+            enc_hname = urllib.parse.quote_plus(hotel.display_name)
+            ber_price = round(curr_p * 0.88 - 320, 0)
+            ber_url = f"https://www.check24.de/suche/?q={enc_hname}"
+            ber_op = "Check24 / TUI Deutschland"
+            ber_ap = "BER (Берлин-Бранденбург)"
+
+        savings_pln = max(0.0, round(curr_p - ber_price, 0))
+        savings_pct = round((savings_pln / curr_p) * 100.0, 1) if curr_p > 0 else 0.0
+
         german_arbitrage = {
-            "berlin_price_pln": round(curr_p * 0.88 - 320, 0),
+            "berlin_price_pln": ber_price,
             "polish_price_pln": curr_p,
-            "savings_pln": round(curr_p - (curr_p * 0.88 - 320), 0),
-            "savings_pct": 14.5,
-            "berlin_operator": "Check24 / TUI Deutschland",
-            "departure_airport": "BER (Берлин-Бранденбург)",
-            "booking_url": f"https://www.check24.de/suche/?q={enc_hname}",
+            "savings_pln": savings_pln,
+            "savings_pct": savings_pct,
+            "berlin_operator": ber_op,
+            "departure_airport": ber_ap,
+            "booking_url": ber_url,
             "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
         }
 

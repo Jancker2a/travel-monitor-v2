@@ -148,25 +148,31 @@ export const GermanArbitrageView: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <a
                     href={
-                      d.berlin_booking_url && !d.berlin_booking_url.includes("fly.pl")
-                        ? d.berlin_booking_url
-                        : `https://www.check24.de/suche/?q=${encodeURIComponent(d.hotel_name)}`
+                      d.berlin_booking_url ||
+                      `https://www.check24.de/suche/?q=${encodeURIComponent(d.hotel_name)}`
                     }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-2 px-3 rounded-xl bg-[#034ea2] hover:bg-[#023b7a] text-white text-xs font-bold text-center flex items-center justify-center gap-1 transition-colors shadow-sm"
                   >
-                    <span>🇩🇪 Check24 BER</span>
+                    <span>
+                      {d.berlin_booking_url && d.berlin_booking_url.includes("check24")
+                        ? "🇩🇪 Check24 BER"
+                        : "🇩🇪 Вылет BER"}
+                    </span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                   <a
-                    href={d.polish_booking_url || `https://fly.pl/szukaj-wycieczek/?hotelName=${encodeURIComponent(d.hotel_name)}`}
+                    href={
+                      d.polish_booking_url ||
+                      `https://fly.pl/szukaj-wycieczek/?hotelName=${encodeURIComponent(d.hotel_name)}`
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold text-center flex items-center justify-center gap-1 transition-colors border border-slate-200"
-                    title="Сравнить с вылетом из Польши"
+                    title="Сравнить с прямым вылетом из Польши"
                   >
-                    <span>🇵🇱 Fly.pl</span>
+                    <span>🇵🇱 Польша</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
