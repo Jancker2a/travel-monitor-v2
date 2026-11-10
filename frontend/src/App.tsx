@@ -1236,28 +1236,20 @@ export const App: React.FC = () => {
           </div>
         )}
 
-        {/* 1. Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
-        <HeroTerminal
-          title={
-            activeTab === "filter"
-              ? currentPreset.title
-              : "🔍 Результаты метапоиска"
-          }
-          countryBadge={
-            activeTab === "filter"
-              ? currentPreset.countryBadge
-              : "ПОЛЬЗОВАТЕЛЬСКИЙ ПОИСК"
-          }
-          targetUrl={activeTab === "filter" ? currentPreset.targetUrl : undefined}
-          chips={activeTab === "filter" ? currentPreset.chips : undefined}
-          kpi={heroKpi}
-          activeQuickFilter={activeQuickFilter}
-          onQuickFilter={handleQuickFilter}
-        />
-
-        {/* Dashboard folds (AI Analysis, Top-10 Timeline Chart, Analytics) - ONLY shown in filter monitoring mode */}
+        {/* Filter dashboard headers & folds: ONLY in filter monitoring mode */}
         {activeTab === "filter" && (
           <>
+            {/* 1. Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
+            <HeroTerminal
+              title={currentPreset.title}
+              countryBadge={currentPreset.countryBadge}
+              targetUrl={currentPreset.targetUrl}
+              chips={currentPreset.chips}
+              kpi={heroKpi}
+              activeQuickFilter={activeQuickFilter}
+              onQuickFilter={handleQuickFilter}
+            />
+
             {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
             <AiMarketBriefing
               filterId={activeFilterId}

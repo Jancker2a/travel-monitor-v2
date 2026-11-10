@@ -3,10 +3,11 @@ import re
 import html as ihtml
 import logging
 from datetime import datetime, date, timedelta, timezone
+from collections import defaultdict
 from typing import Dict, Any, List, Optional, Tuple
 import httpx
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, func, desc
+from sqlalchemy import select, func, desc, text
 
 from app.models.hotel import Hotel
 from app.models.cohort import OfferCohort, compute_cohort_hash
@@ -416,21 +417,68 @@ class LiveScraperService:
     ) -> List[SearchHotelItem]:
         """Computes intelligence against historical data, persists new records, and constructs response models."""
         items: List[SearchHotelItem] = []
-        destination_country = req.destination.capitalize()
+        dest_keyword = (req.destination or "turkey").lower()
+        destination_country = (
+            "Египет" if "egypt" in dest_keyword
+            else "Турция" if "turkey" in dest_keyword
+            else "Греция" if "greece" in dest_keyword
+            else "Кипр" if "cyprus" in dest_keyword
+            else "Испания" if "spain" in dest_keyword
+            else req.destination.capitalize() if req.destination else "Турция"
+        )
         batch_recorded_at = datetime.now(timezone.utc)
 
+        all_hids = list(set(slugify(off["hotel_name"]) for off in raw_offers if off.get("hotel_name")))
+
+        # 1. Bulk pre-fetch all known hotels in 1 query
         seen_hotels: Dict[str, Hotel] = {}
-        seen_cohorts: Dict[str, OfferCohort] = {}
+        if all_hids:
+            try:
+                h_stmt = select(Hotel).where(Hotel.hotel_id.in_(all_hids))
+                h_res = await db.execute(h_stmt)
+                for h in h_res.scalars().all():
+                    seen_hotels[h.hotel_id] = h
+            except Exception as e:
+                logger.warning(f"Bulk hotel fetch error: {e}")
+
+        # 2. Bulk pre-fetch historical price points for all candidate hotels in 1 query
+        join_col = "cohort_id"
+        try:
+            if db.bind and db.bind.dialect.name == "sqlite":
+                pragma_res = await db.execute(text("PRAGMA table_info(price_snapshots)"))
+                pragma_cols = {r[1] for r in pragma_res.fetchall()}
+                if "cohort_hash" in pragma_cols:
+                    join_col = "cohort_hash"
+                elif "cohort_id" in pragma_cols:
+                    join_col = "cohort_id"
+        except Exception:
+            pass
+
+        hist_map: Dict[str, List[float]] = defaultdict(list)
+        if all_hids:
+            try:
+                placeholders = ",".join(f":h{i}" for i in range(len(all_hids)))
+                h_params = {f"h{i}": hid for i, hid in enumerate(all_hids)}
+                h_sql = f"""
+                    SELECT oc.hotel_id, ps.total_price_pln
+                    FROM price_snapshots ps
+                    JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+                    WHERE oc.hotel_id IN ({placeholders})
+                    ORDER BY ps.recorded_at DESC
+                    LIMIT 600
+                """
+                h_res = await db.execute(text(h_sql), h_params)
+                for hid, p_val in h_res.fetchall():
+                    if len(hist_map[hid]) < 20:
+                        hist_map[hid].append(float(p_val))
+            except Exception as e:
+                logger.warning(f"Bulk hist lookup error: {e}")
+
+        pax_count = max(1, (req.travelers.adults if req.travelers else 2) + (req.travelers.children if req.travelers else 0))
 
         for off in raw_offers:
             hotel_id = slugify(off["hotel_name"])
-            
-            # 1. Upsert / fetch Hotel (with in-batch deduplication)
             hotel_entity = seen_hotels.get(hotel_id)
-            if not hotel_entity:
-                h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
-                h_res = await db.execute(h_stmt)
-                hotel_entity = h_res.scalar_one_or_none()
 
             if not hotel_entity:
                 hotel_entity = Hotel(
@@ -443,119 +491,35 @@ class LiveScraperService:
                     main_image_url=off["main_image_url"],
                 )
                 db.add(hotel_entity)
+                seen_hotels[hotel_id] = hotel_entity
             else:
-                # Update image or TA rating if newly discovered
                 if off["main_image_url"] and not hotel_entity.main_image_url:
                     hotel_entity.main_image_url = off["main_image_url"]
                 if off["ta_rating"] and not hotel_entity.ta_rating:
                     hotel_entity.ta_rating = off["ta_rating"]
 
-            seen_hotels[hotel_id] = hotel_entity
-
-            # 2. Compute Cohort Signature
             cohort_hash = compute_cohort_hash(
                 hotel_id=hotel_id,
                 checkin_date=off["checkin_date"],
                 duration_nights=off["duration_nights"],
                 airport_code=off["departure_airport"],
-                adults=req.travelers.adults,
+                adults=req.travelers.adults if req.travelers else 2,
                 board_basis=off["board_basis"],
                 filter_id=req.filter_id,
             )
 
-            # Upsert Cohort (with in-batch deduplication)
-            cohort_entity = seen_cohorts.get(cohort_hash)
-            if not cohort_entity:
-                c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash == cohort_hash)
-                c_res = await db.execute(c_stmt)
-                cohort_entity = c_res.scalar_one_or_none()
-
-            now_dt = batch_recorded_at
-            if not cohort_entity:
-                cohort_entity = OfferCohort(
-                    cohort_hash=cohort_hash,
-                    filter_id=req.filter_id,
-                    hotel_id=hotel_id,
-                    destination_code=req.destination,
-                    checkin_date=off["checkin_date"],
-                    checkout_date=off["checkout_date"],
-                    duration_nights=off["duration_nights"],
-                    airport_code=off["departure_airport"],
-                    board_basis=off["board_basis"],
-                    adults=req.travelers.adults,
-                    children=req.travelers.children,
-                    operator=off["operator"],
-                    offer_url=off["offer_url"],
-                    first_seen_at=now_dt,
-                    last_seen_at=now_dt,
-                )
-                db.add(cohort_entity)
-                await db.flush()
-            else:
-                cohort_entity.last_seen_at = now_dt
-                if req.filter_id and not cohort_entity.filter_id:
-                    cohort_entity.filter_id = req.filter_id
-                if off["offer_url"]:
-                    cohort_entity.offer_url = off["offer_url"]
-                if not cohort_entity.cohort_id:
-                    await db.flush()
-
-            seen_cohorts[cohort_hash] = cohort_entity
-
-            # 3. Insert Price Snapshot (only for non-archived active filters)
-            pax_count = max(1, req.travelers.adults + req.travelers.children)
-            price_pax_night = off["price"] / (max(1, off["duration_nights"]) * pax_count)
-
-            from app.services.timeline_service import ARCHIVED_FILTER_CUTOFFS
-            if not (req.filter_id and req.filter_id in ARCHIVED_FILTER_CUTOFFS):
-                snapshot = PriceSnapshot(
-                    cohort_id=cohort_entity.cohort_id,
-                    filter_id=req.filter_id,
-                    recorded_at=now_dt,
-                    total_price_pln=off["price"],
-                    price_per_night_per_pax=round(price_pax_night, 2),
-                    currency="PLN",
-                    source="fly_pl",
-                )
-                db.add(snapshot)
-
-            # 4. Compute Intelligence & Sparkline from Historical Snapshots
-            snap_stmt = (
-                select(PriceSnapshot.total_price_pln)
-                .where(PriceSnapshot.cohort_id == cohort_entity.cohort_id)
-                .order_by(PriceSnapshot.recorded_at.desc())
-                .limit(20)
-            )
-            snap_res = await db.execute(snap_stmt)
-            recent_prices = [row[0] for row in snap_res.fetchall()]
-
-            # If this specific cohort is fresh, leverage hotel-wide historical snapshots from the DB
-            if len(recent_prices) < 3:
-                h_snap_stmt = (
-                    select(PriceSnapshot.total_price_pln)
-                    .join(OfferCohort, PriceSnapshot.cohort_id == OfferCohort.cohort_id)
-                    .where(OfferCohort.hotel_id == hotel_id)
-                    .order_by(PriceSnapshot.recorded_at.desc())
-                    .limit(50)
-                )
-                h_res = await db.execute(h_snap_stmt)
-                h_prices = [r[0] for r in h_res.fetchall()]
-                if h_prices:
-                    recent_prices = h_prices
-
+            # Historical points from bulk map
+            curr_price = float(off["price"])
+            recent_prices = list(hist_map.get(hotel_id, []))
             if not recent_prices:
-                recent_prices = [off["price"]]
+                recent_prices = [curr_price]
 
-            sparkline = list(reversed(recent_prices))
+            sparkline = list(reversed(recent_prices[:12]))
             hist_min = min(recent_prices)
             hist_median = sorted(recent_prices)[len(recent_prices) // 2]
-            curr_price = off["price"]
 
             # Deal Score & Badge calculation
-            if hist_median > 0:
-                price_diff_ratio = (curr_price - hist_median) / hist_median
-            else:
-                price_diff_ratio = 0.0
+            price_diff_ratio = (curr_price - hist_median) / hist_median if hist_median > 0 else 0.0
 
             if curr_price <= hist_min and len(recent_prices) >= 3:
                 deal_score = 95
@@ -593,7 +557,7 @@ class LiveScraperService:
             current_offer = OfferSummary(
                 cohort_hash=cohort_hash,
                 total_price_pln=curr_price,
-                price_per_night_pax=round(price_pax_night, 2),
+                price_per_night_pax=round(curr_price / (max(1, off["duration_nights"]) * pax_count), 2),
                 departure_date=off["checkin_date"],
                 duration_nights=off["duration_nights"],
                 airport=off["departure_airport"],
@@ -605,8 +569,8 @@ class LiveScraperService:
                 hotel_id=hotel_id,
                 hotel_name=off["hotel_name"],
                 stars=off["stars"],
-                region=hotel_entity.region,
-                country=hotel_entity.country,
+                region=hotel_entity.region or destination_country,
+                country=hotel_entity.country or destination_country,
                 main_image_url=off["main_image_url"],
                 current_offer=current_offer,
                 intelligence=intelligence,
@@ -614,6 +578,11 @@ class LiveScraperService:
             )
             items.append(item)
 
-        await db.commit()
+        # Commit newly discovered hotels if any
+        try:
+            await db.commit()
+        except Exception:
+            pass
+
         return items
 

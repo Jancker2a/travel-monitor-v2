@@ -47,12 +47,14 @@ class SearchService:
                     results=cached_items,
                 )
 
-        # 2. Interactive Search & Force Live Refresh: ALWAYS query fresh results directly from Fly.pl
+        # 2. Interactive Search & Force Live Refresh: ALWAYS query fresh results directly from Fly.pl JSON API
         logger.info(f"Search {search_id}: running LIVE scraper query against Fly.pl")
         flypl_url = UniversalQueryBuilder.build_flypl_url(req)
 
-        html = await LiveScraperService.fetch_page_html(flypl_url)
-        raw_offers = LiveScraperService.parse_offers_html(html or "")
+        raw_offers = await LiveScraperService.fetch_offers_via_api(flypl_url, max_offers=60)
+        if not raw_offers:
+            html = await LiveScraperService.fetch_page_html(flypl_url)
+            raw_offers = LiveScraperService.parse_offers_html(html or "")
 
         if raw_offers:
             live_items = await LiveScraperService.process_and_persist_offers(db, req, raw_offers)

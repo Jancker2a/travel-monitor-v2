@@ -7,8 +7,11 @@ from tests.test_live_scraper import SAMPLE_HTML
 
 @pytest.mark.asyncio
 async def test_search_api_endpoint(setup_test_db):
-    # Mock live HTML fetch to return SAMPLE_HTML
+    # Mock live API to return empty so it falls back to SAMPLE_HTML parser
     with patch(
+        "app.services.live_scraper.LiveScraperService.fetch_offers_via_api",
+        return_value=[],
+    ), patch(
         "app.services.live_scraper.LiveScraperService.fetch_page_html",
         return_value=SAMPLE_HTML,
     ):
