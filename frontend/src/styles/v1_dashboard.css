@@ -3391,8 +3391,8 @@
         
         .hotels-table {
             width: 100%;
-            min-width: 1080px;
-            table-layout: fixed;
+            min-width: 1300px;
+            table-layout: auto;
             border-collapse: separate;
             border-spacing: 0 6px;
             margin: 0;
@@ -3400,16 +3400,16 @@
         }
 
         .hotels-table col.col-w-hotel { width: 22.0%; }
-        .hotels-table col.col-w-price { width: 13.5%; }
-        .hotels-table col.col-w-deal { width: 8.0%; }
+        .hotels-table col.col-w-price { width: 12.0%; }
+        .hotels-table col.col-w-deal { width: 9.0%; }
         .hotels-table col.col-w-forecast { width: 9.0%; }
-        .hotels-table col.col-w-ta { width: 7.0%; }
-        .hotels-table col.col-w-d48 { width: 5.5%; }
+        .hotels-table col.col-w-ta { width: 6.0%; }
+        .hotels-table col.col-w-d48 { width: 7.0%; }
         .hotels-table col.col-w-davg { width: 7.0%; }
-        .hotels-table col.col-w-region { width: 9.0%; }
-        .hotels-table col.col-w-dates { width: 11.0%; }
-        .hotels-table col.col-w-dur { width: 4.0%; }
-        .hotels-table col.col-w-link { width: 4.0%; }
+        .hotels-table col.col-w-region { width: 8.0%; }
+        .hotels-table col.col-w-dates { width: 10.0%; }
+        .hotels-table col.col-w-dur { width: 5.0%; }
+        .hotels-table col.col-w-link { width: 15.0%; }
 
         .hotels-table td.col-w-d48-td,
         .hotels-table td.col-w-davg-td,

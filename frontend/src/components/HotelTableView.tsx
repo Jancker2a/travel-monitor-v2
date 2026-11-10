@@ -94,8 +94,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
             <tr className="bg-sky-50/80 border-b border-sky-100 text-sky-900 text-xs uppercase tracking-wider font-extrabold select-none">
               <th
                 onClick={() => onSort("hotel")}
-                className="cursor-pointer hover:text-blue-900 pl-4 py-3 rounded-l-xl transition-colors"
-                style={{ width: "24%" }}
+                className="cursor-pointer hover:text-blue-900 pl-4 py-3 rounded-l-xl transition-colors min-w-[280px]"
+                style={{ width: "22%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>ОТЕЛЬ</span>
@@ -104,7 +104,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("price")}
-                className="cursor-pointer hover:text-blue-900 py-3 transition-colors"
+                className="cursor-pointer hover:text-blue-900 py-3 transition-colors min-w-[130px]"
                 style={{ width: "12%" }}
               >
                 <div className="flex items-center gap-1.5">
@@ -114,21 +114,21 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("deal_score")}
-                className="cursor-pointer hover:text-blue-900 py-3 transition-colors"
-                style={{ width: "11%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 transition-colors min-w-[125px]"
+                style={{ width: "10%" }}
               >
                 <div className="flex items-center gap-1.5">
                   <span>DEAL SCORE</span>
                   {renderSortIcon("deal_score")}
                 </div>
               </th>
-              <th style={{ width: "11%", textAlign: "center" }} className="py-3">
+              <th style={{ width: "10%", textAlign: "center" }} className="py-3 min-w-[115px]">
                 ПРОГНОЗ
               </th>
               <th
                 onClick={() => onSort("ta_rating")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors"
-                style={{ width: "7%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[75px]"
+                style={{ width: "6%" }}
                 title="TripAdvisor"
               >
                 <div className="flex items-center justify-center gap-1.5">
@@ -138,7 +138,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("delta48")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors"
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[100px]"
                 style={{ width: "7%" }}
                 title="Изменение цены за последние 48 часов"
               >
@@ -149,8 +149,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               </th>
               <th
                 onClick={() => onSort("delta_avg")}
-                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors"
-                style={{ width: "8%" }}
+                className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[110px]"
+                style={{ width: "7%" }}
                 title="Отклонение от типичной (плато) средней цены отеля"
               >
                 <div className="flex items-center justify-center gap-1.5">
@@ -158,16 +158,16 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   {renderSortIcon("delta_avg")}
                 </div>
               </th>
-              <th style={{ width: "9%" }} className="py-3">
+              <th style={{ width: "8%" }} className="py-3 min-w-[90px]">
                 РЕГИОН
               </th>
-              <th style={{ width: "11%" }} className="py-3">
+              <th style={{ width: "10%" }} className="py-3 min-w-[125px]">
                 ДАТЫ
               </th>
-              <th style={{ width: "5%", textAlign: "center" }} className="py-3">
+              <th style={{ width: "5%", textAlign: "center" }} className="py-3 min-w-[70px]">
                 ДЛИТ.
               </th>
-              <th style={{ width: "11%", textAlign: "right" }} className="py-3 pr-4 rounded-r-xl">
+              <th style={{ width: "14%", textAlign: "right" }} className="py-3 pr-4 rounded-r-xl min-w-[195px]">
                 ССЫЛКА
               </th>
             </tr>
@@ -211,9 +211,14 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               const deltaAvg = intel.delta_vs_typical_pct !== undefined ? intel.delta_vs_typical_pct : 0;
 
               return (
-                <tr key={offer.cohort_hash} className="group">
+                <tr
+                  key={offer.cohort_hash}
+                  onClick={() => onOpenPassport(hotel.hotel_id)}
+                  className="group cursor-pointer hover:bg-sky-50/60 transition-colors"
+                  title={`Кликните по строке, чтобы открыть AI Паспорт ${hotel.hotel_name}`}
+                >
                   {/* Hotel Cell */}
-                  <td>
+                  <td className="pl-4">
                     <div className="flex items-center gap-3.5">
                       <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-xs">
                         <img
@@ -228,7 +233,6 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                       </div>
                       <div className="min-w-0">
                         <div
-                          onClick={() => onOpenPassport(hotel.hotel_id)}
                           className="font-black text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[15px] sm:text-[16.5px] leading-snug line-clamp-1 tracking-tight"
                           title={`${hotel.hotel_name} — открыть паспорт`}
                         >
@@ -255,7 +259,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   </td>
 
                   {/* Price */}
-                  <td>
+                  <td className="whitespace-nowrap px-3">
                     <div className="text-[18px] sm:text-[21px] font-black text-slate-900 whitespace-nowrap tracking-tight">
                       {offer.total_price_pln.toLocaleString("ru-RU")} zł
                     </div>
@@ -265,63 +269,67 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   </td>
 
                   {/* Deal Score */}
-                  <td>
+                  <td className="whitespace-nowrap px-3">
                     <span className={`text-[13px] sm:text-[14px] font-black px-3.5 py-1.5 rounded-full border shadow-2xs whitespace-nowrap ${dealPillClass}`}>
                       {dealText}
                     </span>
                   </td>
 
                   {/* Forecast */}
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
                     <div className="text-[12.5px] font-black">
                       {forecastPill}
                     </div>
                   </td>
 
                   {/* TripAdvisor */}
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
                     <div className="inline-flex items-center gap-1.5 text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 font-black text-[13px] shadow-2xs">
                       <span>● {hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}</span>
                     </div>
                   </td>
 
                   {/* Δ 48ч */}
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
                     {delta48 < 0 ? (
-                      <span className="delta-down text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200">
-                        ↓ {delta48.toFixed(1)}%
+                      <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none">
+                        <span>↓</span>
+                        <span>{delta48.toFixed(1)}%</span>
                       </span>
                     ) : delta48 > 0 ? (
-                      <span className="delta-up text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200">
-                        ↑ +{delta48.toFixed(1)}%
+                      <span className="delta-badge-up inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none">
+                        <span>↑</span>
+                        <span>+{delta48.toFixed(1)}%</span>
                       </span>
                     ) : (
-                      <span className="delta-flat text-[13px] font-bold text-slate-400">—</span>
+                      <span className="text-[13px] font-bold text-slate-400 select-none">—</span>
                     )}
                   </td>
 
                   {/* Δ к средней */}
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
                     {deltaAvg < 0 ? (
-                      <span className="delta-down text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200">
-                        ↓ {deltaAvg.toFixed(1)}%
+                      <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none">
+                        <span>↓</span>
+                        <span>{deltaAvg.toFixed(1)}%</span>
                       </span>
                     ) : deltaAvg > 0 ? (
-                      <span className="delta-up text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200">
-                        ↑ +{deltaAvg.toFixed(1)}%
+                      <span className="delta-badge-up inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none">
+                        <span>↑</span>
+                        <span>+{deltaAvg.toFixed(1)}%</span>
                       </span>
                     ) : (
-                      <span className="delta-flat text-[13px] font-bold text-slate-400">0%</span>
+                      <span className="text-[13px] font-bold text-slate-400 select-none">0%</span>
                     )}
                   </td>
 
                   {/* Region */}
-                  <td className="text-[13px] font-bold text-slate-700 truncate">
+                  <td className="text-[13px] font-bold text-slate-700 truncate px-2">
                     {hotel.region || "Анталья"}
                   </td>
 
                   {/* Dates */}
-                  <td>
+                  <td className="whitespace-nowrap px-3">
                     <div className="text-[13.5px] font-black text-slate-900 whitespace-nowrap">
                       {offer.departure_date}
                     </div>
@@ -331,19 +339,22 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                   </td>
 
                   {/* Duration */}
-                  <td style={{ textAlign: "center" }}>
-                    <span className="inline-block text-[13px] font-black text-slate-800 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
+                  <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
+                    <span className="inline-flex items-center justify-center text-[13px] font-black text-slate-800 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 whitespace-nowrap select-none">
                       {offer.duration_nights}н
                     </span>
                   </td>
 
                   {/* Actions / Links */}
-                  <td>
-                    <div className="flex items-center justify-end gap-2">
+                  <td className="whitespace-nowrap pr-4 pl-2 text-right">
+                    <div className="inline-flex items-center justify-end gap-2 whitespace-nowrap">
                       <button
                         type="button"
-                        onClick={() => onOpenPassport(hotel.hotel_id)}
-                        className="px-3.5 py-2 text-[13px] font-black text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 shadow-2xs hover:shadow-xs transition-all whitespace-nowrap"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenPassport(hotel.hotel_id);
+                        }}
+                        className="px-3.5 py-2 text-[13px] font-black text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 shadow-2xs hover:shadow-xs transition-all whitespace-nowrap cursor-pointer"
                         title="Открыть AI Паспорт отеля справа"
                       >
                         Паспорт
@@ -351,8 +362,11 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                       <button
                         type="button"
-                        onClick={() => onToggleWatchlist(hotel)}
-                        className={`p-2.5 rounded-xl border transition-all ${
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onToggleWatchlist(hotel);
+                        }}
+                        className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
                           isWatched
                             ? "bg-amber-500 text-white border-amber-600 shadow-xs"
                             : "bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200"
@@ -367,7 +381,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                           href={offer.booking_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-blue-600 border border-slate-200 shadow-2xs transition-all"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-blue-600 border border-slate-200 shadow-2xs transition-all cursor-pointer"
                           title="Открыть на Fly.pl"
                         >
                           <ExternalLink className="w-4 h-4" />
