@@ -214,7 +214,11 @@ async def get_hotel_history_passport(hotel_id: str, filter_id: Optional[str] = N
 
 
 @app.get("/api/v2/hotels/{hotel_id}/normalized-history")
-async def get_hotel_normalized_history(hotel_id: str, db: AsyncSession = Depends(get_db)):
+async def get_hotel_normalized_history(
+    hotel_id: str,
+    filter_id: Optional[str] = None,
+    db: AsyncSession = Depends(get_db)
+):
     """Retrieves normalized time series (1 adult, 8 nights benchmark) from dedicated normalized database."""
     from app.models.normalized_snapshot import NormalizedPriceSnapshot
     from app.models.hotel import Hotel
@@ -249,6 +253,42 @@ async def get_hotel_normalized_history(hotel_id: str, db: AsyncSession = Depends
         }
         for s in snapshots
     ]
+
+    if not points:
+        # Fallback: Dynamically decompose hotel's actual PriceSnapshots into normalized 1p/8n benchmark
+        try:
+            passport = await WatchlistService.get_hotel_passport(db, hotel.hotel_id, filter_id=filter_id)
+            dest_keyword = (hotel.country or "turkey").lower()
+            from app.services.cost_decomposer import CostDecomposer
+
+            decomp_points = []
+            for pt in (passport.history_points or []):
+                if not pt.recorded_at or pt.total_price_pln <= 0:
+                    continue
+                decomp = CostDecomposer.decompose(
+                    total_price_pln=pt.total_price_pln,
+                    duration_nights=pt.duration_nights or 7,
+                    adults=2,
+                    children=1,
+                    destination=dest_keyword,
+                )
+                pure_rate = decomp["pure_hotel_night_per_adult"]
+                single_factor = 1.18 if "turkey" in dest_keyword else 1.20
+                norm_price = round(decomp["flight_seat_cost"] + (8.0 * pure_rate * single_factor), 1)
+
+                rec_str = pt.recorded_at.isoformat() if hasattr(pt.recorded_at, "isoformat") else str(pt.recorded_at)
+                decomp_points.append({
+                    "recorded_at": rec_str,
+                    "normalized_price_1p_8n": norm_price,
+                    "pure_hotel_night_rate": round(pure_rate, 1),
+                    "flight_estimate_seat": round(decomp["flight_seat_cost"], 1),
+                    "source_type": "decomposed_passport_snapshot",
+                    "is_crawler": False,
+                })
+            points = decomp_points
+        except Exception as e:
+            logger.error(f"Error decomposing normalized history for {hotel_id}: {e}")
+            points = []
 
     prices = [p["normalized_price_1p_8n"] for p in points if p["normalized_price_1p_8n"] > 0]
     import statistics

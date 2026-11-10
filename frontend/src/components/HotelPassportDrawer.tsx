@@ -66,9 +66,35 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       return;
     }
 
-    if (historyMode === "normalized" && normalizedData?.points?.length) {
+    if (historyMode === "normalized") {
       // Normalized Benchmark Series (1 pax, 8 nights)
-      let normPoints = normalizedData.points;
+      let normPoints = normalizedData?.points || [];
+      if (!normPoints.length && passport.history_points?.length) {
+        const dest = (passport.country || "turkey").toLowerCase();
+        const flightCost = dest.includes("egypt") ? 1400 : dest.includes("turkey") ? 1300 : 1200;
+        const singleFactor = dest.includes("turkey") ? 1.18 : 1.20;
+
+        normPoints = passport.history_points.map((pt) => {
+          const total = pt.total_price_pln;
+          const nights = Math.max(1, pt.duration_nights || 7);
+          const estFlight = Math.min(3 * flightCost, total * 0.5);
+          const estHotel = Math.max(100, total - estFlight);
+          const pureNight = (estHotel / nights) / 2.2;
+          const normPrice = Math.round(flightCost + (8.0 * pureNight * singleFactor));
+          return {
+            recorded_at: pt.recorded_at,
+            normalized_price_1p_8n: normPrice,
+            pure_hotel_night_rate: Math.round(pureNight),
+            flight_estimate_seat: flightCost,
+          };
+        });
+      }
+
+      if (!normPoints.length) {
+        window.Plotly.purge(chartContainerRef.current);
+        return;
+      }
+
       if (historyRange !== "all") {
         const now = new Date().getTime();
         const cutoffDays = historyRange === "7d" ? 7 : 30;
@@ -248,6 +274,27 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const rangeStats = useMemo(() => {
     if (historyMode === "normalized") {
       let normPoints = normalizedData?.points || [];
+      if (!normPoints.length && passport?.history_points?.length) {
+        const dest = (passport.country || "turkey").toLowerCase();
+        const flightCost = dest.includes("egypt") ? 1400 : dest.includes("turkey") ? 1300 : 1200;
+        const singleFactor = dest.includes("turkey") ? 1.18 : 1.20;
+
+        normPoints = passport.history_points.map((pt) => {
+          const total = pt.total_price_pln;
+          const nights = Math.max(1, pt.duration_nights || 7);
+          const estFlight = Math.min(3 * flightCost, total * 0.5);
+          const estHotel = Math.max(100, total - estFlight);
+          const pureNight = (estHotel / nights) / 2.2;
+          const normPrice = Math.round(flightCost + (8.0 * pureNight * singleFactor));
+          return {
+            recorded_at: pt.recorded_at,
+            normalized_price_1p_8n: normPrice,
+            pure_hotel_night_rate: Math.round(pureNight),
+            flight_estimate_seat: flightCost,
+          };
+        });
+      }
+
       if (historyRange !== "all") {
         const now = Date.now();
         const cutoffDays = historyRange === "7d" ? 7 : 30;
@@ -261,7 +308,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       const cur = yVals.length > 0 ? yVals[yVals.length - 1] : normalizedData?.stats?.current_normalized_pln || 0;
       const min = yVals.length > 0 ? Math.min(...yVals) : normalizedData?.stats?.min_normalized_pln || 0;
       const max = yVals.length > 0 ? Math.max(...yVals) : normalizedData?.stats?.max_normalized_pln || 0;
-      return { cur, min, max, savings: max > cur ? max - cur : 0 };
+      const latestPure = normPoints.length > 0 ? normPoints[normPoints.length - 1].pure_hotel_night_rate : normalizedData?.stats?.pure_hotel_night_rate || 0;
+      return { cur, min, max, savings: max > cur ? max - cur : 0, pureNight: latestPure };
     }
 
     let hist = passport?.history_points || [];
@@ -278,8 +326,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
     const min = pVals.length > 0 ? Math.min(...pVals) : minPrice;
     const max = pVals.length > 0 ? Math.max(...pVals) : maxPrice;
-    return { cur, min, max, savings: max > cur ? max - cur : 0 };
-  }, [historyMode, historyRange, normalizedData, passport?.history_points, currentPrice, minPrice, maxPrice]);
+    return { cur, min, max, savings: max > cur ? max - cur : 0, pureNight: 0 };
+  }, [historyMode, historyRange, normalizedData, passport?.history_points, passport?.country, currentPrice, minPrice, maxPrice]);
 
   return (
     <>
@@ -711,7 +759,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
               {historyMode === "normalized" && (
                 <div style={{ background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: "10px", padding: "10px 14px", marginBottom: "12px", fontSize: "11px", color: "#0369a1" }}>
-                  💡 <strong>Эталон 1p / 8n:</strong> исключает искажения состава семьи и дат. Выделена чистая себестоимость ночи в отеле (~<strong>{normalizedData?.stats?.pure_hotel_night_rate || 450} zł/ночь</strong>) и стандартный перелёт.
+                  💡 <strong>Эталон 1p / 8n:</strong> исключает искажения состава семьи и дат. Выделена чистая себестоимость ночи в отеле (~<strong>{Math.round(normalizedData?.stats?.pure_hotel_night_rate || rangeStats.pureNight || 450)} zł/ночь</strong>) и стандартный перелёт.
                 </div>
               )}
 
@@ -752,8 +800,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     {historyMode === "normalized" ? "Чистая ночь" : "Экономия периода"}
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#2563eb", marginTop: "2px" }}>
-                    {historyMode === "normalized" && normalizedData?.stats?.pure_hotel_night_rate != null
-                      ? `~${normalizedData.stats.pure_hotel_night_rate} zł/н`
+                    {historyMode === "normalized"
+                      ? (rangeStats.pureNight || normalizedData?.stats?.pure_hotel_night_rate
+                          ? `~${Math.round(rangeStats.pureNight || normalizedData?.stats?.pure_hotel_night_rate)} zł/н`
+                          : "—")
                       : rangeStats.savings > 0 ? `-${Math.round(rangeStats.savings).toLocaleString("ru-RU")} zł` : "0 zł"}
                   </div>
                 </div>
