@@ -3,6 +3,7 @@
     "hotel_name": "Uni Sharm Aqua Hotel",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "price": 2620.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
@@ -11,6 +12,8 @@
     "duration_nights": 7,
     "departure_airport": "Katowice",
 =======
+=======
+>>>>>>> Stashed changes
     "price": 2535.0,
     "dates": "2026-12-21 - 2026-12-29",
     "checkin_date": "2026-12-21",
@@ -18,6 +21,7 @@
     "duration": "8 nocy",
     "duration_nights": 8,
     "departure_airport": "Rzeszów",
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
     "price": 2535.0,
@@ -28,10 +32,13 @@
     "duration_nights": 8,
     "departure_airport": "Rzeszów",
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "board_basis": "All Inclusive",
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27194/0b1ed2b16d28efda16a1406ef5126998b4811e6d34e99b791f57b2d4704464bc.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27194/0b1ed2b16d28efda16a1406ef5126998b4811e6d34e99b791f57b2d4704464bc.webp@webp",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/uni-sharm-15/pcK1IdkXFDqTxAp7cZ0vHOAAogdFghBsvVe4oxA0h56Zwf5ly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZIvBRQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQARxgFe4S5SpiBTAEyssDoN-f6XCSAAAczX-JD0iMygMAENY49DbHw/?operator=JOIP&adults=1",
@@ -40,6 +47,9 @@
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/uni-sharm-15/pwTBUnDqBPXtrV8DeqUKvyAAogdFghBsvVe4oxA0h56Zwf5qUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwuezL1wZI5xNQQVjNB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQAR_csBXuEuS48YYQBSlwhTAEyssDoN-P6XCSABAeq9kPmiiMygMAENYxJ-Qw4/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/uni-sharm-15/pwTBUnDqBPXtrV8DeqUKvyAAogdFghBsvVe4oxA0h56Zwf5qUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZI5xNQQVjMB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQAR_csBXuEuS48YYQBSlwhTAEyssDoN-P6XCSABAeq9kPmiiMygMAENYxDHmUA/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -59,6 +69,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/51562/b9413a2c8220a615f195a5a31e735c44545b2afeb48729b16f263987c0d1d669.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/halomy-9/pDFL70-t4cm2PCFI1A_hG0AAogPZcW2NcHyabzw-PqjmEiSKUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw6NDL1wZI-hZQQVjOB2ABagNDR21yP5sBFAEVBhcBWAdcAlYAQMoGT-IBXQBe3voBS48YYQBSlwhTABGpb0yDwTkN-P6XCSABAeW_9Jf0xtKgMAENYxiPOq8/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/halomy-9/pDFL70-t4cm2PCFI1A_hG0AAogPZcW2NcHyabzw-PqjmEiSKUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwmd_L1wZI-hZQQVjNB2ABagNDR21yP5sBFAEVBhcBWAdcAlYAQMoGT-IBXQBe3voBS48YYQBSlwhTABGpb0yDwTkN-P6XCSABAeW_9Jf0xtKgMAENYwn1lD8/?operator=JOIP&adults=1",
@@ -66,11 +77,15 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/halomy-9/pDFL70-t4cm2PCFI1A_hG0AAogPZcW2NcHyabzw-PqjmEiSKUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwuezL1wZI-hZQQVjNB2ABagNDR21yP5sBFAEVBhcBWAdcAlYAQMoGT-IBXQBe3voBS48YYQBSlwhTABGpb0yDwTkN-P6XCSABAeW_9Jf0xtKgMAENY93aBKs/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/halomy-9/pDFL70-t4cm2PCFI1A_hG0AAogPZcW2NcHyabzw-PqjmEiSKUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZI-hZQQVjMB2ABagNDR21yP5sBFAEVBhcBWAdcAlYAQMoGT-IBXQBe3voBS48YYQBSlwhTABGpb0yDwTkN-P6XCSABAeW_9Jf0xtKgMAENYwgql8c/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Swiss Heaven Sharming Inn",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 3041.0,
@@ -81,6 +96,8 @@
     "duration_nights": 7,
     "departure_airport": "Katowice",
 =======
+=======
+>>>>>>> Stashed changes
     "price": 3017.0,
     "dates": "2026-12-21 - 2026-12-29",
     "checkin_date": "2026-12-21",
@@ -88,6 +105,7 @@
     "duration": "8 nocy",
     "duration_nights": 8,
     "departure_airport": "Rzeszów",
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
     "price": 3017.0,
@@ -98,10 +116,13 @@
     "duration_nights": 8,
     "departure_airport": "Rzeszów",
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "board_basis": "All Inclusive",
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27139/45c3e7e4b743dcf85c2dd40ba36e4bf0340a361b480d5edda056036920468f0e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27139/45c3e7e4b743dcf85c2dd40ba36e4bf0340a361b480d5edda056036920468f0e.webp@webp",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,sharm-el-sheikh/sol-y-mar-sharming-inn/pkhsghkHeSrETwRP53GaBeAAoguD4Hidt_7il5MQwNIS0oJVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI4RdQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQARjwFemC9SpiBTAEyssDoN-f6XCSAAAdDL3KC1icygMAENY0Yx5Uk/?operator=JOIP&adults=1",
@@ -111,11 +132,15 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,sharm-el-sheikh/sol-y-mar-sharming-inn/p1KMw58YholSMGMGUUv_ImAAoguD4Hidt_7il5MQwNIS0oJaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwuezL1wZIyRdQQVjNB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQARxssBXpgvS48YYQBSlwhTAEyssDoN-P6XCSABAd-d9NCkiMygMAENY4q_wrI/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,sharm-el-sheikh/sol-y-mar-sharming-inn/p1KMw58YholSMGMGUUv_ImAAoguD4Hidt_7il5MQwNIS0oJaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZIyRdQQVjMB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQARxssBXpgvS48YYQBSlwhTAEyssDoN-P6XCSABAd-d9NCkiMygMAENY5tgDAc/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Mazar Resort & Spa",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 3051.0,
@@ -126,6 +151,8 @@
     "duration_nights": 7,
     "departure_airport": "Katowice",
 =======
+=======
+>>>>>>> Stashed changes
     "price": 3018.0,
     "dates": "2026-12-21 - 2026-12-29",
     "checkin_date": "2026-12-21",
@@ -133,6 +160,7 @@
     "duration": "8 nocy",
     "duration_nights": 8,
     "departure_airport": "Rzeszów",
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
     "price": 3018.0,
@@ -143,10 +171,13 @@
     "duration_nights": 8,
     "departure_airport": "Rzeszów",
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "board_basis": "All Inclusive",
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/40884/63b37dc751af6e2cceadf27ce29c6370c5466ca7d2a059e10292ca962264b331.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/40884/63b37dc751af6e2cceadf27ce29c6370c5466ca7d2a059e10292ca962264b331.webp@webp",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/mazar-resort-spa-14/pBuczzUeQD8ikXg4_Een_LAAogPm32OjgGslggVcG1eGTnAVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI6xdQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHzG0y5lDoN-f6XCSAAAeLPlJHTqc2gMAENY8AiClk/?operator=JOIP&adults=1",
@@ -155,6 +186,9 @@
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/mazar-resort-spa-14/pLTzCmprOL7hnuAeRkAW7cAAogPm32OjgGslggVcG1eGTnAaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwuezL1wZIyhdQQVjNB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABHzG0y5lDoN-P6XCSABAdHN_I_Vqc2gMAENYwBdnfw/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/mazar-resort-spa-14/pLTzCmprOL7hnuAeRkAW7cAAogPm32OjgGslggVcG1eGTnAaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZIyhdQQVjMB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABHzG0y5lDoN-P6XCSABAdHN_I_Vqc2gMAENYzyTxBQ/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -174,6 +208,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26489/e438dd3ee3d9f47ca7a0ee69259ae77ffd96664a200e32ce1694f221c0faa0e8.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/viva-sharm-ex-falcon-viva/pPKEzgWDdJtiH2fsRnp8q7AAogefxgx7Pi5ILDTTO-LWcC4KUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw6NDL1wZI8BdQQVjOB2ABagM1TGxyP5sBFAEVBhcBXAdYAFYCQMoGT-IBXQARvMYBXqI0S48YYQBSlwhTAEyssDoN-P6XCSABAd-d7MiViMygMAENYxTzViA/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/viva-sharm-ex-falcon-viva/pPKEzgWDdJtiH2fsRnp8q7AAogefxgx7Pi5ILDTTO-LWcC4KUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwmd_L1wZI8BdQQVjNB2ABagM1TGxyP5sBFAEVBhcBXAdYAFYCQMoGT-IBXQARvMYBXqI0S48YYQBSlwhTAEyssDoN-P6XCSABAd-d7MiViMygMAENY8rjPJg/?operator=JOIP&adults=1",
@@ -181,11 +216,15 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/viva-sharm-ex-falcon-viva/pPKEzgWDdJtiH2fsRnp8q7AAogefxgx7Pi5ILDTTO-LWcC4KUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwuezL1wZI8BdQQVjNB2ABagM1TGxyP5sBFAEVBhcBXAdYAFYCQMoGT-IBXQARvMYBXqI0S48YYQBSlwhTAEyssDoN-P6XCSABAd-d7MiViMygMAENYwdG9bs/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/viva-sharm-ex-falcon-viva/pPKEzgWDdJtiH2fsRnp8q7AAogefxgx7Pi5ILDTTO-LWcC4KUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZI8BdQQVjMB2ABagM1TGxyP5sBFAEVBhcBXAdYAFYCQMoGT-IBXQARvMYBXqI0S48YYQBSlwhTAEyssDoN-P6XCSABAd-d7MiViMygMAENY4QdPgg/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Viking Club",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 3085.0,
@@ -231,19 +270,20 @@
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
 =======
+=======
+>>>>>>> Stashed changes
     "price": 3062.0,
     "dates": "2026-12-21 - 2026-12-29",
     "checkin_date": "2026-12-21",
->>>>>>> Stashed changes
     "checkout_date": "2026-12-29",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Katowice",
+    "duration": "8 nocy",
+    "duration_nights": 8,
+    "departure_airport": "Rzeszów",
     "board_basis": "All Inclusive",
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27517/a16599ddd3ac01e23501cfe3a75d295e9138371e021cf2a475b271544eed1546.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27517/a16599ddd3ac01e23501cfe3a75d295e9138371e021cf2a475b271544eed1546.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/viking-club/pbCmewzrxLnD7RuCJPnC53AAogDsEtJEd5q3j3vnQBkL84-aUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwmd_L1wZI9hdQQVjNB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQARwM4BXp4sS48YYQBSlwhTAEyssDoN-P6XCSABAc7ByMCViMygMAENY1WdEQo/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/viking-club/pbCmewzrxLnD7RuCJPnC53AAogDsEtJEd5q3j3vnQBkL84-aUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZI9hdQQVjMB2ABagNDR21yP5sBFAEVBhcBXAJYBVYCQMoGT-IBXQARwM4BXp4sS48YYQBSlwhTAEyssDoN-P6XCSABAc7ByMCViMygMAENYw_x6qo/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -260,7 +300,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/31819/7fadc41cdaceebe7c18a0486effdb8262e631d91a7b5128589279365ed1182b6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/31819/7fadc41cdaceebe7c18a0486effdb8262e631d91a7b5128589279365ed1182b6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/panorama-naama-heights/pgQHkl1Pp80ItgDKsXJeSYAAog65wap1tNbiBgZh6w3oEr8ly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI5hlQQVjlB2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQAR1yVe0ApSpiBTAEyssDoN-f6XCSAAAc-NkPmUicygMAENY_P8VbY/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/panorama-naama-heights/pgQHkl1Pp80ItgDKsXJeSYAAog65wap1tNbiBgZh6w3oEr8ly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI5hlQQVjkB2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQAR1yVe0ApSpiBTAEyssDoN-f6XCSAAAc-NkPmUicygMAENY3SL0zs/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -279,12 +319,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/41627/756298c37ea60862465a387981c41054351ae37a35a412be4253af555df67b9d.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/old-vic-sharm-resort/pZPs3cdoUXGPIhPlVvFwPtAAogySMbC__wexka7032goAs2Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZIoRpQQVjmB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHaIUzSjjoN-f6XCSAAAcvD1JijicygMAENY8vlWwI/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/old-vic-sharm-resort/pZPs3cdoUXGPIhPlVvFwPtAAogySMbC__wexka7032goAs2Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIoRpQQVjlB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHaIUzSjjoN-f6XCSAAAcvD1JijicygMAENYxAAwk0/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/old-vic-sharm-resort/pZPs3cdoUXGPIhPlVvFwPtAAogySMbC__wexka7032goAs2Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIoRpQQVjlB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHaIUzSjjoN-f6XCSAAAcvD1JijicygMAENYyNEy4E/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/old-vic-sharm-resort/pZPs3cdoUXGPIhPlVvFwPtAAogySMbC__wexka7032goAs2Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIoRpQQVjkB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHaIUzSjjoN-f6XCSAAAcvD1JijicygMAENY3I0rek/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -304,12 +348,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2906/d9eb23b0af0fff133d5dca67b423d3fdb8c4b3d47a6144070c5302b255082a3a.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/la-perla-sharm-el-sheikh/pcjU6i0fMizcoDmoTGaOiDAAogKIb5G4_dz3MUmO2HrZ39T4znTQQfXNHTsUjz01h6L3cqBE9SRVgw6NDL1wZIshtQQVjmB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEf8PXeQITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjZX0FVA/?operator=OREX&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/la-perla-sharm-el-sheikh/pcjU6i0fMizcoDmoTGaOiDAAogKIb5G4_dz3MUmO2HrZ39T4znTQQfXNHTsUjz01h6L3cqBE9SRVgwmd_L1wZIshtQQVjlB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEf8PXeQITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjxvN6rQ/?operator=OREX&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/la-perla-sharm-el-sheikh/pcjU6i0fMizcoDmoTGaOiDAAogKIb5G4_dz3MUmO2HrZ39T4znTQQfXNHTsUjz01h6L3cqBE9SRVgwuezL1wZIshtQQVjlB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEf8PXeQITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjDDIjlw/?operator=OREX&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/la-perla-sharm-el-sheikh/pcjU6i0fMizcoDmoTGaOiDAAogKIb5G4_dz3MUmO2HrZ39T4znTQQfXNHTsUjz01h6L3cqBE9SRVgw8_nL1wZIshtQQVjkB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEf8PXeQITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjw7sKig/?operator=OREX&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Anex Tour Poland"
@@ -329,12 +377,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/40773/ff2910f1fa500a4847e4536110635d337db5c65c68f8589756a0cc4d2f9a996e.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-resort-spa/pafGCeiNCgycIYyAjvnqdgAAoghG_ip62xgHSiVhGD4pYDhFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZIvxtQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEG0yolToN-f6XCSAAAc-vlMnkiMygMAENY-wp5ak/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-resort-spa/pafGCeiNCgycIYyAjvnqdgAAoghG_ip62xgHSiVhGD4pYDhFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIvxtQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEG0yolToN-f6XCSAAAc-vlMnkiMygMAENY00cu-k/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-resort-spa/pafGCeiNCgycIYyAjvnqdgAAoghG_ip62xgHSiVhGD4pYDhFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIvxtQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEG0yolToN-f6XCSAAAc-vlMnkiMygMAENY__ARLE/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-resort-spa/pafGCeiNCgycIYyAjvnqdgAAoghG_ip62xgHSiVhGD4pYDhFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIvxtQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEG0yolToN-f6XCSAAAc-vlMnkiMygMAENY5WApWU/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -354,6 +406,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/38587/dc4567898c3071970932d5024ccfa7aaf6a6eae5c16832f31cc13568465d2317.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/eden-rock-sharm-el-sheikh-13/py_iTvi0aOBCSI7bR32kJYAAogmozXH46Y1-XanDGJpZtRB1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI8xtQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH6CUyypjoN-f6XCSAAAfCz5ICTicygMAENY89HF5k/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/eden-rock-sharm-el-sheikh-13/py_iTvi0aOBCSI7bR32kJYAAogmozXH46Y1-XanDGJpZtRB1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI8xtQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH6CUyypjoN-f6XCSAAAfCz5ICTicygMAENYzSbPvA/?operator=JOIP&adults=1",
@@ -361,11 +414,15 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/eden-rock-sharm-el-sheikh-13/py_iTvi0aOBCSI7bR32kJYAAogmozXH46Y1-XanDGJpZtRB1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZI8xtQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH6CUyypjoN-f6XCSAAAfCz5ICTicygMAENY8R0HBU/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/eden-rock-sharm-el-sheikh-13/py_iTvi0aOBCSI7bR32kJYAAogmozXH46Y1-XanDGJpZtRB1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI8xtQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH6CUyypjoN-f6XCSAAAfCz5ICTicygMAENYxRZo4g/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Sharm Holiday Resort Aqua Park",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 3603.0,
@@ -375,11 +432,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "price": 3676.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -392,11 +454,15 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/36152/00a605ca38bee373b30cdfd54fbe02d917d5d61e232b57130ea9815abd17749c.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sharm-holiday/pITjtI-ZJBqsqQBHpEBV3TAAogLZw-WkHzcQZL-YSEOFt01TKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6NDL1wZIkxxQQVi2B2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARnRdSiQlTAEyssDoN9_6XCSAAAd7ZsLik6NGgMAENY4mC6OM/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sharm-holiday/pkQ1OqbeT0hW3imKyvkqAYAAogLZw-WkHzcQZL-YSEOFt01Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI3BxQQVjlB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARnRdSiQlTAEyssDoN-f6XCSAAAe3ZwNjkiMygMAENYzhzFkk/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sharm-holiday/pkQ1OqbeT0hW3imKyvkqAYAAogLZw-WkHzcQZL-YSEOFt01Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZI3BxQQVjlB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARnRdSiQlTAEyssDoN-f6XCSAAAe3ZwNjkiMygMAENY6wMmcU/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sharm-holiday/pkQ1OqbeT0hW3imKyvkqAYAAogLZw-WkHzcQZL-YSEOFt01Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI3BxQQVjkB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARnRdSiQlTAEyssDoN-f6XCSAAAe3ZwNjkiMygMAENYytpEgo/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -415,10 +481,14 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58743/90029f323ad64e337f2e025168847b4ed7fe5907e260e8e4daecb49c3d9a7bf9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58743/90029f323ad64e337f2e025168847b4ed7fe5907e260e8e4daecb49c3d9a7bf9.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/palma-di-sharm-resort-11/pDUaxlD4ExLgpGOKDSNu1VAAogSh9FPGFbtEts_TOzPKAeAaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwmd_L1wZI_RxQQVjNB2ABagMwRVByQJsBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABG2pwFM9og5Dfj-lwkgAQHNnYCBs4jMoDABDWMTH41Z/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/palma-di-sharm-resort-11/pDUaxlD4ExLgpGOKDSNu1VAAogSh9FPGFbtEts_TOzPKAeAaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAwuezL1wZI_RxQQVjNB2ABagMwRVByQJsBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABG2pwFM9og5Dfj-lwkgAQHNnYCBs4jMoDABDWPmWznp/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/palma-di-sharm-resort-11/pDUaxlD4ExLgpGOKDSNu1VAAogSh9FPGFbtEts_TOzPKAeAaUoW8N_OZlfWUBeOt6u2HoqBEpPSVAw8_nL1wZI_RxQQVjMB2ABagMwRVByQJsBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABG2pwFM9og5Dfj-lwkgAQHNnYCBs4jMoDABDWO0izwt/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -436,6 +506,7 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/31838/277ab2e717ef0d414adc938b2e8dce9d2a933d0f1d93a5d79d49de33815f00e0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/31838/277ab2e717ef0d414adc938b2e8dce9d2a933d0f1d93a5d79d49de33815f00e0.webp@webp",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/coral-hills-resort/p5oJlDuUEYqx3ouoqFNi6_AAogWJNGZuqffM682yHCEhboE1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI6R5QQVjmB2ABagNDR21yP5sBFAEVBhcAWAhcAlYAQMoGT6sCXQBL7skBYQAR6iVevQpSpiBTAEyssDoN-f6XCSAAAdOzuLCzicygMAENY25aEHU/?operator=JOIP&adults=1",
@@ -462,6 +533,9 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/coral-hills-resort/p5oJlDuUEYqx3ouoqFNi6_AAogWJNGZuqffM682yHCEhboE1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZI6R5QQVjlB2ABagNDR21yP5sBFAEVBhcAWAhcAlYAQMoGT6sCXQBL7skBYQAR6iVevQpSpiBTAEyssDoN-f6XCSAAAdOzuLCzicygMAENYzzJcoI/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/coral-hills-resort/p5oJlDuUEYqx3ouoqFNi6_AAogWJNGZuqffM682yHCEhboE1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI6R5QQVjkB2ABagNDR21yP5sBFAEVBhcAWAhcAlYAQMoGT6sCXQBL7skBYQAR6iVevQpSpiBTAEyssDoN-f6XCSAAAdOzuLCzicygMAENY4JlxfU/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -480,6 +554,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59351/48df26bdf05b8f851a73907b5f3d2d2e161dc2c42127c7c1166527cdabcc8a5b.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-international-aqua-park-spa-14/pXAvQfT03tHS604503ECxTAAoguc0PfhFhmSHlEN6XpT-d01y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI_B9QQVjmB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGWrAFMloQ5Dfn-lwkgAAHev8ywtInMoDABDWPQH2Cl/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-international-aqua-park-spa-14/pXAvQfT03tHS604503ECxTAAoguc0PfhFhmSHlEN6XpT-d01y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI_B9QQVjlB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGWrAFMloQ5Dfn-lwkgAAHev8ywtInMoDABDWOLnGrn/?operator=JOIP&adults=1",
@@ -487,11 +562,15 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-international-aqua-park-spa-14/pXAvQfT03tHS604503ECxTAAoguc0PfhFhmSHlEN6XpT-d01y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZI_B9QQVjlB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGWrAFMloQ5Dfn-lwkgAAHev8ywtInMoDABDWN3jzU0/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-international-aqua-park-spa-14/pXAvQfT03tHS604503ECxTAAoguc0PfhFhmSHlEN6XpT-d01y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI_B9QQVjkB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGWrAFMloQ5Dfn-lwkgAAHev8ywtInMoDABDWOjsT_4/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Faraana Heights",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 4102.0,
@@ -501,11 +580,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "price": 4104.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -518,12 +602,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26775/c991d6246f0e7f749a0cbb4a5260c83850eb05276b374880bcbb121bb2435d2e.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/el-faraana-heights/p38TllhXUq8008SQ9aJqA0AAogyUyVBCfXTu0BQIdXp_5RmzKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6NDL1wZIhiBQQVi2B2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARkcgBS90BYQBepzBSpiBTAEyssDoN9_6XCSAAAfLf0Mi16NGgMAENYwBUWuw/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/el-faraana-heights/pwfUORXHtOHNyX79W6AL3gAAogyUyVBCfXTu0BQIdXp_5Rm1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIiCBQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARkcgBS90BYQBepzBSpiBTAEyssDoN-f6XCSAAAeSX-KeUicygMAENY3rLIvg/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/el-faraana-heights/pwfUORXHtOHNyX79W6AL3gAAogyUyVBCfXTu0BQIdXp_5Rm1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIiCBQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARkcgBS90BYQBepzBSpiBTAEyssDoN-f6XCSAAAeSX-KeUicygMAENY4sjHwI/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/el-faraana-heights/pwfUORXHtOHNyX79W6AL3gAAogyUyVBCfXTu0BQIdXp_5Rm1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIiCBQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARkcgBS90BYQBepzBSpiBTAEyssDoN-f6XCSAAAeSX-KeUicygMAENY8Vzoro/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -543,12 +631,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/45632/2335392e71ef57f90e61402d019ccb56724ae8a4c1a7785658ee3e3e8d188ea4.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cataract-resort-15/pgC0bkR9jOJtI5UA6amN-BAAogOscJC7nuNerW7a-vNeQ1hly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI8iBQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH_QEyt7zkN-f6XCSAAAfObwKD1iMygMAENY6m9rso/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cataract-resort-15/pgC0bkR9jOJtI5UA6amN-BAAogOscJC7nuNerW7a-vNeQ1hly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI8iBQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH_QEyt7zkN-f6XCSAAAfObwKD1iMygMAENY2SqIcs/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cataract-resort-15/pgC0bkR9jOJtI5UA6amN-BAAogOscJC7nuNerW7a-vNeQ1hly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZI8iBQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH_QEyt7zkN-f6XCSAAAfObwKD1iMygMAENY-84EcA/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cataract-resort-15/pgC0bkR9jOJtI5UA6amN-BAAogOscJC7nuNerW7a-vNeQ1hly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI8iBQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH_QEyt7zkN-f6XCSAAAfObwKD1iMygMAENY0k7DWY/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -568,6 +660,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/36198/9ac6ebf510f68e15c001d288e14430a7c459e37924afbe8f4e13ae868cc21fbc.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pC-o1S1el66j8hGMg_37KwAAogBXRj530CFFxGLM9HbS6YZFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZIlyFQQVjmB2ABagNDR21yP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQBL7skBYQBepzARyxdS2whTAEyssDoN-f6XCSAAAeGbkKCTicygMAENY_kakDk/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pC-o1S1el66j8hGMg_37KwAAogBXRj530CFFxGLM9HbS6YZFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIlyFQQVjlB2ABagNDR21yP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQBL7skBYQBepzARyxdS2whTAEyssDoN-f6XCSAAAeGbkKCTicygMAENYwEPilM/?operator=JOIP&adults=1",
@@ -575,11 +668,15 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pC-o1S1el66j8hGMg_37KwAAogBXRj530CFFxGLM9HbS6YZFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIlyFQQVjlB2ABagNDR21yP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQBL7skBYQBepzARyxdS2whTAEyssDoN-f6XCSAAAeGbkKCTicygMAENYwWgHSw/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-il-mercato/pC-o1S1el66j8hGMg_37KwAAogBXRj530CFFxGLM9HbS6YZFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIlyFQQVjkB2ABagNDR21yP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQBL7skBYQBepzARyxdS2whTAEyssDoN-f6XCSAAAeGbkKCTicygMAENY16-K1A/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Parrotel Aqua Park Resort (ex. Park Inn)",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 4248.0,
@@ -589,11 +686,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "price": 4278.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -606,12 +708,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26589/c488adb55b32b287e95d2abed6d0364cdd592d8ef0b9fc88532048c21c202c7d.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/park-inn-sharm-el-sheikh/pJ8xro6b6TMtu17vgu5GpGAAogdRgzCov8ODVAM-MIKfD18TKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6NDL1wZImCFQQVi2B2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR18YBS5cDYQBepzBSpiBTAEyssDoN9_6XCSAAAfHT9IjE6NGgMAENY4cuel8/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/park-inn-sharm-el-sheikh/pKT4C0upIiZDMnLmV-PBNCAAogdRgzCov8ODVAM-MIKfD18Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZItiFQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR18YBS5cDYQBepzBSpiBTAEyssDoN-f6XCSAAAdPNkKGjicygMAENYzwQq-o/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/park-inn-sharm-el-sheikh/pKT4C0upIiZDMnLmV-PBNCAAogdRgzCov8ODVAM-MIKfD18Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZItiFQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR18YBS5cDYQBepzBSpiBTAEyssDoN-f6XCSAAAdPNkKGjicygMAENY97HY9M/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/park-inn-sharm-el-sheikh/pKT4C0upIiZDMnLmV-PBNCAAogdRgzCov8ODVAM-MIKfD18Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZItiFQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR18YBS5cDYQBepzBSpiBTAEyssDoN-f6XCSAAAdPNkKGjicygMAENY_LuXH0/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -631,12 +737,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/63358/d315e131cb1de75421c9ad5f7ccc86638ee1cbdddeea997b8634b1bfa4bdc5e6.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-star-15/pcUpEBH2eTluckMFdZVckbAAoga9sdI3_uFidEb8eJmQDljVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZIhSJQQVjmB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG9ywFM7-Q4Dfn-lwkgAAHbx-yAtYnMoDABDWPIYGtQ/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-star-15/pcUpEBH2eTluckMFdZVckbAAoga9sdI3_uFidEb8eJmQDljVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIhSJQQVjlB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG9ywFM7-Q4Dfn-lwkgAAHbx-yAtYnMoDABDWOv4Qfm/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-star-15/pcUpEBH2eTluckMFdZVckbAAoga9sdI3_uFidEb8eJmQDljVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIhSJQQVjlB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG9ywFM7-Q4Dfn-lwkgAAHbx-yAtYnMoDABDWP2iUEA/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/raouf-star-15/pcUpEBH2eTluckMFdZVckbAAoga9sdI3_uFidEb8eJmQDljVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIhSJQQVjkB2ABagMxMm9yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG9ywFM7-Q4Dfn-lwkgAAHbx-yAtYnMoDABDWOUMqFu/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -656,12 +766,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2908/91efcaf701770bd5c8736412c43df5e395be014aaf96860a5d7681c8436c6e35.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-sharm-resort/p_L8TZOFcPnSgSZsNW5OD1AAogky53lVUuuxhIWiFbCamMeoznTQQfXNHTsUjz01h6L3cqBE9SRVgw6NDL1wZIpCJQQVjmB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEYEQXeIITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjugsPUw/?operator=OREX&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-sharm-resort/p_L8TZOFcPnSgSZsNW5OD1AAogky53lVUuuxhIWiFbCamMeoznTQQfXNHTsUjz01h6L3cqBE9SRVgwmd_L1wZIpCJQQVjlB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEYEQXeIITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjSn8R4A/?operator=OREX&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-sharm-resort/p_L8TZOFcPnSgSZsNW5OD1AAogky53lVUuuxhIWiFbCamMeoznTQQfXNHTsUjz01h6L3cqBE9SRVgwuezL1wZIpCJQQVjlB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEYEQXeIITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjA6QR7w/?operator=OREX&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-sharm-resort/p_L8TZOFcPnSgSZsNW5OD1AAogky53lVUuuxhIWiFbCamMeoznTQQfXNHTsUjz01h6L3cqBE9SRVgw8_nL1wZIpCJQQVjkB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEYEQXeIITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjLfcHbg/?operator=OREX&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Anex Tour Poland"
@@ -681,6 +795,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/60101/45c88f5a9bda3d7343cf2151535031469674a21c9ecd287ab279d8fc88464490.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sharm-dreams-vacation-club-11/pq5pIchIPMbIUIbKuEvStvAAog-PsUqJQJSxmjU6MwakC2rFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZI-SNQQVjmB2ABckEUARUGFwBcA1gFVgIbkwFAtwVdqwJPAEvuyQFhAF6nMFOmIFIAEYSyAUyo_jgg-f6XCQ0AAee3kPDkiMygMAENYwWJaIU/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sharm-dreams-vacation-club-11/pq5pIchIPMbIUIbKuEvStvAAog-PsUqJQJSxmjU6MwakC2rFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI-SNQQVjlB2ABckEUARUGFwBcA1gFVgIbkwFAtwVdqwJPAEvuyQFhAF6nMFOmIFIAEYSyAUyo_jgg-f6XCQ0AAee3kPDkiMygMAENYxHM8yk/?operator=JOIP&adults=1",
@@ -688,10 +803,14 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sharm-dreams-vacation-club-11/pq5pIchIPMbIUIbKuEvStvAAog-PsUqJQJSxmjU6MwakC2rFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZI-SNQQVjlB2ABckEUARUGFwBcA1gFVgIbkwFAtwVdqwJPAEvuyQFhAF6nMFOmIFIAEYSyAUyo_jgg-f6XCQ0AAee3kPDkiMygMAENY9nEQXk/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sharm-dreams-vacation-club-11/pq5pIchIPMbIUIbKuEvStvAAog-PsUqJQJSxmjU6MwakC2rFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI-SNQQVjkB2ABckEUARUGFwBcA1gFVgIbkwFAtwVdqwJPAEvuyQFhAF6nMFOmIFIAEYSyAUyo_jgg-f6XCQ0AAee3kPDkiMygMAENY7FlHXU/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "hotel_name": "Parrotel Lagoon Resort",
@@ -702,12 +821,17 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Parrotel Lagoon Waterpark Resort",
     "price": 4770.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -716,6 +840,7 @@
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive",
     "stars": 5,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/53093/6792574f7bbee3829f59f15c169734a20f03d675f65ce4906d36b6483954692d.webp@webp",
@@ -741,11 +866,14 @@
     "ta_rating": null,
     "operator": "Join UP!"
 =======
+=======
+>>>>>>> Stashed changes
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2582/3ad69de83f5634186dd00d9867dbdaae49e12971bf554d357c3402792236fe40.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2582/3ad69de83f5634186dd00d9867dbdaae49e12971bf554d357c3402792236fe40.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/parrotel-lagoon-resort-14/pdJUSyJwmd1A_nfA2y_9x3AAogiyy_BX-x5NWeSd59BZvRgYznTQQfXNHTsUjz01h6L3cqBE9SRVgwmd_L1wZIoiVQQVjlB2ABagVDU1AuMXIzmwEVBxcAXANYBVYCQMoGEbsNXagLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjwYIXiA/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/parrotel-lagoon-resort-14/pdJUSyJwmd1A_nfA2y_9x3AAogiyy_BX-x5NWeSd59BZvRgYznTQQfXNHTsUjz01h6L3cqBE9SRVgw8_nL1wZIoiVQQVjkB2ABagVDU1AuMXIzmwEVBxcAXANYBVYCQMoGEbsNXagLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjk9yD3Q/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 =======
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2582/3ad69de83f5634186dd00d9867dbdaae49e12971bf554d357c3402792236fe40.webp@webp",
@@ -753,6 +881,8 @@
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/parrotel-lagoon-resort-14/pdJUSyJwmd1A_nfA2y_9x3AAogiyy_BX-x5NWeSd59BZvRgYznTQQfXNHTsUjz01h6L3cqBE9SRVgwuezL1wZIoiVQQVjlB2ABagVDU1AuMXIzmwEVBxcAXANYBVYCQMoGEbsNXagLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjScLXbA/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   },
   {
@@ -770,12 +900,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/45637/b781f03eda0643de21ac79479d88465a75b646e7cd4a4cccb1a78e2a67b040ba.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-sharm/pLTzneWSu2qrk5gffBLDbAAAogN6hbYfuFWgRkurprb2Rew1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZImiZQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEQUyo7zkN-f6XCSAAAcvTjJGUicygMAENY2fFQlE/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-sharm/pLTzneWSu2qrk5gffBLDbAAAogN6hbYfuFWgRkurprb2Rew1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZImiZQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEQUyo7zkN-f6XCSAAAcvTjJGUicygMAENY0tvJTg/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-sharm/pLTzneWSu2qrk5gffBLDbAAAogN6hbYfuFWgRkurprb2Rew1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZImiZQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEQUyo7zkN-f6XCSAAAcvTjJGUicygMAENY2McZiE/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-sharm/pLTzneWSu2qrk5gffBLDbAAAogN6hbYfuFWgRkurprb2Rew1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZImiZQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGEQUyo7zkN-f6XCSAAAcvTjJGUicygMAENY0MSr9U/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -795,11 +929,16 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/56903/10c4d7b9ffc6ca8be1342dedf5f595416b638fea02c593211845364d85065177.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-y-mar-sharks-bay/pCW0l-xGACJD6Xh-bweWOQAAogEDjSc5X2eaKwbOhRwSDrqVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6NDL1wZImyZQQVjmB2ABagMxMnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGGmQFMppc5Dfn-lwkgAAHh2fSYg4nMoDABDWPQR1wq/?operator=JOIP&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-y-mar-sharks-bay/pCW0l-xGACJD6Xh-bweWOQAAogEDjSc5X2eaKwbOhRwSDrqVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZImyZQQVjkB2ABagMxMnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGGmQFMppc5Dfn-lwkgAAHh2fSYg4nMoDABDWPe6Y4z/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Amwaj Oyoun Resort & Casino",
     "price": 4937.0,
     "dates": "2026-12-20 - 2026-12-27",
@@ -890,6 +1029,8 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26529/9a20981d634e6c6b8e67899e5b358c5aa6d21ddafef989c57de51f5022528339.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-beach-sharm-el-sheikh/pvR7EU6mbzZyNBP1QUe1qnAAogo6_0TExJN0aLDRKKABI_aTKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZI5SdQQVi2B2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARm8YBS9MDYQBepzBSpiBTAEyssDoN9_6XCSAAAevX8MCz6NGgMAENY_hRD38/?operator=JOIP&adults=1",
 =======
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Lido Sharm Hotel (EX. Iberotel Lido)",
     "price": 4977.0,
     "dates": "2026-12-22 - 2026-12-29",
@@ -902,7 +1043,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26957/9e931f85761088ce055e0f51aeb42f4aa2ea0fd08dedbd1087137535a00fec34.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26957/9e931f85761088ce055e0f51aeb42f4aa2ea0fd08dedbd1087137535a00fec34.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-lido/pxZ3D3T0sDXReYDuzycLQ1AAogC9QFTuGUhGFOtqpEgKu4Rly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI8SZQQVjlB2ABagMwMllyPpsBFAEVBhcAXAhYAFYCQMoGT6sCXQARx8kBSydhAF6nMFKmIFMATKywOg35_pcJIAABz8ew6ISJzKAwAQ1jOY5l1g/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-lido/pxZ3D3T0sDXReYDuzycLQ1AAogC9QFTuGUhGFOtqpEgKu4Rly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI8SZQQVjkB2ABagMwMllyPpsBFAEVBhcAXAhYAFYCQMoGT6sCXQARx8kBSydhAF6nMFKmIFMATKywOg35_pcJIAABz8ew6ISJzKAwAQ1jC1KJCQ/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -919,7 +1060,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26455/44cca55f5e343ba1b83ac045fa0b0fb05e08128778538c5b34b39dab1d2582cb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26455/44cca55f5e343ba1b83ac045fa0b0fb05e08128778538c5b34b39dab1d2582cb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-cyrene/p-P4PFyHoPN-rkCJSa_x5YAAog8hQ5LiL6fFdBRzfZllvR4Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI8yZQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR0cUBS50EYQBepzBSpiBTAEyssDoN-f6XCSAAAembvIiFicygMAENY_xjlew/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-cyrene/p-P4PFyHoPN-rkCJSa_x5YAAog8hQ5LiL6fFdBRzfZllvR4Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI8yZQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR0cUBS50EYQBepzBSpiBTAEyssDoN-f6XCSAAAembvIiFicygMAENY2x5Doc/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -936,12 +1077,16 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26522/6f21e99ef4446c82c77cd091a4ef540398e791eb401f99c33b3161174b5c700a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26522/6f21e99ef4446c82c77cd091a4ef540398e791eb401f99c33b3161174b5c700a.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/amwaj-oyoun-resort-ex-aa-amwaj-resort/p5LU2a7wzb7naels5YTA4DAAogLHW7P6yQ3DP2e7M4AxglqFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIlSdQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARlMYBS9oDYQBepzBSpiBTAEyssDoN-f6XCSAAAe_T-Kf0iMygMAENY9YiNEw/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26522/6f21e99ef4446c82c77cd091a4ef540398e791eb401f99c33b3161174b5c700a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26522/6f21e99ef4446c82c77cd091a4ef540398e791eb401f99c33b3161174b5c700a.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/amwaj-oyoun-resort-ex-aa-amwaj-resort/p5LU2a7wzb7naels5YTA4DAAogLHW7P6yQ3DP2e7M4AxglqFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIlSdQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARlMYBS9oDYQBepzBSpiBTAEyssDoN-f6XCSAAAe_T-Kf0iMygMAENY32o4VM/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/amwaj-oyoun-resort-ex-aa-amwaj-resort/p5LU2a7wzb7naels5YTA4DAAogLHW7P6yQ3DP2e7M4AxglqFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIlSdQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARlMYBS9oDYQBepzBSpiBTAEyssDoN-f6XCSAAAe_T-Kf0iMygMAENY86Vz-o/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -961,6 +1106,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2875/53c7e8c425457160e06947dcfc76e881a2485c1beae5f2d8f023d7326c3542ee.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-royal-beach-resort-spa/pT1SvHa_FdZ5S86GSJqFyMAAogQueMMpwiEXUs-81rwI2MSIznTQQfXNHTsUjz01h6L3cqBE9SRVgw6dDL1wZI7ydQQVjmB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEeAPXYMJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjwSyIKQ/?operator=OREX&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-royal-beach-resort-spa/pT1SvHa_FdZ5S86GSJqFyMAAogQueMMpwiEXUs-81rwI2MSIznTQQfXNHTsUjz01h6L3cqBE9SRVgwmd_L1wZI7ydQQVjlB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEeAPXYMJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjfm279w/?operator=OREX&adults=1",
@@ -968,10 +1114,14 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-royal-beach-resort-spa/pT1SvHa_FdZ5S86GSJqFyMAAogQueMMpwiEXUs-81rwI2MSIznTQQfXNHTsUjz01h6L3cqBE9SRVgwuezL1wZI7ydQQVjlB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEeAPXYMJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjUhi4gA/?operator=OREX&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rehana-royal-beach-resort-spa/pT1SvHa_FdZ5S86GSJqFyMAAogQueMMpwiEXUs-81rwI2MSIznTQQfXNHTsUjz01h6L3cqBE9SRVgw8_nL1wZI7ydQQVjkB2ABagVDRUouMXIzmwEVBxcAWAhWAlwKQMAGEeAPXYMJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjAFwlqw/?operator=OREX&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
   {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "hotel_name": "Xperience Kiroseiz Premier",
@@ -980,6 +1130,8 @@
     "checkin_date": "2026-12-20",
     "checkout_date": "2026-12-27",
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     "hotel_name": "Dreams Beach Resort",
@@ -995,7 +1147,11 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26529/9a20981d634e6c6b8e67899e5b358c5aa6d21ddafef989c57de51f5022528339.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26529/9a20981d634e6c6b8e67899e5b358c5aa6d21ddafef989c57de51f5022528339.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-beach-sharm-el-sheikh/pP0sJwyBMQdYlUA-w-O_6dAAogo6_0TExJN0aLDRKKABI_aVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIhChQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARm8YBS9MDYQBepzBSpiBTAEyssDoN-f6XCSAAAeed1IilicygMAENY2Wq5nA/?operator=JOIP&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-beach-sharm-el-sheikh/pP0sJwyBMQdYlUA-w-O_6dAAogo6_0TExJN0aLDRKKABI_aVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIhChQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARm8YBS9MDYQBepzBSpiBTAEyssDoN-f6XCSAAAeed1IilicygMAENY62KHUo/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1012,7 +1168,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26966/a1cbfc95aec5036376c1d3064fd052b0c1c464725caa3594f679d7c539b71b55.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26966/a1cbfc95aec5036376c1d3064fd052b0c1c464725caa3594f679d7c539b71b55.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/regency-plaza/pFxM0tVkn2aqn_xi8G8oWmAAogQ8ruajzOJ2_BezKxeJ-2D1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIoihQQVjlB2ABagMwRkhyPpsBFAEVBhcAXANYBVYCQMoGT6sCXQAR0MkBSx5hAF6nMFKmIFMATKywOg35_pcJIAAB3Y2QqcWJzKAwAQ1jAaPboQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/regency-plaza/pFxM0tVkn2aqn_xi8G8oWmAAogQ8ruajzOJ2_BezKxeJ-2D1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIoihQQVjkB2ABagMwRkhyPpsBFAEVBhcAXANYBVYCQMoGT6sCXQAR0MkBSx5hAF6nMFKmIFMATKywOg35_pcJIAAB3Y2QqcWJzKAwAQ1jpsLOYA/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1022,11 +1178,11 @@
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
->>>>>>> Stashed changes
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35585/45b125e2b6ec301907e869dcd74efda3c2beb3575f6b98b484de007c531a6397.webp@webp",
@@ -1079,6 +1235,12 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26770/0deee25c5e66dd83a72c9a94607d1731355b5921aee7646a2f10c52918b203fc.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/el-faraana-reef-resort/pRlYXDqSDDkWTSajs8IcTGAAog2waaYVc08cfZ3SA4SMLi-ly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIsChQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARjMgBS-IBYQBepzBSpiBTAEyssDoN-f6XCSAAAeKNhKCUicygMAENY6xF10E/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "stars": 4,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26770/0deee25c5e66dd83a72c9a94607d1731355b5921aee7646a2f10c52918b203fc.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26770/0deee25c5e66dd83a72c9a94607d1731355b5921aee7646a2f10c52918b203fc.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/el-faraana-reef-resort/pRlYXDqSDDkWTSajs8IcTGAAog2waaYVc08cfZ3SA4SMLi-ly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIsChQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARjMgBS-IBYQBepzBSpiBTAEyssDoN-f6XCSAAAeKNhKCUicygMAENY9SE0Vk/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1088,7 +1250,6 @@
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
-<<<<<<< Updated upstream
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Katowice",
@@ -1096,7 +1257,11 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26475/e14b6c2526a60623746ad2ee573f4e1dbcb62cca60bf8f83335502fd4ee271b4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26475/e14b6c2526a60623746ad2ee573f4e1dbcb62cca60bf8f83335502fd4ee271b4.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-y-mar-naama-bay/pmLORItdMXUWALAVKgHVmrAAogdAtxxq_qvzGLNVhdhI0oH1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIuyhQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR5cUBS4kEYQBepzBSpiBTAEyssDoN-f6XCSAAAeOX2ICEicygMAENY6N-p_s/?operator=JOIP&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sol-y-mar-naama-bay/pmLORItdMXUWALAVKgHVmrAAogdAtxxq_qvzGLNVhdhI0oH1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIuyhQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR5cUBS4kEYQBepzBSpiBTAEyssDoN-f6XCSAAAeOX2ICEicygMAENY0aLEME/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1113,6 +1278,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/56417/42b5871e2a9f679e95136f4f1fa4d06299e70358e37c9161725eaac6971076d5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/56417/42b5871e2a9f679e95136f4f1fa4d06299e70358e37c9161725eaac6971076d5.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/shores-golden-resort/pOUPycQK2yDyauYup675vWAAogoiQgblMQZ0WJ47ZaBQStJly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIwyhQQVjlB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGglQFMjJs5Dfn-lwkgAAHznbCo9YjMoDABDWMvwOgg/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
@@ -1176,6 +1342,9 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/56057/36a530073e571da560fcd6e96963fba78ded75736d36f44ed99e26b705b940cd.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/romance-regency-club-12/pAzWN8hcCo3Y1Sqyl17_71AAogVYJnuFxPFIiXmFtWCPa8xly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIzyhQQVjlB2ABckEUARUGFwBcA1gFVgJAygZdqwJPAEvuyQFhAF6nMFu8DVPqElIAEbiSAUz0nTkg-f6XCQ0AAe27_LDVisygMAEQYxlMpAc/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/shores-golden-resort/pOUPycQK2yDyauYup675vWAAogoiQgblMQZ0WJ47ZaBQStJly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIwyhQQVjkB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGglQFMjJs5Dfn-lwkgAAHznbCo9YjMoDABDWPWjwv9/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1186,26 +1355,19 @@
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
->>>>>>> Stashed changes
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive Ultimate",
-<<<<<<< Updated upstream
-    "stars": 4,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/76644/5154b03dd00fcbcd8e8d081f12fbbf08207588db156f96f567761233e06c6f7f.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/76644/5154b03dd00fcbcd8e8d081f12fbbf08207588db156f96f567761233e06c6f7f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-beach-rotana-tiran/pxHZNU2sFfuqTPAI9zZDObAAogFyToLZRJVqc2L2EwcBrACzKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZIqilQQVi2B2ABagMwQTdyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGjswJMif03Dff-lwkgAAHis8DotOjRoDABDWMRUE2V/?operator=JOIP&adults=1",
-=======
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/56057/36a530073e571da560fcd6e96963fba78ded75736d36f44ed99e26b705b940cd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/56057/36a530073e571da560fcd6e96963fba78ded75736d36f44ed99e26b705b940cd.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/romance-regency-club-12/pAzWN8hcCo3Y1Sqyl17_71AAogVYJnuFxPFIiXmFtWCPa8xly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIzyhQQVjlB2ABckEUARUGFwBcA1gFVgJAygZdqwJPAEvuyQFhAF6nMFu8DVPqElIAEbiSAUz0nTkg-f6XCQ0AAe27_LDVisygMAEQYx2hjlc/?operator=JOIP&adults=1",
->>>>>>> Stashed changes
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/romance-regency-club-12/pAzWN8hcCo3Y1Sqyl17_71AAogVYJnuFxPFIiXmFtWCPa8xly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIzyhQQVjkB2ABckEUARUGFwBcA1gFVgJAygZdqwJPAEvuyQFhAF6nMFu8DVPqElIAEbiSAUz0nTkg-f6XCQ0AAe27_LDVisygMAEQY8lwtmg/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "hotel_name": "Xperience Kiroseiz Parkland",
     "price": 5306.0,
@@ -1215,12 +1377,17 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Xperience Kiroseiz Premier",
     "price": 5314.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1229,6 +1396,7 @@
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive",
     "stars": 5,
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26484/995d7203839e494b8add2572d08d261d49e235e8c5590a17c042f80f9f24f6a1.webp@webp",
@@ -1261,11 +1429,17 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35585/45b125e2b6ec301907e869dcd74efda3c2beb3575f6b98b484de007c531a6397.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pzp9SNzdv0JByUNp11Jgq2AAogFlL5AiLm8yht524EoNrjNFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIwilQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR5hJSwA1TAEyssDoN-f6XCSAAAea19JDziMygMAENY34fGgU/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35585/45b125e2b6ec301907e869dcd74efda3c2beb3575f6b98b484de007c531a6397.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35585/45b125e2b6ec301907e869dcd74efda3c2beb3575f6b98b484de007c531a6397.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-premier/pzp9SNzdv0JByUNp11Jgq2AAogFlL5AiLm8yht524EoNrjNFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIwilQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR5hJSwA1TAEyssDoN-f6XCSAAAea19JDziMygMAENY9MTFWM/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Edge By Rotana Sea Beach (Ex. Sea Beach",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 5398.0,
@@ -1275,11 +1449,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "price": 5406.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1292,6 +1471,7 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/37893/596057afc9a5c225b3fbc9ae9f299f90784062de87f4445b3e20fd7d008719c2.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-beach-resort-aqua-park/pOiu5x3TQHEYvdKwJ_DupKAAog8IfBpZ0n6x8ZFEVgnctHjDKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZIlipQQVi2B2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHEBEzoqzoN9_6XCSAAAd7f4Li16NGgMAENY3OrScM/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-beach-resort-aqua-park/p01AxqNOueMptKZrZxnAFRAAog8IfBpZ0n6x8ZFEVgnctHjFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZInipQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHEBEzoqzoN-f6XCSAAAd-fxIiUicygMAENY-pZQhM/?operator=JOIP&adults=1",
@@ -1299,10 +1479,14 @@
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-beach-resort-aqua-park/p01AxqNOueMptKZrZxnAFRAAog8IfBpZ0n6x8ZFEVgnctHjFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZInipQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHEBEzoqzoN-f6XCSAAAd-fxIiUicygMAENY6vh54g/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-beach-resort-aqua-park/p01AxqNOueMptKZrZxnAFRAAog8IfBpZ0n6x8ZFEVgnctHjFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZInipQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHEBEzoqzoN-f6XCSAAAd-fxIiUicygMAENY4Rrxkg/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "hotel_name": "Naama Bay Promenade Mountain View Resort",
@@ -1344,6 +1528,8 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/41284/67fbcd9c4bd0c5dc87927d299e08cc3b938d9a9abad9e3aa4889723e890d1a7f.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-mountain-resort-12/peQ2gcxovO24Q5PAJjo2w4AAogLpvPEHe1JQ88UyodNlm1PDKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZIzSpQQVi2B2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGDH0ypkToN9_6XCSAAAenhwJjE6NGgMAENY5yH7Eo/?operator=JOIP&adults=1",
 =======
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Renaissance By Marriott Golden View Beac",
     "price": 5459.0,
     "dates": "2026-12-22 - 2026-12-29",
@@ -1356,6 +1542,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26457/da2cbbc54fb4e5276cdac083723e29b75a05f40e4a3f02f69209fc79a60bed8e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26457/da2cbbc54fb4e5276cdac083723e29b75a05f40e4a3f02f69209fc79a60bed8e.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/renaissance-golden-view-beach/pKZfmcIfHfmn6VPBauw8YrAAoglwdHvOtRtA__xLgwHEekeFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI0ypQQVjlB2ABagMwMEZyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR08UBS5sEYQBepzBSpiBTAEyssDoN-f6XCSAAAeCPwLDDicygMAENY-_2S_E/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
@@ -1363,11 +1550,15 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/76644/5154b03dd00fcbcd8e8d081f12fbbf08207588db156f96f567761233e06c6f7f.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-beach-rotana-tiran/ppfLk0GcEEiD7mcDAVxTs4AAogFyToLZRJVqc2L2EwcBrAC1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIjStQQVjlB2ABagMwQTdyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGjswJMif03Dfn-lwkgAAHls8DotOjRoDABDWMU1Png/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/renaissance-golden-view-beach/pKZfmcIfHfmn6VPBauw8YrAAoglwdHvOtRtA__xLgwHEekeFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI0ypQQVjkB2ABagMwMEZyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR08UBS5sEYQBepzBSpiBTAEyssDoN-f6XCSAAAeCPwLDDicygMAENY1V_Wuc/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Royal Regency Club",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "price": 5502.0,
@@ -1377,11 +1568,16 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "price": 5517.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1394,59 +1590,55 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/55518/6c80e8ef2bae0dd180c863c65840c3cd8e9eb23bc4f172ece7e1f2ca5ee3bad2.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-regency-club/pVyvBPNCFbIMdbrDqAGH_TAAogE-x_tYkHLICxmTBrW55drDKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZI_ipQQVi2B2ABagNGaGNyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGdjgFMj6I5Dff-lwkgAAHSx_DgpOjRoDABDWNpTs4k/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-regency-club/p30tvWLBiIer30-7rO5nUxAAogE-x_tYkHLICxmTBrW55drFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIjStQQVjlB2ABagNGaGNyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGdjgFMj6I5Dfn-lwkgAAHOs4jA5YjMoDABDWPfS0CQ/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-regency-club/p30tvWLBiIer30-7rO5nUxAAogE-x_tYkHLICxmTBrW55drFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIjStQQVjkB2ABagNGaGNyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGdjgFMj6I5Dfn-lwkgAAHOs4jA5YjMoDABDWO3FYYV/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
-<<<<<<< Updated upstream
-    "hotel_name": "Domina Coral Bay Oasis",
-    "price": 5526.0,
-=======
     "hotel_name": "Invidia Coral Beach Tiran",
     "price": 5517.0,
->>>>>>> Stashed changes
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Katowice",
-<<<<<<< Updated upstream
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26781/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26781/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-oasis/pFRaTMluWRWrvPlzMBWW1IAAogz96U9kaa8y0Ei7ZHqlHYwFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6dDL1wZIlitQQVjmB2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARl8gBS9cBYQBepzBSpiBTAEyssDoN-f6XCSAAAfC3lIG0icygMAENY650eoQ/?operator=JOIP&adults=1",
-    "ta_rating": null,
-    "operator": "Join UP!"
-  },
-  {
-    "hotel_name": "Domina Coral Bay Bella Vista",
-    "price": 5526.0,
-    "dates": "2026-12-22 - 2026-12-29",
-    "checkin_date": "2026-12-22",
-    "checkout_date": "2026-12-29",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Katowice",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58677/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58677/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/domina-coral-bay-bellavista-12/pw6oeeyVZRs6S5L4xCY6X3AAogK9SCN9mUQ_7lruF3wuzNFVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6dDL1wZIlitQQVjmB2ABagMxMnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH0pgFMuIk5Dfn-lwkgAAHSmfTIpYnMoDABDWMfQMv5/?operator=JOIP&adults=1",
-=======
     "board_basis": "All Inclusive Ultimate",
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/76644/5154b03dd00fcbcd8e8d081f12fbbf08207588db156f96f567761233e06c6f7f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/76644/5154b03dd00fcbcd8e8d081f12fbbf08207588db156f96f567761233e06c6f7f.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-beach-rotana-tiran/ppfLk0GcEEiD7mcDAVxTs4AAogFyToLZRJVqc2L2EwcBrAC1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIjStQQVjlB2ABagMwQTdyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGjswJMif03Dfn-lwkgAAHls8DotOjRoDABDWP0Gb60/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-regency-club/p30tvWLBiIer30-7rO5nUxAAogE-x_tYkHLICxmTBrW55drFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIjStQQVjlB2ABagNGaGNyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGdjgFMj6I5Dfn-lwkgAAHOs4jA5YjMoDABDWOEQFPD/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-beach-rotana-tiran/ppfLk0GcEEiD7mcDAVxTs4AAogFyToLZRJVqc2L2EwcBrAC1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIjStQQVjkB2ABagMwQTdyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGjswJMif03Dfn-lwkgAAHls8DotOjRoDABDWOI-Ae0/?operator=JOIP&adults=1",
+    "ta_rating": null,
+    "operator": "Join UP!"
+  },
+  {
+    "hotel_name": "Domina Coral Bay Oasis",
+    "price": 5526.0,
+    "dates": "2026-12-22 - 2026-12-29",
+    "checkin_date": "2026-12-22",
+    "checkout_date": "2026-12-29",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Katowice",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26781/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26781/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-oasis/pFRaTMluWRWrvPlzMBWW1IAAogz96U9kaa8y0Ei7ZHqlHYwFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIlitQQVjkB2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARl8gBS9cBYQBepzBSpiBTAEyssDoN-f6XCSAAAfC3lIG0icygMAENY7rjgQo/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -1466,9 +1658,13 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26782/bdb6c2b71b86491c48bb02e427469239fd0179b5fee7739ea06ede954b1bc312.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-aquamarine/pkwHlBcHRY7ARa3Lk9JbX7AAogzQUsR9FqULqAPLLLQjiYWVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6dDL1wZIlitQQVjmB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFufPRH5igFL1gFhAF6nMFKmIFMATKywOg35_pcJIAAB09PsiLSJzKAwAQ1joYCOgw/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-aquamarine/pkwHlBcHRY7ARa3Lk9JbX7AAogzQUsR9FqULqAPLLLQjiYWVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIlitQQVjlB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFufPRH5igFL1gFhAF6nMFKmIFMATKywOg35_pcJIAAB09PsiLSJzKAwAQ1j2la1hg/?operator=JOIP&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-aquamarine/pkwHlBcHRY7ARa3Lk9JbX7AAogzQUsR9FqULqAPLLLQjiYWVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIlitQQVjkB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFufPRH5igFL1gFhAF6nMFKmIFMATKywOg35_pcJIAAB09PsiLSJzKAwAQ1j8CpGxQ/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1485,6 +1681,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58677/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58677/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/domina-coral-bay-bellavista-12/pw6oeeyVZRs6S5L4xCY6X3AAogK9SCN9mUQ_7lruF3wuzNFVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIlitQQVjlB2ABagMxMnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH0pgFMuIk5Dfn-lwkgAAHSmfTIpYnMoDABDWOpT3R-/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-aquamarine/pkwHlBcHRY7ARa3Lk9JbX7AAogzQUsR9FqULqAPLLLQjiYWVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIlitQQVjlB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFufPRH5igFL1gFhAF6nMFKmIFMATKywOg35_pcJIAAB09PsiLSJzKAwAQ1jQ1_fdQ/?operator=JOIP&adults=1",
@@ -1528,6 +1725,9 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/58677/6758a27f99099bb33b7fd3790ff054c6766d78cd663310af261490e80f72cea2.webp@webp",
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/domina-coral-bay-bellavista-12/pw6oeeyVZRs6S5L4xCY6X3AAogK9SCN9mUQ_7lruF3wuzNFVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZIlitQQVjlB2ABagMxMnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH0pgFMuIk5Dfn-lwkgAAHSmfTIpYnMoDABDWMV0Nxj/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/domina-coral-bay-bellavista-12/pw6oeeyVZRs6S5L4xCY6X3AAogK9SCN9mUQ_7lruF3wuzNFVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIlitQQVjkB2ABagMxMnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH0pgFMuIk5Dfn-lwkgAAHSmfTIpYnMoDABDWOsiwFw/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1546,11 +1746,15 @@
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/37723/741ee1cc2dac770951cc6d428c5048e4b43ad2f917cebe2b1a82d07141117d52.webp@webp",
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-sport-15/pDM_JidmhW2eb0B-BXaa7HAAogSs9kX1R8uTotgbeYxBKLr1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw6dDL1wZImytQQVjmB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGaA0ySrToN-f6XCSAAAc-zzIC0icygMAENY2tZfWA/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-sport-15/pDM_JidmhW2eb0B-BXaa7HAAogSs9kX1R8uTotgbeYxBKLr1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZImytQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGaA0ySrToN-f6XCSAAAc-zzIC0icygMAENY9n7Mes/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-sport-15/pDM_JidmhW2eb0B-BXaa7HAAogSs9kX1R8uTotgbeYxBKLr1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZImytQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGaA0ySrToN-f6XCSAAAc-zzIC0icygMAENY1SV0ls/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-sport-15/pDM_JidmhW2eb0B-BXaa7HAAogSs9kX1R8uTotgbeYxBKLr1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZImytQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGaA0ySrToN-f6XCSAAAc-zzIC0icygMAENY42J6wc/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -1569,9 +1773,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26484/995d7203839e494b8add2572d08d261d49e235e8c5590a17c042f80f9f24f6a1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26484/995d7203839e494b8add2572d08d261d49e235e8c5590a17c042f80f9f24f6a1.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-parkland/pIhQHHyT6C-HVcgudUJaMUAAogOGOkB3GWB03MOB8FIz-f-Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZInStQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR7sUBS4AEYQBepzBSpiBTAEyssDoN-f6XCSAAAd7DgKDziMygMAENY63g1BY/?operator=JOIP&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-parkland/pIhQHHyT6C-HVcgudUJaMUAAogOGOkB3GWB03MOB8FIz-f-Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwuezL1wZInStQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR7sUBS4AEYQBepzBSpiBTAEyssDoN-f6XCSAAAd7DgKDziMygMAENY7xCb5M/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-kiroseiz-parkland/pIhQHHyT6C-HVcgudUJaMUAAogOGOkB3GWB03MOB8FIz-f-Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZInStQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR7sUBS4AEYQBepzBSpiBTAEyssDoN-f6XCSAAAd7DgKDziMygMAENY-2tzHE/?operator=JOIP&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
@@ -1590,9 +1798,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2581/631ddbf87b95f203cdc19ba91b2ac2eb6df7ce9556d0bf2a408f695b684ca5ee.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2581/631ddbf87b95f203cdc19ba91b2ac2eb6df7ce9556d0bf2a408f695b684ca5ee.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pfthgVYWLm_Bg-ucLwupMtAAogqzOG4lMPMRvjnlTaQNvRhIznTQQfXNHTsUjz01h6L3cqBE9SRVgwmd_L1wZI1StQQVjlB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEboNXakLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjIHWa0Q/?operator=OREX&adults=1",
 =======
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pfthgVYWLm_Bg-ucLwupMtAAogqzOG4lMPMRvjnlTaQNvRhIznTQQfXNHTsUjz01h6L3cqBE9SRVgwuezL1wZI1StQQVjlB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEboNXakLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjP4bl4A/?operator=OREX&adults=1",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pfthgVYWLm_Bg-ucLwupMtAAogqzOG4lMPMRvjnlTaQNvRhIznTQQfXNHTsUjz01h6L3cqBE9SRVgw8_nL1wZI1StQQVjkB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEboNXakLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjyoZDoA/?operator=OREX&adults=1",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Anex Tour Poland"
@@ -1611,7 +1823,11 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59088/0e9d6a8cec49cbb468431d122082e58b43892194f2ec39e7c6665ed4585a3645.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59088/0e9d6a8cec49cbb468431d122082e58b43892194f2ec39e7c6665ed4585a3645.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/shores-aloha/p1t93tOrmB9_zm3f7Qj-CEAAog8l1rBX6wRMZA6j1UBfLBN1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZInyxQQVjlB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGPqgFMnYY5Dfn-lwkgAAHfs8io9YjMoDABEGPIoFt1/?operator=JOIP&adults=1",
+=======
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/shores-aloha/p1t93tOrmB9_zm3f7Qj-CEAAog8l1rBX6wRMZA6j1UBfLBN1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZInyxQQVjkB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGPqgFMnYY5Dfn-lwkgAAHfs8io9YjMoDABEGMpm5JB/?operator=JOIP&adults=1",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1628,7 +1844,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26495/c158ba5c591d50901d97577d1c195c52231210dc7f4bacb64259e6c8182ab6ec.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26495/c158ba5c591d50901d97577d1c195c52231210dc7f4bacb64259e6c8182ab6ec.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-waterfalls-resort/pxq7I1ZcUvQoak6stllfI-AAogVmsrFspDFpbkOZQOboMOuVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZIwCxQQVjlB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR-cUBS_UDYQBepzBSpiBTAEyssDoN-f6XCSAAAeOTuKDliMygMAENY8ejQa8/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-waterfalls-resort/pxq7I1ZcUvQoak6stllfI-AAogVmsrFspDFpbkOZQOboMOuVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZIwCxQQVjkB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR-cUBS_UDYQBepzBSpiBTAEyssDoN-f6XCSAAAeOTuKDliMygMAENYy78Ulw/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1645,24 +1861,16 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/60573/a2f7d954c7f6496e595c0065fb7d038fab4703ba75c8dd8bcdf9b7e2d891f635.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/60573/a2f7d954c7f6496e595c0065fb7d038fab4703ba75c8dd8bcdf9b7e2d891f635.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/seti-sharm-palm-beach-resort-13/pG8GGiKFpJCkvC3oB-59-dAAogc-ANiU0nWFn8WDK8gdY2oly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI7SxQQVjlB2ABagM0RnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHctQFM0Po4Dfn-lwkgAAHy0dyI5YjMoDABDWMSHaLF/?operator=JOIP&adults=1",
->>>>>>> Stashed changes
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/seti-sharm-palm-beach-resort-13/pG8GGiKFpJCkvC3oB-59-dAAogc-ANiU0nWFn8WDK8gdY2oly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI7SxQQVjkB2ABagM0RnFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHctQFM0Po4Dfn-lwkgAAHy0dyI5YjMoDABDWOfzJu5/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Charmillion Life (ex. Sea Life)",
-<<<<<<< Updated upstream
-    "price": 5557.0,
-    "dates": "2026-12-20 - 2026-12-27",
-    "checkin_date": "2026-12-20",
-    "checkout_date": "2026-12-27",
-=======
     "price": 5753.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
->>>>>>> Stashed changes
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Katowice",
@@ -1670,41 +1878,24 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/46697/77fe5c3229bca627c194268468b696c5f06f8c9216084efd6d8fa7a78aa694d5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/46697/77fe5c3229bca627c194268468b696c5f06f8c9216084efd6d8fa7a78aa694d5.webp@webp",
-<<<<<<< Updated upstream
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-life-resort/pVLpz94t9zaWY5s0qIh4D9AAog0f_YaCqzqU8v5OqPZyFNyDKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZItStQQVi2B2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGoSUyE5zkN9_6XCSAAAfTT0Jik6NGgMAENY6trx6g/?operator=JOIP&adults=1",
-=======
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-life-resort/pMnKHfhbwoZBdFTxzQ6d6XAAog0f_YaCqzqU8v5OqPZyFNyFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwmd_L1wZI-SxQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGoSUyE5zkN-f6XCSAAAdLH7Jj1iMygMAENY87zftI/?operator=JOIP&adults=1",
->>>>>>> Stashed changes
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-life-resort/pMnKHfhbwoZBdFTxzQ6d6XAAog0f_YaCqzqU8v5OqPZyFNyFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw8_nL1wZI-SxQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGoSUyE5zkN-f6XCSAAAdLH7Jj1iMygMAENY2MvJtE/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
-<<<<<<< Updated upstream
-    "hotel_name": "Parrotel Beach Resort (ex. Radisson Blu",
-    "price": 5583.0,
-    "dates": "2026-12-20 - 2026-12-27",
-    "checkin_date": "2026-12-20",
-    "checkout_date": "2026-12-27",
-=======
     "hotel_name": "Domina Coral Bay Harem",
     "price": 5762.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
->>>>>>> Stashed changes
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive",
     "stars": 5,
-<<<<<<< Updated upstream
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26590/fa66fcb68122469a730b4adb00e88247cd1bec3e51101abad8e17c3466bee0c3.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26590/fa66fcb68122469a730b4adb00e88247cd1bec3e51101abad8e17c3466bee0c3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/radisson-blu-resort-sharm-el-sheikh/pgRLOGwNnFhAlIpx7CpYMEAAoguU-O-c3H1ofqf33eUwQZozKBCDsBfo9SoKKOXX--wmQqBEpPSVAw6dDL1wZIzytQQVi2B2ABagMyY1FyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR2MYBS5YDYQBepzBSpiBTAEyssDoN9_6XCSAAAeTNsJDE6NGgMAENYyq5uUY/?operator=JOIP&adults=1",
-=======
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/30116/bdb6c2b71b86491c48bb02e427469239fd0179b5fee7739ea06ede954b1bc312.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/30116/bdb6c2b71b86491c48bb02e427469239fd0179b5fee7739ea06ede954b1bc312.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-harem/padVgnyzOhulcrn4Y_NuidAAogGdGNOmi2oVGGPIW-OV8OLVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIgi1QQVjlB2ABckAUARUGFwBcA1gFVgJAygZdqwJPAFuFlgFh6TNLABGwGF73F1KmIFMATKywOg35_pcJIAAB38OE-LKJzKAwAQ1jlxtBYg/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-harem/padVgnyzOhulcrn4Y_NuidAAogGdGNOmi2oVGGPIW-OV8OLVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIgi1QQVjkB2ABckAUARUGFwBcA1gFVgJAygZdqwJPAFuFlgFh6TNLABGwGF73F1KmIFMATKywOg35_pcJIAAB38OE-LKJzKAwAQ1jHC4RsQ/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1721,7 +1912,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26963/1231ed109ebc9939614ff5cfaaec9ea02ae6c41d998d0770f8eb1a32041a0913.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26963/1231ed109ebc9939614ff5cfaaec9ea02ae6c41d998d0770f8eb1a32041a0913.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-sea-breeze/pRbeyPpDIpbtsThynlCiBSAAogi6SvouE_1M6gNa1dmHTzA1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI0S1QQVjlB2ABagNDR21yPpsBFAEVBhcAXANYBVYCQMoGT6sCXQARzckBSyFhAF6nMFKmIFMATKywOg35_pcJIAAB0ZeIifOIzKAwAQ1j52Im4g/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/xperience-sea-breeze/pRbeyPpDIpbtsThynlCiBSAAogi6SvouE_1M6gNa1dmHTzA1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI0S1QQVjkB2ABagNDR21yPpsBFAEVBhcAXANYBVYCQMoGT6sCXQARzckBSyFhAF6nMFKmIFMATKywOg35_pcJIAAB0ZeIifOIzKAwAQ1jpHwrLg/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1738,7 +1929,7 @@
     "stars": 3,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3403/fcbcf0bf2680e12e703beeeb067e7edac0cf893b385d5ae4d0354c347e8e6117.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3403/fcbcf0bf2680e12e703beeeb067e7edac0cf893b385d5ae4d0354c347e8e6117.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cataract-layalina-resort/pQt-zb3DwMKf5PkkOdglGvAAogquUv-NrjLAwvYEcRBJULLt4lo3vWFB-8gIVKFHzYmskqBEtPTVQwm9_L1wZI3y1QAVjlB2ABagJBSXIcHBHLGrkE7eEBqwQUGP-XBBvViSQB4eHFHgEAY381iDA/?operator=KOMT&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cataract-layalina-resort/pQt-zb3DwMKf5PkkOdglGvAAogquUv-NrjLAwvYEcRBJULLt4lo3vWFB-8gIVKFHzYmskqBEtPTVQw9fnL1wZI3y1QAVjkB2ABagJBSXIcHBHLGrkE7eEBqwQUGP-XBBvViSQB4eHFHgEAY_go-v8/?operator=KOMT&adults=1",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -1755,7 +1946,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35697/c3fbe3297f91296e5050428ca9a8247d53befdbe15683942b4583df520479859.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35697/c3fbe3297f91296e5050428ca9a8247d53befdbe15683942b4583df520479859.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-aqua-club/pQHIzA0If24MOFeTgzqimCAAogU2qtBF1HqNCmVniWL1iuK1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI_i1QQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR1hNS0AxTAEyssDoN-f6XCSAAAfDL9J-licygMAENY-5lIX4/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-aqua-club/pQHIzA0If24MOFeTgzqimCAAogU2qtBF1HqNCmVniWL1iuK1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI_i1QQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR1hNS0AxTAEyssDoN-f6XCSAAAfDL9J-licygMAENYxaJYdU/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1772,7 +1963,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/41284/67fbcd9c4bd0c5dc87927d299e08cc3b938d9a9abad9e3aa4889723e890d1a7f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/41284/67fbcd9c4bd0c5dc87927d299e08cc3b938d9a9abad9e3aa4889723e890d1a7f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-mountain-resort-12/p1HqnKE4fsTfRLQKSfu9zrAAogLpvPEHe1JQ88UyodNlm1PFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIhy5QQVjlB2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGDH0ypkToN-f6XCSAAAdvP4MCjicygMAENY796oYE/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-mountain-resort-12/p1HqnKE4fsTfRLQKSfu9zrAAogLpvPEHe1JQ88UyodNlm1PFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIhy5QQVjkB2ABagMwMEZyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGDH0ypkToN-f6XCSAAAdvP4MCjicygMAENYzlqpnU/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1789,16 +1980,12 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26476/5520ebeaae0e66f04d107125c2cb9e36a650c082e92c11b2f11d9372d443a3b3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26476/5520ebeaae0e66f04d107125c2cb9e36a650c082e92c11b2f11d9372d443a3b3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/continental-plaza-beach/pUSHQdDjRSJxG6B7PS1bzUAAogR3kyW78lWXvMTBqPU0-XNVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIlS5QQVjlB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR5sUBS4gEYQBepzBSpiBTAEyssDoN-f6XCSAAAc2f-P-yicygMAENYypKbnA/?operator=JOIP&adults=1",
->>>>>>> Stashed changes
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/continental-plaza-beach/pUSHQdDjRSJxG6B7PS1bzUAAogR3kyW78lWXvMTBqPU0-XNVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIlS5QQVjkB2ABagMxMW1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR5sUBS4gEYQBepzBSpiBTAEyssDoN-f6XCSAAAc2f-P-yicygMAENY_KSw0A/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Charmillion Club Aqua Park (ex. Sea Club",
-<<<<<<< Updated upstream
-    "price": 5610.0,
-=======
     "price": 5912.0,
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
@@ -1810,7 +1997,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/46696/9b8d2879cc3dfb7abcdae6610e6b75a6a87b5ca2c39248df1c4af0726834b01d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/46696/9b8d2879cc3dfb7abcdae6610e6b75a6a87b5ca2c39248df1c4af0726834b01d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pMp2HbmSj6Zf69MGsPCSOCAAogcxJZ-XkTCdEFmLNvqBBEIly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZImC5QQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGnSUyF5zkN-f6XCSAAAdPh-I_1iMygMAENY3yTopI/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pMp2HbmSj6Zf69MGsPCSOCAAogcxJZ-XkTCdEFmLNvqBBEIly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZImC5QQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGnSUyF5zkN-f6XCSAAAdPh-I_1iMygMAENY3zxjqA/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1827,7 +2014,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/61303/27176cd9f17e97512b2adabbe08afd4a9d664d99f4488a86abf7cd73486b09d2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/61303/27176cd9f17e97512b2adabbe08afd4a9d664d99f4488a86abf7cd73486b09d2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-laguna-club-resort-14/pFP555ZiZoQZX4cejp3t-LAAogAW4PTMWczGWQ5DvJb9CWTly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZImzBQQVjlB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG2uwFM9vQ4Dfn-lwkgAAH02dC4o4nMoDABDWNz9z2p/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-laguna-club-resort-14/pFP555ZiZoQZX4cejp3t-LAAogAW4PTMWczGWQ5DvJb9CWTly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZImzBQQVjkB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG2uwFM9vQ4Dfn-lwkgAAH02dC4o4nMoDABDWOX93MK/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1844,7 +2031,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/39392/339e94f1b2f1e7bf58084f62fee07486e6e39ae2fa08732c08cd1c85e3f92e45.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/39392/339e94f1b2f1e7bf58084f62fee07486e6e39ae2fa08732c08cd1c85e3f92e45.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/barcelo-tiran-sharm/peVItIeKkBBiaNpIdmHa5-AAogMH1Nmd5dG_ddRwDqLYpBs1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI4zBQQVjlB2ABckAUARUGFwBcA1gFVgJAygZdqwJPAFupAkvFxwFhAF6nMFOmIFIAEZ8QTI2gOiD5_pcJDQAB6tWM8PSIzKAwAQ1j0mEi9Q/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/barcelo-tiran-sharm/peVItIeKkBBiaNpIdmHa5-AAogMH1Nmd5dG_ddRwDqLYpBs1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI4zBQQVjkB2ABckAUARUGFwBcA1gFVgJAygZdqwJPAFupAkvFxwFhAF6nMFOmIFIAEZ8QTI2gOiD5_pcJDQAB6tWM8PSIzKAwAQ1jBncWng/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1861,7 +2048,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26464/515da8d7ba4282e5cd7f51bb005a3f52d889d3e66e1a919e05f9728adf1a433a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26464/515da8d7ba4282e5cd7f51bb005a3f52d889d3e66e1a919e05f9728adf1a433a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hyatt-regency-sharm/p6sSsf0L6lZPw20YWedwnFAAogyuN_5wQzruqZOMFU-nU7jFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI4jFQQVjlB2ABagMxMmJyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR2sUBS5QEYQBepzBSpiBTAEyssDoN-f6XCSAAAdOZwNiUicygMAENY_LcS6g/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hyatt-regency-sharm/p6sSsf0L6lZPw20YWedwnFAAogyuN_5wQzruqZOMFU-nU7jFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI4jFQQVjkB2ABagMxMmJyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR2sUBS5QEYQBepzBSpiBTAEyssDoN-f6XCSAAAdOZwNiUicygMAENY8hKc7k/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1878,7 +2065,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2591/3bf739e2d33e18633cb926c4a18e56042decb8225f9ac92cf57939046a73c182.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2591/3bf739e2d33e18633cb926c4a18e56042decb8225f9ac92cf57939046a73c182.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tropitel-naama-bay/p3Mpi-dXIjFmsvxvClYmPnAAogUgmvb4Vrxgb37c0jXaOg9oznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZIozJQQVjlB2ABagVFUzQuMXIzmwEVBxcAXANYBVYCQMoGEcQNXZ8LTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj40liaw/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tropitel-naama-bay/p3Mpi-dXIjFmsvxvClYmPnAAogUgmvb4Vrxgb37c0jXaOg9oznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZIozJQQVjkB2ABagVFUzQuMXIzmwEVBxcAXANYBVYCQMoGEcQNXZ8LTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjmMfN3A/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1895,7 +2082,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26452/75c07b938b6a779996d0ab5cf4851bab97b8f37eb28492fe9e7ab87170968418.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26452/75c07b938b6a779996d0ab5cf4851bab97b8f37eb28492fe9e7ab87170968418.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-park/p7QBInIEOFIQ_TitYAWQyCAAogtmtIGbOtHsRSqSeD3J4uQ1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIrTJQQVjlB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFupAhGlwwFLoARhAF6nMFKmIFMATKywOg35_pcJIAAB6o3IkIOJzKAwAQ1jMIBDiQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-park/p7QBInIEOFIQ_TitYAWQyCAAogtmtIGbOtHsRSqSeD3J4uQ1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIrTJQQVjkB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFupAhGlwwFLoARhAF6nMFKmIFMATKywOg35_pcJIAAB6o3IkIOJzKAwAQ1jXbzIEw/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1912,7 +2099,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2583/1efc9b1fcfcee3251a0eafa13849e034283c615d766c4f021a3d9a5cafa1bcb1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2583/1efc9b1fcfcee3251a0eafa13849e034283c615d766c4f021a3d9a5cafa1bcb1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sheraton-sharm-resort/pFwMs_Dl44RuCNo-vxM0__AAogBGDIzU5hyVTVowvCx-sRlYznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZItTJQQVjlB2ABagVDUlIuMXIzmwEVBxcAXANYBVYCQMoGEbwNXacLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj4vWLvA/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sheraton-sharm-resort/pFwMs_Dl44RuCNo-vxM0__AAogBGDIzU5hyVTVowvCx-sRlYznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZItTJQQVjkB2ABagVDUlIuMXIzmwEVBxcAXANYBVYCQMoGEbwNXacLTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjKqT6Ng/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1929,7 +2116,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26473/f533e31dacc71d601b945a1088f474a1ccf25f588c1189e0d2e5e7029de04e9c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26473/f533e31dacc71d601b945a1088f474a1ccf25f588c1189e0d2e5e7029de04e9c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-rotana/pn5ZW4TP5LVfGJGGPTTZ8lAAogJbtpZWSnpGbXuujYBJpyxVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIzzJQQVjlB2ABagMwMEZyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR48UBS4sEYQBepzBSpiBTAEyssDoN-f6XCSAAAcrbvKiFicygMAENY3UVe0A/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-rotana/pn5ZW4TP5LVfGJGGPTTZ8lAAogJbtpZWSnpGbXuujYBJpyxVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIzzJQQVjkB2ABagMwMEZyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR48UBS4sEYQBepzBSpiBTAEyssDoN-f6XCSAAAcrbvKiFicygMAENYw8UYB4/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1946,7 +2133,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26497/882a0522814835399280548f816381eac0afbb47ff5fa9fa276151f1835bf3b6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26497/882a0522814835399280548f816381eac0afbb47ff5fa9fa276151f1835bf3b6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-dreams-resort/pp1Z9QkH3pARPkFzz79IqtAAogNEpu3hBHxvu6scG16pupEly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIizRQQVjlB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFupAhHSwwFL8wNhAF6nMFKmIFMATKywOg35_pcJIAAB04_40ISJzKAwAQ1jFGQaNg/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharm-dreams-resort/pp1Z9QkH3pARPkFzz79IqtAAogNEpu3hBHxvu6scG16pupEly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIizRQQVjkB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFupAhHSwwFL8wNhAF6nMFKmIFMATKywOg35_pcJIAAB04_40ISJzKAwAQ1jWjJD0Q/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -1963,7 +2150,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2559/c55c14c195f8b6f9da3883a4f296c911279f7eacdf0e7fc991ed9a101a5c4017.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2559/c55c14c195f8b6f9da3883a4f296c911279f7eacdf0e7fc991ed9a101a5c4017.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-gardens-sharm-el-sheikh/pK_ge4lNm0ZHr7PvFPUqAcAAogFT0xmv5llLTiqZXxyMgrAoznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZIkjRQQVjlB2ABagVCS0ouMXIzmwEVBxcAXANYBVYCQMoGEaQNXb8LTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjrRJqeA/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/sea-gardens-sharm-el-sheikh/pK_ge4lNm0ZHr7PvFPUqAcAAogFT0xmv5llLTiqZXxyMgrAoznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZIkjRQQVjkB2ABagVCS0ouMXIzmwEVBxcAXANYBVYCQMoGEaQNXb8LTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjTtYl9g/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1980,7 +2167,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2907/0a8d158428d927fa3d0fc6ceef5f6d3059011c501c28069b05d8bcefe5da6fb5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2907/0a8d158428d927fa3d0fc6ceef5f6d3059011c501c28069b05d8bcefe5da6fb5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/gafy-resort/p1FKS3CC7gd8KC47Hyuv7TAAog-sNqWPx2cTjGRhUfagl1IIznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZI9TRQQVjlB2ABagVDU1EuMXIzmwEVBxcAWAhWAlwIQMIGEYAQXeMITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjuS6fMw/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/gafy-resort/p1FKS3CC7gd8KC47Hyuv7TAAog-sNqWPx2cTjGRhUfagl1IIznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZI9TRQQVjkB2ABagVDU1EuMXIzmwEVBxcAWAhWAlwIQMIGEYAQXeMITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj7y9XxA/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -1997,24 +2184,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/60692/ae4bb5f814e4553dfb88c52d6965a992cb6f7645d2f682e1d4341f72437cd383.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/60692/ae4bb5f814e4553dfb88c52d6965a992cb6f7645d2f682e1d4341f72437cd383.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/the-cleopatra-luxury-resort-collection/pRyzcPjT0EOSwRfZBetUGrAAogCMQ2GlD-RWyUJgfE8nfvlFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIkTVQQVjlB2ABagMwMllyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHTtgFM2fk4Dfn-lwkgAAHPuYC59YjMoDABDWPKA1pd/?operator=JOIP&adults=1",
-    "ta_rating": null,
-    "operator": "Join UP!"
-  },
-  {
-    "hotel_name": "Coral Sea Waterworld",
-    "price": 6835.0,
-    "dates": "2026-12-22 - 2026-12-29",
-    "checkin_date": "2026-12-22",
-    "checkout_date": "2026-12-29",
-    "duration": "7 nocy",
-    "duration_nights": 7,
-    "departure_airport": "Katowice",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35696/b766eed34488f444cb08d8eeb5ca10dd5cd6c21af8561c0b2ec255e4b482ad1f.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35696/b766eed34488f444cb08d8eeb5ca10dd5cd6c21af8561c0b2ec255e4b482ad1f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-water-world/p6ij0bK_B9DbN7bWDhgzPFAAogJAb8f0KsxyAfbKXJ6BccM1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIszVQQVjlB2ABagMxMm9yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR1RNS0QxTAEyssDoN-f6XCSAAAeyT4JClicygMAENYwlrthQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/the-cleopatra-luxury-resort-collection/pRyzcPjT0EOSwRfZBetUGrAAogCMQ2GlD-RWyUJgfE8nfvlFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIkTVQQVjkB2ABagMwMllyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHTtgFM2fk4Dfn-lwkgAAHPuYC59YjMoDABDWPiR5Rq/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2031,7 +2201,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35695/814e93ce486d9ef855b30f9e2da0bf48253686d223ff08381ab7890e6f3ad106.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35695/814e93ce486d9ef855b30f9e2da0bf48253686d223ff08381ab7890e6f3ad106.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-holiday-village/p8Qb13FRuQsbl5Yxm5awwsAAogja9PqXBZbzBWLaj-Xud1Uly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIszVQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR1BNS0gxTAEyssDoN-f6XCSAAAe7NxIClicygMAENY2WS6Zw/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-holiday-village/p8Qb13FRuQsbl5Yxm5awwsAAogja9PqXBZbzBWLaj-Xud1Uly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIszVQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR1BNS0gxTAEyssDoN-f6XCSAAAe7NxIClicygMAENY_rFo0k/?operator=JOIP&adults=1",
+    "ta_rating": null,
+    "operator": "Join UP!"
+  },
+  {
+    "hotel_name": "Coral Sea Waterworld",
+    "price": 6835.0,
+    "dates": "2026-12-22 - 2026-12-29",
+    "checkin_date": "2026-12-22",
+    "checkout_date": "2026-12-29",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Katowice",
+    "board_basis": "All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35696/b766eed34488f444cb08d8eeb5ca10dd5cd6c21af8561c0b2ec255e4b482ad1f.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35696/b766eed34488f444cb08d8eeb5ca10dd5cd6c21af8561c0b2ec255e4b482ad1f.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/coral-sea-water-world/p6ij0bK_B9DbN7bWDhgzPFAAogJAb8f0KsxyAfbKXJ6BccM1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIszVQQVjkB2ABagMxMm9yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzAR1RNS0QxTAEyssDoN-f6XCSAAAeyT4JClicygMAENY5n_Ft4/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2048,7 +2235,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/41093/8cff410c7e1d1ab5e26e4fafe4abdf7b1010d641d17bea63192eac3943e49b54.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/41093/8cff410c7e1d1ab5e26e4fafe4abdf7b1010d641d17bea63192eac3943e49b54.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-golf/p0kgG2bur3S7TVc4Zl1cNxAAoglNRSlz8DT3vRTc8664tqBly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIuTVQQVjlB2ABckAUARUGFwBcA1gFVgJAygZdqwJPAEvuyQFhAFvHD17gIFOmIFIAEcQdTOiSOiD5_pcJDQAB3sHsj6OJzKAwAQ1ja3bxwA/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-golf/p0kgG2bur3S7TVc4Zl1cNxAAoglNRSlz8DT3vRTc8664tqBly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIuTVQQVjkB2ABckAUARUGFwBcA1gFVgJAygZdqwJPAEvuyQFhAFvHD17gIFOmIFIAEcQdTOiSOiD5_pcJDQAB3sHsj6OJzKAwAQ1jFKUi6Q/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2065,7 +2252,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2659/c4816e8a1126ac05c884eaddf7e9528be028b4f1c7a960e7e81ac77b78d9f993.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2659/c4816e8a1126ac05c884eaddf7e9528be028b4f1c7a960e7e81ac77b78d9f993.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tiran-island/pmI-ycChI5cmjaTAGWcGb-AAoguQs54fOBaJ0E5Ii5eNGY2YznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZIxjVQQVjlB2ABagVFV0UuMXIzmwEVBxcAXANYBVYCQMoGEYgOXdsKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjNa5onQ/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/tiran-island/pmI-ycChI5cmjaTAGWcGb-AAoguQs54fOBaJ0E5Ii5eNGY2YznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZIxjVQQVjkB2ABagVFV0UuMXIzmwEVBxcAXANYBVYCQMoGEYgOXdsKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjy1yjeg/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2082,7 +2269,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2873/a04913fe31245b58972456c26e329e3484a052bdb973bc9f196aa048c60eedc9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2873/a04913fe31245b58972456c26e329e3484a052bdb973bc9f196aa048c60eedc9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-vacation/pCitfmUnq-RruG8W2m8-rdAAogu-PISolcKQvgFLfJxwcvs4znTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZIzzVQQVjlB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEd4PXYUJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjkKrCNQ/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dreams-vacation/pCitfmUnq-RruG8W2m8-rdAAogu-PISolcKQvgFLfJxwcvs4znTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZIzzVQQVjkB2ABagVCSlguMXIzmwEVBxcAXANYBVYCQMoGEd4PXYUJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjRQwG_Q/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2099,7 +2286,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26542/84ff938ae9af9c750ebcb1ffdc688d3547da9d3b51830e56ba4e4ae36ab3df15.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26542/84ff938ae9af9c750ebcb1ffdc688d3547da9d3b51830e56ba4e4ae36ab3df15.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cleopatra-luxury-resort-sharm-adults-only-9/pvt7ynvFV3LqiK1AvuzkdWAAogrhB7ZGxcBJ8yGk6gltUZmFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI1DVQQVjlB2ABagMwMHdyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARqMYBS8YDYQBepzBSpiBTAEyssDoN-f6XCSAAAem3kMD0iMygMAENY153mgI/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/cleopatra-luxury-resort-sharm-adults-only-9/pvt7ynvFV3LqiK1AvuzkdWAAogrhB7ZGxcBJ8yGk6gltUZmFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI1DVQQVjkB2ABagMwMHdyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARqMYBS8YDYQBepzBSpiBTAEyssDoN-f6XCSAAAem3kMD0iMygMAENYzX7YkQ/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2116,7 +2303,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26490/3147270c8b7386906453f81368124cf85fe899c6f383d5a3771c5eb7e7a56d9c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26490/3147270c8b7386906453f81368124cf85fe899c6f383d5a3771c5eb7e7a56d9c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/royal-albatros-moderna/pLARQwTIQ6AEhC-2eaDO2mAAogQdTlL3v91M9_5GWVb2_SYly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI5DVQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR9MUBS_oDYQBepzBSpiBTAEyssDoN-f6XCSAAAfTJ8OfEicygMAENYyxUmyQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/royal-albatros-moderna/pLARQwTIQ6AEhC-2eaDO2mAAogQdTlL3v91M9_5GWVb2_SYly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI5DVQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR9MUBS_oDYQBepzBSpiBTAEyssDoN-f6XCSAAAfTJ8OfEicygMAENYzBpC88/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2133,7 +2320,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/5246/d1e8832dd5c99c7044b9cbd17ef5cb6f9ad2c5b07882aeeb7c8085c44b3e0b7a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/5246/d1e8832dd5c99c7044b9cbd17ef5cb6f9ad2c5b07882aeeb7c8085c44b3e0b7a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-aqua-park-sharm-el-sheikh/phwQEr46l7mNkfMKE54-yBAAogGNAgdE6sKSdI2ATxB2jI2H_Vok-RlswfbW-YuYaeG6EqBEJWUFIwm9_L1wZI8jVQAVjlB2ABag1BbGwgaW5jbHVzaXZlch0cEf4oG-ndBhj_jw-rBOqRFrkEKQH7mK73AQEAYwCcLrc/?operator=BVPR&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/albatros-aqua-park-sharm-el-sheikh/phwQEr46l7mNkfMKE54-yBAAogGNAgdE6sKSdI2ATxB2jI2H_Vok-RlswfbW-YuYaeG6EqBEJWUFIw9fnL1wZI8jVQAVjkB2ABag1BbGwgaW5jbHVzaXZlch0cEf4oG-ndBhj_jw-rBOqRFrkEKQH7mK73AQEAYzs4eeQ/?operator=BVPR&adults=1",
     "ta_rating": null,
     "operator": "Prima Holiday"
   },
@@ -2150,7 +2337,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26486/01c032da27366276dae31df821f1ce19cb6a412297fccdb94e75cd077416cc67.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26486/01c032da27366276dae31df821f1ce19cb6a412297fccdb94e75cd077416cc67.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/novotel-sharm-beach/ptUoKXnsQVLovTXhDtWWoYAAogKFDEOIyn2AST7b8ZvC1J8Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZInDZQQVjlB2ABagMwMllyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR8MUBS_4DYQBepzBSpiBTAEyssDoN-f6XCSAAAeiv7LiVicygMAENY8SdqT0/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/novotel-sharm-beach/ptUoKXnsQVLovTXhDtWWoYAAogKFDEOIyn2AST7b8ZvC1J8Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZInDZQQVjkB2ABagMwMllyP5sBFAEVBhcAXAhYAFYCQMoGT6sCXQAR8MUBS_4DYQBepzBSpiBTAEyssDoN-f6XCSAAAeiv7LiVicygMAENYwr65pI/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2167,7 +2354,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26492/f8fc17c3ca8ac86895de0347bb6c7146ee1f2bd32871753962e0a3da47b5beaa.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26492/f8fc17c3ca8ac86895de0347bb6c7146ee1f2bd32871753962e0a3da47b5beaa.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/beach-albatros-sharm-el-sheikh/plbb74h2MVcDq20RqJ56dJAAogXABSEvSzWvhHgCmR4fqKGVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIuTZQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR9sUBS_gDYQBepzBSpiBTAEyssDoN-f6XCSAAAfOR-If1iMygMAENY8wi9bw/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/beach-albatros-sharm-el-sheikh/plbb74h2MVcDq20RqJ56dJAAogXABSEvSzWvhHgCmR4fqKGVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIuTZQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR9sUBS_gDYQBepzBSpiBTAEyssDoN-f6XCSAAAfOR-If1iMygMAENYwvzdwg/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2184,7 +2371,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/36374/967809e414e0d6f9dd63541cb7611eb105b1529a59a24e69307ae405bb85696c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/36374/967809e414e0d6f9dd63541cb7611eb105b1529a59a24e69307ae405bb85696c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-beach-resort-10/pqRkNkUMRpiXUW3MKiTbQ9AAogqICUiLncD6-GoOHi0wH0jly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIvDZQQVjlB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFupAmHFxwFLAF6nMBH7GFKrB1MATKywOiD5_pcJDQAB3N-UyYSJzKAwAQ1joS27wA/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-promenade-beach-resort-10/pqRkNkUMRpiXUW3MKiTbQ9AAogqICUiLncD6-GoOHi0wH0jly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIvDZQQVjkB2ABckAUARUGFwBcA1gFVgJAygZPqwJdAFupAmHFxwFLAF6nMBH7GFKrB1MATKywOiD5_pcJDQAB3N-UyYSJzKAwAQ1j9FQG8Q/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2201,7 +2388,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/63849/3e8f46225dd6c9c12b09e8e90e501faf4bf90c12724f70393ebb5d64e686a41b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/63849/3e8f46225dd6c9c12b09e8e90e501faf4bf90c12724f70393ebb5d64e686a41b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/golf-villas-sharm-el-sheikh-by-rixos-11/pjiQSziMOGggIBiPcr0NBUAAogJPhKn-ObPLlD1nN7ebeqBFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIoTdQQVjlB2ABagMwMHdyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGozwFMhOE4Dfn-lwkgAAHnv4zIxInMoDABDWNybjl1/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/golf-villas-sharm-el-sheikh-by-rixos-11/pjiQSziMOGggIBiPcr0NBUAAogJPhKn-ObPLlD1nN7ebeqBFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIoTdQQVjkB2ABagMwMHdyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGozwFMhOE4Dfn-lwkgAAHnv4zIxInMoDABDWMM1Tf2/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2218,7 +2405,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59089/23c92e02a2e32bdf5fffff7bb711827c045138171b07a15a594865c820a616f1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59089/23c92e02a2e32bdf5fffff7bb711827c045138171b07a15a594865c820a616f1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/otium-amphoras-ex-shores/pxseSV4BFGGfMjuxNqCsVoAAogALZcqRx68xM4ncsVfKvXwFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIojdQQVjlB2ABagMwbkhyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGQqgFMnIY5Dfn-lwkgAAHu0_iv9YjMoDABDWNbr9to/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/otium-amphoras-ex-shores/pxseSV4BFGGfMjuxNqCsVoAAogALZcqRx68xM4ncsVfKvXwFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIojdQQVjkB2ABagMwbkhyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGQqgFMnIY5Dfn-lwkgAAHu0_iv9YjMoDABDWPqSNik/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2235,7 +2422,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26496/f280e20c45a7b4419f7225c64c0ac5cae05f91f9cfb261fb362746c5a837077e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26496/f280e20c45a7b4419f7225c64c0ac5cae05f91f9cfb261fb362746c5a837077e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharks-bay/pst3GRFlmYQe9rhMkO1GHxAAogehRkD1Ovj4uzshKalAMEuFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIpjdQQVjlB2ABagMwRkhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR-sUBS_QDYQBepzBSpiBTAEyssDoN-f6XCSAAAfLhjKGzicygMAENYz92LwQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-sharks-bay/pst3GRFlmYQe9rhMkO1GHxAAogehRkD1Ovj4uzshKalAMEuFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIpjdQQVjkB2ABagMwRkhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR-sUBS_QDYQBepzBSpiBTAEyssDoN-f6XCSAAAfLhjKGzicygMAENY9L6mzE/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2252,7 +2439,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2918/b7379e8e5ec7f5b3c36ebd757e6d62f40b7efef184c33627aacd22d439ce5fef.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2918/b7379e8e5ec7f5b3c36ebd757e6d62f40b7efef184c33627aacd22d439ce5fef.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/novotel-sharm-palm/pdGE2-WTulGpN8XBqkC_rUAAogf3F3fnceRD2ljuzwbkBm-4znTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZItDdQQVjlB2ABagVCSlguMXIzmwEVBxcAXAhYAFYCQMoGEYsQXdgITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj_B0OEw/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/novotel-sharm-palm/pdGE2-WTulGpN8XBqkC_rUAAogf3F3fnceRD2ljuzwbkBm-4znTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZItDdQQVjkB2ABagVCSlguMXIzmwEVBxcAXAhYAFYCQMoGEYsQXdgITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJji1sM-A/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2269,7 +2456,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27198/b326298ea7ab3eb2edd119e3fbae232fed5dba453bd68e8d9e38663ea14fc77b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/27198/b326298ea7ab3eb2edd119e3fbae232fed5dba453bd68e8d9e38663ea14fc77b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/laguna-vista-beach/pJy2GnLB5-AqvWG8hansvqAAogOJmfqvd3oCAUSy0sMuA2PVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZI-DdQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQARygFe3S5SpiBTAEyssDoN-f6XCSAAAfO1-KiVicygMAENYym6Dd0/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/laguna-vista-beach/pJy2GnLB5-AqvWG8hansvqAAogOJmfqvd3oCAUSy0sMuA2PVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZI-DdQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQARygFe3S5SpiBTAEyssDoN-f6XCSAAAfO1-KiVicygMAENY3VWkfk/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2286,7 +2473,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26454/5c59baf4e8122d4484a9c6cfec0fb869c0a9393d9bae15cb2645005e95cdf510.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26454/5c59baf4e8122d4484a9c6cfec0fb869c0a9393d9bae15cb2645005e95cdf510.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-grand-sharm/pLcQStRj3HsvtcpBql7YY-AAogn1SFAlp0m-s_8uMNDBGvPly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIlThQQVjlB2ABagMxejhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR0MUBS54EYQBepzBSpiBTAEyssDoN-f6XCSAAAfLflJnDicygMAEQY7cRzuQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-grand-sharm/pLcQStRj3HsvtcpBql7YY-AAogn1SFAlp0m-s_8uMNDBGvPly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIlThQQVjkB2ABagMxejhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR0MUBS54EYQBepzBSpiBTAEyssDoN-f6XCSAAAfLflJnDicygMAEQYyg4ly4/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2303,7 +2490,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26524/d01343ec152cdab7ca58a2cb23ce7fa259c5b59dc165aa54f30c01723f213037.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26524/d01343ec152cdab7ca58a2cb23ce7fa259c5b59dc165aa54f30c01723f213037.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-belvedere/p7VPuvA-sVe9d-pBvvfEf1AAogxLi6vnTzYE7M2zSazvhwFly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIxzhQQVjlB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARlsYBS9gDYQBepzBSpiBTAEyssDoN-f6XCSAAAeyv0ICDicygMAENYy_GkSM/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-belvedere/p7VPuvA-sVe9d-pBvvfEf1AAogxLi6vnTzYE7M2zSazvhwFly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIxzhQQVjkB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARlsYBS9gDYQBepzBSpiBTAEyssDoN-f6XCSAAAeyv0ICDicygMAENY4Wo8BE/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2320,7 +2507,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26491/568834302d941559f5d6a4cb1c6bbffbbf961520d6caa63c3a3c41fb31b13ced.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26491/568834302d941559f5d6a4cb1c6bbffbbf961520d6caa63c3a3c41fb31b13ced.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-blu-resort-aqua-park/ppmVFAjaZw7PKstc5mcZ2DAAogAeVAyMz2lPug_FUxounfcFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIzjhQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR9cUBS_kDYQBepzBSpiBTAEyssDoN-f6XCSAAAeCT9PeiicygMAENYxkeg3g/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/aqua-blu-resort-aqua-park/ppmVFAjaZw7PKstc5mcZ2DAAogAeVAyMz2lPug_FUxounfcFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIzjhQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR9cUBS_kDYQBepzBSpiBTAEyssDoN-f6XCSAAAeCT9PeiicygMAENY2_CLbY/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2337,7 +2524,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26463/089ad501be59a792928257dd472d63fa26cabff3add061f6a61b41e40c2d59f4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26463/089ad501be59a792928257dd472d63fa26cabff3add061f6a61b41e40c2d59f4.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sea-club-sharm-el-sheikh/pByIQIOalJR6HZUxCVssKEAAogh0htjzxTrqYP2c8QfA0Vbd9UGjJ4HqXrdtxm6hEevwMqBEpPSVAwm9_L1wZI1zhQQVjlB2ABagMwMllyP5sBFAEVCBcAXAFYBVYCQMoGT6sCXQAR2cUBS5UEYQBepzBSpiBTAEyssDoN-f6XCSAAAezBiICkydOgMAENYxCxgdI/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sea-club-sharm-el-sheikh/pByIQIOalJR6HZUxCVssKEAAogh0htjzxTrqYP2c8QfA0Vbd9UGjJ4HqXrdtxm6hEevwMqBEpPSVAw9fnL1wZI1zhQQVjkB2ABagMwMllyP5sBFAEVCBcAXAFYBVYCQMoGT6sCXQAR2cUBS5UEYQBepzBSpiBTAEyssDoN-f6XCSAAAezBiICkydOgMAENY7EIb6g/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2354,7 +2541,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3539/91f0176500fe95ae2f988e13db43a990b5a8cc38cbde3f96fd9411786a94ab07.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3539/91f0176500fe95ae2f988e13db43a990b5a8cc38cbde3f96fd9411786a94ab07.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-plaza-resort/p-ReKGKyHbOVsvDS0xw_tGAAogWCf2yWY3i9kMTz4qvMEDEd4lo3vWFB-8gIVKFHzYmskqBEtPTVQwm9_L1wZIxjlQAVjlB2ABagJBSXIcHBHTG7kE5eABqwQUGNOzBBvHriQBtan3HgEAY6g7XOA/?operator=KOMT&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-plaza-resort/p-ReKGKyHbOVsvDS0xw_tGAAogWCf2yWY3i9kMTz4qvMEDEd4lo3vWFB-8gIVKFHzYmskqBEtPTVQw9fnL1wZIxjlQAVjkB2ABagJBSXIcHBHTG7kE5eABqwQUGNOzBBvHriQBtan3HgEAYyOY3Ws/?operator=KOMT&adults=1",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -2371,7 +2558,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2889/d8f45a2a14d6baa53585b542019c6c6cb5f3d663ff06451d8a3baa2b83c7689c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2889/d8f45a2a14d6baa53585b542019c6c6cb5f3d663ff06451d8a3baa2b83c7689c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/baron-palms-resort-sharm-el-sheikh/pZDONzN4JzvZ3xFXygXeceAAognMrYTSoRwj28tFlgjUyRrIznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZI0DlQQVjlB2ABagVFOFcuMXIzmwEVBxcAXANYBVYCQMoGEe4PXfUITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjYK6KgA/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/baron-palms-resort-sharm-el-sheikh/pZDONzN4JzvZ3xFXygXeceAAognMrYTSoRwj28tFlgjUyRrIznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZI0DlQQVjkB2ABagVFOFcuMXIzmwEVBxcAXANYBVYCQMoGEe4PXfUITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj8UsAfQ/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2388,7 +2575,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/61347/bc1fde9238cd8beda30415ba48614ef3a99c29f779225da7b83b6020905e20f4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/61347/bc1fde9238cd8beda30415ba48614ef3a99c29f779225da7b83b6020905e20f4.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/swissotel-sharm-el-sheikh-14/pSEZL4JbIm16CUnby45fEgAAogApv9uZgg-LcjW7uFCUkTpFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIhTpQQVjlB2ABckEUARUGFwBcA1gFVgJAygZdqwJPAFu3owFLtyZhAF6nMFOmIFIAEeK7AUzK9Dgg-f6XCQ0AAc6vuJiTyMygMAENY62wFQs/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/swissotel-sharm-el-sheikh-14/pSEZL4JbIm16CUnby45fEgAAogApv9uZgg-LcjW7uFCUkTpFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIhTpQQVjkB2ABckEUARUGFwBcA1gFVgJAygZdqwJPAFu3owFLtyZhAF6nMFOmIFIAEeK7AUzK9Dgg-f6XCQ0AAc6vuJiTyMygMAENYwuXuJE/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2405,7 +2592,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26472/dba3ef04690c8946b01ebb98ebaca741f7611751ed8d5a64a14330bf923ddc81.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26472/dba3ef04690c8946b01ebb98ebaca741f7611751ed8d5a64a14330bf923ddc81.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/stella-di-mare-beach-spa/ppsR_GDrln5VPVhyNHBQTSAAogaNH-BSNChICEk7XpUKBPF1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIrjpQQVjlB2ABckAUARUGFwBYCFYCXAAbgAFAygVPqwJdABHixQFLjARhAF6nMFKmIFMATKywOg35_pcJIAAB54_sl7WJzKAwAQ1jLFSPQA/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/stella-di-mare-beach-spa/ppsR_GDrln5VPVhyNHBQTSAAogaNH-BSNChICEk7XpUKBPF1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIrjpQQVjkB2ABckAUARUGFwBYCFYCXAAbgAFAygVPqwJdABHixQFLjARhAF6nMFKmIFMATKywOg35_pcJIAAB54_sl7WJzKAwAQ1jQPRb2g/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2422,7 +2609,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26508/e82ab19ea3699d97b16f11e7f4541f37334b0996675f3af2d7ef1bb203a860b0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26508/e82ab19ea3699d97b16f11e7f4541f37334b0996675f3af2d7ef1bb203a860b0.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/cyrene-grand-hotel-ex-melia/pgvPFPOxvytI9Hs9XkrcuPAAogO9_ky4X6GvsvSzISJfwtSFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIwjpQQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARhsYBS-gDYQBepzBSpiBTAEyssDoN-f6XCSAAAc6bzKDFicygMAENY9GqBW8/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/cyrene-grand-hotel-ex-melia/pgvPFPOxvytI9Hs9XkrcuPAAogO9_ky4X6GvsvSzISJfwtSFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIwjpQQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARhsYBS-gDYQBepzBSpiBTAEyssDoN-f6XCSAAAc6bzKDFicygMAENY6YXFRg/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2439,7 +2626,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2877/179be02262e582b946fdd4743ed95b6673481b30675ba850e236f33b9c868bbb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2877/179be02262e582b946fdd4743ed95b6673481b30675ba850e236f33b9c868bbb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-island/pTYhPZc3WS5RLUMfeugDGhAAogV4cqsqQLebJm0zv__xI2F4znTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZI2TtQQVjlB2ABagVDUzguMXIzmwEVBxcAXANYBVYCQMoGEeIPXYEJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjooskdg/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-island/pTYhPZc3WS5RLUMfeugDGhAAogV4cqsqQLebJm0zv__xI2F4znTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZI2TtQQVjkB2ABagVDUzguMXIzmwEVBxcAXANYBVYCQMoGEeIPXYEJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjA3cwoQ/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2456,7 +2643,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2878/77cc8f7fac605c4db7c249bd967eb52ab62edd42d4b0042b3a910f3ce7aff526.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2878/77cc8f7fac605c4db7c249bd967eb52ab62edd42d4b0042b3a910f3ce7aff526.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-village/pAvvxN-2g8B5PD6eGoNFtiAAogyaDw2MbDqBEIlzsQw2fJ0IznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZI2TtQQVjlB2ABagVDUzguMXIzmwEVBxcAXANYBVYCQMoGEeMPXYAJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj5F5REQ/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/nubian-village/pAvvxN-2g8B5PD6eGoNFtiAAogyaDw2MbDqBEIlzsQw2fJ0IznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZI2TtQQVjkB2ABagVDUzguMXIzmwEVBxcAXANYBVYCQMoGEeMPXYAJTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjXKqaRA/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2473,7 +2660,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35744/bf923e2eb4fae4359976198497c04a92f8fe7b512d10ef4c140f57f9d244a8a2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/35744/bf923e2eb4fae4359976198497c04a92f8fe7b512d10ef4c140f57f9d244a8a2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/tamra-beach-sharm/p0M27CF4bBLsVdwcGWUnkzAAog8xz2ycQ91UjMZJmHff-tc1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIhzxQQVjlB2ABagMxejhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARhRRSoQxTAEyssDoN-f6XCSAAAeS15Ki0icygMAENY40nIj8/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/tamra-beach-sharm/p0M27CF4bBLsVdwcGWUnkzAAog8xz2ycQ91UjMZJmHff-tc1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIhzxQQVjkB2ABagMxejhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARhRRSoQxTAEyssDoN-f6XCSAAAeS15Ki0icygMAENYxBqlk0/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2490,7 +2677,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2634/dfe95f58def250da799770d245cb11f46e4bb68d99e2f5cc7b18ac36ab08142e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2634/dfe95f58def250da799770d245cb11f46e4bb68d99e2f5cc7b18ac36ab08142e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/monte-carlo-ex-ritz-carlton/pap1Clr0Ua_R064ul1H9yjAAogMtG6E_z9ybgi09e1RCcwtoznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZIwTxQQVjlB2ABagVDU1AuMXIzmwEVBxcAWAhWAlwIQMIGEe8NXfQKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjQZ7vMA/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/monte-carlo-ex-ritz-carlton/pap1Clr0Ua_R064ul1H9yjAAogMtG6E_z9ybgi09e1RCcwtoznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZIwTxQQVjkB2ABagVDU1AuMXIzmwEVBxcAWAhWAlwIQMIGEe8NXfQKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj-ouG4w/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2507,7 +2694,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/48500/589d01b2a457561c46bb55305916e01275b2cd5a2f46fb504eafbb1fc83f01f1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/48500/589d01b2a457561c46bb55305916e01275b2cd5a2f46fb504eafbb1fc83f01f1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-oasis-resort-ex-tropicana-grand-oasis/pRLldc8ZU1ixxt6zmCzimlAAogXdAlDoQj8jMcgc-2jI_HkVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwm9_L1wZIzTxQQVjlB2ABagMxMmJyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGzV0z52DkN-f6XCSAAAfC56LiUicygMAENYwkowF4/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/grand-oasis-resort-ex-tropicana-grand-oasis/pRLldc8ZU1ixxt6zmCzimlAAogXdAlDoQj8jMcgc-2jI_HkVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9fnL1wZIzTxQQVjkB2ABagMxMmJyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGzV0z52DkN-f6XCSAAAfC56LiUicygMAENY6TyjvQ/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2524,7 +2711,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2343/446f8d1fb7082a1528de89b71edf7e127deafdb500046290a0cd726e5e4cac6b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2343/446f8d1fb7082a1528de89b71edf7e127deafdb500046290a0cd726e5e4cac6b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-resort-and-casino/pa74PeFVzjtsCKqKJNfKzCAAogatnd_6fS3sAEsQXkmxkp1oznTQQfXNHTsUjz01h6L3cqBE9SRVgwm9_L1wZIiT1QQVjlB2ABagVRME4uMXIzmwEVBxcAXAhYAFYCQMoGEcwLXZcNTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjhw03-g/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-resort-and-casino/pa74PeFVzjtsCKqKJNfKzCAAogatnd_6fS3sAEsQXkmxkp1oznTQQfXNHTsUjz01h6L3cqBE9SRVgw9fnL1wZIiT1QQVjkB2ABagVRME4uMXIzmwEVBxcAXAhYAFYCQMoGEcwLXZcNTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjXrAXgA/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2541,7 +2728,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/38855/de9942840aefa5e4abba45a5c9482acb30ee20615b060c36623582015ab694c7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/38855/de9942840aefa5e4abba45a5c9482acb30ee20615b060c36623582015ab694c7.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dessole-pyramisa-egipt-sharm-el-sheikh-egipt/prIg5RlAkthGDJbDH_PVcpAAogQo2lVCkWlvmIPOOEyrNpRFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIwz1QQVjlB2ABagMwbkhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGGDEympDoN-f6XCSAAAc7LkMnliMygMAENYz8DsAA/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/dessole-pyramisa-egipt-sharm-el-sheikh-egipt/prIg5RlAkthGDJbDH_PVcpAAogQo2lVCkWlvmIPOOEyrNpRFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIwz1QQVjkB2ABagMwbkhyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGGDEympDoN-f6XCSAAAc7LkMnliMygMAENY_fR6bU/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2558,7 +2745,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/50691/9af78efca48e86086f7eb36f3920886017c32619498e4d65663ec5a002c93b19.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/50691/9af78efca48e86086f7eb36f3920886017c32619498e4d65663ec5a002c93b19.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/tropitel-waves-sharm/pt7DJO3Uc8PUKq7x1-2PXBAAogWIAdvMcMm3EuZZ66l7fQ5Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIxD1QQVjlB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHCaEzqxzkN-f6XCSAAAfOfhJiVicygMAENY1zviZ4/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/tropitel-waves-sharm/pt7DJO3Uc8PUKq7x1-2PXBAAogWIAdvMcMm3EuZZ66l7fQ5Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIxD1QQVjkB2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABHCaEzqxzkN-f6XCSAAAfOfhJiVicygMAENY8ylXcg/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2575,7 +2762,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3506/047121ce4a5320768a501151d687274d95c2a7f4779b35c704d7ebe261ed9079.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3506/047121ce4a5320768a501151d687274d95c2a7f4779b35c704d7ebe261ed9079.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-front-12/pLjBOQy8oZ_2J45pvadEzYAAogG42b_6PQiVz-08z6aFitx94lo3vWFB-8gIVKFHzYmskqBEtPTVQwnd_L1wZIzD1QAVjlB2ABagJBSXIcHBGyG7kEhuEBqwQUGKilBBv4qyQB3rbVHgEAY3sDNG8/?operator=KOMT&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/concorde-el-salam-front-12/pLjBOQy8oZ_2J45pvadEzYAAogG42b_6PQiVz-08z6aFitx94lo3vWFB-8gIVKFHzYmskqBEtPTVQw9_nL1wZIzD1QAVjkB2ABagJBSXIcHBGyG7kEhuEBqwQUGKilBBv4qyQB3rbVHgEAY2tUcKs/?operator=KOMT&adults=1",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -2592,14 +2779,13 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26592/7d8c0bb674443cac574f024a47b8e78e9438787070edd6ba8ae2b693e428190d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26592/7d8c0bb674443cac574f024a47b8e78e9438787070edd6ba8ae2b693e428190d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/savoy-sharm-el-sheikh/pOIglM0PDNjsb4crPs8xQFAAogtZo63t3zU5ngFzbXuh673Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZI5T1QQVjlB2ABagMwME1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR2sYBS5QDYQBepzBSpiBTAEyssDoN-f6XCSAAAdHfgKnliMygMAENY0ZZlE0/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/savoy-sharm-el-sheikh/pOIglM0PDNjsb4crPs8xQFAAogtZo63t3zU5ngFzbXuh673Fy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZI5T1QQVjkB2ABagMwME1yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR2sYBS5QDYQBepzBSpiBTAEyssDoN-f6XCSAAAdHfgKnliMygMAENY4pFk_E/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
     "hotel_name": "Sharm Reef Resort",
     "price": 7939.0,
->>>>>>> Stashed changes
     "dates": "2026-12-20 - 2026-12-27",
     "checkin_date": "2026-12-20",
     "checkout_date": "2026-12-27",
@@ -2608,20 +2794,9 @@
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive",
     "stars": 4,
-<<<<<<< Updated upstream
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/46696/9b8d2879cc3dfb7abcdae6610e6b75a6a87b5ca2c39248df1c4af0726834b01d.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/46696/9b8d2879cc3dfb7abcdae6610e6b75a6a87b5ca2c39248df1c4af0726834b01d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sea-club-aqua-park/pzCFESdORIvbfP5aJTAYaLAAogcxJZ-XkTCdEFmLNvqBBEIjKBCDsBfo9SoKKOXX--wmQqBEpPSVAw7tDL1wZI6itQQVi2B2ABagNDR21yP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGnSUyF5zkN9_6XCSAAAe6X2JCk6NGgMAENYwmEL_U/?operator=JOIP&adults=1",
-    "ta_rating": null,
-    "operator": "Join UP!"
-  },
-  {
-    "hotel_name": "Amphoras Blu (Adult Only 16+)",
-    "price": 5663.0,
-=======
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22511/e76c037cc709855c1172b4c3d2ccc3bc7a1f8e627cef5dcea9cf15dfd7ece350.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22511/e76c037cc709855c1172b4c3d2ccc3bc7a1f8e627cef5dcea9cf15dfd7ece350.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sharm-reef/p_AmTdhcsfjUX8SX6Tu66BAAogBdpfhn5r-WNvpfTpSY6cLFy4QgOTEVepz_7cBBtokGkqBE9BU0kwnd_L1wZIgz5QAVi1B2ABagNBSWxyHhwR768BqwS4qxC5BC0b-44OGOeBEgHNxZapAgEAY9b52pU/?operator=OASI&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sharm-reef/p_AmTdhcsfjUX8SX6Tu66BAAogBdpfhn5r-WNvpfTpSY6cLFy4QgOTEVepz_7cBBtokGkqBE9BU0kw9_nL1wZIgz5QAVi0B2ABagNBSWxyHhwR768BqwS4qxC5BC0b-44OGOeBEgHNxZapAgEAY4PHRZE/?operator=OASI&adults=1",
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -2638,7 +2813,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2890/e8945469e50b94f080b8f182f235b89afb92c65d2286f6b7485893527a17d785.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2890/e8945469e50b94f080b8f182f235b89afb92c65d2286f6b7485893527a17d785.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/baron-resort-sharm-el-sheikh/pLptb1caJm-okXB1JBcqZ0AAogXguzamwXO9y8dehgg3gBcYznTQQfXNHTsUjz01h6L3cqBE9SRVgwnd_L1wZIiz5QQVjlB2ABagVFOFcuMXIzmwEVBxcAWAhWAlwIQMIGEe8PXfQITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjZ53slQ/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/baron-resort-sharm-el-sheikh/pLptb1caJm-okXB1JBcqZ0AAogXguzamwXO9y8dehgg3gBcYznTQQfXNHTsUjz01h6L3cqBE9SRVgw9_nL1wZIiz5QQVjkB2ABagVFOFcuMXIzmwEVBxcAWAhWAlwIQMIGEe8PXfQITyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjcPkwig/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2655,14 +2830,13 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/11892/9c9ba0405468ec88114980c8d68e75dd810f547c3369045a6183319ba15ed836.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/11892/9c9ba0405468ec88114980c8d68e75dd810f547c3369045a6183319ba15ed836.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/aurora-cyrene-resort/pyVp-05TCkCV5xzkrFusI4AAogJ4MK1E8zZU1hYEKiEXy0uX_Vok-RlswfbW-YuYaeG6EqBEJWUFIwnd_L1wZIg0BQAVjlB2ABag1BbGwgaW5jbHVzaXZlch0cEfRcG-m4BxiqkRCrBMmBFLkEKQGvq4OWAgEAY6pi1pM/?operator=BVPR&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/aurora-cyrene-resort/pyVp-05TCkCV5xzkrFusI4AAogJ4MK1E8zZU1hYEKiEXy0uX_Vok-RlswfbW-YuYaeG6EqBEJWUFIw9_nL1wZIg0BQAVjkB2ABag1BbGwgaW5jbHVzaXZlch0cEfRcG-m4BxiqkRCrBMmBFLkEKQGvq4OWAgEAY8bExbI/?operator=BVPR&adults=1",
     "ta_rating": null,
     "operator": "Prima Holiday"
   },
   {
     "hotel_name": "Sultan Gardens",
     "price": 8368.0,
->>>>>>> Stashed changes
     "dates": "2026-12-22 - 2026-12-29",
     "checkin_date": "2026-12-22",
     "checkout_date": "2026-12-29",
@@ -2670,25 +2844,14 @@
     "duration_nights": 7,
     "departure_airport": "Katowice",
     "board_basis": "All Inclusive Ultimate",
-<<<<<<< Updated upstream
-    "stars": 4,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59088/0e9d6a8cec49cbb468431d122082e58b43892194f2ec39e7c6665ed4585a3645.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/59088/0e9d6a8cec49cbb468431d122082e58b43892194f2ec39e7c6665ed4585a3645.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/shores-aloha/p1t93tOrmB9_zm3f7Qj-CEAAog8l1rBX6wRMZA6j1UBfLBN1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw7tDL1wZInyxQQVjmB2ABagNDR21yQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGPqgFMnYY5Dfn-lwkgAAHfs8io9YjMoDABEGNM9FR3/?operator=JOIP&adults=1",
-=======
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26527/15488decee09c2099dcfb4faff912759337de25d4b0926b0f88302b513bca79e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26527/15488decee09c2099dcfb4faff912759337de25d4b0926b0f88302b513bca79e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sultan-gardens-resort/pjKbZSoXMMNo7THheoSxSuAAogRrMUtCdKf6M1sSEIdBqvIFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIsEFQQVjlB2ABckAUARUGFwBcA1gFVgJAygZdqwJPABGZxgFL1QNhAFuTK16UBVKmIFMATKywOg35_pcJIAAB5tv0x7WJzKAwAQ1jl0EEjg/?operator=JOIP&adults=1",
->>>>>>> Stashed changes
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sultan-gardens-resort/pjKbZSoXMMNo7THheoSxSuAAogRrMUtCdKf6M1sSEIdBqvIFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIsEFQQVjkB2ABckAUARUGFwBcA1gFVgJAygZdqwJPABGZxgFL1QNhAFuTK16UBVKmIFMATKywOg35_pcJIAAB5tv0x7WJzKAwAQ1jOeW9rw/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
   {
-<<<<<<< Updated upstream
-    "hotel_name": "Xperience Sea Breeze Resort",
-    "price": 5663.0,
-=======
     "hotel_name": "JAZ MIRABEL BEACH",
     "price": 8409.0,
     "dates": "2026-12-22 - 2026-12-29",
@@ -2701,7 +2864,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109766/528019250bf5bec5dbe5d3873d5165f8c0d634b005b6f49eaab9c21ac0850f51.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/109766/528019250bf5bec5dbe5d3873d5165f8c0d634b005b6f49eaab9c21ac0850f51.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-beach-resort/pY_6ybC4jC4IYVe3g-v-fsAAogLCwjdeMJziPatUGeiuFXn0ZzPihqC_UlmC-AzjFIu6AqBEVYSU0wnd_L1wZI2UFQAVjlB2ABagJBSXIeHBHG2Qa5BJrXS6sERBva2TUYvodCAaT4xf4LAQBjBRTQXg/?operator=EXIM&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/jaz-mirabel-beach-resort/pY_6ybC4jC4IYVe3g-v-fsAAogLCwjdeMJziPatUGeiuFXn0ZzPihqC_UlmC-AzjFIu6AqBEVYSU0w9_nL1wZI2UFQAVjkB2ABagJBSXIeHBHG2Qa5BJrXS6sERBva2TUYvodCAaT4xf4LAQBjxuBbDA/?operator=EXIM&adults=1",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -2718,7 +2881,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/62454/4ba97507de5a04bfe87ef578086b6c65033b092a7b841a218f3573e53cc7afb8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/62454/4ba97507de5a04bfe87ef578086b6c65033b092a7b841a218f3573e53cc7afb8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/rixos-radamis-sharm-13/pVaIV98Ax4-2_dgP9rofAKAAogvQogtU0G17TAPI1I3Gmu9Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIhEJQQVjlB2ABagNMTHRyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG1xAFM9-s4Dfn-lwkgAAHutdDwxInMoDABDWOwHXcn/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/rixos-radamis-sharm-13/pVaIV98Ax4-2_dgP9rofAKAAogvQogtU0G17TAPI1I3Gmu9Vy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIhEJQQVjkB2ABagNMTHRyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABG1xAFM9-s4Dfn-lwkgAAHutdDwxInMoDABDWMKDFbB/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2735,7 +2898,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/36179/7edfb6b8a9167099794bb14bf7041ccd0e8e29aec5cbfbdc8798d9526d2585c3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/36179/7edfb6b8a9167099794bb14bf7041ccd0e8e29aec5cbfbdc8798d9526d2585c3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/moevenpick-golf-club/pHx8pMF8_8w17NdMa49VBeAAogS1c4tVogjimwBuWs1ajbFVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIqENQQVjlB2ABagM2YWxyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARuBdS7ghTAEyssDoN-f6XCSAAAdvVjJGEicygMAENY9DMwFY/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/moevenpick-golf-club/pHx8pMF8_8w17NdMa49VBeAAogS1c4tVogjimwBuWs1ajbFVy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIqENQQVjkB2ABagM2YWxyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzARuBdS7ghTAEyssDoN-f6XCSAAAdvVjJGEicygMAENY9hB5Y0/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2752,7 +2915,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22510/c2b518dc2d16f0c5b895dfb0331c4fdf49a1e6ed4962cbcda8fa5650359b5adb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22510/c2b518dc2d16f0c5b895dfb0331c4fdf49a1e6ed4962cbcda8fa5650359b5adb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-royal-peninsula/pPKgHsV798Tgi0UE_6WiQIAAogZhtQWlAXEdhmyNua-5qwOtxad_KDj-PUafoaLRLc5MQqBE9BU0kwnd_L1wZIgkZQAVjlB2ABagNBSWxyHhwR7q8BqwSx9Q-5BBwbobUPGJOAEwHJsuulAgEAY3o3r-0/?operator=OASI&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/maritim-jolie-ville-royal-peninsula/pPKgHsV798Tgi0UE_6WiQIAAogZhtQWlAXEdhmyNua-5qwOtxad_KDj-PUafoaLRLc5MQqBE9BU0kw9_nL1wZIgkZQAVjkB2ABagNBSWxyHhwR7q8BqwSx9Q-5BBwbobUPGJOAEwHJsuulAgEAYz85fIc/?operator=OASI&adults=1",
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -2769,7 +2932,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22483/9cf46df7f3395279db1dddf92e2e5c6530282cf6d0bae34ceafda05481fb0b3f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22483/9cf46df7f3395279db1dddf92e2e5c6530282cf6d0bae34ceafda05481fb0b3f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/oriental-resort/p4xkRBUvGUD7skWGWhGP6IAAogTt7BLFE-4GQbxAiblX9j41y4QgOTEVepz_7cBBtokGkqBE9BU0kwnd_L1wZIxkdQAVi1B2ABagNBSWxyHhwR068BqwTUqxC5BC0bit4NGOCoEgHm6YWpAgEAY-90Z6M/?operator=OASI&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/oriental-resort/p4xkRBUvGUD7skWGWhGP6IAAogTt7BLFE-4GQbxAiblX9j41y4QgOTEVepz_7cBBtokGkqBE9BU0kw9_nL1wZIxkdQAVi0B2ABagNBSWxyHhwR068BqwTUqxC5BC0bit4NGOCoEgHm6YWpAgEAY68tYNk/?operator=OASI&adults=1",
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -2786,7 +2949,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2635/e28fae8b6d304dfbfa767c0899b57ef87be9d455696a7fcf6bf252aa41b91e3c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2635/e28fae8b6d304dfbfa767c0899b57ef87be9d455696a7fcf6bf252aa41b91e3c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-monte-carlo/p9pq3URWny6eZWdAzZFv93AAogb1GzxfXoyxRlLcjkP3f6FYznTQQfXNHTsUjz01h6L3cqBE9SRVgwnd_L1wZI40hQQVjlB2ABagVFOTAuMXIzmwEVBxcAXANYBVYCQMoGEfANXfMKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjiWy5Ew/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/royal-monte-carlo/p9pq3URWny6eZWdAzZFv93AAogb1GzxfXoyxRlLcjkP3f6FYznTQQfXNHTsUjz01h6L3cqBE9SRVgw9_nL1wZI40hQQVjkB2ABagVFOTAuMXIzmwEVBxcAXANYBVYCQMoGEfANXfMKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjIG1Nqg/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2803,7 +2966,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/11362/7fba8ea662919dd32c49ef343e3e00f3d3dfee1a6c776068b3378c80b4c6d35c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/11362/7fba8ea662919dd32c49ef343e3e00f3d3dfee1a6c776068b3378c80b4c6d35c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/steigenberger-alcazar/pqg6WY51_iv4WwMuPSQZK0AAogm_EN8MUL7sgoyG8_eN3GW3_Vok-RlswfbW-YuYaeG6EqBEJWUFIwnd_L1wZIq0lQAVjlB2ABag1BbGwgaW5jbHVzaXZlch0cEeJYG7utBhjPjg-rBOSTFrkEKQGyopT3AQEAY_iCAaA/?operator=BVPR&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/steigenberger-alcazar/pqg6WY51_iv4WwMuPSQZK0AAogm_EN8MUL7sgoyG8_eN3GW3_Vok-RlswfbW-YuYaeG6EqBEJWUFIw9_nL1wZIq0lQAVjkB2ABag1BbGwgaW5jbHVzaXZlch0cEeJYG7utBhjPjg-rBOSTFrkEKQGyopT3AQEAY9G0gUU/?operator=BVPR&adults=1",
     "ta_rating": null,
     "operator": "Prima Holiday"
   },
@@ -2820,7 +2983,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26483/328e3fe9b07c3a075f9f1411c960b1479ffceb511b87af7adc5b5b0674d299f2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26483/328e3fe9b07c3a075f9f1411c960b1479ffceb511b87af7adc5b5b0674d299f2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-palace/ptDPagxFQX63unLGEQXXTeAAogt71tHckqPQkIUw9cGjStE1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZI6ElQQVjlB2ABagMzbTlyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR7cUBS4EEYQBepzBSpiBTAEyssDoN-f6XCSAAAfLVvMCEicygMAENY4J2WGQ/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-palace/ptDPagxFQX63unLGEQXXTeAAogt71tHckqPQkIUw9cGjStE1y-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZI6ElQQVjkB2ABagMzbTlyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQAR7cUBS4EEYQBepzBSpiBTAEyssDoN-f6XCSAAAfLVvMCEicygMAENY4fyafE/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2837,7 +3000,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/63851/97898f089b392972361de777071e04e87d253ed0bfb6a13a12f021ca907858bb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/63851/97898f089b392972361de777071e04e87d253ed0bfb6a13a12f021ca907858bb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/rixos-radamis-beach-side-9/p3CDCJY4Qy94N8bWwpnrzMAAogOBHwhBT6RScCfnFpf9OnlFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIgkpQQVjlB2ABagNNOHFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGqzwFMguE4Dfn-lwkgAAHbwYDQxInMoDABDWN1n4Xz/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/rixos-radamis-beach-side-9/p3CDCJY4Qy94N8bWwpnrzMAAogOBHwhBT6RScCfnFpf9OnlFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIgkpQQVjkB2ABagNNOHFyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABGqzwFMguE4Dfn-lwkgAAHbwYDQxInMoDABDWOB7dDm/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2854,7 +3017,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3419/68c4d0d799695f692dbabbdc4e1364e7b03c7b31deb862c4f86492fcbf67b212.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3419/68c4d0d799695f692dbabbdc4e1364e7b03c7b31deb862c4f86492fcbf67b212.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-kings-lake/pqmGt4zL3-07tYz7PjhL_eAAog1F6qhcYUxAPNnpUQ1KKZ7N4lo3vWFB-8gIVKFHzYmskqBEtPTVQwnd_L1wZI1EpQAVjlB2ABagJVQXIcHBHbGrkE3eEBqwQUGKGqBBu1nSQByZvbHgEAY7OU7J8/?operator=KOMT&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-kings-lake/pqmGt4zL3-07tYz7PjhL_eAAog1F6qhcYUxAPNnpUQ1KKZ7N4lo3vWFB-8gIVKFHzYmskqBEtPTVQw9_nL1wZI1EpQAVjkB2ABagJVQXIcHBHbGrkE3eEBqwQUGKGqBBu1nSQByZvbHgEAYwIQhaY/?operator=KOMT&adults=1",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -2871,7 +3034,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2657/7190377ffe0e2b02a16bbf0c82d5d42a08966c0b9dfca8fadad6932a96ec75e2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2657/7190377ffe0e2b02a16bbf0c82d5d42a08966c0b9dfca8fadad6932a96ec75e2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-select-montemare/pPd-9PzeOUxnHhQnxVxKOsAAog1jvxpnt0HZzoRPomXXmLKIznTQQfXNHTsUjz01h6L3cqBE9SRVgwnd_L1wZI7UxQQVjlB2ABagVRVEUuMXIzmwEVBxcAXANYBVYCQMoGEYYOXd0KTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjmnGKuw/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-select-montemare/pPd-9PzeOUxnHhQnxVxKOsAAog1jvxpnt0HZzoRPomXXmLKIznTQQfXNHTsUjz01h6L3cqBE9SRVgw9_nL1wZI7UxQQVjkB2ABagVRVEUuMXIzmwEVBxcAXANYBVYCQMoGEYYOXd0KTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj--mOZA/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2888,7 +3051,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2655/5445e20676b78a33e3d40e76468fe13d831020bfa4dece1ea26e5675c4df9447.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2655/5445e20676b78a33e3d40e76468fe13d831020bfa4dece1ea26e5675c4df9447.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sunrise-select-diamond-beach-resort/pza6RuDifkL6niK3Xs0Y5-AAogV5WeZlAIn_dyjWDzUOMCY4znTQQfXNHTsUjz01h6L3cqBE9SRVgwnd_L1wZImk1QQVjlB2ABagVDU1IuMXIzmwEVBxcAXANYBVYCQMoGEYQOXd8KTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjpERkmQ/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/sunrise-select-diamond-beach-resort/pza6RuDifkL6niK3Xs0Y5-AAogV5WeZlAIn_dyjWDzUOMCY4znTQQfXNHTsUjz01h6L3cqBE9SRVgw9_nL1wZImk1QQVjkB2ABagVDU1IuMXIzmwEVBxcAXANYBVYCQMoGEYQOXd8KTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJj7O64yg/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2905,7 +3068,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/61400/084490608a665d2d14a228ae2ffb4d631a3b8ab6a1c6522b4e867596166a60b8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/61400/084490608a665d2d14a228ae2ffb4d631a3b8ab6a1c6522b4e867596166a60b8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/club-prive-by-rixos-sharm-13/p0qsochIAyyUVgK7ZpFF1aAAoglcK5b5qkmRNy8_Ue3ZzSg6UoW8N_OZlfWUBeOt6u2HoqBEpPSVAwnd_L1wZIuE5QQVjNB2ABagNHd0VyQJsBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABGXvAFMlfQ4Dfj-lwkgAQHPv4SYo4jMoDABDWOsrlyt/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/club-prive-by-rixos-sharm-13/p0qsochIAyyUVgK7ZpFF1aAAoglcK5b5qkmRNy8_Ue3ZzSg6UoW8N_OZlfWUBeOt6u2HoqBEpPSVAw9_nL1wZIuE5QQVjMB2ABagNHd0VyQJsBFAEVBhcBXAJYBVYCQMoGT-IBXQBe3voBS48YYQBSlwhTABGXvAFMlfQ4Dfj-lwkgAQHPv4SYo4jMoDABDWOL-ZVK/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2922,7 +3085,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22447/757192a521b070e3ae1929854c48757038ffd6147c992fbc012fc90aa0bba8b1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22447/757192a521b070e3ae1929854c48757038ffd6147c992fbc012fc90aa0bba8b1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-suites-spa-15/pVlThVI0IYMJB1oogIgqv5AAogfhibDWb6B0YVg5aU1jZqMdxad_KDj-PUafoaLRLc5MQqBE9BU0kwnd_L1wZIpVFQAVjlB2ABagJCQnIeHBGvrwGrBPD1D7kEHBuMuhMYw6ITAdWmrMMCAQxjRml4wg/?operator=OASI&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/naama-bay-suites-spa-15/pVlThVI0IYMJB1oogIgqv5AAogfhibDWb6B0YVg5aU1jZqMdxad_KDj-PUafoaLRLc5MQqBE9BU0kw9_nL1wZIpVFQAVjkB2ABagJCQnIeHBGvrwGrBPD1D7kEHBuMuhMYw6ITAdWmrMMCAQxjePRRXQ/?operator=OASI&adults=1",
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -2939,7 +3102,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2658/12062e0b664fd61934ac11ca0898be4effcfe25eb063264a476e264b06a37e52.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/2658/12062e0b664fd61934ac11ca0898be4effcfe25eb063264a476e264b06a37e52.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/melia-sinai/pjBMGMrX-JzERp46QOJtZLAAogmsZby5buWbp7dLmoTQbRIYznTQQfXNHTsUjz01h6L3cqBE9SRVgwnd_L1wZIiFRQQVjlB2ABagVNQzYuMXIzmwEVBxcAWAhWAlwIQMIGEYcOXdwKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjxbC33w/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/melia-sinai/pjBMGMrX-JzERp46QOJtZLAAogmsZby5buWbp7dLmoTQbRIYznTQQfXNHTsUjz01h6L3cqBE9SRVgw9_nL1wZIiFRQQVjkB2ABagVNQzYuMXIzmwEVBxcAWAhWAlwIQMIGEYcOXdwKTyRLkrMBYQBepzBSpiBTAEyssDoN-f6XCSAAARJjLDON5A/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
@@ -2956,7 +3119,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22535/5ae6e8a3178fd4b4dae77e20e7afebb41eedb254025c7de6ccb05c06c9ef9cc1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22535/5ae6e8a3178fd4b4dae77e20e7afebb41eedb254025c7de6ccb05c06c9ef9cc1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-fayrouz-resort/pSIAS9dtkSpE7uK5eswTF_AAogObJNvNQxu2tnhFnTZ1p3yFy4QgOTEVepz_7cBBtokGkqBE9BU0kwnd_L1wZIslZQAVi1B2ABagNBSWxyHhwRh7ABqwSgqxC5BC0b6fsNGISQEgHU_IypAgEAYxZivx4/?operator=OASI&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/hilton-fayrouz-resort/pSIAS9dtkSpE7uK5eswTF_AAogObJNvNQxu2tnhFnTZ1p3yFy4QgOTEVepz_7cBBtokGkqBE9BU0kw9_nL1wZIslZQAVi0B2ABagNBSWxyHhwRh7ABqwSgqxC5BC0b6fsNGISQEgHU_IypAgEAYwQbdgI/?operator=OASI&adults=1",
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -2973,7 +3136,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26551/51a2bf833f113d8eebf6b0554f4fdcc59fe439a6d9f506e10f1d58409d6c2f0f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26551/51a2bf833f113d8eebf6b0554f4fdcc59fe439a6d9f506e10f1d58409d6c2f0f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rixos-sharm-el-sheikh-ex-royal-grand-azure/pjDilWV9cQ7wML9aMEhps7AAogNE5G8_VvcrNpbnmszQaqMly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZI_1ZQQVjlB2ABagMwMHdyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARscYBS70DYQBepzBSpiBTAEyssDoN-f6XCSAAAeDNgIjliMygMAESY2oj-fs/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/rixos-sharm-el-sheikh-ex-royal-grand-azure/pjDilWV9cQ7wML9aMEhps7AAogNE5G8_VvcrNpbnmszQaqMly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZI_1ZQQVjkB2ABagMwMHdyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARscYBS70DYQBepzBSpiBTAEyssDoN-f6XCSAAAeDNgIjliMygMAESYzaq_lQ/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -2990,7 +3153,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3421/1659065adadce66f746ede242e836b9abd43f0b73c0fd1f615836a5ab9f99edb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/KOMT/IMG/3421/1659065adadce66f746ede242e836b9abd43f0b73c0fd1f615836a5ab9f99edb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-prestige/p7yCZITLUEs9I6Lki8ZyEiAAogez_UhSBlQpn15-NMiDhNYt4lo3vWFB-8gIVKFHzYmskqBEtPTVQwnd_L1wZIn1hQAVjlB2ABagRQUkFJchwcEd0auQTb4QGrBBQY1KoEG7j4IwGH_tseAQBji9DrWQ/?operator=KOMT&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/domina-coral-bay-prestige/p7yCZITLUEs9I6Lki8ZyEiAAogez_UhSBlQpn15-NMiDhNYt4lo3vWFB-8gIVKFHzYmskqBEtPTVQw9_nL1wZIn1hQAVjkB2ABagRQUkFJchwcEd0auQTb4QGrBBQY1KoEG7j4IwGH_tseAQBjt_wFlg/?operator=KOMT&adults=1",
     "ta_rating": null,
     "operator": "Kompas Tour"
   },
@@ -3007,7 +3170,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26503/c9e47310b70dcbd4bc1f25399b71f817062615632a68840e28a8705169a5a922.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/26503/c9e47310b70dcbd4bc1f25399b71f817062615632a68840e28a8705169a5a922.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/rixos-seagate/pz79LbDtWI6Ao3SWBZx7t0AAognGpS3ehTIMUFzfKXzYavrly-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIxV9QQVjlB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARgcYBS-0DYQBepzBSpiBTAEyssDoN-f6XCSAAAfCV-IDFicygMAENY3JyhtE/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,nabq-bay/rixos-seagate/pz79LbDtWI6Ao3SWBZx7t0AAognGpS3ehTIMUFzfKXzYavrly-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIxV9QQVjkB2ABagMwMllyP5sBFAEVBhcAXANYBVYCQMoGT6sCXQARgcYBS-0DYQBepzBSpiBTAEyssDoN-f6XCSAAAfCV-IDFicygMAENY8gUaSY/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -3024,7 +3187,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/66616/ada81bd9d8dc093c9c67a5c2f911877f38fa144c86904308d336ce324c2d9754.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/JOIP/IMG/66616/ada81bd9d8dc093c9c67a5c2f911877f38fa144c86904308d336ce324c2d9754.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/white-hills-by-sunrise-14/paETudr6AJUis7B5DPsuetAAogKzUL6Zh4gL2ZfmaY-47WoFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAwnd_L1wZIymBQQVjlB2ABagM0WmNyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH35AFMtcs4Dfn-lwkgAAHt2-SItYnMoDABDWOAyJdh/?operator=JOIP&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/white-hills-by-sunrise-14/paETudr6AJUis7B5DPsuetAAogKzUL6Zh4gL2ZfmaY-47WoFy-7FKc3FQhqtu5p2YKcYAqBEpPSVAw9_nL1wZIymBQQVjkB2ABagM0WmNyQJsBFAEVBhcAXANYBVYCQMoGT6sCXQBL7skBYQBepzBSpiBTABH35AFMtcs4Dfn-lwkgAAHt2-SItYnMoDABDWMsajkL/?operator=JOIP&adults=1",
     "ta_rating": null,
     "operator": "Join UP!"
   },
@@ -3041,7 +3204,7 @@
     "stars": 4,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22534/82f6ac64fb13c25d5e15042fa57719ab8616817bc341d19b70e25e8a509f2983.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22534/82f6ac64fb13c25d5e15042fa57719ab8616817bc341d19b70e25e8a509f2983.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-club-fanara/pFUjhcXKBJUV5RxJ86N0gQAAogKeIPHg-rkrmA-zWAIHjF-ly4QgOTEVepz_7cBBtokGkqBE9BU0kwnd_L1wZIxGRQAVi1B2ABagNBSWxyHhwRhrABqwShqxC5BC0bx8IOGJTJEQGqpY6pAgEAY9X63wA/?operator=OASI&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/iberotel-club-fanara/pFUjhcXKBJUV5RxJ86N0gQAAogKeIPHg-rkrmA-zWAIHjF-ly4QgOTEVepz_7cBBtokGkqBE9BU0kw9_nL1wZIxGRQAVi0B2ABagNBSWxyHhwRhrABqwShqxC5BC0bx8IOGJTJEQGqpY6pAgEAY_srVpI/?operator=OASI&adults=1",
     "ta_rating": null,
     "operator": "Oasis Tours"
   },
@@ -3058,13 +3221,14 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/803/d4eb0bad35e096350b4381a486bdc3e36b15096e299c8519a86a3c0c344ac4bb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OREX/IMG/803/d4eb0bad35e096350b4381a486bdc3e36b15096e299c8519a86a3c0c344ac4bb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/meraki-sharm-resort-9/pJAEw1No8woJK7n6NtVH2LAAogdygNX4drhNYBGiQCc5RU2IznTQQfXNHTsUjz01h6L3cqBE9SRVgwnd_L1wZIuW1QQVjlB2ABagVDM08uMXIymwEVBxcAWAhWAlwIEYoGQDhd4xhPJEuSswFhAF6nMFKmIFMATKywOg35_pcJIAABEmPN-wbG/?operator=OREX&adults=1",
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,szarm-el-szejk/meraki-sharm-resort-9/pJAEw1No8woJK7n6NtVH2LAAogdygNX4drhNYBGiQCc5RU2IznTQQfXNHTsUjz01h6L3cqBE9SRVgw9_nL1wZIuW1QQVjkB2ABagVDM08uMXIymwEVBxcAWAhWAlwIEYoGQDhd4xhPJEuSswFhAF6nMFKmIFMATKywOg35_pcJIAABEmPjW9Uu/?operator=OREX&adults=1",
     "ta_rating": null,
     "operator": "Anex Tour Poland"
   },
   {
     "hotel_name": "Sunrise Arabian Beach Resort Grand select",
     "price": 23892.0,
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
     "dates": "2026-12-20 - 2026-12-27",
     "checkin_date": "2026-12-20",
@@ -4481,6 +4645,8 @@
   {
     "hotel_name": "Sunrise Arabian Beach Resort Grand select",
     "price": 23892.0,
+=======
+>>>>>>> Stashed changes
     "dates": "2026-12-20 - 2026-12-27",
     "checkin_date": "2026-12-20",
     "checkout_date": "2026-12-27",
@@ -4491,14 +4657,12 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22457/a380d77ac239b280b01c33314681f437dc827d1cc9866a497dffb0fb7c8a14b5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22457/a380d77ac239b280b01c33314681f437dc827d1cc9866a497dffb0fb7c8a14b5.webp@webp",
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-grand-select-arabian-beach/p2DAfAtf7dkZdA9RbnjbPjAAog5THS7pJviElH9t8GbW9jcly4QgOTEVepz_7cBBtokGkqBE9BU0kwvezL1wZIhXNQAVi1B2ABagNBSWxyHhwRua8BqwTuqxC5BC0b7bQPGPSAFAGD1cqsAgEAY9Ozvkk/?operator=OASI&adults=1",
-    "ta_rating": null,
 =======
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22457/a380d77ac239b280b01c33314681f437dc827d1cc9866a497dffb0fb7c8a14b5.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/OASI/IMG/22457/a380d77ac239b280b01c33314681f437dc827d1cc9866a497dffb0fb7c8a14b5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-grand-select-arabian-beach/p2DAfAtf7dkZdA9RbnjbPjAAog5THS7pJviElH9t8GbW9jcly4QgOTEVepz_7cBBtokGkqBE9BU0kwnd_L1wZIhXNQAVi1B2ABagNBSWxyHhwRua8BqwTuqxC5BC0b7bQPGPSAFAGD1cqsAgEAYyRkJz4/?operator=OASI&adults=1",
-    "ta_rating": null,
+    "offer_url": "https://fly.pl/wycieczka/egipt,sharm-el-sheikh,c/sunrise-grand-select-arabian-beach/p2DAfAtf7dkZdA9RbnjbPjAAog5THS7pJviElH9t8GbW9jcly4QgOTEVepz_7cBBtokGkqBE9BU0kw9_nL1wZIhXNQAVi0B2ABagNBSWxyHhwRua8BqwTuqxC5BC0b7bQPGPSAFAGD1cqsAgEAY3yOKOU/?operator=OASI&adults=1",
 >>>>>>> Stashed changes
+    "ta_rating": null,
     "operator": "Oasis Tours"
   }
 ]
