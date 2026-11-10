@@ -8,14 +8,16 @@
     "2026-11-03 19:43:41",
     "2026-11-09 08:56:04",
     "2026-11-09 06:28:39",
-    "2026-11-09 06:31:18"
+    "2026-11-09 06:31:18",
+    "2026-11-10 09:37:40"
   ],
   "y": [
     9252.0,
     9252.0,
     7389.0,
     7389.0,
-    8793.0
+    8793.0,
+    9360.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:39<br>Даты поездки: 01.07.2027 - 08.07.2027",
@@ -35,11 +37,12 @@
   "confidence": "Low",
   "median_p": 9252.0,
   "min_p": 7389.0,
-  "max_p": 9252.0,
-  "samples": 5,
+  "max_p": 9360.0,
+  "samples": 6,
   "alert_threshold": 8.0,
   "trip_dates_label": "01.07.2027 - 08.07.2027",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_turkey_jul27_7_10.html"
+  "back_href": "index_filter_eb_turkey_jul27_7_10.html",
+  "current_price": 9360.0
 }

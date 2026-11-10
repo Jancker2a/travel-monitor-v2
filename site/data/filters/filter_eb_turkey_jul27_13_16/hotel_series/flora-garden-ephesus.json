@@ -5,11 +5,13 @@
   "hotel_name": "Flora Garden Ephesus",
   "x": [
     "2026-11-03 06:39:01",
-    "2026-11-03 19:43:41"
+    "2026-11-03 19:43:41",
+    "2026-11-10 10:06:37"
   ],
   "y": [
     14439.0,
-    14439.0
+    14439.0,
+    15725.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:39<br>Даты поездки: 06.07.2027 - 20.07.2027",
@@ -29,11 +31,12 @@
   "confidence": "Low",
   "median_p": 14439.0,
   "min_p": 14439.0,
-  "max_p": 14439.0,
-  "samples": 2,
+  "max_p": 15725.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "20.07.2027 - 03.08.2027",
   "display_price_ceiling": 16000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_turkey_jul27_13_16.html"
+  "back_href": "index_filter_eb_turkey_jul27_13_16.html",
+  "current_price": 15725.0
 }

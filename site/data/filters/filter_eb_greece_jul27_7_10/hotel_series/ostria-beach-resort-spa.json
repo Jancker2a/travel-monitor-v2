@@ -5,9 +5,11 @@
   "hotel_name": "Ostria Beach Resort & Spa",
   "x": [
     "2026-11-03 06:37:51",
-    "2026-11-03 19:42:15"
+    "2026-11-03 19:42:15",
+    "2026-11-10 10:07:51"
   ],
   "y": [
+    16277.0,
     16277.0,
     16277.0
   ],
@@ -30,10 +32,11 @@
   "median_p": 16277.0,
   "min_p": 16277.0,
   "max_p": 16277.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "04.07.2027 - 11.07.2027",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_greece_jul27_7_10.html"
+  "back_href": "index_filter_eb_greece_jul27_7_10.html",
+  "current_price": 16277.0
 }

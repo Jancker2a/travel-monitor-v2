@@ -5,11 +5,13 @@
   "hotel_name": "Nubian Island",
   "x": [
     "2026-10-09 00:15:54",
-    "2026-10-16 23:26:11"
+    "2026-10-16 23:26:11",
+    "2026-11-10 09:40:28"
   ],
   "y": [
     10239.0,
-    10846.0
+    10846.0,
+    14819.0
   ],
   "hover": [
     "Проверка: 09.10.2026 00:15<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -29,11 +31,12 @@
   "confidence": "Low",
   "median_p": 10542.499999999998,
   "min_p": 10239.0,
-  "max_p": 10846.0,
-  "samples": 2,
+  "max_p": 14819.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.12.2026 - 31.12.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html",
+  "current_price": 14819.0
 }

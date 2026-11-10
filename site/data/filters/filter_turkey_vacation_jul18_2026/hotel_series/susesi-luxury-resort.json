@@ -4,10 +4,12 @@
   "slug": "susesi-luxury-resort",
   "hotel_name": "Susesi Luxury Resort",
   "x": [
-    "2026-07-24 00:18:27"
+    "2026-07-24 00:18:27",
+    "2026-11-10 09:53:09"
   ],
   "y": [
-    16825.0
+    16825.0,
+    10380.0
   ],
   "hover": [
     "Проверка: 24.07.2026 00:18<br>Даты поездки: 24.07.2026 - 31.07.2026"
@@ -25,12 +27,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 16825.0,
-  "min_p": 16825.0,
+  "min_p": 10380.0,
   "max_p": 16825.0,
-  "samples": 1,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.07.2026 - 31.07.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_vacation_jul18.html"
+  "back_href": "index_filter_turkey_vacation_jul18.html",
+  "current_price": 10380.0
 }

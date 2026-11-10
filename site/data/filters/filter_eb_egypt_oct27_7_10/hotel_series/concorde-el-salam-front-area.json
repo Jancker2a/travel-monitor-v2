@@ -5,10 +5,12 @@
   "hotel_name": "Concorde El Salam Front Area",
   "x": [
     "2026-11-03 06:36:03",
-    "2026-11-03 19:40:10"
+    "2026-11-03 19:40:10",
+    "2026-11-10 10:03:51"
   ],
   "y": [
     10404.0,
+    10616.0,
     10616.0
   ],
   "hover": [
@@ -30,10 +32,11 @@
   "median_p": 10510.0,
   "min_p": 10404.0,
   "max_p": 10616.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "16.10.2026 - 23.10.2026",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html",
+  "current_price": 10616.0
 }

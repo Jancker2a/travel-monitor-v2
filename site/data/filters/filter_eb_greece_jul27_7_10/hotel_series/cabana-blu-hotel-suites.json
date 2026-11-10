@@ -11,9 +11,11 @@
     "2026-11-05 09:02:45",
     "2026-11-05 23:47:44",
     "2026-11-06 12:32:20",
-    "2026-11-07 01:14:07"
+    "2026-11-07 01:14:07",
+    "2026-11-10 10:07:51"
   ],
   "y": [
+    12976.0,
     12976.0,
     12976.0,
     12976.0,
@@ -48,10 +50,11 @@
   "median_p": 12976.0,
   "min_p": 12976.0,
   "max_p": 12976.0,
-  "samples": 8,
+  "samples": 9,
   "alert_threshold": 8.0,
   "trip_dates_label": "06.07.2027 - 13.07.2027",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_greece_jul27_7_10.html"
+  "back_href": "index_filter_eb_greece_jul27_7_10.html",
+  "current_price": 12976.0
 }

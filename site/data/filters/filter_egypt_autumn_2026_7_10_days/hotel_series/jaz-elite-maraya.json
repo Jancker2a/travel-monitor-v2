@@ -6,12 +6,14 @@
   "x": [
     "2026-09-24 21:21:47",
     "2026-09-25 01:18:35",
-    "2026-09-25 03:41:16"
+    "2026-09-25 03:41:16",
+    "2026-11-10 09:55:32"
   ],
   "y": [
     8638.0,
     8638.0,
-    8638.0
+    8638.0,
+    11687.0
   ],
   "hover": [
     "Проверка: 24.09.2026 21:21<br>Даты поездки: 26.10.2026 - 02.11.2026",
@@ -32,11 +34,12 @@
   "confidence": "Low",
   "median_p": 8638.0,
   "min_p": 8638.0,
-  "max_p": 8638.0,
-  "samples": 3,
+  "max_p": 11687.0,
+  "samples": 4,
   "alert_threshold": 8.0,
   "trip_dates_label": "26.10.2026 - 02.11.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html",
+  "current_price": 11687.0
 }

@@ -5,11 +5,13 @@
   "hotel_name": "Xanadu Club Makadi Bay",
   "x": [
     "2026-10-10 17:30:37",
-    "2026-10-10 22:12:47"
+    "2026-10-10 22:12:47",
+    "2026-11-10 09:55:32"
   ],
   "y": [
     10780.0,
-    10780.0
+    10780.0,
+    10035.0
   ],
   "hover": [
     "Проверка: 10.10.2026 17:30<br>Даты поездки: 11.10.2026 - 18.10.2026",
@@ -28,12 +30,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 10780.0,
-  "min_p": 10780.0,
+  "min_p": 10035.0,
   "max_p": 10780.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "11.10.2026 - 19.10.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_autumn_2026_7_10_days.html",
+  "current_price": 10035.0
 }

@@ -5,11 +5,13 @@
   "hotel_name": "The V Luxury Resort",
   "x": [
     "2026-11-03 06:36:03",
-    "2026-11-03 19:40:10"
+    "2026-11-03 19:40:10",
+    "2026-11-10 10:03:51"
   ],
   "y": [
     9451.0,
-    9451.0
+    9451.0,
+    12177.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 05.10.2026 - 13.10.2026",
@@ -29,11 +31,12 @@
   "confidence": "Low",
   "median_p": 9451.0,
   "min_p": 9451.0,
-  "max_p": 9451.0,
-  "samples": 2,
+  "max_p": 12177.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "02.10.2026 - 10.10.2026",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_egypt_oct27_7_10.html"
+  "back_href": "index_filter_eb_egypt_oct27_7_10.html",
+  "current_price": 12177.0
 }

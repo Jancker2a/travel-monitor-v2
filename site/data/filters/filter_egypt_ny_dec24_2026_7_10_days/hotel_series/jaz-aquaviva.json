@@ -7,13 +7,15 @@
     "2026-09-24 17:18:16",
     "2026-09-24 21:22:15",
     "2026-09-25 01:19:05",
-    "2026-09-25 03:41:42"
+    "2026-09-25 03:41:42",
+    "2026-11-10 09:40:28"
   ],
   "y": [
     8548.0,
     8548.0,
     8548.0,
-    8548.0
+    8548.0,
+    15197.0
   ],
   "hover": [
     "Проверка: 24.09.2026 17:18<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -35,11 +37,12 @@
   "confidence": "Low",
   "median_p": 8548.0,
   "min_p": 8548.0,
-  "max_p": 8548.0,
-  "samples": 4,
+  "max_p": 15197.0,
+  "samples": 5,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.12.2026 - 31.12.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html",
+  "current_price": 15197.0
 }

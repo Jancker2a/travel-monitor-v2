@@ -5,11 +5,13 @@
   "hotel_name": "Cleopatra Luxury Resort (Makadi Bay)",
   "x": [
     "2026-10-17 17:47:50",
-    "2026-10-17 18:11:53"
+    "2026-10-17 18:11:53",
+    "2026-11-10 09:40:28"
   ],
   "y": [
     10876.0,
-    10876.0
+    10876.0,
+    15524.0
   ],
   "hover": [
     "Проверка: 17.10.2026 17:47<br>Даты поездки: 24.12.2026 - 31.12.2026",
@@ -29,11 +31,12 @@
   "confidence": "Low",
   "median_p": 10876.0,
   "min_p": 10876.0,
-  "max_p": 10876.0,
-  "samples": 2,
+  "max_p": 15524.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "24.12.2026 - 31.12.2026",
   "display_price_ceiling": 11000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html"
+  "back_href": "index_filter_egypt_ny_dec24_2026_7_10_days.html",
+  "current_price": 15524.0
 }
