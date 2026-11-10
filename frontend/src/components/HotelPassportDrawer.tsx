@@ -55,9 +55,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
 
-    getHotelNormalizedHistory(hotelId)
-      .then((data) => setNormalizedData(data))
-      .catch(() => setNormalizedData(null));
+    // Only load normalized benchmark history for interactive search (when no specific filter is selected)
+    if (!filterId) {
+      getHotelNormalizedHistory(hotelId)
+        .then((data) => setNormalizedData(data))
+        .catch(() => setNormalizedData(null));
+    } else {
+      setNormalizedData(null);
+    }
   }, [hotelId, filterId]);
 
   // Render Plotly Price History Chart when history tab is activated
@@ -708,22 +713,28 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           {activeTab === "history" && (
             <div className="drawer-tab-panel active" id="tabPanel-history">
               <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
-                <div className="mode-switch-box">
-                  <button
-                    type="button"
-                    className={`mode-btn ${historyMode === "original" ? "active" : ""}`}
-                    onClick={() => setHistoryMode("original")}
-                  >
-                    Пакетный тур ({passport?.active_cohorts_count || 1} напр.)
-                  </button>
-                  <button
-                    type="button"
-                    className={`mode-btn ${historyMode === "normalized" ? "active" : ""}`}
-                    onClick={() => setHistoryMode("normalized")}
-                  >
-                    🏷️ Эталон (1 чел / 8 ночей)
-                  </button>
-                </div>
+                {!filterId ? (
+                  <div className="mode-switch-box">
+                    <button
+                      type="button"
+                      className={`mode-btn ${historyMode === "original" ? "active" : ""}`}
+                      onClick={() => setHistoryMode("original")}
+                    >
+                      Пакетный тур ({passport?.active_cohorts_count || 1} напр.)
+                    </button>
+                    <button
+                      type="button"
+                      className={`mode-btn ${historyMode === "normalized" ? "active" : ""}`}
+                      onClick={() => setHistoryMode("normalized")}
+                    >
+                      🏷️ Эталон (1 чел / 8 ночей)
+                    </button>
+                  </div>
+                ) : (
+                  <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "5px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 700 }}>
+                    🟢 Динамика цены тура ({passport?.active_cohorts_count || 1} напр.)
+                  </div>
+                )}
 
                 <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
                   <button
@@ -761,12 +772,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   </button>
                 </div>
 
-                <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700 }}>
-                  {historyMode === "normalized" ? "📊 Нормализованная база" : "🟢 Исторически низкая цена"}
-                </div>
+                {!filterId && (
+                  <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700 }}>
+                    {historyMode === "normalized" ? "📊 Нормализованная база" : "🟢 Исторически низкая цена"}
+                  </div>
+                )}
               </div>
 
-              {historyMode === "normalized" && (
+              {!filterId && historyMode === "normalized" && (
                 <div style={{ background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: "10px", padding: "10px 14px", marginBottom: "12px", fontSize: "11px", color: "#0369a1" }}>
                   💡 <strong>Эталон 1p / 8n:</strong> исключает искажения состава семьи и дат. Выделена чистая себестоимость ночи в отеле (~<strong>{Math.round(normalizedData?.stats?.pure_hotel_night_rate || rangeStats.pureNight || 450)} zł/ночь</strong>) и стандартный перелёт.
                 </div>
