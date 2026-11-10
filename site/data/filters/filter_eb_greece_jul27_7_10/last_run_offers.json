@@ -13,9 +13,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026297/12207b4003768e1f578ff35d672d4e3f4015af44a69727e09ba7244a7df6604b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026297/12207b4003768e1f578ff35d672d4e3f4015af44a69727e09ba7244a7df6604b.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,heraklion/aquila-atlantis/phXH4TZ13xPFnb7zIIXd0MAAog9gdTm4pG_T5XlyuMF81qeMc6hE3JM3DM_6ACDBFI8jcqBE5LUkEw8YLN1wZImT9QAVi3MGADagNDQ1ZqAkJCagRXQVcwagNIRVJyGhsWDiAKDBHt0T4NjsuWCQ9MARJjAQxjAQIMt_5kMQ/?operator=NKRA&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,heraklion/aquila-atlantis/phXH4TZ13xPFnb7zIIXd0MAAog9gdTm4pG_T5XlyuMF81qeMc6hE3JM3DM_6ACDBFI8jcqBE5LUkEwtpLN1wZImT9QAVi3MGADagNDQ1ZqAkJCagRXQVcwagNIRVJyGhsWDiAKDBHt0T4NjsuWCQ9MARJjAQxjAQIMQND6Xw/?operator=NKRA&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,heraklion/aquila-atlantis/phXH4TZ13xPFnb7zIIXd0MAAog9gdTm4pG_T5XlyuMF81qeMc6hE3JM3DM_6ACDBFI8jcqBE5LUkEw2JjN1wZImT9QAVi3MGADagNDQ1ZqAkJCagRXQVcwagNIRVJyGhsWDiAKDBHt0T4NjsuWCQ9MARJjAQxjAQIMdcz5Ng/?operator=NKRA&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
@@ -34,19 +38,23 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028205/cbd0eb2a91b442ff04e55e9579e337a835afff74ced35affcb59d70bb293482e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1028205/cbd0eb2a91b442ff04e55e9579e337a835afff74ced35affcb59d70bb293482e.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,sidari/sidari-waterpark/p7xXrMKMPt3BfY9RW6VBkKAAogfGfas8NW1wTtTUZRXv5h3nPznPQPLZVD-OvhaFUM4DwqBE5LUkEw8YLN1wZI4UBQAVi_LGADagdEQkwgU1VQagJCQmoEV0FXMGoDQ0ZVchobFg4gCgwR4eA-DYW8lgkPBwESYwEMYwECC7IWpWc/?operator=NKRA&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,sidari/sidari-waterpark/p7xXrMKMPt3BfY9RW6VBkKAAogfGfas8NW1wTtTUZRXv5h3nPznPQPLZVD-OvhaFUM4DwqBE5LUkEwtpLN1wZI4UBQAVi_LGADagdEQkwgU1VQagJCQmoEV0FXMGoDQ0ZVchobFg4gCgwR4eA-DYW8lgkPBwESYwEMYwECCzReCEQ/?operator=NKRA&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,korfu,sidari/sidari-waterpark/p7xXrMKMPt3BfY9RW6VBkKAAogfGfas8NW1wTtTUZRXv5h3nPznPQPLZVD-OvhaFUM4DwqBE5LUkEw2JjN1wZI4UBQAVi_LGADagdEQkwgU1VQagJCQmoEV0FXMGoDQ0ZVchobFg4gCgwR4eA-DYW8lgkPBwESYwEMYwECC6_gdJQ/?operator=NKRA&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
   },
   {
     "hotel_name": "Simantro Resort",
-    "price": 8889.0,
-    "dates": "2027-07-02 - 2027-07-09",
-    "checkin_date": "2027-07-02",
-    "checkout_date": "2027-07-09",
+    "price": 8411.0,
+    "dates": "2027-07-04 - 2027-07-11",
+    "checkin_date": "2027-07-04",
+    "checkout_date": "2027-07-11",
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Warszawa",
@@ -55,9 +63,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117660/24a3b9f065e32a93fa7ef933390519cd224ebd487f0520443ec738401d3b34ec.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117660/24a3b9f065e32a93fa7ef933390519cd224ebd487f0520443ec738401d3b34ec.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,sani/calimera-simantro-beach/pCjHv2sEISHtd5oUGzyvCTAAogogVNe4pVya-HOQXTBx-fcD6Z_GxQ7f7G8NKsssBWPoMqBEVYSU0w8YLN1wZIuUVQAVjfK2ACagJCQnIhHBGclwe5BLPVTasEARuhsEgYnKpNAa7zydMOAhJjAQILx3e4Bw/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,sani/calimera-simantro-beach/pCjHv2sEISHtd5oUGzyvCTAAogogVNe4pVya-HOQXTBx-fcD6Z_GxQ7f7G8NKsssBWPoMqBEVYSU0wtpLN1wZIuUVQAVjfK2ACagJCQnIhHBGclwe5BLPVTasEARuhsEgYnKpNAa7zydMOAhJjAQIL8tqc4Q/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,sani/calimera-simantro-beach/p_w8RVOmW0Jsse5Br8fbBCAAogogVNe4pVya-HOQXTBx-fcN4fl0l7FMe7617zmbwuIQoqBEVYSU0w2JjN1wZI20FQAViPLGACagJCQnIiHBGclwe5BMbTTasE8QEbnrBIGJyqTQHE88nTDgISYwECC-MawFw/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -76,9 +88,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/2499/a4a35ba1e9ae78a5478b7e1bd2e8ea0ed4844acd55c5a2d25957b5eea2f56939.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/2499/a4a35ba1e9ae78a5478b7e1bd2e8ea0ed4844acd55c5a2d25957b5eea2f56939.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-skioni/anastasia-resort-spa/p824iyoq03lHrTAeRutSuSAAog_-4IB2EHeQGKN-UWw7vWcNQF_TKxiGKmh8b3lFF-LEsqBFJOQlcw8YLN1wZI0EdQQVifLWACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcR7AsZjFZMjkAQmTZTqkFSAEvoJWEAHbO_Rg-TAyCok4wJDQACDGMBAgsANQCg/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-skioni/anastasia-resort-spa/p824iyoq03lHrTAeRutSuSAAog_-4IB2EHeQGKN-UWw7vWcNQF_TKxiGKmh8b3lFF-LEsqBFJOQlcwtpLN1wZI0EdQQVifLWACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcR7AsZjFZMjkAQmTZTqkFSAEvoJWEAHbO_Rg-TAyCok4wJDQACDGMBAgvAQL1i/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-skioni/anastasia-resort-spa/p824iyoq03lHrTAeRutSuSAAog_-4IB2EHeQGKN-UWw7vWcNQF_TKxiGKmh8b3lFF-LEsqBFJOQlcw2JjN1wZI0EdQQVifLWACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcR7AsZjFZMjkAQmTZTqkFSAEvoJWEAHbO_Rg-TAyCok4wJDQACDGMBAgvI0LBF/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -97,9 +113,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20568/436203dd9f919585903fd26fba5f473071f2ccb87c9e78ef88b01345b3abdfbf.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20568/436203dd9f919585903fd26fba5f473071f2ccb87c9e78ef88b01345b3abdfbf.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,kolymbia/lydia-maris/pnx9DhCtCDaJOe3ASX2O2TAAog_cbwhU1dddaFeIIuKc68nBNMb1l_yzSAMpgc9iwgsvcqBEJWQkUw8YLN1wZItklQAViPLGACagJBSXIhHBHYoAEb5-xDGLaVHqsE7romuQQLAbXO5N0EAhJjAQILonGaPQ/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,kolymbia/lydia-maris/pnx9DhCtCDaJOe3ASX2O2TAAog_cbwhU1dddaFeIIuKc68nBNMb1l_yzSAMpgc9iwgsvcqBEJWQkUwtpLN1wZItklQAViPLGACagJBSXIhHBHYoAEb5-xDGLaVHqsE7romuQQLAbXO5N0EAhJjAQILNzeoKg/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,kolymbia/lydia-maris/pnx9DhCtCDaJOe3ASX2O2TAAog_cbwhU1dddaFeIIuKc68nBNMb1l_yzSAMpgc9iwgsvcqBEJWQkUw2JjN1wZItklQAViPLGACagJBSXIhHBHYoAEb5-xDGLaVHqsE7romuQQLAbXO5N0EAhJjAQILsZ45HQ/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -118,9 +138,30 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117128/33dbecf64d4ee0edef931aba8353406ac5e2f8343ef9e66fa1afbf26bfa80d26.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117128/33dbecf64d4ee0edef931aba8353406ac5e2f8343ef9e66fa1afbf26bfa80d26.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/kriti-beach/p43BDcL255EU6vE-0dg_abAAogKG_1KCuAEAgGPaImn8xg0xk1iihwN4JKBN8P7gxRdI4qBEVYSU0w8YLN1wZInUxQAVj3K2ACagJIQnIhHBGIkwerBN31S7kEFhvkukEY24dKAfbh49INAgBjAQIGxUyCBA/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/kriti-beach/p43BDcL255EU6vE-0dg_abAAogKG_1KCuAEAgGPaImn8xg0xk1iihwN4JKBN8P7gxRdI4qBEVYSU0wtpLN1wZInUxQAVj3K2ACagJIQnIhHBGIkwerBN31S7kEFhvkukEY24dKAfbh49INAgBjAQIGwv5I_Q/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/kriti-beach/p43BDcL255EU6vE-0dg_abAAogKG_1KCuAEAgGPaImn8xg0xk1iihwN4JKBN8P7gxRdI4qBEVYSU0w2JjN1wZInUxQAVj3K2ACagJIQnIhHBGIkwerBN31S7kEFhvkukEY24dKAfbh49INAgBjAQIGkalqPQ/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
+  },
+  {
+    "hotel_name": "Acrotel Athena Pallas",
+    "price": 9787.0,
+    "dates": "2027-07-09 - 2027-07-16",
+    "checkin_date": "2027-07-09",
+    "checkout_date": "2027-07-16",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117730/62441d32d9ecdd4d20445c647d2d17ba1729d02b6d4c695dc1bed920bb726d87.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117730/62441d32d9ecdd4d20445c647d2d17ba1729d02b6d4c695dc1bed920bb726d87.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,elia-nikitis/athena-pallas-village/pOc_XbSLGYZTLd8BBbPgZ7AAogjfbyKq3LUHpJ2HNx50i6OWG0khGbIFflii0jPRROceUqBEVYSU0w2JjN1wZIu0xQAViHLWACagJCQnIhHBHilwe5BOfSTasEARuG50IY8rBKAYuEyvQNAgBjAQYLCHfVnw/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -139,9 +180,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/25106/65b7f3497e708d01ffd98bf77ac8518d5772b27ef772f5d9d767bf76ed48f2e0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/25106/65b7f3497e708d01ffd98bf77ac8518d5772b27ef772f5d9d767bf76ed48f2e0.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,fanes/medblue-fanes-ex-nautica-blue/pytjvc5YqHbeaRX3U1PhsrAAogBoE7Spt6Y_2QGpN3xua9ygAAAACCzAQAnMwEAAcAEgAqBFdFWlkw8YLN1wZIlU1QQViHLWADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByP54BkwGUAZUBmAEfABwBAgAWBBcCEu0DQK19EfFCTJpSTwBL3DBQABuFhAEd9c0PIBoN2YPCCQESYwEOYwECDaEqn3Q/?operator=WEZY&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,fanes/medblue-fanes-ex-nautica-blue/pytjvc5YqHbeaRX3U1PhsrAAogBoE7Spt6Y_2QGpN3xua9ygAAAACCzAQAnMwEAAcAEgAqBFdFWlkwtpLN1wZIlU1QQViHLWADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByP54BkwGUAZUBmAEfABwBAgAWBBcCEu0DQK19EfFCTJpSTwBL3DBQABuFhAEd9c0PIBoN2YPCCQESYwEOYwECDXTvIpk/?operator=WEZY&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,fanes/medblue-fanes-ex-nautica-blue/pytjvc5YqHbeaRX3U1PhsrAAogBoE7Spt6Y_2QGpN3xua9ygAAAACCzAQAnMwEAAcAEgAqBFdFWlkw2JjN1wZIlU1QQViHLWADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByP54BkwGUAZUBmAEfABwBAgAWBBcCEu0DQK19EfFCTJpSTwBL3DBQABuFhAEd9c0PIBoN2YPCCQESYwEOYwECDYmO9iA/?operator=WEZY&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Coral Travel"
@@ -160,9 +205,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1528/28b545289f303cd3f995a088b0513c89c2e9e5d48de284baf04a40810155bce9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1528/28b545289f303cd3f995a088b0513c89c2e9e5d48de284baf04a40810155bce9.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,afandu/afandou-bay/pkT34Gw1Jm8ZSB8uFAtqigAAog8AFvauWNZ9HmMWwq8-G21GFzgiW3JFQUhXP8XUjtBHcqBEVDQ1gw8YLN1wZIqU9QAVjHK2ACagJIQnIgHBH4C7kEhusaqwQrGJmaMRunpT4BpOKooQICAGMBAgvH84Xd/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,afandu/afandou-bay/pkT34Gw1Jm8ZSB8uFAtqigAAog8AFvauWNZ9HmMWwq8-G21GFzgiW3JFQUhXP8XUjtBHcqBEVDQ1gwtpLN1wZIqU9QAVjHK2ACagJIQnIgHBH4C7kEhusaqwQrGJmaMRunpT4BpOKooQICAGMBAgsWwBj_/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,afandu/afandou-bay/pkT34Gw1Jm8ZSB8uFAtqigAAog8AFvauWNZ9HmMWwq8-G21GFzgiW3JFQUhXP8XUjtBHcqBEVDQ1gw2JjN1wZIqU9QAVjHK2ACagJIQnIgHBH4C7kEhusaqwQrGJmaMRunpT4BpOKooQICAGMBAgvQNwbK/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -181,9 +230,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/MJTSUNR/1d27b93b991a79a92a6b10c1a669571b2af8b9c414d8d3e242e60fa0184a1cea.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/MJTSUNR/1d27b93b991a79a92a6b10c1a669571b2af8b9c414d8d3e242e60fa0184a1cea.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,mithymna/sunrise/pypXl6U_3dUMuiN6ZK4l2wAAogKqiVz8ErRCO0DYCu0m3FOS2kdhvnZmJ-InRv3L_3bJEqBFZJVFgw8YLN1wZIwU9QQViPLGACckAaABUHFwBYCFwCQI0DW7-DAVPMXVIAXvIeS-1DYQBM-PlEDfDbjQkgAFHHibDltgFP6ukJXaSbs4pPAgxjAQILqthXEg/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,mithymna/sunrise/pypXl6U_3dUMuiN6ZK4l2wAAogKqiVz8ErRCO0DYCu0m3FOS2kdhvnZmJ-InRv3L_3bJEqBFZJVFgwtpLN1wZIwU9QQViPLGACckAaABUHFwBYCFwCQI0DW7-DAVPMXVIAXvIeS-1DYQBM-PlEDfDbjQkgAFHHibDltgFP6ukJXaSbs4pPAgxjAQIL52hmiQ/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,mithymna/sunrise/pypXl6U_3dUMuiN6ZK4l2wAAogKqiVz8ErRCO0DYCu0m3FOS2kdhvnZmJ-InRv3L_3bJEqBFZJVFgw2JjN1wZIwU9QQViPLGACckAaABUHFwBYCFwCQI0DW7-DAVPMXVIAXvIeS-1DYQBM-PlEDfDbjQkgAFHHibDltgFP6ukJXaSbs4pPAgxjAQILtIO1XA/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -202,9 +255,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20264/f2d96849fb188ab0e98eda4a400a9f016a5fc176753e058c6511f0ec14214d29.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20264/f2d96849fb188ab0e98eda4a400a9f016a5fc176753e058c6511f0ec14214d29.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/hersonissos-palace/pJiCWAFBCndcCkkLOM09XvAAogZjmUnzNLXyeO0VDPQfwK6lFfHOlbRKhP_JtipzyycX8qBEJWQkUw8YLN1wZI8U9QAVj3K2ACagJBSXIhHBGongEb87FGGI7ZHKsEwP8kuQQPAbKfyugEAhJjAQILFzCJrw/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/hersonissos-palace/pJiCWAFBCndcCkkLOM09XvAAogZjmUnzNLXyeO0VDPQfwK6lFfHOlbRKhP_JtipzyycX8qBEJWQkUwtpLN1wZI8U9QAVj3K2ACagJBSXIhHBGongEb87FGGI7ZHKsEwP8kuQQPAbKfyugEAhJjAQILG2_GWw/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/hersonissos-palace/pJiCWAFBCndcCkkLOM09XvAAogZjmUnzNLXyeO0VDPQfwK6lFfHOlbRKhP_JtipzyycX8qBEJWQkUw2JjN1wZI8U9QAVj3K2ACagJBSXIhHBGongEb87FGGI7ZHKsEwP8kuQQPAbKfyugEAhJjAQIL5jA6Zw/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -223,9 +280,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117129/2892fe047d804a2794201e7429e759680ec531caa399da63a877fd8bbba90d18.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117129/2892fe047d804a2794201e7429e759680ec531caa399da63a877fd8bbba90d18.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/kyma-beach/pWXPZrhnyzTxrOjMFE5MPJAAogMMVaQDmugwZY1aZKHQJAWBk1iihwN4JKBN8P7gxRdI4qBEVYSU0w8YLN1wZIzVBQAVj3K2ACagJIQnIhHBGJkwerBNz1S7kEFhvyukEY24dKAbbJ6dINAgBjAQIGtNUXOw/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/kyma-beach/pWXPZrhnyzTxrOjMFE5MPJAAogMMVaQDmugwZY1aZKHQJAWBk1iihwN4JKBN8P7gxRdI4qBEVYSU0wtpLN1wZIzVBQAVj3K2ACagJIQnIhHBGJkwerBNz1S7kEFhvyukEY24dKAbbJ6dINAgBjAQIGYOnz9A/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/kyma-beach/pWXPZrhnyzTxrOjMFE5MPJAAogMMVaQDmugwZY1aZKHQJAWBk1iihwN4JKBN8P7gxRdI4qBEVYSU0w2JjN1wZIzVBQAVj3K2ACagJIQnIhHBGJkwerBNz1S7kEFhvyukEY24dKAbbJ6dINAgBjAQIG5hsRJw/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -244,9 +305,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/MJTDELF/d804ddd038acb5be7dad7521787d07954f43069bf9e4f9401de5d57bfbacb111.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/MJTDELF/d804ddd038acb5be7dad7521787d07954f43069bf9e4f9401de5d57bfbacb111.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,mithymna/delfinia/pV2-hutb2hhG_-XRcNokEvAAoga_yirsJLg375eGkmc5xR9C2kdhvnZmJ-InRv3L_3bJEqBFZJVFgw8YLN1wZI9VBQQViPLGACckAaABUHFwBcCFgAQI8DW7-DAVPMXVIAXvIeS-1DYQBM-PlEDfDbjQkgAFGzi4TltgFP_uc1XaSbs4pPAgxjAQILYgY3Yg/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,mithymna/delfinia/pV2-hutb2hhG_-XRcNokEvAAoga_yirsJLg375eGkmc5xR9C2kdhvnZmJ-InRv3L_3bJEqBFZJVFgwtpLN1wZI9VBQQViPLGACckAaABUHFwBcCFgAQI8DW7-DAVPMXVIAXvIeS-1DYQBM-PlEDfDbjQkgAFGzi4TltgFP_uc1XaSbs4pPAgxjAQILMzuRzA/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,mithymna/delfinia/pV2-hutb2hhG_-XRcNokEvAAoga_yirsJLg375eGkmc5xR9C2kdhvnZmJ-InRv3L_3bJEqBFZJVFgw2JjN1wZI9VBQQViPLGACckAaABUHFwBcCFgAQI8DW7-DAVPMXVIAXvIeS-1DYQBM-PlEDfDbjQkgAFGzi4TltgFP_uc1XaSbs4pPAgxjAQILnBicvg/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -265,14 +330,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9987/65da2f1d98d1155b5978b8c6dc3ee7a12cb668d800df304453c8c78720222f4b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9987/65da2f1d98d1155b5978b8c6dc3ee7a12cb668d800df304453c8c78720222f4b.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,koutouloufari/esperides-villas/pf8wJCSWYLCRU_DEjRTUYdAAogmWk9TOkj8aZfsJr22xygKBDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw8YLN1wZIjlJQAVj3K2ACagJIQnIgHBGDTrkE8uEZqwQRGPLtMRuYqUQBoKbwoQICAGMBAgtMkWLS/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,koutouloufari/esperides-villas/pf8wJCSWYLCRU_DEjRTUYdAAogmWk9TOkj8aZfsJr22xygKBDTplN5fDPrTf-Y1psvjt4qBEVDQ1gwtpLN1wZIjlJQAVj3K2ACagJIQnIgHBGDTrkE8uEZqwQRGPLtMRuYqUQBoKbwoQICAGMBAgvLAYkc/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,koutouloufari/esperides-villas/pf8wJCSWYLCRU_DEjRTUYdAAogmWk9TOkj8aZfsJr22xygKBDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw2JjN1wZIjlJQAVj3K2ACagJIQnIgHBGDTrkE8uEZqwQRGPLtMRuYqUQBoKbwoQICAGMBAguHM3ka/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Acrotel Athena Pallas",
     "price": 10561.0,
     "dates": "2027-07-02 - 2027-07-09",
@@ -294,6 +364,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Ramada Loutraki Poseidon Resort",
     "price": 10637.0,
     "dates": "2027-07-27 - 2027-08-03",
@@ -307,9 +379,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/1223/3bf459d7e3311fa4b8688a175b058aa1d5f2565f482aa547edfd8cb3733f59cd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/1223/3bf459d7e3311fa4b8688a175b058aa1d5f2565f482aa547edfd8cb3733f59cd.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,zatoka-koryncka,loutraki/poseidon-resort/pql_LF0lLwihkmT4i6vBXJAAogNz-Enzs43_sZc9vXFSyGFpTzYmxAxbFXOI_9-W6GEBgqBFJOQlcw8YLN1wZIjVNQQVi3MGACagRDQWdRcjifARUHFwBWA1gFChZAsgcR8AEQhSoZpzVTm0BSAEwOS-ydAWEAHf-kRw9bIKWwiwkNAAINYwECDOAl2Ng/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,zatoka-koryncka,loutraki/poseidon-resort/pql_LF0lLwihkmT4i6vBXJAAogNz-Enzs43_sZc9vXFSyGFpTzYmxAxbFXOI_9-W6GEBgqBFJOQlcwtpLN1wZIjVNQQVi3MGACagRDQWdRcjifARUHFwBWA1gFChZAsgcR8AEQhSoZpzVTm0BSAEwOS-ydAWEAHf-kRw9bIKWwiwkNAAINYwECDNEuHnM/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,zatoka-koryncka,loutraki/poseidon-resort/pql_LF0lLwihkmT4i6vBXJAAogNz-Enzs43_sZc9vXFSyGFpTzYmxAxbFXOI_9-W6GEBgqBFJOQlcw2JjN1wZIjVNQQVi3MGACagRDQWdRcjifARUHFwBWA1gFChZAsgcR8AEQhSoZpzVTm0BSAEwOS-ydAWEAHf-kRw9bIKWwiwkNAAINYwECDJp_9fo/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -328,9 +404,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ONHO/IMG/2446/d5403bf160e765e624224ceb64796338647819f0f692872f21f89f41194731de.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ONHO/IMG/2446/d5403bf160e765e624224ceb64796338647819f0f692872f21f89f41194731de.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sissi/castello-boutique-ressort-and-spa/pGh1rUPBTBKzccryLX6iW6AAogf9xahLSm_7R3ucd1c56JTKt7pwSG9fAT1CKMFbleBxUqBE9OSE8w8YLN1wZI3lNQAVj3K2ACagJCQnIfHBGOExuwpwIY9gWrBODTAbkEigIB_4OjBAESYwIAY7jJSMA/?operator=ONHO&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sissi/castello-boutique-ressort-and-spa/pGh1rUPBTBKzccryLX6iW6AAogf9xahLSm_7R3ucd1c56JTKt7pwSG9fAT1CKMFbleBxUqBE9OSE8wtpLN1wZI3lNQAVj3K2ACagJCQnIfHBGOExuwpwIY9gWrBODTAbkEigIB_4OjBAESYwIAYzJXIB4/?operator=ONHO&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sissi/castello-boutique-ressort-and-spa/pGh1rUPBTBKzccryLX6iW6AAogf9xahLSm_7R3ucd1c56JTKt7pwSG9fAT1CKMFbleBxUqBE9OSE8w2JjN1wZI3lNQAVj3K2ACagJCQnIfHBGOExuwpwIY9gWrBODTAbkEigIB_4OjBAESYwIAYzEAm0Q/?operator=ONHO&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Onholidays"
@@ -349,12 +429,33 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8566/c63e582401f55630b7890603f350283e5b21553ff188cb579ef9a49e587817ee.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8566/c63e582401f55630b7890603f350283e5b21553ff188cb579ef9a49e587817ee.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,istron/istron-bay/pqrxbff5GpC9yZ5vqlz5VnAAogU_UtPkcrjCgZ6KgP9In4rgAAAAAlzgQAP84EAAcAAAAqBFdFWlkw8YLN1wZI7lNQQViPLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYLEuIDEYI_QKs-TIIvTwBL5ZYBUAAdndUQIBobk7h_DZ7IwggBEmMBDGMBAguxzYnv/?operator=WEZY&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,istron/istron-bay/pqrxbff5GpC9yZ5vqlz5VnAAogU_UtPkcrjCgZ6KgP9In4rgAAAAAlzgQAP84EAAcAAAAqBFdFWlkwtpLN1wZI7lNQQViPLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYLEuIDEYI_QKs-TIIvTwBL5ZYBUAAdndUQIBobk7h_DZ7IwggBEmMBDGMBAgvo1t8n/?operator=WEZY&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,istron/istron-bay/pqrxbff5GpC9yZ5vqlz5VnAAogU_UtPkcrjCgZ6KgP9In4rgAAAAAlzgQAP84EAAcAAAAqBFdFWlkw2JjN1wZI7lNQQViPLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYLEuIDEYI_QKs-TIIvTwBL5ZYBUAAdndUQIBobk7h_DZ7IwggBEmMBDGMBAgsPyvYg/?operator=WEZY&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "Villa D  Oro Luxury Villas and Suites",
+    "price": 10867.0,
+    "dates": "2027-07-09 - 2027-07-16",
+    "checkin_date": "2027-07-09",
+    "checkout_date": "2027-07-16",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117671/6c34762d76fd6dc4a6a56791c1716c06493eed0748619093ea2c4d48105b16e3.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117671/6c34762d76fd6dc4a6a56791c1716c06493eed0748619093ea2c4d48105b16e3.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,paliouri/villa-d-oro-9/pQ-0T0MH8OgaNgg9gxmi7RAAogWtj3OBpkurwi4ztMKpg2PWG0khGbIFflii0jPRROceUqBEVYSU0w2JjN1wZI81RQAViHLWACagJCQnIhHBGnlwe5BKLTTasEARvdhUYY4p5IAcD64_QNAhJjAQILlLXQYA/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   },
   {
     "hotel_name": "Zeus Dolce Athens",
@@ -370,9 +471,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29674/b062820d36b61382eaae7bdd9526847536ad949a3219b369d6c9c633fc3aa4d6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29674/b062820d36b61382eaae7bdd9526847536ad949a3219b369d6c9c633fc3aa4d6.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,attyka,vravrona/mare-nostrum-thalasso-vravrona/pFQ7ygzL7UpF6zfNeLelwZAAogCiYEyUfiYieS77_BW0YIhSVnzH90mxRZMVBjrr9S9AwqBEJWQkUw8YLN1wZI-VVQAVj3K2ACagJCQnIjHBHq5wEbzdRHGPPaH6sEyvcfuQTjpAEBupmrtwUCEmMBAgvpZsfJ/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,attyka,vravrona/mare-nostrum-thalasso-vravrona/pFQ7ygzL7UpF6zfNeLelwZAAogCiYEyUfiYieS77_BW0YIhSVnzH90mxRZMVBjrr9S9AwqBEJWQkUwtpLN1wZI-VVQAVj3K2ACagJCQnIjHBHq5wEbzdRHGPPaH6sEyvcfuQTjpAEBupmrtwUCEmMBAgul4mxH/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,attyka,vravrona/mare-nostrum-thalasso-vravrona/pFQ7ygzL7UpF6zfNeLelwZAAogCiYEyUfiYieS77_BW0YIhSVnzH90mxRZMVBjrr9S9AwqBEJWQkUw2JjN1wZI-VVQAVj3K2ACagJCQnIjHBHq5wEbzdRHGPPaH6sEyvcfuQTjpAEBupmrtwUCEmMBAgvigl2N/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -391,9 +496,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/EFLAPAS/dd9dfa168deb6b119dd9a5c34252fb990e15a6b56c075e127901cdf42fd662ba.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/EFLAPAS/dd9dfa168deb6b119dd9a5c34252fb990e15a6b56c075e127901cdf42fd662ba.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kefalonia,lixouri/apollonion-asterias-resort-spa-9/pHHBwGBVEmFnT-PZKyhJ8tAAogML32uBewCxCBAxOePqNfWOn6HpiqmRxXNPY49W7jvwkqBEdSQ1Mw8YLN1wZIoFZQQViXLmADcj0VBxcAWAhcAlYAQMoGHSUPFVvNggFSrwhTAF6KcWHtQ0sAAbXYjgENvv3DCCAAUZmCvPt0ARJjAQJjAQILA1BGFQ/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kefalonia,lixouri/apollonion-asterias-resort-spa-9/pHHBwGBVEmFnT-PZKyhJ8tAAogML32uBewCxCBAxOePqNfWOn6HpiqmRxXNPY49W7jvwkqBEdSQ1MwtpLN1wZIoFZQQViXLmADcj0VBxcAWAhcAlYAQMoGHSUPFVvNggFSrwhTAF6KcWHtQ0sAAbXYjgENvv3DCCAAUZmCvPt0ARJjAQJjAQILkFEM9Q/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kefalonia,lixouri/apollonion-asterias-resort-spa-9/pHHBwGBVEmFnT-PZKyhJ8tAAogML32uBewCxCBAxOePqNfWOn6HpiqmRxXNPY49W7jvwkqBEdSQ1Mw2JjN1wZIoFZQQViXLmADcj0VBxcAWAhcAlYAQMoGHSUPFVvNggFSrwhTAF6KcWHtQ0sAAbXYjgENvv3DCCAAUZmCvPt0ARJjAQJjAQILaP0L2w/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -412,9 +521,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ZTHRANE/482c8e6c228a292819e59eeaab63a13cdf6cce1482c9de50b7a35da9d5b69ee6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ZTHRANE/482c8e6c228a292819e59eeaab63a13cdf6cce1482c9de50b7a35da9d5b69ee6.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,planos/mediterranee-planos/pfuf0ymZ6md3ejJiVL0FnkAAogNcIrafV-qBT0VU9PTPw1L-CXKSz20YxbRXPCffpDuU0qBFZJVFgw8YLN1wZIvVdQQVjfK2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMz9ZEDcrbjQkgAF2H85LwhQJRtbfDwRxP96AOAg5jAQIN80Z6WQ/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,planos/mediterranee-planos/pfuf0ymZ6md3ejJiVL0FnkAAogNcIrafV-qBT0VU9PTPw1L-CXKSz20YxbRXPCffpDuU0qBFZJVFgwtpLN1wZIvVdQQVjfK2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMz9ZEDcrbjQkgAF2H85LwhQJRtbfDwRxP96AOAg5jAQIN-0RmAg/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,planos/mediterranee-planos/pfuf0ymZ6md3ejJiVL0FnkAAogNcIrafV-qBT0VU9PTPw1L-CXKSz20YxbRXPCffpDuU0qBFZJVFgw2JjN1wZIvVdQQVjfK2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMz9ZEDcrbjQkgAF2H85LwhQJRtbfDwRxP96AOAg5jAQINa6a0Bg/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -433,9 +546,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/KVAILMA/c65e48491a6a6cb14db68aea3d0d6bce519675408cabdc90617028b7acda2529.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/KVAILMA/c65e48491a6a6cb14db68aea3d0d6bce519675408cabdc90617028b7acda2529.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,thassos,skala-prinos/ilio-mare/pwUnlTv2-XWWAR-O5u3brJAAogT3d0aKcD-pKFgXCZkiBQ_9gzUdUQTzFcXcaX0wS4VY4qBEdSQ1Mw8YLN1wZI6VdQQVinLGADcj4VBxcAWAhcAlYAHXsPFUC6BVvJwQFSggtTAF71L2HtQ0sAAeTrlQENheq8CCAAUYGr_ZOpAQESYwECYwECC88WQLY/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,thassos,skala-prinos/ilio-mare/pwUnlTv2-XWWAR-O5u3brJAAogT3d0aKcD-pKFgXCZkiBQ_9gzUdUQTzFcXcaX0wS4VY4qBEdSQ1MwtpLN1wZI6VdQQVinLGADcj4VBxcAWAhcAlYAHXsPFUC6BVvJwQFSggtTAF71L2HtQ0sAAeTrlQENheq8CCAAUYGr_ZOpAQESYwECYwECC57NaDI/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,thassos,skala-prinos/ilio-mare/pwUnlTv2-XWWAR-O5u3brJAAogT3d0aKcD-pKFgXCZkiBQ_9gzUdUQTzFcXcaX0wS4VY4qBEdSQ1Mw2JjN1wZI6VdQQVinLGADcj4VBxcAWAhcAlYAHXsPFUC6BVvJwQFSggtTAF71L2HtQ0sAAeTrlQENheq8CCAAUYGr_ZOpAQESYwECYwECC0oE6zA/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -454,9 +571,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HERALMY/d4773dc78e50f13eb7ffe94afe1ff9e4efb11544274b39122af19902412b7487.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HERALMY/d4773dc78e50f13eb7ffe94afe1ff9e4efb11544274b39122af19902412b7487.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,koutsounari/almyra-village/pjp0PgnfOOhc4Df00eFAVvAAogQHa_XHc3nxdWANIR-gTZ4EULQ41QtLQHBd1RDqil2vEqBFZJVFgw8YLN1wZIjVhQQVjXLGACcj8aABUHFwBcA1gFQI8DW810U7g4UgBe-FJL7UNhAEz4-UQN89uNCSAAUZeBrY2NAU-Y5j1dzNXz4XgCDGMBAgsYKu_H/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,koutsounari/almyra-village/pjp0PgnfOOhc4Df00eFAVvAAogQHa_XHc3nxdWANIR-gTZ4EULQ41QtLQHBd1RDqil2vEqBFZJVFgwtpLN1wZIjVhQQVjXLGACcj8aABUHFwBcA1gFQI8DW810U7g4UgBe-FJL7UNhAEz4-UQN89uNCSAAUZeBrY2NAU-Y5j1dzNXz4XgCDGMBAgsoklKh/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,koutsounari/almyra-village/pjp0PgnfOOhc4Df00eFAVvAAogQHa_XHc3nxdWANIR-gTZ4EULQ41QtLQHBd1RDqil2vEqBFZJVFgw2JjN1wZIjVhQQVjXLGACcj8aABUHFwBcA1gFQI8DW810U7g4UgBe-FJL7UNhAEz4-UQN89uNCSAAUZeBrY2NAU-Y5j1dzNXz4XgCDGMBAgveUCKG/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -475,9 +596,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4758/758266590a428ab7de1131939555d9d6c56c20b3278b35d2ed77c71a4c490e34.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4758/758266590a428ab7de1131939555d9d6c56c20b3278b35d2ed77c71a4c490e34.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/kipriotis-maris-suites-ex-iberostar/p2qwKb-DW-hPq2ZIg0QziQAAogV4EHrLzbxowgCpBqj5OtOjc0Nj9BK8ZDFtZfumABxaMqBFJOQlcw8YLN1wZI2VhQQVifLWACcjsVBxcAVgNYBQoPQLkHEb8dENMhGfMiUsBlUwBMoAJhzHVLAF_owiQdhfghD_0BDYSZjAkgAAIOYwECDW_2THI/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/kipriotis-maris-suites-ex-iberostar/p2qwKb-DW-hPq2ZIg0QziQAAogV4EHrLzbxowgCpBqj5OtOjc0Nj9BK8ZDFtZfumABxaMqBFJOQlcwtpLN1wZI2VhQQVifLWACcjsVBxcAVgNYBQoPQLkHEb8dENMhGfMiUsBlUwBMoAJhzHVLAF_owiQdhfghD_0BDYSZjAkgAAIOYwECDTrorLM/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/kipriotis-maris-suites-ex-iberostar/p2qwKb-DW-hPq2ZIg0QziQAAogV4EHrLzbxowgCpBqj5OtOjc0Nj9BK8ZDFtZfumABxaMqBFJOQlcw2JjN1wZI2VhQQVifLWACcjsVBxcAVgNYBQoPQLkHEb8dENMhGfMiUsBlUwBMoAJhzHVLAF_owiQdhfghD_0BDYSZjAkgAAIOYwECDf1CXKg/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -496,9 +621,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20292/1090ebe0bdaf539911ffd167b3bf555a177d5d903a240a8c28700c514334c408.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20292/1090ebe0bdaf539911ffd167b3bf555a177d5d903a240a8c28700c514334c408.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/sentido-aegean-pearl/pq2bchcW8VrbuSFUh99DCEAAoganRmz-ozHqceFVjDqB0aYFFfHOlbRKhP_JtipzyycX8qBEJWQkUw8YLN1wZI7lhQAVj3K2ACagJCQnIhHBHEngEbirhHGP-wHqsEnKEiuQQPAbK5w4kFAhJjAQMMgAIPdw/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/sentido-aegean-pearl/pq2bchcW8VrbuSFUh99DCEAAoganRmz-ozHqceFVjDqB0aYFFfHOlbRKhP_JtipzyycX8qBEJWQkUwtpLN1wZI7lhQAVj3K2ACagJCQnIhHBHEngEbirhHGP-wHqsEnKEiuQQPAbK5w4kFAhJjAQMMxU9Xfw/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/sentido-aegean-pearl/pq2bchcW8VrbuSFUh99DCEAAoganRmz-ozHqceFVjDqB0aYFFfHOlbRKhP_JtipzyycX8qBEJWQkUw2JjN1wZI7lhQAVj3K2ACagJCQnIhHBHEngEbirhHGP-wHqsEnKEiuQQPAbK5w4kFAhJjAQMMY36vrw/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -517,9 +646,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/ATHERRE/e2e608297bd69596010a6c63fb72f5172a57d9e09bd41c89e3bc147695c8fa84.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/ATHERRE/e2e608297bd69596010a6c63fb72f5172a57d9e09bd41c89e3bc147695c8fa84.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,evia,eretria/eretria-village/poClDUnKrzL92UVA9IkyG4AAogz9qvhffeLSuj5It-YtMd28sa4Z7uPvYFiy68t23hHiYqBEdSQ1Mw8YLN1wZInllQQViPLGADcj0XBxUAXANYBVYCQMoGHWMPFFLzZVMAW7oKXpyLAWHtQ0sAAYTukwEN5Oe-CCAAUZq1kNRXARJjAQJjAQILBJhz1A/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,evia,eretria/eretria-village/poClDUnKrzL92UVA9IkyG4AAogz9qvhffeLSuj5It-YtMd28sa4Z7uPvYFiy68t23hHiYqBEdSQ1MwtpLN1wZInllQQViPLGADcj0XBxUAXANYBVYCQMoGHWMPFFLzZVMAW7oKXpyLAWHtQ0sAAYTukwEN5Oe-CCAAUZq1kNRXARJjAQJjAQILKzIDnA/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,evia,eretria/eretria-village/poClDUnKrzL92UVA9IkyG4AAogz9qvhffeLSuj5It-YtMd28sa4Z7uPvYFiy68t23hHiYqBEdSQ1Mw2JjN1wZInllQQViPLGADcj0XBxUAXANYBVYCQMoGHWMPFFLzZVMAW7oKXpyLAWHtQ0sAAYTukwEN5Oe-CCAAUZq1kNRXARJjAQJjAQILvRTS2w/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -538,9 +671,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9564/8a628d1a46fea48725534c24015756c1081326b997217d7de83286bd1c1b7d35.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9564/8a628d1a46fea48725534c24015756c1081326b997217d7de83286bd1c1b7d35.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,bali/filion-suites-resort/puBFBYH1FvR_0yWoU7HBTQAAogezPApmITi2JRlWLDQdoQ9hDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw8YLN1wZIpFlQAVj3K2ACagJBSXIgHBHcSrkEmeUZqwQRGIaBMBudwD4B2s-klwICEmMBBgvp3UlQ/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,bali/filion-suites-resort/puBFBYH1FvR_0yWoU7HBTQAAogezPApmITi2JRlWLDQdoQ9hDTplN5fDPrTf-Y1psvjt4qBEVDQ1gwtpLN1wZIpFlQAVj3K2ACagJBSXIgHBHcSrkEmeUZqwQRGIaBMBudwD4B2s-klwICEmMBBgsEhPYC/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,bali/filion-suites-resort/puBFBYH1FvR_0yWoU7HBTQAAogezPApmITi2JRlWLDQdoQ9hDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw2JjN1wZIpFlQAVj3K2ACagJBSXIgHBHcSrkEmeUZqwQRGIaBMBudwD4B2s-klwICEmMBBgseYUV4/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -559,12 +696,33 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4985/ba8df2ac619604a4b6b9a3399103a95d83ae81474a476e269bbfaa2f76777adf.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4985/ba8df2ac619604a4b6b9a3399103a95d83ae81474a476e269bbfaa2f76777adf.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,sfakaki/white-olive-elite-rethymno-15/pgyU3wYTqrSlPZCfBXNw_rAAogWtPbC0D85xDVt_SJGmT0FvoGcaY4PIn0tI7JwY4h9j0qBFJOQlcw8YLN1wZIw1lQQVjXLGACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRoh8QuiYZqRlT4hdSAEygVEuqdGEAD5DdRx0lILb4igkNAAIMYwECCxj_Zgw/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,sfakaki/white-olive-elite-rethymno-15/pgyU3wYTqrSlPZCfBXNw_rAAogWtPbC0D85xDVt_SJGmT0FvoGcaY4PIn0tI7JwY4h9j0qBFJOQlcwtpLN1wZIw1lQQVjXLGACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRoh8QuiYZqRlT4hdSAEygVEuqdGEAD5DdRx0lILb4igkNAAIMYwECC61SoQU/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,sfakaki/white-olive-elite-rethymno-15/pgyU3wYTqrSlPZCfBXNw_rAAogWtPbC0D85xDVt_SJGmT0FvoGcaY4PIn0tI7JwY4h9j0qBFJOQlcw2JjN1wZIw1lQQVjXLGACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRoh8QuiYZqRlT4hdSAEygVEuqdGEAD5DdRx0lILb4igkNAAIMYwECC136418/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
+  },
+  {
+    "hotel_name": "Makedonia Palace",
+    "price": 11463.0,
+    "dates": "2027-07-04 - 2027-07-11",
+    "checkin_date": "2027-07-04",
+    "checkout_date": "2027-07-11",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118972/90e208a4ccc56f61079086ac5f7cc55568c3a947a946e53d21192b99ff9bb5eb.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118972/90e208a4ccc56f61079086ac5f7cc55568c3a947a946e53d21192b99ff9bb5eb.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,saloniki,c/classical-makedonia-palace/ph1zdiB6q2fzS-PGdqPpYQAAog0dsw7w2Y7pe3jbqn1fH3d94fl0l7FMe7617zmbwuIQoqBEVYSU0w2JjN1wZIx1lQAViPLGADagJCQnIlHBG8oQe5BKbJTasE8QEbpftBGP6cSwHJg_P2DQESYwEMYwECCzLD-Lw/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   },
   {
     "hotel_name": "ALBATROS SPA & RESORT",
@@ -580,9 +738,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/116424/c73c8bac5d79c190b061dec19db95367abcd0f0daaefc5ce02905e7b5d642d9c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/116424/c73c8bac5d79c190b061dec19db95367abcd0f0daaefc5ce02905e7b5d642d9c.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/albatros-hersonissos/pVgjU1bRdQgp6P68hDaFYcAAogSNzgwPCTYffm9iHWMCE03xk1iihwN4JKBN8P7gxRdI4qBEVYSU0w8YLN1wZIy1lQAVj3K2ACagJIQnIhHBHIjQerBJ37S7kEFhuQu0sY1KJOAbv7r-0OAgBjAQILEO7Fyg/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/albatros-hersonissos/pVgjU1bRdQgp6P68hDaFYcAAogSNzgwPCTYffm9iHWMCE03xk1iihwN4JKBN8P7gxRdI4qBEVYSU0wtpLN1wZIy1lQAVj3K2ACagJIQnIhHBHIjQerBJ37S7kEFhuQu0sY1KJOAbv7r-0OAgBjAQIL2SUu5Q/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/albatros-hersonissos/pVgjU1bRdQgp6P68hDaFYcAAogSNzgwPCTYffm9iHWMCE03xk1iihwN4JKBN8P7gxRdI4qBEVYSU0w2JjN1wZIy1lQAVj3K2ACagJIQnIhHBHIjQerBJ37S7kEFhuQu0sY1KJOAbv7r-0OAgBjAQILRqhhKA/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -601,14 +763,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/ATHNEPO/14852f7f441432aff8b6b61b05857a7a680017bbaf0145f6fc82ec626d2c0c9d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/ATHNEPO/14852f7f441432aff8b6b61b05857a7a680017bbaf0145f6fc82ec626d2c0c9d.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,evia,malakonta/negroponte-resort/ptrtXAtfRmA11qzIA9eKDkAAogxzkUaVVCFmyqCSPKU0ijWMsa4Z7uPvYFiy68t23hHiYqBEdSQ1Mw8YLN1wZIp1pQQViPLGADcjwVBxcAWAhcAlYAQMoGHWMPFFLzZVMAW8QfXpJ2Ye1DSwABvLmfAQ2snLMIIABRzIGp1FcBEmMBAmMBAgZS5Mf0/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,evia,malakonta/negroponte-resort/ptrtXAtfRmA11qzIA9eKDkAAogxzkUaVVCFmyqCSPKU0ijWMsa4Z7uPvYFiy68t23hHiYqBEdSQ1MwtpLN1wZIp1pQQViPLGADcjwVBxcAWAhcAlYAQMoGHWMPFFLzZVMAW8QfXpJ2Ye1DSwABvLmfAQ2snLMIIABRzIGp1FcBEmMBAmMBAgYRroBm/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,evia,malakonta/negroponte-resort/ptrtXAtfRmA11qzIA9eKDkAAogxzkUaVVCFmyqCSPKU0ijWMsa4Z7uPvYFiy68t23hHiYqBEdSQ1Mw2JjN1wZIp1pQQViPLGADcjwVBxcAWAhcAlYAQMoGHWMPFFLzZVMAW8QfXpJ2Ye1DSwABvLmfAQ2snLMIIABRzIGp1FcBEmMBAmMBAgaq8t_p/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Makedonia Palace",
     "price": 11572.0,
     "dates": "2027-07-30 - 2027-08-06",
@@ -630,6 +797,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Kassandra Palace",
     "price": 11592.0,
     "dates": "2027-07-10 - 2027-07-17",
@@ -643,9 +812,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/5323/5cecfc038068a48c13d1dc25ab530530888256bdc4c65236cfedbed397e6e83a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/5323/5cecfc038068a48c13d1dc25ab530530888256bdc4c65236cfedbed397e6e83a.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kriopigi/kassandra-palace/pTHznmk2EbgtpenlOlTgjmAAogpsP6mNSsznL_mbOwmX-IodQF_TKxiGKmh8b3lFF-LEsqBFJOQlcw8YLN1wZIyFpQQVifLWACagRCd2NEcjmfARUHFwBWBFgECgRAxAcR9CEQ-iwZihNMjkBTw3dSAEvoJWEAHbO_Rg-TAyCok4wJDQACDGMBAgt-U6G1/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kriopigi/kassandra-palace/pTHznmk2EbgtpenlOlTgjmAAogpsP6mNSsznL_mbOwmX-IodQF_TKxiGKmh8b3lFF-LEsqBFJOQlcwtpLN1wZIyFpQQVifLWACagRCd2NEcjmfARUHFwBWBFgECgRAxAcR9CEQ-iwZihNMjkBTw3dSAEvoJWEAHbO_Rg-TAyCok4wJDQACDGMBAguCXXyf/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kriopigi/kassandra-palace/pTHznmk2EbgtpenlOlTgjmAAogpsP6mNSsznL_mbOwmX-IodQF_TKxiGKmh8b3lFF-LEsqBFJOQlcw2JjN1wZIyFpQQVifLWACagRCd2NEcjmfARUHFwBWBFgECgRAxAcR9CEQ-iwZihNMjkBTw3dSAEvoJWEAHbO_Rg-TAyCok4wJDQACDGMBAgtRS5tu/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -664,9 +837,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/22899/7e8264f320d311dc19f7bf2854c4a434a8f41237530063bd1f85eb0dfd45fc15.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/22899/7e8264f320d311dc19f7bf2854c4a434a8f41237530063bd1f85eb0dfd45fc15.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,agios-nikolaos/blue-marine-resort-spa/pIMmKMyDXT3hD5NPKmeQMzAAogrcIHSavCgGSPBfxp_cEC8WhCYoOZJqqe0gifXNRX63sqBEJWQkUw8YLN1wZI71pQAVjHK2ACagJBSXIhHBHzsgEbkrhHGLjNH7kEufAgqwQDAdKYjp4FAhJjAQIL9ecZew/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,agios-nikolaos/blue-marine-resort-spa/pIMmKMyDXT3hD5NPKmeQMzAAogrcIHSavCgGSPBfxp_cEC8WhCYoOZJqqe0gifXNRX63sqBEJWQkUwtpLN1wZI71pQAVjHK2ACagJBSXIhHBHzsgEbkrhHGLjNH7kEufAgqwQDAdKYjp4FAhJjAQILOwQN6Q/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,agios-nikolaos/blue-marine-resort-spa/pIMmKMyDXT3hD5NPKmeQMzAAogrcIHSavCgGSPBfxp_cEC8WhCYoOZJqqe0gifXNRX63sqBEJWQkUw2JjN1wZI71pQAVjHK2ACagJBSXIhHBHzsgEbkrhHGLjNH7kEufAgqwQDAdKYjp4FAhJjAQILanvvzQ/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -685,14 +862,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/KVAROYA/ca697742ffb65eab871939623b4a00f5b5bffdc79cd756a40f30c449dca8c1d9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/KVAROYA/ca697742ffb65eab871939623b4a00f5b5bffdc79cd756a40f30c449dca8c1d9.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,thassos,potos/royal-paradise-beach/pOyqPpv9mOWTH37CJ16DgGAAogahTkZqiUmaxmVzW_bRNyoHb4_7eym2zGTzb4J7TcTiwqBFZJVFgw8YLN1wZI9VpQQVinLGACckAaABUHFwBYCFwCQI0DW7-DAVPJTFIAXvUvS-1DYQBM-PlEDfHbjQkgAFGhnZeUqQFPj5ANXbj8w9tcAgxjAQIJjPxp-w/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,thassos,potos/royal-paradise-beach/pOyqPpv9mOWTH37CJ16DgGAAogahTkZqiUmaxmVzW_bRNyoHb4_7eym2zGTzb4J7TcTiwqBFZJVFgwtpLN1wZI9VpQQVinLGACckAaABUHFwBYCFwCQI0DW7-DAVPJTFIAXvUvS-1DYQBM-PlEDfHbjQkgAFGhnZeUqQFPj5ANXbj8w9tcAgxjAQIJA3mUTA/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,thassos,potos/royal-paradise-beach/pOyqPpv9mOWTH37CJ16DgGAAogahTkZqiUmaxmVzW_bRNyoHb4_7eym2zGTzb4J7TcTiwqBFZJVFgw2JjN1wZI9VpQQVinLGACckAaABUHFwBYCFwCQI0DW7-DAVPJTFIAXvUvS-1DYQBM-PlEDfHbjQkgAFGhnZeUqQFPj5ANXbj8w9tcAgxjAQIJ9e5ygw/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Villa D  Oro Luxury Villas and Suites",
     "price": 11641.0,
     "dates": "2027-07-02 - 2027-07-09",
@@ -714,6 +896,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Sheraton Rhodes Resort",
     "price": 11659.0,
     "dates": "2027-07-08 - 2027-07-15",
@@ -727,9 +911,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1020541/6e5622cc76ca6f5aca76e67852ebc418d5853d07e43ecfce05710aec17a659e2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1020541/6e5622cc76ca6f5aca76e67852ebc418d5853d07e43ecfce05710aec17a659e2.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ialysos/sheraton-rodos-resort-ex-imperial/p9ZNKI071cOCFwSg7gBquAAAogKuLVvJDrJS0dE-LpNj2Mtblf8DzpYYhRcKYAHblSaGUqBE5LUkEw8YLN1wZIi1tQAVjvLGADagZNUFRfMTlqBFdBVzBqA1JIT3IeFg4gCgwR8aQ-Dff3lgkPBxughoNXARJjAQxjAQYLj8jgZA/?operator=NKRA&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ialysos/sheraton-rodos-resort-ex-imperial/p9ZNKI071cOCFwSg7gBquAAAogKuLVvJDrJS0dE-LpNj2Mtblf8DzpYYhRcKYAHblSaGUqBE5LUkEwtpLN1wZIi1tQAVjvLGADagZNUFRfMTlqBFdBVzBqA1JIT3IeFg4gCgwR8aQ-Dff3lgkPBxughoNXARJjAQxjAQYLM3STQw/?operator=NKRA&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ialysos/sheraton-rodos-resort-ex-imperial/p9ZNKI071cOCFwSg7gBquAAAogKuLVvJDrJS0dE-LpNj2Mtblf8DzpYYhRcKYAHblSaGUqBE5LUkEw2JjN1wZIi1tQAVjvLGADagZNUFRfMTlqBFdBVzBqA1JIT3IeFg4gCgwR8aQ-Dff3lgkPBxughoNXARJjAQxjAQYLwHlHjQ/?operator=NKRA&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
@@ -748,9 +936,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10572/063c7d18a48119342bac9ff2beba22350cddf9994b221ece2e4cd9d8dc956031.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10572/063c7d18a48119342bac9ff2beba22350cddf9994b221ece2e4cd9d8dc956031.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,kanoni/aquis-corfu-holiday-palace/p0bDiiQVuh98bqduQWpUpZAAogThLpYhwPudFTKlddygdsO8m0hqsCOzi187LRldrpaT4qBEVDQ1gw8YLN1wZImFtQAVi_LGACagJIQnIgHBHMUqsExecZuQQfGK6uMBvvxkQB5P2jmQICAGMBAguvCAbu/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,kanoni/aquis-corfu-holiday-palace/p0bDiiQVuh98bqduQWpUpZAAogThLpYhwPudFTKlddygdsO8m0hqsCOzi187LRldrpaT4qBEVDQ1gwtpLN1wZImFtQAVi_LGACagJIQnIgHBHMUqsExecZuQQfGK6uMBvvxkQB5P2jmQICAGMBAgvb4HiC/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,korfu,kanoni/aquis-corfu-holiday-palace/p0bDiiQVuh98bqduQWpUpZAAogThLpYhwPudFTKlddygdsO8m0hqsCOzi187LRldrpaT4qBEVDQ1gw2JjN1wZImFtQAVi_LGACagJIQnIgHBHMUqsExecZuQQfGK6uMBvvxkQB5P2jmQICAGMBAgsgeBvp/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -769,14 +961,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ZTHPARK/0c9fedce29dc3983683c4ac0d50e8f28eba12a74136a167579893b49f78a0595.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ZTHPARK/0c9fedce29dc3983683c4ac0d50e8f28eba12a74136a167579893b49f78a0595.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/best-western-zante-park/p599TyNzGoR8Yvyjon8npMAAogq6-Nh4f7Zon8ap9zeoQHJ-CXKSz20YxbRXPCffpDuU0qBFZJVFgw8YLN1wZInVtQQVjfK2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMq9ZEDe7bjQkgAF2H85LwhQJRy9-9wRxP4fgTAgxjAQILiQZ1Pg/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/best-western-zante-park/p599TyNzGoR8Yvyjon8npMAAogq6-Nh4f7Zon8ap9zeoQHJ-CXKSz20YxbRXPCffpDuU0qBFZJVFgwtpLN1wZInVtQQVjfK2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMq9ZEDe7bjQkgAF2H85LwhQJRy9-9wRxP4fgTAgxjAQILfWaAzQ/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/best-western-zante-park/p599TyNzGoR8Yvyjon8npMAAogq6-Nh4f7Zon8ap9zeoQHJ-CXKSz20YxbRXPCffpDuU0qBFZJVFgw2JjN1wZInVtQQVjfK2ACckAaABUHFwBcA1gFQI8DW7-DAV6-fGHtQ0sAUs0jUwBMq9ZEDe7bjQkgAF2H85LwhQJRy9-9wRxP4fgTAgxjAQIL5mXSAA/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
   {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 =======
     "hotel_name": "White Olive Elite Laganas",
@@ -818,6 +1015,8 @@
     "operator": "Best Reisen"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "White Olive Elite Laganas",
     "price": 11737.0,
     "dates": "2027-07-23 - 2027-07-30",
@@ -830,9 +1029,43 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4366/7708ae3d1f0fc23fef10d1d5f31641d0a0d22815aa458470a0570fbb46ff86f2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4366/7708ae3d1f0fc23fef10d1d5f31641d0a0d22815aa458470a0570fbb46ff86f2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/white-olive-elite/pSeyNf0JEzHkfSCbNgD7yCAAogvm-5rGMulmNv2bvTFkIwufskC9PuX4pXySsr2yUi7eoqBFJOQlcw8YLN1wZI2VtQQVjXL2ACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRtxoQ8BsZrSph3d4BSwBMxiNSB1MAD9G8Rh0tILD1iwkNAAIMYwECC9viI8c/?operator=RNBW&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/white-olive-elite/pSeyNf0JEzHkfSCbNgD7yCAAogvm-5rGMulmNv2bvTFkIwufskC9PuX4pXySsr2yUi7eoqBFJOQlcw2JjN1wZI2VtQQVjXL2ACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRtxoQ8BsZrSph3d4BSwBMxiNSB1MAD9G8Rh0tILD1iwkNAAIMYwECC8pSXig/?operator=RNBW&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Rainbow Tours"
+  },
+  {
+    "hotel_name": "Zeus Essence Ramada Athens",
+    "price": 11737.0,
+    "dates": "2027-07-01 - 2027-07-08",
+    "checkin_date": "2027-07-01",
+    "checkout_date": "2027-07-08",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29701/591e4219f2473c22f558143b622ab478bfeee61b3abe727f75c7c89b11cdcae0.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29701/591e4219f2473c22f558143b622ab478bfeee61b3abe727f75c7c89b11cdcae0.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,attyka,mati/aquis-aquamarina-mati/pshKpnp87HUQW1Cj4k49rPAAoggAw5ddTHR_woJBseCAKhG61YsTDaTu0OGoRh-bMtdLMqBEJWQkUw2JjN1wZI2VtQAVjHK2ACagJCQnIjHBGF6AEbvdRHGNDaH6sE2vcfuQTppAEButyptwUCEmMBAgvplC-n/?operator=BVBE&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Best Reisen"
+  },
+  {
+    "hotel_name": "Ammon Zeus",
+    "price": 11745.0,
+    "dates": "2027-07-09 - 2027-07-16",
+    "checkin_date": "2027-07-09",
+    "checkout_date": "2027-07-16",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117549/d4c4eda2ae557ecd6a9dc1abd804afbea0c9b9ad4bcdae0005bed2e683952aab.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117549/d4c4eda2ae557ecd6a9dc1abd804afbea0c9b9ad4bcdae0005bed2e683952aab.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kallithea/ammon-zeus/pR4es2M-jnKXdruKwPAqJvAAog35fjYRzi596TRolSyJBB4WG0khGbIFflii0jPRROceUqBEVYSU0w2JjN1wZI4VtQAViHLWACagJCQnIhHBGtlge5BJzUTasEARuusUAYlOdMAee__PUNAhJjAQILEmEO0Q/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   },
   {
     "hotel_name": "Almyros Beach Resort and Spa",
@@ -848,9 +1081,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/26830/bf2c59a282486d60ad20a30af5407ff409eb7b3d7226ef295a43786c36575c56.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/26830/bf2c59a282486d60ad20a30af5407ff409eb7b3d7226ef295a43786c36575c56.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,acharavi/cyprotel-almyros-ex-almyros-natura/p86UfyViuXrbWh4780Z0sZAAogvf10m9L8axyFOMSIu2aWTTh-DK5KZOnqcsRmr6H8gCkqBEJWQkUw8YLN1wZIlFxQAVi_LGACagJCQnIhHBHO0QEbw6pFGO7vHLkE77YmqwQgAa63j-QEAhJjAQIL3wo7PQ/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,acharavi/cyprotel-almyros-ex-almyros-natura/p86UfyViuXrbWh4780Z0sZAAogvf10m9L8axyFOMSIu2aWTTh-DK5KZOnqcsRmr6H8gCkqBEJWQkUwtpLN1wZIlFxQAVi_LGACagJCQnIhHBHO0QEbw6pFGO7vHLkE77YmqwQgAa63j-QEAhJjAQILmSkgpw/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,korfu,acharavi/cyprotel-almyros-ex-almyros-natura/p86UfyViuXrbWh4780Z0sZAAogvf10m9L8axyFOMSIu2aWTTh-DK5KZOnqcsRmr6H8gCkqBEJWQkUw2JjN1wZIlFxQAVi_LGACagJCQnIhHBHO0QEbw6pFGO7vHLkE77YmqwQgAa63j-QEAhJjAQIL1Gc_gg/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -869,9 +1106,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/9781/e4909ed043433a13702e6659c9e8b7c1a46cfac62633be41518da6baaf4f3d98.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/9781/e4909ed043433a13702e6659c9e8b7c1a46cfac62633be41518da6baaf4f3d98.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,tragaki/magique-bleu-13/psczlm4rZ9LD-ttKFfy8U-AAogmi0CHOJdVx0xzjHmyorV1LcV9Xx1Zn7_dk89wbh_t1UqBFJOQlcw8YLN1wZI7lxQQVjfK2ACagRCd2NEcjefARUHFwBWA1gFCgRAxAcR3kQZ9hsQnn1hv2FLAEzGI1IHUwAPy7xGHS0gofWLCQ0AAgxjAQILhc5_fg/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,tragaki/magique-bleu-13/psczlm4rZ9LD-ttKFfy8U-AAogmi0CHOJdVx0xzjHmyorV1LcV9Xx1Zn7_dk89wbh_t1UqBFJOQlcwtpLN1wZI7lxQQVjfK2ACagRCd2NEcjefARUHFwBWA1gFCgRAxAcR3kQZ9hsQnn1hv2FLAEzGI1IHUwAPy7xGHS0gofWLCQ0AAgxjAQILhc-RSg/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,tragaki/magique-bleu-13/psczlm4rZ9LD-ttKFfy8U-AAogmi0CHOJdVx0xzjHmyorV1LcV9Xx1Zn7_dk89wbh_t1UqBFJOQlcw2JjN1wZI7lxQQVjfK2ACagRCd2NEcjefARUHFwBWA1gFCgRAxAcR3kQZ9hsQnn1hv2FLAEzGI1IHUwAPy7xGHS0gofWLCQ0AAgxjAQILK_nn2A/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -890,9 +1131,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/9602/576ee6b22efa1670d97959d9c97fd8a80d6d25feceb86ec6b10d6664d221b74f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/9602/576ee6b22efa1670d97959d9c97fd8a80d6d25feceb86ec6b10d6664d221b74f.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/cabana-blu-lifestyle-boutique-hotel-suites-11/pNPLm_DIS5ErJJReL8h8KXAAogai3MYriHh_Vj09GUhvxvjDc0Nj9BK8ZDFtZfumABxaMqBFJOQlcw8YLN1wZIll1QQVifLWACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRq0MZ2h5TwGVSAEygAhCODku-Z2EAHe26Rg_9ASCEmYwJDQACDGMBAgvJYdWP/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/cabana-blu-lifestyle-boutique-hotel-suites-11/pNPLm_DIS5ErJJReL8h8KXAAogai3MYriHh_Vj09GUhvxvjDc0Nj9BK8ZDFtZfumABxaMqBFJOQlcwtpLN1wZIll1QQVifLWACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRq0MZ2h5TwGVSAEygAhCODku-Z2EAHe26Rg_9ASCEmYwJDQACDGMBAguScJOH/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/cabana-blu-lifestyle-boutique-hotel-suites-11/pNPLm_DIS5ErJJReL8h8KXAAogai3MYriHh_Vj09GUhvxvjDc0Nj9BK8ZDFtZfumABxaMqBFJOQlcw2JjN1wZIll1QQVifLWACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRq0MZ2h5TwGVSAEygAhCODku-Z2EAHe26Rg_9ASCEmYwJDQACDGMBAgt8qVGE/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -911,12 +1156,33 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20266/9382e222bf8d2b3b2437f1c158c96116e417d529a5128b0881b01ad24a007a4d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20266/9382e222bf8d2b3b2437f1c158c96116e417d529a5128b0881b01ad24a007a4d.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/bella-beach/p0-N2NvBmI4ENa8CPJep3EAAogIPT3YrpJziv6IuzldmJRCFFfHOlbRKhP_JtipzyycX8qBEJWQkUw8YLN1wZIk15QAVj3K2ACagJBSXIhHBGqngEbxLFGGKDSHKsE24YluQQPAYn6--cEAhJjAQILnLxxeA/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/bella-beach/p0-N2NvBmI4ENa8CPJep3EAAogIPT3YrpJziv6IuzldmJRCFFfHOlbRKhP_JtipzyycX8qBEJWQkUwtpLN1wZIk15QAVj3K2ACagJBSXIhHBGqngEbxLFGGKDSHKsE24YluQQPAYn6--cEAhJjAQILb9oShA/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/bella-beach/p0-N2NvBmI4ENa8CPJep3EAAogIPT3YrpJziv6IuzldmJRCFFfHOlbRKhP_JtipzyycX8qBEJWQkUw2JjN1wZIk15QAVj3K2ACagJBSXIhHBGqngEbxLFGGKDSHKsE24YluQQPAYn6--cEAhJjAQILuuVsOQ/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
+  },
+  {
+    "hotel_name": "The Met Hotel",
+    "price": 12074.0,
+    "dates": "2027-07-09 - 2027-07-16",
+    "checkin_date": "2027-07-09",
+    "checkout_date": "2027-07-16",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Bez wyżywienia (Self Catering)",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118973/4e92af48f680cc846c29aec00daf342fbaa99f6b369bfa8a42dce5f1be29b511.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118973/4e92af48f680cc846c29aec00daf342fbaa99f6b369bfa8a42dce5f1be29b511.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,saloniki,c/the-met/p2tlr7oDhuPnxeZHJgu39mAAogXDJ1Ql0JR8wHmv6MRfoiGWG0khGbIFflii0jPRROceUqBEVYSU0w2JjN1wZIql5QAViHLWADagJST3IkHBG9oQe5BIzJTasEARuQ_UEYip9LAfrnv_UNARJjAQxjAQILY262FA/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   },
   {
     "hotel_name": "Akti Imperial Deluxe Resort & Spa Dolce by Wyndham",
@@ -932,9 +1198,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1091/cefe772e365cb5a856640bd703aa4d5b6a0ed21cdcfd631e2fd9715564504c1f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1091/cefe772e365cb5a856640bd703aa4d5b6a0ed21cdcfd631e2fd9715564504c1f.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ixia/akti-imperial-deluxe-resort-ex-capsis-rhodes/pRNcX4KpbPwvia-5W5AMe1AAogIO509c9djCMrTPusaupPJmd1Rywc03xY2PJ6ya2QQzkqBEVDQ1gw8YLN1wZI1V5QAViXLmACagJBSXIgHBHDCLkE6e4aqwQjGPmZMRuj1TwBwuyvoQICEmMBAgsay3mh/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ixia/akti-imperial-deluxe-resort-ex-capsis-rhodes/pRNcX4KpbPwvia-5W5AMe1AAogIO509c9djCMrTPusaupPJmd1Rywc03xY2PJ6ya2QQzkqBEVDQ1gwtpLN1wZI1V5QAViXLmACagJBSXIgHBHDCLkE6e4aqwQjGPmZMRuj1TwBwuyvoQICEmMBAguEnPqT/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ixia/akti-imperial-deluxe-resort-ex-capsis-rhodes/pRNcX4KpbPwvia-5W5AMe1AAogIO509c9djCMrTPusaupPJmd1Rywc03xY2PJ6ya2QQzkqBEVDQ1gw2JjN1wZI1V5QAViXLmACagJBSXIgHBHDCLkE6e4aqwQjGPmZMRuj1TwBwuyvoQICEmMBAguCvlNy/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -953,9 +1223,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29641/d1fbe18e342e79a61f7383f96b86ae7f43067d025e920dbf945dbcb15d963c94.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29641/d1fbe18e342e79a61f7383f96b86ae7f43067d025e920dbf945dbcb15d963c94.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/royal-olympic/pmeiu8eDHOXOB1O61TlleQAAogF798U7Q-V-aRilxr8Ezz88LZLy5Bf3Fk0lRp2vM_lQEqBEJWQkUw8YLN1wZI2l5QAVj3LmACagJCQnIhHBHJ5wEby7NIGIXsHrkEhYsgqwRKAab777QFAgBjAQMMNGa5sg/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/royal-olympic/pmeiu8eDHOXOB1O61TlleQAAogF798U7Q-V-aRilxr8Ezz88LZLy5Bf3Fk0lRp2vM_lQEqBEJWQkUwtpLN1wZI2l5QAVj3LmACagJCQnIhHBHJ5wEby7NIGIXsHrkEhYsgqwRKAab777QFAgBjAQMMG3rJAg/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/royal-olympic/pmeiu8eDHOXOB1O61TlleQAAogF798U7Q-V-aRilxr8Ezz88LZLy5Bf3Fk0lRp2vM_lQEqBEJWQkUw2JjN1wZI2l5QAVj3LmACagJCQnIhHBHJ5wEby7NIGIXsHrkEhYsgqwRKAab777QFAgBjAQMMLuFFAg/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -974,9 +1248,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6848/dfcec6a0a4da52b98415d208765a1fcda8f3ac6220b3a52f8606b94a1ae59f74.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/6848/dfcec6a0a4da52b98415d208765a1fcda8f3ac6220b3a52f8606b94a1ae59f74.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ixia/amathus-beach-rhodes/pgLA2XxQBvYN0GKfxXJArTAAog4-vSfz0UwGxicIqAEOygbAAAAACBzAQAm8wEAAcAEgAqBFdFWlkw8YLN1wZI3F5QQVjfK2ADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYLEuIDEcwxQOFLTIuVAU8AS9wwUAAbvZUBHby8DyAaDdODwgkBEmMBDGMBAguzwdr5/?operator=WEZY&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ixia/amathus-beach-rhodes/pgLA2XxQBvYN0GKfxXJArTAAog4-vSfz0UwGxicIqAEOygbAAAAACBzAQAm8wEAAcAEgAqBFdFWlkwtpLN1wZI3F5QQVjfK2ADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYLEuIDEcwxQOFLTIuVAU8AS9wwUAAbvZUBHby8DyAaDdODwgkBEmMBDGMBAgtlqhsG/?operator=WEZY&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ixia/amathus-beach-rhodes/pgLA2XxQBvYN0GKfxXJArTAAog4-vSfz0UwGxicIqAEOygbAAAAACBzAQAm8wEAAcAEgAqBFdFWlkw2JjN1wZI3F5QQVjfK2ADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYLEuIDEcwxQOFLTIuVAU8AS9wwUAAbvZUBHby8DyAaDdODwgkBEmMBDGMBAgsEK-PQ/?operator=WEZY&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Coral Travel"
@@ -995,9 +1273,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20290/618a1e3c1a5889e635cece61650b522db7cb572d66551eeb906cba47ab8f2af5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20290/618a1e3c1a5889e635cece61650b522db7cb572d66551eeb906cba47ab8f2af5.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/aquila-porto-rethymno/pf8LlHAmjQzv7HO0DhqKkxAAogwxCFo1e0Q5anxrvb_UZVMlFfHOlbRKhP_JtipzyycX8qBEJWQkUw8YLN1wZI8l5QAVj3K2ACagJCQnIhHBHCngEb6otEGMf2HqsE9ocluQQPAfKP7OcEAhJjAQIHm-G5QA/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/aquila-porto-rethymno/pf8LlHAmjQzv7HO0DhqKkxAAogwxCFo1e0Q5anxrvb_UZVMlFfHOlbRKhP_JtipzyycX8qBEJWQkUwtpLN1wZI8l5QAVj3K2ACagJCQnIhHBHCngEb6otEGMf2HqsE9ocluQQPAfKP7OcEAhJjAQIHmWmfwg/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rethymnon/aquila-porto-rethymno/pf8LlHAmjQzv7HO0DhqKkxAAogwxCFo1e0Q5anxrvb_UZVMlFfHOlbRKhP_JtipzyycX8qBEJWQkUw2JjN1wZI8l5QAVj3K2ACagJCQnIhHBHCngEb6otEGMf2HqsE9ocluQQPAfKP7OcEAhJjAQIHmhS56A/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1016,30 +1298,40 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/443/71d01fc9f6533500c93928c564c5ff7c9f64dd159af065011585ab323e66edb0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/443/71d01fc9f6533500c93928c564c5ff7c9f64dd159af065011585ab323e66edb0.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,riwiera-olimpijska,paralia/mediterranean-village/ploicexpB6sYmwME6PQIZpAAogtRDOxxb_QLDxZYqJ4Fmz_KUJp4sqSxqMPncJ1pEhKAwqBFJOQlcw8YLN1wZI9V5QQVj3K2ACagRCd2NycjqfARUHFwBYCFYCCosBEZ8CEMoBQNICGfdhTK0_U6V4UgBL6CVhAB2vv0YPkwMgpZOMCQ0AAgxjAQQLB5puUA/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,riwiera-olimpijska,paralia/mediterranean-village/ploicexpB6sYmwME6PQIZpAAogtRDOxxb_QLDxZYqJ4Fmz_KUJp4sqSxqMPncJ1pEhKAwqBFJOQlcwtpLN1wZI9V5QQVj3K2ACagRCd2NycjqfARUHFwBYCFYCCosBEZ8CEMoBQNICGfdhTK0_U6V4UgBL6CVhAB2vv0YPkwMgpZOMCQ0AAgxjAQQLMByViw/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,riwiera-olimpijska,paralia/mediterranean-village/ploicexpB6sYmwME6PQIZpAAogtRDOxxb_QLDxZYqJ4Fmz_KUJp4sqSxqMPncJ1pEhKAwqBFJOQlcw2JjN1wZI9V5QQVj3K2ACagRCd2NycjqfARUHFwBYCFYCCosBEZ8CEMoBQNICGfdhTK0_U6V4UgBL6CVhAB2vv0YPkwMgpZOMCQ0AAgxjAQQL-JiyqQ/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
   {
-    "hotel_name": "The Met Hotel",
-    "price": 12204.0,
-    "dates": "2027-07-30 - 2027-08-06",
-    "checkin_date": "2027-07-30",
-    "checkout_date": "2027-08-06",
+    "hotel_name": "Vanoro Hotel",
+    "price": 12183.0,
+    "dates": "2027-07-09 - 2027-07-16",
+    "checkin_date": "2027-07-09",
+    "checkout_date": "2027-07-16",
     "duration": "7 nocy",
     "duration_nights": 7,
     "departure_airport": "Warszawa",
-    "board_basis": "Bez wyżywienia (Self Catering)",
+    "board_basis": "Śniadania",
     "stars": 5,
+<<<<<<< Updated upstream
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118973/4e92af48f680cc846c29aec00daf342fbaa99f6b369bfa8a42dce5f1be29b511.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118973/4e92af48f680cc846c29aec00daf342fbaa99f6b369bfa8a42dce5f1be29b511.webp@webp",
 <<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,saloniki,c/the-met/pfJqq7yIS3l4xPqeo9yWXzAAogXDJ1Ql0JR8wHmv6MRfoiGQUZFFNcKDrFziCyyx_hBm4qBEVYSU0w8YLN1wZIrF9QAVj_MGADagJST3IkHBG9oQe5BIHKTasEAhua_EEYip9LAaWBwPUNARJjAQxjAQILw-kASQ/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,saloniki,c/the-met/pfJqq7yIS3l4xPqeo9yWXzAAogXDJ1Ql0JR8wHmv6MRfoiGQUZFFNcKDrFziCyyx_hBm4qBEVYSU0wtpLN1wZIrF9QAVj_MGADagJST3IkHBG9oQe5BIHKTasEAhua_EEYip9LAaWBwPUNARJjAQxjAQIL43zw8A/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118974/701de49892c56b18fdb20981ec68894154896d7fec5f292508e18d5889180ff1.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118974/701de49892c56b18fdb20981ec68894154896d7fec5f292508e18d5889180ff1.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,saloniki,c/vanoro-9/p-abzdVNs4-LXG14AoUcBXAAogUymC7d-0AGMrmD-AoRREDWG0khGbIFflii0jPRROceUqBEVYSU0w3pjN1wZIl19QAViHLWADagJCQnIkHBG-oQe5BIvJTasEARuS_0EYop1LAbLk3_UNARJjAQxjAQMLRjucTA/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -1058,9 +1350,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7889/fd1427635b07a279d2cb0969b2ecbab05838f03dd42170aaa3b1707516658ea8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/7889/fd1427635b07a279d2cb0969b2ecbab05838f03dd42170aaa3b1707516658ea8.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/armava/pDL8dj6QyyfqYeMHagz4bEAAog-rxvmAJngY095-jjyb5k3BDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw8YLN1wZIy19QAVj3K2ACagJIQnIgHBHRPbkEpPIZqwQRGN62MBuXmUQB776YmQICAGMBAgylYGNv/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/armava/pDL8dj6QyyfqYeMHagz4bEAAog-rxvmAJngY095-jjyb5k3BDTplN5fDPrTf-Y1psvjt4qBEVDQ1gwtpLN1wZIy19QAVj3K2ACagJIQnIgHBHRPbkEpPIZqwQRGN62MBuXmUQB776YmQICAGMBAgxyOg-s/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/armava/pDL8dj6QyyfqYeMHagz4bEAAog-rxvmAJngY095-jjyb5k3BDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw3pjN1wZIy19QAVj3K2ACagJIQnIgHBHRPbkEpPIZqwQRGN62MBuXmUQB776YmQICAGMBAgxR6mmh/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -1079,9 +1375,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4724/9b71c2cdf1b41359795cbf4270298625f2227e4fe764e77b26062bf78d7c2883.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4724/9b71c2cdf1b41359795cbf4270298625f2227e4fe764e77b26062bf78d7c2883.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,peloponez,skafidia/aldemar-olympian-village/pmqnCftPFhv1UHKKN-xKabAAogFQ0GMmhtpqPqztMStbEbd5TzYmxAxbFXOI_9-W6GEBgqBFJOQlcw9oLN1wZI7F9QQVi3MGACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRnR0QgiIZ_SFTm0BSAEwOS-ydAWEAHf-kRw9bIKWwiwkNAAIMYwECC_WMVqM/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,peloponez,skafidia/aldemar-olympian-village/pmqnCftPFhv1UHKKN-xKabAAogFQ0GMmhtpqPqztMStbEbd5TzYmxAxbFXOI_9-W6GEBgqBFJOQlcwuJLN1wZI7F9QQVi3MGACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRnR0QgiIZ_SFTm0BSAEwOS-ydAWEAHf-kRw9bIKWwiwkNAAIMYwECC_stzxA/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,peloponez,skafidia/aldemar-olympian-village/pmqnCftPFhv1UHKKN-xKabAAogFQ0GMmhtpqPqztMStbEbd5TzYmxAxbFXOI_9-W6GEBgqBFJOQlcw3pjN1wZI7F9QQVi3MGACagRCd2NEcjifARUHFwBWA1gFCgRAxAcRnR0QgiIZ_SFTm0BSAEwOS-ydAWEAHf-kRw9bIKWwiwkNAAIMYwECC83FNa8/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1100,14 +1400,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/CHQSANX/bf93b3a00b0244428dbb949cf2214f0101c9dffcac18180479f30d6f7d999c87.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/CHQSANX/bf93b3a00b0244428dbb949cf2214f0101c9dffcac18180479f30d6f7d999c87.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,agia-marina/santa-marina-pearl-14/ptwlpa-uAD43Y04sUUOO3EAAoggrbHvON2LUoheBSztstq-jqSJAzjDSciEKLCuqKjNyoqBFZJVFgw9oLN1wZIiWBQQVinL2ACcj8aABUHFwBcA1gFQI8DU6B7UgBbhwte1nlL7UNhAEyc-kQN3duNCSAAUfyoy51lT6S0C12Y3_nRoAECDGMBAgt2NMtW/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,agia-marina/santa-marina-pearl-14/ptwlpa-uAD43Y04sUUOO3EAAoggrbHvON2LUoheBSztstq-jqSJAzjDSciEKLCuqKjNyoqBFZJVFgwuJLN1wZIiWBQQVinL2ACcj8aABUHFwBcA1gFQI8DU6B7UgBbhwte1nlL7UNhAEyc-kQN3duNCSAAUfyoy51lT6S0C12Y3_nRoAECDGMBAgs_PZwp/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,agia-marina/santa-marina-pearl-14/ptwlpa-uAD43Y04sUUOO3EAAoggrbHvON2LUoheBSztstq-jqSJAzjDSciEKLCuqKjNyoqBFZJVFgw3pjN1wZIiWBQQVinL2ACcj8aABUHFwBcA1gFQI8DU6B7UgBbhwte1nlL7UNhAEyc-kQN3duNCSAAUfyoy51lT6S0C12Y3_nRoAECDGMBAgvh93R-/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Vanoro Hotel",
     "price": 12313.0,
     "dates": "2027-07-30 - 2027-08-06",
@@ -1129,6 +1434,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Aegean Melathron Thalasso Spa Hotel",
     "price": 12344.0,
     "dates": "2027-07-04 - 2027-07-11",
@@ -1142,9 +1449,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1027043/5980f7ac6c92fec55bd5f9009edc8917c040099d724696ded2183039f9af9e89.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1027043/5980f7ac6c92fec55bd5f9009edc8917c040099d724696ded2183039f9af9e89.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kallithea/aegean-melathron/p0Q4pBoRf0TW3-ldYsGXECAAogx9qh-5MsxmTpqN_h9ElhVm0LuNqesh0O-ZwkmQP2J_YqBE5LUkEw9oLN1wZIuGBQAViPLGADahIwRTUxMjg2MjU1MzIyMDk4MjJqAkhCagRXQVcwagNTS0dyGhsWDiAKDBHX1z4NjcWWCQ8HARJjAQxjAQIMxUlXZg/?operator=NKRA&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kallithea/aegean-melathron/p0Q4pBoRf0TW3-ldYsGXECAAogx9qh-5MsxmTpqN_h9ElhVm0LuNqesh0O-ZwkmQP2J_YqBE5LUkEwuJLN1wZIuGBQAViPLGADahIwRTUxMjg2MjU1MzIyMDk4MjJqAkhCagRXQVcwagNTS0dyGhsWDiAKDBHX1z4NjcWWCQ8HARJjAQxjAQIMYLik-w/?operator=NKRA&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,kallithea/aegean-melathron/p0Q4pBoRf0TW3-ldYsGXECAAogx9qh-5MsxmTpqN_h9ElhVm0LuNqesh0O-ZwkmQP2J_YqBE5LUkEw3pjN1wZIuGBQAViPLGADahIwRTUxMjg2MjU1MzIyMDk4MjJqAkhCagRXQVcwagNTS0dyGhsWDiAKDBHX1z4NjcWWCQ8HARJjAQxjAQIM4WUTjQ/?operator=NKRA&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
@@ -1163,9 +1474,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/CHQAEVE/69033e7c18b550a3217a1cd9624f2f4246acc820f702d409d99fc77f6fca11d3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/CHQAEVE/69033e7c18b550a3217a1cd9624f2f4246acc820f702d409d99fc77f6fca11d3.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,pirgos-psilonerou/solimar-aquamarine/pt_aKBF2ahWES1yziq2MfZAAogvdUuofCN00s96viz8duEBApEUa6a_PkE8ky1_d4C0iIqBFZJVFgw9oLN1wZI7WBQQViPLGACcj8aABUHFwBcA1gFQI8DU6B7UgBbnRxewGhL7UNhAEz4-UQN8NuNCSAAUdqymJ1lT9iqPl2Y3_nRoAECDGMBAguSDbwz/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,pirgos-psilonerou/solimar-aquamarine/pt_aKBF2ahWES1yziq2MfZAAogvdUuofCN00s96viz8duEBApEUa6a_PkE8ky1_d4C0iIqBFZJVFgwuJLN1wZI7WBQQViPLGACcj8aABUHFwBcA1gFQI8DU6B7UgBbnRxewGhL7UNhAEz4-UQN8NuNCSAAUdqymJ1lT9iqPl2Y3_nRoAECDGMBAgtcUABd/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,pirgos-psilonerou/solimar-aquamarine/pt_aKBF2ahWES1yziq2MfZAAogvdUuofCN00s96viz8duEBApEUa6a_PkE8ky1_d4C0iIqBFZJVFgw3pjN1wZI7WBQQViPLGACcj8aABUHFwBcA1gFQI8DU6B7UgBbnRxewGhL7UNhAEz4-UQN8NuNCSAAUdqymJ1lT9iqPl2Y3_nRoAECDGMBAguQG29T/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -1184,14 +1499,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/479/f98fa3e010c6c20eab269b8f25bedcdbb1c2166c702566efc22d572e30c2ff3b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/479/f98fa3e010c6c20eab269b8f25bedcdbb1c2166c702566efc22d572e30c2ff3b.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kiani-akti/kiani-beach/pfcIvZGtlu6gsrGKoEQt0aAAogrDKMDAFN5ONZr4YTHaqyJvoGcaY4PIn0tI7JwY4h9j0qBFJOQlcw9oLN1wZIqmFQQVjXLGACagRCd2NEcjifARUHFwBWA1gFCgQRzANA-AMQoT0Z5CFT4hdSAEygVEuqdGEAD5DdRx0lILb4igkNAAIMYwECC3Co3jQ/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kiani-akti/kiani-beach/pfcIvZGtlu6gsrGKoEQt0aAAogrDKMDAFN5ONZr4YTHaqyJvoGcaY4PIn0tI7JwY4h9j0qBFJOQlcwuJLN1wZIqmFQQVjXLGACagRCd2NEcjifARUHFwBWA1gFCgQRzANA-AMQoT0Z5CFT4hdSAEygVEuqdGEAD5DdRx0lILb4igkNAAIMYwECC_raj6c/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kiani-akti/kiani-beach/pfcIvZGtlu6gsrGKoEQt0aAAogrDKMDAFN5ONZr4YTHaqyJvoGcaY4PIn0tI7JwY4h9j0qBFJOQlcw3pjN1wZIqmFQQVjXLGACagRCd2NEcjifARUHFwBWA1gFCgQRzANA-AMQoT0Z5CFT4hdSAEygVEuqdGEAD5DdRx0lILb4igkNAAIMYwECCwV49oE/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Ammon Zeus",
     "price": 12465.0,
     "dates": "2027-07-11 - 2027-07-18",
@@ -1213,6 +1533,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Mediterranean Beach Resort and Spa",
     "price": 12471.0,
     "dates": "2027-07-03 - 2027-07-10",
@@ -1226,9 +1548,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/26888/0da022decfd73ab5e2902d543054ed093ce3ed7cebff0958fd9d87cef76e3f25.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/26888/0da022decfd73ab5e2902d543054ed093ce3ed7cebff0958fd9d87cef76e3f25.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/mediterranean-beach-resort/paujiSTR4aLi9Vw6wLguyxAAog5jUmN4eoivoEQwnnkJgmYBwkntTvOY5ek3zB4dMljSQqBEJWQkUw9oLN1wZIt2FQAVj3K2ACagJIQnIhHBGI0gEbuKNHGJOPHasE19IkuQQmAe3lkvwEAhJjAQIGWTBG5w/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/mediterranean-beach-resort/paujiSTR4aLi9Vw6wLguyxAAog5jUmN4eoivoEQwnnkJgmYBwkntTvOY5ek3zB4dMljSQqBEJWQkUwuJLN1wZIt2FQAVj3K2ACagJIQnIhHBGI0gEbuKNHGJOPHasE19IkuQQmAe3lkvwEAhJjAQIG8PyegA/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,zakynthos,laganas/mediterranean-beach-resort/paujiSTR4aLi9Vw6wLguyxAAog5jUmN4eoivoEQwnnkJgmYBwkntTvOY5ek3zB4dMljSQqBEJWQkUw3pjN1wZIt2FQAVj3K2ACagJIQnIhHBGI0gEbuKNHGJOPHasE19IkuQQmAe3lkvwEAhJjAQIGY7SnfA/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1247,9 +1573,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29403/f960b97ebb37b5a11147806e7f422c8abb902c2f9fb7ae54364a8af31ef0cbe7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29403/f960b97ebb37b5a11147806e7f422c8abb902c2f9fb7ae54364a8af31ef0cbe7.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-poteidaia/istion-club/pH8CSKrJ6TJVQAph-nmb6RAAogBzEduM41cHt0kuhzUAKsOWPlAj9o90uWFlWfpcML5ooqBEJWQkUw9oLN1wZIu2JQAVjfK2ACagJIQnIhHBHb5QEb3_lEGLmJHKsErqUmuQQBAfG4_dgEAhJjAQIHqdfqLg/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-poteidaia/istion-club/pH8CSKrJ6TJVQAph-nmb6RAAogBzEduM41cHt0kuhzUAKsOWPlAj9o90uWFlWfpcML5ooqBEJWQkUwuJLN1wZIu2JQAVjfK2ACagJIQnIhHBHb5QEb3_lEGLmJHKsErqUmuQQBAfG4_dgEAhJjAQIHUwxB5Q/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-poteidaia/istion-club/pH8CSKrJ6TJVQAph-nmb6RAAogBzEduM41cHt0kuhzUAKsOWPlAj9o90uWFlWfpcML5ooqBEJWQkUw3pjN1wZIu2JQAVjfK2ACagJIQnIhHBHb5QEb3_lEGLmJHKsErqUmuQQBAfG4_dgEAhJjAQIHyPsxcQ/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1268,9 +1598,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015069/9ccd664efb6fa8a8b879c4aac856ceb41b26de0f9447f6e150926be5f6da4560.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015069/9ccd664efb6fa8a8b879c4aac856ceb41b26de0f9447f6e150926be5f6da4560.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,stalida/blue-sea-village-resort-spa/pNPjLFtQLxNnve1utAMbagAAogIMAnoUTY5hmmpAC_VBrtuKaPRLE2-mM8x6NDRPQuQU0qBE5LUkEw9oLN1wZI82JQAVj3K2ADagZNUFRfMTJqBFdBVzJqA0hFUnIeFg4gCgwRkfo9DdKilwkPBxv5koNXARJjAQxjAQYLBoqL3A/?operator=NKRA&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,stalida/blue-sea-village-resort-spa/pNPjLFtQLxNnve1utAMbagAAogIMAnoUTY5hmmpAC_VBrtuKaPRLE2-mM8x6NDRPQuQU0qBE5LUkEwuJLN1wZI82JQAVj3K2ADagZNUFRfMTJqBFdBVzJqA0hFUnIeFg4gCgwRkfo9DdKilwkPBxv5koNXARJjAQxjAQYLp-u5gQ/?operator=NKRA&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,stalida/blue-sea-village-resort-spa/pNPjLFtQLxNnve1utAMbagAAogIMAnoUTY5hmmpAC_VBrtuKaPRLE2-mM8x6NDRPQuQU0qBE5LUkEw3pjN1wZI82JQAVj3K2ADagZNUFRfMTJqBFdBVzJqA0hFUnIeFg4gCgwRkfo9DdKilwkPBxv5koNXARJjAQxjAQYLqmQphQ/?operator=NKRA&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Nekera"
@@ -1289,12 +1623,33 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/22556/7ea74bdac7e0cd26f479b3ce794a3075465c96837a7c09e9f8dc51a25103fab7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/22556/7ea74bdac7e0cd26f479b3ce794a3075465c96837a7c09e9f8dc51a25103fab7.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kolymvari/galini-palace-12/pe3Qg6edn7uhLWWACeUoh-AAogL7Vebe_a9Zm98cTuXQW5PzceWYeou55R1mZPo9SPtFkqBEJWQkUw9oLN1wZIl2NQAVinLGACagJBSXIhHBGcsAEbmcxFGOWxHbkEwv0kqwQBAf_T_ugEAhJjAQILJTVv-g/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kolymvari/galini-palace-12/pe3Qg6edn7uhLWWACeUoh-AAogL7Vebe_a9Zm98cTuXQW5PzceWYeou55R1mZPo9SPtFkqBEJWQkUwuJLN1wZIl2NQAVinLGACagJBSXIhHBGcsAEbmcxFGOWxHbkEwv0kqwQBAf_T_ugEAhJjAQIL3xrtXQ/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kolymvari/galini-palace-12/pe3Qg6edn7uhLWWACeUoh-AAogL7Vebe_a9Zm98cTuXQW5PzceWYeou55R1mZPo9SPtFkqBEJWQkUw3pjN1wZIl2NQAVinLGACagJBSXIhHBGcsAEbmcxFGOWxHbkEwv0kqwQBAf_T_ugEAhJjAQILLr6exw/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
+  },
+  {
+    "hotel_name": "Portes Lithos Luxury Resort",
+    "price": 12784.0,
+    "dates": "2027-07-04 - 2027-07-11",
+    "checkin_date": "2027-07-04",
+    "checkout_date": "2027-07-11",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania i obiadokolacje",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117651/87bf020022c07550466d7b4c600edd9ad7ddbeb2797303005c70e41492244bc3.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117651/87bf020022c07550466d7b4c600edd9ad7ddbeb2797303005c70e41492244bc3.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,nea-poteidaia/portes-lithos-luxury-resort/prTuQ_XevS8wkdOkikMPNkAAogjM4CGbYqIAXlWOc03JCHMd4fl0l7FMe7617zmbwuIQoqBEVYSU0w3pjN1wZI8GNQAViPLGACagJIQnIiHBGTlwe5BM_TTasE8QEbwdhAGJbBTAHMpvH3DQISYwECC3e7aNY/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   },
   {
     "hotel_name": "PORTO PLATANIAS VILLAGE RESORT",
@@ -1310,9 +1665,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10239/566217db5d8772a024d32a84c1f954307ca05abd46ad7c287be42faa4fa94a7f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10239/566217db5d8772a024d32a84c1f954307ca05abd46ad7c287be42faa4fa94a7f.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanias/porto-platanias-village/pWJOo5xebpCJDTlS44q1u3AAogkjzcKhinxIiy6t-sVAmWl3sFSci5Vc33tgcL_V3a1-AqBEVDQ1gw9oLN1wZIpGRQAVjXL2ACagJIQnIgHBH_T7kEjt4ZqwQ1GIm4MBuhxUQBjvKUmQICAGMBAgtwn_YI/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanias/porto-platanias-village/pWJOo5xebpCJDTlS44q1u3AAogkjzcKhinxIiy6t-sVAmWl3sFSci5Vc33tgcL_V3a1-AqBEVDQ1gwuJLN1wZIpGRQAVjXL2ACagJIQnIgHBH_T7kEjt4ZqwQ1GIm4MBuhxUQBjvKUmQICAGMBAgvJkoeW/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanias/porto-platanias-village/pWJOo5xebpCJDTlS44q1u3AAogkjzcKhinxIiy6t-sVAmWl3sFSci5Vc33tgcL_V3a1-AqBEVDQ1gw3pjN1wZIpGRQAVjXL2ACagJIQnIgHBH_T7kEjt4ZqwQ1GIm4MBuhxUQBjvKUmQICAGMBAgt2FgNy/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -1331,9 +1690,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/CFUIBIS/36a047d8734527eaf6cdab8d677aa081ae8b72ca235f8b27e5c420ee44d219fd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/CFUIBIS/36a047d8734527eaf6cdab8d677aa081ae8b72ca235f8b27e5c420ee44d219fd.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,roda/ibiscus-grecja-korfu-grecja/pRM1rpEM1e_8lRo8Q_Rbg2AAogKF3uy10o-8go7eb6ghcpw4qK3hzlGMizy9UjykdcptIqBEdSQ1Mw9oLN1wZInWVQQVjXLGADcj0XBxUAXANYBVYCHZwCDxRAmgRSn3dTAFv3CF6qfGHtQ0sAAeiSkwENg8O_CCAAUeHs8-ZkARJjAQJjAQILt1tMAQ/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,roda/ibiscus-grecja-korfu-grecja/pRM1rpEM1e_8lRo8Q_Rbg2AAogKF3uy10o-8go7eb6ghcpw4qK3hzlGMizy9UjykdcptIqBEdSQ1MwuJLN1wZInWVQQVjXLGADcj0XBxUAXANYBVYCHZwCDxRAmgRSn3dTAFv3CF6qfGHtQ0sAAeiSkwENg8O_CCAAUeHs8-ZkARJjAQJjAQILa9qeFw/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,korfu,roda/ibiscus-grecja-korfu-grecja/pRM1rpEM1e_8lRo8Q_Rbg2AAogKF3uy10o-8go7eb6ghcpw4qK3hzlGMizy9UjykdcptIqBEdSQ1Mw3pjN1wZInWVQQVjXLGADcj0XBxUAXANYBVYCHZwCDxRAmgRSn3dTAFv3CF6qfGHtQ0sAAeiSkwENg8O_CCAAUeHs8-ZkARJjAQJjAQILGWoxmA/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -1352,9 +1715,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/6031/38292e92fade2e5bbbe7fcdeb53205cb61bf778de1bc4f980504a01007cbeabd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/6031/38292e92fade2e5bbbe7fcdeb53205cb61bf778de1bc4f980504a01007cbeabd.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/cabana-beach-11/pjBTkka-GuuiRbggrcUZONAAogm7WEvqjdFW-O-ejKlJp6ajBOEtQQPNiFmoQIJYjpAVQqBFJOQlcw9oLN1wZIsGVQQVi_LGACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRuCcZzTpTwGVSAEygAhDuDUveZ2EAHZunRw_LASCErYsJDQACDGMBAgvLOhyT/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/cabana-beach-11/pjBTkka-GuuiRbggrcUZONAAogm7WEvqjdFW-O-ejKlJp6ajBOEtQQPNiFmoQIJYjpAVQqBFJOQlcwuJLN1wZIsGVQQVi_LGACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRuCcZzTpTwGVSAEygAhDuDUveZ2EAHZunRw_LASCErYsJDQACDGMBAgvYfxhe/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/cabana-beach-11/pjBTkka-GuuiRbggrcUZONAAogm7WEvqjdFW-O-ejKlJp6ajBOEtQQPNiFmoQIJYjpAVQqBFJOQlcw3pjN1wZIsGVQQVi_LGACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRuCcZzTpTwGVSAEygAhDuDUveZ2EAHZunRw_LASCErYsJDQACDGMBAgs4ucXI/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1373,9 +1740,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/23648/116bf924fd0f1b005a18653b61250fb7c5f75b88b15ecd2ccf7ad3dbba323185.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/23648/116bf924fd0f1b005a18653b61250fb7c5f75b88b15ecd2ccf7ad3dbba323185.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,malia/alexander-beach-2/pFIcp7L6g_rOcRYgWpyKbIAAogg7dclcaaMk06WvqnLlWPx7ZVMgpPr69dl3JfNUFSyFQqBEJWQkUw9oLN1wZIgGZQAVi3MGACagJCQnIhHBHguAEbv5lHGOXGHKsEgJAkuQQLAfXh9fAEAhJjAQML8bceHA/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,malia/alexander-beach-2/pFIcp7L6g_rOcRYgWpyKbIAAogg7dclcaaMk06WvqnLlWPx7ZVMgpPr69dl3JfNUFSyFQqBEJWQkUwuJLN1wZIgGZQAVi3MGACagJCQnIhHBHguAEbv5lHGOXGHKsEgJAkuQQLAfXh9fAEAhJjAQMLps-hCg/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,malia/alexander-beach-2/pFIcp7L6g_rOcRYgWpyKbIAAogg7dclcaaMk06WvqnLlWPx7ZVMgpPr69dl3JfNUFSyFQqBEJWQkUw3pjN1wZIgGZQAVi3MGACagJCQnIhHBHguAEbv5lHGOXGHKsEgJAkuQQLAfXh9fAEAhJjAQML56dVFw/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1394,12 +1765,33 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9620/759ac30c083b9d011472186a7bf3b24cca741119e650d113a3fcc664f4f34921.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/9620/759ac30c083b9d011472186a7bf3b24cca741119e650d113a3fcc664f4f34921.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,kokkini-hani/knossos-beach/pU02ysR6oZRs8ONptalsDSAAogKm_nlKJO_GVnx7-5KEZMGBDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw9oLN1wZIlmZQAVj3K2ACagJCQnIgHBGUS7kE4eQZqwQRGND_Lxv48z4BkY6dlwICEmMBAgvdyGc6/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,kokkini-hani/knossos-beach/pU02ysR6oZRs8ONptalsDSAAogKm_nlKJO_GVnx7-5KEZMGBDTplN5fDPrTf-Y1psvjt4qBEVDQ1gwuJLN1wZIlmZQAVj3K2ACagJCQnIgHBGUS7kE4eQZqwQRGND_Lxv48z4BkY6dlwICEmMBAgv9XhuQ/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,kokkini-hani/knossos-beach/pU02ysR6oZRs8ONptalsDSAAogKm_nlKJO_GVnx7-5KEZMGBDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw3pjN1wZIlmZQAVj3K2ACagJCQnIgHBGUS7kE4eQZqwQRGND_Lxv48z4BkY6dlwICEmMBAgvBzKxR/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
+  },
+  {
+    "hotel_name": "Antigon Urban Chic Hotel by GHH",
+    "price": 13083.0,
+    "dates": "2027-07-09 - 2027-07-16",
+    "checkin_date": "2027-07-09",
+    "checkout_date": "2027-07-16",
+    "duration": "7 nocy",
+    "duration_nights": 7,
+    "departure_airport": "Warszawa",
+    "board_basis": "Śniadania",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118968/da1faa9d472930c164895217ce4e905b46f13bfae3f1f6818e7e0fc030f64f24.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118968/da1faa9d472930c164895217ce4e905b46f13bfae3f1f6818e7e0fc030f64f24.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/grecja,saloniki,c/antigon-urban-chic/pXLsfbf-4omm-FrqPpUpouAAogY3PNC9J4vwUwf33rjk0EOmG0khGbIFflii0jPRROceUqBEVYSU0w3pjN1wZIm2ZQAViHLWADagJCQnIkHBG4oQe5BJHJTasEARvX_EEYkZxLAbG20PQNARJjAQxjAQILMYH_PA/?operator=EXIM&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Exim Tours"
   },
   {
     "hotel_name": "Avra Imperial",
@@ -1415,9 +1807,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/18897/0b325389925fadda6edd8d28adc19fedb2c94c869d3accda28a93baac80084a3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/18897/0b325389925fadda6edd8d28adc19fedb2c94c869d3accda28a93baac80084a3.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kolymvari/avra-imperial-beach-resort-spa/pw2jbD5teXRHIuT3U3lXsfAAogBEAPBfyEgDwX0F3bQD917zceWYeou55R1mZPo9SPtFkqBEJWQkUw9oLN1wZIsGZQAVinLGACagJIQnIhHBHRkwEbrYlIGLiaH7kEpvQgqwQBAeKRip4FAgBjAQIMsyjxfQ/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kolymvari/avra-imperial-beach-resort-spa/pw2jbD5teXRHIuT3U3lXsfAAogBEAPBfyEgDwX0F3bQD917zceWYeou55R1mZPo9SPtFkqBEJWQkUwuJLN1wZIsGZQAVinLGACagJIQnIhHBHRkwEbrYlIGLiaH7kEpvQgqwQBAeKRip4FAgBjAQIMboH5rw/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,kolymvari/avra-imperial-beach-resort-spa/pw2jbD5teXRHIuT3U3lXsfAAogBEAPBfyEgDwX0F3bQD917zceWYeou55R1mZPo9SPtFkqBEJWQkUw3pjN1wZIsGZQAVinLGACagJIQnIhHBHRkwEbrYlIGLiaH7kEpvQgqwQBAeKRip4FAgBjAQIMAeAYTQ/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1436,9 +1832,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/21096/ae58dd1cb8cb11783c285aa4b01d6c450f161d09f7f079bf57300fb130f6be4c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/21096/ae58dd1cb8cb11783c285aa4b01d6c450f161d09f7f079bf57300fb130f6be4c.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ammoudes/rodos-palladium-ammoudes/pqP2_fuI35JWJrzosDgroOAAogTxtgzlsguwiKmPVlJ2Cu4OJ4WBk91CMfhA-4jeZBfKkqBEJWQkUw9oLN1wZI1WZQAVjfK2ACagJIQnIhHBHopAEbrYlEGJ6wHrkEq_8lqwQRAZzcjeMEAhJjAQIG8bauWQ/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ammoudes/rodos-palladium-ammoudes/pqP2_fuI35JWJrzosDgroOAAogTxtgzlsguwiKmPVlJ2Cu4OJ4WBk91CMfhA-4jeZBfKkqBEJWQkUwuJLN1wZI1WZQAVjfK2ACagJIQnIhHBHopAEbrYlEGJ6wHrkEq_8lqwQRAZzcjeMEAhJjAQIGib7wsQ/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,ammoudes/rodos-palladium-ammoudes/pqP2_fuI35JWJrzosDgroOAAogTxtgzlsguwiKmPVlJ2Cu4OJ4WBk91CMfhA-4jeZBfKkqBEJWQkUw3pjN1wZI1WZQAVjfK2ACagJIQnIhHBHopAEbrYlEGJ6wHrkEq_8lqwQRAZzcjeMEAhJjAQIGK3rDeA/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1457,9 +1857,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/CHQCAVO/61a224eb6a8249616bab53cc92a51f054700b547b52e14eccaa5507f19914ce8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/CHQCAVO/61a224eb6a8249616bab53cc92a51f054700b547b52e14eccaa5507f19914ce8.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rapaniana/cavo-spada-luxury-resort/pz0rC0oAejchbph4RUdDKXAAogYFmKPAbX_yY3pPJLqDFhYDgmMZH5hObmxhCHDCe9iSUqBFZJVFgw9oLN1wZI-WZQQVjPMGACcj8aABUHFwBcA1gFQI8DU6B7UgBbnwhevnxL7UNhAEz4-UQNiNyNCSAAUYzjnZ1lT436OF2Y3_nRoAECDGMBAguB_Nqn/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rapaniana/cavo-spada-luxury-resort/pz0rC0oAejchbph4RUdDKXAAogYFmKPAbX_yY3pPJLqDFhYDgmMZH5hObmxhCHDCe9iSUqBFZJVFgwuJLN1wZI-WZQQVjPMGACcj8aABUHFwBcA1gFQI8DU6B7UgBbnwhevnxL7UNhAEz4-UQNiNyNCSAAUYzjnZ1lT436OF2Y3_nRoAECDGMBAguvThot/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,rapaniana/cavo-spada-luxury-resort/pz0rC0oAejchbph4RUdDKXAAogYFmKPAbX_yY3pPJLqDFhYDgmMZH5hObmxhCHDCe9iSUqBFZJVFgw3pjN1wZI-WZQQVjPMGACcj8aABUHFwBcA1gFQI8DU6B7UgBbnwhevnxL7UNhAEz4-UQNiNyNCSAAUYzjnZ1lT436OF2Y3_nRoAECDGMBAgv4XU1l/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -1478,14 +1882,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/SMIDOR/dcb07e676ebe3071617d871c110beaa37ff83ffb6e57db56e1bc745e45f42f59.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/SFPL/IMG/SMIDOR/dcb07e676ebe3071617d871c110beaa37ff83ffb6e57db56e1bc745e45f42f59.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,samos,pythagorion/doryssa-seaside-resort/pw7K8-3FNaNodIHXj5PF0pAAogtwEzdmPalkXD2RwYy56ttm60XQa8boU5xonzy9VUv0oqBFNGUEww9oLN1wZIiGdQQVj3K2ACciULAhUFIgRcjANAERKNBA26ldUJW9Sy7PgCUYjo6bYDAhJjAQILsdbQgQ/?operator=SFPL&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,samos,pythagorion/doryssa-seaside-resort/pw7K8-3FNaNodIHXj5PF0pAAogtwEzdmPalkXD2RwYy56ttm60XQa8boU5xonzy9VUv0oqBFNGUEwwuJLN1wZIiGdQQVj3K2ACciULAhUFIgRcjANAERKNBA26ldUJW9Sy7PgCUYjo6bYDAhJjAQILOs5gXA/?operator=SFPL&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,samos,pythagorion/doryssa-seaside-resort/pw7K8-3FNaNodIHXj5PF0pAAogtwEzdmPalkXD2RwYy56ttm60XQa8boU5xonzy9VUv0oqBFNGUEww3pjN1wZIiGdQQVj3K2ACciULAhUFIgRcjANAERKNBA26ldUJW9Sy7PgCUYjo6bYDAhJjAQILON5_iA/?operator=SFPL&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Sun&Fun"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Antigon Urban Chic Hotel by GHH",
     "price": 13213.0,
     "dates": "2027-07-30 - 2027-08-06",
@@ -1507,6 +1916,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Pegasos Beach",
     "price": 13217.0,
     "dates": "2027-07-05 - 2027-07-12",
@@ -1520,9 +1931,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RHOPEGB/2daf8f36d5fc761476ff0319243390ccef272c873b0d025f640b5bf0fd70a2bf.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/RHOPEGB/2daf8f36d5fc761476ff0319243390ccef272c873b0d025f640b5bf0fd70a2bf.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/pegasos-beach-faliraki/ppFT6P2B7q3cRf1fqPSzpPAAogRQpJ0teU7MTQlPZDVmwvaV747IdY-3zooDMQ39hSJ6gqBFZJVFgw9oLN1wZIoWdQQVinLGACckAaABUHFwBcA1gFQI8DW5eFAV7melKRE1MAS9wwYQBM-PlEDfHbjQkgAFH65b3t3gFPttMTXZDeqYInAgxjAQILQyvyoA/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/pegasos-beach-faliraki/ppFT6P2B7q3cRf1fqPSzpPAAogRQpJ0teU7MTQlPZDVmwvaV747IdY-3zooDMQ39hSJ6gqBFZJVFgwuJLN1wZIoWdQQVinLGACckAaABUHFwBcA1gFQI8DW5eFAV7melKRE1MAS9wwYQBM-PlEDfHbjQkgAFH65b3t3gFPttMTXZDeqYInAgxjAQIL9pSsJA/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/pegasos-beach-faliraki/ppFT6P2B7q3cRf1fqPSzpPAAogRQpJ0teU7MTQlPZDVmwvaV747IdY-3zooDMQ39hSJ6gqBFZJVFgw3pjN1wZIoWdQQVinLGACckAaABUHFwBcA1gFQI8DW5eFAV7melKRE1MAS9wwYQBM-PlEDfHbjQkgAFH65b3t3gFPttMTXZDeqYInAgxjAQILwjr1Qg/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -1541,9 +1956,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/3742/9573e58b764a3880cbae8b438e80cefbdd8997c7c25a3347c7b3fe4c3e72c5f8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/3742/9573e58b764a3880cbae8b438e80cefbdd8997c7c25a3347c7b3fe4c3e72c5f8.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,agios-georgios/aquis-sandy-beach-resort-agios-georgios/pTf16rnXE0kltdhJRaKSMlAAogrRSf0dmo2Osh-dab66mlSng6S9ap0cV0zQZl68SmNJEqBFJOQlcw9oLN1wZIwGdQQVjHLmACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRxxUQ0BYZwzRTyRVSAEyAUUuOeGEAD9q2Rh2dAiD-nIwJDQACDGMBAgsN1t_o/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,korfu,agios-georgios/aquis-sandy-beach-resort-agios-georgios/pTf16rnXE0kltdhJRaKSMlAAogrRSf0dmo2Osh-dab66mlSng6S9ap0cV0zQZl68SmNJEqBFJOQlcwuJLN1wZIwGdQQVjHLmACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRxxUQ0BYZwzRTyRVSAEyAUUuOeGEAD9q2Rh2dAiD-nIwJDQACDGMBAgsqFERw/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,korfu,agios-georgios/aquis-sandy-beach-resort-agios-georgios/pTf16rnXE0kltdhJRaKSMlAAogrRSf0dmo2Osh-dab66mlSng6S9ap0cV0zQZl68SmNJEqBFJOQlcw3pjN1wZIwGdQQVjHLmACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRxxUQ0BYZwzRTyRVSAEyAUUuOeGEAD9q2Rh2dAiD-nIwJDQACDGMBAgtIkBE_/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1562,9 +1981,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/8136/401105e35598402d3a96abb0a61f274063c90ed6bb9cfcb1fedd5f666f73953c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/8136/401105e35598402d3a96abb0a61f274063c90ed6bb9cfcb1fedd5f666f73953c.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/mitsis-serita-beach/pCmkFZpn4nzW71Bbejg8ZgAAogiJZtgkoptgvU_fF-xxjNtttS_DfFqls1EP8NFYB9NgoqBFJOQlcw9oLN1wZIkGhQQVj_LWACagRCd2NEcjifARUHFwBWA1gFCgRAxAcR8TcZ0idTiUlSABDVBEy6GkvWd2EAD7bkRx0tII_xigkNAAIMYwECCzpH5ic/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/mitsis-serita-beach/pCmkFZpn4nzW71Bbejg8ZgAAogiJZtgkoptgvU_fF-xxjNtttS_DfFqls1EP8NFYB9NgoqBFJOQlcwuJLN1wZIkGhQQVj_LWACagRCd2NEcjifARUHFwBWA1gFCgRAxAcR8TcZ0idTiUlSABDVBEy6GkvWd2EAD7bkRx0tII_xigkNAAIMYwECC3Hbinc/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/mitsis-serita-beach/pCmkFZpn4nzW71Bbejg8ZgAAogiJZtgkoptgvU_fF-xxjNtttS_DfFqls1EP8NFYB9NgoqBFJOQlcw3pjN1wZIkGhQQVj_LWACagRCd2NEcjifARUHFwBWA1gFCgRAxAcR8TcZ0idTiUlSABDVBEy6GkvWd2EAD7bkRx0tII_xigkNAAIMYwECC6z6AYU/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1583,14 +2006,19 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/26978/2a2ef4783b34f31e6fd358144cad7257f22a27f8af54c53b74dfc9007dce6a59.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/26978/2a2ef4783b34f31e6fd358144cad7257f22a27f8af54c53b74dfc9007dce6a59.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/king-minos-palace/pLJvyk_rOot-sqwAPmQXM6AAogqNKyBet2A34P1GFfNkabB1FfHOlbRKhP_JtipzyycX8qBEJWQkUw9oLN1wZIpGhQAVj3K2ACagJIQnIhHBHi0gEbirNGGJWjHKsE6P8kuQQPAbLqyOgEAhJjAQIMZaEYgg/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/king-minos-palace/pLJvyk_rOot-sqwAPmQXM6AAogqNKyBet2A34P1GFfNkabB1FfHOlbRKhP_JtipzyycX8qBEJWQkUwuJLN1wZIpGhQAVj3K2ACagJIQnIhHBHi0gEbirNGGJWjHKsE6P8kuQQPAbLqyOgEAhJjAQIMmcET3Q/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,hersonissos/king-minos-palace/pLJvyk_rOot-sqwAPmQXM6AAogqNKyBet2A34P1GFfNkabB1FfHOlbRKhP_JtipzyycX8qBEJWQkUw3pjN1wZIpGhQAVj3K2ACagJIQnIhHBHi0gEbirNGGJWjHKsE6P8kuQQPAbLqyOgEAhJjAQIMe-PK4g/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
   },
   {
+<<<<<<< Updated upstream
     "hotel_name": "Portes Lithos Luxury Resort",
     "price": 13377.0,
     "dates": "2027-07-02 - 2027-07-09",
@@ -1612,6 +2040,8 @@
     "operator": "Exim Tours"
   },
   {
+=======
+>>>>>>> Stashed changes
     "hotel_name": "Georgioupolis Resort and Aqua Park",
     "price": 13402.0,
     "dates": "2027-07-27 - 2027-08-03",
@@ -1625,9 +2055,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/22526/e6eaf543086f717e3b1f022d372dcd8954b7be051d879ae0e306d62bf2fad03b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/22526/e6eaf543086f717e3b1f022d372dcd8954b7be051d879ae0e306d62bf2fad03b.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/georgioupolis-resort/pp3OHiJIzNpbkkxxB7my_BAAogYJ7p2YZ_1JDVtjf8Ag5KCrZVMgpPr69dl3JfNUFSyFQqBEJWQkUw9oLN1wZI2mhQAVi3MGACagJIQnIhHBH-rwEbsK9FGOzFHasE6oMluQQLAfvtoOgEAhJjAQIOFQKnbw/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/georgioupolis-resort/pp3OHiJIzNpbkkxxB7my_BAAogYJ7p2YZ_1JDVtjf8Ag5KCrZVMgpPr69dl3JfNUFSyFQqBEJWQkUwuJLN1wZI2mhQAVi3MGACagJIQnIhHBH-rwEbsK9FGOzFHasE6oMluQQLAfvtoOgEAhJjAQIOAeHYYw/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/georgioupolis-resort/pp3OHiJIzNpbkkxxB7my_BAAogYJ7p2YZ_1JDVtjf8Ag5KCrZVMgpPr69dl3JfNUFSyFQqBEJWQkUw3pjN1wZI2mhQAVi3MGACagJIQnIhHBH-rwEbsK9FGOzFHasE6oMluQQLAfvtoOgEAhJjAQIOQcIBBw/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1646,9 +2080,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/492/4c53b5be1a0577def083f079a2818b0f4f1b301be07b15098993aedd5955ab16.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/492/4c53b5be1a0577def083f079a2818b0f4f1b301be07b15098993aedd5955ab16.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/natura-park-village/pSjTSv_cA-H2FomWSv9xh1AAogbkmKxeZuCAltkTLFBDz59tI5CYQRqWoDHRPcbwBP8R0qBFJOQlcw9oLN1wZInWlQQVj3K2ACagRCd2NUcjmfARUHFwBWA1gFCgkR1ANA6wMZhWIQwUpT_xpSAEygAkvMdWEAHeu6Rg_9ASD_mIwJDQACDGMBBQsukmyi/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/natura-park-village/pSjTSv_cA-H2FomWSv9xh1AAogbkmKxeZuCAltkTLFBDz59tI5CYQRqWoDHRPcbwBP8R0qBFJOQlcwuJLN1wZInWlQQVj3K2ACagRCd2NUcjmfARUHFwBWA1gFCgkR1ANA6wMZhWIQwUpT_xpSAEygAkvMdWEAHeu6Rg_9ASD_mIwJDQACDGMBBQsxtjTZ/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/natura-park-village/pSjTSv_cA-H2FomWSv9xh1AAogbkmKxeZuCAltkTLFBDz59tI5CYQRqWoDHRPcbwBP8R0qBFJOQlcw3pjN1wZInWlQQVj3K2ACagRCd2NUcjmfARUHFwBWA1gFCgkR1ANA6wMZhWIQwUpT_xpSAEygAkvMdWEAHeu6Rg_9ASD_mIwJDQACDGMBBQt2yvay/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1667,9 +2105,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/10535/8bbf92c651d50cecca18e2c75113d987815046e18825d5dd951679e4f0676bb1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVPR/IMG/10535/8bbf92c651d50cecca18e2c75113d987815046e18825d5dd951679e4f0676bb1.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,kiotari/lindos-breeze-beach/pquE-LD3pIlr6QQesNrm5XAAogMkQIXI8WttqYyliniKXal3nvICoJCK2osRnxpvTthOoqBEJWUFIw9oLN1wZI22lQAViHLWACag1BbGwgaW5jbHVzaXZlciAcEadSG9mfBhiwog-5BLrIFqsEGgH49I_3AQISYwECC0AKK0I/?operator=BVPR&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,kiotari/lindos-breeze-beach/pquE-LD3pIlr6QQesNrm5XAAogMkQIXI8WttqYyliniKXal3nvICoJCK2osRnxpvTthOoqBEJWUFIwuJLN1wZI22lQAViHLWACag1BbGwgaW5jbHVzaXZlciAcEadSG9mfBhiwog-5BLrIFqsEGgH49I_3AQISYwECCwCVPm8/?operator=BVPR&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,kiotari/lindos-breeze-beach/pquE-LD3pIlr6QQesNrm5XAAogMkQIXI8WttqYyliniKXal3nvICoJCK2osRnxpvTthOoqBEJWUFIw3pjN1wZI22lQAViHLWACag1BbGwgaW5jbHVzaXZlciAcEadSG9mfBhiwog-5BLrIFqsEGgH49I_3AQISYwECC9Z76VI/?operator=BVPR&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Prima Holiday"
@@ -1688,9 +2130,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4311/06f1072c21592f5d9a2c58862cf75bcc7ee63498b2bac12cb3df8bc8863e54b6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/4311/06f1072c21592f5d9a2c58862cf75bcc7ee63498b2bac12cb3df8bc8863e54b6.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/kipriotis-panorama-suites/pDenAlfBjGEp7jWhKgNW4DAAog8aWEA0yirbZ6_1Z4cCv8wNI5CYQRqWoDHRPcbwBP8R0qBFJOQlcw9oLN1wZIimpQQVj3K2ACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRgBoQyCMZvSRTwGVSAEygAkvMdWEAHeu6Rg_9ASD_mIwJDQACDGMBAgsBYS9i/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/kipriotis-panorama-suites/pDenAlfBjGEp7jWhKgNW4DAAog8aWEA0yirbZ6_1Z4cCv8wNI5CYQRqWoDHRPcbwBP8R0qBFJOQlcwuJLN1wZIimpQQVj3K2ACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRgBoQyCMZvSRTwGVSAEygAkvMdWEAHeu6Rg_9ASD_mIwJDQACDGMBAgsF1_S_/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,psalidi/kipriotis-panorama-suites/pDenAlfBjGEp7jWhKgNW4DAAog8aWEA0yirbZ6_1Z4cCv8wNI5CYQRqWoDHRPcbwBP8R0qBFJOQlcw3pjN1wZIimpQQVj3K2ACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcRgBoQyCMZvSRTwGVSAEygAkvMdWEAHeu6Rg_9ASD_mIwJDQACDGMBAgtIWQ1x/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1709,9 +2155,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/7365/8d1a3a805ac3f3a8b56464bdd75184e8e69389beaa0242a440f27845d1bac025.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/7365/8d1a3a805ac3f3a8b56464bdd75184e8e69389beaa0242a440f27845d1bac025.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,marmari/atlantica-holiday-village-kos-15/pC7AnALJCsrJSCR4HpCw3-AAogV9xyZs_pWmbXDpoMh6iefkBTtfzdKJ0SBjtayBlVE5AqBFJOQlcw9oLN1wZIjmpQQVjHLmACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcR7jEZlzAQuCtTiDpSAEygAkvMdWEAHe-6Rg_9ASCJmYwJDQACDGMBAgtqh2MQ/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,marmari/atlantica-holiday-village-kos-15/pC7AnALJCsrJSCR4HpCw3-AAogV9xyZs_pWmbXDpoMh6iefkBTtfzdKJ0SBjtayBlVE5AqBFJOQlcwuJLN1wZIjmpQQVjHLmACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcR7jEZlzAQuCtTiDpSAEygAkvMdWEAHe-6Rg_9ASCJmYwJDQACDGMBAgsJx1BA/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,marmari/atlantica-holiday-village-kos-15/pC7AnALJCsrJSCR4HpCw3-AAogV9xyZs_pWmbXDpoMh6iefkBTtfzdKJ0SBjtayBlVE5AqBFJOQlcw3pjN1wZIjmpQQVjHLmACagRCd2NEcjmfARUHFwBWA1gFCgRAxAcR7jEZlzAQuCtTiDpSAEygAkvMdWEAHe-6Rg_9ASCJmYwJDQACDGMBAgvxpWNJ/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1730,9 +2180,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/6447/bfad8fdb753b22cafa55f7d29339c91e4c426dca2efd23b1d4bd32cd5acdf7f8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/RNBW/IMG/6447/bfad8fdb753b22cafa55f7d29339c91e4c426dca2efd23b1d4bd32cd5acdf7f8.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/grand-blue-beach/pzXVlv3zCgpfde0uLQ2ENjAAogCb4zHVAclMK-UB-aXOvsrzBOEtQQPNiFmoQIJYjpAVQqBFJOQlcw9oLN1wZIlWpQQVi_LGACagRCd2NUcjmfARUHFwBWA1gFCglAvwcR2CoZrTcQ311T4QdSAEygAkvMdWEAHZunRw_LASCErYsJDQACDGMBBQvqpcwA/?operator=RNBW&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/grand-blue-beach/pzXVlv3zCgpfde0uLQ2ENjAAogCb4zHVAclMK-UB-aXOvsrzBOEtQQPNiFmoQIJYjpAVQqBFJOQlcwuJLN1wZIlWpQQVi_LGACagRCd2NUcjmfARUHFwBWA1gFCglAvwcR2CoZrTcQ311T4QdSAEygAkvMdWEAHZunRw_LASCErYsJDQACDGMBBQtzcFX9/?operator=RNBW&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,kardamena/grand-blue-beach/pzXVlv3zCgpfde0uLQ2ENjAAogCb4zHVAclMK-UB-aXOvsrzBOEtQQPNiFmoQIJYjpAVQqBFJOQlcw3pjN1wZIlWpQQVi_LGACagRCd2NUcjmfARUHFwBWA1gFCglAvwcR2CoZrTcQ311T4QdSAEygAkvMdWEAHZunRw_LASCErYsJDQACDGMBBQuWEbGB/?operator=RNBW&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Rainbow Tours"
@@ -1751,9 +2205,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/SKGAJLU/d42de61963e979c82519d3816f258763b2bf11cc2125d6f450d1e6ee9b1cbe17.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/SKGAJLU/d42de61963e979c82519d3816f258763b2bf11cc2125d6f450d1e6ee9b1cbe17.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,loutra/ajul-luxury-spa-resort-ayios-nikolaos-11/pHcAPoFJWlC8B6hNiidac8AAogC7XdJKhs1eONmK5QfdCVaG0YSeoQ0zQZzbda4e6XVSwqBEdSQ1Mw9oLN1wZI5mpQQVifLWADagMwNzJqAzA5M3I-nQGPARUHFwBYCFYCXAJAyAZbhIUBXrx3U4UeUgBL6CVhAAGwg5QBIL7SvggNAFHMppvL5wEBEmMBAmMBAgtitHRy/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,loutra/ajul-luxury-spa-resort-ayios-nikolaos-11/pHcAPoFJWlC8B6hNiidac8AAogC7XdJKhs1eONmK5QfdCVaG0YSeoQ0zQZzbda4e6XVSwqBEdSQ1MwuJLN1wZI5mpQQVifLWADagMwNzJqAzA5M3I-nQGPARUHFwBYCFYCXAJAyAZbhIUBXrx3U4UeUgBL6CVhAAGwg5QBIL7SvggNAFHMppvL5wEBEmMBAmMBAgvEohyc/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,chalkidiki,loutra/ajul-luxury-spa-resort-ayios-nikolaos-11/pHcAPoFJWlC8B6hNiidac8AAogC7XdJKhs1eONmK5QfdCVaG0YSeoQ0zQZzbda4e6XVSwqBEdSQ1Mw3pjN1wZI5mpQQVifLWADagMwNzJqAzA5M3I-nQGPARUHFwBYCFYCXAJAyAZbhIUBXrx3U4UeUgBL6CVhAAGwg5QBIL7SvggNAFHMppvL5wEBEmMBAmMBAgvEc5mb/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -1772,9 +2230,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/13457/d722eb7f543d757d3426ab2f8b5ae6f87b63243c04bdac7eb9f1895f727232fe.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/13457/d722eb7f543d757d3426ab2f8b5ae6f87b63243c04bdac7eb9f1895f727232fe.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sissi/robinson-club-kalimera-kriti/pDt3PpJtdoQUmDr943oQplAAog1jrhx1lGv9KLD93rFi3gDwAAAAAlzgQAP84EAAcAAAAqBFdFWlkw9oLN1wZIg2tQQViPLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYOEt8DEZ1lQJAYTIIvTwBL5ZYBUAAbvpABHd_EDyAaDbGAwgkBEmMBD2MBBAhXocvD/?operator=WEZY&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sissi/robinson-club-kalimera-kriti/pDt3PpJtdoQUmDr943oQplAAog1jrhx1lGv9KLD93rFi3gDwAAAAAlzgQAP84EAAcAAAAqBFdFWlkwuJLN1wZIg2tQQViPLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYOEt8DEZ1lQJAYTIIvTwBL5ZYBUAAbvpABHd_EDyAaDbGAwgkBEmMBD2MBBAgnmyJm/?operator=WEZY&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,sissi/robinson-club-kalimera-kriti/pDt3PpJtdoQUmDr943oQplAAog1jrhx1lGv9KLD93rFi3gDwAAAAAlzgQAP84EAAcAAAAqBFdFWlkw3pjN1wZIg2tQQViPLGADaglFbnRlciBBaXJqBDAwMDBqBDAwMDBqBDAwMDBqBDAwMDByQJ4BkwGUAZUBmAEfABwBAgAXBhYOEt8DEZ1lQJAYTIIvTwBL5ZYBUAAbvpABHd_EDyAaDbGAwgkBEmMBD2MBBAi7ySAY/?operator=WEZY&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Coral Travel"
@@ -1793,9 +2255,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HERMBLU/b1374371f223b5b68e59aedccd879b25af0b77beca829f189b5459d375aff0a9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/HERMBLU/b1374371f223b5b68e59aedccd879b25af0b77beca829f189b5459d375aff0a9.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,koutsounari/sunshine-ierapetra-annex/pqTQSth7VrPaD5B9f5nPdPAAogcdw4reUGY1WtB6lr-0Q4eB2Wvit1Olw4lL3EqF4Y4OMqBFZJVFgw9oLN1wZIvWtQQViPLGACckAaABUHFwBcA1gFQI8DW_OEAVOSKFIAXvhSS-1DYQBM-PlEDfDbjQkgAFHSsc6NjQFP37UcXczV8-F4Ag1jAQIMqxyOHQ/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,koutsounari/sunshine-ierapetra-annex/pqTQSth7VrPaD5B9f5nPdPAAogcdw4reUGY1WtB6lr-0Q4eB2Wvit1Olw4lL3EqF4Y4OMqBFZJVFgwuJLN1wZIvWtQQViPLGACckAaABUHFwBcA1gFQI8DW_OEAVOSKFIAXvhSS-1DYQBM-PlEDfDbjQkgAFHSsc6NjQFP37UcXczV8-F4Ag1jAQIMfvU7PA/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,koutsounari/sunshine-ierapetra-annex/pqTQSth7VrPaD5B9f5nPdPAAogcdw4reUGY1WtB6lr-0Q4eB2Wvit1Olw4lL3EqF4Y4OMqBFZJVFgw3pjN1wZIvWtQQViPLGACckAaABUHFwBcA1gFQI8DW_OEAVOSKFIAXvhSS-1DYQBM-PlEDfDbjQkgAFHSsc6NjQFP37UcXczV8-F4Ag1jAQIML2JB2g/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -1814,9 +2280,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/MJTAEVI/2ce4e40e453b824be5ed81f4847560313a89276527d63c811e6be162ed38c122.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/MJTAEVI/2ce4e40e453b824be5ed81f4847560313a89276527d63c811e6be162ed38c122.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,skala-eresou/aeolian-village-beach-resort-9/p4HGdIQW6fYZyr9LWnVvdIAAogUEZf7FG7OL90_FHKn2XCS0ouac1AX_Od3iqwgpOooa4qBEdSQ1Mw9oLN1wZIymtQQViPLGADcj8VBxcAWAhWAlwCHYUDDxRArwNbloABUrhdUwBe8h5h7UNLAAHhiJ0BDYfNtQggAFHeyPvktgEBEmMBAmMBAguQYlB3/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,skala-eresou/aeolian-village-beach-resort-9/p4HGdIQW6fYZyr9LWnVvdIAAogUEZf7FG7OL90_FHKn2XCS0ouac1AX_Od3iqwgpOooa4qBEdSQ1MwuJLN1wZIymtQQViPLGADcj8VBxcAWAhWAlwCHYUDDxRArwNbloABUrhdUwBe8h5h7UNLAAHhiJ0BDYfNtQggAFHeyPvktgEBEmMBAmMBAgvZAWwT/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,lesbos,skala-eresou/aeolian-village-beach-resort-9/p4HGdIQW6fYZyr9LWnVvdIAAogUEZf7FG7OL90_FHKn2XCS0ouac1AX_Od3iqwgpOooa4qBEdSQ1Mw3pjN1wZIymtQQViPLGADcj8VBxcAWAhWAlwCHYUDDxRArwNbloABUrhdUwBe8h5h7UNLAAHhiJ0BDYfNtQggAFHeyPvktgEBEmMBAmMBAgtvcyMb/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -1835,9 +2305,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10240/6ed6e9a24540c97e3fa85bafc91f31ef0bec4c0f3aaf23c962c527bbcfb3fe8d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10240/6ed6e9a24540c97e3fa85bafc91f31ef0bec4c0f3aaf23c962c527bbcfb3fe8d.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanias/porto-platanias-beach/pZQ2Bgo0LwQTidrdB1fCtTAAogKw4TMD0iTdAyr7ZxNGsAHXsFSci5Vc33tgcL_V3a1-AqBEVDQ1gw9oLN1wZI2mtQAVjXL2ACagJIQnIgHBGAULkEjd4ZqwQ1GP23MBvTxEQBn8eTmQICAGMBAgzgxCz-/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanias/porto-platanias-beach/pZQ2Bgo0LwQTidrdB1fCtTAAogKw4TMD0iTdAyr7ZxNGsAHXsFSci5Vc33tgcL_V3a1-AqBEVDQ1gwuJLN1wZI2mtQAVjXL2ACagJIQnIgHBGAULkEjd4ZqwQ1GP23MBvTxEQBn8eTmQICAGMBAgy4niND/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanias/porto-platanias-beach/pZQ2Bgo0LwQTidrdB1fCtTAAogKw4TMD0iTdAyr7ZxNGsAHXsFSci5Vc33tgcL_V3a1-AqBEVDQ1gw3pjN1wZI2mtQAVjXL2ACagJIQnIgHBGAULkEjd4ZqwQ1GP23MBvTxEQBn8eTmQICAGMBAgwY9uYV/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -1856,9 +2330,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/12984/04221d97b67ed5555860060008bb204c0a04d31d4e9f47e4dc0fa6fcbad00e77.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/12984/04221d97b67ed5555860060008bb204c0a04d31d4e9f47e4dc0fa6fcbad00e77.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,lavris/iberostar-creta-marine/pl45QdsnK4Ti_33topPjnoAAog-Dn4ffAurUp8iVhYEug-fWXhK84pHjGJu6QTJnc91eQqBEJWQkUw9oLN1wZI9mtQAVjnLWACagJIQnIgHBG4ZRuh20QYn94duQSNiiarBAgBgIjA3QQCAGMBAgarXvwS/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,lavris/iberostar-creta-marine/pl45QdsnK4Ti_33topPjnoAAog-Dn4ffAurUp8iVhYEug-fWXhK84pHjGJu6QTJnc91eQqBEJWQkUwuJLN1wZI9mtQAVjnLWACagJIQnIgHBG4ZRuh20QYn94duQSNiiarBAgBgIjA3QQCAGMBAgYBtgM6/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,lavris/iberostar-creta-marine/pl45QdsnK4Ti_33topPjnoAAog-Dn4ffAurUp8iVhYEug-fWXhK84pHjGJu6QTJnc91eQqBEJWQkUw3pjN1wZI9mtQAVjnLWACagJIQnIgHBG4ZRuh20QYn94duQSNiiarBAgBgIjA3QQCAGMBAgYFEwjD/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1877,9 +2355,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/RHOCOLI/fb14bbb6775958c053cefd76ca0e6a4dc12c8a5afa880f30c21b3bf21b57e5e0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/RHOCOLI/fb14bbb6775958c053cefd76ca0e6a4dc12c8a5afa880f30c21b3bf21b57e5e0.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,lardos/costa-lindia-blue-star-11/peGXKhSHK9Kal6xgVLBFLEAAog5kjvVeHiOMoSkPX73hPv1B_GeumyeXNTrFXjda0bUIUqBEdSQ1Mw9oLN1wZItWxQQVjfK2ACcjwVBxcAWAhWAlwCHYQCDx1ApwRewPwBUpETUwBb5Q1h9yJLAAHYjZYBDY7IvAggAFGYypnt3gEBEmMCAmORtKey/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,lardos/costa-lindia-blue-star-11/peGXKhSHK9Kal6xgVLBFLEAAog5kjvVeHiOMoSkPX73hPv1B_GeumyeXNTrFXjda0bUIUqBEdSQ1MwuJLN1wZItWxQQVjfK2ACcjwVBxcAWAhWAlwCHYQCDx1ApwRewPwBUpETUwBb5Q1h9yJLAAHYjZYBDY7IvAggAFGYypnt3gEBEmMCAmOFpn2U/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,lardos/costa-lindia-blue-star-11/peGXKhSHK9Kal6xgVLBFLEAAog5kjvVeHiOMoSkPX73hPv1B_GeumyeXNTrFXjda0bUIUqBEdSQ1Mw3pjN1wZItWxQQVjfK2ACcjwVBxcAWAhWAlwCHYQCDx1ApwRewPwBUpETUwBb5Q1h9yJLAAHYjZYBDY7IvAggAFGYypnt3gEBEmMCAmNsT7xe/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -1898,9 +2380,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/CHQRETH/806ac055c4cecebe819b4eb7539474e27deadbe0dbc9d386776c8557675fff30.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/CHQRETH/806ac055c4cecebe819b4eb7539474e27deadbe0dbc9d386776c8557675fff30.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,adelianos-kampos/rethymno-palace/p_HS9NF3goEqAoyJ8TFl3RAAogQVbAAkEPELyYOa6i3gOxMFNU1aUhOloOsrFkh1tpG9gqBEdSQ1Mw9oLN1wZIt2xQQViPLGADcj0XBxUAXANYBVYCHaQGDxtAC1Ljd1MAW_OBAV7qAmHtQ0sAAajRlwENwIS7CCAAUdXmyJ1lARJjAQJjAQILfi-2lA/?operator=GRCS&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,adelianos-kampos/rethymno-palace/p_HS9NF3goEqAoyJ8TFl3RAAogQVbAAkEPELyYOa6i3gOxMFNU1aUhOloOsrFkh1tpG9gqBEdSQ1MwuJLN1wZIt2xQQViPLGADcj0XBxUAXANYBVYCHaQGDxtAC1Ljd1MAW_OBAV7qAmHtQ0sAAajRlwENwIS7CCAAUdXmyJ1lARJjAQJjAQILbUVD2A/?operator=GRCS&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,adelianos-kampos/rethymno-palace/p_HS9NF3goEqAoyJ8TFl3RAAogQVbAAkEPELyYOa6i3gOxMFNU1aUhOloOsrFkh1tpG9gqBEdSQ1Mw3pjN1wZIt2xQQViPLGADcj0XBxUAXANYBVYCHaQGDxtAC1Ljd1MAW_OBAV7qAmHtQ0sAAajRlwENwIS7CCAAUdXmyJ1lARJjAQJjAQILm_Sk6w/?operator=GRCS&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Grecos Holiday"
@@ -1919,9 +2405,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118524/ffd0e99c95066377e07990cf79b414bcefc19dbd6b6a3c61dd5ed9919af1c5b9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/118524/ffd0e99c95066377e07990cf79b414bcefc19dbd6b6a3c61dd5ed9919af1c5b9.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/eliros-mare/pDhhQNwaC-zsTJI0L9j_kTAAog5m2P8iRyDBBCq3ew7dju_xk1iihwN4JKBN8P7gxRdI4qBEVYSU0w9oLN1wZI02xQAVj3K2ACagJIQnIhHBH8nQerBOnqS7kEFhvJ80IY9qxIAbyim88NAhJjAQIMnWmQxw/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/eliros-mare/pDhhQNwaC-zsTJI0L9j_kTAAog5m2P8iRyDBBCq3ew7dju_xk1iihwN4JKBN8P7gxRdI4qBEVYSU0wuJLN1wZI02xQAVj3K2ACagJIQnIhHBH8nQerBOnqS7kEFhvJ80IY9qxIAbyim88NAhJjAQIMkXsdwQ/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,georgioupolis/eliros-mare/pDhhQNwaC-zsTJI0L9j_kTAAog5m2P8iRyDBBCq3ew7dju_xk1iihwN4JKBN8P7gxRdI4qBEVYSU0w3pjN1wZI02xQAVj3K2ACagJIQnIhHBH8nQerBOnqS7kEFhvJ80IY9qxIAbyim88NAhJjAQIMyRrSLg/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -1940,9 +2430,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20289/1f23064843345fe0df0859ee3cb6cd6bb2a9e4b1639cede4546d86e30e1206ba.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20289/1f23064843345fe0df0859ee3cb6cd6bb2a9e4b1639cede4546d86e30e1206ba.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanes/atermono-boutique/pvPnsaXFRJ3Tgfiq_61bHrAAogUrB7Kpr_K93OeE-WPme6ClFfHOlbRKhP_JtipzyycX8qBEJWQkUw9oLN1wZI4WxQAVj3K2ACagJCQnIhHBHBngEbyPBGGN2SHKsEg4cluQQPAd369ecEAhJjAQMMnIks-w/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanes/atermono-boutique/pvPnsaXFRJ3Tgfiq_61bHrAAogUrB7Kpr_K93OeE-WPme6ClFfHOlbRKhP_JtipzyycX8qBEJWQkUwuJLN1wZI4WxQAVj3K2ACagJCQnIhHBHBngEbyPBGGN2SHKsEg4cluQQPAd369ecEAhJjAQMMKxz_8w/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,platanes/atermono-boutique/pvPnsaXFRJ3Tgfiq_61bHrAAogUrB7Kpr_K93OeE-WPme6ClFfHOlbRKhP_JtipzyycX8qBEJWQkUw3pjN1wZI4WxQAVj3K2ACagJCQnIhHBHBngEbyPBGGN2SHKsEg4cluQQPAd369ecEAhJjAQMMuz5oRA/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1961,9 +2455,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/16663/6f0ad26d36a71982191b86b1229d63d91d687cea552719a5e41896b6c2a4c0bb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/16663/6f0ad26d36a71982191b86b1229d63d91d687cea552719a5e41896b6c2a4c0bb.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/sentido-apollo-blue/pa54D5f5RsTLAF-uQAz4WeAAog70NzaGhA0twE-LDOiHKAVuts6biDqU4SUh9isb4cbYQqBEJWQkUw9oLN1wZI42xQAViXLmACagJIQnIhHBGXggEb4b9HGPDYHKsEqsMkuQQTAYGLh_EEAgBjAQYMzDnsAg/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/sentido-apollo-blue/pa54D5f5RsTLAF-uQAz4WeAAog70NzaGhA0twE-LDOiHKAVuts6biDqU4SUh9isb4cbYQqBEJWQkUwuJLN1wZI42xQAViXLmACagJIQnIhHBGXggEb4b9HGPDYHKsEqsMkuQQTAYGLh_EEAgBjAQYM2E4SPg/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,faliraki/sentido-apollo-blue/pa54D5f5RsTLAF-uQAz4WeAAog70NzaGhA0twE-LDOiHKAVuts6biDqU4SUh9isb4cbYQqBEJWQkUw3pjN1wZI42xQAViXLmACagJIQnIhHBGXggEb4b9HGPDYHKsEqsMkuQQTAYGLh_EEAgBjAQYMJLUQcA/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -1982,9 +2480,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/5079/1c0d702512b32f6274b8a63e1c9416337f8fb5c60df7764844736bef5576d19b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/5079/1c0d702512b32f6274b8a63e1c9416337f8fb5c60df7764844736bef5576d19b.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/aks-annabelle-beach-resort/pdOUlykxiTjEXDyOp4wPptAAogK4EuTdRant6KFkmWYdEuzRDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw9oLN1wZIp21QAVj3K2ACagJBSXIgHBHXJ7kEnogaqwQRGKqCMBuNnD4BiqarlwICEmMBAgxskjxX/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/aks-annabelle-beach-resort/pdOUlykxiTjEXDyOp4wPptAAogK4EuTdRant6KFkmWYdEuzRDTplN5fDPrTf-Y1psvjt4qBEVDQ1gwuJLN1wZIp21QAVj3K2ACagJBSXIgHBHXJ7kEnogaqwQRGKqCMBuNnD4BiqarlwICEmMBAgyN9LoM/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-wschodnia,anissaras/aks-annabelle-beach-resort/pdOUlykxiTjEXDyOp4wPptAAogK4EuTdRant6KFkmWYdEuzRDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw3pjN1wZIp21QAVj3K2ACagJBSXIgHBHXJ7kEnogaqwQRGKqCMBuNnD4BiqarlwICEmMBAgzVy8Fm/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -2003,9 +2505,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117147/105fd6fa1352ba1958b8142fe6c2f7ee23031fae38837bb249bccf027f2b4962.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/117147/105fd6fa1352ba1958b8142fe6c2f7ee23031fae38837bb249bccf027f2b4962.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,scaleta/rethymno-mare-royal/pj47nCgHBxHYzPN0WNW_ELAAog0imIqbuR9Zlg366kLOdwl2GD-p4Sh0_5MsmLMbF3XCoqBEVYSU0w9oLN1wZIwW1QAVi3MGACagJIQnIhHBGbkwerBLL0S7kEFhuWvEEY24dKAeyJ69INAgBjAQILc9rBkQ/?operator=EXIM&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,scaleta/rethymno-mare-royal/pj47nCgHBxHYzPN0WNW_ELAAog0imIqbuR9Zlg366kLOdwl2GD-p4Sh0_5MsmLMbF3XCoqBEVYSU0wuJLN1wZIwW1QAVi3MGACagJIQnIhHBGbkwerBLL0S7kEFhuWvEEY24dKAeyJ69INAgBjAQILS1IARw/?operator=EXIM&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta-zachodnia,scaleta/rethymno-mare-royal/pj47nCgHBxHYzPN0WNW_ELAAog0imIqbuR9Zlg366kLOdwl2GD-p4Sh0_5MsmLMbF3XCoqBEVYSU0w3pjN1wZIwW1QAVi3MGACagJIQnIhHBGbkwerBLL0S7kEFhuWvEEY24dKAeyJ69INAgBjAQILkWxbrg/?operator=EXIM&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
@@ -2024,9 +2530,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/KGSKOUR/f6afa4c3a4eaf2a4ded2ee9c181059ea65ff84b986efe3839f5f580d4cb35822.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/KGSKOUR/f6afa4c3a4eaf2a4ded2ee9c181059ea65ff84b986efe3839f5f580d4cb35822.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,mastichari/kouros-palace/pDN9XOl1uQPGPAU2339zBBAAog89M0rMH73FRBiRf7mvxV60b24D-f3QX2btJnshP-xowqBFZJVFgw9oLN1wZI9W5QQVj3K2ACckAaABUHFwBcA1gFQI8DW6eGAVPXRVIAXv8zS-1DYQBM-PlEDe_bjQkgAFHkkPrxpQFPzoghXdD9y_1fAgxjAQULZfwhjA/?operator=VITX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kos,mastichari/kouros-palace/pDN9XOl1uQPGPAU2339zBBAAog89M0rMH73FRBiRf7mvxV60b24D-f3QX2btJnshP-xowqBFZJVFgwuJLN1wZI9W5QQVj3K2ACckAaABUHFwBcA1gFQI8DW6eGAVPXRVIAXv8zS-1DYQBM-PlEDe_bjQkgAFHkkPrxpQFPzoghXdD9y_1fAgxjAQUL25zeoA/?operator=VITX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kos,mastichari/kouros-palace/pDN9XOl1uQPGPAU2339zBBAAog89M0rMH73FRBiRf7mvxV60b24D-f3QX2btJnshP-xowqBFZJVFgw3pjN1wZI9W5QQVj3K2ACckAaABUHFwBcA1gFQI8DW6eGAVPXRVIAXv8zS-1DYQBM-PlEDe_bjQkgAFHkkPrxpQFPzoghXdD9y_1fAgxjAQUL9StIrg/?operator=VITX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Itaka"
@@ -2045,9 +2555,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29582/c46f01f469fffeccdc6df3bdebd1b7c307f3220067f8e60de9a6c1c6f56c364f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/29582/c46f01f469fffeccdc6df3bdebd1b7c307f3220067f8e60de9a6c1c6f56c364f.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/st-george-lycabettus/pfUWzDq2LLIU9ixOtiVQjEAAogrZdLglxnGUC6JTFI-pxzrYXX6iRi1NaDdS_VLYEYLPwqBEJWQkUw9oLN1wZI6m9QAVj_MGADagJCQnIkHBGO5wEb19JCGICYIKsEtuEluQRDAfCEv-sEARJjAQxjAQILzp9nxA/?operator=BVBE&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/st-george-lycabettus/pfUWzDq2LLIU9ixOtiVQjEAAogrZdLglxnGUC6JTFI-pxzrYXX6iRi1NaDdS_VLYEYLPwqBEJWQkUwuJLN1wZI6m9QAVj_MGADagJCQnIkHBGO5wEb19JCGICYIKsEtuEluQRDAfCEv-sEARJjAQxjAQILEgSA5w/?operator=BVBE&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,ateny,c/st-george-lycabettus/pfUWzDq2LLIU9ixOtiVQjEAAogrZdLglxnGUC6JTFI-pxzrYXX6iRi1NaDdS_VLYEYLPwqBEJWQkUw3pjN1wZI6m9QAVj_MGADagJCQnIkHBGO5wEb19JCGICYIKsEtuEluQRDAfCEv-sEARJjAQxjAQILH3NkFA/?operator=BVBE&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Best Reisen"
@@ -2066,9 +2580,13 @@
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/6850/42ec467f15a60ac0c11b474c1de68671ef4f3d378c36259c86039ab7e69b8014.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/6850/42ec467f15a60ac0c11b474c1de68671ef4f3d378c36259c86039ab7e69b8014.webp@webp",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,analipsi/golden-star-analipsis-12/pG6vaFeBxKgJWL-PDwTrTxAAog9fMEcLGTr48y37thDLo7xxDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw9oLN1wZIrXBQAVj3K2ACagNBSVByIBwRwjW5BLP6GasEERjltzAbzqpEAZj-mpkCAgBjAQIMYu1jVQ/?operator=ECCX&adults=2&children=2020-08-12",
 =======
     "offer_url": "https://fly.pl/wycieczka/grecja,kreta,analipsi/golden-star-analipsis-12/pG6vaFeBxKgJWL-PDwTrTxAAog9fMEcLGTr48y37thDLo7xxDTplN5fDPrTf-Y1psvjt4qBEVDQ1gwuJLN1wZIrXBQAVj3K2ACagNBSVByIBwRwjW5BLP6GasEERjltzAbzqpEAZj-mpkCAgBjAQIMvlPBiA/?operator=ECCX&adults=2&children=2020-08-12",
+>>>>>>> Stashed changes
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,kreta,analipsi/golden-star-analipsis-12/pG6vaFeBxKgJWL-PDwTrTxAAog9fMEcLGTr48y37thDLo7xxDTplN5fDPrTf-Y1psvjt4qBEVDQ1gw3pjN1wZIrXBQAVj3K2ACagNBSVByIBwRwjW5BLP6GasEERjltzAbzqpEAZj-mpkCAgBjAQIMdj4LUQ/?operator=ECCX&adults=2&children=2020-08-12",
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Ecco Holiday"
@@ -2086,6 +2604,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/RHOPOAN/b3615f0677e0cf7d5be1ae0e158c33b252d15bcc2d8c7fa9392f2044684a5352.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/GRCS/IMG/RHOPOAN/b3615f0677e0cf7d5be1ae0e158c33b252d15bcc2d8c7fa9392f2044684a5352.webp@webp",
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     "offer_url": "https://fly.pl/wycieczka/grecja,rodos,archangelos/porto-angeli/pYzSvM3fgMvoRxoyvKD_gcAAogu1jAQTBdUVoPbXcedzOiuIBWD2JRiqvKpgiD1ylIyusqBEdSQ1Mw9oLN1wZImnFQQVinLGADcj8XBxUAXANYBVYCHaQBDxpAjAVbloABXqp8UpETUwBh3DBLAAGU7ZUBDdXovAggAFHOyb7t3gEBEmMBAmMBAg1g_tCO/?operator=GRCS&adults=2&children=2020-08-12",
 =======
@@ -3143,5 +3662,10 @@
 >>>>>>> Stashed changes
     "ta_rating": null,
     "operator": "Exim Tours"
+=======
+    "offer_url": "https://fly.pl/wycieczka/grecja,rodos,archangelos/porto-angeli/pYzSvM3fgMvoRxoyvKD_gcAAogu1jAQTBdUVoPbXcedzOiuIBWD2JRiqvKpgiD1ylIyusqBEdSQ1Mw3pjN1wZImnFQQVinLGADcj8XBxUAXANYBVYCHaQBDxpAjAVbloABXqp8UpETUwBh3DBLAAGU7ZUBDdXovAggAFHOyb7t3gEBEmMBAmMBAg3ROlqh/?operator=GRCS&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Grecos Holiday"
+>>>>>>> Stashed changes
   }
 ]
