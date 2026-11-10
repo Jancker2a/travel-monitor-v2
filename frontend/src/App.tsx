@@ -1003,18 +1003,6 @@ export const App: React.FC = () => {
               >
                 <span>🔍 Интерактивный поиск</span>
               </button>
-
-              <button
-                type="button"
-                onClick={() => setViewMode("arbitrage")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  viewMode === "arbitrage"
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
-                }`}
-              >
-                <span>🇩🇪 Берлин (BER)</span>
-              </button>
             </div>
 
             <button
