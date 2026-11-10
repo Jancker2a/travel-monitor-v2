@@ -264,12 +264,29 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     }
   }, [activeTab, passport, historyMode, historyRange, normalizedData]);
 
-  const photos = passport?.gallery_photos?.length
-    ? passport.gallery_photos
-    : [
-        passport?.main_image_url ||
-          "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-      ];
+  const genericPlaceholder =
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80";
+
+  // Filter out any generic unsplash placeholder URLs that might be present in cached data
+  const realGalleryPhotos = (passport?.gallery_photos || []).filter(
+    (url) =>
+      url &&
+      !url.includes("images.unsplash.com/photo-1566073771259") &&
+      !url.includes("images.unsplash.com/photo-1582719478250") &&
+      !url.includes("images.unsplash.com/photo-1571896349842") &&
+      !url.includes("images.unsplash.com/photo-1540555700478")
+  );
+
+  const primaryPhoto =
+    hotelItem?.main_image_url ||
+    passport?.main_image_url ||
+    (realGalleryPhotos.length ? realGalleryPhotos[0] : "");
+
+  const photos = primaryPhoto
+    ? [primaryPhoto, ...realGalleryPhotos.filter((p) => p !== primaryPhoto)]
+    : realGalleryPhotos.length
+    ? realGalleryPhotos
+    : [genericPlaceholder];
 
   const handleNextPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();

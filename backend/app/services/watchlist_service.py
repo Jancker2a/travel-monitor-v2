@@ -564,6 +564,7 @@ class WatchlistService:
             country=hotel.country,
             stars=hotel.stars or 4,
             current_price=curr_p,
+            main_image_url=hotel.main_image_url,
         )
 
         final_ta_rating = (
@@ -655,6 +656,11 @@ class WatchlistService:
 
         packages_list = sorted(list(packages_map.values()), key=lambda x: x["total_price_pln"])
 
+        final_main_image = hotel.main_image_url or dossier.get("main_image_url") or (dossier["gallery_photos"][0] if dossier.get("gallery_photos") else None)
+        final_gallery = list(dossier.get("gallery_photos", []))
+        if final_main_image and final_main_image not in final_gallery:
+            final_gallery = [final_main_image] + final_gallery
+
         return HotelPassportResponse(
             hotel_id=hotel.hotel_id,
             display_name=hotel.display_name,
@@ -663,7 +669,7 @@ class WatchlistService:
             stars=hotel.stars or 4,
             ta_rating=dossier["ta_rating"],
             ta_reviews=dossier["ta_reviews"],
-            main_image_url=hotel.main_image_url or (dossier["gallery_photos"][0] if dossier["gallery_photos"] else None),
+            main_image_url=final_main_image,
             all_time_min_pln=min_p,
             all_time_max_pln=max_p,
             typical_median_pln=med_p,
@@ -672,7 +678,7 @@ class WatchlistService:
             deal_score=deal_score,
             deal_badge=deal_badge,
             hopper_verdict=verdict,
-            gallery_photos=dossier["gallery_photos"],
+            gallery_photos=final_gallery,
             tripadvisor_url=dossier["tripadvisor_url"],
             google_reviews_url=dossier["google_reviews_url"],
             youtube_search_url=dossier["youtube_search_url"],

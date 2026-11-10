@@ -14,6 +14,7 @@ class HotelKnowledgeService:
     _specs_cache: Optional[Dict[str, Any]] = None
     _rep_cache: Optional[Dict[str, Any]] = None
     _galleries_cache: Optional[Dict[str, Any]] = None
+    _images_cache: Optional[Dict[str, Any]] = None
 
     @classmethod
     def _clean_key(cls, name: str) -> str:
@@ -65,8 +66,21 @@ class HotelKnowledgeService:
             else:
                 cls._galleries_cache = {}
 
+        if cls._images_cache is None:
+            img_path = KB_DIR / "hotel_images_kb.json"
+            if img_path.exists():
+                try:
+                    with open(img_path, "r", encoding="utf-8") as f:
+                        cls._images_cache = json.load(f)
+                        logger.info(f"Loaded {len(cls._images_cache)} hotel images from KB.")
+                except Exception as e:
+                    logger.error(f"Failed to load hotel_images_kb.json: {e}")
+                    cls._images_cache = {}
+            else:
+                cls._images_cache = {}
+
     @classmethod
-    def _match_entry(cls, target_name: str, cache: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def _match_entry(cls, target_name: str, cache: Dict[str, Any]) -> Optional[Any]:
         if not cache or not target_name:
             return None
         # Exact match
@@ -94,6 +108,7 @@ class HotelKnowledgeService:
         stars: int = 4,
         current_price: float = 0.0,
         deal_score: int = 70,
+        main_image_url: Optional[str] = None,
     ) -> Dict[str, Any]:
         cls.load_kb()
 
@@ -103,16 +118,28 @@ class HotelKnowledgeService:
         rep = cls._match_entry(hotel_name, cls._rep_cache or {}) or {}
         gallery = cls._match_entry(hotel_name, cls._galleries_cache or {}) or []
 
+        # Resolve primary image (passed from DB or matched from hotel_images_kb.json)
+        resolved_main_img = main_image_url
+        if not resolved_main_img:
+            matched_img = cls._match_entry(hotel_name, cls._images_cache or {})
+            if isinstance(matched_img, str) and matched_img:
+                resolved_main_img = matched_img
+
         # Photos: prefer passport or specs gallery_photos if available
         raw_photos = passport.get("gallery_photos") or specs.get("gallery_photos") or gallery
         gallery_photos = [g.get("url") if isinstance(g, dict) else g for g in raw_photos if g]
-        if not gallery_photos:
-            gallery_photos = [
-                "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
-            ]
+        # Never inject or keep generic Unsplash fallback photos
+        gallery_photos = [
+            g for g in gallery_photos
+            if isinstance(g, str)
+            and not g.startswith("https://images.unsplash.com/photo-1566073771259")
+            and not g.startswith("https://images.unsplash.com/photo-1582719478250")
+            and not g.startswith("https://images.unsplash.com/photo-1571896349842")
+            and not g.startswith("https://images.unsplash.com/photo-1540555700478")
+        ]
+
+        if resolved_main_img and resolved_main_img not in gallery_photos:
+            gallery_photos = [resolved_main_img] + gallery_photos
 
         # External Search URLs
         enc_name = urllib.parse.quote(f"{hotel_name} hotel review")
@@ -273,6 +300,7 @@ class HotelKnowledgeService:
         return {
             "specs": specs,
             "reputation": rep,
+            "main_image_url": resolved_main_img,
             "gallery_photos": gallery_photos,
             "tripadvisor_url": tripadvisor_url,
             "google_reviews_url": google_reviews_url,
