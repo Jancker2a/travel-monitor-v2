@@ -1475,6 +1475,7 @@ export const App: React.FC = () => {
                 h.hotel_name.trim().toLowerCase() === activeHotelPassport.trim().toLowerCase())
           ) || null
         }
+        onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}
         onClose={() => setActiveHotelPassport(null)}
       />
 

@@ -133,6 +133,19 @@ export interface GermanArbitrageData {
   train_transfer_from_pl: string;
 }
 
+export interface HotelOtherFilter {
+  filter_id: string;
+  title: string;
+  min_price_pln: number;
+  max_price_pln: number;
+  snaps_count: number;
+  adults?: number;
+  children?: number;
+  party_str?: string;
+  duration_nights?: number;
+  last_seen?: string;
+}
+
 export interface HotelPassport {
   hotel_id: string;
   display_name: string;
@@ -175,6 +188,7 @@ export interface HotelPassport {
   infra_rich?: Record<string, any>;
   german_arbitrage?: GermanArbitrageData;
   available_packages?: AvailablePackage[];
+  other_filters?: HotelOtherFilter[];
   history_points: HotelHistoryPoint[];
 }
 

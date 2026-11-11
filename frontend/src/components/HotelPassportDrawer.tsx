@@ -22,6 +22,7 @@ interface HotelPassportDrawerProps {
   filterId?: string | null;
   hotelItem?: SearchHotelItem | null;
   onClose: () => void;
+  onSwitchFilter?: (filterId: string) => void;
 }
 
 export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
@@ -29,10 +30,9 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   filterId,
   hotelItem,
   onClose,
+  onSwitchFilter,
 }) => {
   const [passport, setPassport] = useState<HotelPassport | null>(null);
-  const [normalizedData, setNormalizedData] = useState<any>(null);
-  const [historyMode, setHistoryMode] = useState<"original" | "normalized">("original");
   const [historyRange, setHistoryRange] = useState<"7d" | "30d" | "all">("all");
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"ai" | "history" | "infra" | "packages">("ai");
@@ -40,31 +40,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
-  // Fetch passport data & normalized history
+  // Fetch passport data
   useEffect(() => {
     if (!hotelId) {
       setPassport(null);
-      setNormalizedData(null);
       return;
     }
     setIsLoading(true);
     setActivePhotoIdx(0);
     setActiveTab("ai");
-    setHistoryMode("original");
 
     getHotelPassport(hotelId, filterId || undefined)
       .then((data) => setPassport(data))
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
-
-    // Only load normalized benchmark history for interactive search (when no specific filter is selected)
-    if (!filterId) {
-      getHotelNormalizedHistory(hotelId)
-        .then((data) => setNormalizedData(data))
-        .catch(() => setNormalizedData(null));
-    } else {
-      setNormalizedData(null);
-    }
   }, [hotelId, filterId]);
 
   // Render Plotly Price History Chart when history tab is activated
@@ -73,92 +62,12 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       return;
     }
 
-    if (historyMode === "normalized") {
-      // Normalized Benchmark Series (1 pax, 8 nights)
-      let normPoints = normalizedData?.points || [];
-      if (!normPoints.length && passport.history_points?.length) {
-        const dest = (passport.country || "turkey").toLowerCase();
-        const flightCost = dest.includes("egypt") ? 1400 : dest.includes("turkey") ? 1300 : 1200;
-        const singleFactor = dest.includes("turkey") ? 1.18 : 1.20;
-
-        normPoints = passport.history_points.map((pt) => {
-          const total = pt.total_price_pln;
-          const nights = Math.max(1, pt.duration_nights || 7);
-          const estFlight = Math.min(3 * flightCost, total * 0.5);
-          const estHotel = Math.max(100, total - estFlight);
-          const pureNight = (estHotel / nights) / 2.2;
-          const normPrice = Math.round(flightCost + (8.0 * pureNight * singleFactor));
-          return {
-            recorded_at: pt.recorded_at,
-            normalized_price_1p_8n: normPrice,
-            pure_hotel_night_rate: Math.round(pureNight),
-            flight_estimate_seat: flightCost,
-          };
-        });
-      }
-
-      if (!normPoints.length) {
-        window.Plotly.purge(chartContainerRef.current);
-        return;
-      }
-
-      if (historyRange !== "all") {
-        const now = new Date().getTime();
-        const cutoffDays = historyRange === "7d" ? 7 : 30;
-        const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
-        const filtered = normPoints.filter(
-          (p: any) => new Date(p.recorded_at).getTime() >= cutoffMs
-        );
-        if (filtered.length > 0) normPoints = filtered;
-      }
-
-      const xVals = normPoints.map((p: any) => p.recorded_at);
-      const yVals = normPoints.map((p: any) => p.normalized_price_1p_8n);
-      const minP = Math.min(...yVals);
-      const sortedY = [...yVals].sort((a, b) => a - b);
-      const medP = sortedY[Math.floor(sortedY.length / 2)] || minP;
-
-      const trace = {
-        x: xVals,
-        y: yVals,
-        type: "scatter",
-        mode: "lines+markers",
-        name: "Эталон 1p / 8n (PLN)",
-        line: { color: "#0891b2", width: 2.5, shape: "linear" },
-        marker: { size: 5, color: "#0e7490" },
-        hovertemplate: "<b>%{y:,.0f} zł</b> (1 чел / 8н)<br>%{x|%d.%m %H:%M}<extra></extra>",
-      };
-
-      const layout = {
-        title: {
-          text: "Нормализованный эталон цен (1 человек • 8 ночей, PLN)",
-          font: { size: 13, family: "Inter, sans-serif", color: "#0f172a" },
-          x: 0.05,
-        },
-        margin: { l: 55, r: 25, t: 40, b: 40 },
-        height: 320,
-        paper_bgcolor: "transparent",
-        plot_bgcolor: "transparent",
-        xaxis: { type: "date", gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
-        yaxis: { title: "Эталон (PLN)", gridcolor: "#f1f5f9", tickfont: { size: 10, color: "#64748b" } },
-        shapes: [
-          { type: "line", y0: minP, y1: minP, x0: 0, x1: 1, xref: "paper", line: { color: "#10b981", width: 1.5, dash: "dot" } },
-          { type: "line", y0: medP, y1: medP, x0: 0, x1: 1, xref: "paper", line: { color: "#f59e0b", width: 1.5, dash: "dot" } },
-        ],
-        font: { family: "Inter, sans-serif", size: 11 },
-      };
-
-      try {
-        window.Plotly.react(chartContainerRef.current, [trace], layout, { responsive: true, displayModeBar: false });
-      } catch (e) {
-        console.warn("Plotly normalized chart error:", e);
-      }
+    // Real Tour History
+    const allHistory = passport.history_points || [];
+    if (!allHistory.length) {
+      window.Plotly.purge(chartContainerRef.current);
       return;
     }
-
-    // Original Tour History (2+1 / Custom)
-    const allHistory = passport.history_points || [];
-    if (!allHistory.length) return;
 
     let history = allHistory;
     if (historyRange !== "all") {
@@ -173,7 +82,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       }
     }
 
-    // Deduplicate timestamps to prevent recursion
+    // Deduplicate timestamps to prevent duplicate x-axis points
     const uniqueMap = new Map<string, number>();
     history.forEach((pt) => {
       uniqueMap.set(pt.recorded_at, pt.total_price_pln);
@@ -193,13 +102,13 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       mode: "lines+markers",
       name: "Цена тура (PLN)",
       line: {
-        color: "#4f46e5",
+        color: "#2563eb",
         width: 2.5,
         shape: "linear",
       },
       marker: {
         size: 5,
-        color: "#4338ca",
+        color: "#1d4ed8",
       },
       hovertemplate: "<b>%{y:,.0f} zł</b><br>%{x|%d.%m %H:%M}<extra></extra>",
     };
@@ -262,7 +171,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     } catch (e) {
       console.warn("Plotly tour chart error:", e);
     }
-  }, [activeTab, passport, historyMode, historyRange, normalizedData]);
+  }, [activeTab, passport, historyRange]);
 
   const genericPlaceholder =
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80";
@@ -301,7 +210,48 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const currentPrice = hotelItem?.current_offer?.total_price_pln || passport?.current_price_pln || 0;
   const minPrice = hotelItem?.intelligence?.historic_min_pln || passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
-  const savings = maxPrice > currentPrice ? maxPrice - currentPrice : 0;
+
+  // Dynamic values depending on active filter range (7d / 30d / all)
+  const rangeStats = useMemo(() => {
+    let hist = passport?.history_points || [];
+    if (historyRange !== "all") {
+      const now = Date.now();
+      const cutoffDays = historyRange === "7d" ? 7 : 30;
+      const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
+      const filtered = hist.filter(
+        (p) => new Date(p.recorded_at).getTime() >= cutoffMs
+      );
+      if (filtered.length > 0) hist = filtered;
+    }
+    const pVals = hist.map((p) => p.total_price_pln);
+    const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
+    const min = pVals.length > 0 ? Math.min(...pVals) : minPrice;
+    const max = pVals.length > 0 ? Math.max(...pVals) : maxPrice;
+    const sorted = [...pVals].sort((a, b) => a - b);
+    const med = sorted.length > 0 ? sorted[Math.floor(sorted.length / 2)] : (passport?.typical_median_pln || cur);
+    return { cur, min, med, max };
+  }, [historyRange, passport?.history_points, passport?.typical_median_pln, currentPrice, minPrice, maxPrice]);
+
+  // Real, meaningful savings vs median of this tour (NO crazy -17 000 zł!)
+  const savingsVsMedian = (rangeStats.med > 0 && currentPrice < rangeStats.med) ? (rangeStats.med - currentPrice) : 0;
+
+  let savingsBadgeText: string | null = null;
+  if (savingsVsMedian >= 50 && savingsVsMedian < currentPrice * 0.8) {
+    savingsBadgeText = `на ${Math.round(savingsVsMedian).toLocaleString("ru-RU")} zł ниже средней`;
+  } else if (hotelItem?.intelligence?.drop_48h_pct && hotelItem.intelligence.drop_48h_pct < -2) {
+    savingsBadgeText = `${Math.round(hotelItem.intelligence.drop_48h_pct)}% от средней`;
+  }
+
+  // Ensure AI Price summary strictly matches bold currentPrice
+  const dynamicPriceSummary = useMemo(() => {
+    if (passport?.ai_price_summary) {
+      return passport.ai_price_summary.replace(
+        /Текущая цена\s+[\d\s,.]+\s*zł/i,
+        `Текущая цена ${currentPrice.toLocaleString("ru-RU")} zł`
+      );
+    }
+    return `Текущая цена ${currentPrice.toLocaleString("ru-RU")} zł соответствует справедливой рыночной оценке.`;
+  }, [passport?.ai_price_summary, currentPrice]);
 
   const currentDealScore = hotelItem?.intelligence?.deal_score ?? passport?.deal_score ?? 80;
   const isBuySignal =
@@ -326,65 +276,6 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const verdictBadgeColor = isBuySignal ? "#065f46" : isOverpricedSignal ? "#991b1b" : "#334155";
 
   const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
-
-  // Dynamic values depending on active filter range (7d / 30d / all)
-  const rangeStats = useMemo(() => {
-    if (historyMode === "normalized") {
-      let normPoints = normalizedData?.points || [];
-      if (!normPoints.length && passport?.history_points?.length) {
-        const dest = (passport.country || "turkey").toLowerCase();
-        const flightCost = dest.includes("egypt") ? 1400 : dest.includes("turkey") ? 1300 : 1200;
-        const singleFactor = dest.includes("turkey") ? 1.18 : 1.20;
-
-        normPoints = passport.history_points.map((pt) => {
-          const total = pt.total_price_pln;
-          const nights = Math.max(1, pt.duration_nights || 7);
-          const estFlight = Math.min(3 * flightCost, total * 0.5);
-          const estHotel = Math.max(100, total - estFlight);
-          const pureNight = (estHotel / nights) / 2.2;
-          const normPrice = Math.round(flightCost + (8.0 * pureNight * singleFactor));
-          return {
-            recorded_at: pt.recorded_at,
-            normalized_price_1p_8n: normPrice,
-            pure_hotel_night_rate: Math.round(pureNight),
-            flight_estimate_seat: flightCost,
-          };
-        });
-      }
-
-      if (historyRange !== "all") {
-        const now = Date.now();
-        const cutoffDays = historyRange === "7d" ? 7 : 30;
-        const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
-        const filtered = normPoints.filter(
-          (p: any) => new Date(p.recorded_at).getTime() >= cutoffMs
-        );
-        if (filtered.length > 0) normPoints = filtered;
-      }
-      const yVals = normPoints.map((p: any) => p.normalized_price_1p_8n);
-      const cur = yVals.length > 0 ? yVals[yVals.length - 1] : normalizedData?.stats?.current_normalized_pln || 0;
-      const min = yVals.length > 0 ? Math.min(...yVals) : normalizedData?.stats?.min_normalized_pln || 0;
-      const max = yVals.length > 0 ? Math.max(...yVals) : normalizedData?.stats?.max_normalized_pln || 0;
-      const latestPure = normPoints.length > 0 ? normPoints[normPoints.length - 1].pure_hotel_night_rate : normalizedData?.stats?.pure_hotel_night_rate || 0;
-      return { cur, min, max, savings: max > cur ? max - cur : 0, pureNight: latestPure };
-    }
-
-    let hist = passport?.history_points || [];
-    if (historyRange !== "all") {
-      const now = Date.now();
-      const cutoffDays = historyRange === "7d" ? 7 : 30;
-      const cutoffMs = now - cutoffDays * 24 * 60 * 60 * 1000;
-      const filtered = hist.filter(
-        (p) => new Date(p.recorded_at).getTime() >= cutoffMs
-      );
-      if (filtered.length > 0) hist = filtered;
-    }
-    const pVals = hist.map((p) => p.total_price_pln);
-    const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
-    const min = pVals.length > 0 ? Math.min(...pVals) : minPrice;
-    const max = pVals.length > 0 ? Math.max(...pVals) : maxPrice;
-    return { cur, min, max, savings: max > cur ? max - cur : 0, pureNight: 0 };
-  }, [historyMode, historyRange, normalizedData, passport?.history_points, passport?.country, currentPrice, minPrice, maxPrice]);
 
   return (
     <>
@@ -649,15 +540,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       <span className="oracle-price-val" id="drawerOracleCurPrice" style={{ fontSize: "18px", fontWeight: 800, color: "#0f172a" }}>
                         {currentPrice.toLocaleString("ru-RU")} zł
                       </span>
-                      {savings > 0 && (
+                      {savingsBadgeText && (
                         <span className="oracle-diff-pill" id="drawerOraclePriceDiff" style={{ background: "#dcfce7", color: "#166534", fontSize: "11px", fontWeight: 700, padding: "2px 6px", borderRadius: "6px" }}>
-                          -{savings.toLocaleString("ru-RU")} zł
+                          {savingsBadgeText}
                         </span>
                       )}
                     </div>
                     <p className="oracle-body-text" id="drawerAiPriceVerdictText" style={{ fontSize: "12px", color: "#334155", lineHeight: "1.5", marginTop: "4px" }}>
-                      {passport?.ai_price_summary ||
-                        "Цена находится в нижней четверти исторического коридора. Рекомендуется фиксировать тур."}
+                      {dynamicPriceSummary}
                     </p>
                     <div className="oracle-meta-line" style={{ marginTop: "8px", fontSize: "11px" }}>
                       <span className="oracle-meta-lbl" style={{ color: "#64748b" }}>🔮 Сигнал Hopper: </span>
@@ -764,6 +654,49 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   </ul>
                 </div>
               </div>
+
+              {/* Other Filters Callout if hotel exists elsewhere */}
+              {passport?.other_filters && passport.other_filters.length > 0 && (
+                <div
+                  style={{
+                    marginTop: "16px",
+                    background: "#f0fdf4",
+                    border: "1px solid #bbf7d0",
+                    borderRadius: "12px",
+                    padding: "12px 16px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: "8px",
+                  }}
+                >
+                  <div>
+                    <div style={{ fontSize: "12px", fontWeight: 700, color: "#166534" }}>
+                      📂 Отель также отслеживается в {passport.other_filters.length} {passport.other_filters.length === 1 ? "другом фильтре" : "других фильтрах"}
+                    </div>
+                    <div style={{ fontSize: "11px", color: "#15803d", marginTop: "2px" }}>
+                      Лучшая цена: от {Math.min(...passport.other_filters.map((f) => f.min_price_pln)).toLocaleString("ru-RU")} zł
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("packages")}
+                    style={{
+                      background: "#16a34a",
+                      color: "#fff",
+                      border: "none",
+                      padding: "6px 12px",
+                      borderRadius: "6px",
+                      fontSize: "11px",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Посмотреть варианты ({passport.other_filters.length}) →
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -771,28 +704,9 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           {activeTab === "history" && (
             <div className="drawer-tab-panel active" id="tabPanel-history">
               <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
-                {!filterId ? (
-                  <div className="mode-switch-box">
-                    <button
-                      type="button"
-                      className={`mode-btn ${historyMode === "original" ? "active" : ""}`}
-                      onClick={() => setHistoryMode("original")}
-                    >
-                      Пакетный тур ({passport?.active_cohorts_count || 1} напр.)
-                    </button>
-                    <button
-                      type="button"
-                      className={`mode-btn ${historyMode === "normalized" ? "active" : ""}`}
-                      onClick={() => setHistoryMode("normalized")}
-                    >
-                      🏷️ Эталон (1 чел / 8 ночей)
-                    </button>
-                  </div>
-                ) : (
-                  <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "5px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 700 }}>
-                    🟢 Динамика цены тура ({passport?.active_cohorts_count || 1} напр.)
-                  </div>
-                )}
+                <div className="stat-pill" style={{ background: "#f0fdf4", color: "#166534", padding: "5px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bbf7d0" }}>
+                  📈 История цен тура в PLN
+                </div>
 
                 <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
                   <button
@@ -829,19 +743,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     Вся история
                   </button>
                 </div>
-
-                {!filterId && (
-                  <div className="stat-pill" style={{ background: "#dcfce7", color: "#166534", padding: "4px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700 }}>
-                    {historyMode === "normalized" ? "📊 Нормализованная база" : "🟢 Исторически низкая цена"}
-                  </div>
-                )}
               </div>
-
-              {!filterId && historyMode === "normalized" && (
-                <div style={{ background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: "10px", padding: "10px 14px", marginBottom: "12px", fontSize: "11px", color: "#0369a1" }}>
-                  💡 <strong>Эталон 1p / 8n:</strong> исключает искажения состава семьи и дат. Выделена чистая себестоимость ночи в отеле (~<strong>{Math.round(normalizedData?.stats?.pure_hotel_night_rate || rangeStats.pureNight || 450)} zł/ночь</strong>) и стандартный перелёт.
-                </div>
-              )}
 
               <div className="chart-container-box" style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "10px", marginBottom: "16px" }}>
                 <div ref={chartContainerRef} id="drawerPlotlyChart" style={{ width: "100%", height: "320px" }} />
@@ -850,7 +752,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
               <div className="benchmarks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "16px" }}>
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Текущий эталон" : "Текущая цена"}
+                    Текущая цена
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginTop: "2px" }}>
                     {`${Math.round(rangeStats.cur).toLocaleString("ru-RU")} zł`}
@@ -859,7 +761,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Мин. эталон" : "Минимум периода"}
+                    Минимум периода
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a", marginTop: "2px" }}>
                     {`${Math.round(rangeStats.min).toLocaleString("ru-RU")} zł`}
@@ -868,23 +770,19 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Макс. эталон" : "Максимум периода"}
+                    Средняя за период
                   </div>
-                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
-                    {`${Math.round(rangeStats.max).toLocaleString("ru-RU")} zł`}
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0284c7", marginTop: "2px" }}>
+                    {`${Math.round(rangeStats.med).toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    {historyMode === "normalized" ? "Чистая ночь" : "Экономия периода"}
+                    Максимум периода
                   </div>
-                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#2563eb", marginTop: "2px" }}>
-                    {historyMode === "normalized"
-                      ? (rangeStats.pureNight || normalizedData?.stats?.pure_hotel_night_rate
-                          ? `~${Math.round(rangeStats.pureNight || normalizedData?.stats?.pure_hotel_night_rate)} zł/н`
-                          : "—")
-                      : rangeStats.savings > 0 ? `${Math.round(rangeStats.savings).toLocaleString("ru-RU")} zł` : "0 zł"}
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
+                    {`${Math.round(rangeStats.max).toLocaleString("ru-RU")} zł`}
                   </div>
                 </div>
               </div>
@@ -1207,6 +1105,72 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   </tbody>
                 </table>
               </div>
+
+              {/* Other Filters Section */}
+              {passport?.other_filters && passport.other_filters.length > 0 && (
+                <div style={{ marginTop: "24px" }}>
+                  <div style={{ marginBottom: "12px", fontSize: "0.88rem", fontWeight: 700, color: "#0f172a" }}>
+                    🎯 Отель также отслеживается в других фильтрах:
+                  </div>
+                  <div style={{ display: "grid", gap: "10px" }}>
+                    {passport.other_filters.map((f, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          padding: "12px 14px",
+                          background: "#f8fafc",
+                          border: "1px solid #e2e8f0",
+                          borderRadius: "10px",
+                          gap: "10px",
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontWeight: 700, color: "#1e293b", fontSize: "13px" }}>
+                            {f.title || f.filter_id}
+                          </div>
+                          <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
+                            👥 {f.adults} взр. {f.children ? `+ ${f.children} реб.` : ""}
+                            {f.duration_nights ? ` • ~${f.duration_nights} ночей` : ""}
+                            {f.snaps_count ? ` • ${f.snaps_count} замеров цен` : ""}
+                          </div>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                          <div style={{ textAlign: "right" }}>
+                            <div style={{ fontSize: "10px", color: "#64748b" }}>лучшая цена</div>
+                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#16a34a" }}>
+                              от {Math.round(f.min_price_pln).toLocaleString("ru-RU")} zł
+                            </div>
+                          </div>
+                          {onSwitchFilter && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                onSwitchFilter(f.filter_id);
+                                onClose();
+                              }}
+                              style={{
+                                background: "#0284c7",
+                                color: "#ffffff",
+                                border: "none",
+                                padding: "6px 12px",
+                                borderRadius: "8px",
+                                fontSize: "12px",
+                                fontWeight: 700,
+                                cursor: "pointer",
+                              }}
+                            >
+                              Перейти →
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

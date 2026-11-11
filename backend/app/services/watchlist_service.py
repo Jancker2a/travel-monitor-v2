@@ -432,13 +432,18 @@ class WatchlistService:
                     # Fallback to party composition
                     scoped_cohorts = [c for c in all_cohorts if c.adults == spec.get("adults", 2) and c.children == spec.get("children", 1)]
 
-        # If still no scoped cohorts or no filter_id provided, pick the destination_code group with the most snapshots
+        # If still no scoped cohorts or no filter_id provided, pick the dominant party composition
+        # to NEVER mix 1-adult and 2+1 family cohorts together into one price curve!
         if not scoped_cohorts:
-            # Group cohorts by destination_code and pick the largest one
             from collections import Counter
-            dest_counter = Counter([c.destination_code for c in all_cohorts])
+            party_counter = Counter([(c.adults, c.children) for c in all_cohorts])
+            top_party = party_counter.most_common(1)[0][0] if party_counter else (2, 1)
+            dest_counter = Counter([c.destination_code for c in all_cohorts if (c.adults, c.children) == top_party])
             top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
-            scoped_cohorts = [c for c in all_cohorts if c.destination_code == top_dest] if top_dest else all_cohorts
+            scoped_cohorts = [
+                c for c in all_cohorts 
+                if (c.adults, c.children) == top_party and (not top_dest or c.destination_code == top_dest)
+            ]
 
         scoped_cohort_ids = {c.cohort_id for c in scoped_cohorts}
         cohort_by_id = {c.cohort_id: c for c in all_cohorts}
@@ -447,6 +452,64 @@ class WatchlistService:
         all_cohort_ids = [c.cohort_id for c in all_cohorts]
         c_placeholders = ",".join(f":c{i}" for i in range(len(all_cohort_ids)))
         c_params = {f"c{i}": cid for i, cid in enumerate(all_cohort_ids)}
+
+        # 4b. Find all other monitored filters where this hotel has recorded price snapshots
+        from app.services.canonical_filters import CANONICAL_FILTERS
+        other_filters_sql = f"""
+            SELECT 
+                oc.filter_id,
+                MIN(ps.total_price_pln) as min_p,
+                MAX(ps.total_price_pln) as max_p,
+                MAX(ps.recorded_at) as last_seen,
+                COUNT(ps.id) as snaps_count,
+                MAX(oc.adults) as adults,
+                MAX(oc.children) as children,
+                MAX(oc.duration_nights) as nights
+            FROM offer_cohorts oc
+            JOIN price_snapshots ps ON oc.{join_col} = ps.{join_col}
+            WHERE oc.hotel_id IN ({placeholders})
+              AND oc.filter_id IS NOT NULL
+              AND oc.filter_id != ''
+            GROUP BY oc.filter_id
+            ORDER BY snaps_count DESC
+        """
+        other_filters = []
+        try:
+            of_res = await db.execute(text(other_filters_sql), h_params)
+            for r in of_res.fetchall():
+                f_id = r[0]
+                if not f_id:
+                    continue
+                min_val = float(r[1]) if r[1] else 0.0
+                max_val = float(r[2]) if r[2] else 0.0
+                last_dt = r[3].isoformat() if hasattr(r[3], "isoformat") else str(r[3]) if r[3] else ""
+                cnt = int(r[4])
+                ad = int(r[5]) if r[5] else 2
+                ch = int(r[6]) if r[6] else 0
+                dur = int(r[7]) if r[7] else 7
+
+                spec = CANONICAL_FILTERS.get(f_id, {})
+                f_title = spec.get("title")
+                if not f_title:
+                    clean_name = f_id.replace("filter_", "").replace("_days", "").replace("_", " ").title()
+                    f_title = f"Фильтр {clean_name}"
+
+                party_str = f"{ad} взр" + (f" + {ch} реб" if ch else "") if ad else "Стандарт"
+
+                other_filters.append({
+                    "filter_id": f_id,
+                    "title": f_title,
+                    "min_price_pln": round(min_val, 1),
+                    "max_price_pln": round(max_val, 1),
+                    "last_seen": last_dt,
+                    "snaps_count": cnt,
+                    "adults": ad,
+                    "children": ch,
+                    "party_str": party_str,
+                    "duration_nights": dur,
+                })
+        except Exception as of_err:
+            logger.warning(f"Failed to query other_filters for {hotel_id}: {of_err}")
 
         snap_sql = f"""
             SELECT 
@@ -693,6 +756,7 @@ class WatchlistService:
             infra_rich=dossier["infra_rich"],
             german_arbitrage=german_arbitrage,
             available_packages=packages_list,
+            other_filters=other_filters,
             history_points=history_points,
         )
 
