@@ -44,8 +44,8 @@ class OfferSummary(BaseModel):
     departure_date: date
     duration_nights: int
     airport: str
-    adults: Optional[int] = 2
-    children: Optional[int] = 0
+    adults: Optional[int] = None
+    children: Optional[int] = None
     operator: Optional[str] = None
     booking_url: Optional[str] = None
 

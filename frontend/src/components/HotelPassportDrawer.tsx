@@ -22,6 +22,7 @@ interface HotelPassportDrawerProps {
   hotelId: string | null;
   filterId?: string | null;
   hotelItem?: SearchHotelItem | null;
+  searchTravelers?: { adults: number; children: number; children_ages?: number[] };
   isWatched?: boolean;
   onToggleWatchlist?: () => void;
   onClose: () => void;
@@ -32,6 +33,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   hotelId,
   filterId,
   hotelItem,
+  searchTravelers,
   isWatched,
   onToggleWatchlist,
   onClose,
@@ -56,9 +58,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActiveTab("ai");
 
     const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
-    const fallbackAdults = hotelItem?.current_offer?.adults ?? filterPreset?.searchReq?.travelers?.adults ?? (filterId?.includes("1p") ? 1 : 2);
-    const fallbackChildren = hotelItem?.current_offer?.children ?? filterPreset?.searchReq?.travelers?.children ?? 0;
-    const fallbackNights = hotelItem?.current_offer?.duration_nights ?? filterPreset?.searchReq?.duration?.min_nights ?? 7;
+    const fallbackAdults =
+      searchTravelers?.adults ??
+      filterPreset?.searchReq?.travelers?.adults ??
+      hotelItem?.current_offer?.adults ??
+      (filterId?.includes("1p") ? 1 : 2);
+    const fallbackChildren =
+      searchTravelers?.children ??
+      filterPreset?.searchReq?.travelers?.children ??
+      hotelItem?.current_offer?.children ??
+      0;
+    const fallbackNights =
+      hotelItem?.current_offer?.duration_nights ??
+      filterPreset?.searchReq?.duration?.min_nights ??
+      7;
 
     const hints = hotelItem
       ? {
@@ -83,7 +96,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       .then((data) => setPassport(data))
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
-  }, [hotelId, filterId, hotelItem]);
+  }, [hotelId, filterId, hotelItem, searchTravelers]);
 
   // Render Plotly Price History Chart when history tab is activated
   useEffect(() => {
@@ -112,13 +125,23 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     }
 
     const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
-    const defaultAdults = filterPreset?.searchReq?.travelers?.adults ?? (filterId?.includes("1p") ? 1 : 2);
-    const defaultChildren = filterPreset?.searchReq?.travelers?.children ?? 0;
-    const defaultNights = filterPreset?.searchReq?.duration?.min_nights ?? 7;
-
-    const userAdults = hotelItem?.current_offer?.adults ?? passport?.user_query_scope?.adults ?? defaultAdults;
-    const userChildren = hotelItem?.current_offer?.children ?? passport?.user_query_scope?.children ?? defaultChildren;
-    const userNights = hotelItem?.current_offer?.duration_nights || passport?.user_query_scope?.duration_nights || defaultNights;
+    const userAdults =
+      searchTravelers?.adults ??
+      filterPreset?.searchReq?.travelers?.adults ??
+      hotelItem?.current_offer?.adults ??
+      passport?.user_query_scope?.adults ??
+      (filterId?.includes("1p") ? 1 : 2);
+    const userChildren =
+      searchTravelers?.children ??
+      filterPreset?.searchReq?.travelers?.children ??
+      hotelItem?.current_offer?.children ??
+      passport?.user_query_scope?.children ??
+      0;
+    const userNights =
+      hotelItem?.current_offer?.duration_nights ||
+      passport?.user_query_scope?.duration_nights ||
+      filterPreset?.searchReq?.duration?.min_nights ||
+      7;
     const partyLabel = userAdults === 1 && !userChildren ? "1 взр" : (`${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : ""));
 
     // Deduplicate timestamps to prevent duplicate x-axis points
@@ -833,13 +856,23 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
             <div className="drawer-tab-panel active" id="tabPanel-history">
               {(() => {
                 const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
-                const defaultAdults = filterPreset?.searchReq?.travelers?.adults ?? (filterId?.includes("1p") ? 1 : 2);
-                const defaultChildren = filterPreset?.searchReq?.travelers?.children ?? 0;
-                const defaultNights = filterPreset?.searchReq?.duration?.min_nights ?? 7;
-
-                const userAdults = hotelItem?.current_offer?.adults ?? passport?.user_query_scope?.adults ?? defaultAdults;
-                const userChildren = hotelItem?.current_offer?.children ?? passport?.user_query_scope?.children ?? defaultChildren;
-                const userNights = hotelItem?.current_offer?.duration_nights || passport?.user_query_scope?.duration_nights || defaultNights;
+                const userAdults =
+                  searchTravelers?.adults ??
+                  filterPreset?.searchReq?.travelers?.adults ??
+                  hotelItem?.current_offer?.adults ??
+                  passport?.user_query_scope?.adults ??
+                  (filterId?.includes("1p") ? 1 : 2);
+                const userChildren =
+                  searchTravelers?.children ??
+                  filterPreset?.searchReq?.travelers?.children ??
+                  hotelItem?.current_offer?.children ??
+                  passport?.user_query_scope?.children ??
+                  0;
+                const userNights =
+                  hotelItem?.current_offer?.duration_nights ||
+                  passport?.user_query_scope?.duration_nights ||
+                  filterPreset?.searchReq?.duration?.min_nights ||
+                  7;
                 const partyLabel = userAdults === 1 && !userChildren ? "1 взр" : (`${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : ""));
 
                 return (

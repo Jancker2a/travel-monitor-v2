@@ -536,6 +536,9 @@ class WatchlistService:
                     if (c.adults, c.children) == top_party and (not top_dest or c.destination_code == top_dest)
                 ]
 
+        if not scoped_cohorts and all_cohorts:
+            scoped_cohorts = all_cohorts
+
         scoped_cohort_ids = {c.cohort_id for c in scoped_cohorts}
         cohort_by_id = {c.cohort_id: c for c in all_cohorts}
 

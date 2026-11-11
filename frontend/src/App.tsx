@@ -1816,6 +1816,7 @@ export const App: React.FC = () => {
             hotelId={activeHotelPassport}
             filterId={activeTab === "filter" ? activeFilterId : undefined}
             hotelItem={activePassportHotel}
+            searchTravelers={activeTab === "search" ? lastSearchReq?.travelers : undefined}
             isWatched={isPassportWatched}
             onToggleWatchlist={activePassportHotel ? () => handleToggleWatchlist(activePassportHotel) : undefined}
             onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}

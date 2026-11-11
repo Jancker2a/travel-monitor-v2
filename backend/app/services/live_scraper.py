@@ -673,6 +673,8 @@ class LiveScraperService:
                 airport=off["departure_airport"],
                 operator=off["operator"],
                 booking_url=off["offer_url"],
+                adults=req_adults,
+                children=req_children,
             )
 
             item = SearchHotelItem(
