@@ -70,3 +70,4 @@ def test_no_fake_superdeal_on_party_mismatch():
     # MUST NOT be 95 Hot SUPER_DEAL
     assert intel.deal_score < 80
     assert intel.hopper_verdict in ("WAIT", "OVERPRICED")
+

@@ -115,6 +115,8 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
           <option value="10000">до 10 000 zł</option>
           <option value="12000">до 12 000 zł</option>
           <option value="15000">до 15 000 zł</option>
+          <option value="25000">до 25 000 zł</option>
+          <option value="50000">до 50 000 zł</option>
         </select>
 
         {/* Forecast / Recommendations Filter */}

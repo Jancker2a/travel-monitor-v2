@@ -12,6 +12,7 @@ interface HotelTableViewProps {
   sortField: string;
   sortAsc: boolean;
   onSort: (field: string) => void;
+  totalFound?: number;
 }
 
 export const HotelTableView: React.FC<HotelTableViewProps> = ({
@@ -23,6 +24,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
   sortField,
   sortAsc,
   onSort,
+  totalFound,
 }) => {
   const renderSortIcon = (field: string) => {
     if (sortField !== field) {
@@ -43,7 +45,8 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
           <span>Все отели • клик по отелю откроет паспорт справа</span>
         </h3>
         <span className="text-sm text-slate-500 font-semibold">
-          Показано <b className="text-slate-900 font-black">{hotels.length}</b> отелей
+          Показано <b className="text-slate-900 font-black">{hotels.length}</b>
+          {totalFound && totalFound > hotels.length ? ` из ${totalFound}` : ""} отелей
         </span>
       </div>
 

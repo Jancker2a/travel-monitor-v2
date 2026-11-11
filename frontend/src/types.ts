@@ -27,6 +27,8 @@ export interface SearchRequest {
   price_min_pln?: number;
   price_max_pln?: number;
   order_by?: string;
+  page?: number;
+  page_size?: number;
   force_live_refresh?: boolean;
 }
 
@@ -79,6 +81,8 @@ export interface SearchResponse {
   search_id: string;
   cached: boolean;
   total_found: number;
+  page?: number;
+  has_more?: boolean;
   results: SearchHotelItem[];
 }
 

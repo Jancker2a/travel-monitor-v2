@@ -795,6 +795,11 @@ export const App: React.FC = () => {
 
   const [results, setResults] = useState<SearchHotelItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalFound, setTotalFound] = useState<number>(0);
+  const [searchPage, setSearchPage] = useState<number>(1);
+  const [hasMore, setHasMore] = useState<boolean>(false);
+  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
+  const [lastSearchReq, setLastSearchReq] = useState<SearchRequest | null>(null);
   const [activeHotelPassport, setActiveHotelPassport] = useState<string | null>(null);
 
   const [watchlistItems, setWatchlistItems] = useState<WatchlistItem[]>([]);
@@ -939,13 +944,47 @@ export const App: React.FC = () => {
 
   const handleSearch = async (req: SearchRequest) => {
     setIsLoading(true);
+    setLastSearchReq(req);
     try {
       const resp = await searchTours(req);
       setResults(resp.results);
+      setTotalFound(resp.total_found || resp.results.length);
+      setSearchPage(resp.page || 1);
+      setHasMore(Boolean(resp.has_more));
     } catch (err: any) {
       alert("Ошибка поиска: " + (err.message || "Не удалось выполнить запрос"));
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleLoadMore = async () => {
+    if (!lastSearchReq || isLoadingMore) return;
+    setIsLoadingMore(true);
+    try {
+      const nextPage = searchPage + 1;
+      const resp = await searchTours({
+        ...lastSearchReq,
+        page: nextPage,
+        force_live_refresh: true,
+      });
+
+      // Merge and deduplicate by hotel_id
+      setResults((prev) => {
+        const existingIds = new Set(prev.map((h) => h.hotel_id));
+        const newItems = resp.results.filter((item) => !existingIds.has(item.hotel_id));
+        return [...prev, ...newItems];
+      });
+
+      setSearchPage(nextPage);
+      setHasMore(Boolean(resp.has_more));
+      if (resp.total_found) {
+        setTotalFound(resp.total_found);
+      }
+    } catch (err: any) {
+      console.warn("Failed to load more offers:", err);
+    } finally {
+      setIsLoadingMore(false);
     }
   };
 
@@ -1401,6 +1440,7 @@ export const App: React.FC = () => {
             sortField={sortField}
             sortAsc={sortAsc}
             onSort={handleSort}
+            totalFound={activeTab === "search" ? totalFound : undefined}
           />
         ) : (
           <div className="space-y-4 relative" id="cardsSection">
@@ -1411,7 +1451,8 @@ export const App: React.FC = () => {
                 <span>Все отели • клик по карточке откроет паспорт справа</span>
               </h3>
               <span className="text-sm text-slate-500 font-semibold">
-                Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b> отелей
+                Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b>
+                {activeTab === "search" && totalFound > filteredHotels.length ? ` из ${totalFound}` : ""} отелей
               </span>
             </div>
 
@@ -1471,6 +1512,35 @@ export const App: React.FC = () => {
                 </div>
               </>
             )}
+          </div>
+        )}
+
+        {/* Load More Button for Interactive Search */}
+        {activeTab === "search" && (hasMore || (totalFound > 0 && results.length < totalFound)) && (
+          <div className="flex flex-col items-center justify-center py-6 gap-2">
+            <button
+              type="button"
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+            >
+              {isLoadingMore ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Подгружаем следующие предложения с Fly.pl...</span>
+                </>
+              ) : (
+                <>
+                  <span>🔄 Загрузить ещё предложения</span>
+                  <span className="bg-blue-700 px-2.5 py-0.5 rounded-full text-xs font-black">
+                    +{Math.min(100, Math.max(1, totalFound - results.length))}
+                  </span>
+                </>
+              )}
+            </button>
+            <span className="text-xs text-slate-500 font-medium">
+              Показано {results.length} из {totalFound} найденных отелей
+            </span>
           </div>
         )}
       </main>

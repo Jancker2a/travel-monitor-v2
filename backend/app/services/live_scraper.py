@@ -89,7 +89,9 @@ class LiveScraperService:
     }
 
     @classmethod
-    async def fetch_offers_via_api(cls, url: str, max_offers: int = 150) -> List[Dict[str, Any]]:
+    async def fetch_offers_via_api(
+        cls, url: str, max_offers: int = 200, return_meta: bool = False
+    ) -> Any:
         """Parses Fly.pl search URL and directly queries Fly.pl JSON search API with multi-page support."""
         try:
             parsed = urlparse(url)
@@ -99,13 +101,16 @@ class LiveScraperService:
                 parts = d_str.split("-")
                 return f"{parts[2]}-{parts[1]}-{parts[0]}" if len(parts) == 3 else d_str
 
+            order_val = qs.get("order", ["price"])[0].lower()
+            order_dir = "desc" if "desc" in order_val else "asc"
+
             api_params: Dict[str, Any] = {
                 "pager[page]": 1,
-                "pager[size]": 50,
+                "pager[size]": 100,
                 "priceType": "total",
                 "totalPrice": 1,
                 "pager[orderBy][0][field]": "price",
-                "pager[orderBy][0][direction]": "asc",
+                "pager[orderBy][0][direction]": order_dir,
             }
 
             if "adults" in qs:
@@ -118,9 +123,15 @@ class LiveScraperService:
                 cat_val = float(qs["categoryRating"][0])
                 api_params["categoryRating"] = cat_val / 10.0 if cat_val >= 10 else cat_val
             if "priceFrom" in qs:
-                api_params["price[min]"] = float(qs["priceFrom"][0])
+                try:
+                    api_params["priceFrom"] = int(float(qs["priceFrom"][0]))
+                except Exception:
+                    pass
             if "priceTo" in qs:
-                api_params["price[max]"] = float(qs["priceTo"][0])
+                try:
+                    api_params["priceTo"] = int(float(qs["priceTo"][0]))
+                except Exception:
+                    pass
 
             def parse_date(d_str: str) -> Optional[date]:
                 parts = d_str.split("-")
@@ -223,8 +234,21 @@ class LiveScraperService:
 
             results = []
             seen_offers = set()
-            page = 1
-            max_pages = min(5, (max_offers + 49) // 50)
+            start_page = 1
+            if "p" in qs:
+                try:
+                    start_page = max(1, int(qs["p"][0]))
+                except Exception:
+                    pass
+            elif "page" in qs:
+                try:
+                    start_page = max(1, int(qs["page"][0]))
+                except Exception:
+                    pass
+
+            page = start_page
+            max_pages = start_page + min(3, max(1, (max_offers + 99) // 100)) - 1
+            total_count_from_api = None
 
             async with httpx.AsyncClient(headers=headers, timeout=25.0) as client:
                 while page <= max_pages and len(results) < max_offers:
@@ -237,6 +261,8 @@ class LiveScraperService:
                             )
                             break
                         payload = resp.json().get("data", {})
+                        if total_count_from_api is None and isinstance(payload, dict):
+                            total_count_from_api = payload.get("count")
                         raw_list = payload.get("offers", []) if isinstance(payload, dict) else []
                         if not raw_list:
                             break
@@ -291,9 +317,13 @@ class LiveScraperService:
                         logger.warning(f"Error fetching page {page} for {url}: {page_err}")
                         break
 
+            if return_meta:
+                return results, (total_count_from_api or len(results))
             return results
         except Exception as e:
             logger.warning(f"Direct Fly.pl JSON API search failed for {url}: {e}")
+        if return_meta:
+            return [], 0
         return []
 
     @classmethod

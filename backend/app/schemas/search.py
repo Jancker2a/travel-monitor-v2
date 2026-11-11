@@ -32,6 +32,8 @@ class SearchRequest(BaseModel):
     price_min_pln: Optional[float] = None
     price_max_pln: Optional[float] = None
     order_by: Optional[str] = "price"
+    page: int = 1
+    page_size: int = 100
     force_live_refresh: bool = False
 
 
@@ -79,5 +81,7 @@ class SearchResponse(BaseModel):
     search_id: str
     cached: bool
     total_found: int
+    page: int = 1
+    has_more: bool = False
     results: List[SearchHotelItem]
 

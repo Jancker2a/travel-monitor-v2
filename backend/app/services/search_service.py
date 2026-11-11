@@ -49,12 +49,15 @@ class SearchService:
 
         # 2. Interactive Search & Force Live Refresh: ALWAYS query fresh results directly from Fly.pl JSON API
         logger.info(f"Search {search_id}: running LIVE scraper query against Fly.pl")
-        flypl_url = UniversalQueryBuilder.build_flypl_url(req)
+        flypl_url = UniversalQueryBuilder.build_flypl_url(req, page=req.page or 1)
 
-        raw_offers = await LiveScraperService.fetch_offers_via_api(flypl_url, max_offers=60)
+        raw_offers, total_remote_count = await LiveScraperService.fetch_offers_via_api(
+            flypl_url, max_offers=200, return_meta=True
+        )
         if not raw_offers:
             html = await LiveScraperService.fetch_page_html(flypl_url)
             raw_offers = LiveScraperService.parse_offers_html(html or "")
+            total_remote_count = len(raw_offers)
 
         if raw_offers:
             live_items = await LiveScraperService.process_and_persist_offers(db, req, raw_offers)
@@ -67,11 +70,23 @@ class SearchService:
                     or item.current_offer.total_price_pln < best_by_hotel[hid].current_offer.total_price_pln
                 ):
                     best_by_hotel[hid] = item
-            deduped = sorted(list(best_by_hotel.values()), key=lambda x: x.current_offer.total_price_pln)
+
+            is_desc = bool(req.order_by and "desc" in req.order_by.lower())
+            deduped = sorted(
+                list(best_by_hotel.values()),
+                key=lambda x: x.current_offer.total_price_pln,
+                reverse=is_desc,
+            )
+
+            total_effective = max(len(deduped), total_remote_count or 0)
+            has_more = total_effective > len(deduped) and ((req.page or 1) * 200) < (total_remote_count or 0)
+
             return SearchResponse(
                 search_id=search_id,
                 cached=False,
-                total_found=len(deduped),
+                total_found=total_effective,
+                page=req.page or 1,
+                has_more=has_more,
                 results=deduped,
             )
 
