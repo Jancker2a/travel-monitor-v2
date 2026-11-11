@@ -11,7 +11,7 @@ import sqlite3
 import re
 from pathlib import Path
 
-SUPABASE_URL = "postgresql://postgres.diwrmsoiyhxbfzwrtumi:5J4VB6%2BiU%25UkCZb@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
+PG_URL = (os.environ.get("DATABASE_URL") or "").replace("postgresql+asyncpg://", "postgresql://")
 SQLITE_PATH = Path("/Users/andreiyankouski/travel-monitor-v2/travel_monitor_v2.db")
 
 EGYPT_KW = [
@@ -156,7 +156,7 @@ def detect_country_and_region(name: str, hid: str, fids: list, curr_c: str, curr
 
 async def run_clean():
     print("Connecting to Supabase PostgreSQL...")
-    conn = await asyncpg.connect(SUPABASE_URL)
+    conn = await asyncpg.connect(PG_URL)
 
     rows = await conn.fetch("""
         SELECT h.hotel_id, h.display_name, h.country, h.region, 

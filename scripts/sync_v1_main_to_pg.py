@@ -34,7 +34,7 @@ logger = logging.getLogger("sync_v1_main")
 
 V1_DIR = "/Users/andreiyankouski/travel-price-monitor"
 SQLITE_PATH = PROJECT_DIR / "travel_monitor_v2.db"
-SUPABASE_URL = "postgresql://postgres.diwrmsoiyhxbfzwrtumi:5J4VB6%2BiU%25UkCZb@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
+PG_URL = (os.environ.get("DATABASE_URL") or "").replace("postgresql+asyncpg://", "postgresql://")
 
 
 def parse_iso_datetime(dt_str: str) -> Optional[datetime]:
@@ -56,7 +56,7 @@ async def run_sync():
     logger.info("🚀 High-Speed Bulk Sync: origin/main -> Supabase PostgreSQL & SQLite")
     logger.info("==================================================================")
 
-    pg_conn = await asyncpg.connect(SUPABASE_URL)
+    pg_conn = await asyncpg.connect(PG_URL)
     sqlite_conn = sqlite3.connect(str(SQLITE_PATH))
     sqlite_cur = sqlite_conn.cursor()
 
