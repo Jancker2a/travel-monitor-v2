@@ -26,9 +26,31 @@ export async function searchTours(req: SearchRequest): Promise<SearchResponse> {
   return resp.json();
 }
 
-export async function getHotelPassport(hotelId: string, filterId?: string): Promise<HotelPassport> {
-  const q = filterId ? `?filter_id=${encodeURIComponent(filterId)}` : "";
-  const resp = await fetch(`${API_BASE}/api/v2/hotels/${encodeURIComponent(hotelId)}/history${q}`);
+export async function getHotelPassport(
+  hotelId: string,
+  filterId?: string,
+  hints?: {
+    name?: string;
+    stars?: number;
+    country?: string;
+    region?: string;
+    current_price?: number;
+    ta_rating?: number;
+    main_image_url?: string;
+  }
+): Promise<HotelPassport> {
+  const params = new URLSearchParams();
+  if (filterId) params.set("filter_id", filterId);
+  if (hints?.name) params.set("name", hints.name);
+  if (hints?.stars) params.set("stars", String(hints.stars));
+  if (hints?.country) params.set("country", hints.country);
+  if (hints?.region) params.set("region", hints.region);
+  if (hints?.current_price) params.set("current_price", String(hints.current_price));
+  if (hints?.ta_rating) params.set("ta_rating", String(hints.ta_rating));
+  if (hints?.main_image_url) params.set("main_image_url", hints.main_image_url);
+
+  const qs = params.toString() ? `?${params.toString()}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/hotels/${encodeURIComponent(hotelId)}/history${qs}`);
   if (!resp.ok) {
     throw new Error(`Ошибка получения паспорта отеля (${resp.status})`);
   }

@@ -213,18 +213,47 @@ from app.services.analytics_service import AnalyticsService
 
 
 @app.get("/api/v2/hotels/{hotel_id}/history", response_model=HotelPassportResponse)
-async def get_hotel_history_passport(hotel_id: str, filter_id: Optional[str] = None, db: AsyncSession = Depends(get_db)):
-    """Retrieves complete Hotel Passport with all-time price history points and stats (Raw exact cohorts)."""
-    return await WatchlistService.get_hotel_passport(db, hotel_id, filter_id=filter_id)
+async def get_hotel_history_passport(
+    hotel_id: str,
+    filter_id: Optional[str] = None,
+    name: Optional[str] = None,
+    stars: Optional[int] = None,
+    country: Optional[str] = None,
+    region: Optional[str] = None,
+    current_price: Optional[float] = None,
+    ta_rating: Optional[float] = None,
+    main_image_url: Optional[str] = None,
+    db: AsyncSession = Depends(get_db)
+):
+    """Retrieves complete Hotel Passport with all-time price history points and stats, dynamically synthesizing profiles for newly discovered hotels."""
+    return await WatchlistService.get_hotel_passport(
+        db,
+        hotel_id,
+        filter_id=filter_id,
+        name=name,
+        stars=stars,
+        country=country,
+        region=region,
+        current_price=current_price,
+        ta_rating=ta_rating,
+        main_image_url=main_image_url,
+    )
 
 
 @app.get("/api/v2/hotels/{hotel_id}/normalized-history")
 async def get_hotel_normalized_history(
     hotel_id: str,
     filter_id: Optional[str] = None,
+    name: Optional[str] = None,
+    stars: Optional[int] = None,
+    country: Optional[str] = None,
+    region: Optional[str] = None,
+    current_price: Optional[float] = None,
+    ta_rating: Optional[float] = None,
+    main_image_url: Optional[str] = None,
     db: AsyncSession = Depends(get_db)
 ):
-    """Retrieves normalized time series (1 adult, 8 nights benchmark) from dedicated normalized database."""
+    """Retrieves normalized time series (1 adult, 8 nights benchmark) from dedicated normalized database, synthesizing on-the-fly for new hotels."""
     from app.models.normalized_snapshot import NormalizedPriceSnapshot
     from app.models.hotel import Hotel
 
@@ -233,7 +262,34 @@ async def get_hotel_normalized_history(
     h_res = await db.execute(h_stmt)
     hotel = h_res.scalar_one_or_none()
     if not hotel:
-        raise HTTPException(status_code=404, detail="Hotel not found")
+        passport = await WatchlistService.get_hotel_passport(
+            db,
+            hotel_id,
+            filter_id=filter_id,
+            name=name,
+            stars=stars,
+            country=country,
+            region=region,
+            current_price=current_price,
+            ta_rating=ta_rating,
+            main_image_url=main_image_url,
+        )
+        pts = [
+            {
+                "recorded_at": pt.recorded_at.isoformat() if hasattr(pt.recorded_at, "isoformat") else str(pt.recorded_at),
+                "normalized_price_1p_8n": pt.normalized_price_1p_8n,
+                "pure_hotel_night_rate": pt.pure_hotel_night_rate,
+                "flight_estimate_seat": 1400.0,
+                "source_type": "on_the_fly",
+                "is_crawler": False,
+            }
+            for pt in (passport.history_points or [])
+        ]
+        return {
+            "hotel_id": hotel_id,
+            "count": len(pts),
+            "points": pts,
+        }
 
     # Resolve related hotel aliases to aggregate complete historical benchmark
     related_ids = await WatchlistService._find_related_hotel_ids(db, hotel)

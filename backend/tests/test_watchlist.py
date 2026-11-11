@@ -149,3 +149,17 @@ async def test_watchlist_api_endpoints(setup_test_db):
         del_resp = await client.delete(f"/api/v2/watchlist/{watch_id}")
         assert del_resp.status_code == 200
         assert del_resp.json()["status"] == "ok"
+
+        # GET /api/v2/hotels/{hotel_id}/history for a completely unknown hotel (Must NOT 404!)
+        unknown_resp = await client.get(
+            "/api/v2/hotels/brand-new-secret-palace/history?name=Brand%20New%20Secret%20Palace&stars=5&country=Египет&current_price=4500"
+        )
+        assert unknown_resp.status_code == 200
+        un_data = unknown_resp.json()
+        assert un_data["display_name"] == "Brand New Secret Palace"
+        assert un_data["stars"] == 5
+        assert un_data["country"] == "Египет"
+        assert un_data["current_price_pln"] == 4500.0
+        assert len(un_data["history_points"]) >= 1
+        assert un_data["youtube_search_url"] is not None
+

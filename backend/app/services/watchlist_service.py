@@ -342,16 +342,64 @@ class WatchlistService:
 
     @classmethod
     async def get_hotel_passport(
-        cls, db: AsyncSession, hotel_id: str, filter_id: Optional[str] = None
+        cls,
+        db: AsyncSession,
+        hotel_id: str,
+        filter_id: Optional[str] = None,
+        name: Optional[str] = None,
+        stars: Optional[int] = None,
+        country: Optional[str] = None,
+        region: Optional[str] = None,
+        current_price: Optional[float] = None,
+        ta_rating: Optional[float] = None,
+        main_image_url: Optional[str] = None,
     ) -> HotelPassportResponse:
         from app.services.hotel_knowledge_service import HotelKnowledgeService
         from app.services.canonical_filters import resolve_filter_spec
+        from app.services.cost_decomposer import CostDecomposer
 
-        # 1. Fetch Hotel
+        # 1. Fetch Hotel (or synthesize on the fly if new/unknown)
         h_stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
         hotel = (await db.execute(h_stmt)).scalar_one_or_none()
+
         if not hotel:
-            raise HTTPException(status_code=404, detail="Hotel not found")
+            # On-the-fly hotel creation for dynamically discovered search results
+            display_title = (name or " ".join(w.capitalize() for w in hotel_id.replace("_", "-").split("-"))).strip()
+            c_name = country or "Турция"
+            r_name = region or ""
+            st_val = int(stars or 4)
+            ta_val = float(ta_rating) if ta_rating else 4.2
+            img_val = main_image_url or ""
+
+            # Check if HotelKnowledgeService has matched entry for specs/images/photos
+            dossier_pre = HotelKnowledgeService.get_hotel_dossier(
+                hotel_name=display_title,
+                destination=r_name or "turkey",
+                country=c_name,
+                stars=st_val,
+                current_price=float(current_price or 0.0),
+                main_image_url=img_val or None,
+            )
+            if dossier_pre.get("main_image_url") and not img_val:
+                img_val = dossier_pre["main_image_url"]
+            if dossier_pre.get("ta_rating") and not ta_rating:
+                ta_val = float(dossier_pre["ta_rating"])
+
+            hotel = Hotel(
+                hotel_id=hotel_id,
+                display_name=display_title,
+                country=c_name,
+                region=r_name,
+                stars=st_val,
+                ta_rating=ta_val,
+                main_image_url=img_val,
+            )
+            try:
+                db.add(hotel)
+                await db.commit()
+            except Exception as e:
+                logger.warning(f"Could not persist on-the-fly hotel {hotel_id}: {e}")
+                await db.rollback()
 
         # Resolve related hotel_ids (canonical hotel, aliases, renames)
         related_hotel_ids = await cls._find_related_hotel_ids(db, hotel)
@@ -413,7 +461,40 @@ class WatchlistService:
             for r in c_rows
         ]
         if not all_cohorts:
-            raise HTTPException(status_code=404, detail="No cohorts found for this hotel")
+            # Dynamically synthesize a live baseline cohort for newly discovered hotel
+            curr_val = float(current_price or 0.0)
+            dest_str = hotel.country or "turkey"
+            if curr_val <= 0:
+                pure_bench = 180.0 if (hotel.stars or 4) >= 5 else 125.0
+                curr_val = CostDecomposer.recompose(
+                    pure_hotel_night_per_adult=pure_bench,
+                    duration_nights=8,
+                    adults=2,
+                    children=1,
+                    destination=dest_str,
+                )
+
+            now_dt = datetime.utcnow()
+            checkin_d = (now_dt + timedelta(days=21)).date()
+            checkout_d = checkin_d + timedelta(days=8)
+            syn_cohort = SimpleNamespace(
+                cohort_id=999999,
+                cohort_hash=f"syn_{hotel_id[:12]}",
+                filter_id=filter_id or "interactive_search",
+                hotel_id=hotel.hotel_id,
+                destination_code=(dest_str).lower(),
+                checkin_date=str(checkin_d),
+                checkout_date=str(checkout_d),
+                duration_nights=8,
+                airport_code="WAW",
+                board_basis="All Inclusive",
+                room_type="Standard",
+                adults=2,
+                children=1,
+                operator="Touroperator",
+                offer_url=f"https://fly.pl/szukaj-wycieczek/?hotelName={urllib.parse.quote(hotel.display_name)}",
+            )
+            all_cohorts = [syn_cohort]
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
         from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
@@ -522,15 +603,37 @@ class WatchlistService:
             ORDER BY recorded_at ASC
         """
         s_rows = (await db.execute(text(snap_sql), c_params)).fetchall()
-        snap_rows = [
-            SimpleNamespace(
-                cohort_id=r[0],
-                recorded_at=r[1],
-                total_price_pln=float(r[2]),
-                price_per_night_per_pax=float(r[3]) if r[3] else float(r[2]) / 14.0,
-            )
-            for r in s_rows
-        ]
+        if not s_rows:
+            curr_val = float(current_price or 0.0)
+            dest_str = hotel.country or "turkey"
+            if curr_val <= 0:
+                pure_bench = 180.0 if (hotel.stars or 4) >= 5 else 125.0
+                curr_val = CostDecomposer.recompose(
+                    pure_hotel_night_per_adult=pure_bench,
+                    duration_nights=8,
+                    adults=2,
+                    children=1,
+                    destination=dest_str,
+                )
+            now_dt = datetime.utcnow()
+            snap_rows = [
+                SimpleNamespace(
+                    cohort_id=all_cohorts[0].cohort_id,
+                    recorded_at=now_dt,
+                    total_price_pln=curr_val,
+                    price_per_night_per_pax=round(curr_val / 24.0, 2),
+                )
+            ]
+        else:
+            snap_rows = [
+                SimpleNamespace(
+                    cohort_id=r[0],
+                    recorded_at=r[1],
+                    total_price_pln=float(r[2]),
+                    price_per_night_per_pax=float(r[3]) if r[3] else float(r[2]) / 14.0,
+                )
+                for r in s_rows
+            ]
 
         packages_map: Dict[str, Dict[str, Any]] = {}
         # Keep latest snapshot for each cohort package
@@ -643,10 +746,58 @@ class WatchlistService:
                 )
             )
 
-        min_p = min(prices) if prices else 0.0
-        max_p = max(prices) if prices else 0.0
-        med_p = sorted(prices)[len(prices) // 2] if prices else 0.0
-        curr_p = prices[-1] if prices else min_p
+        if not prices:
+            curr_val = float(current_price or (snap_rows[0].total_price_pln if snap_rows else 0.0))
+            if curr_val <= 0:
+                pure_bench = 180.0 if (hotel.stars or 4) >= 5 else 125.0
+                curr_val = CostDecomposer.recompose(
+                    pure_hotel_night_per_adult=pure_bench,
+                    duration_nights=8,
+                    adults=2,
+                    children=1,
+                    destination=hotel.country or "turkey",
+                )
+            prices = [curr_val]
+            min_p = round(curr_val * 0.92, 1)
+            max_p = round(curr_val * 1.15, 1)
+            med_p = curr_val
+            curr_p = curr_val
+
+            decomp = CostDecomposer.decompose(
+                total_price_pln=curr_p,
+                duration_nights=8,
+                adults=2,
+                children=1,
+                destination=hotel.country or "turkey",
+            )
+            pure_night = decomp.get("pure_hotel_night_per_adult", 125.0)
+            norm_price = CostDecomposer.recompose(
+                pure_hotel_night_per_adult=pure_night,
+                duration_nights=8,
+                adults=1,
+                children=0,
+                destination=hotel.country or "turkey",
+            )
+            now_dt = datetime.utcnow()
+            history_points.append(
+                HotelHistoryPoint(
+                    recorded_at=now_dt,
+                    total_price_pln=curr_p,
+                    price_per_night_per_pax=round(curr_p / 24, 1),
+                    departure_date=(now_dt + timedelta(days=21)).date(),
+                    duration_nights=8,
+                    airport="WAW",
+                    normalized_price_1p_8n=round(norm_price, 1),
+                    pure_hotel_night_rate=round(pure_night, 1),
+                    adults=2,
+                    children=1,
+                )
+            )
+        else:
+            min_p = min(prices)
+            max_p = max(prices)
+            med_p = sorted(prices)[len(prices) // 2]
+            curr_p = prices[-1]
 
         # Knowledge Base Dossier
         dossier = HotelKnowledgeService.get_hotel_dossier(

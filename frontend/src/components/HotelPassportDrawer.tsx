@@ -50,11 +50,23 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActivePhotoIdx(0);
     setActiveTab("ai");
 
-    getHotelPassport(hotelId, filterId || undefined)
+    const hints = hotelItem
+      ? {
+          name: hotelItem.hotel_name,
+          stars: hotelItem.stars,
+          country: hotelItem.country,
+          region: hotelItem.region,
+          current_price: hotelItem.current_offer?.total_price_pln,
+          ta_rating: hotelItem.ta_rating,
+          main_image_url: hotelItem.main_image_url,
+        }
+      : undefined;
+
+    getHotelPassport(hotelId, filterId || undefined, hints)
       .then((data) => setPassport(data))
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
-  }, [hotelId, filterId]);
+  }, [hotelId, filterId, hotelItem]);
 
   // Render Plotly Price History Chart when history tab is activated
   useEffect(() => {
@@ -356,21 +368,26 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         <div className="drawer-header">
           <div className="drawer-title-box">
             <div className="drawer-title-row">
-              <h2 id="drawerHotelTitle">{passport?.display_name || "Загрузка отеля..."}</h2>
+              <h2 id="drawerHotelTitle">
+                {hotelItem?.hotel_name || passport?.display_name || "Отель"}
+              </h2>
               <span className="hotel-stars" id="drawerStarsRow">
-                {"★".repeat(passport?.stars || 4)}
+                {"★".repeat(hotelItem?.stars || passport?.stars || 4)}
               </span>
             </div>
             <p id="drawerHotelSubtitle">
-              {passport?.country} • {passport?.region || "Популярный курорт"}
+              {(hotelItem?.country || passport?.country || "Курорт")} • {(hotelItem?.region || passport?.region || "Популярный регион")}
             </p>
           </div>
 
           <div className="drawer-header-actions">
-            {passport?.tripadvisor_url && (
+            {(passport?.tripadvisor_url || hotelItem?.hotel_name) && (
               <a
                 className="btn-drawer-header-ta"
-                href={passport.tripadvisor_url}
+                href={
+                  passport?.tripadvisor_url ||
+                  `https://www.tripadvisor.com/Search?q=${encodeURIComponent((hotelItem?.hotel_name || passport?.display_name || "") + " hotel review")}`
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 id="drawerHeaderTaLink"
@@ -379,10 +396,13 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 🦉 TripAdvisor ↗
               </a>
             )}
-            {passport?.youtube_search_url && (
+            {(passport?.youtube_search_url || hotelItem?.hotel_name) && (
               <a
                 className="btn-drawer-header-yt"
-                href={passport.youtube_search_url}
+                href={
+                  passport?.youtube_search_url ||
+                  `https://www.youtube.com/results?search_query=${encodeURIComponent((hotelItem?.hotel_name || passport?.display_name || "") + " обзор отеля")}`
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 id="drawerHeaderYtLink"
@@ -653,7 +673,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
               <div className="drawer-reviews-row">
                 <a
                   className="ext-review-card"
-                  href={passport?.tripadvisor_url || "#"}
+                  href={
+                    passport?.tripadvisor_url ||
+                    `https://www.tripadvisor.com/Search?q=${encodeURIComponent((hotelItem?.hotel_name || passport?.display_name || "") + " hotel review")}`
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   id="drawerTripadvisorLink"
@@ -667,13 +690,13 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     </p>
                   </div>
                   <div className="ext-review-score" id="drawerTaScore">
-                    ★ {passport?.ta_rating || "4.5"}
+                    ★ {passport?.ta_rating || hotelItem?.ta_rating || "4.5"}
                   </div>
                 </a>
 
                 <a
                   className="ext-review-card"
-                  href={`https://www.google.com/search?q=${encodeURIComponent((passport?.display_name || "") + " отзывы")}`}
+                  href={`https://www.google.com/search?q=${encodeURIComponent((hotelItem?.hotel_name || passport?.display_name || "") + " отзывы")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   id="drawerGoogleLink"
