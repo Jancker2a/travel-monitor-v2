@@ -417,7 +417,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
 
     // 2. Departure Airports (excluding BER which Fly.pl does not support)
     const polishAirports = selectedAirports.filter((a) => a !== "BER");
-    if (polishAirports.length > 0 && polishAirports.length < 10) {
+    if (polishAirports.length > 0) {
       const depStr = polishAirports.map((a) => airportMap[a] || a).join(",");
       queryParts.push(`departureLocation=${depStr}`);
     }
