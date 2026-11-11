@@ -8,6 +8,8 @@ interface AuthModalProps {
   onClose: () => void;
   onAuthSuccess: (user: UserProfile) => void;
   initialMode?: "login" | "register";
+  reasonMessage?: string | null;
+  hasAdmin?: boolean;
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({
@@ -15,6 +17,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   onClose,
   onAuthSuccess,
   initialMode = "login",
+  reasonMessage,
+  hasAdmin = true,
 }) => {
   const [mode, setMode] = useState<"login" | "register">(initialMode);
   const [email, setEmail] = useState("");
@@ -108,6 +112,27 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <X className="w-4 h-4" />
           </button>
         </div>
+
+        {/* Action Reason Banner */}
+        {reasonMessage && (
+          <div className="mx-6 mt-4 p-3 rounded-2xl bg-blue-50 border border-blue-200 text-blue-900 text-xs flex items-start gap-2.5">
+            <span className="text-base shrink-0">🔒</span>
+            <div className="font-semibold leading-relaxed">{reasonMessage}</div>
+          </div>
+        )}
+
+        {/* Admin Setup Banner if system has no admin yet */}
+        {!hasAdmin && (
+          <div className="mx-6 mt-3 p-3 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+            <span className="text-base shrink-0">👑</span>
+            <div>
+              <div className="font-bold text-amber-950 mb-0.5">Инициализация Администратора</div>
+              <div className="text-amber-800 leading-relaxed text-[11.5px]">
+                В системе ещё не назначен Администратор. Зарегистрируйтесь, чтобы закрепить за собой статус Администратора и получить эксклюзивный доступ ко всем каноническим радарам.
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">

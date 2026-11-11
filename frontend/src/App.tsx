@@ -38,8 +38,10 @@ import {
   fetchCurrentUser,
   logoutUser,
   listUserMonitors,
+  getAdminStatus,
+  claimAdmin,
 } from "./services/api";
-import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus } from "lucide-react";
+import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus, Crown } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
 
@@ -810,9 +812,28 @@ export const App: React.FC = () => {
   // Auth & Multi-tenant State
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => getStoredUser());
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalReason, setAuthModalReason] = useState<string | null>(null);
+  const [adminStatus, setAdminStatus] = useState<{ has_admin: boolean; admin_email?: string | null }>({ has_admin: true });
   const [isCreateMonitorOpen, setIsCreateMonitorOpen] = useState(false);
   const [userMonitors, setUserMonitors] = useState<UserMonitor[]>([]);
   const [isLoadingMonitors, setIsLoadingMonitors] = useState(false);
+
+  const isAdmin = currentUser?.role === "ADMIN";
+
+  useEffect(() => {
+    getAdminStatus().then((st) => setAdminStatus(st)).catch(() => {});
+  }, [currentUser]);
+
+  const handleClaimAdmin = async () => {
+    try {
+      const updated = await claimAdmin();
+      setCurrentUser(updated);
+      setAdminStatus({ has_admin: true, admin_email: updated.email });
+      alert("👑 Поздравляем! Ваш аккаунт успешно назначен Администратором системы. Канонические радары теперь доступны вам.");
+    } catch (err: any) {
+      alert(err.message || "Ошибка назначения администратора");
+    }
+  };
 
   const loadUserMonitors = useCallback(async () => {
     if (!currentUser) {
@@ -892,26 +913,45 @@ export const App: React.FC = () => {
       } else if (hash.includes("monitors")) {
         setActiveTab("my_monitors");
       } else if (hash.startsWith("#/radar/") || hash.startsWith("#/filter/")) {
+        // Canonical radars are strictly reserved for the Administrator
+        if (!isAdmin) {
+          window.location.hash = "#/search";
+          setActiveTab("search");
+          return;
+        }
         const rawId = hash.replace("#/radar/", "").replace("#/filter/", "").split("?")[0];
         if (rawId && FILTER_PRESETS[rawId]) {
           setActiveFilterId(rawId);
           loadFilterResults(rawId);
         }
         setActiveTab("filter");
+      } else {
+        if (!isAdmin) {
+          setActiveTab("search");
+        }
       }
     };
 
     syncFromHash();
     window.addEventListener("hashchange", syncFromHash);
     return () => window.removeEventListener("hashchange", syncFromHash);
-  }, []);
+  }, [isAdmin]);
 
   useEffect(() => {
-    // 1. Critical path: Load active filter catalog immediately if no hash was present
+    // 1. Critical path: Admin loads default radar; regular users and guests land on interactive search
     const hash = window.location.hash;
-    const hasExplicitFilter = hash.startsWith("#/radar/") || hash.startsWith("#/filter/");
-    if (!hasExplicitFilter && !hash.startsWith("#/search") && !hash.startsWith("#/monitors")) {
-      loadFilterResults("turkey_7_10");
+    if (isAdmin) {
+      const hasExplicitFilter = hash.startsWith("#/radar/") || hash.startsWith("#/filter/");
+      if (!hasExplicitFilter && !hash.startsWith("#/search") && !hash.startsWith("#/monitors")) {
+        loadFilterResults("turkey_7_10");
+      }
+    } else {
+      if (!hash.includes("arbitrage") && !hash.includes("monitors")) {
+        setActiveTab("search");
+        if (!hash.includes("search")) {
+          window.location.hash = "#/search";
+        }
+      }
     }
 
     // 2. User watchlist (lightweight)
@@ -1038,6 +1078,12 @@ export const App: React.FC = () => {
   };
 
   const handleToggleWatchlist = async (hotel: SearchHotelItem) => {
+    if (!currentUser) {
+      setAuthModalReason("🔒 Чтобы сохранить отель в избранное и отслеживать изменение цен, войдите или зарегистрируйтесь.");
+      setIsAuthModalOpen(true);
+      return;
+    }
+
     const cohortHash = hotel.current_offer.cohort_hash;
     const isAlreadyWatched = watchlistItems.some(
       (w) => w.cohort_hash === cohortHash
@@ -1318,6 +1364,12 @@ export const App: React.FC = () => {
           setIsSidebarOpen(false);
         }}
         activeTab={activeTab}
+        currentUser={currentUser}
+        isAdmin={isAdmin}
+        onOpenAuth={() => {
+          setAuthModalReason(null);
+          setIsAuthModalOpen(true);
+        }}
       />
 
       {/* Top Navbar */}
@@ -1386,21 +1438,24 @@ export const App: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-1 bg-slate-800/90 p-1 rounded-2xl border border-slate-700">
-              <button
-                type="button"
-                onClick={() => {
-                  navigateToTab("filter");
-                  setViewMode("table");
-                }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  activeTab === "filter" && viewMode !== "arbitrage"
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
-                }`}
-              >
-                <Radio className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Радар фильтров</span>
-              </button>
+              {isAdmin && (
+                <button
+                  type="button"
+                  data-testid="admin-radar-nav-btn"
+                  onClick={() => {
+                    navigateToTab("filter");
+                    setViewMode("table");
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    activeTab === "filter" && viewMode !== "arbitrage"
+                      ? "bg-amber-500 text-slate-950 shadow-sm"
+                      : "text-amber-400 hover:text-white hover:bg-slate-700/50"
+                  }`}
+                >
+                  <Radio className="w-3.5 h-3.5" />
+                  <span>👑 Радары админа</span>
+                </button>
+              )}
 
               <button
                 type="button"
@@ -1445,6 +1500,20 @@ export const App: React.FC = () => {
               )}
             </button>
 
+            {/* Admin Onboarding CTA if no admin exists yet */}
+            {currentUser && !isAdmin && !adminStatus.has_admin && (
+              <button
+                type="button"
+                data-testid="claim-admin-btn"
+                onClick={handleClaimAdmin}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs shadow-sm transition-all cursor-pointer animate-pulse"
+                title="Назначить свой аккаунт Администратором системы"
+              >
+                <Crown className="w-3.5 h-3.5 text-slate-950" />
+                <span className="hidden sm:inline">Заонбордить меня админом</span>
+              </button>
+            )}
+
             {/* User Profile / Auth Button */}
             {currentUser ? (
               <div className="flex items-center gap-1.5 pl-2 border-l border-slate-700">
@@ -1459,6 +1528,11 @@ export const App: React.FC = () => {
                   <span className="max-w-[110px] truncate hidden sm:inline">
                     {currentUser.full_name || currentUser.email.split("@")[0]}
                   </span>
+                  {isAdmin && (
+                    <span className="text-[10px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded border border-amber-500/30 font-black">
+                      👑
+                    </span>
+                  )}
                 </button>
                 <button
                   type="button"
@@ -1478,7 +1552,10 @@ export const App: React.FC = () => {
               <button
                 type="button"
                 data-testid="login-nav-btn"
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => {
+                  setAuthModalReason(null);
+                  setIsAuthModalOpen(true);
+                }}
                 className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer"
               >
                 <UserIcon className="w-3.5 h-3.5" />
@@ -1498,8 +1575,18 @@ export const App: React.FC = () => {
             monitors={userMonitors}
             isLoading={isLoadingMonitors}
             onRefresh={loadUserMonitors}
-            onOpenCreateModal={() => setIsCreateMonitorOpen(true)}
-            onRequestAuth={() => setIsAuthModalOpen(true)}
+            onOpenCreateModal={() => {
+              if (!currentUser) {
+                setAuthModalReason("🔒 Для создания персонального мониторинга цен и получения уведомлений необходимо войти или зарегистрироваться.");
+                setIsAuthModalOpen(true);
+                return;
+              }
+              setIsCreateMonitorOpen(true);
+            }}
+            onRequestAuth={() => {
+              setAuthModalReason("🔒 Войдите или зарегистрируйтесь, чтобы создать свой мониторинг поиска или тура.");
+              setIsAuthModalOpen(true);
+            }}
           />
         ) : (
           <>
@@ -1510,7 +1597,14 @@ export const App: React.FC = () => {
                   onSearch={handleSearch}
                   isLoading={isLoading}
                   initialPreset={FILTER_PRESETS[activeFilterId]}
-                  onSaveMonitor={() => setIsCreateMonitorOpen(true)}
+                  onSaveMonitor={() => {
+                    if (!currentUser) {
+                      setAuthModalReason("🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться.");
+                      setIsAuthModalOpen(true);
+                      return;
+                    }
+                    setIsCreateMonitorOpen(true);
+                  }}
                 />
               </div>
             )}
@@ -1741,10 +1835,19 @@ export const App: React.FC = () => {
       {/* Auth Modal */}
       <AuthModal
         isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
+        onClose={() => {
+          setIsAuthModalOpen(false);
+          setAuthModalReason(null);
+        }}
+        reasonMessage={authModalReason}
+        hasAdmin={adminStatus.has_admin}
         onAuthSuccess={(u) => {
           setCurrentUser(u);
+          if (u.role === "ADMIN") {
+            setAdminStatus({ has_admin: true, admin_email: u.email });
+          }
           loadUserMonitors();
+          setAuthModalReason(null);
         }}
       />
 

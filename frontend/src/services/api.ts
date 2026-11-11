@@ -123,6 +123,38 @@ export async function logoutUser(): Promise<void> {
   clearAuth();
 }
 
+export interface AdminStatusResponse {
+  has_admin: boolean;
+  admin_email?: string | null;
+}
+
+export async function getAdminStatus(): Promise<AdminStatusResponse> {
+  try {
+    const resp = await fetch(`${API_BASE}/api/v2/auth/admin-status`);
+    if (!resp.ok) {
+      return { has_admin: true };
+    }
+    return await resp.json();
+  } catch {
+    return { has_admin: true };
+  }
+}
+
+export async function claimAdmin(adminKey?: string): Promise<UserProfile> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/claim-admin`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify(adminKey ? { admin_key: adminKey } : {}),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка назначения администратора" }));
+    throw new Error(err.detail || "Не удалось назначить роль администратора");
+  }
+  const user: UserProfile = await resp.json();
+  setStoredUser(user);
+  return user;
+}
+
 // ══════════════════════════════════════════════════════════════
 // USER MONITORS APIs (Multi-tenant search monitoring)
 // ══════════════════════════════════════════════════════════════

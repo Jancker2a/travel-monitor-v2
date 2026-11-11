@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import get_db
@@ -8,6 +9,8 @@ from app.schemas.auth import (
     TokenResponse,
     UserProfileResponse,
     RefreshTokenRequest,
+    AdminStatusResponse,
+    ClaimAdminRequest,
 )
 from app.services.auth_service import (
     AuthService,
@@ -15,6 +18,23 @@ from app.services.auth_service import (
 )
 
 router = APIRouter(prefix="/api/v2/auth", tags=["Authentication & Security"])
+
+
+@router.get("/admin-status", response_model=AdminStatusResponse)
+async def get_admin_status(db: AsyncSession = Depends(get_db)):
+    """Checks whether the system has an onboarded administrator."""
+    return await AuthService.get_admin_status(db)
+
+
+@router.post("/claim-admin", response_model=UserProfileResponse)
+async def claim_admin(
+    req: Optional[ClaimAdminRequest] = None,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Allows current user to claim or assume ADMIN role if uninitialized or with secret key."""
+    admin_key = req.admin_key if req else None
+    return await AuthService.claim_admin(db, current_user, admin_key=admin_key)
 
 
 @router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)

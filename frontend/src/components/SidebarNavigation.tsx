@@ -14,6 +14,8 @@ import {
   Bell,
 } from "lucide-react";
 
+import { UserProfile } from "../types";
+
 export interface NavFilterItem {
   id: string;
   title: string;
@@ -33,6 +35,9 @@ interface SidebarNavigationProps {
   onOpenArbitrage: () => void;
   onOpenMonitors?: () => void;
   activeTab: "filter" | "search" | "arbitrage" | "my_monitors";
+  currentUser?: UserProfile | null;
+  isAdmin?: boolean;
+  onOpenAuth?: () => void;
 }
 
 export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
@@ -44,6 +49,9 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
   onOpenArbitrage,
   onOpenMonitors,
   activeTab,
+  currentUser,
+  isAdmin = false,
+  onOpenAuth,
 }) => {
   const filterGroups: {
     group: string;
@@ -211,47 +219,77 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
           )}
         </div>
 
-        {/* Filter Presets List (V1 Core Dashboards) */}
-        <div className="flex-1 overflow-y-auto p-3 space-y-4 text-xs scrollbar-thin">
-          <div className="px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-            <span>Канонические радары (24/7)</span>
-            <span className="flex items-center gap-1 text-[9px] text-emerald-400 font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              LIVE
-            </span>
-          </div>
-
-          {filterGroups.map((grp) => (
-            <div key={grp.group} className="space-y-1">
-              <div className="px-2 py-1 text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
-                <span>{grp.icon}</span>
-                <span>{grp.group}</span>
-              </div>
-
-              {grp.items.map((item) => {
-                const isSelected = activeTab === "filter" && activeFilterId === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => onSelectFilter(item.id)}
-                    className={`w-full text-left flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors ${
-                      isSelected
-                        ? "bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40"
-                        : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
-                    }`}
-                  >
-                    <span className="truncate">{item.title}</span>
-                    {item.badge && (
-                      <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded border border-amber-500/30 font-bold">
-                        {item.badge}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
+        {/* Filter Presets List - ONLY VISIBLE TO SYSTEM ADMIN */}
+        {isAdmin ? (
+          <div className="flex-1 overflow-y-auto p-3 space-y-4 text-xs scrollbar-thin">
+            <div className="px-2 text-[10px] font-bold uppercase tracking-wider text-amber-400 flex items-center justify-between">
+              <span className="flex items-center gap-1.5">
+                <span>👑</span>
+                <span>Радары системы (Админ)</span>
+              </span>
+              <span className="flex items-center gap-1 text-[9px] text-emerald-400 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                LIVE
+              </span>
             </div>
-          ))}
-        </div>
+
+            {filterGroups.map((grp) => (
+              <div key={grp.group} className="space-y-1">
+                <div className="px-2 py-1 text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
+                  <span>{grp.icon}</span>
+                  <span>{grp.group}</span>
+                </div>
+
+                {grp.items.map((item) => {
+                  const isSelected = activeTab === "filter" && activeFilterId === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => onSelectFilter(item.id)}
+                      className={`w-full text-left flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors ${
+                        isSelected
+                          ? "bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40"
+                          : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
+                      }`}
+                    >
+                      <span className="truncate">{item.title}</span>
+                      {item.badge && (
+                        <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded border border-amber-500/30 font-bold">
+                          {item.badge}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-800/60 border border-slate-700/80 shadow-md">
+              <div className="flex items-center gap-2 text-blue-400 font-bold text-sm mb-1.5">
+                <span>📡</span>
+                <span>Персональный радар</span>
+              </div>
+              <p className="text-slate-300 text-xs leading-relaxed mb-3">
+                Используйте интерактивный поиск или вставьте ссылку на отель/выдачу с Fly.pl для запуска непрерывного отслеживания лучших цен.
+              </p>
+              {!currentUser && onOpenAuth && (
+                <button
+                  type="button"
+                  onClick={onOpenAuth}
+                  className="w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs text-center transition-all cursor-pointer shadow-sm hover:shadow-md"
+                >
+                  Войти / Регистрация
+                </button>
+              )}
+            </div>
+
+            <div className="px-2 text-slate-400 text-[11px] leading-relaxed">
+              💡 <strong>Совет:</strong> Все найденные отели можно сохранять в избранное и получать уведомления при падении цен в чартерах.
+            </div>
+          </div>
+        )}
 
         {/* Sidebar Footer */}
         <div className="p-3 border-t border-slate-800 bg-slate-900/90 text-[11px] text-slate-400 space-y-1">

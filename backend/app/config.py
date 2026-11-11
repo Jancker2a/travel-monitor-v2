@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours access token
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
     TELEGRAM_BOT_TOKEN: Optional[str] = None
+    ADMIN_EMAIL: Optional[str] = None
     
     # Live Crawler settings
     SCRAPER_TIMEOUT_SECONDS: float = 12.0

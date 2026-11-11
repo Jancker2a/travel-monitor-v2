@@ -39,3 +39,12 @@ class TokenResponse(BaseModel):
 class RefreshTokenRequest(BaseModel):
     refresh_token: str
 
+
+class AdminStatusResponse(BaseModel):
+    has_admin: bool
+    admin_email: Optional[str] = None
+
+
+class ClaimAdminRequest(BaseModel):
+    admin_key: Optional[str] = None
+

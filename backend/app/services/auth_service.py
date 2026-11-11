@@ -2,7 +2,7 @@ import logging
 from datetime import datetime, timezone
 from typing import Optional
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, func
 from fastapi import Depends, HTTPException, status
 from app.database import get_db
 from app.models.user import User
@@ -40,6 +40,36 @@ class AuthService:
         return res.scalar_one_or_none()
 
     @classmethod
+    async def get_admin_status(cls, db: AsyncSession) -> dict:
+        stmt = select(func.count(User.id)).where(User.role == "ADMIN", User.is_active == True)
+        admin_count = (await db.execute(stmt)).scalar() or 0
+        admin_email = None
+        if admin_count > 0:
+            email_stmt = select(User.email).where(User.role == "ADMIN", User.is_active == True).limit(1)
+            admin_email = (await db.execute(email_stmt)).scalar()
+        return {
+            "has_admin": admin_count > 0,
+            "admin_email": admin_email,
+        }
+
+    @classmethod
+    async def claim_admin(cls, db: AsyncSession, current_user: User, admin_key: Optional[str] = None) -> UserProfileResponse:
+        admin_status = await cls.get_admin_status(db)
+        if admin_status["has_admin"]:
+            # If an admin already exists, allow second admin only with SECRET_KEY
+            if not admin_key or admin_key != settings.SECRET_KEY:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Администратор системы уже назначен. Для добавления требуется секретный ключ.",
+                )
+
+        current_user.role = "ADMIN"
+        await db.commit()
+        await db.refresh(current_user)
+        logger.info(f"User {current_user.email} successfully claimed ADMIN role!")
+        return UserProfileResponse.model_validate(current_user)
+
+    @classmethod
     async def register(cls, db: AsyncSession, req: UserRegisterRequest) -> TokenResponse:
         existing = await cls.get_user_by_email(db, req.email)
         if existing:
@@ -48,6 +78,15 @@ class AuthService:
                 detail="Пользователь с таким email уже зарегистрирован",
             )
         
+        # Determine role: first registered user becomes ADMIN, or if matches ADMIN_EMAIL
+        admin_status = await cls.get_admin_status(db)
+        assigned_role = "USER"
+        if not admin_status["has_admin"]:
+            assigned_role = "ADMIN"
+            logger.info(f"First user onboarding: granting ADMIN role to {req.email}")
+        elif getattr(settings, "ADMIN_EMAIL", None) and req.email.strip().lower() == settings.ADMIN_EMAIL.strip().lower():
+            assigned_role = "ADMIN"
+
         hashed = get_password_hash(req.password)
         new_user = User(
             email=req.email.strip().lower(),
@@ -55,14 +94,14 @@ class AuthService:
             full_name=req.full_name,
             telegram_chat_id=req.telegram_chat_id,
             is_active=True,
-            role="USER",
+            role=assigned_role,
             last_login_at=datetime.now(timezone.utc),
         )
         db.add(new_user)
         await db.commit()
         await db.refresh(new_user)
         
-        logger.info(f"Registered new user: {new_user.email} (id: {new_user.id})")
+        logger.info(f"Registered new user: {new_user.email} with role {new_user.role} (id: {new_user.id})")
         return cls._generate_token_response(new_user)
 
     @classmethod
@@ -81,11 +120,15 @@ class AuthService:
                 detail="Аккаунт деактивирован администратором",
             )
         
+        # If user email matches ADMIN_EMAIL and role isn't ADMIN, auto-promote
+        if getattr(settings, "ADMIN_EMAIL", None) and user.email.lower() == settings.ADMIN_EMAIL.lower() and user.role != "ADMIN":
+            user.role = "ADMIN"
+
         user.last_login_at = datetime.now(timezone.utc)
         await db.commit()
         await db.refresh(user)
 
-        logger.info(f"User login successful: {user.email}")
+        logger.info(f"User login successful: {user.email} (role: {user.role})")
         return cls._generate_token_response(user)
 
     @classmethod
