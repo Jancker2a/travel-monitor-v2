@@ -19,6 +19,7 @@ interface UniversalTableFiltersProps {
   onClear: () => void;
   regions: string[];
   arbitrageCount?: number;
+  showArbitrageTab?: boolean;
 }
 
 export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
@@ -29,6 +30,7 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
   onClear,
   regions,
   arbitrageCount,
+  showArbitrageTab = true,
 }) => {
   return (
     <div className="space-y-3.5" id="globalFiltersWrap">
@@ -64,23 +66,25 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
             <span>Таблица</span>
           </button>
 
-          <button
-            type="button"
-            onClick={() => onViewModeChange("arbitrage")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-              viewMode === "arbitrage"
-                ? "bg-white text-blue-700 shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Globe className="w-4 h-4 text-blue-600" />
-            <span>Арбитраж BER</span>
-            {arbitrageCount != null && arbitrageCount > 0 && (
-              <span className="px-2 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700">
-                {arbitrageCount}
-              </span>
-            )}
-          </button>
+          {showArbitrageTab && (
+            <button
+              type="button"
+              onClick={() => onViewModeChange("arbitrage")}
+              className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+                viewMode === "arbitrage"
+                  ? "bg-white text-blue-700 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              <Globe className="w-4 h-4 text-blue-600" />
+              <span>Арбитраж BER</span>
+              {arbitrageCount != null && arbitrageCount > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700">
+                  {arbitrageCount}
+                </span>
+              )}
+            </button>
+          )}
         </div>
       </div>
 

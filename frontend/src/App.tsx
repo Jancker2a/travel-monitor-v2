@@ -817,6 +817,9 @@ export const App: React.FC = () => {
     setActiveTab(tab);
     if (tab === "search") {
       window.location.hash = "#/search";
+      if (viewMode === "arbitrage") {
+        setViewMode("table");
+      }
     } else if (tab === "arbitrage") {
       window.location.hash = "#/arbitrage";
       setViewMode("arbitrage");
@@ -832,6 +835,9 @@ export const App: React.FC = () => {
       const hash = window.location.hash.toLowerCase();
       if (hash.includes("search")) {
         setActiveTab("search");
+        if (viewMode === "arbitrage") {
+          setViewMode("table");
+        }
       } else if (hash.includes("arbitrage")) {
         setActiveTab("filter");
         setViewMode("arbitrage");
@@ -870,6 +876,11 @@ export const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (activeTab !== "filter") {
+      setArbitrageCount(0);
+      return;
+    }
+
     const preset = FILTER_PRESETS[activeFilterId];
     const country =
       preset?.destination === "turkey"
@@ -882,7 +893,7 @@ export const App: React.FC = () => {
         ? "Кипр"
         : undefined;
 
-    getArbitrageDeals(300, activeTab === "filter" ? activeFilterId : undefined, country)
+    getArbitrageDeals(300, activeFilterId, country)
       .then((deals) => setArbitrageCount(deals.length))
       .catch((err) => {
         console.warn("Arbitrage count fetch failed:", err);
@@ -1359,7 +1370,8 @@ export const App: React.FC = () => {
           onFilterChange={setTableFilters}
           onClear={() => setTableFilters(INITIAL_FILTERS)}
           regions={availableRegions}
-          arbitrageCount={arbitrageCount}
+          arbitrageCount={activeTab === "filter" ? arbitrageCount : 0}
+          showArbitrageTab={activeTab === "filter"}
         />
 
         {/* 6. Mode Switch Views */}
