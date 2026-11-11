@@ -20,11 +20,10 @@ class TestUniversalQueryBuilder(unittest.TestCase):
         )
         url = UniversalQueryBuilder.build_flypl_url(req)
         self.assertIn("destinationLocation=11_154", url)
-        self.assertIn("departureLocation=Warszawa%2CKatowice", url)
+        self.assertIn("departureLocation=Warszawa,Katowice", url)
         self.assertIn("startDateMin=20-12-2026", url)
         self.assertIn("adults=2", url)
-        self.assertIn("children=1", url)
-        self.assertIn("childrenAges=7", url)
+        self.assertIn("children=15-06-2019", url)
         self.assertIn("priceTo=9500", url)
 
     def test_cohort_hash_determinism(self):
@@ -65,8 +64,8 @@ class TestUniversalQueryBuilder(unittest.TestCase):
             order_by="price",
         )
         url = UniversalQueryBuilder.build_flypl_url(req)
-        self.assertIn("destinationLocation=39_3", url)
-        self.assertIn("departureLocation=Warszawa%2CKatowice%2CBerlin", url)
+        self.assertIn("destinationLocation=39_14", url)
+        self.assertIn("departureLocation=Warszawa,Katowice,Berlin", url)
         self.assertIn("startDateMin=01-12-2026", url)
         self.assertIn("startDateMax=08-12-2026", url)
         self.assertIn("adults=1", url)
@@ -75,6 +74,38 @@ class TestUniversalQueryBuilder(unittest.TestCase):
         self.assertIn("priceFrom=1000", url)
         self.assertIn("priceTo=8000", url)
         self.assertIn("order=price", url)
+
+    def test_destination_mappings_accuracy(self):
+        """Verifies destinationLocation mappings match Fly.pl production API."""
+        spain_req = SearchRequest(
+            destination="spain",
+            dates=SearchDates(start_date_min=date(2026, 12, 1)),
+        )
+        self.assertIn("destinationLocation=15:", UniversalQueryBuilder.build_flypl_url(spain_req))
+
+        uae_req = SearchRequest(
+            destination="uae",
+            dates=SearchDates(start_date_min=date(2026, 12, 1)),
+        )
+        self.assertIn("destinationLocation=372:", UniversalQueryBuilder.build_flypl_url(uae_req))
+
+        malta_req = SearchRequest(
+            destination="malta",
+            dates=SearchDates(start_date_min=date(2026, 12, 1)),
+        )
+        self.assertIn("destinationLocation=26:", UniversalQueryBuilder.build_flypl_url(malta_req))
+
+        bulgaria_req = SearchRequest(
+            destination="bulgaria",
+            dates=SearchDates(start_date_min=date(2026, 12, 1)),
+        )
+        self.assertIn("destinationLocation=3:", UniversalQueryBuilder.build_flypl_url(bulgaria_req))
+
+        tunisia_req = SearchRequest(
+            destination="tunisia",
+            dates=SearchDates(start_date_min=date(2026, 12, 1)),
+        )
+        self.assertIn("destinationLocation=38:", UniversalQueryBuilder.build_flypl_url(tunisia_req))
 
 
 

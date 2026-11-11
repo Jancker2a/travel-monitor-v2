@@ -36,12 +36,10 @@ const DESTINATIONS: DestinationDef[] = [
     flag: "🇹🇷",
     regions: [
       { id: "turkey", name: "Все регионы" },
-      { id: "turkey_antalya", name: "Анталийское побережье" },
       { id: "turkey_alanya", name: "Аланья" },
-      { id: "turkey_side", name: "Сиде" },
+      { id: "turkey_side", name: "Сиде / Анталья" },
       { id: "turkey_belek", name: "Белек" },
       { id: "turkey_kemer", name: "Кемер" },
-      { id: "turkey_aegean", name: "Эгейское побережье" },
       { id: "turkey_bodrum", name: "Бодрум" },
       { id: "turkey_marmaris", name: "Мармарис" },
     ],
@@ -77,7 +75,7 @@ const DESTINATIONS: DestinationDef[] = [
     regions: [
       { id: "cyprus", name: "Весь Кипр" },
       { id: "cyprus_south", name: "Южный Кипр (Айя-Напа, Пафос, Ларнака)" },
-      { id: "cyprus_north", name: "Северный Кипр (Кирения, Фамагуста)" },
+      { id: "cyprus_north", name: "Северный Кипр" },
     ],
   },
   {
@@ -89,12 +87,38 @@ const DESTINATIONS: DestinationDef[] = [
       { id: "spain_mallorca", name: "Майорка" },
       { id: "spain_canary", name: "Канарские острова (Тенерифе)" },
       { id: "spain_costa_del_sol", name: "Коста-дель-Соль" },
+      { id: "spain_costa_blanca", name: "Коста-Бланка" },
     ],
   },
   { id: "bulgaria", name: "Болгария", flag: "🇧🇬" },
-  { id: "tunisia", name: "Тунис", flag: "🇹🇳" },
-  { id: "uae", name: "ОАЭ", flag: "🇦🇪" },
-  { id: "italy", name: "Италия", flag: "🇮🇹" },
+  {
+    id: "tunisia",
+    name: "Тунис",
+    flag: "🇹🇳",
+    regions: [
+      { id: "tunisia", name: "Весь Тунис" },
+      { id: "tunisia_djerba", name: "Остров Джерба" },
+      { id: "tunisia_mainland", name: "Континентальный Тунис (Хаммамет/Сусс)" },
+    ],
+  },
+  {
+    id: "uae",
+    name: "ОАЭ",
+    flag: "🇦🇪",
+    regions: [
+      { id: "uae", name: "Все Эмираты" },
+      { id: "uae_dubai", name: "Дубай" },
+    ],
+  },
+  {
+    id: "italy",
+    name: "Италия",
+    flag: "🇮🇹",
+    regions: [
+      { id: "italy", name: "Вся Италия" },
+      { id: "italy_sicily", name: "Сицилия" },
+    ],
+  },
   { id: "malta", name: "Мальта", flag: "🇲🇹" },
 ];
 
@@ -316,37 +340,52 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
   const buildFlyPlUrl = useCallback(() => {
     const base = "https://fly.pl/szukaj-wycieczek/";
     const destCodeMap: Record<string, string> = {
+      // Turkey (39)
       turkey: "39:",
-      turkey_antalya: "39_3",
-      turkey_aegean: "39_14",
-      turkey_side: "39_3_40",
-      turkey_alanya: "39_3_38",
-      turkey_belek: "39_3_39",
-      turkey_kemer: "39_3_41",
-      turkey_bodrum: "39_14_45",
-      turkey_marmaris: "39_14_44",
+      turkey_antalya: "39_14",
+      turkey_aegean: "39_25",
+      turkey_side: "39_14",
+      turkey_alanya: "39_3",
+      turkey_belek: "39_23",
+      turkey_kemer: "39_73",
+      turkey_bodrum: "39_25",
+      turkey_marmaris: "39_196",
+      // Egypt (11)
       egypt: "11:",
       egypt_sharm: "11_154",
-      egypt_hurghada: "11_155",
-      egypt_marsa: "11_156",
+      egypt_hurghada: "11_64",
+      egypt_marsa: "11_228",
+      // Greece (14)
       greece: "14:",
-      greece_crete: "14_1",
-      greece_rhodes: "14_2",
-      greece_corfu: "14_4",
-      greece_zakynthos: "14_3",
-      greece_kos: "14_5",
+      greece_crete: "14_89",
+      greece_rhodes: "14_150",
+      greece_corfu: "14_83",
+      greece_zakynthos: "14_1066",
+      greece_kos: "14_84",
+      // Cyprus (6)
       cyprus: "6:",
-      cyprus_south: "6_1",
-      cyprus_north: "6_2",
-      spain: "18:",
-      spain_mallorca: "18_1",
-      spain_canary: "18_13",
-      spain_costa_del_sol: "18_3",
-      bulgaria: "4:",
-      tunisia: "37:",
-      italy: "21:",
-      uae: "44:",
-      malta: "28:",
+      cyprus_south: "6:",
+      cyprus_north: "6_2616",
+      // Spain (15) - Ground truth on Fly.pl (18 was Jamaica/Cuba!)
+      spain: "15:",
+      spain_mallorca: "15_105",
+      spain_canary: "15_flykanary",
+      spain_costa_del_sol: "15_40",
+      spain_costa_blanca: "15_2063",
+      // Bulgaria (3) - Ground truth on Fly.pl (4 was empty)
+      bulgaria: "3:",
+      // Tunisia (38) - Ground truth on Fly.pl (37 was empty)
+      tunisia: "38:",
+      tunisia_djerba: "38_2",
+      tunisia_mainland: "38_1",
+      // UAE (372) - Ground truth on Fly.pl (44 was Italy!)
+      uae: "372:",
+      uae_dubai: "372_46",
+      // Italy (44) - Ground truth on Fly.pl (21 was empty)
+      italy: "44:",
+      italy_sicily: "44_2",
+      // Malta (26) - Ground truth on Fly.pl (28 was Mauritius)
+      malta: "26:",
     };
 
     const airportMap: Record<string, string> = {
@@ -374,13 +413,13 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
     const queryParts: string[] = [];
 
     // 1. Destination
-    queryParts.push(`destinationLocation=${encodeURIComponent(destCode)}`);
+    queryParts.push(`destinationLocation=${destCode}`);
 
     // 2. Departure Airports (excluding BER which Fly.pl does not support)
     const polishAirports = selectedAirports.filter((a) => a !== "BER");
     if (polishAirports.length > 0 && polishAirports.length < 10) {
       const depStr = polishAirports.map((a) => airportMap[a] || a).join(",");
-      queryParts.push(`departureLocation=${encodeURIComponent(depStr)}`);
+      queryParts.push(`departureLocation=${depStr}`);
     }
 
     // 3. Dates & Return Date

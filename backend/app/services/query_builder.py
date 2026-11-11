@@ -4,37 +4,52 @@ from typing import Dict, Any, List
 from app.schemas.search import SearchRequest
 
 DESTINATION_CODES: Dict[str, str] = {
+    # Turkey (39)
     "turkey": "39:",
-    "turkey_antalya": "39_3",
-    "turkey_aegean": "39_14",
-    "turkey_side": "39_3_40",
-    "turkey_alanya": "39_3_38",
-    "turkey_belek": "39_3_39",
-    "turkey_kemer": "39_3_41",
-    "turkey_bodrum": "39_14_45",
-    "turkey_marmaris": "39_14_44",
+    "turkey_antalya": "39_14",
+    "turkey_aegean": "39_25",
+    "turkey_side": "39_14",
+    "turkey_alanya": "39_3",
+    "turkey_belek": "39_23",
+    "turkey_kemer": "39_73",
+    "turkey_bodrum": "39_25",
+    "turkey_marmaris": "39_196",
+    # Egypt (11)
     "egypt": "11:",
     "egypt_sharm": "11_154",
-    "egypt_hurghada": "11_155",
-    "egypt_marsa": "11_156",
+    "egypt_hurghada": "11_64",
+    "egypt_marsa": "11_228",
+    # Greece (14)
     "greece": "14:",
-    "greece_crete": "14_1",
-    "greece_rhodes": "14_2",
-    "greece_corfu": "14_4",
-    "greece_zakynthos": "14_3",
-    "greece_kos": "14_5",
+    "greece_crete": "14_89",
+    "greece_rhodes": "14_150",
+    "greece_corfu": "14_83",
+    "greece_zakynthos": "14_1066",
+    "greece_kos": "14_84",
+    # Cyprus (6)
     "cyprus": "6:",
-    "cyprus_south": "6_1",
-    "cyprus_north": "6_2",
-    "spain": "18:",
-    "spain_mallorca": "18_1",
-    "spain_canary": "18_13",
-    "spain_costa_del_sol": "18_3",
-    "bulgaria": "4:",
-    "tunisia": "37:",
-    "italy": "21:",
-    "uae": "44:",
-    "malta": "28:",
+    "cyprus_south": "6:",
+    "cyprus_north": "6_2616",
+    # Spain (15) - Ground truth on Fly.pl (18 is Jamaica/Cuba!)
+    "spain": "15:",
+    "spain_mallorca": "15_105",
+    "spain_canary": "15_flykanary",
+    "spain_costa_del_sol": "15_40",
+    "spain_costa_blanca": "15_2063",
+    # Bulgaria (3) - Ground truth on Fly.pl (4 was empty)
+    "bulgaria": "3:",
+    # Tunisia (38) - Ground truth on Fly.pl (37 was empty)
+    "tunisia": "38:",
+    "tunisia_djerba": "38_2",
+    "tunisia_mainland": "38_1",
+    # UAE (372) - Ground truth on Fly.pl (44 was Italy!)
+    "uae": "372:",
+    "uae_dubai": "372_46",
+    # Italy (44) - Ground truth on Fly.pl (21 was empty)
+    "italy": "44:",
+    "italy_sicily": "44_2",
+    # Malta (26) - Ground truth on Fly.pl (28 was Mauritius)
+    "malta": "26:",
 }
 
 AIRPORT_NAMES: Dict[str, str] = {
@@ -106,9 +121,10 @@ class UniversalQueryBuilder:
             params["returnDate"] = return_date
         
         if req.travelers.children > 0:
-            params["children"] = req.travelers.children
-            if req.travelers.children_ages:
-                params["childrenAges"] = ",".join(str(a) for a in req.travelers.children_ages)
+            ref_year = req.dates.start_date_min.year if req.dates.start_date_min else 2026
+            ages = req.travelers.children_ages if req.travelers.children_ages else [6] * req.travelers.children
+            birthdates = [f"15-06-{ref_year - age}" for age in ages]
+            params["children"] = ",".join(birthdates)
 
         if req.catering and req.catering != "all":
             params["catering"] = req.catering
@@ -125,6 +141,6 @@ class UniversalQueryBuilder:
         if page > 1:
             params["p"] = page
 
-        query_str = urllib.parse.urlencode(params)
+        query_str = urllib.parse.urlencode(params, safe=":,+")
         return f"{base_url}?{query_str}"
 
