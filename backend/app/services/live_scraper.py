@@ -160,9 +160,42 @@ class LiveScraperService:
                 elif "startDateMax" in qs:
                     api_params["startDate[max]"] = to_iso(qs["startDateMax"][0])
 
-            if "children" in qs:
-                for i, ch in enumerate(qs["children"][0].split(",")):
-                    api_params[f"children[{i}]"] = to_iso(ch.strip())
+            # Handle children and child birthdates (Fly.pl JSON API expects children[i] = YYYY-MM-DD birthdate)
+            ref_date = start_min_d or today
+            child_birthdates = []
+            if "childrenAges" in qs:
+                for a in qs["childrenAges"][0].split(","):
+                    try:
+                        age = int(a.strip())
+                        b_date = ref_date - timedelta(days=int(age * 365.25 + 180))
+                        child_birthdates.append(b_date.isoformat())
+                    except Exception:
+                        pass
+            elif "children" in qs:
+                for ch in qs["children"][0].split(","):
+                    ch_clean = ch.strip()
+                    if "-" in ch_clean:
+                        child_birthdates.append(to_iso(ch_clean))
+                    else:
+                        try:
+                            cnt = int(ch_clean)
+                            for _ in range(cnt):
+                                b_date = ref_date - timedelta(days=int(6 * 365.25 + 180))
+                                child_birthdates.append(b_date.isoformat())
+                        except Exception:
+                            pass
+
+            for i, b_date_str in enumerate(child_birthdates):
+                api_params[f"children[{i}]"] = b_date_str
+
+            # Handle catering (Fly.pl JSON API expects array format: catering[0] = "all_inclusive")
+            if "catering" in qs:
+                cats = qs["catering"][0].split(",")
+                for i, cat in enumerate(cats):
+                    cat_val = cat.strip()
+                    if cat_val and cat_val != "all":
+                        api_params[f"catering[{i}]"] = cat_val
+
             if "destinationLocation" in qs:
                 dest_val = qs["destinationLocation"][0].rstrip(":")
                 api_params["destinationLocation[0]"] = dest_val
@@ -198,6 +231,9 @@ class LiveScraperService:
                     try:
                         resp = await client.get("https://fly.pl/api/fqs/v1/offers/search", params=api_params)
                         if resp.status_code != 200:
+                            logger.warning(
+                                f"Fly.pl search API returned status {resp.status_code} for {url}: {resp.text[:300]}"
+                            )
                             break
                         payload = resp.json().get("data", {})
                         raw_list = payload.get("offers", []) if isinstance(payload, dict) else []

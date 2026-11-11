@@ -108,3 +108,47 @@ async def test_process_and_persist_offers():
 
     await engine.dispose()
 
+
+@pytest.mark.asyncio
+async def test_fetch_offers_children_and_catering_mapping():
+    # Verify that childrenAges and catering are converted to Fly.pl API array formats
+    from unittest.mock import patch, MagicMock
+    import httpx
+
+    target_url = (
+        "https://fly.pl/szukaj-wycieczek/?destinationLocation=11%3A&adults=2"
+        "&startDateMin=20-12-2026&startDateMax=31-12-2026"
+        "&children=1&childrenAges=6&catering=all_inclusive"
+    )
+
+    captured_params = {}
+
+    class MockAsyncClient:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *args):
+            pass
+
+        async def get(self, url, params=None):
+            nonlocal captured_params
+            captured_params = dict(params or {})
+            resp = MagicMock()
+            resp.status_code = 200
+            resp.json.return_value = {"status": "OK", "data": {"offers": []}}
+            return resp
+
+    with patch("httpx.AsyncClient", MockAsyncClient):
+        await LiveScraperService.fetch_offers_via_api(target_url, max_offers=10)
+
+    assert "children[0]" in captured_params
+    # Child birthdate should be in ISO format YYYY-MM-DD
+    assert len(captured_params["children[0]"]) == 10
+    assert captured_params["children[0]"].startswith("2020-")
+    assert captured_params.get("catering[0]") == "all_inclusive"
+    assert captured_params.get("destinationLocation[0]") == "11"
+
+
