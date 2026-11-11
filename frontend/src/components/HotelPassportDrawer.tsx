@@ -34,7 +34,6 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 }) => {
   const [passport, setPassport] = useState<HotelPassport | null>(null);
   const [historyRange, setHistoryRange] = useState<"7d" | "30d" | "all">("all");
-  const [chartMetric, setChartMetric] = useState<"tour" | "pure_night" | "benchmark">("tour");
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"ai" | "history" | "infra" | "packages">("ai");
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
@@ -98,20 +97,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       }
     }
 
+    const userAdults = hotelItem?.current_offer?.adults || passport?.user_query_scope?.adults || 2;
+    const userChildren = hotelItem?.current_offer?.children ?? passport?.user_query_scope?.children ?? 0;
+    const userNights = hotelItem?.current_offer?.duration_nights || passport?.user_query_scope?.duration_nights || 7;
+    const partyLabel = `${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : "");
+
     // Deduplicate timestamps to prevent duplicate x-axis points
-    const uniqueMap = new Map<string, { price: number; pureNight: number }>();
+    const uniqueMap = new Map<string, { price: number; perNightPax: number }>();
+    const totalPax = Math.max(1, userAdults + userChildren);
     history.forEach((pt) => {
-      let p: number;
-      if (chartMetric === "pure_night") {
-        p = pt.pure_hotel_night_rate || 0;
-      } else if (chartMetric === "benchmark") {
-        p = pt.normalized_price_1p_8n || pt.total_price_pln;
-      } else {
-        p = pt.scaled_tour_price || pt.total_price_pln;
-      }
+      const p = pt.scaled_tour_price || pt.total_price_pln;
+      const perNight = Math.round(p / (userNights * totalPax));
       uniqueMap.set(pt.recorded_at, {
         price: p,
-        pureNight: pt.pure_hotel_night_rate || 0,
+        perNightPax: perNight,
       });
     });
 
@@ -121,30 +120,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     uniqueMap.forEach((val, key) => {
       xVals.push(key);
       yVals.push(val.price);
-      customData.push(val.pureNight);
+      customData.push(val.perNightPax);
     });
-
-    const userAdults = hotelItem?.current_offer?.adults || passport?.user_query_scope?.adults || 2;
-    const userChildren = hotelItem?.current_offer?.children ?? passport?.user_query_scope?.children ?? 0;
-    const userNights = hotelItem?.current_offer?.duration_nights || passport?.user_query_scope?.duration_nights || 7;
-    const partyLabel = `${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : "");
-
-    let metricLabel = `Тур (${partyLabel} • ${userNights}н)`;
-    let hoverTpl = `<b>%{y:,.0f} zł</b> (Тур ${partyLabel})<br>Чистая цена отеля: ~%{customdata:,.0f} zł/н<br>%{x|%d.%m %H:%M}<extra></extra>`;
-    let chartTitle = `Динамика цены тура для вашего состава (${partyLabel} • ${userNights} ночей, PLN)`;
-    let lineColor = "#0284c7";
-
-    if (chartMetric === "pure_night") {
-      metricLabel = "Чистая цена отеля / ночь";
-      hoverTpl = `<b>%{y:,.0f} zł/н</b> (Чистый тариф отеля)<br>%{x|%d.%m %H:%M}<extra></extra>`;
-      chartTitle = "Чистая себестоимость отеля за ночь без учета перелёта (PLN/ночь)";
-      lineColor = "#059669";
-    } else if (chartMetric === "benchmark") {
-      metricLabel = "Эталон (1 чел • 8н)";
-      hoverTpl = `<b>%{y:,.0f} zł</b> (Эталон 1 чел / 8н)<br>Чистая цена отеля: ~%{customdata:,.0f} zł/н<br>%{x|%d.%m %H:%M}<extra></extra>`;
-      chartTitle = "Нормализованный эталон цен (1 взрослый • 8 ночей, PLN)";
-      lineColor = "#6366f1";
-    }
 
     const trace = {
       x: xVals,
@@ -152,17 +129,18 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       customdata: customData,
       type: "scatter",
       mode: "lines+markers",
-      name: metricLabel,
+      name: `Цена тура (${partyLabel} • ${userNights}н)`,
       line: {
-        color: lineColor,
+        color: "#0284c7",
         width: 2.5,
         shape: "linear",
       },
       marker: {
         size: 5,
-        color: lineColor,
+        color: "#0369a1",
       },
-      hovertemplate: hoverTpl,
+      hovertemplate:
+        "<b>%{y:,.0f} zł</b> (Цена всего тура)<br>~%{customdata:,.0f} zł / чел / ночь<br>%{x|%d.%m %H:%M}<extra></extra>",
     };
 
     const pVals = yVals.length ? yVals : [passport.current_price_pln];
@@ -172,7 +150,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
     const layout = {
       title: {
-        text: chartTitle,
+        text: `Динамика цены тура (${partyLabel} • ${userNights} ночей, с перелётом)`,
         font: { size: 12.5, family: "Inter, sans-serif", color: "#0f172a" },
         x: 0.05,
       },
@@ -186,7 +164,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         tickfont: { size: 10, color: "#64748b" },
       },
       yaxis: {
-        title: chartMetric === "pure_night" ? "zł / ночь" : "PLN",
+        title: "Цена тура (PLN)",
         gridcolor: "#f1f5f9",
         tickfont: { size: 10, color: "#64748b" },
       },
@@ -223,7 +201,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     } catch (e) {
       console.warn("Plotly tour chart error:", e);
     }
-  }, [activeTab, passport, historyRange, chartMetric]);
+  }, [activeTab, passport, historyRange]);
 
   const genericPlaceholder =
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80";
@@ -263,7 +241,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const minPrice = hotelItem?.intelligence?.historic_min_pln || passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
 
-  // Dynamic values depending on active filter range (7d / 30d / all) & selected chart metric
+  // Dynamic values depending on active filter range (7d / 30d / all)
   const rangeStats = useMemo(() => {
     let hist = passport?.history_points || [];
     if (historyRange !== "all") {
@@ -275,11 +253,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       );
       if (filtered.length > 0) hist = filtered;
     }
-    const pVals = hist.map((p) => {
-      if (chartMetric === "pure_night") return p.pure_hotel_night_rate || 0;
-      if (chartMetric === "benchmark") return p.normalized_price_1p_8n || p.total_price_pln;
-      return p.scaled_tour_price || p.total_price_pln;
-    });
+    const pVals = hist.map((p) => p.scaled_tour_price || p.total_price_pln);
     const lastPt = hist.length > 0 ? hist[hist.length - 1] : null;
     const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
     const min = pVals.length > 0 ? Math.min(...pVals) : cur;
@@ -288,7 +262,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const med = sorted.length > 0 ? sorted[Math.floor(sorted.length / 2)] : cur;
     const pureNight = lastPt?.pure_hotel_night_rate || 0;
     return { cur, min, med, max, pureNight, count: hist.length };
-  }, [historyRange, passport?.history_points, currentPrice, chartMetric]);
+  }, [historyRange, passport?.history_points, currentPrice]);
 
   const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
   const isBudgetQuality =
@@ -831,44 +805,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 return (
                   <>
                     <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
-                      {/* Metric Selector Pills */}
-                      <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
-                        <button
-                          type="button"
-                          onClick={() => setChartMetric("tour")}
-                          className={`px-2.5 py-1 rounded-lg transition-all ${
-                            chartMetric === "tour"
-                              ? "bg-white text-blue-900 shadow-2xs font-extrabold border border-blue-200/60"
-                              : "text-slate-600 hover:text-slate-900"
-                          }`}
-                          title="Цены тура с учетом перелета, состава семьи и длительности"
-                        >
-                          🏖️ Мой тур ({partyLabel} • {userNights}н)
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setChartMetric("pure_night")}
-                          className={`px-2.5 py-1 rounded-lg transition-all ${
-                            chartMetric === "pure_night"
-                              ? "bg-white text-emerald-900 shadow-2xs font-extrabold border border-emerald-200/60"
-                              : "text-slate-600 hover:text-slate-900"
-                          }`}
-                          title="Чистая себестоимость номера за 1 ночь без учета авиабилетов"
-                        >
-                          🏨 Чистая ночь отеля
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setChartMetric("benchmark")}
-                          className={`px-2.5 py-1 rounded-lg transition-all ${
-                            chartMetric === "benchmark"
-                              ? "bg-white text-indigo-900 shadow-2xs font-extrabold border border-indigo-200/60"
-                              : "text-slate-600 hover:text-slate-900"
-                          }`}
-                          title="Единый нормализованный эталон на 1 взрослого на 8 ночей"
-                        >
-                          🏷️ Эталон (1 чел / 8н)
-                        </button>
+                      <div className="stat-pill" style={{ background: "#e0f2fe", color: "#0369a1", padding: "6px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bae6fd" }}>
+                        ✈️ Полная цена тура ({partyLabel} • {userNights}н, с перелётом)
                       </div>
 
                       {/* Range Selector */}
@@ -912,13 +850,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     {/* Explanatory banner */}
                     <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "10px 14px", marginBottom: "14px", fontSize: "12px", color: "#475569", lineHeight: "1.5" }}>
                       <div>
-                        {chartMetric === "tour" ? (
-                          <span>💡 <strong>Динамика тура:</strong> график отражает исторические замеры цен, масштабированные в точный эквивалент вашего тура ({partyLabel} • {userNights} ночей) по чистой стоимости проживания.</span>
-                        ) : chartMetric === "pure_night" ? (
-                          <span>💡 <strong>Чистая себестоимость отеля:</strong> отделяет фиксированную цену авиабилетов и трансфера от стоимости номера. Показывает, снизил ли сам отельер свой прайс.</span>
-                        ) : (
-                          <span>💡 <strong>Нормализованный эталон:</strong> единый стандарт (1 взрослый • 8 ночей • All Inclusive) для объективного сравнения цен разных отелей между собой.</span>
-                        )}
+                        💡 <strong>История стоимости пакета:</strong> график отражает реальную динамику цены всего тура (перелёт туда-обратно + проживание All Inclusive + трансфер) для вашего состава семьи ({partyLabel} • {userNights}н). Учитывает все скидки туроператора и горящие места в чартерах.
                       </div>
                       {hotelItem?.current_offer?.departure_date && (
                         <div style={{ marginTop: "6px", fontSize: "11px", color: "#0369a1", background: "#f0f9ff", padding: "4px 8px", borderRadius: "6px", border: "1px solid #e0f2fe" }}>
@@ -935,12 +867,12 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           Мониторинг запущен: первый замер зафиксирован
                         </h4>
                         <p style={{ fontSize: "12px", color: "#64748b", maxWidth: "480px", margin: "0 auto 12px", lineHeight: "1.5" }}>
-                          {passport?.maturity_explanation || "Отель обнаружен через расширенный live-поиск. Зафиксирована первая котировка, регулярный почасовой мониторинг цен запущен. График динамики будет построен после сбора повторных котировок."}
+                          {passport?.maturity_explanation || "Отель обнаружен через расширенный live-поиск. Зафиксирована первая котировка тура, регулярный почасовой мониторинг цен запущен. График динамики будет построен после сбора повторных котировок."}
                         </p>
                         <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#f1f5f9", padding: "6px 14px", borderRadius: "20px", fontSize: "11.5px", color: "#334155", fontWeight: 700 }}>
                           <span>⏱️ Следующий автоматический замер: в течение 60 мин.</span>
                           <span>•</span>
-                          <span>🏨 Чистая себестоимость номера: ~{Math.round(rangeStats.pureNight).toLocaleString("ru-RU")} zł/ночь</span>
+                          <span>Текущая цена тура: {Math.round(currentPrice).toLocaleString("ru-RU")} zł</span>
                         </div>
                       </div>
                     ) : (
@@ -952,37 +884,37 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     <div className="benchmarks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "16px" }}>
                       <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                         <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                          {chartMetric === "pure_night" ? "Текущая ночь" : "Текущий уровень"}
+                          Текущая цена тура
                         </div>
                         <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginTop: "2px" }}>
-                          {rangeStats.cur > 0 ? `${Math.round(rangeStats.cur).toLocaleString("ru-RU")} ${chartMetric === "pure_night" ? "zł/н" : "zł"}` : "—"}
+                          {rangeStats.cur > 0 ? `${Math.round(rangeStats.cur).toLocaleString("ru-RU")} zł` : "—"}
                         </div>
                       </div>
 
                       <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                         <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                          {chartMetric === "pure_night" ? "Мин. за ночь" : "Мин. за период"}
+                          Минимум за период
                         </div>
                         <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a", marginTop: "2px" }}>
-                          {rangeStats.min > 0 ? `${Math.round(rangeStats.min).toLocaleString("ru-RU")} ${chartMetric === "pure_night" ? "zł/н" : "zł"}` : "—"}
+                          {rangeStats.min > 0 ? `${Math.round(rangeStats.min).toLocaleString("ru-RU")} zł` : "—"}
                         </div>
                       </div>
 
                       <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                         <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                          {chartMetric === "pure_night" ? "Макс. за ночь" : "Макс. за период"}
-                        </div>
-                        <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
-                          {rangeStats.max > 0 ? `${Math.round(rangeStats.max).toLocaleString("ru-RU")} ${chartMetric === "pure_night" ? "zł/н" : "zł"}` : "—"}
-                        </div>
-                      </div>
-
-                      <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
-                        <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                          Себестоимость ночи
+                          Средняя за период
                         </div>
                         <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0284c7", marginTop: "2px" }}>
-                          {rangeStats.pureNight > 0 ? `~${Math.round(rangeStats.pureNight).toLocaleString("ru-RU")} zł/н` : "—"}
+                          {rangeStats.med > 0 ? `${Math.round(rangeStats.med).toLocaleString("ru-RU")} zł` : "—"}
+                        </div>
+                      </div>
+
+                      <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
+                        <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
+                          Максимум за период
+                        </div>
+                        <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
+                          {rangeStats.max > 0 ? `${Math.round(rangeStats.max).toLocaleString("ru-RU")} zł` : "—"}
                         </div>
                       </div>
                     </div>
