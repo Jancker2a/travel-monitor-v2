@@ -210,59 +210,7 @@ class SearchService:
             hist_median = sorted(price_history)[len(price_history) // 2]
             curr_price = latest_snap.total_price_pln
 
-            # Intelligence logic via canonical V1 deal score engine
-            price_diff_ratio = (curr_price - hist_median) / hist_median if hist_median > 0 else 0.0
-
-            deal_score = 65
-            deal_badge = "FAIR_PRICE"
-            verdict = "WAIT"
-            recom = "Стандартная рыночная цена. Возможны колебания."
-
-            if snaps:
-                import pandas as pd
-                from app.services.hotel_deal_score import compute_hotel_deal_metrics
-
-                df_hist = pd.DataFrame([
-                    {"scraped_at": s.recorded_at, "price": s.total_price_pln}
-                    for s in snaps
-                ])
-                deal_metrics = compute_hotel_deal_metrics(
-                    df_hist,
-                    latest_price=curr_price,
-                    time_col="scraped_at",
-                    price_col="price",
-                    ta_rating=hotel.ta_rating or 4.5,
-                    ta_review_count=hotel.ta_reviews or 0,
-                )
-                deal_score = int(deal_metrics.get("deal_score", 65))
-                if deal_score >= 85:
-                    deal_badge = "SUPER_DEAL"
-                    verdict = "BUY NOW"
-                    recom = f"Абсолютно выгодное предложение! Deal Score: {deal_score}/100"
-                elif deal_score >= 80:
-                    deal_badge = "GOOD_DEAL"
-                    verdict = "BUY NOW"
-                    recom = f"Отличная цена, ниже типичного уровня. Deal Score: {deal_score}/100"
-                elif deal_score < 45:
-                    deal_badge = "OVERPRICED"
-                    verdict = "OVERPRICED"
-                    recom = f"Цена завышена относительно истории. Deal Score: {deal_score}/100"
-                else:
-                    deal_badge = "FAIR_PRICE"
-                    verdict = "WAIT"
-                    recom = "Стандартная рыночная цена. Возможны колебания."
-
-            intelligence = HotelIntelligence(
-                deal_score=deal_score,
-                deal_badge=deal_badge,
-                hopper_verdict=verdict,
-                hopper_confidence=0.88 if len(price_history) >= 5 else 0.65,
-                recommendation=recom,
-                drop_48h_pct=round(price_diff_ratio * 100, 1),
-                historic_min_pln=hist_min,
-                typical_median_pln=hist_median,
-                german_arbitrage_diff_pln=None,
-            )
+            from app.services.search_intelligence import evaluate_search_intelligence
 
             checkin_d = (
                 cohort.checkin_date
@@ -270,6 +218,30 @@ class SearchService:
                 else datetime.strptime(str(cohort.checkin_date)[:10], "%Y-%m-%d").date()
                 if cohort.checkin_date
                 else datetime.utcnow().date()
+            )
+
+            snaps_data = [
+                {
+                    "price": s.total_price_pln,
+                    "adults": cohort.adults or (req.travelers.adults if req.travelers else 2),
+                    "children": cohort.children or (req.travelers.children if req.travelers else 0),
+                    "duration_nights": cohort.duration_nights or (req.duration.min_nights if req.duration else 8),
+                    "recorded_at": s.recorded_at,
+                }
+                for s in snaps
+            ]
+
+            intelligence = evaluate_search_intelligence(
+                destination=req.destination,
+                departure_date=checkin_d,
+                duration_nights=cohort.duration_nights or 8,
+                adults=cohort.adults or (req.travelers.adults if req.travelers else 2),
+                children=cohort.children or (req.travelers.children if req.travelers else 0),
+                total_price_pln=curr_price,
+                stars=hotel.stars or 4,
+                ta_rating=hotel.ta_rating or 4.5,
+                hist_snapshots=snaps_data,
+                peer_star_pure_rates=None,
             )
 
             current_offer = OfferSummary(

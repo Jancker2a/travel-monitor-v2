@@ -19,6 +19,7 @@ from app.schemas.search import (
     HotelIntelligence,
 )
 from app.services.query_builder import UniversalQueryBuilder
+from app.services.cost_decomposer import CostDecomposer
 
 from urllib.parse import urlparse, parse_qs
 
@@ -490,27 +491,53 @@ class LiveScraperService:
         except Exception:
             pass
 
-        hist_map: Dict[str, List[float]] = defaultdict(list)
+        hist_map: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
         if all_hids:
             try:
                 placeholders = ",".join(f":h{i}" for i in range(len(all_hids)))
                 h_params = {f"h{i}": hid for i, hid in enumerate(all_hids)}
                 h_sql = f"""
-                    SELECT oc.hotel_id, ps.total_price_pln
+                    SELECT oc.hotel_id, ps.total_price_pln, oc.adults, oc.children, oc.duration_nights, ps.recorded_at
                     FROM price_snapshots ps
                     JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                     WHERE oc.hotel_id IN ({placeholders})
                     ORDER BY ps.recorded_at DESC
-                    LIMIT 600
+                    LIMIT 1000
                 """
                 h_res = await db.execute(text(h_sql), h_params)
-                for hid, p_val in h_res.fetchall():
-                    if len(hist_map[hid]) < 20:
-                        hist_map[hid].append(float(p_val))
+                for hid, p_val, s_adults, s_children, s_nights, s_time in h_res.fetchall():
+                    if len(hist_map[hid]) < 25:
+                        hist_map[hid].append({
+                            "price": float(p_val),
+                            "adults": int(s_adults or 2),
+                            "children": int(s_children or 0),
+                            "duration_nights": int(s_nights or 8),
+                            "recorded_at": s_time,
+                        })
             except Exception as e:
                 logger.warning(f"Bulk hist lookup error: {e}")
 
-        pax_count = max(1, (req.travelers.adults if req.travelers else 2) + (req.travelers.children if req.travelers else 0))
+        req_adults = req.travelers.adults if req.travelers else 2
+        req_children = req.travelers.children if req.travelers else 0
+        pax_count = max(1, req_adults + req_children)
+
+        # Pre-compute peer star pure rates within this search batch for fair baseline comparison
+        peer_star_pure_rates: Dict[int, List[float]] = defaultdict(list)
+        for off in raw_offers:
+            off_p = float(off.get("price") or 0)
+            off_n = max(1, off.get("duration_nights") or 8)
+            off_stars = int(off.get("stars") or 4)
+            if off_p > 0:
+                off_decomp = CostDecomposer.decompose(
+                    total_price_pln=off_p,
+                    duration_nights=off_n,
+                    adults=req_adults,
+                    children=req_children,
+                    destination=destination_country,
+                )
+                peer_star_pure_rates[off_stars].append(off_decomp.get("pure_hotel_night_per_adult", 150.0))
+
+        from app.services.search_intelligence import evaluate_search_intelligence
 
         for off in raw_offers:
             hotel_id = slugify(off["hotel_name"])
@@ -539,55 +566,28 @@ class LiveScraperService:
                 checkin_date=off["checkin_date"],
                 duration_nights=off["duration_nights"],
                 airport_code=off["departure_airport"],
-                adults=req.travelers.adults if req.travelers else 2,
+                adults=req_adults,
                 board_basis=off["board_basis"],
                 filter_id=req.filter_id,
             )
 
-            # Historical points from bulk map
             curr_price = float(off["price"])
-            recent_prices = list(hist_map.get(hotel_id, []))
-            if not recent_prices:
-                recent_prices = [curr_price]
+            hotel_snaps = hist_map.get(hotel_id, [])
+            spark_pts = [s["price"] for s in hotel_snaps] if hotel_snaps else [curr_price]
+            sparkline = list(reversed(spark_pts[:12]))
 
-            sparkline = list(reversed(recent_prices[:12]))
-            hist_min = min(recent_prices)
-            hist_median = sorted(recent_prices)[len(recent_prices) // 2]
-
-            # Deal Score & Badge calculation
-            price_diff_ratio = (curr_price - hist_median) / hist_median if hist_median > 0 else 0.0
-
-            if curr_price <= hist_min and len(recent_prices) >= 3:
-                deal_score = 95
-                deal_badge = "SUPER_DEAL"
-                verdict = "BUY NOW"
-                recom = f"Абсолютный исторический минимум! Скидка от медианы: {abs(price_diff_ratio) * 100:.1f}%"
-            elif price_diff_ratio <= -0.08:
-                deal_score = 82
-                deal_badge = "GOOD_DEAL"
-                verdict = "BUY NOW"
-                recom = f"Отличная цена, ниже типичного уровня на {abs(price_diff_ratio) * 100:.0f}%."
-            elif price_diff_ratio <= 0.05:
-                deal_score = 65
-                deal_badge = "FAIR_PRICE"
-                verdict = "WAIT"
-                recom = "Стандартная рыночная цена. Возможны колебания."
-            else:
-                deal_score = 40
-                deal_badge = "OVERPRICED"
-                verdict = "OVERPRICED"
-                recom = f"Цена завышена на {price_diff_ratio * 100:.0f}% относительно обычного тарифа."
-
-            intelligence = HotelIntelligence(
-                deal_score=deal_score,
-                deal_badge=deal_badge,
-                hopper_verdict=verdict,
-                hopper_confidence=0.88 if len(recent_prices) >= 5 else 0.65,
-                recommendation=recom,
-                drop_48h_pct=round(price_diff_ratio * 100, 1),
-                historic_min_pln=hist_min,
-                typical_median_pln=hist_median,
-                german_arbitrage_diff_pln=None,
+            # Compute authentic Deal Score & Hopper Forecast using price, normalized history, seasonality, and drop risk
+            intelligence = evaluate_search_intelligence(
+                destination=destination_country,
+                departure_date=off["checkin_date"],
+                duration_nights=off["duration_nights"],
+                adults=req_adults,
+                children=req_children,
+                total_price_pln=curr_price,
+                stars=off["stars"],
+                ta_rating=off["ta_rating"] or (hotel_entity.ta_rating if hotel_entity else None),
+                hist_snapshots=hotel_snaps,
+                peer_star_pure_rates=peer_star_pure_rates.get(off["stars"]),
             )
 
             current_offer = OfferSummary(
