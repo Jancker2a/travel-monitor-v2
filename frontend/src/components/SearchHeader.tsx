@@ -330,8 +330,8 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
 
     const airportMap: Record<string, string> = {
       WAW: "Warszawa",
-      WMI: "Warszawa - Modlin",
-      RDO: "Warszawa - Radom",
+      WMI: "Warszawa+-+Modlin",
+      RDO: "Warszawa+-+Radom",
       KTW: "Katowice",
       KRK: "Kraków",
       GDN: "Gdańsk",
@@ -344,7 +344,6 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
 
     const targetKey = region || destination;
     const destCode = destCodeMap[targetKey] || "39:";
-    const depStr = selectedAirports.map((a) => airportMap[a] || a).join(",");
 
     const formatDate = (iso: string) => {
       if (!iso) return "";
@@ -352,39 +351,75 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
       return `${d}-${m}-${y}`;
     };
 
-    const params = new URLSearchParams();
-    params.set("destinationLocation", destCode);
-    params.set("departureLocation", depStr);
-    if (startDateMin) params.set("startDateMin", formatDate(startDateMin));
-    if (startDateMax) params.set("startDateMax", formatDate(startDateMax));
-    params.set("adults", String(adults));
-    params.set("offerTypes", "accommodation_flight");
-    params.set("durationFrom", String(minNights));
-    params.set("durationTo", String(maxNights));
-    params.set("order", orderBy);
+    const queryParts: string[] = [];
 
+    // 1. Destination
+    queryParts.push(`destinationLocation=${destCode}`);
+
+    // 2. Departure Airports
+    if (selectedAirports.length > 0 && selectedAirports.length < 10) {
+      const depStr = selectedAirports.map((a) => airportMap[a] || a).join(",");
+      queryParts.push(`departureLocation=${depStr}`);
+    }
+
+    // 3. Dates & Return Date
+    if (startDateMin) {
+      queryParts.push(`startDateMin=${formatDate(startDateMin)}`);
+    }
+    if (startDateMax) {
+      queryParts.push(`startDateMax=${formatDate(startDateMax)}`);
+      // Compute required returnDate = startDateMax + maxNights + 1
+      const [y, m, d] = startDateMax.split("-").map(Number);
+      const retDateObj = new Date(y, m - 1, d);
+      retDateObj.setDate(retDateObj.getDate() + Number(maxNights) + 1);
+      const rd = String(retDateObj.getDate()).padStart(2, "0");
+      const rm = String(retDateObj.getMonth() + 1).padStart(2, "0");
+      const ry = retDateObj.getFullYear();
+      queryParts.push(`returnDate=${rd}-${rm}-${ry}`);
+    }
+
+    // 4. Adults & Children (Fly.pl web link format: children=DD-MM-YYYY)
+    queryParts.push(`adults=${adults}`);
     if (childrenCount > 0) {
-      params.set("children", String(childrenCount));
-      if (childrenAges.length) {
-        params.set("childrenAges", childrenAges.join(","));
-      }
+      const refYear = startDateMin ? Number(startDateMin.split("-")[0]) : new Date().getFullYear();
+      const birthdates = (childrenAges.length > 0 ? childrenAges : Array(childrenCount).fill(6)).map((age) => {
+        const bYear = refYear - age;
+        return `15-06-${bYear}`;
+      });
+      queryParts.push(`children=${birthdates.join(",")}`);
     }
+
+    // 5. Catering
     if (catering && catering !== "all") {
-      params.set("catering", catering);
+      queryParts.push(`catering=${catering}`);
     }
+
+    // 6. Offer types
+    queryParts.push("offerTypes=accommodation_flight");
+
+    // 7. Category Rating / Stars
     if (starsMin > 0) {
-      params.set("categoryRating", String(starsMin * 10));
+      queryParts.push(`categoryRating=${starsMin * 10}`);
     }
+
+    // 8. Duration
+    queryParts.push(`durationFrom=${minNights}`);
+    queryParts.push(`durationTo=${maxNights}`);
+
+    // 9. Prices
     const minP = minPrice ? Number(minPrice) : undefined;
     const maxP = maxPrice ? Number(maxPrice) : undefined;
     if (minP && minP > 0) {
-      params.set("priceFrom", String(minP));
+      queryParts.push(`priceFrom=${minP}`);
     }
     if (maxP && maxP > 0) {
-      params.set("priceTo", String(maxP));
+      queryParts.push(`priceTo=${maxP}`);
     }
 
-    return `${base}?${params.toString()}`;
+    // 10. Order
+    queryParts.push(`order=${orderBy || "price"}`);
+
+    return `${base}?${queryParts.join("&")}`;
   }, [
     destination,
     region,
