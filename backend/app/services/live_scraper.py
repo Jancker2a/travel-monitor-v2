@@ -289,7 +289,17 @@ class LiveScraperService:
                             stars_val = int(o.get("categoryRating", 40)) // 10 if o.get("categoryRating") else 4
                             thumb = o.get("thumbnailUrl") or (o.get("imagesUrl")[0] if o.get("imagesUrl") else "")
                             pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
-                            ta_r = float(o["rating"]) if o.get("rating") else None
+                            cms_data = o.get("cmsData") or {}
+                            ta_val = cms_data.get("tripadvisorRating") or o.get("rating")
+                            try:
+                                ta_r = float(ta_val) if ta_val and float(ta_val) > 0 else None
+                            except (ValueError, TypeError):
+                                ta_r = None
+                            try:
+                                ta_revs_val = cms_data.get("tripadvisorNumReviews")
+                                ta_revs = int(ta_revs_val) if ta_revs_val and int(ta_revs_val) > 0 else None
+                            except (ValueError, TypeError):
+                                ta_revs = None
                             board = o.get("serviceDesc") or "All Inclusive"
                             results.append({
                                 "hotel_name": hotel_name,
@@ -306,6 +316,7 @@ class LiveScraperService:
                                 "image_url": thumb,
                                 "offer_url": pub_url,
                                 "ta_rating": ta_r,
+                                "ta_reviews": ta_revs,
                                 "operator": o.get("operatorName") or o.get("operator") or "",
                             })
                             if len(results) >= max_offers:
@@ -574,6 +585,9 @@ class LiveScraperService:
             hotel_id = slugify(off["hotel_name"])
             hotel_entity = seen_hotels.get(hotel_id)
 
+            off_ta = off.get("ta_rating")
+            off_reviews = off.get("ta_reviews")
+
             if not hotel_entity:
                 hotel_entity = Hotel(
                     hotel_id=hotel_id,
@@ -581,7 +595,8 @@ class LiveScraperService:
                     country=destination_country,
                     region="",
                     stars=off["stars"],
-                    ta_rating=off["ta_rating"],
+                    ta_rating=off_ta,
+                    ta_reviews=off_reviews,
                     main_image_url=off["main_image_url"],
                 )
                 db.add(hotel_entity)
@@ -589,8 +604,10 @@ class LiveScraperService:
             else:
                 if off["main_image_url"] and not hotel_entity.main_image_url:
                     hotel_entity.main_image_url = off["main_image_url"]
-                if off["ta_rating"] and not hotel_entity.ta_rating:
-                    hotel_entity.ta_rating = off["ta_rating"]
+                if off_ta and (not hotel_entity.ta_rating or hotel_entity.ta_rating != off_ta):
+                    hotel_entity.ta_rating = off_ta
+                if off_reviews and not hotel_entity.ta_reviews:
+                    hotel_entity.ta_reviews = off_reviews
 
             cohort_hash = compute_cohort_hash(
                 hotel_id=hotel_id,
@@ -630,6 +647,9 @@ class LiveScraperService:
                 spark_pts = [curr_price]
             sparkline = list(reversed(spark_pts))
 
+            effective_ta = off_ta or (hotel_entity.ta_rating if hotel_entity else None)
+            effective_reviews = off_reviews or (hotel_entity.ta_reviews if hotel_entity else None)
+
             # Compute authentic Deal Score & Hopper Forecast using price, normalized history, seasonality, and drop risk
             intelligence = evaluate_search_intelligence(
                 destination=destination_country,
@@ -639,7 +659,7 @@ class LiveScraperService:
                 children=req_children,
                 total_price_pln=curr_price,
                 stars=off["stars"],
-                ta_rating=off["ta_rating"] or (hotel_entity.ta_rating if hotel_entity else None),
+                ta_rating=effective_ta,
                 hist_snapshots=hotel_snaps,
                 peer_star_pure_rates=peer_star_pure_rates.get(off["stars"]),
             )
@@ -662,6 +682,9 @@ class LiveScraperService:
                 region=hotel_entity.region or destination_country,
                 country=hotel_entity.country or destination_country,
                 main_image_url=off["main_image_url"],
+                ta_rating=effective_ta,
+                ta_reviews=effective_reviews,
+                specs=hotel_entity.specs if hotel_entity else None,
                 current_offer=current_offer,
                 intelligence=intelligence,
                 history_sparkline=sparkline,

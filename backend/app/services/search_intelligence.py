@@ -387,4 +387,5 @@ def evaluate_search_intelligence(
         historic_min_pln=hist_min_pln,
         typical_median_pln=typical_median_pln,
         german_arbitrage_diff_pln=None,
+        is_budget_tier=is_budget_tier,
     )

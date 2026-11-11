@@ -58,6 +58,7 @@ class HotelIntelligence(BaseModel):
     historic_min_pln: float
     typical_median_pln: float
     german_arbitrage_diff_pln: Optional[float] = None
+    is_budget_tier: Optional[bool] = False
 
 
 class SearchHotelItem(BaseModel):
