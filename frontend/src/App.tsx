@@ -1353,7 +1353,11 @@ export const App: React.FC = () => {
         {/* If in Search Tab */}
         {activeTab === "search" && (
           <div className="mb-4">
-            <SearchHeader onSearch={handleSearch} isLoading={isLoading} />
+            <SearchHeader
+              onSearch={handleSearch}
+              isLoading={isLoading}
+              initialPreset={FILTER_PRESETS[activeFilterId]}
+            />
           </div>
         )}
 

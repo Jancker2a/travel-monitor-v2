@@ -91,6 +91,35 @@ class CostDecomposer:
         }
 
     @classmethod
+    def recompose(
+        cls,
+        pure_hotel_night_per_adult: float,
+        duration_nights: int,
+        adults: int = 2,
+        children: int = 0,
+        destination: str = "turkey",
+    ) -> float:
+        """Mathematically reconstructs the full package price (PLN) from a pure hotel night rate,
+        ensuring like-for-like scale across any party size, duration, and flight benchmark.
+        """
+        nights = max(1, duration_nights)
+        adults = max(1, adults)
+        children = max(0, children)
+
+        flight_seat_cost = cls.get_flight_benchmark(destination)
+        total_pax = adults + children
+        estimated_flight_total = total_pax * flight_seat_cost
+
+        effective_hotel_pax = float(adults)
+        if children >= 1:
+            effective_hotel_pax += 0.20
+        if children >= 2:
+            effective_hotel_pax += 0.50 * (children - 1)
+
+        estimated_hotel_total = pure_hotel_night_per_adult * effective_hotel_pax * nights
+        return round(estimated_flight_total + estimated_hotel_total, 2)
+
+    @classmethod
     def compare_to_standard_benchmark(
         cls,
         custom_offer: Dict[str, Any],

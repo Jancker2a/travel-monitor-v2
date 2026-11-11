@@ -34,10 +34,10 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
         if is_ny_christmas:
             return {
                 "season": "holiday_superpeak",
-                "label": "Новогодний пик в Египте",
-                "multiplier": 1.35,
+                "label": "Новогодний суперпик в Египте",
+                "multiplier": 1.55,
                 "price_drop_risk": "very_low",
-                "risk_expl": "перед праздниками чартеры и лучшие номера распродаются, снижение цен маловероятно",
+                "risk_expl": "перед праздниками чартеры и лучшие номера распродаются, действуют праздничные надбавки",
             }
         elif month in (10, 11, 3, 4):
             return {
@@ -206,13 +206,17 @@ def evaluate_search_intelligence(
             )
             raw_pure = s_decomp.get("pure_hotel_night_per_adult", 150.0)
 
-            # De-season snapshot if date is known
+            # De-season snapshot using actual departure checkin date
             s_date = snap.get("departure_date")
-            if not s_date and snap.get("recorded_at"):
+            if isinstance(s_date, str):
                 try:
-                    s_date = datetime.fromisoformat(str(snap["recorded_at"])[:10]).date()
+                    s_date = date.fromisoformat(s_date[:10])
                 except Exception:
                     s_date = None
+            elif isinstance(s_date, datetime):
+                s_date = s_date.date()
+
+            # Fallback to query departure date if snapshot departure date is unknown
             if not s_date:
                 s_date = departure_date
             snap_season = get_destination_season_info(destination, s_date)
@@ -224,18 +228,32 @@ def evaluate_search_intelligence(
 
     # Baseline comparison metrics
     hist_diff_pct: Optional[float] = None
-    hist_min_pln = min(hist_prices_raw) if hist_prices_raw else total_price_pln
-    hist_median_pln = (
-        sorted(hist_prices_raw)[len(hist_prices_raw) // 2]
-        if hist_prices_raw
-        else total_price_pln
-    )
 
     if has_history:
         sorted_pure = sorted(hist_pure_rates)
         hist_median_pure = sorted_pure[len(sorted_pure) // 2]
+        hist_min_pure = sorted_pure[0]
         if hist_median_pure > 0:
             hist_diff_pct = ((curr_pure_unseasoned - hist_median_pure) / hist_median_pure) * 100.0
+
+        # Mathematically reconstruct typical median and historic min scaled like-for-like to current search
+        typical_median_pln = CostDecomposer.recompose(
+            pure_hotel_night_per_adult=hist_median_pure * curr_season_mult,
+            duration_nights=nights,
+            adults=adults,
+            children=children,
+            destination=destination,
+        )
+        hist_min_pln = CostDecomposer.recompose(
+            pure_hotel_night_per_adult=hist_min_pure * curr_season_mult,
+            duration_nights=nights,
+            adults=adults,
+            children=children,
+            destination=destination,
+        )
+    else:
+        typical_median_pln = total_price_pln
+        hist_min_pln = total_price_pln
 
     peer_diff_pct: Optional[float] = None
     if peer_star_pure_rates and len(peer_star_pure_rates) >= 3:
@@ -243,10 +261,19 @@ def evaluate_search_intelligence(
         peer_median_pure = sorted_peers[len(sorted_peers) // 2]
         if peer_median_pure > 0:
             peer_diff_pct = ((curr_pure_night - peer_median_pure) / peer_median_pure) * 100.0
+            if not has_history:
+                typical_median_pln = CostDecomposer.recompose(
+                    pure_hotel_night_per_adult=peer_median_pure,
+                    duration_nights=nights,
+                    adults=adults,
+                    children=children,
+                    destination=destination,
+                )
+                hist_min_pln = round(typical_median_pln * 0.85, 2)
 
     if hist_diff_pct is not None and peer_diff_pct is not None:
-        # Blend hotel's own seasonal history (60%) with live market peers of same star level (40%)
-        diff_pct = hist_diff_pct * 0.60 + peer_diff_pct * 0.40
+        # Blend hotel's own seasonal history (65%) with live market peers of same star level (35%)
+        diff_pct = hist_diff_pct * 0.65 + peer_diff_pct * 0.35
     elif hist_diff_pct is not None:
         diff_pct = hist_diff_pct
     elif peer_diff_pct is not None:
@@ -295,23 +322,39 @@ def evaluate_search_intelligence(
         # Far in advance: high probability of later promotional price cuts or adjustments
         score -= 4.0
 
-    # (D) Hotel Reputation / Quality Factor (TripAdvisor)
+    # (D) Hotel Reputation & Quality Tier (TripAdvisor)
     ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.2
     if ta >= 4.6:
         score += 6.0
     elif ta >= 4.3:
         score += 3.0
-    elif ta < 3.8:
-        score -= 7.0
     elif ta < 3.4:
-        score -= 15.0
+        score -= 22.0
+    elif ta < 3.8:
+        score -= 12.0
+
+    # (E) Quality Guardrails:
+    # A hotel with low TripAdvisor rating (< 3.5★) is inherently a budget/poor-quality property.
+    # A low price for poor quality is standard equilibrium, NEVER an 80+ Hot Deal or BUY NOW.
+    is_budget_tier = False
+    if ta < 3.5:
+        score = min(62.0, score)
+        is_budget_tier = True
+    elif ta < 3.8:
+        score = min(72.0, score)
 
     # Final clamping to valid range [25, 98]
     final_score = int(round(max(25.0, min(98.0, score))))
 
     # 5. Determine Hopper Forecast & Action Verdict
-    # Accounts for: final_score, days_to_dep, season_info, and price_drop_risk
-    if final_score >= 80:
+    if is_budget_tier:
+        verdict = "WAIT"
+        badge = "FAIR_PRICE"
+        forecast_reason = (
+            f"Бюджетный отель (TripAdvisor {ta:.1f}★). "
+            f"Низкий тариф обусловлен скромным уровнем сервиса и комфорта, а не аномальной скидкой."
+        )
+    elif final_score >= 80:
         verdict = "BUY NOW"
         badge = "SUPER_DEAL" if final_score >= 88 else "GOOD_DEAL"
         if days_to_dep <= 14:
@@ -342,6 +385,6 @@ def evaluate_search_intelligence(
         recommendation=forecast_reason,
         drop_48h_pct=round(diff_pct, 1),
         historic_min_pln=hist_min_pln,
-        typical_median_pln=hist_median_pln,
+        typical_median_pln=typical_median_pln,
         german_arbitrage_diff_pln=None,
     )

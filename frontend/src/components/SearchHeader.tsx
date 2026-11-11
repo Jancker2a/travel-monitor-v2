@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import {
   Search,
   Calendar,
@@ -19,6 +19,7 @@ import { SearchRequest } from "../types";
 interface Props {
   onSearch: (req: SearchRequest) => void;
   isLoading: boolean;
+  initialPreset?: any;
 }
 
 interface DestinationDef {
@@ -126,7 +127,7 @@ const HOTEL_STARS = [
   { val: 5, label: "5★" },
 ];
 
-export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
+export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPreset }) => {
   // 1. Destination & Region
   const [destination, setDestination] = useState("turkey");
   const [region, setRegion] = useState("turkey");
@@ -192,6 +193,26 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
     () => DESTINATIONS.find((d) => d.id === destination) || DESTINATIONS[0],
     [destination]
   );
+
+  // Sync state if initial preset is provided
+  useEffect(() => {
+    if (!initialPreset) return;
+    if (initialPreset.destination) {
+      setDestination(initialPreset.destination);
+      setRegion(initialPreset.destination);
+    }
+    if (initialPreset.searchReq) {
+      const s = initialPreset.searchReq;
+      if (s.dates?.start_date_min) setStartDateMin(s.dates.start_date_min);
+      if (s.dates?.start_date_max) setStartDateMax(s.dates.start_date_max);
+      if (s.duration?.min_nights) setMinNights(s.duration.min_nights);
+      if (s.duration?.max_nights) setMaxNights(s.duration.max_nights);
+      if (s.travelers?.adults) setAdults(s.travelers.adults);
+      if (s.travelers?.children !== undefined) setChildrenCount(s.travelers.children);
+      if (s.travelers?.children_ages) setChildrenAges(s.travelers.children_ages);
+      if (s.airports && s.airports.length > 0) setSelectedAirports(s.airports);
+    }
+  }, [initialPreset]);
 
   // Handle destination change
   const handleDestinationChange = (destId: string) => {
@@ -292,7 +313,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
   };
 
   // Direct Fly.pl URL Builder for preview / direct booking
-  const flyPlDirectUrl = useMemo(() => {
+  const buildFlyPlUrl = useCallback(() => {
     const base = "https://fly.pl/szukaj-wycieczek/";
     const destCodeMap: Record<string, string> = {
       turkey: "39:",
@@ -339,7 +360,6 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
       POZ: "Poznań",
       RZE: "Rzeszów",
       BZG: "Bydgoszcz",
-      BER: "Berlin",
     };
 
     const targetKey = region || destination;
@@ -354,12 +374,13 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
     const queryParts: string[] = [];
 
     // 1. Destination
-    queryParts.push(`destinationLocation=${destCode}`);
+    queryParts.push(`destinationLocation=${encodeURIComponent(destCode)}`);
 
-    // 2. Departure Airports
-    if (selectedAirports.length > 0 && selectedAirports.length < 10) {
-      const depStr = selectedAirports.map((a) => airportMap[a] || a).join(",");
-      queryParts.push(`departureLocation=${depStr}`);
+    // 2. Departure Airports (excluding BER which Fly.pl does not support)
+    const polishAirports = selectedAirports.filter((a) => a !== "BER");
+    if (polishAirports.length > 0 && polishAirports.length < 10) {
+      const depStr = polishAirports.map((a) => airportMap[a] || a).join(",");
+      queryParts.push(`departureLocation=${encodeURIComponent(depStr)}`);
     }
 
     // 3. Dates & Return Date
@@ -438,6 +459,14 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
     orderBy,
   ]);
 
+  const flyPlDirectUrl = useMemo(() => buildFlyPlUrl(), [buildFlyPlUrl]);
+
+  const handleOpenFlyPl = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const url = buildFlyPlUrl();
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const minP = minPrice ? Number(minPrice) : undefined;
@@ -507,6 +536,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
         <div className="flex items-center gap-2">
           <a
             href={flyPlDirectUrl}
+            onClick={handleOpenFlyPl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 transition-all border border-slate-300 shadow-2xs"

@@ -527,7 +527,7 @@ class LiveScraperService:
                 placeholders = ",".join(f":h{i}" for i in range(len(all_hids)))
                 h_params = {f"h{i}": hid for i, hid in enumerate(all_hids)}
                 h_sql = f"""
-                    SELECT oc.hotel_id, ps.total_price_pln, oc.adults, oc.children, oc.duration_nights, ps.recorded_at
+                    SELECT oc.hotel_id, ps.total_price_pln, oc.adults, oc.children, oc.duration_nights, ps.recorded_at, oc.checkin_date
                     FROM price_snapshots ps
                     JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                     WHERE oc.hotel_id IN ({placeholders})
@@ -535,7 +535,7 @@ class LiveScraperService:
                     LIMIT 1000
                 """
                 h_res = await db.execute(text(h_sql), h_params)
-                for hid, p_val, s_adults, s_children, s_nights, s_time in h_res.fetchall():
+                for hid, p_val, s_adults, s_children, s_nights, s_time, s_checkin in h_res.fetchall():
                     if len(hist_map[hid]) < 25:
                         hist_map[hid].append({
                             "price": float(p_val),
@@ -543,6 +543,7 @@ class LiveScraperService:
                             "children": int(s_children or 0),
                             "duration_nights": int(s_nights or 8),
                             "recorded_at": s_time,
+                            "departure_date": s_checkin,
                         })
             except Exception as e:
                 logger.warning(f"Bulk hist lookup error: {e}")

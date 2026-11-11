@@ -10,7 +10,7 @@ async def test_search_api_endpoint(setup_test_db):
     # Mock live API to return empty so it falls back to SAMPLE_HTML parser
     with patch(
         "app.services.live_scraper.LiveScraperService.fetch_offers_via_api",
-        return_value=[],
+        return_value=([], 0),
     ), patch(
         "app.services.live_scraper.LiveScraperService.fetch_page_html",
         return_value=SAMPLE_HTML,

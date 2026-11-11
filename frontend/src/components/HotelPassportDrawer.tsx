@@ -242,21 +242,35 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     return { cur, min, med, max, pureNight, count: hist.length };
   }, [historyRange, passport?.history_points, currentPrice]);
 
+  const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
+  const isBudgetQuality =
+    currentTaRating !== undefined &&
+    currentTaRating !== null &&
+    currentTaRating > 0 &&
+    currentTaRating < 3.5;
+
   // Real, meaningful savings vs median (safeguarded against party/duration scale mismatch)
+  const typicalPrice = hotelItem?.intelligence?.typical_median_pln || rangeStats.med;
   const savingsVsMedian =
-    rangeStats.med > 0 && rangeStats.cur < rangeStats.med
-      ? rangeStats.med - rangeStats.cur
+    !isBudgetQuality && typicalPrice > 0 && currentPrice < typicalPrice
+      ? typicalPrice - currentPrice
       : 0;
 
   let savingsBadgeText: string | null = null;
-  if (savingsVsMedian >= 50 && savingsVsMedian < rangeStats.med * 0.4) {
+  if (!isBudgetQuality && savingsVsMedian >= 50 && savingsVsMedian < typicalPrice * 0.35) {
     savingsBadgeText = `↓ на ${Math.round(savingsVsMedian).toLocaleString("ru-RU")} zł ниже типичной`;
-  } else if (hotelItem?.intelligence?.drop_48h_pct && hotelItem.intelligence.drop_48h_pct < -2) {
+  } else if (!isBudgetQuality && hotelItem?.intelligence?.drop_48h_pct && hotelItem.intelligence.drop_48h_pct < -2) {
     savingsBadgeText = `${Math.round(hotelItem.intelligence.drop_48h_pct)}% за 48ч`;
   }
 
-  // Ensure AI Price summary strictly matches bold currentPrice
+  // Ensure AI Price summary strictly matches bold currentPrice and hotel quality
   const dynamicPriceSummary = useMemo(() => {
+    if (isBudgetQuality) {
+      return `Текущая цена ${Math.round(currentPrice).toLocaleString("ru-RU")} zł обусловлена скромным классом отеля (TripAdvisor ${currentTaRating}★). Низкий тариф отражает уровень сервиса и удобств, а не аномальную скидку.`;
+    }
+    if (hotelItem?.intelligence?.recommendation) {
+      return hotelItem.intelligence.recommendation;
+    }
     if (passport?.ai_price_summary && currentPrice > 0) {
       return passport.ai_price_summary.replace(
         /Текущая цена\s+[\d\s\u00a0,.]+\s*(?:zł|pln)/gi,
@@ -266,31 +280,51 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     return currentPrice > 0
       ? `Текущая цена ${Math.round(currentPrice).toLocaleString("ru-RU")} zł соответствует справедливой рыночной оценке.`
       : "";
-  }, [passport?.ai_price_summary, currentPrice]);
+  }, [passport?.ai_price_summary, currentPrice, isBudgetQuality, currentTaRating, hotelItem?.intelligence?.recommendation]);
 
-  const currentDealScore = hotelItem?.intelligence?.deal_score ?? passport?.deal_score ?? 80;
+  const currentDealScore = isBudgetQuality
+    ? Math.min(62, hotelItem?.intelligence?.deal_score ?? passport?.deal_score ?? 60)
+    : hotelItem?.intelligence?.deal_score ?? passport?.deal_score ?? 80;
+
   const isBuySignal =
-    currentDealScore >= 80 ||
-    passport?.hopper_verdict === "BUY" ||
-    passport?.hopper_verdict === "BUY NOW" ||
-    passport?.hopper_verdict === "ПОКУПАТЬ" ||
-    hotelItem?.intelligence?.hopper_verdict === "ПОКУПАТЬ";
+    !isBudgetQuality &&
+    (currentDealScore >= 80 ||
+      passport?.hopper_verdict === "BUY" ||
+      passport?.hopper_verdict === "BUY NOW" ||
+      passport?.hopper_verdict === "ПОКУПАТЬ" ||
+      hotelItem?.intelligence?.hopper_verdict === "ПОКУПАТЬ");
   const isOverpricedSignal =
     currentDealScore < 45 ||
     passport?.hopper_verdict === "OVERPRICED" ||
-    hotelItem?.intelligence?.hopper_verdict === "ДОРОГО" ||
-    hotelItem?.intelligence?.hopper_verdict === "ЖДАТЬ";
+    hotelItem?.intelligence?.hopper_verdict === "ДОРОГО";
 
   let dealScoreBadgeText = "";
-  if (currentDealScore >= 85) dealScoreBadgeText = "🔥 Hot";
+  if (isBudgetQuality) dealScoreBadgeText = "🏷️ Budget";
+  else if (currentDealScore >= 85) dealScoreBadgeText = "🔥 Hot";
   else if (currentDealScore >= 70) dealScoreBadgeText = "✅ Good";
   else if (currentDealScore < 45) dealScoreBadgeText = "📈 Bad";
 
-  const verdictBadgeText = isBuySignal ? "🟢 ПОКУПАТЬ" : isOverpricedSignal ? "🔴 ДОРОГО" : "↔ СТАБИЛЬНО";
-  const verdictBadgeBg = isBuySignal ? "#ecfdf5" : isOverpricedSignal ? "#fef2f2" : "#f1f5f9";
-  const verdictBadgeColor = isBuySignal ? "#065f46" : isOverpricedSignal ? "#991b1b" : "#334155";
-
-  const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
+  const verdictBadgeText = isBudgetQuality
+    ? "🟡 БЮДЖЕТ"
+    : isBuySignal
+    ? "🟢 ПОКУПАТЬ"
+    : isOverpricedSignal
+    ? "🔴 ДОРОГО"
+    : "↔ СТАБИЛЬНО";
+  const verdictBadgeBg = isBudgetQuality
+    ? "#fef9c3"
+    : isBuySignal
+    ? "#ecfdf5"
+    : isOverpricedSignal
+    ? "#fef2f2"
+    : "#f1f5f9";
+  const verdictBadgeColor = isBudgetQuality
+    ? "#854d0e"
+    : isBuySignal
+    ? "#065f46"
+    : isOverpricedSignal
+    ? "#991b1b"
+    : "#334155";
 
   return (
     <>
@@ -516,15 +550,15 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     className="oracle-deal-pill"
                     id="drawerOraclePriceBadge"
                     style={{
-                      background: isBuySignal ? "#dcfce7" : isOverpricedSignal ? "#fee2e2" : "#f1f5f9",
-                      color: isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569",
+                      background: isBudgetQuality ? "#fef9c3" : isBuySignal ? "#dcfce7" : isOverpricedSignal ? "#fee2e2" : "#f1f5f9",
+                      color: isBudgetQuality ? "#854d0e" : isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569",
                       fontWeight: 700,
                       padding: "4px 10px",
                       borderRadius: "20px",
                       fontSize: "11px",
                     }}
                   >
-                    {isBuySignal ? "🟢 Выгодно брать" : isOverpricedSignal ? "🔴 Дорого" : "↔ Нормальная цена"}
+                    {isBudgetQuality ? "🟡 Бюджетный класс" : isBuySignal ? "🟢 Выгодно брать" : isOverpricedSignal ? "🔴 Дорого" : "↔ Нормальная цена"}
                   </div>
                 </div>
 
@@ -569,9 +603,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       <span
                         className="oracle-meta-val"
                         id="drawerAiActionSignal"
-                        style={{ fontWeight: 700, color: isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569" }}
+                        style={{
+                          fontWeight: 700,
+                          color: isBudgetQuality ? "#854d0e" : isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569",
+                        }}
                       >
-                        {passport?.ai_action_signal || (isBuySignal ? "Покупать сейчас" : isOverpricedSignal ? "Ждать снижения" : "Следить за ценой")}
+                        {hotelItem?.intelligence?.recommendation ||
+                          passport?.ai_action_signal ||
+                          (isBudgetQuality
+                            ? "Следить за ценой (эконом-класс)"
+                            : isBuySignal
+                            ? "Покупать сейчас"
+                            : isOverpricedSignal
+                            ? "Ждать снижения"
+                            : "Следить за ценой")}
                       </span>
                     </div>
                   </div>
@@ -762,7 +807,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
               {/* Explanatory banner */}
               <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "10px 14px", marginBottom: "14px", fontSize: "12px", color: "#475569", lineHeight: "1.5" }}>
-                💡 <strong>Нормализованная история:</strong> исключает искажения состава семьи (2+1, 2+0) и длительности (7, 10, 14 ночей). Все замеры приведены к единому эталону (1 взрослый, 8 ночей, Все Включено) для честного исторического анализа.
+                <div>
+                  💡 <strong>Нормализованный эталон:</strong> исключает искажения состава семьи (2+1, 1+0) и длительности. Все исторические замеры приведены к единому эталону (1 взрослый • 8 ночей • All Inclusive) с де-сезонированием.
+                </div>
+                {hotelItem?.current_offer?.departure_date && (
+                  <div style={{ marginTop: "6px", fontSize: "11px", color: "#0369a1", background: "#f0f9ff", padding: "4px 8px", borderRadius: "6px", border: "1px solid #e0f2fe" }}>
+                    ℹ️ Текущий live-поиск: вылет <strong>{hotelItem.current_offer.departure_date}</strong> ({hotelItem.current_offer.duration_nights || 7}н) • {currentPrice.toLocaleString("ru-RU")} zł. История отражает накопленные замеры для отеля.
+                  </div>
+                )}
               </div>
 
               {/* Chart container or friendly empty state */}
