@@ -1,20 +1,20 @@
 [
   {
-    "hotel_name": "Eftalia Ocean",
-    "price": 6335.0,
+    "hotel_name": "Eftalia Ocean Hotel",
+    "price": 6444.0,
     "dates": "2026-11-28 - 2026-12-08",
     "checkin_date": "2026-11-28",
     "checkout_date": "2026-12-08",
     "duration": "10 nocy",
     "duration_nights": 10,
     "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive +",
+    "board_basis": "All Inclusive",
     "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31369/e6a7a3d5d2ae1ec64ef9361016006c0f854d3b9366ccf9e5d1dbdb155e94af56.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31369/e6a7a3d5d2ae1ec64ef9361016006c0f854d3b9366ccf9e5d1dbdb155e94af56.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/eftalia-ocean/pp09ktHwdZqktJTbbUIrsaAAogRKJYTbHxk4Y3Li7UECmCWkPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw0bTO1wZIvzFQAViZA2ACagNBSStyIRwRifUBG-qwQhjNxSS5BPbMHKsEAwG-wLGnBQISYwEDDjOOT1o/?operator=BVBE&adults=2&children=2020-08-12",
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026672/7aa076c7fb531970c049b0db39aae4adfe23c270c3e2c538d97f59fb08ecc672.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026672/7aa076c7fb531970c049b0db39aae4adfe23c270c3e2c538d97f59fb08ecc672.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/eftalia-ocean/pLaYIAdssPYsXo9rtuwRQ5AAogRF6uBRDvyAX9cdBUmMzMDkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZIrDJQAViVA2ADagJUSWoEV0FXMWoDQVlUchwWDiAKDBvyBBHyzz4NmP2VCQ9QARJjAQxjAQIM_K3OQA/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
-    "operator": "Best Reisen"
+    "operator": "Nekera"
   },
   {
     "hotel_name": "Sural Resort",
@@ -29,7 +29,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026847/4893a244e4a36eedb801cbb31228ef4f2017bac7f3c8229a64dcb61d49eacb96.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026847/4893a244e4a36eedb801cbb31228ef4f2017bac7f3c8229a64dcb61d49eacb96.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/sural-resort/pl3zHpPWqgxnclcjoEHFSiAAogG_-Vpk4QOUmEHdcDiSMh4El9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZIujRQAViZA2ADagJUSWoEV0FXMWoDQVlUchsWDiAKDBsTEYDWPg3p-5UJD1ABEmMBDGMBAgxWogFL/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/sural-resort/pl3zHpPWqgxnclcjoEHFSiAAogG_-Vpk4QOUmEHdcDiSMh4El9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZIujRQAViVA2ADagJUSWoEV0FXMWoDQVlUchsWDiAKDBsTEYDWPg3p-5UJD1ABEmMBDGMBAgxcldjq/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -46,7 +46,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/21358/0c4e19795831c48c5bb676afa9c00c2e63b00c4f3997f9204b823f66d93385bc.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/21358/0c4e19795831c48c5bb676afa9c00c2e63b00c4f3997f9204b823f66d93385bc.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,c/the-peak/pUsAuBMUHBmQry0AOD41_QAAog5ov3TRoa7t1vwEzcBwTRf8hzk1y36INKiLK0A6yIhbIqBEJWQkUw0bTO1wZIvzVQAVh5YANqAkJCciQcEe6mARv3gkcYtcAUuQTe0ymrBEEBuOGsjQQBEmMBDGMBBgswUdMj/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,c/the-peak/pUsAuBMUHBmQry0AOD41_QAAog5ov3TRoa7t1vwEzcBwTRf8hzk1y36INKiLK0A6yIhbIqBEJWQkUwp7DP1wZIvzVQAVh1YANqAkJCciQcEe6mARv3gkcYtcAUuQTe0ymrBEEBuOGsjQQBEmMBDGMBBgseQnG4/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -63,7 +63,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPQUEG/4bcaf7ed7fadae925e79d8cdf246b8d4dc382896402085174997d9ba6b3ff307.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPQUEG/4bcaf7ed7fadae925e79d8cdf246b8d4dc382896402085174997d9ba6b3ff307.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/alba-queen/pDeADsqnDoOS9v23Ru3LmhAAogsIIMxt3lFo7OLZIjYr9HL_u1xaYH5WiznfASg4UxGIAqBFZJVFgw0bTO1wZI1TZQQViZA2ACagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI5nQGPARoAFwoVAFwAWAVAjwNS52tTAFvYF16-fEvtQ2EATKKoFA3e4r0JIABR4LDQ24kBAgxjAQILTjo-6A/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/alba-queen/p73g60MEfWLdry9PT_6XmcAAogy7qbK8r0UnXFgYM9mfyj8fu1xaYH5WiznfASg4UxGIAqBFZJVFgwp7DP1wZI1TZQQViVA2ACagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI5nQGPARoAFwoVAFwAWAVAjwNS52tTAFvYF16-fEvtQ2EATMaoFA264r0JIABR4LDQ24kBAgxjAQILiRLk1w/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -80,7 +80,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015863/27fd902e0894fdc44189ae8a73a61712bb6b45e79a71c566a279fde65746f64a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015863/27fd902e0894fdc44189ae8a73a61712bb6b45e79a71c566a279fde65746f64a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,avsallar/aska-just-in-beach/pj5o1lJ57_KL2PINdQUJ-wAAogW4QFCw5niATFGNIhjC_8OEl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZI5jZQAViZA2ADagNEU0FqAkFJagRXQVcxagNBWVRyGhsWDiAKDBGrgD4N0dGWCQ9QARJjAQxjAQYLdh25Xw/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,avsallar/aska-just-in-beach/pj5o1lJ57_KL2PINdQUJ-wAAogW4QFCw5niATFGNIhjC_8OEl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZI5jZQAViVA2ADagNEU0FqAkFJagRXQVcxagNBWVRyGhsWDiAKDBGrgD4N0dGWCQ9QARJjAQxjAQYLbe2_6Q/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -97,7 +97,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015353/9f301b327c71f1e5d02ba3dbce4b0f4614ea325adb5d98b059e91e7c65067e96.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015353/9f301b327c71f1e5d02ba3dbce4b0f4614ea325adb5d98b059e91e7c65067e96.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/la-grande-resort/pnMHw-aYwXAfPfv8IKkwEzAAogHEa2n0IrstvZOGwgTgTOo0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZI9TZQAViZA2ADagREU0xWagJBSWoEV0FXMWoDQVlUchobFg4gCgwRrfw9Dc_VlgkPUAESYwEMYwEGC89358o/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/la-grande-resort/pnMHw-aYwXAfPfv8IKkwEzAAogHEa2n0IrstvZOGwgTgTOo0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZI9TZQAViVA2ADagREU0xWagJBSWoEV0FXMWoDQVlUchobFg4gCgwRrfw9Dc_VlgkPUAESYwEMYwEGC0CHStU/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -114,7 +114,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20815/e4a98980939bb4935fd890972f8a33dbb2133d723226f90948c5d621e56ead33.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20815/e4a98980939bb4935fd890972f8a33dbb2133d723226f90948c5d621e56ead33.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/grand-seker/pWNBuEnhyoQOWJIRVRIiCRAAogcUQ6BTNxFde4tAPKXa0KaKb56C4jxC0PtcOsIhDbPFQqBEJWQkUw0bTO1wZI8jdQAVjhA2ACagJBSXIhHBHPogEb5OxGGOa5IKsEr-8cuQQFAZHY3KAFAhJjAQML8E5DRg/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/grand-seker/pWNBuEnhyoQOWJIRVRIiCRAAogcUQ6BTNxFde4tAPKXa0KaKb56C4jxC0PtcOsIhDbPFQqBEJWQkUwp7DP1wZI8jdQAVjdA2ACagJBSXIhHBHPogEb5OxGGOa5IKsEr-8cuQQFAZHY3KAFAhJjAQML_3_7YQ/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -131,7 +131,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026681/59579c8017a116b6e87b07770f5fd425936b113af3638d4ad6bf9927ee758b9c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026681/59579c8017a116b6e87b07770f5fd425936b113af3638d4ad6bf9927ee758b9c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seher-resort/pP-DC9xgVB-bUQQoufNwxeAAogjXx3nyo-VAv2XGS6pv5lAznyBtRP4vNXbeXrXY-seysqBE5LUkEw0bTO1wZIrjhQAVjBAWADagJUSWoEV0FXMGoDQVlUchsWDiAKDBsTEdrUPg2G_ZUJDwkBEmMBDGMBAgyWrFc_/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seher-resort/pP-DC9xgVB-bUQQoufNwxeAAogjXx3nyo-VAv2XGS6pv5lAznyBtRP4vNXbeXrXY-seysqBE5LUkEwp7DP1wZIrjhQAVi9AWADagJUSWoEV0FXMGoDQVlUchsWDiAKDBsTEdrUPg2G_ZUJDwkBEmMBDGMBAgwcrTj0/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -148,7 +148,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114759/85662dad1cd242eccd056f81bea467991861471934d36f271e23c70e7db0247a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114759/85662dad1cd242eccd056f81bea467991861471934d36f271e23c70e7db0247a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/limak-limra/pEI-gacNlKGDRg3xNTbiAPAAogoVq3miAL5q3txHw-Sg0aq0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZIxjhQAVjhA2ACagNBSStyIRwRx4AHqwSfxUu5BB8bk8ZAGMDXSAHIhKu2DQISYwECBkOZRwc/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/limak-limra/pEI-gacNlKGDRg3xNTbiAPAAogoVq3miAL5q3txHw-Sg0aq0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZIxjhQAVjdA2ACagNBSStyIRwRx4AHqwSfxUu5BB8bk8ZAGMDXSAHIhKu2DQISYwECBvY3Rc4/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -165,7 +165,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114772/75b23607934b7d7bddec0c23b433e2fd73acbb6f5bd20b0f4aad4182bb12cff6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114772/75b23607934b7d7bddec0c23b433e2fd73acbb6f5bd20b0f4aad4182bb12cff6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/villa-side-residence/p9p0Q5jJb_uYc0dVkSTrZMAAogyl8A7jVwnaAAM6_2RaxDqUcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZIhjpQAVjhA2ACagNBSStyIRwR1IAHqwSSxUu5BB8bk8lAGNLXSAH077O2DQISYwEDCXLv3ts/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/villa-side-residence/p9p0Q5jJb_uYc0dVkSTrZMAAogyl8A7jVwnaAAM6_2RaxDqUcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZIhjpQAVjdA2ACagNBSStyIRwR1IAHqwSSxUu5BB8bk8lAGNLXSAH077O2DQISYwEDCZkBNb4/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -182,7 +182,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1006075/eb1be892ef5fafeb6da448d0f75f64170a8c78c0584b60c21a02e13a0f2f4a40.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1006075/eb1be892ef5fafeb6da448d0f75f64170a8c78c0584b60c21a02e13a0f2f4a40.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/linda-side/pOituwFxZP87YkRtwciZr4AAogiqwwap1VLw1qDmNiC3cUdkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZIzDpQAViZA2ADagJERWoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEe-zPQ2NnpcJD1ABEmMBDGMBBgsJbLLC/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/linda-side/pOituwFxZP87YkRtwciZr4AAogiqwwap1VLw1qDmNiC3cUdkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZIzDpQAViVA2ADagJERWoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEe-zPQ2NnpcJD1ABEmMBDGMBBgvE54F7/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -199,7 +199,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114769/4d62d097018039317d4d8a608dec744b3346961b10f2b302bce4253b74853ae9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114769/4d62d097018039317d4d8a608dec744b3346961b10f2b302bce4253b74853ae9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/trendy-aspendos-beach/pk-zfgtwsVYCjUBK1pnOD7AAogngyqLWWXeS18pcNkS_2qlUcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZI1jxQAVjhA2ACagNVQUlyIRwR0YAHqwSVxUu5BB8buchAGOrXSAG34KO2DQISYwECDFApkGY/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/trendy-aspendos-beach/pk-zfgtwsVYCjUBK1pnOD7AAogngyqLWWXeS18pcNkS_2qlUcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZI1jxQAVjdA2ACagNVQUlyIRwR0YAHqwSVxUu5BB8buchAGOrXSAG34KO2DQISYwECDPR4qE4/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -216,7 +216,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1006385/2a93211e803fa61ae06573dfd826e3e71b009ddc38753a2c517d641b585dfb17.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1006385/2a93211e803fa61ae06573dfd826e3e71b009ddc38753a2c517d641b585dfb17.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/grand-okan/p05rXhZyEV-c1fI0UonOUXAAogI7On974CMQyvw7CYchstqkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZI-DxQAViZA2ADagJERWoCSEJqBFdBVzFqA0FZVHIaGxYOIAoMEaW2PQ3Xm5cJD1ABEmMBDGMBBguFKc7b/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/grand-okan/p05rXhZyEV-c1fI0UonOUXAAogI7On974CMQyvw7CYchstqkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZI-DxQAViVA2ADagJERWoCSEJqBFdBVzFqA0FZVHIaGxYOIAoMEaW2PQ3Xm5cJD1ABEmMBDGMBBgslPqI6/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -233,7 +233,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026682/078b93816451dc361caa9d024970ad3b889db4f4c3bf99cfb9b99ffad4af3bb5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026682/078b93816451dc361caa9d024970ad3b889db4f4c3bf99cfb9b99ffad4af3bb5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seher-sun-palace-resort-spa/pQBIZnwrZsrrIvdKnfdxgoAAogqHOw5l8TxegXw2AxMMiNekl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZIhj1QAViZA2ADagREMjNQagJBSWoEV0FXMWoDQVlUchobFg4gCgwR7tQ-DY79lQkPUAESYwEMYwEGC5fF8b0/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seher-sun-palace-resort-spa/pQBIZnwrZsrrIvdKnfdxgoAAogqHOw5l8TxegXw2AxMMiNekl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZIhj1QAViVA2ADagREMjNQagJBSWoEV0FXMWoDQVlUchobFg4gCgwR7tQ-DY79lQkPUAESYwEMYwEGC66T5pk/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -250,7 +250,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124651/49709c142241cd2aaa432cf1be092ad66490072aab6cef71745721287e0b0d3d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124651/49709c142241cd2aaa432cf1be092ad66490072aab6cef71745721287e0b0d3d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/aydinbey-kings-palace/pr3wzrlmmkiGTFaEbkDRNQAAogMa-GoeW1m_2s3IeHw9RqEkcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZIkj1QAVjhA2ACagNBSStyIRwR680HqwT790q5BB8b9oRKGJz4SwGL2tO6DgISYwEDBk07riw/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/aydinbey-kings-palace/pr3wzrlmmkiGTFaEbkDRNQAAogMa-GoeW1m_2s3IeHw9RqEkcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZIkj1QAVjdA2ACagNBSStyIRwR680HqwT790q5BB8b9oRKGJz4SwGL2tO6DgISYwEDBtbw3lE/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -267,24 +267,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31346/f947514f2a6c5d2d4bb56f7de8d8c15c0d6de6476dfba3bf5b5bb2cde6ae76f4.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31346/f947514f2a6c5d2d4bb56f7de8d8c15c0d6de6476dfba3bf5b5bb2cde6ae76f4.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/orange-palace/pB9azA8n7vMDygIOQkHvPbAAogr2rUhHL2LJkoulrFTOu3t6b56C4jxC0PtcOsIhDbPFQqBEJWQkUw0bTO1wZIkT9QAVjhA2ACagJBSXIhHBHy9AEboq1CGJaxJKsEnuUcuQQFAbD24qIFAgBjAQML8dwScg/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/orange-palace/pB9azA8n7vMDygIOQkHvPbAAogr2rUhHL2LJkoulrFTOu3t6b56C4jxC0PtcOsIhDbPFQqBEJWQkUwp7DP1wZIkT9QAVjdA2ACagJBSXIhHBHy9AEboq1CGJaxJKsEnuUcuQQFAbD24qIFAgBjAQMLWc90rA/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
   {
     "hotel_name": "Limak Arcadia Sport Resort",
-    "price": 8085.0,
-    "dates": "2026-12-01 - 2026-12-12",
-    "checkin_date": "2026-12-01",
-    "checkout_date": "2026-12-12",
-    "duration": "11 nocy",
-    "duration_nights": 11,
+    "price": 8130.0,
+    "dates": "2026-11-28 - 2026-12-08",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-08",
+    "duration": "10 nocy",
+    "duration_nights": 10,
     "departure_airport": "Warszawa",
     "board_basis": "Ultra All Inclusive",
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20736/d0c28b149d2658db3e28523e3df4600ad0e1540b699455ebe4b635d952f6f479.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20736/d0c28b149d2658db3e28523e3df4600ad0e1540b699455ebe4b635d952f6f479.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/limak-arcadia/pHAcsh3Sl5gcSgAdbyl_pDAAogNwicsZl4Pf52Ad2yP6zjMKb56C4jxC0PtcOsIhDbPFQqBEJWQkUw0bTO1wZIlT9QAVjhA2ACagNVQUlyIRwRgKIBG5LNQRjU1herBOLyKrkEBQGN-Y71AwISYwECDvzyvic/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/limak-arcadia/pdfG8Wic7hxGMMmzw2Rk6nAAogNwicsZl4Pf52Ad2yP6zjMEPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUwp7DP1wZIwj9QAViVA2ACagNVQUlyIRwRgKIBG5LNQRjU1he5BNDyKqsEAwGO-I71AwISYwECDmQIvEA/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -301,7 +301,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114780/1bfd21838259bf48be41ce35faf0b3a2fc5c16df3f39058de4c429e2b89078e3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114780/1bfd21838259bf48be41ce35faf0b3a2fc5c16df3f39058de4c429e2b89078e3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/side-royal-palace/pYed-GMK0OWDxsNHs5wpw9AAogrtYvBJ6R6l9M4b5HEG7iyEcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZI3D9QAVjhA2ACagNBSStyIRwR3IAHqwSKxUu5BB8bxs1AGK3SSAHCnZ22DQISYwECC5er_DQ/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/side-royal-palace/pYed-GMK0OWDxsNHs5wpw9AAogrtYvBJ6R6l9M4b5HEG7iyEcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZI3D9QAVjdA2ACagNBSStyIRwR3IAHqwSKxUu5BB8bxs1AGK3SSAHCnZ22DQISYwECC_v_HzI/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -318,7 +318,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026846/56183776ef44bb95f474d0ddedcf01baba3ab03d6a9e66ee6e9db255e401aa71.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026846/56183776ef44bb95f474d0ddedcf01baba3ab03d6a9e66ee6e9db255e401aa71.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/vera-verde-ex-innova/p1VBYVzAdWIZ4FyYDaLqwhAAogOz7mrkcTqH8I89M-Lvbk20l9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZIlkBQAViZA2ADagZTRFIyM1BqAkFJagRXQVcxagNBWVRyGhsWDiAKDBGS1j4N6vuVCQ9QARJjAQxjAQYLpDipsg/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/vera-verde-ex-innova/p1VBYVzAdWIZ4FyYDaLqwhAAogOz7mrkcTqH8I89M-Lvbk20l9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZIlkBQAViVA2ADagZTRFIyM1BqAkFJagRXQVcxagNBWVRyGhsWDiAKDBGS1j4N6vuVCQ9QARJjAQxjAQYLbjrCng/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -335,7 +335,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114757/2c256e95311271c2129630c7cedfec9ba97d8680ec4d557c94ee5b4acd3d53b5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114757/2c256e95311271c2129630c7cedfec9ba97d8680ec4d557c94ee5b4acd3d53b5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/limak-atlantis/pyA5NODMXQwoEt-1ACLcw6AAogttae5fRoWJG0M_M4KAoIH3wT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZIuUBQAViZA2ACagNBSStyIRwRxYAHqwTDxUu5BAgb6cVAGMDXSAH076G2DQISYwECBpKfctE/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/limak-atlantis/pyA5NODMXQwoEt-1ACLcw6AAogttae5fRoWJG0M_M4KAoIH3wT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZIuUBQAViVA2ACagNBSStyIRwRxYAHqwTDxUu5BAgb6cVAGMDXSAH076G2DQISYwECBroo5T8/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -352,7 +352,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/21878/4e47a0b86a862b306254c427b790303eda8faf8b4f9a1df36a104938e89844ec.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/21878/4e47a0b86a862b306254c427b790303eda8faf8b4f9a1df36a104938e89844ec.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-prenses/p5ZAlNnRYzr9dzrXSe4sneAAogfvEpaUkOPCj-R1PKq_ateAAAAAButAQA4LQEAAoAAAAqBFdFWlkw0bTO1wZI3kFQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHNMgWNPAECcEhHVKUuSnAFQAB3moRAgchvF6WMN2f7dCAESYwEMYwECC9X_ZBM/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-prenses/p5ZAlNnRYzr9dzrXSe4sneAAogfvEpaUkOPCj-R1PKq_ateAAAAAButAQA4LQEAAoAAAAqBFdFWlkwp7DP1wZI3kFQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHNMgWNPAECcEhHVKUuSnAFQAB3moRAgchvF6WMN2f7dCAESYwEMYwECC1dmHm4/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -369,7 +369,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/4267/86e8fe0f77f11b2ca4fcbd25c910c58b102a51cb26508bee87716c2c12e4bca6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/4267/86e8fe0f77f11b2ca4fcbd25c910c58b102a51cb26508bee87716c2c12e4bca6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sidekum/p9J-YVB8QBERYyrYEH6YNTAAogeqDCnuN7Rf0DWG1vYMnONQAAAABttAQA37QEAAoAAAAqBFdFWlkw0bTO1wZIwEJQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYcxGnFUzaTU8AQJwSS-fFAVAAG8ZbHZ_GDyByDZjowQkBEmMBDGMBAwYdfiKI/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sidekum/p9J-YVB8QBERYyrYEH6YNTAAogeqDCnuN7Rf0DWG1vYMnONQAAAABttAQA37QEAAoAAAAqBFdFWlkwp7DP1wZIwEJQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYcxGnFUzaTU8AQJwSS-fFAVAAG8ZbHZ_GDyByDZjowQkBEmMBDGMBAwZZR9Eg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -386,7 +386,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114770/6774fcac4833c96af0e0c19a51010465a1c148664fd8a43c0f63c7f539658f9e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114770/6774fcac4833c96af0e0c19a51010465a1c148664fd8a43c0f63c7f539658f9e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/trendy-lara/pKyPZ7r8g7uqTHyPmcQkYyAAog8wB5o2hgbd5Y9PCZWvvwm3wT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZI9UJQAViZA2ACagNBSStyIRwR0oAHqwS2xUu5BAgbwMhAGOjXSAGKwKG2DQISYwECDKRT0OM/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/trendy-lara/pKyPZ7r8g7uqTHyPmcQkYyAAog8wB5o2hgbd5Y9PCZWvvwm3wT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZI9UJQAViVA2ACagNBSStyIRwR0oAHqwS2xUu5BAgbwMhAGOjXSAGKwKG2DQISYwECDPrXQw8/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -403,7 +403,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20897/467b5f1f8290fc719ea8629a2af7a54e0a2c393302300800c3bae0be00007ccb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20897/467b5f1f8290fc719ea8629a2af7a54e0a2c393302300800c3bae0be00007ccb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/port-side-resort/piFtFznOPkl8OjIJa1jx0sAAogskf8isSiERykWJLmSglbgab56C4jxC0PtcOsIhDbPFQqBEJWQkUw0bTO1wZI-EJQAVjhA2ACagJBSXIhHBGhowEb24JCGMqjJasEgu8cuQQFAfrF6qAFAhJjAQIMo-X3dg/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/port-side-resort/piFtFznOPkl8OjIJa1jx0sAAogskf8isSiERykWJLmSglbgab56C4jxC0PtcOsIhDbPFQqBEJWQkUwp7DP1wZI-EJQAVjdA2ACagJBSXIhHBGhowEb24JCGMqjJasEgu8cuQQFAfrF6qAFAhJjAQIMlvTsJQ/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -420,7 +420,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14148/463fbcd5c29feece9402b036a004e8168d8475c71fe943a26d87a681348e6bd1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14148/463fbcd5c29feece9402b036a004e8168d8475c71fe943a26d87a681348e6bd1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/diamond-premium/pXxYptynlkOqQInCh39kgzAAog4YgTsb2n369yc1KQAEPKLgAAAAButAQA4LQEAAoAAAAqBFdFWlkw0bTO1wZIkENQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMRwGJMQU8AQJwSS-fFAVAAG85IHZjZDyByDZ7owQkBEmMBDWMBAwwjfx-k/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,titreyengol/diamond-premium/pXxYptynlkOqQInCh39kgzAAog4YgTsb2n369yc1KQAEPKLgAAAAButAQA4LQEAAoAAAAqBFdFWlkwp7DP1wZIkENQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMRwGJMQU8AQJwSS-fFAVAAG85IHZjZDyByDZ7owQkBEmMBDWMBAwxjeQyk/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -437,9 +437,43 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015848/a45b31e16474c62081bb35f9db9a228a18e0253b4fc6bc958a05b7cf28af4f6b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015848/a45b31e16474c62081bb35f9db9a228a18e0253b4fc6bc958a05b7cf28af4f6b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/sensitive-premium-resort-spa/prtQ8gaxnj8nvx88cdr3sjAAogo8kk9jIU6jeY4mVCPZIk_Ul9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZIpkNQAViZA2ADagJERWoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEZyAPg3g0ZYJD1ABEmMBDGMBBgvaCdXA/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/sensitive-premium-resort-spa/prtQ8gaxnj8nvx88cdr3sjAAogo8kk9jIU6jeY4mVCPZIk_Ul9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZIpkNQAViVA2ADagJERWoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEZyAPg3g0ZYJD1ABEmMBDGMBBgtRLpny/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
+  },
+  {
+    "hotel_name": "Side Royal Style Hotel",
+    "price": 8677.0,
+    "dates": "2026-11-28 - 2026-12-08",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-08",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "All inclusive ultra",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRAYTC68O/92e76a79418f55a51f09eeb8d69323e82e816b8c4f3198d5cc8cbe4daaa382b9.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRAYTC68O/92e76a79418f55a51f09eeb8d69323e82e816b8c4f3198d5cc8cbe4daaa382b9.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-royal-style-ex-side-royal-luxury-13/prKSd2RQb3s40Aid-9p7aaAAogdlJst1xZlETKKMsb7n3pnvu1xaYH5WiznfASg4UxGIAqBFZJVFgwp7DP1wZI5UNQQViVA2ACagpBVFJBWVRDNjhPagpSTVNEREIwMEIwagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI0kQGbAZ0BjwEaABcKFQBYBVwTQPwCU-drUgBelpQBS-1DYQBMkIg4IPCCmgkNAAIQYwECDy7G8iY/?operator=VITX&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Itaka"
+  },
+  {
+    "hotel_name": "KARMIR RESORT & SPA",
+    "price": 8690.0,
+    "dates": "2026-11-18 - 2026-11-28",
+    "checkin_date": "2026-11-18",
+    "checkout_date": "2026-11-28",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10610/0d9eae95f7801835f82e2f5e956c93f41b47c42dd93d35c92d793f2bdacadfa7.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10610/0d9eae95f7801835f82e2f5e956c93f41b47c42dd93d35c92d793f2bdacadfa7.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/karmir-resort/peB_sMzvFDG3eSi1MWmfw5AAogIBMF9cns-7v6l67sgC3nEgAAAAButAQA4LQEAAoAAAAqBFdFWlkwp7DP1wZI8kNQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR7kZMkxxPAECcEkvnxQFQABvsiAEd-pgPIHINnujBCQESYwEKYwEDBrtvDSQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Coral Travel"
   },
   {
     "hotel_name": "TERRACE BEACH RESORT HOTEL",
@@ -454,7 +488,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/5169/9efad2a3b19ddca26a1deb4216bcf5419cfb3832d9e761e9bd26bbdb16988d86.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/5169/9efad2a3b19ddca26a1deb4216bcf5419cfb3832d9e761e9bd26bbdb16988d86.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/terrace-beach/pQ-K8S4wmjgZglzvToR4NuAAogloRuKsgG1s23ABE4FU-yZQAAAAButAQA4LQEAAoAIgAqBFdFWlkw0bTO1wZIwkRQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHMRrRxM1EZPAECcEkvnxQFQABvZUx2Nzg8gcg2e6MEJARJjAQpjAQIJRR5O_Q/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/terrace-beach/pQ-K8S4wmjgZglzvToR4NuAAogloRuKsgG1s23ABE4FU-yZQAAAAButAQA4LQEAAoAIgAqBFdFWlkwp7DP1wZIwkRQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHMRrRxM1EZPAECcEkvnxQFQABvZUx2Nzg8gcg2e6MEJARJjAQpjAQIJizZxDQ/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -471,7 +505,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114773/3e0f57b019e8540116614f53223e6fe35abc3aa4e093b19956d91d40f157c16a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114773/3e0f57b019e8540116614f53223e6fe35abc3aa4e093b19956d91d40f157c16a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sherwood-breezes/pGuiFX5_aJYs3U7XmQtqkGAAogKGO_3LPvfi4818CfQvSiZkcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZIyERQAVjhA2ACagNBSStyIRwR1YAHqwSRxUu5BB8bpshAGKjXSAHk4K62DQISYwECC5GVSkM/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sherwood-breezes/pGuiFX5_aJYs3U7XmQtqkGAAogKGO_3LPvfi4818CfQvSiZkcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZIyERQAVjdA2ACagNBSStyIRwR1YAHqwSRxUu5BB8bpshAGKjXSAHk4K62DQISYwECC0dMLqU/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -488,26 +522,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124625/016d15cd6a157ecc02b4522bca0aa36763931a52362b50e633165de933300f33.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124625/016d15cd6a157ecc02b4522bca0aa36763931a52362b50e633165de933300f33.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/paloma-oceana-resort-ex-paloma-beach/piR0sOq49aBkZ7-J5POIUhAAogBnT1mK6XY7QHNEDjwm4ST0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZIxkVQAVjhA2ACagNBSStyIRwR0c0HqwSV-Eq5BB8btYJKGPL7SwGrwNO6DgISYwECDK5Qei8/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/paloma-oceana-resort-ex-paloma-beach/piR0sOq49aBkZ7-J5POIUhAAogBnT1mK6XY7QHNEDjwm4ST0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZIxkVQAVjdA2ACagNBSStyIRwR0c0HqwSV-Eq5BB8btYJKGPL7SwGrwNO6DgISYwECDE_K7_Y/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
-  },
-  {
-    "hotel_name": "Side Royal Style Hotel",
-    "price": 8917.0,
-    "dates": "2026-11-28 - 2026-12-08",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-08",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "All inclusive ultra",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRAYTC68O/92e76a79418f55a51f09eeb8d69323e82e816b8c4f3198d5cc8cbe4daaa382b9.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRAYTC68O/92e76a79418f55a51f09eeb8d69323e82e816b8c4f3198d5cc8cbe4daaa382b9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-royal-style-ex-side-royal-luxury-13/prKSd2RQb3s40Aid-9p7aaAAogdlJst1xZlETKKMsb7n3pnvu1xaYH5WiznfASg4UxGIAqBFZJVFgw0bTO1wZI1UVQQViZA2ACagpBVFJBWVRDNjhPagpSTVNEREIwMEIwagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI0kQGbAZ0BjwEaABcKFQBYBVwTQPwCU-drUgBelpQBS-1DYQBMkIg4IPCCmgkNAAIQYwECD_7Isvk/?operator=VITX&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Itaka"
   },
   {
     "hotel_name": "SUNIS EVREN BEACH RESORT HOTEL & SPA",
@@ -522,7 +539,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9660/8f3f6cbb71474e99a68eea1804f02884bfb125216b3204bed78e720f9149ae1d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9660/8f3f6cbb71474e99a68eea1804f02884bfb125216b3204bed78e720f9149ae1d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sunis-evren-beach-spa/pYkfFEpz2nODYlQZuq5Y3tAAog--jV24lyM1HfpAVbrZY5PQAAAAButAQA4LQEAAoAAAAqBFdFWlkw0bTO1wZI3EVQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHMRuD9MySNPAECcEkvnxQFQABvmnAIdgIUOIHINnujBCQESYwENYwEDDAz1iYA/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sunis-evren-beach-spa/pYkfFEpz2nODYlQZuq5Y3tAAog--jV24lyM1HfpAVbrZY5PQAAAAButAQA4LQEAAoAAAAqBFdFWlkwp7DP1wZI3EVQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHMRuD9MySNPAECcEkvnxQFQABvmnAIdgIUOIHINnujBCQESYwENYwEDDPMV6Ak/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -539,7 +556,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124629/95337f15fd969c92131f523988494dfd534670f19f70e23ab7803778f073b4ba.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124629/95337f15fd969c92131f523988494dfd534670f19f70e23ab7803778f073b4ba.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sealife-family-resort/pomixRMt4zZ5Um9FUgQLi_AAogmV4rX-2aZf435AyvU4fN-3wT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZI9UVQAViZA2ACagJBSXIhHBHVzQerBLP4SrkECBuBg0oYxftLAbyozLoOAhJjAQIGAEcIIA/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sealife-family-resort/pomixRMt4zZ5Um9FUgQLi_AAogmV4rX-2aZf435AyvU4fN-3wT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZI9UVQAViVA2ACagJBSXIhHBHVzQerBLP4SrkECBuBg0oYxftLAbyozLoOAhJjAQIGIv3ueA/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -556,7 +573,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/26947/f368259ee51c19aecca3543cdc55b1d254474e1ef7266c66e150aaeb4a8b9af3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/26947/f368259ee51c19aecca3543cdc55b1d254474e1ef7266c66e150aaeb4a8b9af3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sherwood-suites-resort/piK4k0O11S4i8uLyFJt5FXAAogiNGkpu1-ImucwOssUbCb5wAAAAButAQA4LQEAAoAAAAqBFdFWlkw0bTO1wZIk0ZQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHNMgWNPAECcEhGiUUvFdFAAG5wxHcrwDyByDZ7owQkBEmMBDmMBAg1eJhle/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/sherwood-suites-resort/piK4k0O11S4i8uLyFJt5FXAAogiNGkpu1-ImucwOssUbCb5wAAAAButAQA4LQEAAoAAAAqBFdFWlkwp7DP1wZIk0ZQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHNMgWNPAECcEhGiUUvFdFAAG5wxHcrwDyByDZ7owQkBEmMBDmMBAg3mwYZx/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -573,9 +590,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/57894/8b2b092769ad1f0080244cc46a0740b3906cb9007f6afa5183dda0e9841a3df3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/57894/8b2b092769ad1f0080244cc46a0740b3906cb9007f6afa5183dda0e9841a3df3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-moon-palace-15/py5bH1SdKb6b3k_PX9MxGfAAog66SmhW-GiELw3e6T_EDs9wAAAABttAQA37QEAAoAAAAqBFdFWlkw0bTO1wZIqkZQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJCngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEZ59HcekDyByG6fnNA3xgI0JARJjAQxjAQILuDOpCg/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-moon-palace-15/py5bH1SdKb6b3k_PX9MxGfAAog66SmhW-GiELw3e6T_EDs9wAAAABttAQA37QEAAoAAAAqBFdFWlkwp7DP1wZIqkZQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJCngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEZ59HcekDyByG6fnNA3xgI0JARJjAQxjAQILJ-_1dA/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "Aska Lara Resort And Spa",
+    "price": 9031.0,
+    "dates": "2026-11-19 - 2026-11-28",
+    "checkin_date": "2026-11-19",
+    "checkout_date": "2026-11-28",
+    "duration": "9 nocy",
+    "duration_nights": 9,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20757/eaf6875c353e6f76283ca72c49a72571d4d0c07b660aaeb7c54dba10f03013d8.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20757/eaf6875c353e6f76283ca72c49a72571d4d0c07b660aaeb7c54dba10f03013d8.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/aska-lara-deluxe/pHsH6z0_Hg5ruSKEVF98gUAAogBFxe2Oxv4gNc1N0alsywz-QMOxAx4d3rscGpMgsheo0qBEJWQkUwp7DP1wZIx0ZQAVi9AWACagNVQUlyIRwRlaIBG47dRRjm8SGrBIbHHLkEFQH-3MuxBQISYwECC_LAEPg/?operator=BVBE&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Best Reisen"
   },
   {
     "hotel_name": "BEACH CLUB DOGANAY",
@@ -590,7 +624,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/21444/90c33bfcec34f5874d4fb95b1f8c84fdaf5e3ed2d7383616828dedadf6d608fd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/21444/90c33bfcec34f5874d4fb95b1f8c84fdaf5e3ed2d7383616828dedadf6d608fd.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pkbznyKJvTii9h-ny3ORVaAAoggvZrHaLdE6hIqMzzI1p7lAAAAABttAQA37QEAAoAEQAqBFdFWlkw0bTO1wZI3EZQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYc0yBY08AQJwSEaMmS8SfAVAAG9xzHYmuDyByDZjowQkBEmMBDWMBAwzoakEf/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,konakli/beach-club-doganay/pkbznyKJvTii9h-ny3ORVaAAoggvZrHaLdE6hIqMzzI1p7lAAAAABttAQA37QEAAoAEQAqBFdFWlkwp7DP1wZI3EZQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYc0yBY08AQJwSEaMmS8SfAVAAG9xzHYmuDyByDZjowQkBEmMBDWMBAww6tPJY/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -607,7 +641,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/83626/e4a41ec27a73ade9274b58bd871b951998bcd49ff29534459fce5ca843c68039.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/83626/e4a41ec27a73ade9274b58bd871b951998bcd49ff29534459fce5ca843c68039.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/avia-resort-spa-15/pMEI7WjzFRwZXknfigdbUMAAogjneOQ9S_Wj6CrKlpuC1ZmgAAAAButAQA4LQEAAoAAAAqBFdFWlkw0bTO1wZIhkdQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQ54BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABGixgIdxNsNIHIb39l8Db-OxQgBEmMBDGMBAwunmURA/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/avia-resort-spa-15/pMEI7WjzFRwZXknfigdbUMAAogjneOQ9S_Wj6CrKlpuC1ZmgAAAAButAQA4LQEAAoAAAAqBFdFWlkwp7DP1wZIhkdQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQ54BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABGixgIdxNsNIHIb39l8Db-OxQgBEmMBDGMBAwtdz0B6/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -624,7 +658,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114758/2a2dfff50856ffef95272c436bb66f774b1c4ae18298296d72cc4ffac0487ce8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114758/2a2dfff50856ffef95272c436bb66f774b1c4ae18298296d72cc4ffac0487ce8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/limak-lara/pBVyoiCq_Hg4S4uqyE2fPmAAogbMXAwzEBK-zBBcScQM6BIXwT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZIj0dQAViZA2ACagNBSStyIRwRxoAHqwTCxUu5BAgbx_9EGIHoRgHK4K3QDQISYwECBt8FVFg/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/limak-lara/pBVyoiCq_Hg4S4uqyE2fPmAAogbMXAwzEBK-zBBcScQM6BIXwT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZIj0dQAViVA2ACagNBSStyIRwRxoAHqwTCxUu5BAgbx_9EGIHoRgHK4K3QDQISYwECBkpzmJk/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -641,7 +675,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1232/fd736d52e70355e2e5d1224bc918d46753c334f6ea681374922cc7900fcae66b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1232/fd736d52e70355e2e5d1224bc918d46753c334f6ea681374922cc7900fcae66b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/ramada-resort-lara/pT5MBlKZQUlAoEpeQtE0DEAAogGxcFuckbOCrcd6xd7PLbEIh49ICiJHuQ1XszKxkzEwMqBEVDQ1gw0bTO1wZIyEdQAVjBAWACagNBSVVyIBwR0Am5BPmCGqsEARjQti8bsPQ7Afbr-JICAgBjAQMLA3DgMQ/?operator=ECCX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/ramada-resort-lara/pT5MBlKZQUlAoEpeQtE0DEAAogGxcFuckbOCrcd6xd7PLbEIh49ICiJHuQ1XszKxkzEwMqBEVDQ1gwp7DP1wZIyEdQAVi9AWACagNBSVVyIBwR0Am5BPmCGqsEARjQti8bsPQ7Afbr-JICAgBjAQMLJn8jFw/?operator=ECCX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -658,7 +692,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124630/a233cd74cba6379d98a4ed051edc61ba22106378f317b98221f65b6700773d64.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124630/a233cd74cba6379d98a4ed051edc61ba22106378f317b98221f65b6700773d64.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/porto-bello/pxEUlKTsSzpjvNJ9rE7412AAogtfBhZZfV9zgUY2KBbZD3YnwT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZI3UdQAViZA2ACagJBSXIhHBHWzQerBLL4SrkECBuYg0oYp_tLAeD_y7oOAhJjAQIGyRRFuQ/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/porto-bello/pxEUlKTsSzpjvNJ9rE7412AAogtfBhZZfV9zgUY2KBbZD3YnwT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZI3UdQAViVA2ACagJBSXIhHBHWzQerBLL4SrkECBuYg0oYp_tLAeD_y7oOAhJjAQIGjzITSw/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -675,7 +709,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114746/5ed260bc24b7e2e2b53cdc81af873786bc31ca75e40b633d336777091a6d3b16.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114746/5ed260bc24b7e2e2b53cdc81af873786bc31ca75e40b633d336777091a6d3b16.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/club-sera/pJpg5zFRj1PldhAUp9pps1AAogyGOOAvexMSBiLRwJE7FciHwT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZI40dQAViZA2ACagJBSXIhHBG6gAerBM7FS7kECBuzw0AYsNdIAemvmrYNAhJjAQMKrbzC1Q/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/club-sera/pJpg5zFRj1PldhAUp9pps1AAogyGOOAvexMSBiLRwJE7FciHwT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZI40dQAViVA2ACagJBSXIhHBG6gAerBM7FS7kECBuzw0AYsNdIAemvmrYNAhJjAQMK0olfmg/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -692,41 +726,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20821/5ff28b7d8231be83365735918bf410c37ba18db844c63c9a245da25af54621c9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20821/5ff28b7d8231be83365735918bf410c37ba18db844c63c9a245da25af54621c9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seamelia-beach/pUgPYUHxL99gWHXEpnkSSqAAogmetm4JUhhfzLM70tTm7Y9jFk-1zeIZEIkqOfn1e8zrYqBEJWQkUw0bTO1wZIhUhQAVhJYAJqA1VBSXIhHBHVogEbsJNAGLS7J7kE1cYcqwQdAcvNz7EFAhJjAQMLvZQZEQ/?operator=BVBE&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Best Reisen"
-  },
-  {
-    "hotel_name": "Aska Lara Resort And Spa",
-    "price": 9228.0,
-    "dates": "2026-11-28 - 2026-12-08",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-08",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20757/eaf6875c353e6f76283ca72c49a72571d4d0c07b660aaeb7c54dba10f03013d8.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20757/eaf6875c353e6f76283ca72c49a72571d4d0c07b660aaeb7c54dba10f03013d8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/aska-lara-deluxe/pqY-J8GyyJS3DNrA33m3rYAAogBFxe2Oxv4gNc1N0alsywz0PZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw0bTO1wZIjEhQAViZA2ACagNVQUlyIRwRlaIBG47dRRjm8SG5BK3HHKsEAwHx3cuxBQISYwECC52BfHA/?operator=BVBE&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Best Reisen"
-  },
-  {
-    "hotel_name": "Corendon Playa Kemer",
-    "price": 9248.0,
-    "dates": "2026-11-11 - 2026-11-21",
-    "checkin_date": "2026-11-11",
-    "checkout_date": "2026-11-21",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30855/f5642372352972aa85559ce4e5bf01c990690458c148628d4b7e19f9aaa04493.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30855/f5642372352972aa85559ce4e5bf01c990690458c148628d4b7e19f9aaa04493.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/grand-park-kemer/p-kO-4LY5rn5KcNq33blKaAAogeM-i9A-dkbqP_YvyEWm41h_JMajSgnNKczxrwFYBJLsqBEJWQkUw0bTO1wZIoEhQAVgBYAJqA1VBSXIjHBGH8QEb9PBBGIKmF6sE2o0quQS2_AgB1ZWJ-gMCEmMBAguqwvRv/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/seamelia-beach/pUgPYUHxL99gWHXEpnkSSqAAogmetm4JUhhfzLM70tTm7Y9jFk-1zeIZEIkqOfn1e8zrYqBEJWQkUwp7DP1wZIhUhQAVhFYAJqA1VBSXIhHBHVogEbsJNAGLS7J7kE1cYcqwQdAcvNz7EFAhJjAQMLCAPA8g/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -743,24 +743,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/56348/184144d1913996c287a5357426139bcfbd17fad88f5a8d5a9cafeb2eec08e1ad.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/56348/184144d1913996c287a5357426139bcfbd17fad88f5a8d5a9cafeb2eec08e1ad.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-sunwing-side-beach-13/plX6NYwT8VT8GqHQ8xDJ2TAAogZKXl43RI1jNjYlf7RO763AAAAABttAQA37QEAAoAEQAqBFdFWlkw0bTO1wZIuEhQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJCngGTAR8AAgEcABcJFggS4gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEZRxHdGwDyByG6fcXw3xi-IIARJjAQxjAQILFLU4KQ/?operator=WEZY&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Coral Travel"
-  },
-  {
-    "hotel_name": "ORANGE COUNTY ALANYA",
-    "price": 9331.0,
-    "dates": "2026-11-11 - 2026-11-21",
-    "checkin_date": "2026-11-11",
-    "checkout_date": "2026-11-21",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/16726/d8b14ee0b3142a0c97c6434cf1e3072b2712a6c504eb5515ad7a76c90f1be720.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/16726/d8b14ee0b3142a0c97c6434cf1e3072b2712a6c504eb5515ad7a76c90f1be720.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/orange-county-resort-alanya/pAELoVPtg96dulA_FiHpHcAAogXUZWssMFdTlEjeC_ks3GDgAAAABttAQA37QEAAoAAAAqBFdFWlkw0bTO1wZI80hQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYc0yBY08AQJwSEbUBS7LEAVAAG_cwHe7wDyByDZjowQkBEmMBDGMBAgt-68hq/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-sunwing-side-beach-13/plX6NYwT8VT8GqHQ8xDJ2TAAogZKXl43RI1jNjYlf7RO763AAAAABttAQA37QEAAoAEQAqBFdFWlkwp7DP1wZIuEhQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJCngGTAR8AAgEcABcJFggS4gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEZRxHdGwDyByG6fcXw3xi-IIARJjAQxjAQILA5J0tA/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -777,7 +760,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114766/391f5f354ccfacb19d872111bd3f1c1c84aa456d1bef7d824be78c5d77aa5ba8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114766/391f5f354ccfacb19d872111bd3f1c1c84aa456d1bef7d824be78c5d77aa5ba8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/royal-taj-mahal/pPFM6KUqk-HbYR2xM_gia3AAogHbBMmzZLnZ38ocdFMcxE2HwT7idiE-esBKfw35DCGL4qBEVYSU0w0bTO1wZIt0lQAViZA2ACagNBSStyIRwRzoAHqwS6xUu5BAgbscdAGMDXSAGjlK-2DQISYwECCR8R4vA/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/royal-taj-mahal/pPFM6KUqk-HbYR2xM_gia3AAogHbBMmzZLnZ38ocdFMcxE2HwT7idiE-esBKfw35DCGL4qBEVYSU0wp7DP1wZIt0lQAViVA2ACagNBSStyIRwRzoAHqwS6xUu5BAgbscdAGMDXSAGjlK-2DQISYwECCftZqyA/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -794,7 +777,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31334/6d24422cced1983af8ad1e4e29a43583eaaa2ee15f2eddd8ad21186bbcf212e1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31334/6d24422cced1983af8ad1e4e29a43583eaaa2ee15f2eddd8ad21186bbcf212e1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sea-shell-resort-spa/puF7jv913logSPMfUPsSY8AAogJnJou1LjJTb3CC1VkRWseEPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw0bTO1wZIvUlQAViZA2ACagNVQUlyIRwR5vQBG_arQhibsSS5BL_mHKsEAwHN4ueiBQIAYwECCwiZLEY/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sea-shell-resort-spa/puF7jv913logSPMfUPsSY8AAogJnJou1LjJTb3CC1VkRWseEPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUwp7DP1wZIvUlQAViVA2ACagNVQUlyIRwR5vQBG_arQhibsSS5BL_mHKsEAwHN4ueiBQIAYwECC8_oYS4/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -811,7 +794,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20766/0f1419a69de0e7a48313158b9df77f6890e7c797b8ce65178a2a4908707a406c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20766/0f1419a69de0e7a48313158b9df77f6890e7c797b8ce65178a2a4908707a406c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/lara-beach/pinb1PzTKa3TBpdmBNeZI1AAogHWPuvoAJCZfI348a5CgdhKb56C4jxC0PtcOsIhDbPFQqBEJWQkUw0bTO1wZI80lQAVjhA2ACagJBSXIhHBGeogEbm6dAGJmRJ6sE9t0cuQQFAdW3naQFAhJjAQIL2WBMJQ/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/lara-beach/pinb1PzTKa3TBpdmBNeZI1AAogHWPuvoAJCZfI348a5CgdhKb56C4jxC0PtcOsIhDbPFQqBEJWQkUwp7DP1wZI80lQAVjdA2ACagJBSXIhHBGeogEbm6dAGJmRJ6sE9t0cuQQFAdW3naQFAhJjAQILv5UqOw/?operator=BVBE&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Best Reisen"
+  },
+  {
+    "hotel_name": "Corendon Playa Kemer",
+    "price": 9528.0,
+    "dates": "2026-11-14 - 2026-11-24",
+    "checkin_date": "2026-11-14",
+    "checkout_date": "2026-11-24",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30855/f5642372352972aa85559ce4e5bf01c990690458c148628d4b7e19f9aaa04493.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30855/f5642372352972aa85559ce4e5bf01c990690458c148628d4b7e19f9aaa04493.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/grand-park-kemer/pmneTWLTScADlb28uR6ygEAAogMifMF2EpJcXDo86-uTE0qzFk-1zeIZEIkqOfn1e8zrYqBEJWQkUwp7DP1wZIuEpQAVhFYAJqA1VBSXIhHBGH8QEb9PBBGIKmF7kEkbAqqwQdAbjvkfoDAhJjAQIL1DJJSQ/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -828,7 +828,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114763/6aef57311e43393caefa95d1c86a7797c046b7a81cc19a77148af206f8408ad5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114763/6aef57311e43393caefa95d1c86a7797c046b7a81cc19a77148af206f8408ad5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/maritim-pine-beach-resort/pW3jS8kfvBA4NQM2m-OADeAAog3MZk2pUdNnjnGRep9Dk4q0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w0bTO1wZImktQAVjhA2ACagNBSStyIRwRy4AHqwSbxUu5BB8b58ZAGMDXSAG70Ky2DQISYwECC7iJik4/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/maritim-pine-beach-resort/pW3jS8kfvBA4NQM2m-OADeAAog3MZk2pUdNnjnGRep9Dk4q0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wp7DP1wZImktQAVjdA2ACagNBSStyIRwRy4AHqwSbxUu5BB8b58ZAGMDXSAG70Ky2DQISYwECCyPd6xM/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -845,43 +845,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026845/6a7af5a693e86fb6ed1f8077ad3b384596fc263c4ff513672eed181d2368e8f7.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026845/6a7af5a693e86fb6ed1f8077ad3b384596fc263c4ff513672eed181d2368e8f7.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/fame-residence/p-9L9ab7WdjxaEVaW0BNuvAAogdAuHwIQ-OjtQVdLwdw-JhUl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw0bTO1wZI8ktQAViZA2ADaghTTFZXRkJPQmoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEZHWPg3r-5UJD1ABEmMBDGMBAgxdpAds/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/fame-residence/p-9L9ab7WdjxaEVaW0BNuvAAogdAuHwIQ-OjtQVdLwdw-JhUl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwp7DP1wZI8ktQAViVA2ADaghTTFZXRkJPQmoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEZHWPg3r-5UJD1ABEmMBDGMBAgz44r5T/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
-  },
-  {
-    "hotel_name": "KARMIR RESORT & SPA",
-    "price": 9761.0,
-    "dates": "2026-11-11 - 2026-11-21",
-    "checkin_date": "2026-11-11",
-    "checkout_date": "2026-11-21",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10610/0d9eae95f7801835f82e2f5e956c93f41b47c42dd93d35c92d793f2bdacadfa7.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10610/0d9eae95f7801835f82e2f5e956c93f41b47c42dd93d35c92d793f2bdacadfa7.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/karmir-resort/pIpPTX79b1imF-QWnSQkdeAAogIBMF9cns-7v6l67sgC3nEgAAAABttAQA37QEAAoAAAAqBFdFWlkw07TO1wZIoUxQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJCngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYcxHuRkyTHE8AQJwSS-fFAVAAG-yIAR35mA8gcg2Y6MEJARJjAQpjAQMGwX02rg/?operator=WEZY&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Coral Travel"
-  },
-  {
-    "hotel_name": "Sherwood Dreams Resort",
-    "price": 9767.0,
-    "dates": "2026-11-11 - 2026-11-21",
-    "checkin_date": "2026-11-11",
-    "checkout_date": "2026-11-21",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30831/ce3fde922c2a8059ec4e3e1df1bd00a994aa59001b7bf2dfb35e6108ec83e8c6.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30831/ce3fde922c2a8059ec4e3e1df1bd00a994aa59001b7bf2dfb35e6108ec83e8c6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/sherwood-dreams/pSPKrzXZwSI5XLW2TyMh34AAogUow92hCX3wrrPxA6eTY-0B_JMajSgnNKczxrwFYBJLsqBEJWQkUw07TO1wZIp0xQAVgBYAJqA1VBSXIjHBHv8AEbiO9BGO_dJKsE8dccuQS2_AgBnsLvngUCAGMBAguErMyX/?operator=BVBE&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Best Reisen"
   },
   {
     "hotel_name": "MIRACLE RESORT",
@@ -896,7 +862,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124631/26450f6490ece318f054b4150f13d31d53dac2ccce3f7a1e47c00199f1d67e4c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124631/26450f6490ece318f054b4150f13d31d53dac2ccce3f7a1e47c00199f1d67e4c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/miracle-resort-lara/pUWNe1elqfjE0CZoY3vY-pAAogY019o3qPCxYhJWFGw9GKonwT7idiE-esBKfw35DCGL4qBEVYSU0w07TO1wZIy0xQAViZA2ACagJBSXIhHBHXzQerBLH4SrkECBvKg0oYp_pLAZma07oOAhJjAQMMcWX_Hw/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/miracle-resort-lara/pUWNe1elqfjE0CZoY3vY-pAAogY019o3qPCxYhJWFGw9GKonwT7idiE-esBKfw35DCGL4qBEVYSU0wqbDP1wZIy0xQAViVA2ACagJBSXIhHBHXzQerBLH4SrkECBvKg0oYp_pLAZma07oOAhJjAQMM7JB7Sw/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -913,7 +879,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20810/5334839dd99cd15e4a2cb88ff0fd384b95c9bfbe49e0fc62f3a3c3888173c7ec.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20810/5334839dd99cd15e4a2cb88ff0fd384b95c9bfbe49e0fc62f3a3c3888173c7ec.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-resort-ex-club/pKZtRadRyasC0qvwBIVVvTAAogRm-BdPgjor_JlL9kqCIZhUPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw07TO1wZIlk1QAViZA2ACagNVQUlyIRwRyqIBG4X7QRjrtiW5BPzjHKsEAwHkwpmjBQISYwECDjO6lOg/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-resort-ex-club/pKZtRadRyasC0qvwBIVVvTAAogRm-BdPgjor_JlL9kqCIZhUPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUwqbDP1wZIlk1QAViVA2ACagNVQUlyIRwRyqIBG4X7QRjrtiW5BPzjHKsEAwHkwpmjBQISYwECDsjurZE/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -930,9 +896,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/53112/d48bc502d61aee7b80a82d1f47501f4181e84af9ac7bcec392d03644189bef76.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/53112/d48bc502d61aee7b80a82d1f47501f4181e84af9ac7bcec392d03644189bef76.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/grand-prestige-side/pUrTtHFWWvbIK6P2QdcthaAAoglcKtYz4CkhjKzJ8r_gR0BAAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZInk1QQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABHwVx32yQ8gchuD5SQNm4OdCQESYwEMYwECC16TJaQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/grand-prestige-side/pUrTtHFWWvbIK6P2QdcthaAAoglcKtYz4CkhjKzJ8r_gR0BAAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZInk1QQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABHwVx32yQ8gchuD5SQNm4OdCQESYwEMYwECC9cEais/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "Diamond De Luxe Hotel And Spa",
+    "price": 9887.0,
+    "dates": "2026-11-28 - 2026-12-08",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-08",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "All inclusive ultra",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRAYT7HY2/736ad59df257c80c17be75d47f49d9abb0d4aa4a1fec831b9c5adef0712d8e69.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRAYT7HY2/736ad59df257c80c17be75d47f49d9abb0d4aa4a1fec831b9c5adef0712d8e69.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/diamond-de-luxe-colakli-13/prJOOPYj722VPONs3E60XHAAogXiHslM0oBFSC0xpc1RIBqfu1xaYH5WiznfASg4UxGIAqBFZJVFgwqbDP1wZIn01QQViVA2ACagpBVFJBWVQ3SFkyagpSTVNEREIwMDAwagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI0kQGbAZ0BjwEaABcKFQBYBVwTQPwCU-drUgBelpQBS-1DYQBMkIg4IPCCmgkNAAILYwECChCvMc4/?operator=VITX&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Itaka"
   },
   {
     "hotel_name": "ADALYA ELITE LARA",
@@ -947,7 +930,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114743/59d530306f7bc84c0befd170c302ae6b73150d3fdf2560902820439e1127395e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114743/59d530306f7bc84c0befd170c302ae6b73150d3fdf2560902820439e1127395e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/adalya-elite-lara/ps4ra3PMZ5EVSGTd_BMU2SAAogkabgXP8aCKFexf1EpPRBt3wT7idiE-esBKfw35DCGL4qBEVYSU0w07TO1wZIx01QAViZA2ACagNBSStyIRwRt4AHqwTRxUu5BAgb0cJAGLDXSAG_rJ22DQISYwEDCn7By9o/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/adalya-elite-lara/ps4ra3PMZ5EVSGTd_BMU2SAAogkabgXP8aCKFexf1EpPRBt3wT7idiE-esBKfw35DCGL4qBEVYSU0wqbDP1wZIx01QAViVA2ACagNBSStyIRwRt4AHqwTRxUu5BAgb0cJAGLDXSAG_rJ22DQISYwEDCvthvLc/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -964,26 +947,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114750/309e378da2296681f460d18361ef2a4ff7287f66c9496e123f92a9707a3524b8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114750/309e378da2296681f460d18361ef2a4ff7287f66c9496e123f92a9707a3524b8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/venezia-palace/pf1yLFSR4FEJM9nzf9hIt_AAog5aSBxKhKZ9T-QAl-S4pYn0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w07TO1wZI9k1QAVjhA2ACagJBSXIhHBG-gAerBKjFS7kEHxupu0wYtMROAezu-PcOAhJjAQIGu9L9Vg/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/venezia-palace/pf1yLFSR4FEJM9nzf9hIt_AAog5aSBxKhKZ9T-QAl-S4pYn0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wqbDP1wZI9k1QAVjdA2ACagJBSXIhHBG-gAerBKjFS7kEHxupu0wYtMROAezu-PcOAhJjAQIGxkI0Tw/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
-  },
-  {
-    "hotel_name": "Diamond De Luxe Hotel And Spa",
-    "price": 9991.0,
-    "dates": "2026-11-28 - 2026-12-08",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-08",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "Ultra All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20819/c6b2163d1e37883517cd464134fc8179dab9856a47e04d3fffc62bfc4ce5fbff.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20819/c6b2163d1e37883517cd464134fc8179dab9856a47e04d3fffc62bfc4ce5fbff.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/diamond-de-luxe-colakli-13/pfhGKpWXqsWbI0N6pCc2G7AAoghMvZZ3OYEJD7PgBbRd2NKkPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw07TO1wZIh05QAViZA2ACagNVQUlyIRwR06IBG8ewQhiy8yS5BOrxHKsEAwHL0LegBQISYwECCnf3OJs/?operator=BVBE&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Best Reisen"
   },
   {
     "hotel_name": "MELAS RESORT HOTEL",
@@ -998,7 +964,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114761/8b0fcc75e905930bce140c13735b6c696378931b567373351a5e27c8c792ae00.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114761/8b0fcc75e905930bce140c13735b6c696378931b567373351a5e27c8c792ae00.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/melas-resort/pmort6PxOoimk1WRdmoPD5AAoghZ3JNRsyMfqFTgYHVZTi1XwT7idiE-esBKfw35DCGL4qBEVYSU0w07TO1wZIs05QAViZA2ACagNBSStyIRwRyYAHqwS_xUu5BAgbrcZAGMDXSAG_rai2DQISYwECDBEBHeg/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/melas-resort/pmort6PxOoimk1WRdmoPD5AAoghZ3JNRsyMfqFTgYHVZTi1XwT7idiE-esBKfw35DCGL4qBEVYSU0wqbDP1wZIs05QAViVA2ACagNBSStyIRwRyYAHqwS_xUu5BAgbrcZAGMDXSAG_rai2DQISYwECDJmsovk/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1015,7 +981,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/58628/2844975b0b56a7a0a5d925db1a0e8a77cecccc262892a449965f9a93594542af.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/58628/2844975b0b56a7a0a5d925db1a0e8a77cecccc262892a449965f9a93594542af.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/numa-club-side-14/plisB6o1zsHzJqox5SKLQrAAogjDaqcZ_lVy-Lt0Wgd7uFcwAAAABttAQA37QEAAoAEQAqBFdFWlkw07TO1wZI4U5QQVgBYANqCUVudGVyIEFpcmoEMDY1NXJDngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEfyCAR3png8gchvNqEgNy7_5CAESYwENYwECDNwV1s0/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/numa-club-side-14/plisB6o1zsHzJqox5SKLQrAAogjDaqcZ_lVy-Lt0Wgd7uFcwAAAABttAQA37QEAAoAEQAqBFdFWlkwqbDP1wZI4U5QQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJDngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEfyCAR3png8gchvNqEgNy7_5CAESYwENYwECDHaklS4/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1032,9 +998,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114765/4524e183c80aa79dc411547f31bee1d063fb66cbb852d0811e504851c316053f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114765/4524e183c80aa79dc411547f31bee1d063fb66cbb852d0811e504851c316053f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/royal-dragon/pkWzHix3B-fcXIO4QAoZpfAAog1LPhxYYFxIXSfgzfD03ibXwT7idiE-esBKfw35DCGL4qBEVYSU0w07TO1wZIgU9QAViZA2ACagNBSStyIRwRzYAHqwS7xUu5BAgbicdAGMDXSAHMza62DQISYwECCYW7Xn4/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/royal-dragon/pkWzHix3B-fcXIO4QAoZpfAAog1LPhxYYFxIXSfgzfD03ibXwT7idiE-esBKfw35DCGL4qBEVYSU0wqbDP1wZIgU9QAViVA2ACagNBSStyIRwRzYAHqwS7xUu5BAgbicdAGMDXSAHMza62DQISYwECCS4MVFY/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
+  },
+  {
+    "hotel_name": "Sherwood Dreams Resort",
+    "price": 10199.0,
+    "dates": "2026-11-14 - 2026-11-24",
+    "checkin_date": "2026-11-14",
+    "checkout_date": "2026-11-24",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30831/ce3fde922c2a8059ec4e3e1df1bd00a994aa59001b7bf2dfb35e6108ec83e8c6.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30831/ce3fde922c2a8059ec4e3e1df1bd00a994aa59001b7bf2dfb35e6108ec83e8c6.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/sherwood-dreams/pYdX4CAu8_BjhMFmQhiYC-AAogy5jxkvRmSRuUZycm-mZQZzFk-1zeIZEIkqOfn1e8zrYqBEJWQkUwqbDP1wZI109QAVhFYAJqA1VBSXIhHBHv8AEbiO9BGO_dJLkEqPocqwQdAYGc-J4FAgBjAQILgskF7g/?operator=BVBE&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Best Reisen"
   },
   {
     "hotel_name": "AKKA ALINDA HOTEL",
@@ -1049,7 +1032,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/703/60fd734016450d1e5c73ef7a3a912579d60e2c14e20f01bb63d86de6a3ab0e2a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/703/60fd734016450d1e5c73ef7a3a912579d60e2c14e20f01bb63d86de6a3ab0e2a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,kiris/akka-alinda/pBbwsoKi14ZnKp-agAz3hfAAog3XEjor0sdFfxvs7Bc8k-6gAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZI-U9QQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEuoDEcsBFPYDFdwBGHNMgWNPAECcEkvnxQFQABuPOB3X6Q8gcg2e6MEJARJjAQxjAQIGWt5fFg/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,kiris/akka-alinda/pBbwsoKi14ZnKp-agAz3hfAAog3XEjor0sdFfxvs7Bc8k-6gAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZI-U9QQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEuoDEcsBFPYDFdwBGHNMgWNPAECcEkvnxQFQABuPOB3X6Q8gcg2e6MEJARJjAQxjAQIGToUVtw/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1066,7 +1049,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114767/6e0e9a11e9d04076245cc5a16f232aee77c3e1c1cb3532659b725638c64d4713.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114767/6e0e9a11e9d04076245cc5a16f232aee77c3e1c1cb3532659b725638c64d4713.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/royal-wings/pPKQSs7BDj85vh71t_qJRWAAogGbQ8N4Y-JA6elNVQY08E2XwT7idiE-esBKfw35DCGL4qBEVYSU0w07TO1wZIp1BQAViZA2ACagNBSStyIRwRz4AHqwS5xUu5BAgb28dAGMDXSAGRkLK2DQISYwECCYxF9xQ/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/royal-wings/pPKQSs7BDj85vh71t_qJRWAAogGbQ8N4Y-JA6elNVQY08E2XwT7idiE-esBKfw35DCGL4qBEVYSU0wqbDP1wZIp1BQAViVA2ACagNBSStyIRwRz4AHqwS5xUu5BAgb28dAGMDXSAGRkLK2DQISYwECCdUg11Y/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1083,7 +1066,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/12880/058b5253e18b2df78424f8f651461cf73eb612adb20167655db74207f4ea9217.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/12880/058b5253e18b2df78424f8f651461cf73eb612adb20167655db74207f4ea9217.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/kamelya-world-selin/pxE5DFzz6Rb77uf14T0wCoAAogFkHHe7p6evJy0o0GLRt2RQAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZIsFBQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHMRzFhMtQpPAECcEkvnxQFQAB3moRAgchu6gEkN5Of4CAESYwEMYwECCzqfrSI/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/kamelya-world-selin/pxE5DFzz6Rb77uf14T0wCoAAogFkHHe7p6evJy0o0GLRt2RQAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZIsFBQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBHAAWBBcFEuoDFMEFFdwBGHMRzFhMtQpPAECcEkvnxQFQAB3moRAgchu6gEkN5Of4CAESYwEMYwECCx3pmwQ/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1100,7 +1083,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/21191/f05f5fcd54766b408cf79217c5a29b5e5416f433940686271c965d4f934d38db.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/21191/f05f5fcd54766b408cf79217c5a29b5e5416f433940686271c965d4f934d38db.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,sorgun/bosphorus-sorgun/pYvzk9IgiBMAL9u2kQnDC4AAogd2RtZWfj4IYfxHDW3MDbNgAAAABttAQA37QEAAoAAwAqBFdFWlkw07TO1wZI7lBQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AQJwSEaYkS8GhAVAAG5wxHcnwDyByDZjowQkBEmMBDGMBAwvEpu5D/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,sorgun/bosphorus-sorgun/pYvzk9IgiBMAL9u2kQnDC4AAogd2RtZWfj4IYfxHDW3MDbNgAAAABttAQA37QEAAoAAwAqBFdFWlkwqbDP1wZI7lBQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AQJwSEaYkS8GhAVAAG5wxHcnwDyByDZjowQkBEmMBDGMBAwvooPvh/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1117,7 +1100,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026852/d30b090a30ba54f41700ed2c6d93cb97e97fa2f09f919c354d7e1cd70f819226.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026852/d30b090a30ba54f41700ed2c6d93cb97e97fa2f09f919c354d7e1cd70f819226.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/royal-seginus-lara/pOyp4L9sfGAD-mQDYOb7egAAogeBOMQhFXO5h6qucEVYO4U0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEw07TO1wZIoFFQAViZA2ADagRTUkxWagJBSWoEV0FXMWoDQVlUchobFg4gCgwRmNY-DeT7lQkPUAESYwEMYwECDF_nvTQ/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/royal-seginus-lara/pOyp4L9sfGAD-mQDYOb7egAAogeBOMQhFXO5h6qucEVYO4U0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEwqbDP1wZIoFFQAViVA2ADagRTUkxWagJBSWoEV0FXMWoDQVlUchobFg4gCgwRmNY-DeT7lQkPUAESYwEMYwECDNB99_U/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1134,7 +1117,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124622/24aee4c6732112c05e87b2f4624731791d3ef22078e25bad9b125bee5173f7c3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124622/24aee4c6732112c05e87b2f4624731791d3ef22078e25bad9b125bee5173f7c3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/iberostar-bellis/pjzAVnIqSfOgL_x_L8jtQsAAogT0UK5pEPQ7mGAUuNZoDxonwT7idiE-esBKfw35DCGL4qBEVYSU0w07TO1wZIuVFQAViZA2ACagNVQUlyIRwRzs0HqwS6-Eq5BAgbwoFKGN37SwHG58y6DgISYwECC22fM7s/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/iberostar-bellis/pjzAVnIqSfOgL_x_L8jtQsAAogT0UK5pEPQ7mGAUuNZoDxonwT7idiE-esBKfw35DCGL4qBEVYSU0wqbDP1wZIuVFQAViVA2ACagNVQUlyIRwRzs0HqwS6-Eq5BAgbwoFKGN37SwHG58y6DgISYwECC1ekkTU/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1151,7 +1134,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/300/870df3f9b8af619a773040a8e54787ec6c8486aae88f3148c16ce675ba5e44cd.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/300/870df3f9b8af619a773040a8e54787ec6c8486aae88f3148c16ce675ba5e44cd.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/crystal-de-luxe/pu5-px5nLn_Seaakf4JNHuAAogM3JUiDwmMsBIOcZS_1FSsAAAAAButAQA4LQEAAoAAAAqBFdFWlkw07TO1wZImFJQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEaICEsgBFMEFFdwBGHNMgWNPAECcEkvnxQFQABv3MB3v8A8gcg2e6MEJARJjAQxjAQILqPdbGg/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/crystal-de-luxe/pu5-px5nLn_Seaakf4JNHuAAogM3JUiDwmMsBIOcZS_1FSsAAAAAButAQA4LQEAAoAAAAqBFdFWlkwqbDP1wZImFJQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEaICEsgBFMEFFdwBGHNMgWNPAECcEkvnxQFQABv3MB3v8A8gcg2e6MEJARJjAQxjAQILfBVBuA/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1168,7 +1151,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRISTEGOU/39541c80dba8f5c1e43a8615ba84e2caa4a8518518577eea4b4602759b7be488.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRISTEGOU/39541c80dba8f5c1e43a8615ba84e2caa4a8518518577eea4b4602759b7be488.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/mercure-istanbul-bomonti-14/pkptHaeMtGR3isznBhIWCOAAogwErZ_RQXAkzpABtwAF5NEaGcj8a5vXLPsMNeYf7AKNIqBFZJVFgw07TO1wZI0VJQQVihAmACagpBVFJJU1RFR09VagpSTVNQMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAIMYwECC70H6kQ/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/mercure-istanbul-bomonti-14/pkptHaeMtGR3isznBhIWCOAAogwErZ_RQXAkzpABtwAF5NEaGcj8a5vXLPsMNeYf7AKNIqBFZJVFgwqbDP1wZI0VJQQVidAmACagpBVFJJU1RFR09VagpSTVNQMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAIMYwECC5hq1G0/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1185,7 +1168,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9596/65f6e1b615e7261f08f098365d1f03c738b0ce9f545085fa70847ca3b7937551.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/9596/65f6e1b615e7261f08f098365d1f03c738b0ce9f545085fa70847ca3b7937551.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sunis-kumkoy-beach-resort/p1Z7gPnCmN1sPnQP0DV3cEAAogHOPKL6x1ihznWzhTBHBppwAAAAButAQA4LQEAAoAAAAqBFdFWlkw07TO1wZIwFNQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBHAAWBBcFG7YCErQBFMEFFdwBGHMR-D5MiSRPAECcEkvnxQFQAB3moRAgcg2e6MEJARJjAQ1jAQIMhk-UrQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sunis-kumkoy-beach-resort/p1Z7gPnCmN1sPnQP0DV3cEAAogHOPKL6x1ihznWzhTBHBppwAAAAButAQA4LQEAAoAAAAqBFdFWlkwqbDP1wZIwFNQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBHAAWBBcFG7YCErQBFMEFFdwBGHMR-D5MiSRPAECcEkvnxQFQAB3moRAgcg2e6MEJARJjAQ1jAQIMSGo3qg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1202,7 +1185,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114768/20d87b51dde1f3a067a2b06a46715a63d0f07205c15ea9a3377dc168c6137531.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114768/20d87b51dde1f3a067a2b06a46715a63d0f07205c15ea9a3377dc168c6137531.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/titanic-resort-antalya/p5ub75X_W-fN8IgIitXSSbAAogg0YW43nOZ2ezq1McTRUUZEcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w07TO1wZI2lNQAVjhA2ACagNBSStyIRwR0IAHqwSWxUu5BB8bzJtLGMqcTQHq17rXDgISYwECC1urTf4/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/titanic-resort-antalya/p5ub75X_W-fN8IgIitXSSbAAogg0YW43nOZ2ezq1McTRUUZEcVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wqbDP1wZI2lNQAVjdA2ACagNBSStyIRwR0IAHqwSWxUu5BB8bzJtLGMqcTQHq17rXDgISYwECC-oIiFs/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1219,7 +1202,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/573/e8a8dc45097aadd5024eaebb1f1ba7ab2f5654034f369674caed6b5ae6cf72e1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/573/e8a8dc45097aadd5024eaebb1f1ba7ab2f5654034f369674caed6b5ae6cf72e1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/baia-lara/pKL0GNO0Vo_UA_zzA1kw7oAAogBfceX6Dgb8CJIu2pW8N82wAAAAButAQA4LQEAAoAAAAqBFdFWlkw07TO1wZI8FNQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfABwBAgAWABcJEuoDEUkU-AQV3AEYc0yBY08AQJwSS-fFAVAAG-FiHYW_DyByDZ7owQkBEmMBDWMBAww8PYha/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/baia-lara/pKL0GNO0Vo_UA_zzA1kw7oAAogBfceX6Dgb8CJIu2pW8N82wAAAAButAQA4LQEAAoAAAAqBFdFWlkwqbDP1wZI8FNQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfABwBAgAWABcJEuoDEUkU-AQV3AEYc0yBY08AQJwSS-fFAVAAG-FiHYW_DyByDZ7owQkBEmMBDWMBAwzdm450/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1236,7 +1219,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015407/516b601894d8e35ae71a95ec42bd138b263601669c00db14cc8b299bf4720554.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015407/516b601894d8e35ae71a95ec42bd138b263601669c00db14cc8b299bf4720554.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-park/pJuyaSH8BcckIy7-2sjLQDAAog14R1El7o0Jx_12pfv3omhjnyBtRP4vNXbeXrXY-seysqBE5LUkEw07TO1wZI-FNQAVjBAWADagREU0xWagJBSWoEV0FXMGoDQVlUchobFg4gCgwR4_w9DZDVlgkPCQESYwEMYwEGCwYxkvo/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-park/pJuyaSH8BcckIy7-2sjLQDAAog14R1El7o0Jx_12pfv3omhjnyBtRP4vNXbeXrXY-seysqBE5LUkEwqbDP1wZI-FNQAVi9AWADagREU0xWagJBSWoEV0FXMGoDQVlUchobFg4gCgwR4_w9DZDVlgkPCQESYwEMYwEGC3r_dJ8/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1253,7 +1236,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026837/95efe0b74a7b07996ef5c8d72fea8f9c0bfaa56309f98fb9ffa11dd8d6993d90.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026837/95efe0b74a7b07996ef5c8d72fea8f9c0bfaa56309f98fb9ffa11dd8d6993d90.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/seaden-quality-resort-spa-13/p4d0w7vgt09-DnyDNk4bkDAAogBOxRUM7hA4oIazvga1a1Xkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw07TO1wZIh1RQAViZA2ADagJUSWoEV0FXMWoDQVlUchsWDiAbAgoKEYnWPg3z-5UJD1ABEmMBDGMBAgykWRfc/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/seaden-quality-resort-spa-13/p4d0w7vgt09-DnyDNk4bkDAAogBOxRUM7hA4oIazvga1a1Xkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwqbDP1wZIh1RQAViVA2ADagJUSWoEV0FXMWoDQVlUchsWDiAbAgoKEYnWPg3z-5UJD1ABEmMBDGMBAgxpAbWL/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1270,9 +1253,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10343/d933177fe507aac5f2679a72e541b7e3af192f13acd568cbca9f3dfc2d85f1cb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/10343/d933177fe507aac5f2679a72e541b7e3af192f13acd568cbca9f3dfc2d85f1cb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/club-golden-beach-spa/pWPLOkWZk2vEvGCbQYL4oDAAogH75yZcRLD1Hi9mWHqpblHAAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZIkVVQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR40RMnh5PAECcEkvnxQFQABuLYR3bwA8gcg2e6MEJARJjAQ1jAQIM3ZJ-BQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,colakli/club-golden-beach-spa/pWPLOkWZk2vEvGCbQYL4oDAAogH75yZcRLD1Hi9mWHqpblHAAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZIkVVQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR40RMnh5PAECcEkvnxQFQABuLYR3bwA8gcg2e6MEJARJjAQ1jAQIMaumojg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "The Sense De Luxe Hotel",
+    "price": 10901.0,
+    "dates": "2026-11-28 - 2026-12-08",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-08",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31333/e687d464f315fe428c93b02262a6bc2d09595332f30068ccb5a545d0095d091a.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/31333/e687d464f315fe428c93b02262a6bc2d09595332f30068ccb5a545d0095d091a.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/the-sense/p9EM0oIdxfwUezISVygZDTAAogPG8fY_gWGDvru4j8AI8p6EPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUwqbDP1wZIlVVQAViVA2ACagNVQUlyIRwR5fQBG7TURhiuiyC5BO_jHKsEAwG5vaGjBQIAYwECDGsocYU/?operator=BVBE&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Best Reisen"
   },
   {
     "hotel_name": "Sentido Trendy Verbena Beach (ex. Trendy Verbena Beach)",
@@ -1287,7 +1287,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPVERD/545646989b9567fcd34de7ab6dc7ec7bbde98f12806afc0c52aeff83cffbe084.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPVERD/545646989b9567fcd34de7ab6dc7ec7bbde98f12806afc0c52aeff83cffbe084.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/trendy-verbena-beach/psBRiKs7fRE_ES9Q4TGYKiAAogn0FenuXEmRV-xPQeF0XXFxHAS-SgjmcXhlbuVBxAvEkqBFZJVFgw07TO1wZIuVVQQVhhYAJqDFdBV0FZVERQMTA3NWoMQVlUV0FXRFAxMDc1cjmdAY8BGgAXCRUAXAFYBUCPA1Lna1MAW9gXXr58S-1DYQBMoqgUDdHivQkgAFH-sN3biQECDWMBAgyxOdW_/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/trendy-verbena-beach/pH_ymaiDFp-va4baZG_1nCAAogj6Xfhm1rRoPbYLiWTKicSxHAS-SgjmcXhlbuVBxAvEkqBFZJVFgwqbDP1wZIuVVQQVhdYAJqDFdBV0FZVERQMTA3NWoMQVlUV0FXRFAxMDc1cjmdAY8BGgAXCRUAXAFYBUCPA1Lna1MAW9gXXr58S-1DYQBMxqgUDa3ivQkgAFH-sN3biQECDWMBAgyvA0Mb/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1304,26 +1304,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20802/4dfe6b0228952afbda6640768aea20406bb0c7c66aec8f4fa64790ec416373c2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20802/4dfe6b0228952afbda6640768aea20406bb0c7c66aec8f4fa64790ec416373c2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-elegance-ex-asteria/p1RmRiVXw1Z9sKASW4MbO8AAogZtZBToAmsSqe55EOxPcPtkPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw07TO1wZIy1VQAViZA2ACagNVQUlyIRwRwqIBG6v4Rxj-1h-5BMvGHKsEAwHI_tCxBQISYwECC322UFE/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/side-star-elegance-ex-asteria/p1RmRiVXw1Z9sKASW4MbO8AAogZtZBToAmsSqe55EOxPcPtkPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUwqbDP1wZIy1VQAViVA2ACagNVQUlyIRwRwqIBG6v4Rxj-1h-5BMvGHKsEAwHI_tCxBQISYwECC-i_9nU/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
-  },
-  {
-    "hotel_name": "THE SENSE DELUXE",
-    "price": 10959.0,
-    "dates": "2026-11-28 - 2026-12-08",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-08",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1006719/fe340248d006490b8353a8924cbbb7d94b2e78a10622a8bcfc1dc83e33e9ef7c.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1006719/fe340248d006490b8353a8924cbbb7d94b2e78a10622a8bcfc1dc83e33e9ef7c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/the-sense/pewojZM5fPY0JqRoY6ATmIAAogvOmmmK5AHV-27NRjfWPbnUl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw07TO1wZIz1VQAViZA2ADagJERWoCQUlqBFdBVzFqA0FZVHIaGxYOIAoMEfO4PQ2JmZcJD1ABEmMBDGMBBgts9XF6/?operator=NKRA&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Nekera"
   },
   {
     "hotel_name": "Xanadu Resort",
@@ -1338,7 +1321,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20751/a0fc4ca0d614be1d3ac182a135750251c48b1e38f12e3bf02f97b89e935322af.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/20751/a0fc4ca0d614be1d3ac182a135750251c48b1e38f12e3bf02f97b89e935322af.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/xanadu-resort/pYI7yHDBfHa5xK0SqvnIykAAogz8I2Qz68DQvCU3fVjj9zzKb56C4jxC0PtcOsIhDbPFQqBEJWQkUw07TO1wZIpFZQAVjhA2ACagNVQUlyIRwRj6IBG5-MQBiVlSerBIX1HLkEBQGCudyfBQISYwECC2we174/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/xanadu-resort/pYI7yHDBfHa5xK0SqvnIykAAogz8I2Qz68DQvCU3fVjj9zzKb56C4jxC0PtcOsIhDbPFQqBEJWQkUwqbDP1wZIpFZQAVjdA2ACagNVQUlyIRwRj6IBG5-MQBiVlSerBIX1HLkEBQGCudyfBQISYwECC7f7AaE/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
   },
@@ -1355,7 +1338,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRIST87J2/329a2e6900abba435c8cb087bed1f396bc88272e5581d06f3a74837c3eeb2b02.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRIST87J2/329a2e6900abba435c8cb087bed1f396bc88272e5581d06f3a74837c3eeb2b02.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,c/crowne-plaza-istanbul-old-city/pZlxGTY3ghtHSMFgHQ0h4bAAognPK0j4hTSNQpDt7ZV4kPMKGcj8a5vXLPsMNeYf7AKNIqBFZJVFgw07TO1wZIu1ZQQVihAmACagpBVFJJU1Q4N0oyagpSTURMMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAIMYwECC37VPBk/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,c/crowne-plaza-istanbul-old-city/pZlxGTY3ghtHSMFgHQ0h4bAAognPK0j4hTSNQpDt7ZV4kPMKGcj8a5vXLPsMNeYf7AKNIqBFZJVFgwqbDP1wZIu1ZQQVidAmACagpBVFJJU1Q4N0oyagpSTURMMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAIMYwECC4fsfxg/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1372,7 +1355,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPPERG/bee6db7c87cf70c5ce17580fadba36d2c3fe504dd21373afc1b219649ce4c5a5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPPERG/bee6db7c87cf70c5ce17580fadba36d2c3fe504dd21373afc1b219649ce4c5a5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/trendy-perge-resort-suites-9/pR3ZUByVnKRFvZ1tftijIVAAogrhBzVpkMf2b5uBk-fF-mSqEGQx7C5nk7TceZkpNtMdMqBFZJVFgw07TO1wZI5VdQQVjhA2ACagxXQVdBWVREUDMwNzBqDEFZVFdBV0RQMzA3MHI5nQGPARoAFwkVAFwBWAVAjwNS52tTAFvAGl7WeUvtQ2EATKKoFA2n470JIABRq6XM24kBAgxjAQILmMUO0w/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/trendy-perge-resort-suites-9/pArNInlwpHwyzi_TeWLC3uAAog8VLd2WtUZLfMhCd8H8tMI6EGQx7C5nk7TceZkpNtMdMqBFZJVFgwqbDP1wZI5VdQQVjdA2ACagxXQVdBWVREUDMwNzBqDEFZVFdBV0RQMzA3MHI5nQGPARoAFwkVAFwBWAVAjwNS52tTAFvAGl7WeUvtQ2EATMaoFA2D470JIABRq6XM24kBAgxjAQIL3HIxZw/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1389,7 +1372,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/961/5dab7c772dee2d199e0e85f92ab79f223a298cbb3db2241ce8be0962f18b9ed1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/961/5dab7c772dee2d199e0e85f92ab79f223a298cbb3db2241ce8be0962f18b9ed1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/ic-santai-family-resort/pJCTdCBnHlqU84Q6Wi6bbbAAogcsLQRRDWoqIZjixLk7xzIAAAAAButAQA4LQEAAoAIgAqBFdFWlkw07TO1wZI8VdQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEuoDEc0DFPQBFdwBGHNMgWNPAECcEkvnxQFQABulVh3Byw8gcg2e6MEJARJjAQxjAQILpYhwew/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/ic-santai-family-resort/pJCTdCBnHlqU84Q6Wi6bbbAAogcsLQRRDWoqIZjixLk7xzIAAAAAButAQA4LQEAAoAIgAqBFdFWlkwqbDP1wZI8VdQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEuoDEc0DFPQBFdwBGHNMgWNPAECcEkvnxQFQABulVh3Byw8gcg2e6MEJARJjAQxjAQIL91qQyg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1406,7 +1389,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10226/9248413df98c128f544238d84aef6c84f8324ce56eb573676b8b595a8c91a25b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/10226/9248413df98c128f544238d84aef6c84f8324ce56eb573676b8b595a8c91a25b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,beldibi/akka-antedon/p-KMDoqandfCp3ZiyPbqQHAAogFh4Plull7mQvlTJ-RRGAFIh49ICiJHuQ1XszKxkzEwMqBEVDQ1gw07TO1wZI9VhQAVjBAWACagNBSVVyIBwR8k-5BNe8GasEARjVsS8b0Ls-AePN95ICAgBjAQMGMD8B3w/?operator=ECCX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,beldibi/akka-antedon/p-KMDoqandfCp3ZiyPbqQHAAogFh4Plull7mQvlTJ-RRGAFIh49ICiJHuQ1XszKxkzEwMqBEVDQ1gwqbDP1wZI9VhQAVi9AWACagNBSVVyIBwR8k-5BNe8GasEARjVsS8b0Ls-AePN95ICAgBjAQMGKAd1Aw/?operator=ECCX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -1423,7 +1406,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8352/6e544f95d4fd1dcdd7156d9423d34efd87feb8ee3a03bef4950246d902805a73.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8352/6e544f95d4fd1dcdd7156d9423d34efd87feb8ee3a03bef4950246d902805a73.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/alva-donna-beach-resort-ex-amara-beach/pGJUK3anFw9CKdsJnyGDVeAAogno8oUJ5DnSW6KuOvWZ-60wAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZIt1lQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMRnDVM5S1PAECcEkvnxQFQABv3MB3v8A8gcg2e6MEJARJjAQxjAQILQcBaMQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/alva-donna-beach-resort-ex-amara-beach/pGJUK3anFw9CKdsJnyGDVeAAogno8oUJ5DnSW6KuOvWZ-60wAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZIt1lQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMRnDVM5S1PAECcEkvnxQFQABv3MB3v8A8gcg2e6MEJARJjAQxjAQIL6VLeSQ/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1440,7 +1423,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AMTSTR2D7S/bb03c857943e63917c50b39c17df52484996d598de4d1e99465a16b07835755a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/AMTSTR2D7S/bb03c857943e63917c50b39c17df52484996d598de4d1e99465a16b07835755a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/melas-istanbul-12/pq1m8ZOz-foD_jFCMpxICMAAogS_TrrexfwlbuIh7asBam_6Gcj8a5vXLPsMNeYf7AKNIqBFZJVFgw07TO1wZIkVpQQVihAmACagpBTVRTVFIyRDdTagpSTURMMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAINYwEDDDEae1A/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/melas-istanbul-12/pq1m8ZOz-foD_jFCMpxICMAAogS_TrrexfwlbuIh7asBam_6Gcj8a5vXLPsMNeYf7AKNIqBFZJVFgwqbDP1wZIkVpQQVidAmACagpBTVRTVFIyRDdTagpSTURMMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAINYwEDDGPUjSk/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1457,7 +1440,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8280/5fabd6470a178e4dea940253b0bd0bb7c82e9eb4b8b05ec628c945d030629498.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8280/5fabd6470a178e4dea940253b0bd0bb7c82e9eb4b8b05ec628c945d030629498.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/melas-lara/pw58Yg1HmUdoQYyjpeVHKkAAogx1pVi0V67fzNXbVpY9z7PgAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZIrlpQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR1DRMrS5PAECcEkvnxQFQABuYTh3O0w8gcg2e6MEJARJjAQ1jAQIMLmhubA/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/melas-lara/pw58Yg1HmUdoQYyjpeVHKkAAogx1pVi0V67fzNXbVpY9z7PgAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZIrlpQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR1DRMrS5PAECcEkvnxQFQABuYTh3O0w8gcg2e6MEJARJjAQ1jAQIM61hrWQ/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1474,7 +1457,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/5029/b9fb0c9c5027e93cde83fe9ff65efe2b713cbf6a937fddb9452ed7c2b000657f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/5029/b9fb0c9c5027e93cde83fe9ff65efe2b713cbf6a937fddb9452ed7c2b000657f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/xanthe-resort/pGneAQc-YBDFgbtElLv2AqAAog10ADs89Q_iHE0hMuPu_cZYh49ICiJHuQ1XszKxkzEwMqBEVDQ1gw07TO1wZI71tQAVjBAWACagJBSXIgHBGlJ7kEpOUZqwQBGNm4LxvZ9jwBvYrgkgICAGMBAgzefvqe/?operator=ECCX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/xanthe-resort/pGneAQc-YBDFgbtElLv2AqAAog10ADs89Q_iHE0hMuPu_cZYh49ICiJHuQ1XszKxkzEwMqBEVDQ1gwqbDP1wZI71tQAVi9AWACagJBSXIgHBGlJ7kEpOUZqwQBGNm4LxvZ9jwBvYrgkgICAGMBAgwHtkei/?operator=ECCX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -1491,7 +1474,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/320/36006949240e8093c3afdcb0502cf6afa1ff29b01e68f9f95de81a6e67888321.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/320/36006949240e8093c3afdcb0502cf6afa1ff29b01e68f9f95de81a6e67888321.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/kemer-resort/prwUFldJB0rY3VlPRcgZs6AAog9FC_kKhNIEdd_IL9n0PxqwAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZI-1tQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEbYCErQBFMEFFdwBGHNMgWNPAECcEkvnxQFQABubmQEdy4gPIHINnujBCQESYwEMYwECC8y6fd4/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/kemer-resort/prwUFldJB0rY3VlPRcgZs6AAog9FC_kKhNIEdd_IL9n0PxqwAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZI-1tQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEbYCErQBFMEFFdwBGHNMgWNPAECcEkvnxQFQABubmQEdy4gPIHINnujBCQESYwEMYwECC8yfo4w/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1508,7 +1491,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/18408/c1a39695c92cdafabffbabc9511ea33a4e60fde35565eb251720d8fadfd8e194.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/18408/c1a39695c92cdafabffbabc9511ea33a4e60fde35565eb251720d8fadfd8e194.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/majesty-mirage-park-resort/pjjTb6L9c1jMSxzyuBgFYKAAogv4rvIbPFWXPajV2Q6ziI0gAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZImlxQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNMgWNPAECcEhHHDkugtwFQAB3moRAgchuS234NjI3DCAESYwEMYwECC-TC65w/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/majesty-mirage-park-resort/pjjTb6L9c1jMSxzyuBgFYKAAogv4rvIbPFWXPajV2Q6ziI0gAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZImlxQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNMgWNPAECcEhHHDkugtwFQAB3moRAgchuS234NjI3DCAESYwEMYwECC_DdYtk/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1525,7 +1508,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14263/c125cf0297d7354911db5126a62370c630a04c501c79cd0795a4f3e4ab0bc11d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/14263/c125cf0297d7354911db5126a62370c630a04c501c79cd0795a4f3e4ab0bc11d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/kirman-arycanda-deluxe/pnOs0leXDgWkFM7MReeAkSAAog4BRkLyQnXTNiDCmnipcIXwAAAABttAQA37QEAAoAAwAqBFdFWlkw07TO1wZIzlxQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJAngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AETJA6hFL58UBUAAbnkcdx9oPIHINmOjBCQESYwENYwECDLyOkYM/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,okurcalar/kirman-arycanda-deluxe/pnOs0leXDgWkFM7MReeAkSAAog4BRkLyQnXTNiDCmnipcIXwAAAABttAQA37QEAAoAAwAqBFdFWlkwqbDP1wZIzlxQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJAngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AETJA6hFL58UBUAAbnkcdx9oPIHINmOjBCQESYwENYwECDHrWS4Q/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1542,7 +1525,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/947/c4a2879415f168ef971ac5b42387a8aa5b43e536bf2fad3d4d4ab85168e881ed.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/947/c4a2879415f168ef971ac5b42387a8aa5b43e536bf2fad3d4d4ab85168e881ed.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/belconti-resort/pPYAVJ90Ke6sNGZ31nFra-AAogMUJd7I7Bb8vuuY8TlUC56gAAAAButAQA4LQEAAoAAAAqBFdFWlkw07TO1wZI8VxQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEb8DFIICFdwBGHNMgWNPAECcEkvnxQFQAB3moRAgchuy4U0N7Ib0CAESYwENYwEDDD706ro/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/belconti-resort/pPYAVJ90Ke6sNGZ31nFra-AAogMUJd7I7Bb8vuuY8TlUC56gAAAAButAQA4LQEAAoAAAAqBFdFWlkwqbDP1wZI8VxQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEb8DFIICFdwBGHNMgWNPAECcEkvnxQFQAB3moRAgchuy4U0N7Ib0CAESYwENYwEDDOk169A/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1559,7 +1542,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124624/ecee7e0d0c295a6913c8c7a4e2dd3335c1caa0a596b9d5928a4010de8d08ac49.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/124624/ecee7e0d0c295a6913c8c7a4e2dd3335c1caa0a596b9d5928a4010de8d08ac49.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sentido-perissia/pcmLLcYygi9UkTVWK9Sz9zAAogCfmXiIOlqt58fP39H1uc3QzVdD8fYZ54AQ9qZ14_iRwqBEVYSU0w07TO1wZI011QAVhhYAJqA1VBSXIhHBHQzQerBJ34SrkEbRu5gUoYqPxLAbuxy7oOAhJjAQIMb5OmcQ/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/sentido-perissia/pcmLLcYygi9UkTVWK9Sz9zAAogCfmXiIOlqt58fP39H1uc3QzVdD8fYZ54AQ9qZ14_iRwqBEVYSU0wqbDP1wZI011QAVhdYAJqA1VBSXIhHBHQzQerBJ34SrkEbRu5gUoYqPxLAbuxy7oOAhJjAQIMtOnX7g/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1576,7 +1559,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/17747/c31b017039b5cbb3bc3d30ee876e7e3ac7c5f30cd3b2b342f9815d10c7d029c1.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/17747/c31b017039b5cbb3bc3d30ee876e7e3ac7c5f30cd3b2b342f9815d10c7d029c1.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/kirman-sidemarin-beach-spa/prR1aH1JydmxifugVlSIxkAAog3gp21a0BgnLKE2YzqPTFIgAAAABttAQA37QEAAoAAAAqBFdFWlkw07TO1wZIs15QQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AQJwSEbIJS7W8AVAAG55HHcfaDyByDZjowQkBEmMBDWMBAgze3wHz/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/kirman-sidemarin-beach-spa/prR1aH1JydmxifugVlSIxkAAog3gp21a0BgnLKE2YzqPTFIgAAAABttAQA37QEAAoAAAAqBFdFWlkwqbDP1wZIs15QQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AQJwSEbIJS7W8AVAAG55HHcfaDyByDZjowQkBEmMBDWMBAgx2Jg73/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1593,7 +1576,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/54205/949c7d4fa130b0a693549f2c74a92778d5abf50a00c538d213c97396214b20a9.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/54205/949c7d4fa130b0a693549f2c74a92778d5abf50a00c538d213c97396214b20a9.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/orange-county-resort/p1zhKEtLYvd2EPqHo2wYbsAAogVAul2KOpQPDzS7CTBN1EYgAAAABttAQA37QEAAoAFgAqBFdFWlkw07TO1wZI9GBQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEbVgG4QDHay-DyByDZjowQkBEmMBDGMBAguCZnOr/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,c/orange-county-resort/p1zhKEtLYvd2EPqHo2wYbsAAogVAul2KOpQPDzS7CTBN1EYgAAAABttAQA37QEAAoAFgAqBFdFWlkwqbDP1wZI9GBQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEcABYEFwUS6gMUwQUV3AEYc0-BY0wAQJwSS-fFAVAAEbVgG4QDHay-DyByDZjowQkBEmMBDGMBAgsBK7wf/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1610,7 +1593,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/588/e7637a75cb8a986ff0fed7650d15b81572db2f0476116a81757535caf2340e76.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/588/e7637a75cb8a986ff0fed7650d15b81572db2f0476116a81757535caf2340e76.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/alva-donna/pJRNWdcEHYYbv8T1FZaiPHAAoggR7PLEuu_x31U-sfZgtrmAAAAAButAQA4LQEAAoAAAAqBFdFWlkw07TO1wZI-2BQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfABwBAgAWABcJEuoDEVgU6QQV3AEYc0yBY08AQJwSS-fFAVAAG9xzHYquDyByDZ7owQkBEmMBDGMBAguaGFuJ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/alva-donna/pJRNWdcEHYYbv8T1FZaiPHAAoggR7PLEuu_x31U-sfZgtrmAAAAAButAQA4LQEAAoAAAAqBFdFWlkwqbDP1wZI-2BQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfABwBAgAWABcJEuoDEVgU6QQV3AEYc0yBY08AQJwSS-fFAVAAG9xzHYquDyByDZ7owQkBEmMBDGMBAguayLhm/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1627,7 +1610,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015821/63d928ba02c2255952099595f23a40af99bd3ff4b42b61136506ba8f6a165dc5.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015821/63d928ba02c2255952099595f23a40af99bd3ff4b42b61136506ba8f6a165dc5.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/megasaray-westbeach-antalya-ex-harrington-park-resort-13/pzwf9SvyvYfTIX-k8UF9gQAAogxnmY5jVUlzl-nQZ_xs-hd0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEw07TO1wZIumFQAViZA2ADagRDUkNWagJBSWoEV0FXMWoDQVlUchobFg4gCgwRgYA-DfvRlgkPUAESYwEMYwEGCwuvHSI/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/megasaray-westbeach-antalya-ex-harrington-park-resort-13/pzwf9SvyvYfTIX-k8UF9gQAAogxnmY5jVUlzl-nQZ_xs-hd0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEwqbDP1wZIumFQAViVA2ADagRDUkNWagJBSWoEV0FXMWoDQVlUchobFg4gCgwRgYA-DfvRlgkPUAESYwEMYwEGC0k1mn8/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1644,9 +1627,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/20792/d5e29de12d7bb6c0872f524674c378203c6968cc1b3a703038a6aaab9e459247.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/20792/d5e29de12d7bb6c0872f524674c378203c6968cc1b3a703038a6aaab9e459247.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/granada-luxury-belek/p9dtBPhPRvU48VV1NDtTyLAAog7wBDpvW0eYc8xL5BUURrgwAAAAButAQA4LQEAAoAAwAqBFdFWlkw07TO1wZI5GFQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNMgWNPAECcEhGXIUvQpAFQABuSiAId1JkOIHINnujBCQESYwENYwEDDK1tqV8/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/granada-luxury-belek/p9dtBPhPRvU48VV1NDtTyLAAog7wBDpvW0eYc8xL5BUURrgwAAAAButAQA4LQEAAoAAwAqBFdFWlkwqbDP1wZI5GFQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNMgWNPAECcEhGXIUvQpAFQABuSiAId1JkOIHINnujBCQESYwENYwEDDCOxcFc/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
+  },
+  {
+    "hotel_name": "Susesi Luxury Resort",
+    "price": 12652.0,
+    "dates": "2026-11-19 - 2026-11-28",
+    "checkin_date": "2026-11-19",
+    "checkout_date": "2026-11-28",
+    "duration": "9 nocy",
+    "duration_nights": 9,
+    "departure_airport": "Warszawa",
+    "board_basis": "All Inclusive +",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30900/4a1424c25a47976a10ff71cd073d7509daa30a1650d37d58c426f9f92ab55ee3.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30900/4a1424c25a47976a10ff71cd073d7509daa30a1650d37d58c426f9f92ab55ee3.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/susesi-de-luxe-resort/pui303dkZ7E6wHVsL0iS92AAogrTY6wPdCmob00oPVrT__7uQMOxAx4d3rscGpMgsheo0qBEJWQkUwqbDP1wZI7GJQAVi9AWACagNBSStyIRwRtPEBG-32QRi_1ySrBK_4HLkEFQGpnayfBQISYwECCy7Qme0/?operator=BVBE&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Best Reisen"
   },
   {
     "hotel_name": "JUJU PREMIER PALACE",
@@ -1661,7 +1661,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11051/bbf42361c65cb2699b0474d82d398e92a487585e7efc4fcc1ddfe0d24f4ca652.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11051/bbf42361c65cb2699b0474d82d398e92a487585e7efc4fcc1ddfe0d24f4ca652.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,beldibi/premier-palace/pnWZ8It2va8jycI918QV2YAAogm-RTRld59c7I0c0e7XihogAAAABttAQA37QEAAoAAAAqBFdFWlkw07TO1wZIlmNQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYcxGnSkzaGE8AQJwSS-fFAVAAG4o1HdvsDyByDZjowQkBEmMBDGMBAwt441JS/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,beldibi/premier-palace/pnWZ8It2va8jycI918QV2YAAogm-RTRld59c7I0c0e7XihogAAAABttAQA37QEAAoAAAAqBFdFWlkwqbDP1wZIlmNQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYcxGnSkzaGE8AQJwSS-fFAVAAG4o1HdvsDyByDZjowQkBEmMBDGMBAwvkz515/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1678,7 +1678,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015346/3bf6822c3d8f0c5dea410bd8de2375825252ae3a15a86e924e7b7077dbab5e95.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1015346/3bf6822c3d8f0c5dea410bd8de2375825252ae3a15a86e924e7b7077dbab5e95.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/rixos-downtown-antalya/pucA0oSS1nV1Ht6JdjaYQUAAogtdBOSUNXUfsiw46flyUDgkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw07TO1wZInGNQAViZA2ADagREU0xWagNVQUlqBFdBVzFqA0FZVHIaGxYOIAoMEab8PQ3W1ZYJD1ABEmMBDGMBBgtxKBmc/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/rixos-downtown-antalya/pucA0oSS1nV1Ht6JdjaYQUAAogtdBOSUNXUfsiw46flyUDgkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwqbDP1wZInGNQAViVA2ADagREU0xWagNVQUlqBFdBVzFqA0FZVHIaGxYOIAoMEab8PQ3W1ZYJD1ABEmMBDGMBBguDqa3c/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1695,7 +1695,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRISTC5LO/82644ee14b1a04725b159c091158e8de6da1c72ae489036ce57cdb622a5e3f1e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/ATRISTC5LO/82644ee14b1a04725b159c091158e8de6da1c72ae489036ce57cdb622a5e3f1e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/sheraton-istanbul-city-center-10/pKyoi-S7BL628_gTeC37irAAog0cgqycOt9T86vMYrxfnSPaGcj8a5vXLPsMNeYf7AKNIqBFZJVFgw1bTO1wZI2WVQQVihAmACagpBVFJJU1RDNUxPagpSTUVYMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAINYwECDOaMGHU/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/sheraton-istanbul-city-center-10/pKyoi-S7BL628_gTeC37irAAog0cgqycOt9T86vMYrxfnSPaGcj8a5vXLPsMNeYf7AKNIqBFZJVFgwrLDP1wZI2WVQQVidAmACagpBVFJJU1RDNUxPagpSTUVYMDAwMDAwagxXQVdJU1REUDIxMTdqDElTVFdBV0RQMjExN3I0kQGbAZ0BjwEaABcKFQBYBVwPQIADU4-7AVIAXu5ES-1DYQBMkIg4IOuCmgkNAAINYwECDO7w0sA/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1712,26 +1712,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/30976/e1fb3e3ec03f246a5f3f835f0e95113e98b25d619222e1eefc1a62bd22380f00.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/30976/e1fb3e3ec03f246a5f3f835f0e95113e98b25d619222e1eefc1a62bd22380f00.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/mylome-luxury-14/pT2p5A-C5Lu0VIDiKqGyXYAAogL1PrNxP26reFWvCKfOytAwAAAABttAQA37QEAAoAAAAqBFdFWlkw1bTO1wZI92dQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJAngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AQJwSEd9wS4hVUAAb9zAd7vAPIHINmOjBCQESYwENYwEDDFdTPKs/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/mylome-luxury-14/pT2p5A-C5Lu0VIDiKqGyXYAAogL1PrNxP26reFWvCKfOytAwAAAABttAQA37QEAAoAAAAqBFdFWlkwrLDP1wZI92dQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJAngGTAR8AAgEWABwAFwkS6gMUwQUV3AEYc0yBY08AQJwSEd9wS4hVUAAb9zAd7vAPIHINmOjBCQESYwENYwEDDDJpJAs/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
-  },
-  {
-    "hotel_name": "Nirvana Cosmopolitan",
-    "price": 13317.0,
-    "dates": "2026-11-28 - 2026-12-08",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-08",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "All inclusive ultra 24h",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPCOSM/d0146fb2d38bba59fe48b0c97e85a58fc02bd8d774bfed989ae9dff6bf8a2a33.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPCOSM/d0146fb2d38bba59fe48b0c97e85a58fc02bd8d774bfed989ae9dff6bf8a2a33.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/kervansaray-lara/pgQqbWCeAWgDCMcbXwKjhSAAogt3-42FKtYllnSG1ZaZzd3Pu1xaYH5WiznfASg4UxGIAqBFZJVFgw1bTO1wZIhWhQQViZA2ACagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI5nQGPARoAFwoVAFwAWAVAjwNS52tTAFuwGV7mekvtQ2EATKKoFA3e4r0JIABR_oio24kBAgxjAQILwEeZgg/?operator=VITX&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Itaka"
   },
   {
     "hotel_name": "Barut Hemera",
@@ -1746,7 +1729,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPHEME/b757f908257c06306b3e0280739a9cb64ccb38d47652c7ab5de5ecf8a77653c3.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPHEME/b757f908257c06306b3e0280739a9cb64ccb38d47652c7ab5de5ecf8a77653c3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-hemera/p-OsVwqJbuP747EoFji1REAAog8QHRTI4t2SQaKz8eHIVIIaEGQx7C5nk7TceZkpNtMdMqBFZJVFgw1bTO1wZI_WhQQVjhA2ACagxXQVdBWVREUDMwNzBqDEFZVFdBV0RQMzA3MHI5nQGPARoAFwkVAFwBWAVAjwNS52tTAFuwGV7mekvtQ2EATKKoFA2n470JIABR9b-124kBAgxjAQILfCC4Sw/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-hemera/pEyV8itN7ten8plP-fMC0dAAogdzq_lPGZxO9IhrH-Hktt6KEGQx7C5nk7TceZkpNtMdMqBFZJVFgwrLDP1wZI_WhQQVjdA2ACagxXQVdBWVREUDMwNzBqDEFZVFdBV0RQMzA3MHI5nQGPARoAFwkVAFwBWAVAjwNS52tTAFuwGV7mekvtQ2EATMaoFA2D470JIABR9b-124kBAgxjAQIL49PwEA/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1763,7 +1746,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114747/4a1d09e0db3973bff85b138b53c911884b4199b9c830a5226285eba70554b925.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114747/4a1d09e0db3973bff85b138b53c911884b4199b9c830a5226285eba70554b925.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/concorde-de-luxe-resort/pkHYxebeUhQqCtTw3QwGZlAAogBsb9VEFjjFy4bnsZEVB3g0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0w1bTO1wZIpmtQAVjhA2ACagNBSStyIRwRu4AHqwSrxUu5BB8b28NAGLDXSAGCtqq2DQISYwEDCaagF7Q/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/concorde-de-luxe-resort/pkHYxebeUhQqCtTw3QwGZlAAogBsb9VEFjjFy4bnsZEVB3g0cVRHgmLdxZ7xRU2LkPY6EqBEVYSU0wrLDP1wZIpmtQAVjdA2ACagNBSStyIRwRu4AHqwSrxUu5BB8b28NAGLDXSAGCtqq2DQISYwEDCZEbSa0/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
@@ -1780,30 +1763,13 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114749/268eaeb54e0aee30b8018aef64626f0513f104f66067da42c1ab892da05ba57f.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/EXIM/IMG/114749/268eaeb54e0aee30b8018aef64626f0513f104f66067da42c1ab892da05ba57f.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/delphin-imperial/pHqhDdstTc3FtX7iha3kUvAAogXSun0_jFmbPXo3Skkx3DJHwT7idiE-esBKfw35DCGL4qBEVYSU0w1bTO1wZI22tQAViZA2ACagNBSStyIRwRvYAHqwTLxUu5BAgbo8RAGLDXSAGalrS2DQISYwECBuiE0k8/?operator=EXIM&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/delphin-imperial/pHqhDdstTc3FtX7iha3kUvAAogXSun0_jFmbPXo3Skkx3DJHwT7idiE-esBKfw35DCGL4qBEVYSU0wrLDP1wZI22tQAViVA2ACagNBSStyIRwRvYAHqwTLxUu5BAgbo8RAGLDXSAGalrS2DQISYwECBqhDAOA/?operator=EXIM&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Exim Tours"
   },
   {
-    "hotel_name": "Susesi Luxury Resort",
-    "price": 13805.0,
-    "dates": "2026-11-28 - 2026-12-08",
-    "checkin_date": "2026-11-28",
-    "checkout_date": "2026-12-08",
-    "duration": "10 nocy",
-    "duration_nights": 10,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive +",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30900/4a1424c25a47976a10ff71cd073d7509daa30a1650d37d58c426f9f92ab55ee3.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30900/4a1424c25a47976a10ff71cd073d7509daa30a1650d37d58c426f9f92ab55ee3.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/susesi-de-luxe-resort/pD8T8RVxpanGJqU80wOrY9AAogrTY6wPdCmob00oPVrT__7kPZFxNJ0LtYHf7cQHv_1T4qBEJWQkUw1bTO1wZI7WtQAViZA2ACagNBSStyIRwRtPEBG-32QRi_1yS5BNb4HKsEAwGbnqyfBQISYwECC1aAZD4/?operator=BVBE&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Best Reisen"
-  },
-  {
     "hotel_name": "Barceló Istanbul",
-    "price": 13867.0,
+    "price": 13817.0,
     "dates": "2026-12-01 - 2026-12-10",
     "checkin_date": "2026-12-01",
     "checkout_date": "2026-12-10",
@@ -1814,7 +1780,24 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/SHX7386/2229699c0e4d42403a37dd074efba92ed4150a8435ed51823c29ecbb54923c8c.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/SHX7386/2229699c0e4d42403a37dd074efba92ed4150a8435ed51823c29ecbb54923c8c.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/barcelo-istanbul-13/pvX4_lHsIerw9A6LwsAQ64AAogTNax2taXg8o3_F6RWF984Qy9JHYiI1JeJxScYddW0owqBFZJVFgw1bTO1wZIq2xQQVjhA2ACagxXQVdJU1REUDMxMjJqDElTVFdBV0RQMzEyMnI6nQGPARoAFwkVAFgGXA9AgANSj7sBUwBe7kRb9iBL9yJhAEyQiDgNuYOaCSAAUcWPoYLnAQINYwEGDMi2ZfE/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/barcelo-istanbul-13/pvX4_lHsIerw9A6LwsAQ64AAogTNax2taXg8o3_F6RWF984Qy9JHYiI1JeJxScYddW0owqBFZJVFgwrLDP1wZI-WtQQVjdA2ACagxXQVdJU1REUDMxMjJqDElTVFdBV0RQMzEyMnI6nQGPARoAFwkVAFgGXA9AgANSj7sBUwBe7kRb9iBL9yJhAEyQiDgNuYOaCSAAUcWPoYLnAQINYwEGDBeTo7s/?operator=VITX&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Itaka"
+  },
+  {
+    "hotel_name": "Nirvana Cosmopolitan",
+    "price": 13937.0,
+    "dates": "2026-11-28 - 2026-12-08",
+    "checkin_date": "2026-11-28",
+    "checkout_date": "2026-12-08",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "All inclusive ultra 24h",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPCOSM/d0146fb2d38bba59fe48b0c97e85a58fc02bd8d774bfed989ae9dff6bf8a2a33.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPCOSM/d0146fb2d38bba59fe48b0c97e85a58fc02bd8d774bfed989ae9dff6bf8a2a33.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/kervansaray-lara/pgBFuZvHknyXWhEjCqMSyWAAog7xPMjIvnoXPGGEy9n8kH_fu1xaYH5WiznfASg4UxGIAqBFZJVFgwrLDP1wZI8WxQQViVA2ACagxXQVdBWVREUDcwODRqDEFZVFdBV0RQNzA4NHI5nQGPARoAFwoVAFwAWAVAjwNS52tTAFuwGV7mekvtQ2EATMaoFA264r0JIABR_oio24kBAgxjAQILtfILUQ/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1831,7 +1814,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPCENN/bc4fe8988a4b1a68dc7cc3d2fa0fadc4e3448e74f0af84db807dbf3ddb0a72c0.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPCENN/bc4fe8988a4b1a68dc7cc3d2fa0fadc4e3448e74f0af84db807dbf3ddb0a72c0.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-cennet/pQwGrX9bA_GcKgpJKutatWAAogFXdRblSWhqu8rQNEftAxA6EGQx7C5nk7TceZkpNtMdMqBFZJVFgw1bTO1wZIsW9QQVjhA2ACagxXQVdBWVREUDMwNzBqDEFZVFdBV0RQMzA3MHI5nQGPARoAFwkVAFwBWAVAjwNS52tTAFuwGV7mekvtQ2EATKKoFA2n470JIABR4qGn24kBAgxjAQILDKTqLw/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-cennet/pZIxncJP38Q1qqygBKbNd0AAog6qKB7OF0lkYuK-e1tRrwXaEGQx7C5nk7TceZkpNtMdMqBFZJVFgwrLDP1wZIsW9QQVjdA2ACagxXQVdBWVREUDMwNzBqDEFZVFdBV0RQMzA3MHI5nQGPARoAFwkVAFwBWAVAjwNS52tTAFuwGV7mekvtQ2EATMaoFA2D470JIABR4qGn24kBAgxjAQILCxc5dw/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -1848,7 +1831,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/559/588473136ef4cfcd8d50e32ca3be55e47d193c8dff7d4c7e6a4bf0b173b7d528.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/559/588473136ef4cfcd8d50e32ca3be55e47d193c8dff7d4c7e6a4bf0b173b7d528.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/lykia-world-antalya/p3xveUCjQXhpPRfRtgDqxdAAog-s1a6-QK_eNWkeAcqi70egAAAAButAQA4LQEAAoAAwAqBFdFWlkw1bTO1wZIzG9QQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWBBcFEuoDETsUhgUV3AEYc0yBY08AQJwSS-fFAVAAHeahECByG8_AYw3Pp94IARJjAQxjAQML5gd0mg/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/lykia-world-antalya/p3xveUCjQXhpPRfRtgDqxdAAog-s1a6-QK_eNWkeAcqi70egAAAAButAQA4LQEAAoAAwAqBFdFWlkwrLDP1wZIzG9QQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWBBcFEuoDETsUhgUV3AEYc0yBY08AQJwSS-fFAVAAHeahECByG8_AYw3Pp94IARJjAQxjAQMLKjRlUg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1865,7 +1848,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/30532/ee1e23ae7a7524075455362fd25571527edae91f3cd61b227f9c19198abbd737.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/30532/ee1e23ae7a7524075455362fd25571527edae91f3cd61b227f9c19198abbd737.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/kervansaray-kundu/pRQ0XnwPA-ZBFwtmrh-JgVAAogO8iZtG6k4R64GULO6O3hLQAAAAButAQA4LQEAAoAAAAqBFdFWlkw1bTO1wZIhXRQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNMgWNPAECcEhGjbUvEWFAAG_cwHe_wDyByDZ7owQkBEmMBDGMBAgsesTif/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/kervansaray-kundu/pRQ0XnwPA-ZBFwtmrh-JgVAAogO8iZtG6k4R64GULO6O3hLQAAAAButAQA4LQEAAoAAAAqBFdFWlkwrLDP1wZIhXRQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNMgWNPAECcEhGjbUvEWFAAG_cwHe_wDyByDZ7owQkBEmMBDGMBAgsjhlxk/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1882,7 +1865,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/975/22a8245c2d1c496f34cc605f10ddaf426ccc6e2bb3d60ee69e7434ad5eb20a49.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/975/22a8245c2d1c496f34cc605f10ddaf426ccc6e2bb3d60ee69e7434ad5eb20a49.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/papillon-zeugma/preC3gZalZR7pPdT8RtSZ7AAogDa-NM30_91vjO7k266pXlAAAAAButAQA4LQEAAoAAwAqBFdFWlkw1bTO1wZIm3RQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEdsDFOYBFdwBGHNMgWNPAECcEkvnxQFQABv8rAMd6vQMIHINnujBCQESYwEMYwECBsmOfIE/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/papillon-zeugma/preC3gZalZR7pPdT8RtSZ7AAogDa-NM30_91vjO7k266pXlAAAAAButAQA4LQEAAoAAwAqBFdFWlkwrLDP1wZIm3RQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEdsDFOYBFdwBGHNMgWNPAECcEkvnxQFQABv8rAMd6vQMIHINnujBCQESYwEMYwECBlZvs-A/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1899,7 +1882,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/952/f388f0cdf2d40633fc16d555a1eadcd89a2032ca5d21ea5e32f379308cbbc8ea.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/952/f388f0cdf2d40633fc16d555a1eadcd89a2032ca5d21ea5e32f379308cbbc8ea.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/club-mega-saray/p6sBf621P29ZoojW63Ddb-AAogsmBea6Tn-9OTkbuHG0R-bgAAAAButAQA4LQEAAoAAwAqBFdFWlkw1bTO1wZIpXVQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWBBcFEuoDEcQDFP0BFdwBGHNMgWNPAECcEkvnxQFQABureh27pw8gcg2e6MEJARJjAQxjAQIL98hNiw/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/club-mega-saray/p6sBf621P29ZoojW63Ddb-AAogsmBea6Tn-9OTkbuHG0R-bgAAAAButAQA4LQEAAoAAwAqBFdFWlkwrLDP1wZIpXVQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWBBcFEuoDEcQDFP0BFdwBGHNMgWNPAECcEkvnxQFQABureh27pw8gcg2e6MEJARJjAQxjAQILrOhyZg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1916,7 +1899,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/602/53b3d4cb827694a87e227260785a80ad1226939333781f5624c27b3d20bf5d03.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/602/53b3d4cb827694a87e227260785a80ad1226939333781f5624c27b3d20bf5d03.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/crystal-family-resort/p5v02BkIMeZka7pGNjG1IDAAogAkkREJnyngxCQwIqq8dToAAAAAButAQA4LQEAAoAAAAqBFdFWlkw1bTO1wZIuXVQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfABwBAgAWABcJEuoDEWYU2wQV3AEYc0yBY08AQJwSS-fFAVAAG_cwHe_wDyByDZ7owQkBEmMBDGMBAgtSYLRA/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,bogazkent/crystal-family-resort/p5v02BkIMeZka7pGNjG1IDAAogAkkREJnyngxCQwIqq8dToAAAAAButAQA4LQEAAoAAAAqBFdFWlkwrLDP1wZIuXVQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQJ4BkwEfABwBAgAWABcJEuoDEWYU2wQV3AEYc0yBY08AQJwSS-fFAVAAG_cwHe_wDyByDZ7owQkBEmMBDGMBAgs38XrN/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1933,7 +1916,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1023504/2ad6c8af9120c81de6996365115d2b1c89dbf50d589894479035fbee2aa81f42.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1023504/2ad6c8af9120c81de6996365115d2b1c89dbf50d589894479035fbee2aa81f42.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/ela-quality-resort/pSLOd_KFrDJxJsufP_jenMAAogdg7oFUpYXmtM4cahVRtiB0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEw1bTO1wZIuXdQAViZA2ADagREU0dWagNVQUlqBFdBVzFqA0FZVHIaGxYOIAoMEYS8Pg34lZYJD1ABEmMBDGMBBgvmUcRr/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/ela-quality-resort/pSLOd_KFrDJxJsufP_jenMAAogdg7oFUpYXmtM4cahVRtiB0l9wFdvZbO7ehH_p3OrF3cqBE5LUkEwrLDP1wZIuXdQAViVA2ADagREU0dWagNVQUlqBFdBVzFqA0FZVHIaGxYOIAoMEYS8Pg34lZYJD1ABEmMBDGMBBgvCp5BJ/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
   },
@@ -1950,7 +1933,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/68874/29ad35f7abede5978858afd73764d794d6477e8127992b71b0aa6e20e0c1de2e.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/68874/29ad35f7abede5978858afd73764d794d6477e8127992b71b0aa6e20e0c1de2e.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/the-land-of-legends-nickelodeon-14/ps8_4Drxg9_mNAAvdMu7kSAAog9OH80-3Dgwt56IXP1jt1FAAAAAButAQA4LQEAAoAAAAqBFdFWlkw1bTO1wZIyXpQQVipAWADaglFbnRlciBBaXJqBDA2NTVyQ54BkwEfAAIBHAAXCRYKEuADFMEFFdwBGHNPgWNMAECcEkvnxQFQABGC0wEd5M4OIHIbrpJJDfDV-AgBEmMBDGMBAwtLgbM5/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/the-land-of-legends-nickelodeon-14/ps8_4Drxg9_mNAAvdMu7kSAAog9OH80-3Dgwt56IXP1jt1FAAAAAButAQA4LQEAAoAAAAqBFdFWlkwrLDP1wZIyXpQQVilAWADaglFbnRlciBBaXJqBDA2NTVyQ54BkwEfAAIBHAAXCRYKEuADFMEFFdwBGHNPgWNMAECcEkvnxQFQABGC0wEd5M4OIHIbrpJJDfDV-AgBEmMBDGMBAwuMAdc6/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1967,7 +1950,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/653/26eb43b9e64f1c83f5f54e82e865b12b438ec190ba3ccba5d5135e0e4c58d6e6.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/653/26eb43b9e64f1c83f5f54e82e865b12b438ec190ba3ccba5d5135e0e4c58d6e6.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-arum/pCo1dyZzoF6ghuwQYEbfTFAAog4dGObEFWc5bgDeFuYu1p2AAAAABttAQA37QEAAoAFgAqBFdFWlkw1bTO1wZIo3tQQVgBYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AHAECABYAFwkS6gMRmQEUqAQV3AEYc0yBY08AQJwSS-fFAVAAG_AuHfXyDyByDZjowQkBEmMBDGMBAgviaBgq/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,side,c/barut-arum/pCo1dyZzoF6ghuwQYEbfTFAAog4dGObEFWc5bgDeFuYu1p2AAAAABttAQA37QEAAoAFgAqBFdFWlkwrLDP1wZIo3tQQVj-__________8BYANqCUVudGVyIEFpcmoEMDY1NXJBngGTAR8AHAECABYAFwkS6gMRmQEUqAQV3AEYc0yBY08AQJwSS-fFAVAAG_AuHfXyDyByDZjowQkBEmMBDGMBAgsSY6Ll/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -1984,7 +1967,7 @@
     "stars": 5,
     "main_image_url": "",
     "image_url": "",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/calista-luxury-resort/pv-TD-ItEZhK_bUa7la8cWAAogtuPf9B1Hh8MVNHaWRdq_Coh49ICiJHuQ1XszKxkzEwMqBEVDQ1gw1bTO1wZItYEBUAFYwQFgAmoDQUlVciAcEcNPuQSGvRmrBAEYzbIvG9aZPQGVqoaTAgIAYwECC9xuE5c/?operator=ECCX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/calista-luxury-resort/pv-TD-ItEZhK_bUa7la8cWAAogtuPf9B1Hh8MVNHaWRdq_Coh49ICiJHuQ1XszKxkzEwMqBEVDQ1gwrLDP1wZItYEBUAFYvQFgAmoDQUlVciAcEcNPuQSGvRmrBAEYzbIvG9aZPQGVqoaTAgIAYwECC0MRSgk/?operator=ECCX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -2001,7 +1984,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPLARA/5fef44241a955900d63c78faee9b30012d5955c356e053fad56986e5232edcdb.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPLARA/5fef44241a955900d63c78faee9b30012d5955c356e053fad56986e5232edcdb.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/barut-lara-resort/p25o6be3KHb2qN9mUw8TN6AAogEH0jjVP98ppT6eGPNWXGqKEGQx7C5nk7TceZkpNtMdMqBFZJVFgw1bTO1wZI2YMBUEFY4QNgAmoMV0FXQVlURFAzMDcwagxBWVRXQVdEUDMwNzByOZ0BjwEaABcJFQBcAVgFQI8DUudrUwBbwBpe1nlL7UNhAEyiqBQNp-O9CSAAUeXKwNuJAQIMYwECCz5UiZQ/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/barut-lara-resort/pmHyISq8T8hzG0hBfmrLIhAAogQzBFcmN6nYzuNDXXVYw9Z6EGQx7C5nk7TceZkpNtMdMqBFZJVFgwrLDP1wZI2YMBUEFY3QNgAmoMV0FXQVlURFAzMDcwagxBWVRXQVdEUDMwNzByOZ0BjwEaABcJFQBcAVgFQI8DUudrUwBbwBpe1nlL7UNhAEzGqBQNg-O9CSAAUeXKwNuJAQIMYwECC_uIHSY/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2018,7 +2001,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/972/b1a69c4625cbdabd9647efcd87636ccd5043d48fcb8ce07465aa8b9c80755c6a.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/972/b1a69c4625cbdabd9647efcd87636ccd5043d48fcb8ce07465aa8b9c80755c6a.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/paloma-grida-resort-spa/pTnV87ceRxALpixAqH2XNWAAogJ4hP6vtKAP1ijHYRzd000AAAAABttAQA37QEAAoAEQAqBFdFWlkw1bTO1wZI5IMBUEFYAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEdgDFOkBFdwBGHNMgWNPAECcEkvnxQFQABuQ7AId1bUNIHINmOjBCQESYwENYwECDBPOrOA/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/paloma-grida-resort-spa/pTnV87ceRxALpixAqH2XNWAAogJ4hP6vtKAP1ijHYRzd000AAAAABttAQA37QEAAoAEQAqBFdFWlkwrLDP1wZI5IMBUEFY_v__________AWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEdgDFOkBFdwBGHNMgWNPAECcEkvnxQFQABuQ7AId1bUNIHINmOjBCQESYwENYwECDDYw6Wk/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2035,7 +2018,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPKEMP/e20903e8eeb4969be25df120e7520495f4cd60d540dad7a38c0ec8f3e13321c2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPKEMP/e20903e8eeb4969be25df120e7520495f4cd60d540dad7a38c0ec8f3e13321c2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/kempinski-the-dome/pYhiyOqUBLFVjV5ZfmpB2bAAogTLUD8RyJzuxx3b9lteoOhPu1xaYH5WiznfASg4UxGIAqBFZJVFgw1bTO1wZIqYQBUEFYmQNgAmoMV0FXQVlURFA3MDg0agxBWVRXQVdEUDcwODRyOZ0BjwEaABcKFQBcAFgFQI8DUudrUwBbsBle5npL7UNhAEyiqBQN3uK9CSAAUYmGvtuJAQIMYwECC4VNIA0/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/kempinski-the-dome/pZr0DU-YsNBUkLGIeERLgaAAog1abVXycxirKhPoAk7_QB_fu1xaYH5WiznfASg4UxGIAqBFZJVFgwrLDP1wZIqYQBUEFYlQNgAmoMV0FXQVlURFA3MDg0agxBWVRXQVdEUDcwODRyOZ0BjwEaABcKFQBcAFgFQI8DUudrUwBbsBle5npL7UNhAEzGqBQNuuK9CSAAUYmGvtuJAQIMYwECCxzh5kk/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2052,7 +2035,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11754/75496a1f1e4e5a1e9d2d8d171a8b9bea9136bc4fe86ba73c763083bf38ee6e3b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/11754/75496a1f1e4e5a1e9d2d8d171a8b9bea9136bc4fe86ba73c763083bf38ee6e3b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/club-magic-life-kemer-imperial/pBIlZ7H4cDrbC0bgi59oMgAAogELNFvi84n48gUGDt8KlYKgAAAABttAQA37QEAAoAAAAqBFdFWlkw1bTO1wZInYUBUEFYAWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR5k9MmxNPAECcEkvnxQFQABuufh23ow8gcg2Y6MEJARJjAQxjAQIL3fY72w/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,kemer,goynuk/club-magic-life-kemer-imperial/pBIlZ7H4cDrbC0bgi59oMgAAogELNFvi84n48gUGDt8KlYKgAAAABttAQA37QEAAoAAAAqBFdFWlkwrLDP1wZInYUBUEFY_v__________AWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHMR5k9MmxNPAECcEkvnxQFQABuufh23ow8gcg2Y6MEJARJjAQxjAQILGr3Bkw/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2069,7 +2052,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/65048/ff22ae32fc0153560918bb890a15fe62dd09470d97a2ae49b03bb272bd1cb6c8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/65048/ff22ae32fc0153560918bb890a15fe62dd09470d97a2ae49b03bb272bd1cb6c8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/rixos-tersane-istanbul-15/pFfayuzBs8vsJjq4oSWO9aAAogHEJ1UQmkGLty1aEGlyFrWwAAAAAXk3gCF10TPgkAGAAqBFdFWlkw1bTO1wZIpIgBUEFYyQNgA2oTTE9UIFBvbGlzaCBBaXJsaW5lc3JJngEcAQIAHwAXCBYJEuIDE-4FFfoBGCMUyAFA2nNMjD1PAFDbiAFLABGQtQEb6OBdDYr18ggdjdSNCiCAlOvcAwESYwEMYwEGCyYktFM/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,istambul,stambul/rixos-tersane-istanbul-15/pFfayuzBs8vsJjq4oSWO9aAAogHEJ1UQmkGLty1aEGlyFrWwAAAAAXk3gCF10TPgkAGAAqBFdFWlkwrLDP1wZIpIgBUEFYxQNgA2oTTE9UIFBvbGlzaCBBaXJsaW5lc3JJngEcAQIAHwAXCBYJEuIDE-4FFfoBGCMUyAFA2nNMjD1PAFDbiAFLABGQtQEb6OBdDYr18ggdjdSNCiCAlOvcAwESYwEMYwEGC_Ajn1w/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2086,7 +2069,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPARKA/d296c20d53622f42a1f7a76805d446c8440143549db6fa68c2156b0161fcdfd8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPARKA/d296c20d53622f42a1f7a76805d446c8440143549db6fa68c2156b0161fcdfd8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,antalya/akra-antalya/pZyOGNI8vLqtbipTUiUNBrAAogAv6qRwcB59JwjB405RY9kqEGQx7C5nk7TceZkpNtMdMqBFZJVFgw1bTO1wZIiY0BUEFY4QNgAmoMV0FXQVlURFAzMDcwagxBWVRXQVdEUDMwNzByOZ0BjwEaABcJFQBYBlwAQI8DUudrUwBb1itewGhL7UNhAEyiqBQNp-O9CSAAUbnLotuJAQIMYwECC3XmylE/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,antalya/akra-antalya/pMSnOAhIQ-IthujIXZJL5FAAogpq7bbhmTUG6y7bCbu-u7t6EGQx7C5nk7TceZkpNtMdMqBFZJVFgwrLDP1wZIiY0BUEFY3QNgAmoMV0FXQVlURFAzMDcwagxBWVRXQVdEUDMwNzByOZ0BjwEaABcJFQBYBlwAQI8DUudrUwBb1itewGhL7UNhAEzGqBQNg-O9CSAAUbnLotuJAQIMYwECC1qFuV4/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2103,7 +2086,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/982/4fa4efeddb12067982047c0afd20451a754dce122e60b9b2cbbf1c8c9fbdc4f2.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/982/4fa4efeddb12067982047c0afd20451a754dce122e60b9b2cbbf1c8c9fbdc4f2.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/voyage-belek-select/pDllGmsGgMAOxWRMaDn8xpAAog1DeCc69xdCbIjg1JPRBE-gAAAABttAQA37QEAAoAAAAqBFdFWlkw1bTO1wZI9pIBUEFYAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEeIDFN8BFdwBGHNMgWNPAECcEkvnxQFQAB3loRAgchu56TsN3_6FCQESYwEMYwECC_95k-s/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/voyage-belek-select/pDllGmsGgMAOxWRMaDn8xpAAog1DeCc69xdCbIjg1JPRBE-gAAAABttAQA37QEAAoAAAAqBFdFWlkwrLDP1wZI9pIBUEFY_v__________AWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfABwBAgAWABcJEuoDEeIDFN8BFdwBGHNMgWNPAECcEkvnxQFQAB3loRAgchu56TsN3_6FCQESYwEMYwECC1tlKYk/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2120,7 +2103,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/78765/82dd2efca67e74cdd2fe71f6775c88d91d125fa3747f10241799e01db6e57670.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/78765/82dd2efca67e74cdd2fe71f6775c88d91d125fa3747f10241799e01db6e57670.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/voyage-kundu-10/p9chglh817xCQIS54mFE7RAAogVCG6Sr_tibGfXHgrQnAQkwAAAABttAQA37QEAAoAFgAqBFdFWlkw1bTO1wZIn5QBUEFYAWADaglFbnRlciBBaXJqBDA2NTVyQ54BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABGloAIbruUBHZKcDCByDZjowQkBEmMBDGMBAgv60S6T/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,kundu/voyage-kundu-10/p9chglh817xCQIS54mFE7RAAogVCG6Sr_tibGfXHgrQnAQkwAAAABttAQA37QEAAoAFgAqBFdFWlkwrLDP1wZIn5QBUEFY_v__________AWADaglFbnRlciBBaXJqBDA2NTVyQ54BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABGloAIbruUBHZKcDCByDZjowQkBEmMBDGMBAgt1tDyg/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2137,7 +2120,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/47527/e221b5784abd6f7f7323584185e14a6074b9d2f1e4a212d6a3524128ef7fc56b.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/47527/e221b5784abd6f7f7323584185e14a6074b9d2f1e4a212d6a3524128ef7fc56b.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/cullinan-golf-resort-10/pHdge-Dv9ZtCGRcFHxTN0AAAogFsreqICmEto44G7wL7I83QAAAAButAQA4LQEAAoAAwAqBFdFWlkw1bTO1wZI3aEBUEFYqQFgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwACARYAHAAXCRLqAxTBBRXcARhzT4FjTABAnBJL58UBUAARnywblmcdsY4PIHINnujBCQESYwEMYwEDC9pkJEQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/cullinan-golf-resort-10/pHdge-Dv9ZtCGRcFHxTN0AAAogFsreqICmEto44G7wL7I83QAAAAButAQA4LQEAAoAAwAqBFdFWlkwrLDP1wZI3aEBUEFYpQFgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwACARYAHAAXCRLqAxTBBRXcARhzT4FjTABAnBJL58UBUAARnywblmcdsY4PIHINnujBCQESYwEMYwEDC3cSAV4/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2154,7 +2137,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8479/797da535e5ad242ebfa9732f175f9bc23be4e76f2b1dc57813bc41e997f1e774.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/8479/797da535e5ad242ebfa9732f175f9bc23be4e76f2b1dc57813bc41e997f1e774.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/titanic-deluxe/pzMvmYIXkGPXsfU-gYHoOyAAogoZDM9gxWo7ftVwuTUuoT7AAAAAButAQA4LQEAAoAAwAqBFdFWlkw1bTO1wZI-qgBUEFYqQFgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwACARYAHAAXCRLqAxTBBRXcARhzEZs2TOYsTwBAnBJL58UBUAAb52Id_74PIHINnujBCQESYwEMYwECCwSdIjY/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/titanic-deluxe/pzMvmYIXkGPXsfU-gYHoOyAAogoZDM9gxWo7ftVwuTUuoT7AAAAAButAQA4LQEAAoAAwAqBFdFWlkwrLDP1wZI-qgBUEFYpQFgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwACARYAHAAXCRLqAxTBBRXcARhzEZs2TOYsTwBAnBJL58UBUAAb52Id_74PIHINnujBCQESYwEMYwECC6yIa2s/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2171,7 +2154,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1231/302f3161754b4650de1af0487aa09a87d1e45fc5fe55a3bcf4c54093fcde5fe8.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1231/302f3161754b4650de1af0487aa09a87d1e45fc5fe55a3bcf4c54093fcde5fe8.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/ramada-plaza-antalya/p1x-6Edd87KrI6BzVnyw0OAAog--G8mVzaeaZMLM79r1gW3Ih49ICiJHuQ1XszKxkzEwMqBEVDQ1gw1bTO1wZInqkBUAFYwQFgAmoCQkJyIBwRzwm5BPqCGqsEARiqti8bprQ-AazWiJMCAgBjAQMG2SZ6sA/?operator=ECCX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/ramada-plaza-antalya/p1x-6Edd87KrI6BzVnyw0OAAog--G8mVzaeaZMLM79r1gW3Ih49ICiJHuQ1XszKxkzEwMqBEVDQ1gwrLDP1wZInqkBUAFYvQFgAmoCQkJyIBwRzwm5BPqCGqsEARiqti8bprQ-AazWiJMCAgBjAQMGvs_C3A/?operator=ECCX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Ecco Holiday"
   },
@@ -2188,7 +2171,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPMAGO/0dfdc5067903b2025a8712ed1064487a40e80b83e44b48ba38645764ceca5395.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPMAGO/0dfdc5067903b2025a8712ed1064487a40e80b83e44b48ba38645764ceca5395.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/maxx-royal-belek/ptt5FmkqS6c8wE1ZYyOYPCAAoggGRu9_UfH69s3ufB8gMYVfu1xaYH5WiznfASg4UxGIAqBFZJVFgw1bTO1wZIzbQBUEFYmQNgAmoMV0FXQVlURFA3MDg0agxBWVRXQVdEUDcwODRyOp0BjwEaABcKFQBcAFgFQI8DUudrUwBelpQBW-AgS40jYQBMoqgUDd7ivQkgAFHwtMPbiQECDGMBAgsKZw_6/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,belek/maxx-royal-belek/pelZbHcvMX5LmeGly0wqfmAAog6K7ZseDhbncy8n64UDHxrPu1xaYH5WiznfASg4UxGIAqBFZJVFgwrLDP1wZIzbQBUEFYlQNgAmoMV0FXQVlURFA3MDg0agxBWVRXQVdEUDcwODRyOp0BjwEaABcKFQBcAFgFQI8DUudrUwBelpQBW-AgS40jYQBMxqgUDbrivQkgAFHwtMPbiQECDGMBAgvdkCzm/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2205,7 +2188,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/958/cfe4f3d5bf828a7f69306abe80afeb11ee8101f91ba5b071bae9cd97b6581684.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/958/cfe4f3d5bf828a7f69306abe80afeb11ee8101f91ba5b071bae9cd97b6581684.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/gloria-serenity-resort/py-8wrldUmpyeUM1uMyhXIAAoguj2CzBoNy86bHaoHV5iJ8AAAAAButAQA4LQEAAoAAAAqBFdFWlkw1bTO1wZIibUBUEFYqQFgA2oJRW50ZXIgQWlyagQwNjU1ckKeAZMBHwAcAQIAFgAXCRLqAxHKAxT3ARXcARhzTIFjTwBAnBJL58UBUAAd5qEQIHIbgZQEDZ3UvQkBEmMBDGMBAgYGQndO/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/gloria-serenity-resort/py-8wrldUmpyeUM1uMyhXIAAoguj2CzBoNy86bHaoHV5iJ8AAAAAButAQA4LQEAAoAAAAqBFdFWlkwrLDP1wZIibUBUEFYpQFgA2oJRW50ZXIgQWlyagQwNjU1ckKeAZMBHwAcAQIAFgAXCRLqAxHKAxT3ARXcARhzTIFjTwBAnBJL58UBUAAd5qEQIHIbgZQEDZ3UvQkBEmMBDGMBAgY5Ga7V/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2222,9 +2205,26 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026842/871b3012fbc3cee42f71d87b28cea5c1380dcbfdec8ed83afe7086447a0cfa57.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/NKRA/IMG/1026842/871b3012fbc3cee42f71d87b28cea5c1380dcbfdec8ed83afe7086447a0cfa57.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/rixos-premium-belek/p0okPb42JVHXrnMAZ6FSX9AAog9B4IYBuDHYiCEm8avX6dRkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEw1bTO1wZIlbUBUAFYmQNgA2oFRFJHVjJqAkFJagRXQVcxagNBWVRyGhsWDiAKDBGO1j4N7vuVCQ9QARJjAQxjAQIM5VUaSw/?operator=NKRA&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/rixos-premium-belek/p0okPb42JVHXrnMAZ6FSX9AAog9B4IYBuDHYiCEm8avX6dRkl9wFdvZbO7ehH_p3OrF3cqBE5LUkEwrLDP1wZIlbUBUAFYlQNgA2oFRFJHVjJqAkFJagRXQVcxagNBWVRyGhsWDiAKDBGO1j4N7vuVCQ9QARJjAQxjAQIMHKIwrg/?operator=NKRA&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Nekera"
+  },
+  {
+    "hotel_name": "GLORIA VERDE RESORT",
+    "price": 24111.0,
+    "dates": "2026-11-11 - 2026-11-21",
+    "checkin_date": "2026-11-11",
+    "checkout_date": "2026-11-21",
+    "duration": "10 nocy",
+    "duration_nights": 10,
+    "departure_airport": "Warszawa",
+    "board_basis": "Ultra All Inclusive",
+    "stars": 5,
+    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/346/5a5ad67a73bfffb0f1aae0559c6e5eecf9150f05d6fd3de9fc2fab9210805613.webp@webp",
+    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/346/5a5ad67a73bfffb0f1aae0559c6e5eecf9150f05d6fd3de9fc2fab9210805613.webp@webp",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/gloria-verde-resort/p_GT0blFmxna_IcSY-rjZAAAogXUNooQaT2-qvCyEl35nr2gAAAABttAQA37QEAAoAAAAqBFdFWlkwrLDP1wZIr7wBUEFY_v__________AWADaglFbnRlciBBaXJqBDA2NTVyQZ4BkwEfABwBAgAWABcJEdACEpoBFMEFFdwBGHNMgWNPAECcEkvnxQFQABuIeB3dqQ8gcg2Y6MEJARJjAQxjAQILlONq5g/?operator=WEZY&adults=2&children=2020-08-12",
+    "ta_rating": null,
+    "operator": "Coral Travel"
   },
   {
     "hotel_name": "Regnum Carya",
@@ -2239,26 +2239,9 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30834/53788f3d8240fc4660c72d29d099e39cf39bec5ba8eb2186356f17f454345d3d.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/BVBE/IMG/30834/53788f3d8240fc4660c72d29d099e39cf39bec5ba8eb2186356f17f454345d3d.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/regnum-carya-golf-spa-resort/pcYLFGBw5KpPbCFb95IRhEAAogBuBYsHsJOvi9Y0YC7gBBpKRN-Ds8TIVtrfm4HpRR-lMqBEJWQkUw1bTO1wZIjd4BUAFY0QJgAmoDVUFJciMcEfLwARu170EY3tskqwT02Ry5BMX8CAGI9NCeBQIAYwECC46mXDI/?operator=BVBE&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/regnum-carya-golf-spa-resort/pcYLFGBw5KpPbCFb95IRhEAAogBuBYsHsJOvi9Y0YC7gBBpKRN-Ds8TIVtrfm4HpRR-lMqBEJWQkUwrLDP1wZIjd4BUAFYzQJgAmoDVUFJciMcEfLwARu170EY3tskqwT02Ry5BMX8CAGI9NCeBQIAYwECCywK3Ww/?operator=BVBE&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Best Reisen"
-  },
-  {
-    "hotel_name": "Gloria Verde Resort",
-    "price": 31281.0,
-    "dates": "2026-11-19 - 2026-11-28",
-    "checkin_date": "2026-11-19",
-    "checkout_date": "2026-11-28",
-    "duration": "9 nocy",
-    "duration_nights": 9,
-    "departure_airport": "Warszawa",
-    "board_basis": "All Inclusive",
-    "stars": 5,
-    "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1198/02c0702d250aa75d4541d2612d235ffbd0654c6191da2ffd5f4cebc67e734380.webp@webp",
-    "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ECCX/IMG/1198/02c0702d250aa75d4541d2612d235ffbd0654c6191da2ffd5f4cebc67e734380.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/gloria-verde-resort/p8YXbeqCRgBuGRNJuwI9sEAAogK-B0qe4YYjkFtFRUIde55Yh49ICiJHuQ1XszKxkzEwMqBEVDQ1gw1bTO1wZIsfQBUAFYwQFgAmoCQUlyIBwRrgm5BJuDGqsEARjBtC8b98M-Ab-r5pICAgBjAQIGVJcZrA/?operator=ECCX&adults=2&children=2020-08-12",
-    "ta_rating": null,
-    "operator": "Ecco Holiday"
   },
   {
     "hotel_name": "MARDAN PALACE ANTALYA",
@@ -2273,7 +2256,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/82051/d28286db63ccdedecc51bba3ed11fbaf4fa64e8c38b2e05f0eb732b62040d307.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/82051/d28286db63ccdedecc51bba3ed11fbaf4fa64e8c38b2e05f0eb732b62040d307.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/mardan-palace/p424uY3ZkUhg32QD3UB1c1AAogDKkgZXYeRP7Bc5Mezl9MjQAAAABttAQA37QEAAoAAAAqBFdFWlkw1bTO1wZIno4CUEFYAWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABH7uQIbixId39UNIHINmOjBCQESYwEMYwECCxRGOwk/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,alanya,c/mardan-palace/p424uY3ZkUhg32QD3UB1c1AAogDKkgZXYeRP7Bc5Mezl9MjQAAAABttAQA37QEAAoAAAAqBFdFWlkwrLDP1wZIno4CUEFY_v__________AWADaglFbnRlciBBaXJqBDA2NTVyQp4BkwEfAAIBFgAcABcJEuoDFMEFFdwBGHNPgWNMAECcEkvnxQFQABH7uQIbixId39UNIHINmOjBCQESYwEMYwECCznANZw/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   },
@@ -2290,7 +2273,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPBAJU/f724ba1f6a14b81d79e2424965dc2d17c4a6aeb839557264880dc2b2144ac0cc.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/ITAK/IMG/GZPBAJU/f724ba1f6a14b81d79e2424965dc2d17c4a6aeb839557264880dc2b2144ac0cc.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/bayou-villas-by-lara-barut-collection-11/pSS-WiUTu3pdoozobGwOUgAAogr3fLDvLbvz-Kd4j1eHA3J6EGQx7C5nk7TceZkpNtMdMqBFZJVFgw1bTO1wZInbcCUEFY4QNgAmoMV0FXQVlURFAzMDcwagxBWVRXQVdEUDMwNzByOp0BjwEaABcJFQBcAVgFQI8DUudrUwBelpQBW-A7S40IYQBMoqgUDafjvQkgAFHZi6TbiQECDGMBAguJVF23/?operator=VITX&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,antalya,c/bayou-villas-by-lara-barut-collection-11/pSMiMj3jN5xmv1hKvg-_qxAAogbUyXBhftwuVyC0T8DHO0q6EGQx7C5nk7TceZkpNtMdMqBFZJVFgwrLDP1wZInbcCUEFY3QNgAmoMV0FXQVlURFAzMDcwagxBWVRXQVdEUDMwNzByOp0BjwEaABcJFQBcAVgFQI8DUudrUwBelpQBW-A7S40IYQBMxqgUDYPjvQkgAFHZi6TbiQECDGMBAgu26t2j/?operator=VITX&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Itaka"
   },
@@ -2307,7 +2290,7 @@
     "stars": 5,
     "main_image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/957/51c63679d4e8b72273b85ad897d6bed11e3f64ccbc4dfaf48afdcf890ea62391.webp@webp",
     "image_url": "https://cdn-1.fly.pl/_/rs:fill:400:300/plain/WEZY/IMG/957/51c63679d4e8b72273b85ad897d6bed11e3f64ccbc4dfaf48afdcf890ea62391.webp@webp",
-    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/gloria-golf-resort/p4p_muk1D_ANGaRQEmYAdYAAog5sDv8vy1BHA4qsGFEyQv2gAAAAButAQA4LQEAAoAAAAqBFdFWlkw1bTO1wZIrOYDUEFYqQFgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwAcAQIAFgAXCRLqAxHJAxT4ARXcARhzTIFjTwBAnBJL58UBUAAb-Hgd7qgPIHINnujBCQESYwEMYwECC_W7PmQ/?operator=WEZY&adults=2&children=2020-08-12",
+    "offer_url": "https://fly.pl/wycieczka/turcja,belek,c/gloria-golf-resort/p4p_muk1D_ANGaRQEmYAdYAAog5sDv8vy1BHA4qsGFEyQv2gAAAAButAQA4LQEAAoAAAAqBFdFWlkwrLDP1wZIrOYDUEFYpQFgA2oJRW50ZXIgQWlyagQwNjU1ckGeAZMBHwAcAQIAFgAXCRLqAxHJAxT4ARXcARhzTIFjTwBAnBJL58UBUAAb-Hgd7qgPIHINnujBCQESYwEMYwECC7QSogw/?operator=WEZY&adults=2&children=2020-08-12",
     "ta_rating": null,
     "operator": "Coral Travel"
   }
