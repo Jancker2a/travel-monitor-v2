@@ -580,6 +580,7 @@ class LiveScraperService:
                 peer_star_pure_rates[off_stars].append(off_decomp.get("pure_hotel_night_per_adult", 150.0))
 
         from app.services.search_intelligence import evaluate_search_intelligence
+        from app.services.geo_resolver import GeoResolver
 
         for off in raw_offers:
             hotel_id = slugify(off["hotel_name"])
@@ -588,12 +589,20 @@ class LiveScraperService:
             off_ta = off.get("ta_rating")
             off_reviews = off.get("ta_reviews")
 
+            geo_c, geo_r = GeoResolver.resolve(
+                hotel_name=off["hotel_name"],
+                offer_url=off.get("offer_url"),
+                current_country=hotel_entity.country if hotel_entity else None,
+                current_region=hotel_entity.region if hotel_entity else None,
+                destination_hint=destination_country,
+            )
+
             if not hotel_entity:
                 hotel_entity = Hotel(
                     hotel_id=hotel_id,
                     display_name=off["hotel_name"],
-                    country=destination_country,
-                    region="",
+                    country=geo_c,
+                    region=geo_r,
                     stars=off["stars"],
                     ta_rating=off_ta,
                     ta_reviews=off_reviews,
@@ -602,6 +611,10 @@ class LiveScraperService:
                 db.add(hotel_entity)
                 seen_hotels[hotel_id] = hotel_entity
             else:
+                if geo_c and (not hotel_entity.country or hotel_entity.country != geo_c):
+                    hotel_entity.country = geo_c
+                if geo_r and (not hotel_entity.region or hotel_entity.region != geo_r):
+                    hotel_entity.region = geo_r
                 if off["main_image_url"] and not hotel_entity.main_image_url:
                     hotel_entity.main_image_url = off["main_image_url"]
                 if off_ta and (not hotel_entity.ta_rating or hotel_entity.ta_rating != off_ta):

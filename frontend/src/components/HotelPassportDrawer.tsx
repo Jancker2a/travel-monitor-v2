@@ -428,7 +428,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
               </span>
             </div>
             <p id="drawerHotelSubtitle">
-              {(hotelItem?.country || passport?.country || "Курорт")} • {(hotelItem?.region || passport?.region || "Популярный регион")}
+              {(() => {
+                const c = passport?.country || hotelItem?.country || "Курорт";
+                const r = passport?.region || hotelItem?.region;
+                if (!r || r === c) {
+                  return c;
+                }
+                return `${c} • ${r}`;
+              })()}
             </p>
           </div>
 

@@ -367,9 +367,13 @@ class WatchlistService:
 
         if not hotel:
             # On-the-fly hotel creation for dynamically discovered search results
+            from app.services.geo_resolver import GeoResolver
             display_title = (name or " ".join(w.capitalize() for w in hotel_id.replace("_", "-").split("-"))).strip()
-            c_name = country or "Турция"
-            r_name = region or ""
+            c_name, r_name = GeoResolver.resolve(
+                hotel_name=display_title,
+                current_country=country,
+                current_region=region,
+            )
             st_val = int(stars or 4)
             ta_val = float(ta_rating) if ta_rating else 4.2
             img_val = main_image_url or ""
@@ -982,11 +986,19 @@ class WatchlistService:
         if final_main_image and final_main_image not in final_gallery:
             final_gallery = [final_main_image] + final_gallery
 
+        from app.services.geo_resolver import GeoResolver
+        canon_c, canon_r = GeoResolver.resolve(
+            hotel_name=hotel.display_name,
+            offer_url=all_cohorts[0].offer_url if all_cohorts else None,
+            current_country=hotel.country,
+            current_region=hotel.region,
+        )
+
         return HotelPassportResponse(
             hotel_id=hotel.hotel_id,
             display_name=hotel.display_name,
-            country=hotel.country,
-            region=hotel.region or "",
+            country=canon_c,
+            region=canon_r or "",
             stars=hotel.stars or 4,
             ta_rating=dossier["ta_rating"],
             ta_reviews=dossier["ta_reviews"],
