@@ -239,14 +239,14 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                           e.stopPropagation();
                           onToggleWatchlist(hotel);
                         }}
-                        className={`p-1.5 rounded-lg transition-all cursor-pointer shrink-0 ${
+                        className={`p-2 rounded-xl transition-all cursor-pointer shrink-0 ${
                           isWatched
-                            ? "text-amber-500 hover:text-amber-600 bg-amber-50 ring-1 ring-amber-300"
-                            : "text-slate-300 hover:text-amber-400 hover:bg-slate-100"
+                            ? "text-amber-500 hover:text-amber-600 bg-amber-50 border border-amber-300 shadow-2xs"
+                            : "text-slate-300 hover:text-amber-500 hover:bg-amber-50/60 border border-transparent hover:border-amber-200"
                         }`}
                         title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
                       >
-                        <Star className={`w-4 h-4 ${isWatched ? "fill-amber-400 text-amber-500" : ""}`} />
+                        <Star className={`w-4.5 h-4.5 ${isWatched ? "fill-amber-400 text-amber-500" : ""}`} />
                       </button>
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs">
                         <img
@@ -395,24 +395,6 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                         title="Открыть AI Паспорт отеля справа"
                       >
                         Паспорт
-                      </button>
-
-                      <button
-                        type="button"
-                        data-testid="favorite-action-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onToggleWatchlist(hotel);
-                        }}
-                        className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12.5px] font-bold border transition-all cursor-pointer shadow-2xs ${
-                          isWatched
-                            ? "bg-amber-500 hover:bg-amber-600 text-white border-amber-600 shadow-xs"
-                            : "bg-slate-50 hover:bg-amber-50 text-slate-700 hover:text-amber-700 border-slate-200 hover:border-amber-300"
-                        }`}
-                        title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
-                      >
-                        <Star className={`w-3.5 h-3.5 ${isWatched ? "fill-white text-white" : "text-amber-500 fill-amber-400"}`} />
-                        <span className="hidden sm:inline">{isWatched ? "В избранном" : "В избранное"}</span>
                       </button>
 
                       {offer.booking_url && (
