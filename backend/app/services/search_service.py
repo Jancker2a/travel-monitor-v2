@@ -128,7 +128,13 @@ class SearchService:
         # 1. Target canonical filter if specified
         spec = resolve_filter_spec(req.filter_id)
         if spec:
-            conditions.append(OfferCohort.destination_code.in_(spec["destination_codes"]))
+            filter_variants = [req.filter_id] + spec.get("destination_codes", [])
+            conditions.append(
+                or_(
+                    OfferCohort.filter_id.in_(filter_variants),
+                    OfferCohort.destination_code.in_(spec["destination_codes"]),
+                )
+            )
             conditions.append(OfferCohort.adults == spec["adults"])
             conditions.append(OfferCohort.children == spec["children"])
             if spec.get("airports"):

@@ -57,6 +57,31 @@ async def _async_background_db_maintenance():
     except Exception as mig_err:
         logger.warning(f"Note on background column backfill: {mig_err}")
 
+    # Enforce canonical geo consistency across all hotels (works for PostgreSQL & SQLite)
+    try:
+        async with engine.begin() as conn:
+            await conn.execute(text("""
+                UPDATE hotels 
+                SET country = 'Египет' 
+                WHERE LOWER(region) IN ('сафага', 'хургада', 'марса-алам', 'макади бэй', 'шарм-эль-шейх', 'сома бэй', 'эль-гуна', 'дахаб', 'таба') 
+                  AND (country IS NULL OR country != 'Египет');
+            """))
+            await conn.execute(text("""
+                UPDATE hotels 
+                SET region = 'Хургада', country = 'Египет' 
+                WHERE (LOWER(hotel_name) LIKE '%arena beach%' OR hotel_id = 'arena-beach-resort-spa')
+                  AND (region != 'Хургада' OR country != 'Египет');
+            """))
+            await conn.execute(text("""
+                UPDATE hotels 
+                SET region = 'Сафага', country = 'Египет' 
+                WHERE (LOWER(hotel_name) LIKE '%shams safaga%' OR hotel_id = 'shams-safaga')
+                  AND (region != 'Сафага' OR country != 'Египет');
+            """))
+            logger.info("✅ Canonical geo consistency verified and enforced.")
+    except Exception as geo_err:
+        logger.warning(f"Note on background geo sanitization: {geo_err}")
+
     # Prewarm in-memory caches for high-traffic endpoints so first requests are instantaneous
     logger.info("Prewarming in-memory caches for high-traffic endpoints...")
     async with AsyncSessionLocal() as db:

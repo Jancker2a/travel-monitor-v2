@@ -58,14 +58,19 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActiveTab("ai");
 
     const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
+    const is1pFilter = Boolean(filterId && (filterId.includes("1p") || filterId.includes("_1_adult")));
     const fallbackAdults =
       searchTravelers?.adults ??
       filterPreset?.searchReq?.travelers?.adults ??
+      (is1pFilter ? 1 : undefined) ??
+      passport?.user_query_scope?.adults ??
       hotelItem?.current_offer?.adults ??
-      (filterId ? (filterId.includes("1p") ? 1 : 2) : 1);
+      1;
     const fallbackChildren =
       searchTravelers?.children ??
       filterPreset?.searchReq?.travelers?.children ??
+      (is1pFilter ? 0 : undefined) ??
+      passport?.user_query_scope?.children ??
       hotelItem?.current_offer?.children ??
       0;
     const fallbackNights =
@@ -125,17 +130,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     }
 
     const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
+    const is1pFilter = Boolean(filterId && (filterId.includes("1p") || filterId.includes("_1_adult")));
     const userAdults =
       searchTravelers?.adults ??
       filterPreset?.searchReq?.travelers?.adults ??
-      hotelItem?.current_offer?.adults ??
+      (is1pFilter ? 1 : undefined) ??
       passport?.user_query_scope?.adults ??
-      (filterId ? (filterId.includes("1p") ? 1 : 2) : 1);
+      hotelItem?.current_offer?.adults ??
+      1;
     const userChildren =
       searchTravelers?.children ??
       filterPreset?.searchReq?.travelers?.children ??
-      hotelItem?.current_offer?.children ??
+      (is1pFilter ? 0 : undefined) ??
       passport?.user_query_scope?.children ??
+      hotelItem?.current_offer?.children ??
       0;
     const userNights =
       hotelItem?.current_offer?.duration_nights ||
@@ -863,17 +871,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
             <div className="drawer-tab-panel active" id="tabPanel-history">
               {(() => {
                 const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
+                const is1pFilter = Boolean(filterId && (filterId.includes("1p") || filterId.includes("_1_adult")));
                 const userAdults =
                   searchTravelers?.adults ??
                   filterPreset?.searchReq?.travelers?.adults ??
-                  hotelItem?.current_offer?.adults ??
+                  (is1pFilter ? 1 : undefined) ??
                   passport?.user_query_scope?.adults ??
-                  (filterId ? (filterId.includes("1p") ? 1 : 2) : 1);
+                  hotelItem?.current_offer?.adults ??
+                  1;
                 const userChildren =
                   searchTravelers?.children ??
                   filterPreset?.searchReq?.travelers?.children ??
-                  hotelItem?.current_offer?.children ??
+                  (is1pFilter ? 0 : undefined) ??
                   passport?.user_query_scope?.children ??
+                  hotelItem?.current_offer?.children ??
                   0;
                 const userNights =
                   hotelItem?.current_offer?.duration_nights ||
