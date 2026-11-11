@@ -10,9 +10,201 @@ import {
   HotelCatalogResponse,
   MarketOracleData,
   FilterDeparturesData,
+  UserProfile,
+  AuthTokenResponse,
+  FlyUrlParseResponse,
+  UserMonitor,
 } from "../types";
 
 const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || "";
+
+const AUTH_TOKEN_KEY = "tm_access_token";
+const AUTH_USER_KEY = "tm_user_profile";
+
+export function getStoredToken(): string | null {
+  return localStorage.getItem(AUTH_TOKEN_KEY);
+}
+
+export function setStoredToken(token: string) {
+  localStorage.setItem(AUTH_TOKEN_KEY, token);
+}
+
+export function getStoredUser(): UserProfile | null {
+  try {
+    const raw = localStorage.getItem(AUTH_USER_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function setStoredUser(user: UserProfile) {
+  localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
+}
+
+export function clearAuth() {
+  localStorage.removeItem(AUTH_TOKEN_KEY);
+  localStorage.removeItem(AUTH_USER_KEY);
+}
+
+function getAuthHeaders(): Record<string, string> {
+  const token = getStoredToken();
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  return headers;
+}
+
+// ══════════════════════════════════════════════════════════════
+// AUTHENTICATION APIs
+// ══════════════════════════════════════════════════════════════
+
+export async function registerUser(data: {
+  email: string;
+  password: string;
+  full_name?: string;
+  telegram_chat_id?: string;
+}): Promise<AuthTokenResponse> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка регистрации" }));
+    throw new Error(err.detail || `Ошибка регистрации (${resp.status})`);
+  }
+  const result: AuthTokenResponse = await resp.json();
+  setStoredToken(result.access_token);
+  setStoredUser(result.user);
+  return result;
+}
+
+export async function loginUser(data: {
+  email: string;
+  password: string;
+}): Promise<AuthTokenResponse> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Неверный логин или пароль" }));
+    throw new Error(err.detail || `Ошибка входа (${resp.status})`);
+  }
+  const result: AuthTokenResponse = await resp.json();
+  setStoredToken(result.access_token);
+  setStoredUser(result.user);
+  return result;
+}
+
+export async function fetchCurrentUser(): Promise<UserProfile> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/me`, {
+    headers: getAuthHeaders(),
+  });
+  if (!resp.ok) {
+    clearAuth();
+    throw new Error("Сессия истекла");
+  }
+  const user: UserProfile = await resp.json();
+  setStoredUser(user);
+  return user;
+}
+
+export async function logoutUser(): Promise<void> {
+  try {
+    await fetch(`${API_BASE}/api/v2/auth/logout`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+    });
+  } catch {}
+  clearAuth();
+}
+
+// ══════════════════════════════════════════════════════════════
+// USER MONITORS APIs (Multi-tenant search monitoring)
+// ══════════════════════════════════════════════════════════════
+
+export async function parseFlyUrl(url: string): Promise<FlyUrlParseResponse> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/parse-url`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ url }),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка парсинга ссылки" }));
+    throw new Error(err.detail || `Ошибка разбора ссылки (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function listUserMonitors(): Promise<UserMonitor[]> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors`, {
+    headers: getAuthHeaders(),
+  });
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки мониторингов (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function createUserMonitor(data: {
+  title: string;
+  source_type: string;
+  fly_source_url?: string;
+  filter_params: Record<string, any>;
+  check_interval_hours?: number;
+  min_drop_pct?: number;
+  max_budget_pln?: number;
+  notify_telegram?: boolean;
+  notify_email?: boolean;
+}): Promise<UserMonitor> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка создания мониторинга" }));
+    throw new Error(err.detail || `Ошибка создания мониторинга (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function toggleUserMonitor(monitorId: string): Promise<UserMonitor> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/${encodeURIComponent(monitorId)}/toggle`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+  });
+  if (!resp.ok) {
+    throw new Error(`Ошибка переключения статуса (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function deleteUserMonitor(monitorId: string): Promise<void> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/${encodeURIComponent(monitorId)}`, {
+    method: "DELETE",
+    headers: getAuthHeaders(),
+  });
+  if (!resp.ok) {
+    throw new Error(`Ошибка удаления мониторинга (${resp.status})`);
+  }
+}
+
+export async function runUserMonitorNow(monitorId: string): Promise<any> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/${encodeURIComponent(monitorId)}/run-now`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка запуска сканирования" }));
+    throw new Error(err.detail || `Ошибка запуска (${resp.status})`);
+  }
+  return resp.json();
+}
 
 export async function searchTours(req: SearchRequest): Promise<SearchResponse> {
   const resp = await fetch(`${API_BASE}/api/v2/search`, {

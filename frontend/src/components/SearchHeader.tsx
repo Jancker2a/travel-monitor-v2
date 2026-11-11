@@ -20,6 +20,7 @@ interface Props {
   onSearch: (req: SearchRequest) => void;
   isLoading: boolean;
   initialPreset?: any;
+  onSaveMonitor?: () => void;
 }
 
 interface DestinationDef {
@@ -151,7 +152,7 @@ const HOTEL_STARS = [
   { val: 5, label: "5★" },
 ];
 
-export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPreset }) => {
+export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPreset, onSaveMonitor }) => {
   // 1. Destination & Region
   const [destination, setDestination] = useState("turkey");
   const [region, setRegion] = useState("turkey");
@@ -1135,6 +1136,17 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
               <option value="deal_score">По выгодности (Deal Score)</option>
               <option value="discount">По величине скидки</option>
             </select>
+
+            {onSaveMonitor && (
+              <button
+                type="button"
+                onClick={onSaveMonitor}
+                className="ml-2 px-3 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+                title="Поставить этот поиск на непрерывный мониторинг цен"
+              >
+                <span>📡 На мониторинг</span>
+              </button>
+            )}
           </div>
         </div>
       </form>

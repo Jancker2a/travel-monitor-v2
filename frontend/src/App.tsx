@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { SidebarNavigation } from "./components/SidebarNavigation";
 import { HeroTerminal } from "./components/HeroTerminal";
 import { AiMarketBriefing } from "./components/AiMarketBriefing";
@@ -11,6 +11,9 @@ import { HotelPassportDrawer } from "./components/HotelPassportDrawer";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
 import { SearchHeader } from "./components/SearchHeader";
 import { GermanArbitrageView } from "./components/GermanArbitrageView";
+import { AuthModal } from "./components/AuthModal";
+import { CreateMonitorModal } from "./components/CreateMonitorModal";
+import { UserMonitorsView } from "./components/UserMonitorsView";
 import { LoadingSpinner } from "./components/common/LoadingSpinner";
 import {
   SearchRequest,
@@ -19,6 +22,8 @@ import {
   PriceDropItem,
   AirportStat,
   HotelCatalogCard,
+  UserProfile,
+  UserMonitor,
 } from "./types";
 import {
   searchTours,
@@ -29,8 +34,12 @@ import {
   getAirportComparison,
   getFilterHotelsCatalog,
   getArbitrageDeals,
+  getStoredUser,
+  fetchCurrentUser,
+  logoutUser,
+  listUserMonitors,
 } from "./services/api";
-import { Bell, Menu, Radio, Sparkles } from "lucide-react";
+import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
 
@@ -789,9 +798,36 @@ function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
 
 export const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<"filter" | "search" | "arbitrage">("filter");
+  const [activeTab, setActiveTab] = useState<"filter" | "search" | "arbitrage" | "my_monitors">("filter");
   const [activeFilterId, setActiveFilterId] = useState<string>("turkey_7_10");
   const [viewMode, setViewMode] = useState<"cards" | "table" | "arbitrage">("table");
+
+  // Auth & Multi-tenant State
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => getStoredUser());
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isCreateMonitorOpen, setIsCreateMonitorOpen] = useState(false);
+  const [userMonitors, setUserMonitors] = useState<UserMonitor[]>([]);
+  const [isLoadingMonitors, setIsLoadingMonitors] = useState(false);
+
+  const loadUserMonitors = useCallback(async () => {
+    if (!currentUser) {
+      setUserMonitors([]);
+      return;
+    }
+    setIsLoadingMonitors(true);
+    try {
+      const list = await listUserMonitors();
+      setUserMonitors(list);
+    } catch (err) {
+      console.warn("Could not load user monitors:", err);
+    } finally {
+      setIsLoadingMonitors(false);
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    loadUserMonitors();
+  }, [loadUserMonitors]);
 
   const [results, setResults] = useState<SearchHotelItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -817,8 +853,8 @@ export const App: React.FC = () => {
   // Current active preset config
   const currentPreset = FILTER_PRESETS[activeFilterId] || FILTER_PRESETS["turkey_7_10_days"];
 
-  // Navigation tab switcher synced with URL hash (#/search, #/radar/:id, #/arbitrage)
-  const navigateToTab = (tab: "filter" | "search" | "arbitrage", filterId?: string) => {
+  // Navigation tab switcher synced with URL hash (#/search, #/radar/:id, #/arbitrage, #/monitors)
+  const navigateToTab = (tab: "filter" | "search" | "arbitrage" | "my_monitors", filterId?: string) => {
     setActiveTab(tab);
     if (tab === "search") {
       window.location.hash = "#/search";
@@ -828,6 +864,8 @@ export const App: React.FC = () => {
     } else if (tab === "arbitrage") {
       window.location.hash = "#/arbitrage";
       setViewMode("arbitrage");
+    } else if (tab === "my_monitors") {
+      window.location.hash = "#/monitors";
     } else {
       const target = filterId || activeFilterId;
       window.location.hash = `#/radar/${target}`;
@@ -846,6 +884,8 @@ export const App: React.FC = () => {
       } else if (hash.includes("arbitrage")) {
         setActiveTab("filter");
         setViewMode("arbitrage");
+      } else if (hash.includes("monitors")) {
+        setActiveTab("my_monitors");
       } else if (hash.startsWith("#/radar/") || hash.startsWith("#/filter/")) {
         const rawId = hash.replace("#/radar/", "").replace("#/filter/", "").split("?")[0];
         if (rawId && FILTER_PRESETS[rawId]) {
@@ -1264,6 +1304,10 @@ export const App: React.FC = () => {
           navigateToTab("arbitrage");
           setIsSidebarOpen(false);
         }}
+        onOpenMonitors={() => {
+          navigateToTab("my_monitors");
+          setIsSidebarOpen(false);
+        }}
         activeTab={activeTab}
       />
 
@@ -1360,6 +1404,23 @@ export const App: React.FC = () => {
               >
                 <span>🔍 Интерактивный поиск</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => navigateToTab("my_monitors")}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  activeTab === "my_monitors"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
+                }`}
+              >
+                <span>📡 Мои мониторинги</span>
+                {userMonitors.length > 0 && (
+                  <span className="px-1.5 py-0.2 rounded-full bg-sky-500/30 text-sky-300 text-[10px] font-black">
+                    {userMonitors.length}
+                  </span>
+                )}
+              </button>
             </div>
 
             <button
@@ -1374,22 +1435,76 @@ export const App: React.FC = () => {
                 </span>
               )}
             </button>
+
+            {/* User Profile / Auth Button */}
+            {currentUser ? (
+              <div className="flex items-center gap-1.5 pl-2 border-l border-slate-700">
+                <button
+                  type="button"
+                  data-testid="user-profile-btn"
+                  onClick={() => navigateToTab("my_monitors")}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-colors cursor-pointer"
+                  title="Мой профиль и мониторинги"
+                >
+                  <UserIcon className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="max-w-[110px] truncate hidden sm:inline">
+                    {currentUser.full_name || currentUser.email.split("@")[0]}
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  data-testid="logout-btn"
+                  onClick={async () => {
+                    await logoutUser();
+                    setCurrentUser(null);
+                    setUserMonitors([]);
+                  }}
+                  className="p-2 rounded-xl bg-slate-800 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 border border-slate-700 transition-colors cursor-pointer"
+                  title="Выйти из аккаунта"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                data-testid="login-nav-btn"
+                onClick={() => setIsAuthModalOpen(true)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer"
+              >
+                <UserIcon className="w-3.5 h-3.5" />
+                <span>Войти</span>
+              </button>
+            )}
           </div>
         </div>
       </header>
 
       {/* Main Container */}
       <main className="max-w-[1880px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full space-y-6">
-        {/* If in Search Tab */}
-        {activeTab === "search" && (
-          <div className="mb-4">
-            <SearchHeader
-              onSearch={handleSearch}
-              isLoading={isLoading}
-              initialPreset={FILTER_PRESETS[activeFilterId]}
-            />
-          </div>
-        )}
+        {/* If in My Monitors Tab */}
+        {activeTab === "my_monitors" ? (
+          <UserMonitorsView
+            currentUser={currentUser}
+            monitors={userMonitors}
+            isLoading={isLoadingMonitors}
+            onRefresh={loadUserMonitors}
+            onOpenCreateModal={() => setIsCreateMonitorOpen(true)}
+            onRequestAuth={() => setIsAuthModalOpen(true)}
+          />
+        ) : (
+          <>
+            {/* If in Search Tab */}
+            {activeTab === "search" && (
+              <div className="mb-4">
+                <SearchHeader
+                  onSearch={handleSearch}
+                  isLoading={isLoading}
+                  initialPreset={FILTER_PRESETS[activeFilterId]}
+                  onSaveMonitor={() => setIsCreateMonitorOpen(true)}
+                />
+              </div>
+            )}
 
         {/* Filter dashboard headers & folds: ONLY in filter monitoring mode */}
         {activeTab === "filter" && (
@@ -1577,6 +1692,8 @@ export const App: React.FC = () => {
             </span>
           </div>
         )}
+          </>
+        )}
       </main>
 
       {/* 7. Hotel AI Passport Drawer (Slides out from RIGHT) */}
@@ -1610,6 +1727,32 @@ export const App: React.FC = () => {
         onClose={() => setIsWatchlistOpen(false)}
         items={watchlistItems}
         onDeleteItem={handleDeleteWatchlist}
+      />
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthSuccess={(u) => {
+          setCurrentUser(u);
+          loadUserMonitors();
+        }}
+      />
+
+      {/* Create User Monitor Modal */}
+      <CreateMonitorModal
+        isOpen={isCreateMonitorOpen}
+        onClose={() => setIsCreateMonitorOpen(false)}
+        onCreated={(m) => {
+          setUserMonitors((prev) => [m, ...prev]);
+          navigateToTab("my_monitors");
+        }}
+        currentSearchReq={lastSearchReq || undefined}
+        currentUser={currentUser}
+        onRequestAuth={() => {
+          setIsCreateMonitorOpen(false);
+          setIsAuthModalOpen(true);
+        }}
       />
     </div>
   );

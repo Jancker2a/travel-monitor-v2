@@ -4,6 +4,8 @@ from app.models.price_snapshot import PriceSnapshot
 from app.models.watchlist import WatchlistItem
 from app.models.normalized_snapshot import NormalizedPriceSnapshot
 from app.models.filter_monitor import FilterMonitor
+from app.models.user import User
+from app.models.user_monitor import UserMonitor
 
 __all__ = [
     "Hotel",
@@ -13,5 +15,7 @@ __all__ = [
     "WatchlistItem",
     "NormalizedPriceSnapshot",
     "FilterMonitor",
+    "User",
+    "UserMonitor",
 ]
 

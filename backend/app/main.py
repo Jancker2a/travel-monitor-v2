@@ -159,6 +159,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Mount feature routers
+from app.routers import auth, user_monitors
+app.include_router(auth.router)
+app.include_router(user_monitors.router)
+
 
 @app.get("/healthz")
 async def healthcheck(db: AsyncSession = Depends(get_db)):

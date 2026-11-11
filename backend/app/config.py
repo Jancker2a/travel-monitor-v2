@@ -13,6 +13,10 @@ class Settings(BaseSettings):
     DATABASE_URL: str = f"sqlite+aiosqlite:///{ROOT_DIR / 'travel_monitor_v2.db'}"
     REDIS_URL: Optional[str] = "redis://localhost:6379/0"
     SECRET_KEY: str = "development-secret-key-change-in-production-2026"
+    JWT_SECRET_KEY: str = "development-jwt-secret-key-super-entropy-change-in-prod-2026"
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours access token
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 30
     TELEGRAM_BOT_TOKEN: Optional[str] = None
     
     # Live Crawler settings

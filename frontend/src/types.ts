@@ -1,3 +1,60 @@
+export interface UserProfile {
+  id: string;
+  email: string;
+  full_name?: string;
+  role: string;
+  telegram_chat_id?: string;
+  is_active: boolean;
+  created_at?: string;
+}
+
+export interface AuthTokenResponse {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  expires_in_seconds: number;
+  user: UserProfile;
+}
+
+export interface FlyUrlParseResponse {
+  is_valid: boolean;
+  parsed_title: string;
+  destination?: string;
+  region?: string;
+  departure_airports: string[];
+  date_from?: string;
+  date_to?: string;
+  duration_min?: number;
+  duration_max?: number;
+  adults: number;
+  children: number;
+  catering?: string;
+  stars?: number;
+  structured_search_request: Record<string, any>;
+  error_message?: string;
+}
+
+export interface UserMonitor {
+  id: string;
+  user_id: string;
+  title: string;
+  source_type: string;
+  fly_source_url?: string;
+  filter_params: Record<string, any>;
+  check_interval_hours: number;
+  min_drop_pct: number;
+  max_budget_pln?: number;
+  notify_telegram: boolean;
+  notify_email: boolean;
+  is_active: boolean;
+  status: "IDLE" | "RUNNING" | "SUCCESS" | "ERROR";
+  last_checked_at?: string;
+  last_offers_count: number;
+  last_min_price_pln?: number;
+  last_error_message?: string;
+  created_at?: string;
+}
+
 export interface SearchDates {
   start_date_min: string;
   start_date_max: string;

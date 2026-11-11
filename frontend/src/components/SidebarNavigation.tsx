@@ -11,6 +11,7 @@ import {
   Sparkles,
   ExternalLink,
   PlusCircle,
+  Bell,
 } from "lucide-react";
 
 export interface NavFilterItem {
@@ -30,7 +31,8 @@ interface SidebarNavigationProps {
   onSelectFilter: (id: string) => void;
   onOpenSearch: () => void;
   onOpenArbitrage: () => void;
-  activeTab: "filter" | "search" | "arbitrage";
+  onOpenMonitors?: () => void;
+  activeTab: "filter" | "search" | "arbitrage" | "my_monitors";
 }
 
 export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
@@ -40,6 +42,7 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
   onSelectFilter,
   onOpenSearch,
   onOpenArbitrage,
+  onOpenMonitors,
   activeTab,
 }) => {
   const filterGroups: {
@@ -190,6 +193,22 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
             <Scale className="w-4 h-4 text-emerald-400" />
             <span>🇩🇪 Немецкий арбитраж (BER)</span>
           </button>
+
+          {onOpenMonitors && (
+            <button
+              onClick={() => {
+                onOpenMonitors();
+              }}
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                activeTab === "my_monitors"
+                  ? "bg-blue-600 text-white shadow-sm shadow-blue-500/30"
+                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
+              }`}
+            >
+              <Bell className="w-4 h-4 text-amber-400" />
+              <span>📡 Мои мониторинги</span>
+            </button>
+          )}
         </div>
 
         {/* Filter Presets List (V1 Core Dashboards) */}
