@@ -259,3 +259,4 @@ class FlyUrlParser:
                 parsed_title="Ошибка разбора ссылки",
                 error_message=f"Не удалось распознать параметры ссылки Fly.pl: {str(e)}",
             )
+

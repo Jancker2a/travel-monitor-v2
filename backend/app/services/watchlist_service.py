@@ -826,7 +826,8 @@ class WatchlistService:
 
             if current_price and float(current_price) > 0:
                 curr_p = float(current_price)
-                now_dt = datetime.utcnow()
+                from datetime import timezone
+                now_dt = datetime.now(timezone.utc)
                 decomp_curr = CostDecomposer.decompose(
                     total_price_pln=curr_p,
                     duration_nights=target_nights,
@@ -837,7 +838,21 @@ class WatchlistService:
                 curr_pure_night = decomp_curr.get("pure_hotel_night_per_adult", 125.0)
                 curr_norm = round(decomp_curr.get("flight_seat_cost", 1300.0) + (8.0 * curr_pure_night * single_factor), 1)
 
-                if history_points and (now_dt - history_points[-1].recorded_at).total_seconds() < 1800:
+                is_recent = False
+                if history_points:
+                    last_rec = history_points[-1].recorded_at
+                    if isinstance(last_rec, str):
+                        try:
+                            last_rec = datetime.fromisoformat(last_rec.replace("Z", "+00:00"))
+                        except Exception:
+                            last_rec = None
+                    if isinstance(last_rec, datetime):
+                        if last_rec.tzinfo is None:
+                            last_rec = last_rec.replace(tzinfo=timezone.utc)
+                        if abs((now_dt - last_rec).total_seconds()) < 1800:
+                            is_recent = True
+
+                if is_recent:
                     history_points[-1].scaled_tour_price = curr_p
                     history_points[-1].pure_hotel_night_rate = round(curr_pure_night, 1)
                     history_points[-1].normalized_price_1p_8n = curr_norm

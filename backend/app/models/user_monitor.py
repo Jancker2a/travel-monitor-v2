@@ -52,3 +52,4 @@ class UserMonitor(Base):
 
     def __repr__(self) -> str:
         return f"<UserMonitor {self.id}: '{self.title}' (User {self.user_id})>"
+

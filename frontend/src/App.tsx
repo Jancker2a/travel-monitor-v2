@@ -43,7 +43,7 @@ import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus } from "luc
 
 const CURRENT_USER_ID = "user_demo_01";
 
-const FILTER_PRESETS: Record<
+export const FILTER_PRESETS: Record<
   string,
   {
     title: string;
@@ -737,9 +737,12 @@ const INITIAL_FILTERS: FilterState = {
   onlyFavorites: false,
 };
 
-function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
-  const duration = c.cheapest_duration_nights || 7;
+function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotelItem {
+  const duration = c.cheapest_duration_nights || preset?.searchReq?.duration?.min_nights || 7;
   const nights = duration > 0 ? duration : 7;
+  const adults = preset?.searchReq?.travelers?.adults ?? (preset?.searchReq?.filter_id?.includes("1p") ? 1 : 2);
+  const children = preset?.searchReq?.travelers?.children ?? 0;
+  const totalPax = Math.max(1, adults + children);
   return {
     hotel_id: c.hotel_id,
     hotel_name: c.display_name,
@@ -762,11 +765,13 @@ function catalogCardToSearchItem(c: HotelCatalogCard): SearchHotelItem {
     current_offer: {
       cohort_hash: `${c.hotel_id}_${c.cheapest_checkin_date || "date"}_${nights}`,
       total_price_pln: c.current_min_price,
-      price_per_night_pax: Math.round(c.current_min_price / nights / 2),
+      price_per_night_pax: Math.round(c.current_min_price / nights / totalPax),
       departure_date: c.cheapest_checkin_date || "",
       duration_nights: nights,
       airport: c.cheapest_airport_code || "WAW",
       booking_url: c.cheapest_offer_url,
+      adults: adults,
+      children: children,
     },
     intelligence: {
       deal_score: c.deal_score,
@@ -902,8 +907,12 @@ export const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // 1. Critical path: Load active filter catalog immediately
-    loadFilterResults("turkey_7_10");
+    // 1. Critical path: Load active filter catalog immediately if no hash was present
+    const hash = window.location.hash;
+    const hasExplicitFilter = hash.startsWith("#/radar/") || hash.startsWith("#/filter/");
+    if (!hasExplicitFilter && !hash.startsWith("#/search") && !hash.startsWith("#/monitors")) {
+      loadFilterResults("turkey_7_10");
+    }
 
     // 2. User watchlist (lightweight)
     getWatchlist(CURRENT_USER_ID)
@@ -954,7 +963,7 @@ export const App: React.FC = () => {
         maxPrice: preset?.displayPriceCeiling,
       });
       if (catResp.hotels && catResp.hotels.length > 0) {
-        setResults(catResp.hotels.map(catalogCardToSearchItem));
+        setResults(catResp.hotels.map((h) => catalogCardToSearchItem(h, preset)));
         return;
       }
       const resp = await searchTours(preset.searchReq);

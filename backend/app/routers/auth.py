@@ -45,3 +45,4 @@ async def get_me(current_user: User = Depends(get_current_user)):
 async def logout(current_user: User = Depends(get_current_user)):
     """Logs out current user session."""
     return {"ok": True, "message": "Сессия успешно завершена"}
+

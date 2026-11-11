@@ -99,3 +99,4 @@ async def run_monitor_now(
 ):
     """Triggers immediate live scrape for a user monitor."""
     return await UserMonitorService.run_monitor_now(db, current_user.id, monitor_id)
+

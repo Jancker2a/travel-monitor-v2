@@ -170,3 +170,4 @@ async def get_optional_current_user(
     if not user_id:
         return None
     return await AuthService.get_user_by_id(db, user_id)
+
