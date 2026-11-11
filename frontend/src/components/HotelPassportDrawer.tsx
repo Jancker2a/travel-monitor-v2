@@ -62,7 +62,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       searchTravelers?.adults ??
       filterPreset?.searchReq?.travelers?.adults ??
       hotelItem?.current_offer?.adults ??
-      (filterId?.includes("1p") ? 1 : 2);
+      (filterId ? (filterId.includes("1p") ? 1 : 2) : 1);
     const fallbackChildren =
       searchTravelers?.children ??
       filterPreset?.searchReq?.travelers?.children ??
@@ -130,7 +130,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       filterPreset?.searchReq?.travelers?.adults ??
       hotelItem?.current_offer?.adults ??
       passport?.user_query_scope?.adults ??
-      (filterId?.includes("1p") ? 1 : 2);
+      (filterId ? (filterId.includes("1p") ? 1 : 2) : 1);
     const userChildren =
       searchTravelers?.children ??
       filterPreset?.searchReq?.travelers?.children ??
@@ -868,7 +868,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   filterPreset?.searchReq?.travelers?.adults ??
                   hotelItem?.current_offer?.adults ??
                   passport?.user_query_scope?.adults ??
-                  (filterId?.includes("1p") ? 1 : 2);
+                  (filterId ? (filterId.includes("1p") ? 1 : 2) : 1);
                 const userChildren =
                   searchTravelers?.children ??
                   filterPreset?.searchReq?.travelers?.children ??

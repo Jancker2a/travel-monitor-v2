@@ -1596,7 +1596,6 @@ export const App: React.FC = () => {
                 <SearchHeader
                   onSearch={handleSearch}
                   isLoading={isLoading}
-                  initialPreset={FILTER_PRESETS[activeFilterId]}
                   onSaveMonitor={() => {
                     if (!currentUser) {
                       setAuthModalReason("🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться.");
@@ -1816,7 +1815,11 @@ export const App: React.FC = () => {
             hotelId={activeHotelPassport}
             filterId={activeTab === "filter" ? activeFilterId : undefined}
             hotelItem={activePassportHotel}
-            searchTravelers={activeTab === "search" ? lastSearchReq?.travelers : undefined}
+            searchTravelers={
+              activeTab === "search"
+                ? (lastSearchReq?.travelers || { adults: 1, children: 0, children_ages: [] })
+                : undefined
+            }
             isWatched={isPassportWatched}
             onToggleWatchlist={activePassportHotel ? () => handleToggleWatchlist(activePassportHotel) : undefined}
             onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}

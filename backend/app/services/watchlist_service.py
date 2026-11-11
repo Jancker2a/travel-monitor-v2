@@ -505,7 +505,7 @@ class WatchlistService:
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
         spec = resolve_filter_spec(filter_id) if filter_id else None
-        target_adults = int(adults) if (adults is not None and adults > 0) else (spec.get("adults", 2) if spec else 2)
+        target_adults = int(adults) if (adults is not None and adults > 0) else (spec.get("adults", 1) if spec else 1)
         target_children = int(children) if (children is not None and children >= 0) else (spec.get("children", 0) if spec else 0)
         target_nights = int(duration_nights) if (duration_nights is not None and duration_nights > 0) else (spec.get("min_nights", 7) if spec else 7)
 

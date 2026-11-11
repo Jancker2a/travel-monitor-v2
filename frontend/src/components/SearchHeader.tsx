@@ -877,6 +877,35 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
               </span>
             </label>
 
+            {/* Quick travelers presets */}
+            <div className="flex items-center gap-1 pb-1 text-[11px] flex-wrap">
+              {[
+                { ad: 1, ch: 0, label: "👤 1 взр" },
+                { ad: 2, ch: 0, label: "👥 2 взр" },
+                { ad: 2, ch: 1, label: "👨‍👩‍👧 2+1" },
+                { ad: 2, ch: 2, label: "👨‍👩‍👧‍👦 2+2" },
+              ].map((tp) => {
+                const isActive = adults === tp.ad && childrenCount === tp.ch;
+                return (
+                  <button
+                    key={tp.label}
+                    type="button"
+                    onClick={() => {
+                      setAdults(tp.ad);
+                      handleChildrenCountChange(tp.ch);
+                    }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-semibold transition-all ${
+                      isActive
+                        ? "bg-blue-600 text-white shadow-2xs font-bold ring-1 ring-blue-600"
+                        : "bg-white hover:bg-slate-200 text-slate-600 border border-slate-200"
+                    }`}
+                  >
+                    {tp.label}
+                  </button>
+                );
+              })}
+            </div>
+
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div>
                 <label className="text-[10px] text-slate-500 font-medium block">
