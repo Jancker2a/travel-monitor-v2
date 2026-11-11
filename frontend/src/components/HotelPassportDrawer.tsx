@@ -257,13 +257,15 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
   // Ensure AI Price summary strictly matches bold currentPrice
   const dynamicPriceSummary = useMemo(() => {
-    if (passport?.ai_price_summary) {
+    if (passport?.ai_price_summary && currentPrice > 0) {
       return passport.ai_price_summary.replace(
-        /Текущая цена\s+[\d\s,.]+\s*zł/gi,
-        `Текущая цена ${currentPrice.toLocaleString("ru-RU")} zł`
+        /Текущая цена\s+[\d\s\u00a0,.]+\s*(?:zł|pln)/gi,
+        `Текущая цена ${Math.round(currentPrice).toLocaleString("ru-RU")} zł`
       );
     }
-    return `Текущая цена ${currentPrice.toLocaleString("ru-RU")} zł соответствует справедливой рыночной оценке.`;
+    return currentPrice > 0
+      ? `Текущая цена ${Math.round(currentPrice).toLocaleString("ru-RU")} zł соответствует справедливой рыночной оценке.`
+      : "";
   }, [passport?.ai_price_summary, currentPrice]);
 
   const currentDealScore = hotelItem?.intelligence?.deal_score ?? passport?.deal_score ?? 80;

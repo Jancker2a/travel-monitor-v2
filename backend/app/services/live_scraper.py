@@ -573,8 +573,31 @@ class LiveScraperService:
 
             curr_price = float(off["price"])
             hotel_snaps = hist_map.get(hotel_id, [])
-            spark_pts = [s["price"] for s in hotel_snaps] if hotel_snaps else [curr_price]
-            sparkline = list(reversed(spark_pts[:12]))
+            spark_pts = []
+            if hotel_snaps:
+                for s in hotel_snaps[:12]:
+                    s_price = s["price"]
+                    if s["adults"] == req_adults and s["children"] == req_children:
+                        spark_pts.append(round(s_price, 0))
+                    else:
+                        d = CostDecomposer.decompose(
+                            total_price_pln=s_price,
+                            duration_nights=s.get("duration_nights", 8),
+                            adults=s["adults"],
+                            children=s["children"],
+                            destination=destination_country,
+                        )
+                        flight_bench = CostDecomposer.get_flight_benchmark(destination_country)
+                        recon_price = (
+                            (req_adults + req_children) * flight_bench
+                            + max(1, off["duration_nights"])
+                            * d["pure_hotel_night_per_adult"]
+                            * (req_adults + req_children * 0.2)
+                        )
+                        spark_pts.append(round(recon_price, 0))
+            if not spark_pts:
+                spark_pts = [curr_price]
+            sparkline = list(reversed(spark_pts))
 
             # Compute authentic Deal Score & Hopper Forecast using price, normalized history, seasonality, and drop risk
             intelligence = evaluate_search_intelligence(

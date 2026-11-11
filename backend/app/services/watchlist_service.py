@@ -623,6 +623,8 @@ class WatchlistService:
                 destination=hotel.country or "turkey",
             )
             pure_night = decomp.get("pure_hotel_night_per_adult", 0.0)
+            if pure_night < 50.0:
+                pure_night = max(50.0, (item["price"] * 0.40) / (pt_nights * max(1, pt_adults + pt_children * 0.2)))
             flight_seat = decomp.get("flight_seat_cost", 1300.0)
             norm_price = round(flight_seat + (8.0 * pure_night * single_factor), 1)
 

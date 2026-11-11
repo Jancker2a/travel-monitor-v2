@@ -267,26 +267,41 @@ async def get_hotel_normalized_history(
             from app.services.cost_decomposer import CostDecomposer
 
             decomp_points = []
+            flight_seat_bench = CostDecomposer.get_flight_benchmark(dest_keyword)
+            single_factor = 1.18 if "turkey" in dest_keyword else 1.20
+
             for pt in (passport.history_points or []):
                 if not pt.recorded_at or pt.total_price_pln <= 0:
                     continue
-                decomp = CostDecomposer.decompose(
-                    total_price_pln=pt.total_price_pln,
-                    duration_nights=pt.duration_nights or 7,
-                    adults=2,
-                    children=1,
-                    destination=dest_keyword,
-                )
-                pure_rate = decomp["pure_hotel_night_per_adult"]
-                single_factor = 1.18 if "turkey" in dest_keyword else 1.20
-                norm_price = round(decomp["flight_seat_cost"] + (8.0 * pure_rate * single_factor), 1)
+
+                if pt.normalized_price_1p_8n and pt.normalized_price_1p_8n > 1000:
+                    norm_price = pt.normalized_price_1p_8n
+                    pure_rate = pt.pure_hotel_night_rate or 0.0
+                    seat_cost = flight_seat_bench
+                else:
+                    pt_ad = pt.adults if pt.adults is not None else 2
+                    pt_ch = pt.children if pt.children is not None else 0
+                    pt_dur = pt.duration_nights or 7
+                    decomp = CostDecomposer.decompose(
+                        total_price_pln=pt.total_price_pln,
+                        duration_nights=pt_dur,
+                        adults=pt_ad,
+                        children=pt_ch,
+                        destination=dest_keyword,
+                    )
+                    pure_rate = decomp["pure_hotel_night_per_adult"]
+                    # Sanity floor: 4★/5★ AI hotel night per adult cannot be < 50 PLN
+                    if pure_rate < 50.0:
+                        pure_rate = max(50.0, (pt.total_price_pln * 0.40) / (pt_dur * max(1, pt_ad + pt_ch * 0.2)))
+                    seat_cost = decomp["flight_seat_cost"]
+                    norm_price = round(seat_cost + (8.0 * pure_rate * single_factor), 1)
 
                 rec_str = pt.recorded_at.isoformat() if hasattr(pt.recorded_at, "isoformat") else str(pt.recorded_at)
                 decomp_points.append({
                     "recorded_at": rec_str,
                     "normalized_price_1p_8n": norm_price,
                     "pure_hotel_night_rate": round(pure_rate, 1),
-                    "flight_estimate_seat": round(decomp["flight_seat_cost"], 1),
+                    "flight_estimate_seat": round(seat_cost, 1),
                     "source_type": "decomposed_passport_snapshot",
                     "is_crawler": False,
                 })
