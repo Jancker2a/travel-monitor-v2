@@ -37,6 +37,9 @@ export async function getHotelPassport(
     current_price?: number;
     ta_rating?: number;
     main_image_url?: string;
+    adults?: number;
+    children?: number;
+    duration_nights?: number;
   }
 ): Promise<HotelPassport> {
   const params = new URLSearchParams();
@@ -48,6 +51,9 @@ export async function getHotelPassport(
   if (hints?.current_price) params.set("current_price", String(hints.current_price));
   if (hints?.ta_rating) params.set("ta_rating", String(hints.ta_rating));
   if (hints?.main_image_url) params.set("main_image_url", hints.main_image_url);
+  if (hints?.adults !== undefined) params.set("adults", String(hints.adults));
+  if (hints?.children !== undefined) params.set("children", String(hints.children));
+  if (hints?.duration_nights !== undefined) params.set("duration_nights", String(hints.duration_nights));
 
   const qs = params.toString() ? `?${params.toString()}` : "";
   const resp = await fetch(`${API_BASE}/api/v2/hotels/${encodeURIComponent(hotelId)}/history${qs}`);

@@ -266,6 +266,8 @@ class SearchService:
                 departure_date=checkin_d,
                 duration_nights=cohort.duration_nights,
                 airport=cohort.airport_code,
+                adults=cohort.adults,
+                children=cohort.children,
                 operator=cohort.operator or "Touroperator",
                 booking_url=cohort.offer_url,
             )

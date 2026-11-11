@@ -353,6 +353,9 @@ class WatchlistService:
         current_price: Optional[float] = None,
         ta_rating: Optional[float] = None,
         main_image_url: Optional[str] = None,
+        adults: Optional[int] = None,
+        children: Optional[int] = None,
+        duration_nights: Optional[int] = None,
     ) -> HotelPassportResponse:
         from app.services.hotel_knowledge_service import HotelKnowledgeService
         from app.services.canonical_filters import resolve_filter_spec
@@ -497,6 +500,11 @@ class WatchlistService:
             all_cohorts = [syn_cohort]
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
+        spec = resolve_filter_spec(filter_id) if filter_id else None
+        target_adults = int(adults) if (adults is not None and adults > 0) else (spec.get("adults", 2) if spec else 2)
+        target_children = int(children) if (children is not None and children >= 0) else (spec.get("children", 0) if spec else 0)
+        target_nights = int(duration_nights) if (duration_nights is not None and duration_nights > 0) else (spec.get("min_nights", 7) if spec else 7)
+
         from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
         canonical_fid = resolve_filter_id(filter_id) if filter_id else None
         filter_variants = set(get_all_filter_id_variants(filter_id)) if filter_id else set()
@@ -505,26 +513,28 @@ class WatchlistService:
             scoped_cohorts = [c for c in all_cohorts if c.filter_id in filter_variants]
 
         if not scoped_cohorts:
-            spec = resolve_filter_spec(filter_id)
             if spec:
                 dest_codes = set(spec.get("destination_codes", []))
                 scoped_cohorts = [c for c in all_cohorts if c.destination_code in dest_codes]
                 if not scoped_cohorts:
                     # Fallback to party composition
-                    scoped_cohorts = [c for c in all_cohorts if c.adults == spec.get("adults", 2) and c.children == spec.get("children", 1)]
+                    scoped_cohorts = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
 
-        # If still no scoped cohorts or no filter_id provided, pick the dominant party composition
-        # to NEVER mix 1-adult and 2+1 family cohorts together into one price curve!
+        # If still no scoped cohorts or no filter_id provided, prefer cohorts matching user party composition
         if not scoped_cohorts:
-            from collections import Counter
-            party_counter = Counter([(c.adults, c.children) for c in all_cohorts])
-            top_party = party_counter.most_common(1)[0][0] if party_counter else (2, 1)
-            dest_counter = Counter([c.destination_code for c in all_cohorts if (c.adults, c.children) == top_party])
-            top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
-            scoped_cohorts = [
-                c for c in all_cohorts 
-                if (c.adults, c.children) == top_party and (not top_dest or c.destination_code == top_dest)
-            ]
+            matching_party = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
+            if matching_party:
+                scoped_cohorts = matching_party
+            else:
+                from collections import Counter
+                party_counter = Counter([(c.adults, c.children) for c in all_cohorts])
+                top_party = party_counter.most_common(1)[0][0] if party_counter else (2, 1)
+                dest_counter = Counter([c.destination_code for c in all_cohorts if (c.adults, c.children) == top_party])
+                top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
+                scoped_cohorts = [
+                    c for c in all_cohorts 
+                    if (c.adults, c.children) == top_party and (not top_dest or c.destination_code == top_dest)
+                ]
 
         scoped_cohort_ids = {c.cohort_id for c in scoped_cohorts}
         cohort_by_id = {c.cohort_id: c for c in all_cohorts}
@@ -731,6 +741,15 @@ class WatchlistService:
             flight_seat = decomp.get("flight_seat_cost", 1300.0)
             norm_price = round(flight_seat + (8.0 * pure_night * single_factor), 1)
 
+            # Recompose into target user tour scope
+            scaled_tour_price = CostDecomposer.recompose(
+                pure_hotel_night_per_adult=pure_night,
+                duration_nights=target_nights,
+                adults=target_adults,
+                children=target_children,
+                destination=hotel.country or "turkey",
+            )
+
             history_points.append(
                 HotelHistoryPoint(
                     recorded_at=item["recorded_at"],
@@ -741,33 +760,32 @@ class WatchlistService:
                     airport=item["airport"],
                     normalized_price_1p_8n=norm_price,
                     pure_hotel_night_rate=round(pure_night, 1),
+                    scaled_tour_price=round(scaled_tour_price, 1),
                     adults=pt_adults,
                     children=pt_children,
                 )
             )
 
-        if not prices:
-            curr_val = float(current_price or (snap_rows[0].total_price_pln if snap_rows else 0.0))
+        real_snapshots_count = len(s_rows) if s_rows else 0
+        curr_val = float(current_price) if current_price and float(current_price) > 0 else (prices[-1] if prices else 0.0)
+
+        if not prices or real_snapshots_count <= 1:
+            data_maturity_tier = 0
+            maturity_explanation = "Отель обнаружен через расширенный live-поиск. Зафиксирована первая котировка, почасовой мониторинг запущен."
             if curr_val <= 0:
                 pure_bench = 180.0 if (hotel.stars or 4) >= 5 else 125.0
                 curr_val = CostDecomposer.recompose(
                     pure_hotel_night_per_adult=pure_bench,
-                    duration_nights=8,
-                    adults=2,
-                    children=1,
+                    duration_nights=target_nights,
+                    adults=target_adults,
+                    children=target_children,
                     destination=hotel.country or "turkey",
                 )
-            prices = [curr_val]
-            min_p = round(curr_val * 0.92, 1)
-            max_p = round(curr_val * 1.15, 1)
-            med_p = curr_val
-            curr_p = curr_val
-
             decomp = CostDecomposer.decompose(
-                total_price_pln=curr_p,
-                duration_nights=8,
-                adults=2,
-                children=1,
+                total_price_pln=curr_val,
+                duration_nights=target_nights,
+                adults=target_adults,
+                children=target_children,
                 destination=hotel.country or "turkey",
             )
             pure_night = decomp.get("pure_hotel_night_per_adult", 125.0)
@@ -779,25 +797,73 @@ class WatchlistService:
                 destination=hotel.country or "turkey",
             )
             now_dt = datetime.utcnow()
-            history_points.append(
+            history_points = [
                 HotelHistoryPoint(
                     recorded_at=now_dt,
-                    total_price_pln=curr_p,
-                    price_per_night_per_pax=round(curr_p / 24, 1),
+                    total_price_pln=curr_val,
+                    price_per_night_per_pax=round(curr_val / max(1, target_nights * (target_adults + target_children)), 1),
                     departure_date=(now_dt + timedelta(days=21)).date(),
-                    duration_nights=8,
+                    duration_nights=target_nights,
                     airport="WAW",
                     normalized_price_1p_8n=round(norm_price, 1),
                     pure_hotel_night_rate=round(pure_night, 1),
-                    adults=2,
-                    children=1,
+                    scaled_tour_price=round(curr_val, 1),
+                    adults=target_adults,
+                    children=target_children,
                 )
-            )
+            ]
+            curr_p = curr_val
+            min_p = round(curr_val * 0.95, 1)
+            med_p = curr_val
+            max_p = round(curr_val * 1.10, 1)
         else:
-            min_p = min(prices)
-            max_p = max(prices)
-            med_p = sorted(prices)[len(prices) // 2]
-            curr_p = prices[-1]
+            if real_snapshots_count < 10:
+                data_maturity_tier = 1
+                maturity_explanation = "Первичные замеры за несколько дней. График отражает свежую динамику."
+            else:
+                data_maturity_tier = 2
+                maturity_explanation = "Сезонная история наблюдений с выверенной медианой и диапазоном цен."
+
+            if current_price and float(current_price) > 0:
+                curr_p = float(current_price)
+                now_dt = datetime.utcnow()
+                decomp_curr = CostDecomposer.decompose(
+                    total_price_pln=curr_p,
+                    duration_nights=target_nights,
+                    adults=target_adults,
+                    children=target_children,
+                    destination=hotel.country or "turkey",
+                )
+                curr_pure_night = decomp_curr.get("pure_hotel_night_per_adult", 125.0)
+                curr_norm = round(decomp_curr.get("flight_seat_cost", 1300.0) + (8.0 * curr_pure_night * single_factor), 1)
+
+                if history_points and (now_dt - history_points[-1].recorded_at).total_seconds() < 1800:
+                    history_points[-1].scaled_tour_price = curr_p
+                    history_points[-1].pure_hotel_night_rate = round(curr_pure_night, 1)
+                    history_points[-1].normalized_price_1p_8n = curr_norm
+                else:
+                    history_points.append(
+                        HotelHistoryPoint(
+                            recorded_at=now_dt,
+                            total_price_pln=curr_p,
+                            price_per_night_per_pax=round(curr_p / max(1, target_nights * (target_adults + target_children)), 1),
+                            departure_date=(now_dt + timedelta(days=21)).date(),
+                            duration_nights=target_nights,
+                            airport="WAW",
+                            normalized_price_1p_8n=curr_norm,
+                            pure_hotel_night_rate=round(curr_pure_night, 1),
+                            scaled_tour_price=curr_p,
+                            adults=target_adults,
+                            children=target_children,
+                        )
+                    )
+            else:
+                curr_p = history_points[-1].scaled_tour_price or history_points[-1].total_price_pln
+
+            scaled_list = [p.scaled_tour_price for p in history_points if p.scaled_tour_price is not None]
+            min_p = min(scaled_list) if scaled_list else curr_p
+            max_p = max(scaled_list) if scaled_list else curr_p
+            med_p = sorted(scaled_list)[len(scaled_list) // 2] if scaled_list else curr_p
 
         # Knowledge Base Dossier
         dossier = HotelKnowledgeService.get_hotel_dossier(
@@ -915,6 +981,13 @@ class WatchlistService:
             deal_score=deal_score,
             deal_badge=deal_badge,
             hopper_verdict=verdict,
+            data_maturity_tier=data_maturity_tier,
+            maturity_explanation=maturity_explanation,
+            user_query_scope={
+                "adults": target_adults,
+                "children": target_children,
+                "duration_nights": target_nights,
+            },
             gallery_photos=final_gallery,
             tripadvisor_url=dossier["tripadvisor_url"],
             google_reviews_url=dossier["google_reviews_url"],

@@ -223,6 +223,9 @@ async def get_hotel_history_passport(
     current_price: Optional[float] = None,
     ta_rating: Optional[float] = None,
     main_image_url: Optional[str] = None,
+    adults: Optional[int] = None,
+    children: Optional[int] = None,
+    duration_nights: Optional[int] = None,
     db: AsyncSession = Depends(get_db)
 ):
     """Retrieves complete Hotel Passport with all-time price history points and stats, dynamically synthesizing profiles for newly discovered hotels."""
@@ -237,6 +240,9 @@ async def get_hotel_history_passport(
         current_price=current_price,
         ta_rating=ta_rating,
         main_image_url=main_image_url,
+        adults=adults,
+        children=children,
+        duration_nights=duration_nights,
     )
 
 

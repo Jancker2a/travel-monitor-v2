@@ -12,6 +12,7 @@ class HotelHistoryPoint(BaseModel):
     airport: str
     normalized_price_1p_8n: Optional[float] = None
     pure_hotel_night_rate: Optional[float] = None
+    scaled_tour_price: Optional[float] = None
     adults: Optional[int] = 2
     children: Optional[int] = 0
 
@@ -33,6 +34,10 @@ class HotelPassportResponse(BaseModel):
     deal_score: int = 70
     deal_badge: str = "GOOD_DEAL"
     hopper_verdict: str = "BUY NOW"
+
+    data_maturity_tier: int = 1
+    maturity_explanation: Optional[str] = None
+    user_query_scope: Optional[Dict[str, Any]] = None
 
     # Rich V1 Knowledge Base Profile & AI Dossier
     gallery_photos: List[str] = Field(default_factory=list)

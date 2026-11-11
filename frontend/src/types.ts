@@ -39,6 +39,8 @@ export interface OfferSummary {
   departure_date: string;
   duration_nights: number;
   airport: string;
+  adults?: number;
+  children?: number;
   operator?: string;
   booking_url?: string;
 }
@@ -102,6 +104,14 @@ export interface WatchlistItem {
   deal_score: number;
   deal_badge: string;
   hopper_verdict: string;
+
+  data_maturity_tier?: number;
+  maturity_explanation?: string;
+  user_query_scope?: {
+    adults: number;
+    children: number;
+    duration_nights: number;
+  };
   target_reached: boolean;
   booking_url?: string;
   created_at: string;
@@ -116,6 +126,7 @@ export interface HotelHistoryPoint {
   airport: string;
   normalized_price_1p_8n?: number;
   pure_hotel_night_rate?: number;
+  scaled_tour_price?: number;
   adults?: number;
   children?: number;
 }
@@ -172,6 +183,14 @@ export interface HotelPassport {
   deal_score: number;
   deal_badge: string;
   hopper_verdict: string;
+
+  data_maturity_tier?: number;
+  maturity_explanation?: string;
+  user_query_scope?: {
+    adults: number;
+    children: number;
+    duration_nights: number;
+  };
 
   gallery_photos: string[];
   tripadvisor_url?: string;
