@@ -100,91 +100,99 @@ class NormalizedCrawlerService:
         start_max: date,
         limit: int,
     ) -> int:
-        params = {
-            "adults": 1,
-            "destinationLocation[0]": dest["code"],
-            "departureLocation[0]": "Warszawa",
-            "durationFrom": 8,
-            "durationTo": 8,
-            "offerTypes[0]": "accommodation_flight",
-            "startDate[min]": start_min.isoformat(),
-            "startDate[max]": start_max.isoformat(),
-            "pager[group]": "objects",
-            "pager[orderBy][0][direction]": "asc",
-            "pager[orderBy][0][field]": "price",
-            "pager[page]": 1,
-            "pager[size]": limit,
-            "priceType": "total",
-            "totalPrice": 1,
-        }
-        query_str = urllib.parse.urlencode(params)
-        api_url = f"https://fly.pl/api/fqs/v1/offers/search?{query_str}"
+        saved = 0
+        now = datetime.now(timezone.utc)
+        flight_f = dest["flight_benchmark"]
+        page_size = min(limit, 50)
+        max_pages = max(1, (limit + page_size - 1) // page_size)
 
-        try:
-            resp = await client.get(api_url)
-            if resp.status_code != 200:
-                logger.warning(f"Fly.pl crawler HTTP {resp.status_code} for {dest['name']}")
-                return 0
+        for page in range(1, max_pages + 1):
+            params = {
+                "adults": 1,
+                "destinationLocation[0]": dest["code"],
+                "departureLocation[0]": "Warszawa",
+                "durationFrom": 8,
+                "durationTo": 8,
+                "offerTypes[0]": "accommodation_flight",
+                "startDate[min]": start_min.isoformat(),
+                "startDate[max]": start_max.isoformat(),
+                "price[max]": 15000,
+                "pager[group]": "objects",
+                "pager[orderBy][0][direction]": "asc",
+                "pager[orderBy][0][field]": "price",
+                "pager[page]": page,
+                "pager[size]": page_size,
+                "priceType": "total",
+                "totalPrice": 1,
+            }
+            query_str = urllib.parse.urlencode(params)
+            api_url = f"https://fly.pl/api/fqs/v1/offers/search?{query_str}"
 
-            data = resp.json()
-            offers = data.get("data", {}).get("offers", [])
-            if not offers:
-                return 0
+            try:
+                resp = await client.get(api_url)
+                if resp.status_code != 200:
+                    logger.warning(f"Fly.pl crawler HTTP {resp.status_code} for {dest['name']} page {page}")
+                    break
 
-            now = datetime.now(timezone.utc)
-            flight_f = dest["flight_benchmark"]
-            saved = 0
+                data = resp.json()
+                offers = data.get("data", {}).get("offers", [])
+                if not offers:
+                    break
 
-            for o in offers:
-                hotel_name = o.get("name") or o.get("hotelName")
-                if not hotel_name:
-                    continue
+                for o in offers:
+                    hotel_name = o.get("name") or o.get("hotelName")
+                    if not hotel_name:
+                        continue
 
-                total_pln = float(o.get("total") or o.get("price") or 0)
-                if total_pln <= 0:
-                    continue
+                    total_pln = float(o.get("total") or o.get("price") or 0)
+                    if total_pln <= 0:
+                        continue
 
-                hotel_id = slugify(hotel_name)
+                    hotel_id = slugify(hotel_name)
 
-                # 1. Ensure hotel exists in catalog
-                stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
-                res = await session.execute(stmt)
-                hotel_obj = res.scalar_one_or_none()
-                if not hotel_obj:
-                    hotel_obj = Hotel(
+                    # 1. Ensure hotel exists in catalog
+                    stmt = select(Hotel).where(Hotel.hotel_id == hotel_id)
+                    res = await session.execute(stmt)
+                    hotel_obj = res.scalar_one_or_none()
+                    if not hotel_obj:
+                        hotel_obj = Hotel(
+                            hotel_id=hotel_id,
+                            display_name=hotel_name,
+                            country=dest["name"],
+                            stars=o.get("categoryRating", 40) // 10 if o.get("categoryRating") else 4,
+                            main_image_url=o.get("thumbnailUrl") or "",
+                        )
+                        session.add(hotel_obj)
+                        await session.flush()
+
+                    # 2. Compute pure hotel daily rate (H) for 8 nights
+                    hotel_total = max(10.0, total_pln - flight_f)
+                    pure_hotel_night = round(hotel_total / 8.0, 2)
+
+                    # 3. Create normalized snapshot
+                    norm_snap = NormalizedPriceSnapshot(
                         hotel_id=hotel_id,
-                        display_name=hotel_name,
-                        country=dest["name"],
-                        stars=o.get("categoryRating", 40) // 10 if o.get("categoryRating") else 4,
-                        main_image_url=o.get("thumbnailUrl") or "",
+                        destination_code=dest["name"].lower(),
+                        recorded_at=now,
+                        normalized_price_1p_8n=round(total_pln, 2),
+                        pure_hotel_night_rate=pure_hotel_night,
+                        flight_estimate_seat=flight_f,
+                        source_type="crawler_1p_8n",
+                        source_cohort_hash=None,
+                        is_crawler_standard=True,
                     )
-                    session.add(hotel_obj)
-                    await session.flush()
+                    session.add(norm_snap)
+                    saved += 1
 
-                # 2. Compute pure hotel daily rate (H) for 8 nights
-                hotel_total = max(10.0, total_pln - flight_f)
-                pure_hotel_night = round(hotel_total / 8.0, 2)
+                if len(offers) < page_size:
+                    break
+                await asyncio.sleep(0.5)
 
-                # 3. Create normalized snapshot
-                norm_snap = NormalizedPriceSnapshot(
-                    hotel_id=hotel_id,
-                    destination_code=dest["name"].lower(),
-                    recorded_at=now,
-                    normalized_price_1p_8n=round(total_pln, 2),
-                    pure_hotel_night_rate=pure_hotel_night,
-                    flight_estimate_seat=flight_f,
-                    source_type="crawler_1p_8n",
-                    source_cohort_hash=None,
-                    is_crawler_standard=True,
-                )
-                session.add(norm_snap)
-                saved += 1
+            except Exception as e:
+                logger.error(f"Error crawling destination {dest['name']} page {page}: {e}")
+                break
 
-            return saved
-
-        except Exception as e:
-            logger.error(f"Error crawling destination {dest['name']}: {e}")
-            return 0
+        return saved
 
 
 if __name__ == "__main__":

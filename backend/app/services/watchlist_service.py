@@ -595,15 +595,37 @@ class WatchlistService:
                     "departure_date": checkin_d,
                     "duration_nights": cohort.duration_nights,
                     "airport": cohort.airport_code,
+                    "adults": cohort.adults,
+                    "children": cohort.children,
                 }
+
+        from app.services.cost_decomposer import CostDecomposer
 
         sorted_buckets = sorted(hourly_map.keys())
         history_points: List[HotelHistoryPoint] = []
         prices: List[float] = []
 
+        dest_lower = (hotel.country or "turkey").lower()
+        single_factor = 1.18 if "turk" in dest_lower else 1.20
+
         for b_key in sorted_buckets:
             item = hourly_map[b_key]
             prices.append(item["price"])
+
+            pt_adults = item.get("adults") or 2
+            pt_children = item.get("children") or 0
+            pt_nights = max(1, item.get("duration_nights") or 8)
+            decomp = CostDecomposer.decompose(
+                total_price_pln=item["price"],
+                duration_nights=pt_nights,
+                adults=pt_adults,
+                children=pt_children,
+                destination=hotel.country or "turkey",
+            )
+            pure_night = decomp.get("pure_hotel_night_per_adult", 0.0)
+            flight_seat = decomp.get("flight_seat_cost", 1300.0)
+            norm_price = round(flight_seat + (8.0 * pure_night * single_factor), 1)
+
             history_points.append(
                 HotelHistoryPoint(
                     recorded_at=item["recorded_at"],
@@ -612,6 +634,10 @@ class WatchlistService:
                     departure_date=item["departure_date"],
                     duration_nights=item["duration_nights"],
                     airport=item["airport"],
+                    normalized_price_1p_8n=norm_price,
+                    pure_hotel_night_rate=round(pure_night, 1),
+                    adults=pt_adults,
+                    children=pt_children,
                 )
             )
 

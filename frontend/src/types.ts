@@ -109,6 +109,10 @@ export interface HotelHistoryPoint {
   departure_date: string;
   duration_nights: number;
   airport: string;
+  normalized_price_1p_8n?: number;
+  pure_hotel_night_rate?: number;
+  adults?: number;
+  children?: number;
 }
 
 export interface AvailablePackage {

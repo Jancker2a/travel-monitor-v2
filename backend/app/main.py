@@ -83,29 +83,34 @@ async def _async_background_db_maintenance():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Initializing database tables for Travel Monitor 2.0...")
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-        # Auto-migrate columns for Postgres / existing databases
-        for tbl in ["offer_cohorts", "price_snapshots"]:
+    try:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+            # Auto-migrate columns for Postgres / existing databases
+            for tbl in ["offer_cohorts", "price_snapshots"]:
+                try:
+                    await conn.execute(text(f"ALTER TABLE {tbl} ADD COLUMN IF NOT EXISTS filter_id VARCHAR;"))
+                except Exception:
+                    pass
             try:
-                await conn.execute(text(f"ALTER TABLE {tbl} ADD COLUMN IF NOT EXISTS filter_id VARCHAR;"))
+                await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_filter_time ON price_snapshots(filter_id, recorded_at);"))
+                await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_cohort_time ON price_snapshots(cohort_id, recorded_at);"))
+                await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_price_snapshots_rec_at ON price_snapshots(recorded_at DESC);"))
+                await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_hotel ON offer_cohorts(filter_id, hotel_id);"))
+                await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_id ON offer_cohorts(filter_id);"))
             except Exception:
                 pass
-        try:
-            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_filter_time ON price_snapshots(filter_id, recorded_at);"))
-            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_snapshot_cohort_time ON price_snapshots(cohort_id, recorded_at);"))
-            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_price_snapshots_rec_at ON price_snapshots(recorded_at DESC);"))
-            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_hotel ON offer_cohorts(filter_id, hotel_id);"))
-            await conn.execute(text("CREATE INDEX IF NOT EXISTS idx_cohort_filter_id ON offer_cohorts(filter_id);"))
-        except Exception:
-            pass
-
-    logger.info("Database schema initialized successfully.")
+        logger.info("Database schema initialized successfully.")
+    except Exception as ddl_err:
+        logger.error(f"Non-fatal error initializing database tables: {ddl_err}")
 
     # Seed canonical v1 filter monitors
-    async with AsyncSessionLocal() as db:
-        from app.services.filter_monitor_service import FilterMonitorService
-        await FilterMonitorService.init_default_monitors(db)
+    try:
+        async with AsyncSessionLocal() as db:
+            from app.services.filter_monitor_service import FilterMonitorService
+            await FilterMonitorService.init_default_monitors(db)
+    except Exception as seed_err:
+        logger.warning(f"Note on seeding default monitors: {seed_err}")
 
     # Launch background DB backfill without delaying container healthchecks
     import asyncio

@@ -10,6 +10,10 @@ class HotelHistoryPoint(BaseModel):
     departure_date: date
     duration_nights: int
     airport: str
+    normalized_price_1p_8n: Optional[float] = None
+    pure_hotel_night_rate: Optional[float] = None
+    adults: Optional[int] = 2
+    children: Optional[int] = 0
 
 
 class HotelPassportResponse(BaseModel):

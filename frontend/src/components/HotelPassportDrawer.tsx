@@ -83,34 +83,42 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     }
 
     // Deduplicate timestamps to prevent duplicate x-axis points
-    const uniqueMap = new Map<string, number>();
+    const uniqueMap = new Map<string, { price: number; pureNight: number }>();
     history.forEach((pt) => {
-      uniqueMap.set(pt.recorded_at, pt.total_price_pln);
+      const p = pt.normalized_price_1p_8n || pt.total_price_pln;
+      uniqueMap.set(pt.recorded_at, {
+        price: p,
+        pureNight: pt.pure_hotel_night_rate || 0,
+      });
     });
 
     const xVals: string[] = [];
     const yVals: number[] = [];
+    const customData: number[] = [];
     uniqueMap.forEach((val, key) => {
       xVals.push(key);
-      yVals.push(val);
+      yVals.push(val.price);
+      customData.push(val.pureNight);
     });
 
     const trace = {
       x: xVals,
       y: yVals,
+      customdata: customData,
       type: "scatter",
       mode: "lines+markers",
-      name: "Цена тура (PLN)",
+      name: "Эталон (1 взр / 8н)",
       line: {
-        color: "#2563eb",
+        color: "#0284c7",
         width: 2.5,
         shape: "linear",
       },
       marker: {
         size: 5,
-        color: "#1d4ed8",
+        color: "#0369a1",
       },
-      hovertemplate: "<b>%{y:,.0f} zł</b><br>%{x|%d.%m %H:%M}<extra></extra>",
+      hovertemplate:
+        "<b>%{y:,.0f} zł</b> (Эталон 1 взр / 8н)<br>Себестоимость ночи: ~%{customdata:,.0f} zł/н<br>%{x|%d.%m %H:%M}<extra></extra>",
     };
 
     const pVals = yVals.length ? yVals : [passport.current_price_pln];
@@ -120,7 +128,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
     const layout = {
       title: {
-        text: "Динамика цены тура и исторический диапазон (PLN)",
+        text: "Нормализованный эталон цен (1 взрослый • 8 ночей, PLN)",
         font: { size: 13, family: "Inter, sans-serif", color: "#0f172a" },
         x: 0.05,
       },
@@ -134,7 +142,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         tickfont: { size: 10, color: "#64748b" },
       },
       yaxis: {
-        title: "Цена (PLN)",
+        title: "Эталон (PLN)",
         gridcolor: "#f1f5f9",
         tickfont: { size: 10, color: "#64748b" },
       },
@@ -223,30 +231,35 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       );
       if (filtered.length > 0) hist = filtered;
     }
-    const pVals = hist.map((p) => p.total_price_pln);
+    const pVals = hist.map((p) => p.normalized_price_1p_8n || p.total_price_pln);
+    const lastPt = hist.length > 0 ? hist[hist.length - 1] : null;
     const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
-    const min = pVals.length > 0 ? Math.min(...pVals) : minPrice;
-    const max = pVals.length > 0 ? Math.max(...pVals) : maxPrice;
+    const min = pVals.length > 0 ? Math.min(...pVals) : cur;
+    const max = pVals.length > 0 ? Math.max(...pVals) : cur;
     const sorted = [...pVals].sort((a, b) => a - b);
-    const med = sorted.length > 0 ? sorted[Math.floor(sorted.length / 2)] : (passport?.typical_median_pln || cur);
-    return { cur, min, med, max };
-  }, [historyRange, passport?.history_points, passport?.typical_median_pln, currentPrice, minPrice, maxPrice]);
+    const med = sorted.length > 0 ? sorted[Math.floor(sorted.length / 2)] : cur;
+    const pureNight = lastPt?.pure_hotel_night_rate || 0;
+    return { cur, min, med, max, pureNight, count: hist.length };
+  }, [historyRange, passport?.history_points, currentPrice]);
 
-  // Real, meaningful savings vs median of this tour (NO crazy -17 000 zł!)
-  const savingsVsMedian = (rangeStats.med > 0 && currentPrice < rangeStats.med) ? (rangeStats.med - currentPrice) : 0;
+  // Real, meaningful savings vs median (safeguarded against party/duration scale mismatch)
+  const savingsVsMedian =
+    rangeStats.med > 0 && rangeStats.cur < rangeStats.med
+      ? rangeStats.med - rangeStats.cur
+      : 0;
 
   let savingsBadgeText: string | null = null;
-  if (savingsVsMedian >= 50 && savingsVsMedian < currentPrice * 0.8) {
-    savingsBadgeText = `на ${Math.round(savingsVsMedian).toLocaleString("ru-RU")} zł ниже средней`;
+  if (savingsVsMedian >= 50 && savingsVsMedian < rangeStats.med * 0.4) {
+    savingsBadgeText = `↓ на ${Math.round(savingsVsMedian).toLocaleString("ru-RU")} zł ниже типичной`;
   } else if (hotelItem?.intelligence?.drop_48h_pct && hotelItem.intelligence.drop_48h_pct < -2) {
-    savingsBadgeText = `${Math.round(hotelItem.intelligence.drop_48h_pct)}% от средней`;
+    savingsBadgeText = `${Math.round(hotelItem.intelligence.drop_48h_pct)}% за 48ч`;
   }
 
   // Ensure AI Price summary strictly matches bold currentPrice
   const dynamicPriceSummary = useMemo(() => {
     if (passport?.ai_price_summary) {
       return passport.ai_price_summary.replace(
-        /Текущая цена\s+[\d\s,.]+\s*zł/i,
+        /Текущая цена\s+[\d\s,.]+\s*zł/gi,
         `Текущая цена ${currentPrice.toLocaleString("ru-RU")} zł`
       );
     }
@@ -704,8 +717,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           {activeTab === "history" && (
             <div className="drawer-tab-panel active" id="tabPanel-history">
               <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
-                <div className="stat-pill" style={{ background: "#f0fdf4", color: "#166534", padding: "5px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bbf7d0" }}>
-                  📈 История цен тура в PLN
+                <div className="stat-pill" style={{ background: "#e0f2fe", color: "#0369a1", padding: "5px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bae6fd" }}>
+                  🏷️ Нормализованный эталон (1 чел • 8 ночей)
                 </div>
 
                 <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
@@ -745,47 +758,99 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 </div>
               </div>
 
-              <div className="chart-container-box" style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "10px", marginBottom: "16px" }}>
-                <div ref={chartContainerRef} id="drawerPlotlyChart" style={{ width: "100%", height: "320px" }} />
+              {/* Explanatory banner */}
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "10px 14px", marginBottom: "14px", fontSize: "12px", color: "#475569", lineHeight: "1.5" }}>
+                💡 <strong>Нормализованная история:</strong> исключает искажения состава семьи (2+1, 2+0) и длительности (7, 10, 14 ночей). Все замеры приведены к единому эталону (1 взрослый, 8 ночей, Все Включено) для честного исторического анализа.
               </div>
+
+              {/* Chart container or friendly empty state */}
+              {(!passport?.history_points || passport.history_points.length === 0) ? (
+                <div style={{ background: "#f8fafc", border: "1.5px dashed #cbd5e1", borderRadius: "16px", padding: "36px 24px", textAlign: "center", marginBottom: "16px" }}>
+                  <div style={{ fontSize: "36px", marginBottom: "8px" }}>📈</div>
+                  <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", marginBottom: "6px" }}>
+                    История цен для этого отеля накапливается
+                  </h4>
+                  <p style={{ fontSize: "12px", color: "#64748b", maxWidth: "460px", margin: "0 auto 14px", lineHeight: "1.5" }}>
+                    Отель недавно добавлен в мониторинг или найден через расширенный метапоиск. Радар цен сканирует динамику каждые 60 минут, график будет построен после сбора следующих замеров.
+                  </p>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#f1f5f9", padding: "6px 14px", borderRadius: "20px", fontSize: "11px", color: "#475569", fontWeight: 600 }}>
+                    <span>⏱️ Следующий автоматический замер: в течение 1 часа</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="chart-container-box" style={{ background: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "10px", marginBottom: "16px" }}>
+                  <div ref={chartContainerRef} id="drawerPlotlyChart" style={{ width: "100%", height: "320px" }} />
+                </div>
+              )}
 
               <div className="benchmarks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "16px" }}>
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    Текущая цена
+                    Текущий эталон
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginTop: "2px" }}>
-                    {`${Math.round(rangeStats.cur).toLocaleString("ru-RU")} zł`}
+                    {rangeStats.cur > 0 ? `${Math.round(rangeStats.cur).toLocaleString("ru-RU")} zł` : "—"}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    Минимум периода
+                    Мин. эталон
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#16a34a", marginTop: "2px" }}>
-                    {`${Math.round(rangeStats.min).toLocaleString("ru-RU")} zł`}
+                    {rangeStats.min > 0 ? `${Math.round(rangeStats.min).toLocaleString("ru-RU")} zł` : "—"}
                   </div>
                 </div>
 
                 <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                   <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    Средняя за период
-                  </div>
-                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0284c7", marginTop: "2px" }}>
-                    {`${Math.round(rangeStats.med).toLocaleString("ru-RU")} zł`}
-                  </div>
-                </div>
-
-                <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
-                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                    Максимум периода
+                    Макс. эталон
                   </div>
                   <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#e11d48", marginTop: "2px" }}>
-                    {`${Math.round(rangeStats.max).toLocaleString("ru-RU")} zł`}
+                    {rangeStats.max > 0 ? `${Math.round(rangeStats.max).toLocaleString("ru-RU")} zł` : "—"}
+                  </div>
+                </div>
+
+                <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
+                  <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
+                    Себестоимость ночи
+                  </div>
+                  <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0284c7", marginTop: "2px" }}>
+                    {rangeStats.pureNight > 0 ? `~${Math.round(rangeStats.pureNight).toLocaleString("ru-RU")} zł/н` : "—"}
                   </div>
                 </div>
               </div>
+
+              {/* Cross-Filter callout in Tab 2 */}
+              {passport?.other_filters && passport.other_filters.length > 0 && (
+                <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "12px", padding: "12px 16px", marginBottom: "16px" }}>
+                  <div style={{ fontSize: "12px", fontWeight: 700, color: "#166534", marginBottom: "8px" }}>
+                    📂 Отель также отслеживается в других фильтрах:
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                    {passport.other_filters.map((f, idx) => (
+                      <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #dcfce7" }}>
+                        <div>
+                          <div style={{ fontSize: "12px", fontWeight: 600, color: "#0f172a" }}>{f.title || f.filter_id}</div>
+                          <div style={{ fontSize: "11px", color: "#16a34a" }}>Лучшая цена: от {f.min_price_pln.toLocaleString("ru-RU")} zł ({f.snaps_count} замеров)</div>
+                        </div>
+                        {onSwitchFilter && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              onSwitchFilter(f.filter_id);
+                              onClose();
+                            }}
+                            style={{ background: "#16a34a", color: "#ffffff", border: "none", padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, cursor: "pointer" }}
+                          >
+                            Перейти в фильтр →
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* German Arbitrage highlight: ONLY shown when a verified specific offer URL exists and has real savings */}
               {passport?.german_arbitrage &&
