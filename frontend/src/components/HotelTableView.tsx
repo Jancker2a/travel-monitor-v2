@@ -145,7 +145,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 onClick={() => onSort("delta48")}
                 className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[75px]"
                 style={{ width: "6%" }}
-                title="Изменение цены за последние 48 часов"
+                title="Реальное изменение цены отеля за последние 48 часов по данным мониторинга"
               >
                 <div className="flex items-center justify-center gap-1.5">
                   <span>Δ 48Ч</span>
@@ -156,10 +156,10 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 onClick={() => onSort("delta_avg")}
                 className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[80px]"
                 style={{ width: "6%" }}
-                title="Отклонение от типичной (плато) средней цены отеля"
+                title="Отклонение текущей цены от типичной сезонной нормы отеля"
               >
                 <div className="flex items-center justify-center gap-1.5">
-                  <span>Δ К СРЕДНЕЙ</span>
+                  <span>Δ К НОРМЕ</span>
                   {renderSortIcon("delta_avg")}
                 </div>
               </th>
@@ -221,7 +221,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
               // Delta values
               const delta48 = intel.drop_48h_pct;
-              const deltaAvg = intel.delta_vs_typical_pct !== undefined ? intel.delta_vs_typical_pct : 0;
+              const deltaAvg = intel.delta_vs_typical_pct;
 
               return (
                 <tr
@@ -304,35 +304,43 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                   {/* Δ 48ч */}
                   <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
-                    {delta48 < 0 ? (
-                      <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none">
-                        <span>↓</span>
-                        <span>{delta48.toFixed(1)}%</span>
-                      </span>
-                    ) : delta48 > 0 ? (
-                      <span className="delta-badge-up inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none">
-                        <span>↑</span>
-                        <span>+{delta48.toFixed(1)}%</span>
-                      </span>
+                    {delta48 !== null && delta48 !== undefined ? (
+                      delta48 < 0 ? (
+                        <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none" title={`Снижение цены на ${Math.abs(delta48).toFixed(1)}% за последние 48 часов`}>
+                          <span>↓</span>
+                          <span>{delta48.toFixed(1)}%</span>
+                        </span>
+                      ) : delta48 > 0 ? (
+                        <span className="delta-badge-up inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none" title={`Повышение цены на ${delta48.toFixed(1)}% за последние 48 часов`}>
+                          <span>↑</span>
+                          <span>+{delta48.toFixed(1)}%</span>
+                        </span>
+                      ) : (
+                        <span className="text-[12.5px] font-bold text-slate-400 select-none" title="Цена не менялась за 48ч">0%</span>
+                      )
                     ) : (
-                      <span className="text-[13px] font-bold text-slate-400 select-none">—</span>
+                      <span className="text-[13px] font-bold text-slate-300 select-none" title="Отель недавно найден, замеры за 48ч отсутствуют">—</span>
                     )}
                   </td>
 
-                  {/* Δ к средней */}
+                  {/* Δ к норме (средней) */}
                   <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
-                    {deltaAvg < 0 ? (
-                      <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none">
-                        <span>↓</span>
-                        <span>{deltaAvg.toFixed(1)}%</span>
-                      </span>
-                    ) : deltaAvg > 0 ? (
-                      <span className="delta-badge-up inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none">
-                        <span>↑</span>
-                        <span>+{deltaAvg.toFixed(1)}%</span>
-                      </span>
+                    {deltaAvg !== null && deltaAvg !== undefined ? (
+                      deltaAvg < 0 ? (
+                        <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none" title={`На ${Math.abs(deltaAvg).toFixed(1)}% ниже сезонной нормы (${intel.typical_median_pln ? intel.typical_median_pln.toLocaleString("ru-RU") + " zł" : ""})`}>
+                          <span>↓</span>
+                          <span>{deltaAvg.toFixed(1)}%</span>
+                        </span>
+                      ) : deltaAvg > 0 ? (
+                        <span className="delta-badge-up inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none" title={`На ${deltaAvg.toFixed(1)}% выше сезонной нормы (${intel.typical_median_pln ? intel.typical_median_pln.toLocaleString("ru-RU") + " zł" : ""})`}>
+                          <span>↑</span>
+                          <span>+{deltaAvg.toFixed(1)}%</span>
+                        </span>
+                      ) : (
+                        <span className="text-[12.5px] font-bold text-slate-400 select-none" title="Точно соответствует средней норме">0%</span>
+                      )
                     ) : (
-                      <span className="text-[13px] font-bold text-slate-400 select-none">0%</span>
+                      <span className="text-[13px] font-bold text-slate-300 select-none" title="Недостаточно истории для расчета нормы">—</span>
                     )}
                   </td>
 

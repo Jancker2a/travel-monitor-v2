@@ -81,7 +81,7 @@ export const HotelCard: React.FC<Props> = ({
 
   // Deltas
   const delta48 = intelligence.drop_48h_pct;
-  const deltaAvg = intelligence.delta_vs_typical_pct !== undefined ? intelligence.delta_vs_typical_pct : 0;
+  const deltaAvg = intelligence.delta_vs_typical_pct;
 
   // Sparkline SVG path generation
   const sparklinePts = hotel.history_sparkline || [];
@@ -133,7 +133,7 @@ export const HotelCard: React.FC<Props> = ({
             {dealBadgeText}
           </span>
 
-          {delta48 !== 0 && (
+          {delta48 !== null && delta48 !== undefined && delta48 !== 0 && (
             <span
               className={`text-[11px] font-black px-2 py-0.5 rounded-lg backdrop-blur-md border shadow-sm whitespace-nowrap ${
                 delta48 < 0
@@ -141,7 +141,7 @@ export const HotelCard: React.FC<Props> = ({
                   : "bg-rose-600/90 text-white border-rose-400"
               }`}
             >
-              {delta48 < 0 ? `↓ ${Math.abs(delta48).toFixed(1)}%` : `↑ +${delta48.toFixed(1)}%`}
+              {delta48 < 0 ? `↓ ${Math.abs(delta48).toFixed(1)}% за 48ч` : `↑ +${delta48.toFixed(1)}% за 48ч`}
             </span>
           )}
         </div>
@@ -304,16 +304,16 @@ export const HotelCard: React.FC<Props> = ({
               </div>
             </div>
 
-            {deltaAvg !== 0 && (
+            {deltaAvg !== null && deltaAvg !== undefined && deltaAvg !== 0 && (
               <span
                 className={`text-[11px] font-black px-2 py-0.5 rounded-lg border shadow-2xs whitespace-nowrap ${
                   deltaAvg < 0
                     ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                     : "bg-rose-50 text-rose-700 border-rose-200"
                 }`}
-                title="Отклонение от типичной цены отеля"
+                title={`Типичная сезонная норма: ${intelligence.typical_median_pln ? intelligence.typical_median_pln.toLocaleString("ru-RU") + " zł" : ""}`}
               >
-                {deltaAvg < 0 ? `↓ ${Math.abs(deltaAvg).toFixed(1)}% vs ср.` : `↑ +${deltaAvg.toFixed(1)}% vs ср.`}
+                {deltaAvg < 0 ? `↓ ${Math.abs(deltaAvg).toFixed(1)}% к норме` : `↑ +${deltaAvg.toFixed(1)}% к норме`}
               </span>
             )}
           </div>

@@ -1120,7 +1120,9 @@ export const App: React.FC = () => {
       } else if (sortField === "hotel") {
         diff = a.hotel_name.localeCompare(b.hotel_name);
       } else if (sortField === "delta48") {
-        diff = a.intelligence.drop_48h_pct - b.intelligence.drop_48h_pct;
+        const a48 = a.intelligence.drop_48h_pct ?? 0;
+        const b48 = b.intelligence.drop_48h_pct ?? 0;
+        diff = a48 - b48;
       } else if (sortField === "delta_avg") {
         const aAvg = a.intelligence.delta_vs_typical_pct ?? 0;
         const bAvg = b.intelligence.delta_vs_typical_pct ?? 0;
@@ -1172,7 +1174,7 @@ export const App: React.FC = () => {
     const droppedHotels = results
       .filter((h) => (h.intelligence.drop_48h_pct ?? 0) <= -0.5)
       .map((h) => {
-        const pct = Math.abs(h.intelligence.drop_48h_pct);
+        const pct = Math.abs(h.intelligence.drop_48h_pct ?? 0);
         const savingPln = Math.round(h.current_offer.total_price_pln * (pct / 100));
         return {
           hotel: h,

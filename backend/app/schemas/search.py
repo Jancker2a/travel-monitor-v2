@@ -54,7 +54,8 @@ class HotelIntelligence(BaseModel):
     hopper_verdict: str  # BUY NOW, WAIT, OVERPRICED
     hopper_confidence: float
     recommendation: str
-    drop_48h_pct: float
+    drop_48h_pct: Optional[float] = None
+    delta_vs_typical_pct: Optional[float] = None
     historic_min_pln: float
     typical_median_pln: float
     german_arbitrage_diff_pln: Optional[float] = None

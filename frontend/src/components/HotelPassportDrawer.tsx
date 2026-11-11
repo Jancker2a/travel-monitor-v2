@@ -260,7 +260,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   if (!isBudgetQuality && savingsVsMedian >= 50 && savingsVsMedian < typicalPrice * 0.35) {
     savingsBadgeText = `↓ на ${Math.round(savingsVsMedian).toLocaleString("ru-RU")} zł ниже типичной`;
   } else if (!isBudgetQuality && hotelItem?.intelligence?.drop_48h_pct && hotelItem.intelligence.drop_48h_pct < -2) {
-    savingsBadgeText = `${Math.round(hotelItem.intelligence.drop_48h_pct)}% за 48ч`;
+    savingsBadgeText = `↓ на ${Math.abs(Math.round(hotelItem.intelligence.drop_48h_pct))}% за 48ч`;
   }
 
   // Ensure AI Price summary strictly matches bold currentPrice and hotel quality

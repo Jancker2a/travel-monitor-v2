@@ -12,7 +12,7 @@ Synthesizes:
 from __future__ import annotations
 
 import math
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Any, Dict, List, Optional
 from app.schemas.search import HotelIntelligence
 from app.services.cost_decomposer import CostDecomposer
@@ -346,7 +346,64 @@ def evaluate_search_intelligence(
     # Final clamping to valid range [25, 98]
     final_score = int(round(max(25.0, min(98.0, score))))
 
-    # 5. Determine Hopper Forecast & Action Verdict
+    # 5. Mathematically Exact Delta vs Typical Seasonal Price (Plateau Baseline)
+    delta_vs_typical_pct: Optional[float] = None
+    if typical_median_pln and typical_median_pln > 0:
+        delta_vs_typical_pct = round(((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1)
+
+    # 6. Real 48-Hour Price Change (from actual historical snapshots with recorded_at)
+    real_drop_48h_pct: Optional[float] = None
+    if hist_snapshots:
+        now_utc = datetime.now(timezone.utc)
+        candidates_48h = []
+        for snap in hist_snapshots:
+            r_at = snap.get("recorded_at")
+            if not r_at:
+                continue
+            if isinstance(r_at, str):
+                try:
+                    r_at = datetime.fromisoformat(r_at.replace("Z", "+00:00"))
+                except Exception:
+                    continue
+            if isinstance(r_at, datetime):
+                if r_at.tzinfo is None:
+                    r_at = r_at.replace(tzinfo=timezone.utc)
+                age_hours = (now_utc - r_at).total_seconds() / 3600.0
+                if 14.0 <= age_hours <= 72.0:
+                    candidates_48h.append((abs(age_hours - 48.0), snap))
+
+        if candidates_48h:
+            candidates_48h.sort(key=lambda x: x[0])
+            prev_snap = candidates_48h[0][1]
+            prev_p = float(prev_snap.get("price") or prev_snap.get("total_price_pln") or 0.0)
+            if prev_p > 0:
+                s_adults = prev_snap.get("adults") or adults
+                s_children = prev_snap.get("children") or children
+                s_nights = prev_snap.get("duration_nights") or nights
+                if s_adults == adults and s_children == children and s_nights == nights:
+                    norm_prev_p = prev_p
+                else:
+                    d = CostDecomposer.decompose(
+                        total_price_pln=prev_p,
+                        duration_nights=s_nights,
+                        adults=s_adults,
+                        children=s_children,
+                        destination=destination,
+                    )
+                    norm_prev_p = CostDecomposer.recompose(
+                        pure_hotel_night_per_adult=d.get("pure_hotel_night_per_adult", 150.0),
+                        duration_nights=nights,
+                        adults=adults,
+                        children=children,
+                        destination=destination,
+                    )
+                if norm_prev_p > 0:
+                    chg = ((total_price_pln - norm_prev_p) / norm_prev_p) * 100.0
+                    real_drop_48h_pct = round(chg, 1)
+
+    # 7. Determine Hopper Forecast & Action Verdict
+    display_delta_pct = abs(round(delta_vs_typical_pct)) if delta_vs_typical_pct is not None else abs(round(diff_pct))
+
     if is_budget_tier:
         verdict = "WAIT"
         badge = "FAIR_PRICE"
@@ -358,15 +415,15 @@ def evaluate_search_intelligence(
         verdict = "BUY NOW"
         badge = "SUPER_DEAL" if final_score >= 88 else "GOOD_DEAL"
         if days_to_dep <= 14:
-            forecast_reason = f"Выгодная цена (на {abs(round(diff_pct))}% ниже нормы). До вылета {days_to_dep} дн. — места на рейсах заканчиваются, вероятность снижения минимальна."
+            forecast_reason = f"Выгодная цена (на {display_delta_pct}% ниже нормы). До вылета {days_to_dep} дн. — места на рейсах заканчиваются, вероятность снижения минимальна."
         elif season_info["season"] in ("holiday_superpeak", "peak"):
             forecast_reason = f"Отличный тариф для периода «{season_info['label']}». {season_info['risk_expl']}. Рекомендуем фиксировать бронь."
         else:
-            forecast_reason = f"Цена на {abs(round(diff_pct))}% ниже типичного уровня. Прогноз Hopper: локальное ценовое дно, дальнейшее падение маловероятно."
+            forecast_reason = f"Цена на {display_delta_pct}% ниже типичного уровня. Прогноз Hopper: локальное ценовое дно, дальнейшее падение маловероятно."
     elif final_score < 48:
         verdict = "OVERPRICED"
         badge = "OVERPRICED"
-        forecast_reason = f"Тариф завышен (+{round(diff_pct):.0f}% к норме). {season_info['label']}. Высокая вероятность коррекции цен или появления спецпредложений ближе к датам."
+        forecast_reason = f"Тариф завышен (+{display_delta_pct}% к норме). {season_info['label']}. Высокая вероятность коррекции цен или появления спецпредложений ближе к датам."
     else:
         verdict = "WAIT"
         badge = "FAIR_PRICE"
@@ -383,7 +440,8 @@ def evaluate_search_intelligence(
         hopper_verdict=verdict,
         hopper_confidence=confidence,
         recommendation=forecast_reason,
-        drop_48h_pct=round(diff_pct, 1),
+        drop_48h_pct=real_drop_48h_pct,
+        delta_vs_typical_pct=delta_vs_typical_pct,
         historic_min_pln=hist_min_pln,
         typical_median_pln=typical_median_pln,
         german_arbitrage_diff_pln=None,

@@ -71,3 +71,50 @@ def test_no_fake_superdeal_on_party_mismatch():
     assert intel.deal_score < 80
     assert intel.hopper_verdict in ("WAIT", "OVERPRICED")
 
+
+def test_delta_vs_typical_and_real_48h_drop():
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc)
+
+    # 1. Without 48h snapshot: drop_48h_pct must be None, delta_vs_typical_pct must be accurate
+    hist = [
+        {"price": 3000.0, "adults": 1, "children": 0, "duration_nights": 8},
+        {"price": 3100.0, "adults": 1, "children": 0, "duration_nights": 8},
+    ]
+    intel = evaluate_search_intelligence(
+        destination="egypt",
+        departure_date=date.today() + timedelta(days=20),
+        duration_nights=8,
+        adults=1,
+        children=0,
+        total_price_pln=2500.0,
+        stars=4,
+        ta_rating=4.2,
+        hist_snapshots=hist,
+    )
+    assert intel.drop_48h_pct is None  # No recorded_at in snapshots -> no fake 48h drop
+    assert intel.delta_vs_typical_pct is not None
+    assert intel.delta_vs_typical_pct < 0  # 2500 vs ~3000 is ~-17%
+
+    # 2. With 48h snapshot: drop_48h_pct must reflect real drop
+    snap_48h_ago = now - timedelta(hours=48)
+    hist_with_time = [
+        {"price": 3000.0, "adults": 1, "children": 0, "duration_nights": 8, "recorded_at": snap_48h_ago.isoformat()},
+        {"price": 3100.0, "adults": 1, "children": 0, "duration_nights": 8, "recorded_at": snap_48h_ago.isoformat()},
+    ]
+    intel_48h = evaluate_search_intelligence(
+        destination="egypt",
+        departure_date=date.today() + timedelta(days=20),
+        duration_nights=8,
+        adults=1,
+        children=0,
+        total_price_pln=2400.0,
+        stars=4,
+        ta_rating=4.2,
+        hist_snapshots=hist_with_time,
+    )
+    assert intel_48h.drop_48h_pct is not None
+    # 2400 vs 3000 is -20.0%
+    assert intel_48h.drop_48h_pct == -20.0
+
+

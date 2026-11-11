@@ -49,11 +49,12 @@ export interface HotelIntelligence {
   hopper_verdict: "BUY NOW" | "WAIT" | "OVERPRICED" | string;
   hopper_confidence: number;
   recommendation: string;
-  drop_48h_pct: number;
-  delta_vs_typical_pct?: number;
+  drop_48h_pct?: number | null;
+  delta_vs_typical_pct?: number | null;
   historic_min_pln: number;
   typical_median_pln: number;
   german_arbitrage_diff_pln?: number | null;
+  is_budget_tier?: boolean;
 }
 
 export interface SearchHotelItem {
