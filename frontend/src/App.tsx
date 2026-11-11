@@ -989,36 +989,64 @@ export const App: React.FC = () => {
   };
 
   const handleToggleWatchlist = async (hotel: SearchHotelItem) => {
+    const cohortHash = hotel.current_offer.cohort_hash;
     const isAlreadyWatched = watchlistItems.some(
-      (w) => w.cohort_hash === hotel.current_offer.cohort_hash
+      (w) => w.cohort_hash === cohortHash
     );
 
     if (isAlreadyWatched) {
       const item = watchlistItems.find(
-        (w) => w.cohort_hash === hotel.current_offer.cohort_hash
+        (w) => w.cohort_hash === cohortHash
       );
-      if (item) {
-        await deleteWatchlistItem(item.watch_id);
-        setWatchlistItems((prev) => prev.filter((w) => w.watch_id !== item.watch_id));
+      // Optimistic instant remove (<1ms)
+      setWatchlistItems((prev) => prev.filter((w) => w.cohort_hash !== cohortHash));
+      if (item && item.watch_id && !item.watch_id.startsWith("temp-")) {
+        try {
+          await deleteWatchlistItem(item.watch_id);
+        } catch (e) {
+          console.warn("Failed to delete watchlist item on server:", e);
+        }
       }
     } else {
-      const targetPrompt = window.prompt(
-        `Поставить "${hotel.hotel_name}" на мониторинг?\nТекущая цена: ${hotel.current_offer.total_price_pln.toLocaleString(
-          "ru-RU"
-        )} zł.\n\nУкажите целевую цену (zł) для уведомления (или оставьте пустым для любого снижения):`,
-        String(Math.round(hotel.current_offer.total_price_pln * 0.95))
-      );
-      if (targetPrompt === null) return;
-
-      const targetPrice = targetPrompt ? parseFloat(targetPrompt) : undefined;
-      const newItem = await addToWatchlist({
-        cohort_hash: hotel.current_offer.cohort_hash,
+      // Optimistic instant add (<1ms) with sensible 5% drop target
+      const tempId = `temp-${Date.now()}`;
+      const defaultTarget = Math.round(hotel.current_offer.total_price_pln * 0.95);
+      const optimisticItem: WatchlistItem = {
+        watch_id: tempId,
         user_chat_id: CURRENT_USER_ID,
-        target_price_pln: targetPrice,
-        notify_any_drop: true,
-      });
-      setWatchlistItems((prev) => [newItem, ...prev]);
-      setIsWatchlistOpen(true);
+        cohort_hash: cohortHash,
+        hotel_id: hotel.hotel_id,
+        hotel_name: hotel.hotel_name,
+        country: hotel.country,
+        departure_date: hotel.current_offer.departure_date,
+        duration_nights: hotel.current_offer.duration_nights,
+        airport: hotel.current_offer.airport,
+        target_price_pln: defaultTarget,
+        latest_price_pln: hotel.current_offer.total_price_pln,
+        deal_score: hotel.intelligence?.deal_score || 50,
+        deal_badge: hotel.intelligence?.deal_badge || "",
+        hopper_verdict: hotel.intelligence?.hopper_verdict || "STABLE",
+        target_reached: false,
+        created_at: new Date().toISOString(),
+      };
+
+      setWatchlistItems((prev) => [optimisticItem, ...prev]);
+
+      try {
+        const savedItem = await addToWatchlist({
+          cohort_hash: cohortHash,
+          user_chat_id: CURRENT_USER_ID,
+          target_price_pln: defaultTarget,
+          notify_any_drop: true,
+        });
+        if (savedItem && savedItem.watch_id) {
+          setWatchlistItems((prev) =>
+            prev.map((w) => (w.watch_id === tempId ? { ...savedItem, hotel_name: hotel.hotel_name } : w))
+          );
+        }
+      } catch (err) {
+        console.warn("Failed to persist watchlist item to server:", err);
+      }
     }
   };
 
@@ -1552,20 +1580,29 @@ export const App: React.FC = () => {
       </main>
 
       {/* 7. Hotel AI Passport Drawer (Slides out from RIGHT) */}
-      <HotelPassportDrawer
-        hotelId={activeHotelPassport}
-        filterId={activeTab === "filter" ? activeFilterId : undefined}
-        hotelItem={
-          results.find(
-            (h) =>
-              h.hotel_id === activeHotelPassport ||
-              (activeHotelPassport &&
-                h.hotel_name.trim().toLowerCase() === activeHotelPassport.trim().toLowerCase())
-          ) || null
-        }
-        onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}
-        onClose={() => setActiveHotelPassport(null)}
-      />
+      {(() => {
+        const activePassportHotel = results.find(
+          (h) =>
+            h.hotel_id === activeHotelPassport ||
+            (activeHotelPassport &&
+              h.hotel_name.trim().toLowerCase() === activeHotelPassport.trim().toLowerCase())
+        ) || null;
+        const isPassportWatched = activePassportHotel
+          ? watchedCohortHashes.has(activePassportHotel.current_offer.cohort_hash)
+          : false;
+
+        return (
+          <HotelPassportDrawer
+            hotelId={activeHotelPassport}
+            filterId={activeTab === "filter" ? activeFilterId : undefined}
+            hotelItem={activePassportHotel}
+            isWatched={isPassportWatched}
+            onToggleWatchlist={activePassportHotel ? () => handleToggleWatchlist(activePassportHotel) : undefined}
+            onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}
+            onClose={() => setActiveHotelPassport(null)}
+          />
+        );
+      })()}
 
       {/* Watchlist Drawer */}
       <WatchlistDrawer

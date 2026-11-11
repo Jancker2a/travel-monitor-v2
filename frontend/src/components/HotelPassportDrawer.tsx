@@ -21,6 +21,8 @@ interface HotelPassportDrawerProps {
   hotelId: string | null;
   filterId?: string | null;
   hotelItem?: SearchHotelItem | null;
+  isWatched?: boolean;
+  onToggleWatchlist?: () => void;
   onClose: () => void;
   onSwitchFilter?: (filterId: string) => void;
 }
@@ -29,6 +31,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   hotelId,
   filterId,
   hotelItem,
+  isWatched,
+  onToggleWatchlist,
   onClose,
   onSwitchFilter,
 }) => {
@@ -391,6 +395,22 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           </div>
 
           <div className="drawer-header-actions">
+            {onToggleWatchlist && (
+              <button
+                type="button"
+                onClick={onToggleWatchlist}
+                id="drawerHeaderFavBtn"
+                className={`px-3 py-1.5 rounded-lg border text-[12.5px] font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  isWatched
+                    ? "bg-amber-500 hover:bg-amber-600 text-white border-amber-600 shadow-xs"
+                    : "bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-600 border-slate-200"
+                }`}
+                title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
+              >
+                <Star className={`w-3.5 h-3.5 ${isWatched ? "fill-white text-white" : "text-amber-500 fill-amber-400"}`} />
+                <span>{isWatched ? "В избранном" : "В избранное"}</span>
+              </button>
+            )}
             {(passport?.tripadvisor_url || hotelItem?.hotel_name) && (
               <a
                 className="btn-drawer-header-ta"

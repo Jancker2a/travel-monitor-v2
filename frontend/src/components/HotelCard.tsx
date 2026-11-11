@@ -146,21 +146,22 @@ export const HotelCard: React.FC<Props> = ({
           )}
         </div>
 
-        {/* Top-Right: Watchlist Button */}
+        {/* Top-Right: Favorite Star Button */}
         <button
           type="button"
+          data-testid="favorite-card-btn"
           onClick={(e) => {
             e.stopPropagation();
             onToggleWatchlist(hotel);
           }}
-          title={isWatched ? "В отслеживаемых (клик для удаления)" : "Поставить на радар"}
+          title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
           className={`absolute top-2.5 right-2.5 w-9 h-9 rounded-xl flex items-center justify-center backdrop-blur-md transition-all shadow-md cursor-pointer ${
             isWatched
               ? "bg-amber-500 text-white ring-2 ring-white scale-105"
               : "bg-white/85 text-slate-700 hover:bg-white hover:text-amber-500 hover:scale-105"
           }`}
         >
-          <Bell className="w-4 h-4 fill-current" />
+          <Star className={`w-4 h-4 ${isWatched ? "fill-white text-white" : "fill-transparent text-slate-700"}`} />
         </button>
 
         {/* Bottom Bar on Image: Specs & Duration */}

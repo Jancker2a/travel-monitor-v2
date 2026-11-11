@@ -231,7 +231,23 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 >
                   {/* Hotel Cell */}
                   <td className="pl-4 py-3">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <button
+                        type="button"
+                        data-testid="favorite-name-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onToggleWatchlist(hotel);
+                        }}
+                        className={`p-1.5 rounded-lg transition-all cursor-pointer shrink-0 ${
+                          isWatched
+                            ? "text-amber-500 hover:text-amber-600 bg-amber-50 ring-1 ring-amber-300"
+                            : "text-slate-300 hover:text-amber-400 hover:bg-slate-100"
+                        }`}
+                        title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
+                      >
+                        <Star className={`w-4 h-4 ${isWatched ? "fill-amber-400 text-amber-500" : ""}`} />
+                      </button>
                       <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs">
                         <img
                           src={
@@ -383,18 +399,20 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                       <button
                         type="button"
+                        data-testid="favorite-action-btn"
                         onClick={(e) => {
                           e.stopPropagation();
                           onToggleWatchlist(hotel);
                         }}
-                        className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
+                        className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12.5px] font-bold border transition-all cursor-pointer shadow-2xs ${
                           isWatched
-                            ? "bg-amber-500 text-white border-amber-600 shadow-xs"
-                            : "bg-slate-50 hover:bg-slate-100 text-slate-600 border-slate-200"
+                            ? "bg-amber-500 hover:bg-amber-600 text-white border-amber-600 shadow-xs"
+                            : "bg-slate-50 hover:bg-amber-50 text-slate-700 hover:text-amber-700 border-slate-200 hover:border-amber-300"
                         }`}
-                        title={isWatched ? "В отслеживаемых" : "Поставить на радар"}
+                        title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
                       >
-                        <Bell className="w-4 h-4" />
+                        <Star className={`w-3.5 h-3.5 ${isWatched ? "fill-white text-white" : "text-amber-500 fill-amber-400"}`} />
+                        <span className="hidden sm:inline">{isWatched ? "В избранном" : "В избранное"}</span>
                       </button>
 
                       {offer.booking_url && (
