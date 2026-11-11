@@ -812,6 +812,44 @@ export const App: React.FC = () => {
   // Current active preset config
   const currentPreset = FILTER_PRESETS[activeFilterId] || FILTER_PRESETS["turkey_7_10_days"];
 
+  // Navigation tab switcher synced with URL hash (#/search, #/radar/:id, #/arbitrage)
+  const navigateToTab = (tab: "filter" | "search" | "arbitrage", filterId?: string) => {
+    setActiveTab(tab);
+    if (tab === "search") {
+      window.location.hash = "#/search";
+    } else if (tab === "arbitrage") {
+      window.location.hash = "#/arbitrage";
+      setViewMode("arbitrage");
+    } else {
+      const target = filterId || activeFilterId;
+      window.location.hash = `#/radar/${target}`;
+    }
+  };
+
+  // URL Hash Sync for standalone pages on mount & back/forward navigation
+  useEffect(() => {
+    const syncFromHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes("search")) {
+        setActiveTab("search");
+      } else if (hash.includes("arbitrage")) {
+        setActiveTab("filter");
+        setViewMode("arbitrage");
+      } else if (hash.startsWith("#/radar/") || hash.startsWith("#/filter/")) {
+        const rawId = hash.replace("#/radar/", "").replace("#/filter/", "").split("?")[0];
+        if (rawId && FILTER_PRESETS[rawId]) {
+          setActiveFilterId(rawId);
+          loadFilterResults(rawId);
+        }
+        setActiveTab("filter");
+      }
+    };
+
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, []);
+
   useEffect(() => {
     // 1. Critical path: Load active filter catalog immediately
     loadFilterResults("turkey_7_10");
@@ -884,6 +922,7 @@ export const App: React.FC = () => {
     setActiveTab("filter");
     setTableFilters(INITIAL_FILTERS);
     loadFilterResults(filterId);
+    window.location.hash = `#/radar/${filterId}`;
     setIsSidebarOpen(false);
   };
 
@@ -1138,11 +1177,11 @@ export const App: React.FC = () => {
         activeFilterId={activeFilterId}
         onSelectFilter={handleSelectFilter}
         onOpenSearch={() => {
-          setActiveTab("search");
+          navigateToTab("search");
           setIsSidebarOpen(false);
         }}
         onOpenArbitrage={() => {
-          setViewMode("arbitrage");
+          navigateToTab("arbitrage");
           setIsSidebarOpen(false);
         }}
         activeTab={activeTab}
@@ -1162,22 +1201,54 @@ export const App: React.FC = () => {
               <Menu className="w-5 h-5" />
             </button>
 
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-extrabold text-white shadow-md shadow-blue-500/20">
-                ✈️
-              </div>
-              <div>
-                <div className="text-sm font-black tracking-tight flex items-center gap-2">
-                  <span>TRAVEL MONITOR</span>
-                  <span className="text-[9px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded-full">
-                    v2.0 DUAL-ENGINE
-                  </span>
+            {activeTab === "search" ? (
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center font-extrabold text-white shadow-md shadow-blue-500/20 text-base">
+                  🔍
                 </div>
-                <p className="text-[10px] text-slate-400">
-                  {currentPreset.title}
-                </p>
+                <div>
+                  <div className="text-sm font-black tracking-tight flex items-center gap-2">
+                    <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-300 bg-clip-text text-transparent">
+                      TRAVEL SEARCH
+                    </span>
+                    <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      LIVE META ENGINE
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-slate-400 flex items-center gap-2">
+                    <span>Поиск туров по всем странам и датам</span>
+                    <span className="text-slate-600">•</span>
+                    <span className="text-slate-300">Neon DB (2.12M цен) + Fly.pl Live</span>
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => navigateToTab("filter")}
+                  className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 transition-all ml-2"
+                  title="Вернуться к мониторингу 30 фильтров"
+                >
+                  <span>← К радару мониторинга</span>
+                </button>
               </div>
-            </div>
+            ) : (
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-extrabold text-white shadow-md shadow-blue-500/20">
+                  ✈️
+                </div>
+                <div>
+                  <div className="text-sm font-black tracking-tight flex items-center gap-2">
+                    <span>TRAVEL MONITOR</span>
+                    <span className="text-[9px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded-full">
+                      v2.0 DUAL-ENGINE
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-slate-400">
+                    {currentPreset.title}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="flex items-center gap-3">
@@ -1185,7 +1256,7 @@ export const App: React.FC = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setActiveTab("filter");
+                  navigateToTab("filter");
                   setViewMode("table");
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
@@ -1200,7 +1271,7 @@ export const App: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setActiveTab("search")}
+                onClick={() => navigateToTab("search")}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
                   activeTab === "search"
                     ? "bg-blue-600 text-white shadow-sm"

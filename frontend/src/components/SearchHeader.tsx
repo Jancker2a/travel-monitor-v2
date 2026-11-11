@@ -454,23 +454,19 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden transition-all">
-      {/* Top Banner / Breadcrumb Bar */}
-      <div className="px-5 py-3 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white flex flex-wrap items-center justify-between gap-3">
+      {/* Clean Sub-Header Action Bar */}
+      <div className="px-5 py-3 bg-slate-50 border-b border-slate-200/90 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white text-xs font-bold shadow-sm">
-            🔍
-          </div>
-          <div>
-            <div className="text-xs font-extrabold uppercase tracking-wider flex items-center gap-2 text-white">
-              <span>Интерактивный метапоиск v2</span>
-              <span className="text-[10px] font-semibold bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded-full border border-blue-400/30">
-                Параметры 1:1 как на Fly.pl
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-300">
-              Поиск по базе 24/7 с мгновенным Live-добором и оценкой Deal Score
-            </p>
-          </div>
+          <span className="text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+            <span>Параметры поискового запроса</span>
+            <span className="text-[10px] font-semibold bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-200/80">
+              Fly.pl 1:1 Live Sync
+            </span>
+          </span>
+          <span className="hidden md:inline text-xs text-slate-300">|</span>
+          <span className="hidden md:inline text-xs text-slate-500">
+            Мгновенный запрос к базе цен и парсинг актуальных офферов
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
@@ -478,19 +474,19 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading }) => {
             href={flyPlDirectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white transition-all border border-white/15"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 transition-all border border-slate-300 shadow-2xs"
             title="Открыть эту точную поисковую выдачу на официальном сайте Fly.pl"
           >
-            <ExternalLink className="w-3.5 h-3.5 text-blue-300" />
+            <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
             <span>Открыть на Fly.pl</span>
           </a>
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-white/10 transition-all"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-200/60 transition-all"
             title="Сбросить все параметры к эталонным"
           >
-            <RotateCcw className="w-3 h-3" />
+            <RotateCcw className="w-3 h-3 text-slate-400" />
             <span className="hidden sm:inline">Сбросить</span>
           </button>
         </div>
