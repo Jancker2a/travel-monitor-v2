@@ -78,7 +78,14 @@ async def _async_background_db_maintenance():
                 WHERE (LOWER(hotel_name) LIKE '%shams safaga%' OR hotel_id = 'shams-safaga')
                   AND (region != 'Сафага' OR country != 'Египет');
             """))
-            logger.info("✅ Canonical geo consistency verified and enforced.")
+            # Enforce strict party integrity on canonical 1-adult and solo filters
+            await conn.execute(text("""
+                UPDATE offer_cohorts
+                SET adults = 1, children = 0
+                WHERE filter_id IN ('egypt_sharm_dec20_28_1p', 'egypt_sharm_dec20_29_1p', 'filter_egypt_sharm_dec20_28_1p', 'filter_egypt_sharm_dec20_29_1p', 'cyprus_7_10', 'filter_cyprus_7_10')
+                  AND (adults != 1 OR children != 0);
+            """))
+            logger.info("✅ Canonical geo consistency & cohort party integrity verified and enforced.")
     except Exception as geo_err:
         logger.warning(f"Note on background geo sanitization: {geo_err}")
 

@@ -156,7 +156,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const uniqueMap = new Map<string, { price: number; perNightPax: number }>();
     const totalPax = Math.max(1, userAdults + userChildren);
     history.forEach((pt) => {
-      const p = pt.scaled_tour_price || pt.total_price_pln;
+      const isExactParty = pt.adults === userAdults && (pt.children || 0) === userChildren;
+      const p = isExactParty ? pt.total_price_pln : (pt.scaled_tour_price || pt.total_price_pln);
       const perNight = Math.round(p / (userNights * totalPax));
       uniqueMap.set(pt.recorded_at, {
         price: p,
@@ -291,6 +292,23 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const minPrice = hotelItem?.intelligence?.historic_min_pln || passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
 
+  const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
+  const is1pFilter = Boolean(filterId && (filterId.includes("1p") || filterId.includes("_1_adult")));
+  const resolvedAdults =
+    searchTravelers?.adults ??
+    filterPreset?.searchReq?.travelers?.adults ??
+    (is1pFilter ? 1 : undefined) ??
+    passport?.user_query_scope?.adults ??
+    hotelItem?.current_offer?.adults ??
+    1;
+  const resolvedChildren =
+    searchTravelers?.children ??
+    filterPreset?.searchReq?.travelers?.children ??
+    (is1pFilter ? 0 : undefined) ??
+    passport?.user_query_scope?.children ??
+    hotelItem?.current_offer?.children ??
+    0;
+
   // Dynamic values depending on active filter range (7d / 30d / all)
   const rangeStats = useMemo(() => {
     let hist = passport?.history_points || [];
@@ -303,7 +321,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       );
       if (filtered.length > 0) hist = filtered;
     }
-    const pVals = hist.map((p) => p.scaled_tour_price || p.total_price_pln);
+    const pVals = hist.map((p) => {
+      const isExactParty = p.adults === resolvedAdults && (p.children || 0) === resolvedChildren;
+      return isExactParty ? p.total_price_pln : (p.scaled_tour_price || p.total_price_pln);
+    });
     const lastPt = hist.length > 0 ? hist[hist.length - 1] : null;
     const cur = pVals.length > 0 ? pVals[pVals.length - 1] : currentPrice;
     const min = pVals.length > 0 ? Math.min(...pVals) : cur;
@@ -312,7 +333,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const med = sorted.length > 0 ? sorted[Math.floor(sorted.length / 2)] : cur;
     const pureNight = lastPt?.pure_hotel_night_rate || 0;
     return { cur, min, med, max, pureNight, count: hist.length };
-  }, [historyRange, passport?.history_points, currentPrice]);
+  }, [historyRange, passport?.history_points, currentPrice, resolvedAdults, resolvedChildren]);
 
   const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
   const isBudgetQuality =

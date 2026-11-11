@@ -748,14 +748,23 @@ class WatchlistService:
             flight_seat = decomp.get("flight_seat_cost", 1300.0)
             norm_price = round(flight_seat + (8.0 * pure_night * single_factor), 1)
 
-            # Recompose into target user tour scope
-            scaled_tour_price = CostDecomposer.recompose(
-                pure_hotel_night_per_adult=pure_night,
-                duration_nights=target_nights,
-                adults=target_adults,
-                children=target_children,
-                destination=hotel.country or "turkey",
-            )
+            # Recompose into target user tour scope:
+            # If the snapshot belongs to the exact requested party, preserve 100% authentic raw observed price.
+            # Synthetic scaling is only used when cross-projecting from a different party composition.
+            if (
+                pt_adults == target_adults
+                and pt_children == target_children
+                and (pt_nights == target_nights or abs(pt_nights - target_nights) <= 1)
+            ):
+                scaled_tour_price = item["price"]
+            else:
+                scaled_tour_price = CostDecomposer.recompose(
+                    pure_hotel_night_per_adult=pure_night,
+                    duration_nights=target_nights,
+                    adults=target_adults,
+                    children=target_children,
+                    destination=hotel.country or "turkey",
+                )
 
             history_points.append(
                 HotelHistoryPoint(
