@@ -253,6 +253,14 @@ export const App: React.FC = () => {
         setViewMode("arbitrage");
       } else if (hash.includes("monitors")) {
         setActiveTab("my_monitors");
+      } else if (hash.startsWith("#/monitor/")) {
+        const monitorId = hash.replace("#/monitor/", "").split("?")[0];
+        const found = userMonitors.find((m) => m.id === monitorId);
+        if (found) {
+          handleOpenMonitorDashboard(found);
+        } else {
+          setActiveTab("my_monitors");
+        }
       } else if (hash.startsWith("#/radar/") || hash.startsWith("#/filter/")) {
         // Canonical radars are strictly reserved for the Administrator
         if (!isAdmin) {
@@ -279,15 +287,26 @@ export const App: React.FC = () => {
   }, [isAdmin]);
 
   useEffect(() => {
+    const hash = window.location.hash.toLowerCase();
+    if (hash.startsWith("#/monitor/") && userMonitors.length > 0 && !activeUserMonitor) {
+      const monitorId = hash.replace("#/monitor/", "").split("?")[0];
+      const found = userMonitors.find((m) => m.id === monitorId);
+      if (found) {
+        handleOpenMonitorDashboard(found);
+      }
+    }
+  }, [userMonitors, activeUserMonitor]);
+
+  useEffect(() => {
     // 1. Critical path: Admin loads default radar; regular users and guests land on interactive search
     const hash = window.location.hash;
     if (isAdmin) {
-      const hasExplicitFilter = hash.startsWith("#/radar/") || hash.startsWith("#/filter/");
+      const hasExplicitFilter = hash.startsWith("#/radar/") || hash.startsWith("#/filter/") || hash.startsWith("#/monitor/");
       if (!hasExplicitFilter && !hash.startsWith("#/search") && !hash.startsWith("#/monitors")) {
         loadFilterResults("turkey_7_10");
       }
     } else {
-      if (!hash.includes("arbitrage") && !hash.includes("monitors")) {
+      if (!hash.includes("arbitrage") && !hash.includes("monitors") && !hash.includes("monitor")) {
         setActiveTab("search");
         if (!hash.includes("search")) {
           window.location.hash = "#/search";
@@ -375,7 +394,7 @@ export const App: React.FC = () => {
 
   const handleOpenMonitorDashboard = (monitor: UserMonitor) => {
     setActiveUserMonitor(monitor);
-    setActiveTab("search");
+    setActiveTab("filter");
     setTableFilters(INITIAL_FILTERS);
     window.location.hash = `#/monitor/${monitor.id}`;
     if (monitor.filter_params) {
@@ -696,6 +715,69 @@ export const App: React.FC = () => {
     }
   };
 
+  const dashboardTitle = useMemo(() => {
+    if (activeUserMonitor) return activeUserMonitor.title;
+    return currentPreset.title;
+  }, [activeUserMonitor, currentPreset]);
+
+  const dashboardCountryBadge = useMemo(() => {
+    if (activeUserMonitor) {
+      const dest = (activeUserMonitor.filter_params?.destination || "").toLowerCase();
+      if (dest.includes("egypt")) return "🇪🇬 Египет";
+      if (dest.includes("turkey")) return "🇹🇷 Турция";
+      if (dest.includes("greece")) return "🇬🇷 Греция";
+      if (dest.includes("cyprus")) return "🇨🇾 Кипр";
+      if (dest.includes("spain")) return "🇪🇸 Испания";
+      return "✈️ Персональный радар";
+    }
+    return currentPreset.countryBadge;
+  }, [activeUserMonitor, currentPreset]);
+
+  const dashboardTargetUrl = useMemo(() => {
+    if (activeUserMonitor) {
+      return activeUserMonitor.fly_source_url || "";
+    }
+    return currentPreset.targetUrl;
+  }, [activeUserMonitor, currentPreset]);
+
+  const dashboardChips = useMemo(() => {
+    if (activeUserMonitor && activeUserMonitor.filter_params) {
+      const p = activeUserMonitor.filter_params;
+      const ap = p.airports?.length ? p.airports.join(", ") : "Все аэропорты Польши";
+      const dates = p.dates?.start_date_min ? `${p.dates.start_date_min} — ${p.dates.start_date_max}` : "Гибкие даты";
+      const party = p.travelers ? `${p.travelers.adults || 2} взр` + (p.travelers.children ? ` + ${p.travelers.children} реб` : "") : "2 взр";
+      const hotelClass = `${p.stars_min || 4}★ – 5★ ${p.catering === "all_inclusive" ? "All Inclusive" : "С питанием"}`;
+      const budget = activeUserMonitor.max_budget_pln ? `до ${activeUserMonitor.max_budget_pln.toLocaleString("ru-RU")} zł` : "Любой бюджет";
+      return {
+        airports: ap,
+        dates: dates,
+        party: party,
+        hotelClass: hotelClass,
+        budget: budget,
+      };
+    }
+    return currentPreset.chips;
+  }, [activeUserMonitor, currentPreset]);
+
+  const dashboardDestination = useMemo(() => {
+    if (activeUserMonitor) {
+      return activeUserMonitor.filter_params?.destination || "egypt";
+    }
+    return currentPreset.destination;
+  }, [activeUserMonitor, currentPreset]);
+
+  const dashboardFilterIdForAnalytics = useMemo(() => {
+    if (activeUserMonitor) {
+      const dest = (activeUserMonitor.filter_params?.destination || "").toLowerCase();
+      if (dest.includes("egypt")) return "egypt_7_10";
+      if (dest.includes("turkey")) return "turkey_7_10";
+      if (dest.includes("greece")) return "greece_7_10";
+      if (dest.includes("cyprus")) return "filter_cyprus_7_10";
+      return "turkey_7_10";
+    }
+    return activeFilterId;
+  }, [activeUserMonitor, activeFilterId]);
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       {/* V1 Collapsible Left Sidebar */}
@@ -775,19 +857,34 @@ export const App: React.FC = () => {
             ) : (
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-extrabold text-white shadow-md shadow-blue-500/20">
-                  ✈️
+                  {activeUserMonitor ? "📡" : "✈️"}
                 </div>
                 <div>
                   <div className="text-sm font-black tracking-tight flex items-center gap-2">
                     <span>TRAVEL MONITOR</span>
                     <span className="text-[9px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded-full">
-                      v2.0 DUAL-ENGINE
+                      {activeUserMonitor ? "📡 МОЙ РАДАР" : "v2.0 DUAL-ENGINE"}
                     </span>
                   </div>
-                  <p className="text-[10px] text-slate-400">
-                    {currentPreset.title}
+                  <p className="text-[10px] text-slate-400 truncate max-w-sm sm:max-w-md">
+                    {dashboardTitle}
                   </p>
                 </div>
+                {activeUserMonitor && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (activeUserMonitor?.filter_params) {
+                        handleSearch({ ...activeUserMonitor.filter_params, force_live_refresh: true } as unknown as SearchRequest);
+                      }
+                    }}
+                    className="ml-2 px-2.5 py-1 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 font-bold text-xs border border-sky-500/30 transition-colors flex items-center gap-1 cursor-pointer"
+                    title="Обновить замер цен с Fly.pl"
+                  >
+                    <RefreshCw className={`w-3 h-3 ${isLoading ? "animate-spin" : ""}`} />
+                    <span>Обновить ⚡</span>
+                  </button>
+                )}
               </div>
             )}
           </div>
@@ -947,102 +1044,33 @@ export const App: React.FC = () => {
           />
         ) : (
           <>
-            {/* If in Search / Custom Monitor Tab */}
+            {/* If in Search Tab */}
             {activeTab === "search" && (
               <div className="mb-4">
-                {activeUserMonitor ? (
-                  <div className="p-5 rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-xl border border-blue-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex items-start sm:items-center gap-3.5">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-500/20 text-sky-300 flex items-center justify-center text-2xl shrink-0 border border-blue-400/20 shadow-inner">
-                        📡
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-[11px] font-black uppercase tracking-wider text-sky-300">
-                            Персональный дашборд мониторинга
-                          </span>
-                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
-                            {activeUserMonitor.status === "SUCCESS" ? "✓ Активен" : "⚡ Проверяется"}
-                          </span>
-                          <span className="text-slate-400 text-xs">
-                            • каждые {activeUserMonitor.check_interval_hours}ч
-                          </span>
-                          <span className="text-slate-400 text-xs">
-                            • порог -{activeUserMonitor.min_drop_pct}%
-                          </span>
-                        </div>
-                        <h2 className="text-lg sm:text-xl font-black tracking-tight text-white mt-1">
-                          {activeUserMonitor.title}
-                        </h2>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2 shrink-0">
-                      {activeUserMonitor.fly_source_url && (
-                        <a
-                          href={activeUserMonitor.fly_source_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
-                        >
-                          <span>Fly.pl</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      )}
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (activeUserMonitor?.filter_params) {
-                            handleSearch({ ...activeUserMonitor.filter_params, force_live_refresh: true } as unknown as SearchRequest);
-                          }
-                        }}
-                        className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-white font-black text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-md hover:shadow-lg"
-                      >
-                        <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
-                        <span>Обновить замер ⚡</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setActiveUserMonitor(null);
-                          navigateToTab("my_monitors");
-                        }}
-                        className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs transition-colors flex items-center gap-1 cursor-pointer border border-slate-700"
-                        title="Вернуться к списку отслеживаний"
-                      >
-                        <ArrowLeft className="w-3.5 h-3.5" />
-                        <span>Мои мониторинги</span>
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <SearchHeader
-                    onSearch={handleSearch}
-                    isLoading={isLoading}
-                    onSaveMonitor={() => {
-                      if (!currentUser) {
-                        setAuthModalReason("🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться.");
-                        setIsAuthModalOpen(true);
-                        return;
-                      }
-                      setIsCreateMonitorOpen(true);
-                    }}
-                  />
-                )}
+                <SearchHeader
+                  onSearch={handleSearch}
+                  isLoading={isLoading}
+                  onSaveMonitor={() => {
+                    if (!currentUser) {
+                      setAuthModalReason("🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться.");
+                      setIsAuthModalOpen(true);
+                      return;
+                    }
+                    setIsCreateMonitorOpen(true);
+                  }}
+                />
               </div>
             )}
 
-        {/* Filter dashboard headers & folds: ONLY in filter monitoring mode */}
+        {/* Filter dashboard headers & folds: in BOTH canonical radars and user monitors */}
         {activeTab === "filter" && (
           <>
             {/* 1. Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
             <HeroTerminal
-              title={currentPreset.title}
-              countryBadge={currentPreset.countryBadge}
-              targetUrl={currentPreset.targetUrl}
-              chips={currentPreset.chips}
+              title={dashboardTitle}
+              countryBadge={dashboardCountryBadge}
+              targetUrl={dashboardTargetUrl}
+              chips={dashboardChips}
               kpi={heroKpi}
               activeQuickFilter={activeQuickFilter}
               onQuickFilter={handleQuickFilter}
@@ -1050,16 +1078,16 @@ export const App: React.FC = () => {
 
             {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
             <AiMarketBriefing
-              filterId={activeFilterId}
-              filterTitle={currentPreset.title}
+              filterId={dashboardFilterIdForAnalytics}
+              filterTitle={dashboardTitle}
               buyNowCount={heroKpi.buyNowCount}
               onOpenPassport={(hotelId) => setActiveHotelPassport(hotelId)}
             />
 
             {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
             <Top10TimelineChart
-              filterId={activeFilterId}
-              destination={currentPreset.destination}
+              filterId={dashboardFilterIdForAnalytics}
+              destination={dashboardDestination}
             />
 
             {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
@@ -1067,7 +1095,7 @@ export const App: React.FC = () => {
               hotels={results}
               topDrops={topDrops}
               airportStats={airportStats}
-              filterId={activeFilterId}
+              filterId={dashboardFilterIdForAnalytics}
               onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
               onFilterByDeparture={(depDate) => {
                 if (depDate) {
