@@ -29,6 +29,8 @@ async def test_watchlist_service_crud(setup_test_db):
             destination_code="egypt_sharm",
             checkin_date=date(2026, 12, 20),
             duration_nights=7,
+            adults=1,
+            children=0,
             airport_code="WAW",
             offer_url="https://fly.pl/wycieczka/hilton-sharm/123",
         )

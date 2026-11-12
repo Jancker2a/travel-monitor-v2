@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { SidebarNavigation } from "./components/SidebarNavigation";
 import { HeroTerminal } from "./components/HeroTerminal";
 import { AiMarketBriefing } from "./components/AiMarketBriefing";
@@ -136,7 +136,11 @@ export const App: React.FC = () => {
   const [adminStatus, setAdminStatus] = useState<{ has_admin: boolean; admin_email?: string | null }>({ has_admin: true });
   const [isCreateMonitorOpen, setIsCreateMonitorOpen] = useState(false);
   const [userMonitors, setUserMonitors] = useState<UserMonitor[]>([]);
+  const userMonitorsRef = useRef<UserMonitor[]>([]);
+  userMonitorsRef.current = userMonitors;
   const [activeUserMonitor, setActiveUserMonitor] = useState<UserMonitor | null>(null);
+  const activeUserMonitorRef = useRef<UserMonitor | null>(null);
+  activeUserMonitorRef.current = activeUserMonitor;
   const [isLoadingMonitors, setIsLoadingMonitors] = useState(false);
 
   const isAdmin = currentUser?.role === "ADMIN";
@@ -224,14 +228,17 @@ export const App: React.FC = () => {
   const navigateToTab = (tab: "filter" | "search" | "arbitrage" | "my_monitors", filterId?: string) => {
     setActiveTab(tab);
     if (tab === "search") {
+      setActiveUserMonitor(null);
       window.location.hash = "#/search";
       if (viewMode === "arbitrage") {
         setViewMode("table");
       }
     } else if (tab === "arbitrage") {
+      setActiveUserMonitor(null);
       window.location.hash = "#/arbitrage";
       setViewMode("arbitrage");
     } else if (tab === "my_monitors") {
+      setActiveUserMonitor(null);
       window.location.hash = "#/monitors";
     } else {
       const target = filterId || activeFilterId;
@@ -244,21 +251,29 @@ export const App: React.FC = () => {
     const syncFromHash = () => {
       const hash = window.location.hash.toLowerCase();
       if (hash.includes("search")) {
+        setActiveUserMonitor(null);
         setActiveTab("search");
         if (viewMode === "arbitrage") {
           setViewMode("table");
         }
       } else if (hash.includes("arbitrage")) {
+        setActiveUserMonitor(null);
         setActiveTab("filter");
         setViewMode("arbitrage");
       } else if (hash.includes("monitors")) {
+        setActiveUserMonitor(null);
         setActiveTab("my_monitors");
       } else if (hash.startsWith("#/monitor/")) {
         const monitorId = hash.replace("#/monitor/", "").split("?")[0];
-        const found = userMonitors.find((m) => m.id === monitorId);
+        if (activeUserMonitorRef.current?.id.toLowerCase() === monitorId.toLowerCase()) {
+          setActiveTab("filter");
+          return;
+        }
+        const currentList = userMonitorsRef.current;
+        const found = currentList.find((m) => m.id.toLowerCase() === monitorId.toLowerCase());
         if (found) {
           handleOpenMonitorDashboard(found);
-        } else {
+        } else if (currentList.length > 0) {
           setActiveTab("my_monitors");
         }
       } else if (hash.startsWith("#/radar/") || hash.startsWith("#/filter/")) {
@@ -288,11 +303,13 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     const hash = window.location.hash.toLowerCase();
-    if (hash.startsWith("#/monitor/") && userMonitors.length > 0 && !activeUserMonitor) {
+    if (hash.startsWith("#/monitor/") && userMonitors.length > 0) {
       const monitorId = hash.replace("#/monitor/", "").split("?")[0];
-      const found = userMonitors.find((m) => m.id === monitorId);
-      if (found) {
-        handleOpenMonitorDashboard(found);
+      if (!activeUserMonitor || activeUserMonitor.id.toLowerCase() !== monitorId.toLowerCase()) {
+        const found = userMonitors.find((m) => m.id.toLowerCase() === monitorId.toLowerCase());
+        if (found) {
+          handleOpenMonitorDashboard(found);
+        }
       }
     }
   }, [userMonitors, activeUserMonitor]);
@@ -329,12 +346,22 @@ export const App: React.FC = () => {
       .catch((err) => console.warn("Airport stats fetch failed:", err));
   }, []);
 
-  useEffect(() => {
-    if (activeTab !== "filter") {
-      setArbitrageCount(0);
-      return;
-    }
+  const dashboardArbitrageScope = useMemo(() => {
+    if (activeUserMonitor) {
+      const dest = (activeUserMonitor.filter_params?.destination || "").toLowerCase();
+      let country: string | undefined = undefined;
+      if (dest.includes("egypt")) country = "Египет";
+      else if (dest.includes("turkey")) country = "Турция";
+      else if (dest.includes("greece")) country = "Греция";
+      else if (dest.includes("cyprus")) country = "Кипр";
+      else if (dest.includes("spain")) country = "Испания";
 
+      return {
+        filterId: `monitor_${activeUserMonitor.id}`,
+        country: country,
+        title: activeUserMonitor.title,
+      };
+    }
     const preset = FILTER_PRESETS[activeFilterId];
     const country =
       preset?.destination === "turkey"
@@ -347,13 +374,28 @@ export const App: React.FC = () => {
         ? "Кипр"
         : undefined;
 
-    getArbitrageDeals(300, activeFilterId, country)
+    return {
+      filterId: activeFilterId,
+      country: country,
+      title: preset?.title,
+    };
+  }, [activeUserMonitor, activeFilterId]);
+
+  useEffect(() => {
+    if (activeTab !== "filter") {
+      setArbitrageCount(0);
+      return;
+    }
+
+    const { filterId, country } = dashboardArbitrageScope;
+
+    getArbitrageDeals(300, filterId, country)
       .then((deals) => setArbitrageCount(deals.length))
       .catch((err) => {
         console.warn("Arbitrage count fetch failed:", err);
         setArbitrageCount(0);
       });
-  }, [activeTab, activeFilterId]);
+  }, [activeTab, dashboardArbitrageScope]);
 
   const loadFilterResults = async (filterId: string) => {
     setIsLoading(true);
@@ -1123,19 +1165,9 @@ export const App: React.FC = () => {
         {/* 6. Mode Switch Views */}
         {viewMode === "arbitrage" ? (
           <GermanArbitrageView
-            filterId={activeTab === "filter" ? activeFilterId : undefined}
-            country={
-              FILTER_PRESETS[activeFilterId]?.destination === "turkey"
-                ? "Турция"
-                : FILTER_PRESETS[activeFilterId]?.destination === "egypt"
-                ? "Египет"
-                : FILTER_PRESETS[activeFilterId]?.destination === "greece"
-                ? "Греция"
-                : FILTER_PRESETS[activeFilterId]?.destination === "cyprus"
-                ? "Кипр"
-                : undefined
-            }
-            filterTitle={FILTER_PRESETS[activeFilterId]?.title}
+            filterId={activeTab === "filter" ? dashboardArbitrageScope.filterId : undefined}
+            country={activeTab === "filter" ? dashboardArbitrageScope.country : undefined}
+            filterTitle={activeTab === "filter" ? dashboardArbitrageScope.title : undefined}
           />
         ) : viewMode === "table" ? (
           <HotelTableView

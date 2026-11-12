@@ -223,6 +223,56 @@ class ArbitrageService:
         target_dur_max = spec.get("duration_max") if spec else None
         filter_variants = list(get_all_filter_id_variants(filter_id)) if filter_id else []
 
+        if filter_id and (filter_id.startswith("monitor_") or filter_id.startswith("user_")):
+            clean_uid = filter_id.replace("monitor_", "").replace("user_", "").replace("filter_", "")
+            try:
+                u_res = await db.execute(
+                    text("SELECT id, title, filter_params_json FROM user_monitors WHERE id = :uid"),
+                    {"uid": clean_uid},
+                )
+                u_row = u_res.fetchone()
+                if u_row and u_row[2]:
+                    u_params = json.loads(u_row[2])
+                    if not target_country:
+                        raw_dest = (u_params.get("destination") or "").lower()
+                        if "egypt" in raw_dest:
+                            target_country = "Египет"
+                        elif "turk" in raw_dest:
+                            target_country = "Турция"
+                        elif "gree" in raw_dest:
+                            target_country = "Греция"
+                        elif "cypr" in raw_dest:
+                            target_country = "Кипр"
+                        elif "spain" in raw_dest:
+                            target_country = "Испания"
+                        else:
+                            target_country = u_params.get("destination") or ""
+                    target_dest_key = normalize_dest_key(target_country or u_params.get("destination"))
+
+                    # Passenger party
+                    travelers = u_params.get("travelers")
+                    if isinstance(travelers, dict):
+                        target_adults = travelers.get("adults", 2)
+                        target_children = travelers.get("children", 0)
+                    else:
+                        if target_adults is None:
+                            target_adults = u_params.get("adults", 2)
+                        if target_children is None:
+                            target_children = u_params.get("children", 0)
+
+                    # Duration
+                    dur_range = u_params.get("duration_range")
+                    if isinstance(dur_range, list) and len(dur_range) >= 2:
+                        target_dur_min = dur_range[0]
+                        target_dur_max = dur_range[1]
+                    else:
+                        if target_dur_min is None:
+                            target_dur_min = u_params.get("duration_min", 7)
+                        if target_dur_max is None:
+                            target_dur_max = u_params.get("duration_max", 10)
+            except Exception as e:
+                logger.warning(f"Failed to resolve user monitor spec for {clean_uid}: {e}")
+
         # 2. Filter German Candidate Offers
         kb = get_check24_kb()
         all_de_offers = kb.get("offers", [])

@@ -68,6 +68,7 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
 
           {showArbitrageTab && (
             <button
+              id="modeBtnArbitrage"
               type="button"
               onClick={() => onViewModeChange("arbitrage")}
               className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
