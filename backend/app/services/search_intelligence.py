@@ -357,6 +357,20 @@ def evaluate_search_intelligence(
         now_utc = datetime.now(timezone.utc)
         candidates_48h = []
         for snap in hist_snapshots:
+            # Strictly require comparable departure dates (do NOT compare Nov 2026 departure with June 2027)
+            s_dep = snap.get("departure_date")
+            if departure_date and s_dep:
+                if isinstance(s_dep, str):
+                    try:
+                        s_dep = date.fromisoformat(s_dep[:10])
+                    except Exception:
+                        s_dep = None
+                elif isinstance(s_dep, datetime):
+                    s_dep = s_dep.date()
+                if s_dep and abs((s_dep - departure_date).days) > 21:
+                    # Incompatible travel horizon
+                    continue
+
             r_at = snap.get("recorded_at")
             if not r_at:
                 continue
