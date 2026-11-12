@@ -220,7 +220,7 @@ export const HeroTerminal: React.FC<HeroTerminalProps> = ({
           </div>
           <div className="kpi-card-info">
             <div className="kpi-card-number text-slate-700">
-              {kpi.lastUpdatedText || "12 мин. назад"}
+              {kpi.lastUpdatedText || "только что"}
             </div>
             <div className="kpi-status-tag">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />

@@ -381,6 +381,7 @@ export interface HotelCatalogResponse {
   filter_id: string;
   total_hotels: number;
   hotels: HotelCatalogCard[];
+  last_updated_at?: string;
 }
 
 export interface MarketOraclePick {

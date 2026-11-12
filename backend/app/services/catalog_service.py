@@ -15,7 +15,7 @@ from app.services.canonical_filters import get_filter_display_ceiling
 from app.services.hotel_deal_score import compute_hotel_deal_metrics
 from app.services.hotel_knowledge_service import HotelKnowledgeService
 
-_CATALOG_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
+_CATALOG_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]], Any]] = {}
 _CACHE_TTL_SECONDS = 900  # 15 minutes in-memory cache
 
 
@@ -49,14 +49,16 @@ class CatalogService:
         # Check in-memory cache
         now_ts = time.time()
         cards: Optional[List[Dict[str, Any]]] = None
+        max_ts_val = None
         if canonical_fid in _CATALOG_CACHE:
-            c_time, c_cards = _CATALOG_CACHE[canonical_fid]
+            c_time, c_cards, c_max_ts = _CATALOG_CACHE[canonical_fid]
             if now_ts - c_time < _CACHE_TTL_SECONDS:
                 cards = c_cards
+                max_ts_val = c_max_ts
 
         if cards is None:
-            cards = await cls._compute_catalog_cards(db, filter_id, canonical_fid)
-            _CATALOG_CACHE[canonical_fid] = (now_ts, cards)
+            cards, max_ts_val = await cls._compute_catalog_cards(db, filter_id, canonical_fid)
+            _CATALOG_CACHE[canonical_fid] = (now_ts, cards, max_ts_val)
 
         # 5. Apply filters
         # Enforce canonical display ceiling if max_price was not explicitly specified
@@ -92,10 +94,18 @@ class CatalogService:
         else:  # default "price"
             filtered_cards.sort(key=lambda x: x["current_min_price"], reverse=reverse_order)
 
+        max_ts_str = (
+            max_ts_val.isoformat()
+            if hasattr(max_ts_val, "isoformat")
+            else str(max_ts_val)
+            if max_ts_val
+            else None
+        )
         return {
             "filter_id": filter_id,
             "total_hotels": len(filtered_cards),
             "hotels": filtered_cards,
+            "last_updated_at": max_ts_str,
         }
 
     @classmethod
@@ -104,7 +114,7 @@ class CatalogService:
         db: AsyncSession,
         filter_id: str,
         canonical_fid: str,
-    ) -> List[Dict[str, Any]]:
+    ) -> Tuple[List[Dict[str, Any]], Any]:
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
@@ -135,7 +145,7 @@ class CatalogService:
         max_ts = time_res.scalar()
 
         if not max_ts:
-            return []
+            return [], None
 
         if isinstance(max_ts, str):
             ts_str = max_ts.replace("Z", "+00:00").replace(" ", "T")
@@ -496,4 +506,4 @@ class CatalogService:
                 "last_updated": last_updated_str,
             })
 
-        return cards
+        return cards, max_ts

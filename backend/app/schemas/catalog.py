@@ -38,4 +38,5 @@ class HotelCatalogResponse(BaseModel):
     filter_id: str
     total_hotels: int
     hotels: List[HotelCatalogCard]
+    last_updated_at: Optional[Union[str, datetime]] = None
 

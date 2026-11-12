@@ -123,6 +123,31 @@ function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotel
   };
 }
 
+function formatRelativeTime(dateInput?: string | Date | null): string {
+  if (!dateInput) return "только что";
+  let d: Date;
+  if (typeof dateInput === "string") {
+    let s = dateInput.trim().replace(" ", "T");
+    if (!s.endsWith("Z") && !s.includes("+") && !s.slice(10).includes("-")) {
+      s += "Z";
+    }
+    d = new Date(s);
+  } else {
+    d = dateInput;
+  }
+  const now = Date.now();
+  const diffMs = now - d.getTime();
+  if (isNaN(diffMs) || diffMs < 45 * 1000) return "только что";
+  const diffMins = Math.floor(diffMs / (60 * 1000));
+  if (diffMins < 60) return `${diffMins} мин. назад`;
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) return `${diffHours} ч. назад`;
+  const diffDays = Math.floor(diffHours / 24);
+  if (diffDays === 1) return "вчера";
+  if (diffDays < 7) return `${diffDays} дн. назад`;
+  return d.toLocaleDateString("ru-RU", { day: "numeric", month: "short" });
+}
+
 export const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"filter" | "search" | "arbitrage" | "my_monitors">("filter");
@@ -215,6 +240,27 @@ export const App: React.FC = () => {
   const [topDrops, setTopDrops] = useState<PriceDropItem[]>([]);
   const [airportStats, setAirportStats] = useState<AirportStat[]>([]);
   const [arbitrageCount, setArbitrageCount] = useState<number>(0);
+  const [dashboardLastUpdated, setDashboardLastUpdated] = useState<string | null>(null);
+  const [ticker, setTicker] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTicker((t) => t + 1);
+    }, 30000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const effectiveLastUpdated = useMemo(() => {
+    if (activeUserMonitor) {
+      return (
+        dashboardLastUpdated ||
+        activeUserMonitor.last_checked_at ||
+        activeUserMonitor.created_at ||
+        null
+      );
+    }
+    return dashboardLastUpdated;
+  }, [activeUserMonitor, dashboardLastUpdated]);
 
   // Filter state
   const [tableFilters, setTableFilters] = useState<FilterState>(INITIAL_FILTERS);
@@ -404,17 +450,24 @@ export const App: React.FC = () => {
       const catResp = await getFilterHotelsCatalog(filterId, {
         maxPrice: preset?.displayPriceCeiling,
       });
+      if (catResp.last_updated_at) {
+        setDashboardLastUpdated(catResp.last_updated_at);
+      } else if (catResp.hotels && catResp.hotels.length > 0 && catResp.hotels[0].last_updated) {
+        setDashboardLastUpdated(catResp.hotels[0].last_updated);
+      }
       if (catResp.hotels && catResp.hotels.length > 0) {
         setResults(catResp.hotels.map((h) => catalogCardToSearchItem(h, preset)));
         return;
       }
       const resp = await searchTours(preset.searchReq);
+      setDashboardLastUpdated(new Date().toISOString());
       setResults(resp.results);
     } catch (err: any) {
       console.warn("Catalog fetch failed, falling back to search:", err);
       try {
         const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
         const resp = await searchTours(preset.searchReq);
+        setDashboardLastUpdated(new Date().toISOString());
         setResults(resp.results);
       } catch (e) {
         console.error("Filter search error:", e);
@@ -428,6 +481,7 @@ export const App: React.FC = () => {
     setActiveUserMonitor(null);
     setActiveFilterId(filterId);
     setActiveTab("filter");
+    setDashboardLastUpdated(null);
     setTableFilters(INITIAL_FILTERS);
     loadFilterResults(filterId);
     window.location.hash = `#/radar/${filterId}`;
@@ -438,6 +492,7 @@ export const App: React.FC = () => {
     setActiveUserMonitor(monitor);
     setActiveTab("filter");
     setTableFilters(INITIAL_FILTERS);
+    setDashboardLastUpdated(monitor.last_checked_at || monitor.created_at || null);
     window.location.hash = `#/monitor/${monitor.id}`;
     if (monitor.filter_params) {
       handleSearch({
@@ -453,6 +508,7 @@ export const App: React.FC = () => {
     setLastSearchReq(req);
     try {
       const resp = await searchTours(req);
+      setDashboardLastUpdated(new Date().toISOString());
       setResults(resp.results);
       setTotalFound(resp.total_found || resp.results.length);
       setSearchPage(resp.page || 1);
@@ -689,6 +745,7 @@ export const App: React.FC = () => {
 
   // Live KPI metrics
   const heroKpi = useMemo(() => {
+    const lastUpdatedFormatted = formatRelativeTime(effectiveLastUpdated);
     if (!results.length) {
       return {
         minPricePln: 0,
@@ -700,7 +757,7 @@ export const App: React.FC = () => {
         dropped48hMaxPct: 0,
         dropped48hTopHotel: "",
         dropped48hPln: 0,
-        lastUpdatedText: "5 мин. назад",
+        lastUpdatedText: lastUpdatedFormatted,
       };
     }
 
@@ -736,9 +793,9 @@ export const App: React.FC = () => {
       dropped48hMaxPct: topDrop ? Math.round(topDrop.pct) : 0,
       dropped48hTopHotel: topDrop ? topDrop.hotel.hotel_name : "",
       dropped48hPln: topDrop ? topDrop.savingPln : 0,
-      lastUpdatedText: "12 мин. назад",
+      lastUpdatedText: lastUpdatedFormatted,
     };
-  }, [results]);
+  }, [results, effectiveLastUpdated, ticker]);
 
   const activeQuickFilter = useMemo<"buy_now" | "drops" | null>(() => {
     if (tableFilters.recommendation === "hot") return "buy_now";
