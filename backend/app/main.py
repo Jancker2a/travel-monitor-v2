@@ -69,14 +69,47 @@ async def _async_background_db_maintenance():
             await conn.execute(text("""
                 UPDATE hotels 
                 SET region = 'Хургада', country = 'Египет' 
-                WHERE (LOWER(hotel_name) LIKE '%arena beach%' OR hotel_id = 'arena-beach-resort-spa')
+                WHERE (LOWER(display_name) LIKE '%arena beach%' OR hotel_id = 'arena-beach-resort-spa')
                   AND (region != 'Хургада' OR country != 'Египет');
             """))
             await conn.execute(text("""
                 UPDATE hotels 
                 SET region = 'Сафага', country = 'Египет' 
-                WHERE (LOWER(hotel_name) LIKE '%shams safaga%' OR hotel_id = 'shams-safaga')
+                WHERE (LOWER(display_name) LIKE '%shams safaga%' OR hotel_id = 'shams-safaga')
                   AND (region != 'Сафага' OR country != 'Египет');
+            """))
+            # Synchronize offer_cohorts destination_code with canonical hotel country
+            await conn.execute(text("""
+                UPDATE offer_cohorts
+                SET destination_code = 'egypt'
+                FROM hotels
+                WHERE offer_cohorts.hotel_id = hotels.hotel_id
+                  AND hotels.country = 'Египет'
+                  AND offer_cohorts.destination_code != 'egypt';
+            """))
+            await conn.execute(text("""
+                UPDATE offer_cohorts
+                SET destination_code = 'greece'
+                FROM hotels
+                WHERE offer_cohorts.hotel_id = hotels.hotel_id
+                  AND hotels.country = 'Греция'
+                  AND offer_cohorts.destination_code != 'greece';
+            """))
+            await conn.execute(text("""
+                UPDATE offer_cohorts
+                SET destination_code = 'cyprus'
+                FROM hotels
+                WHERE offer_cohorts.hotel_id = hotels.hotel_id
+                  AND hotels.country = 'Кипр'
+                  AND offer_cohorts.destination_code != 'cyprus';
+            """))
+            await conn.execute(text("""
+                UPDATE offer_cohorts
+                SET destination_code = 'turkey'
+                FROM hotels
+                WHERE offer_cohorts.hotel_id = hotels.hotel_id
+                  AND hotels.country = 'Турция'
+                  AND offer_cohorts.destination_code != 'turkey';
             """))
             # Enforce strict party integrity on canonical 1-adult and solo filters
             await conn.execute(text("""

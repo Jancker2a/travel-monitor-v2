@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { HotelPassport, SearchHotelItem } from "../types";
 import { getHotelPassport, getHotelNormalizedHistory } from "../services/api";
-import { FILTER_PRESETS } from "../App";
+import { FILTER_PRESETS } from "../constants/presets";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
 declare global {
@@ -58,21 +58,25 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setActiveTab("ai");
 
     const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
-    const is1pFilter = Boolean(filterId && (filterId.includes("1p") || filterId.includes("_1_adult")));
-    const fallbackAdults =
-      searchTravelers?.adults ??
-      filterPreset?.searchReq?.travelers?.adults ??
-      (is1pFilter ? 1 : undefined) ??
-      passport?.user_query_scope?.adults ??
-      hotelItem?.current_offer?.adults ??
-      1;
-    const fallbackChildren =
-      searchTravelers?.children ??
-      filterPreset?.searchReq?.travelers?.children ??
-      (is1pFilter ? 0 : undefined) ??
-      passport?.user_query_scope?.children ??
-      hotelItem?.current_offer?.children ??
-      0;
+    const is1pExplicit = Boolean(
+      (filterId && (filterId.includes("1p") || filterId.includes("_1_adult"))) ||
+      (searchTravelers && searchTravelers.adults === 1 && (!searchTravelers.children || searchTravelers.children === 0)) ||
+      (passport?.user_query_scope && passport.user_query_scope.adults === 1 && (!passport.user_query_scope.children || passport.user_query_scope.children === 0))
+    );
+    const fallbackAdults = is1pExplicit
+      ? 1
+      : (searchTravelers?.adults ??
+         filterPreset?.searchReq?.travelers?.adults ??
+         passport?.user_query_scope?.adults ??
+         hotelItem?.current_offer?.adults ??
+         2);
+    const fallbackChildren = is1pExplicit
+      ? 0
+      : (searchTravelers?.children ??
+         filterPreset?.searchReq?.travelers?.children ??
+         passport?.user_query_scope?.children ??
+         hotelItem?.current_offer?.children ??
+         0);
     const fallbackNights =
       hotelItem?.current_offer?.duration_nights ??
       filterPreset?.searchReq?.duration?.min_nights ??
@@ -102,6 +106,40 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
   }, [hotelId, filterId, hotelItem, searchTravelers]);
+
+  const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
+  const is1pExplicit = Boolean(
+    (filterId && (filterId.includes("1p") || filterId.includes("_1_adult"))) ||
+    (searchTravelers && searchTravelers.adults === 1 && (!searchTravelers.children || searchTravelers.children === 0)) ||
+    (passport?.user_query_scope && passport.user_query_scope.adults === 1 && (!passport.user_query_scope.children || passport.user_query_scope.children === 0))
+  );
+
+  const resolvedAdults = is1pExplicit
+    ? 1
+    : (searchTravelers?.adults ??
+       filterPreset?.searchReq?.travelers?.adults ??
+       passport?.user_query_scope?.adults ??
+       hotelItem?.current_offer?.adults ??
+       2);
+
+  const resolvedChildren = is1pExplicit
+    ? 0
+    : (searchTravelers?.children ??
+       filterPreset?.searchReq?.travelers?.children ??
+       passport?.user_query_scope?.children ??
+       hotelItem?.current_offer?.children ??
+       0);
+
+  const resolvedNights =
+    hotelItem?.current_offer?.duration_nights ||
+    passport?.user_query_scope?.duration_nights ||
+    filterPreset?.searchReq?.duration?.min_nights ||
+    7;
+
+  const partyLabel =
+    resolvedAdults === 1 && resolvedChildren === 0
+      ? "1 взр"
+      : `${resolvedAdults} взр` + (resolvedChildren > 0 ? ` + ${resolvedChildren} реб` : "");
 
   // Render Plotly Price History Chart when history tab is activated
   useEffect(() => {
@@ -154,11 +192,11 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
     // Deduplicate timestamps to prevent duplicate x-axis points
     const uniqueMap = new Map<string, { price: number; perNightPax: number }>();
-    const totalPax = Math.max(1, userAdults + userChildren);
+    const totalPax = Math.max(1, resolvedAdults + resolvedChildren);
     history.forEach((pt) => {
-      const isExactParty = pt.adults === userAdults && (pt.children || 0) === userChildren;
+      const isExactParty = pt.adults === resolvedAdults && (pt.children || 0) === resolvedChildren;
       const p = isExactParty ? pt.total_price_pln : (pt.scaled_tour_price || pt.total_price_pln);
-      const perNight = Math.round(p / (userNights * totalPax));
+      const perNight = Math.round(p / (resolvedNights * totalPax));
       uniqueMap.set(pt.recorded_at, {
         price: p,
         perNightPax: perNight,
@@ -292,22 +330,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const minPrice = hotelItem?.intelligence?.historic_min_pln || passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
 
-  const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
-  const is1pFilter = Boolean(filterId && (filterId.includes("1p") || filterId.includes("_1_adult")));
-  const resolvedAdults =
-    searchTravelers?.adults ??
-    filterPreset?.searchReq?.travelers?.adults ??
-    (is1pFilter ? 1 : undefined) ??
-    passport?.user_query_scope?.adults ??
-    hotelItem?.current_offer?.adults ??
-    1;
-  const resolvedChildren =
-    searchTravelers?.children ??
-    filterPreset?.searchReq?.travelers?.children ??
-    (is1pFilter ? 0 : undefined) ??
-    passport?.user_query_scope?.children ??
-    hotelItem?.current_offer?.children ??
-    0;
+// rangeStats uses resolvedAdults and resolvedChildren
 
   // Dynamic values depending on active filter range (7d / 30d / all)
   const rangeStats = useMemo(() => {
@@ -918,7 +941,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   <>
                     <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
                       <div className="stat-pill" style={{ background: "#e0f2fe", color: "#0369a1", padding: "6px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bae6fd" }}>
-                        ✈️ Полная цена тура ({partyLabel} • {userNights}н, с перелётом)
+                        ✈️ Полная цена тура ({partyLabel} • {resolvedNights}н, с перелётом)
                       </div>
 
                       {/* Range Selector */}
@@ -962,11 +985,11 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     {/* Explanatory banner */}
                     <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "10px 14px", marginBottom: "14px", fontSize: "12px", color: "#475569", lineHeight: "1.5" }}>
                       <div>
-                        💡 <strong>История стоимости пакета:</strong> график отражает реальную динамику цены всего тура (перелёт туда-обратно + проживание All Inclusive + трансфер) для вашего состава семьи ({partyLabel} • {userNights}н). Учитывает все скидки туроператора и горящие места в чартерах.
+                        💡 <strong>История стоимости пакета:</strong> график отражает реальную динамику цены всего тура (перелёт туда-обратно + проживание All Inclusive + трансфер) для вашего состава семьи ({partyLabel} • {resolvedNights}н). Учитывает все скидки туроператора и горящие места в чартерах.
                       </div>
                       {hotelItem?.current_offer?.departure_date && (
                         <div style={{ marginTop: "6px", fontSize: "11px", color: "#0369a1", background: "#f0f9ff", padding: "4px 8px", borderRadius: "6px", border: "1px solid #e0f2fe" }}>
-                          ℹ️ Текущий live-поиск: вылет <strong>{hotelItem.current_offer.departure_date}</strong> ({userNights}н) • {currentPrice.toLocaleString("ru-RU")} zł.
+                          ℹ️ Текущий live-поиск: вылет <strong>{hotelItem.current_offer.departure_date}</strong> ({resolvedNights}н) • {currentPrice.toLocaleString("ru-RU")} zł.
                         </div>
                       )}
                     </div>

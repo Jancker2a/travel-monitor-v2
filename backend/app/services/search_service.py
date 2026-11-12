@@ -150,12 +150,10 @@ class SearchService:
                 conditions.append(OfferCohort.adults == req.travelers.adults)
                 conditions.append(OfferCohort.children == req.travelers.children)
             if dest_keyword:
-                conditions.append(
-                    or_(
-                        OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
-                        Hotel.country == country_name,
-                    )
-                )
+                if country_name:
+                    conditions.append(Hotel.country == country_name)
+                else:
+                    conditions.append(OfferCohort.destination_code.ilike(f"%{dest_keyword}%"))
             if req.airports:
                 airport_conds = []
                 for a in req.airports:
@@ -192,10 +190,7 @@ class SearchService:
                     and_(
                         OfferCohort.adults == (req.travelers.adults if req.travelers else 2),
                         OfferCohort.children == (req.travelers.children if req.travelers else 0),
-                        or_(
-                            OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
-                            Hotel.country == country_name,
-                        ),
+                        Hotel.country == country_name if country_name else OfferCohort.destination_code.ilike(f"%{dest_keyword}%"),
                     )
                 )
                 .limit(limit)
