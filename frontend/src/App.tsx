@@ -42,7 +42,7 @@ import {
   getAdminStatus,
   claimAdmin,
 } from "./services/api";
-import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus, Crown } from "lucide-react";
+import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus, Crown, RefreshCw, Layers, ExternalLink, TrendingDown, Clock, ArrowLeft } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
 
@@ -136,6 +136,7 @@ export const App: React.FC = () => {
   const [adminStatus, setAdminStatus] = useState<{ has_admin: boolean; admin_email?: string | null }>({ has_admin: true });
   const [isCreateMonitorOpen, setIsCreateMonitorOpen] = useState(false);
   const [userMonitors, setUserMonitors] = useState<UserMonitor[]>([]);
+  const [activeUserMonitor, setActiveUserMonitor] = useState<UserMonitor | null>(null);
   const [isLoadingMonitors, setIsLoadingMonitors] = useState(false);
 
   const isAdmin = currentUser?.role === "ADMIN";
@@ -363,11 +364,23 @@ export const App: React.FC = () => {
   };
 
   const handleSelectFilter = (filterId: string) => {
+    setActiveUserMonitor(null);
     setActiveFilterId(filterId);
     setActiveTab("filter");
     setTableFilters(INITIAL_FILTERS);
     loadFilterResults(filterId);
     window.location.hash = `#/radar/${filterId}`;
+    setIsSidebarOpen(false);
+  };
+
+  const handleOpenMonitorDashboard = (monitor: UserMonitor) => {
+    setActiveUserMonitor(monitor);
+    setActiveTab("search");
+    setTableFilters(INITIAL_FILTERS);
+    window.location.hash = `#/monitor/${monitor.id}`;
+    if (monitor.filter_params) {
+      handleSearch(monitor.filter_params as unknown as SearchRequest);
+    }
     setIsSidebarOpen(false);
   };
 
@@ -703,6 +716,9 @@ export const App: React.FC = () => {
           navigateToTab("my_monitors");
           setIsSidebarOpen(false);
         }}
+        userMonitors={userMonitors}
+        activeUserMonitorId={activeUserMonitor?.id}
+        onSelectUserMonitor={handleOpenMonitorDashboard}
         activeTab={activeTab}
         currentUser={currentUser}
         isAdmin={isAdmin}
@@ -927,24 +943,94 @@ export const App: React.FC = () => {
               setAuthModalReason("🔒 Войдите или зарегистрируйтесь, чтобы создать свой мониторинг поиска или тура.");
               setIsAuthModalOpen(true);
             }}
+            onOpenDashboard={handleOpenMonitorDashboard}
           />
         ) : (
           <>
-            {/* If in Search Tab */}
+            {/* If in Search / Custom Monitor Tab */}
             {activeTab === "search" && (
               <div className="mb-4">
-                <SearchHeader
-                  onSearch={handleSearch}
-                  isLoading={isLoading}
-                  onSaveMonitor={() => {
-                    if (!currentUser) {
-                      setAuthModalReason("🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться.");
-                      setIsAuthModalOpen(true);
-                      return;
-                    }
-                    setIsCreateMonitorOpen(true);
-                  }}
-                />
+                {activeUserMonitor ? (
+                  <div className="p-5 rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-xl border border-blue-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-start sm:items-center gap-3.5">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-500/20 text-sky-300 flex items-center justify-center text-2xl shrink-0 border border-blue-400/20 shadow-inner">
+                        📡
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[11px] font-black uppercase tracking-wider text-sky-300">
+                            Персональный дашборд мониторинга
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30">
+                            {activeUserMonitor.status === "SUCCESS" ? "✓ Активен" : "⚡ Проверяется"}
+                          </span>
+                          <span className="text-slate-400 text-xs">
+                            • каждые {activeUserMonitor.check_interval_hours}ч
+                          </span>
+                          <span className="text-slate-400 text-xs">
+                            • порог -{activeUserMonitor.min_drop_pct}%
+                          </span>
+                        </div>
+                        <h2 className="text-lg sm:text-xl font-black tracking-tight text-white mt-1">
+                          {activeUserMonitor.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                      {activeUserMonitor.fly_source_url && (
+                        <a
+                          href={activeUserMonitor.fly_source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                        >
+                          <span>Fly.pl</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (activeUserMonitor?.filter_params) {
+                            handleSearch({ ...activeUserMonitor.filter_params, force_live_refresh: true } as unknown as SearchRequest);
+                          }
+                        }}
+                        className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-white font-black text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-md hover:shadow-lg"
+                      >
+                        <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
+                        <span>Обновить замер ⚡</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setActiveUserMonitor(null);
+                          navigateToTab("my_monitors");
+                        }}
+                        className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs transition-colors flex items-center gap-1 cursor-pointer border border-slate-700"
+                        title="Вернуться к списку отслеживаний"
+                      >
+                        <ArrowLeft className="w-3.5 h-3.5" />
+                        <span>Мои мониторинги</span>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <SearchHeader
+                    onSearch={handleSearch}
+                    isLoading={isLoading}
+                    onSaveMonitor={() => {
+                      if (!currentUser) {
+                        setAuthModalReason("🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться.");
+                        setIsAuthModalOpen(true);
+                        return;
+                      }
+                      setIsCreateMonitorOpen(true);
+                    }}
+                  />
+                )}
               </div>
             )}
 
@@ -1201,7 +1287,7 @@ export const App: React.FC = () => {
         onClose={() => setIsCreateMonitorOpen(false)}
         onCreated={(m) => {
           setUserMonitors((prev) => [m, ...prev]);
-          navigateToTab("my_monitors");
+          handleOpenMonitorDashboard(m);
         }}
         currentSearchReq={lastSearchReq || undefined}
         currentUser={currentUser}

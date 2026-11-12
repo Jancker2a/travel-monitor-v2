@@ -130,15 +130,19 @@ class UserMonitorService:
         await db.commit()
         
         try:
-            search_resp = await SearchService.execute_search(
+            search_req.force_live_refresh = True
+            search_resp = await SearchService.search(
                 db=db,
                 req=search_req,
-                force_live=True,
-                client_ip=f"user-{user_id[:8]}",
             )
             
-            offers = search_resp.hotels or []
-            min_price = min([h.current_offer.total_price_pln for h in offers]) if offers else None
+            offers = search_resp.results or []
+            valid_prices = [
+                h.current_offer.total_price_pln
+                for h in offers
+                if h.current_offer and h.current_offer.total_price_pln is not None
+            ]
+            min_price = min(valid_prices) if valid_prices else None
             
             monitor.status = "SUCCESS"
             monitor.last_checked_at = datetime.now(timezone.utc)
@@ -153,10 +157,10 @@ class UserMonitorService:
                 "monitor": cls._to_response(monitor),
                 "total_found": len(offers),
                 "min_price_pln": min_price,
-                "is_cached": search_resp.is_cached,
+                "is_cached": search_resp.cached,
             }
         except Exception as e:
-            logger.error(f"Error running monitor {monitor_id}: {e}")
+            logger.error(f"Error running monitor {monitor_id}: {e}", exc_info=True)
             monitor.status = "ERROR"
             monitor.last_error_message = str(e)[:500]
             await db.commit()

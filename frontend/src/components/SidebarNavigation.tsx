@@ -14,7 +14,7 @@ import {
   Bell,
 } from "lucide-react";
 
-import { UserProfile } from "../types";
+import { UserProfile, UserMonitor } from "../types";
 
 export interface NavFilterItem {
   id: string;
@@ -34,6 +34,9 @@ interface SidebarNavigationProps {
   onOpenSearch: () => void;
   onOpenArbitrage: () => void;
   onOpenMonitors?: () => void;
+  userMonitors?: UserMonitor[];
+  activeUserMonitorId?: string | null;
+  onSelectUserMonitor?: (monitor: UserMonitor) => void;
   activeTab: "filter" | "search" | "arbitrage" | "my_monitors";
   currentUser?: UserProfile | null;
   isAdmin?: boolean;
@@ -48,6 +51,9 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
   onOpenSearch,
   onOpenArbitrage,
   onOpenMonitors,
+  userMonitors = [],
+  activeUserMonitorId,
+  onSelectUserMonitor,
   activeTab,
   currentUser,
   isAdmin = false,
@@ -203,19 +209,57 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
           </button>
 
           {onOpenMonitors && (
-            <button
-              onClick={() => {
-                onOpenMonitors();
-              }}
-              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
-                activeTab === "my_monitors"
-                  ? "bg-blue-600 text-white shadow-sm shadow-blue-500/30"
-                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
-              }`}
-            >
-              <Bell className="w-4 h-4 text-amber-400" />
-              <span>📡 Мои мониторинги</span>
-            </button>
+            <div className="space-y-1">
+              <button
+                onClick={() => {
+                  onOpenMonitors();
+                }}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                  activeTab === "my_monitors"
+                    ? "bg-blue-600 text-white shadow-sm shadow-blue-500/30"
+                    : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Bell className="w-4 h-4 text-amber-400" />
+                  <span>📡 Мои мониторинги</span>
+                </div>
+                {userMonitors && userMonitors.length > 0 && (
+                  <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-blue-500/30 text-blue-200 font-bold border border-blue-400/30">
+                    {userMonitors.length}
+                  </span>
+                )}
+              </button>
+
+              {/* Sub-list of created user monitors */}
+              {userMonitors && userMonitors.length > 0 && (
+                <div className="pl-3 pr-1 py-1 space-y-0.5 border-l-2 border-slate-800 ml-3">
+                  {userMonitors.map((m) => {
+                    const isSelected = activeUserMonitorId === m.id && activeTab === "search";
+                    return (
+                      <button
+                        key={m.id}
+                        type="button"
+                        onClick={() => onSelectUserMonitor && onSelectUserMonitor(m)}
+                        className={`w-full text-left flex items-center justify-between px-2 py-1.5 rounded-lg text-[11px] transition-colors ${
+                          isSelected
+                            ? "bg-sky-500/20 text-sky-300 font-bold border border-sky-500/40"
+                            : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 font-medium"
+                        }`}
+                        title={m.title}
+                      >
+                        <span className="truncate pr-1">{m.title}</span>
+                        {m.last_min_price_pln ? (
+                          <span className="text-[10px] text-emerald-400 font-bold shrink-0">
+                            {m.last_min_price_pln.toLocaleString("ru-RU")} zł
+                          </span>
+                        ) : null}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           )}
         </div>
 
