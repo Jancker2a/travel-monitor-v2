@@ -44,6 +44,21 @@ class OracleService:
             m_row = m_res.fetchone()
             canonical_fid = filter_id
 
+        if not m_row:
+            clean_uid = filter_id.replace("monitor_", "").replace("user_", "").replace("filter_", "")
+            u_sql = "SELECT id, title, filter_params_json FROM user_monitors WHERE id = :uid"
+            u_res = await db.execute(text(u_sql), {"uid": clean_uid})
+            u_row = u_res.fetchone()
+            if u_row:
+                import json
+                try:
+                    u_params = json.loads(u_row[2]) if u_row[2] else {}
+                except Exception:
+                    u_params = {}
+                title = u_row[1]
+                dest = u_params.get("destination") or "egypt"
+                m_row = (u_row[0], title, dest)
+
         title = m_row[1] if m_row else filter_id
         dest = m_row[2] if m_row else "egypt"
 
@@ -59,11 +74,11 @@ class OracleService:
             return {
                 "filter_id": filter_id,
                 "title": title,
-                "headline": "Данные обновляются",
-                "market_phase": "Ожидание данных",
-                "charter_dynamics": "Сбор актуальных предложений для этого направления продолжается...",
-                "floor_status": "",
-                "strategic_directive": "Проверьте фильтр через несколько минут.",
+                "headline": "Мониторинг активен: зафиксирован первый срез цен",
+                "market_phase": "Начало отслеживания",
+                "charter_dynamics": f"Сбор актуальных предложений по направлению {dest.capitalize()} запущен. По мере накопления истории (замеры каждые 3ч) здесь появится прогноз лучшего момента покупки и анализ чартерной загрузки.",
+                "floor_status": "История цен накапливается.",
+                "strategic_directive": "Мониторинг обновляется каждые 3 часа. Нажмите «Обновить ⚡» для немедленного замера.",
                 "buy_now_recommendation": {"has_worthy_deals": False, "top_picks": []},
                 "key_anomalies": [],
             }

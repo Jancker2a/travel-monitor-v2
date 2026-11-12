@@ -706,11 +706,112 @@ class LiveScraperService:
             )
             items.append(item)
 
-        # Commit newly discovered hotels if any
-        try:
-            await db.commit()
-        except Exception:
-            pass
+        # 4. If running for a filter or user monitor, persist OfferCohort and PriceSnapshot
+        if req.filter_id and raw_offers:
+            try:
+                # Pre-fetch existing cohorts for these offers
+                all_cohort_hashes = [
+                    compute_cohort_hash(
+                        hotel_id=slugify(off.get("hotel_name")),
+                        checkin_date=off.get("checkin_date") or date.today(),
+                        duration_nights=off.get("duration_nights") or 7,
+                        airport_code=off.get("departure_airport") or "WAW",
+                        adults=req_adults,
+                        board_basis=off.get("board_basis") or "All Inclusive",
+                        filter_id=req.filter_id,
+                    )
+                    for off in raw_offers if off.get("hotel_name")
+                ]
+                existing_cohorts: Dict[str, OfferCohort] = {}
+                if all_cohort_hashes:
+                    c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash.in_(list(set(all_cohort_hashes))))
+                    c_res = await db.execute(c_stmt)
+                    for c in c_res.scalars().all():
+                        existing_cohorts[c.cohort_hash] = c
+
+                for off in raw_offers:
+                    h_name = off.get("hotel_name")
+                    if not h_name:
+                        continue
+                    h_id = slugify(h_name)
+                    c_hash = compute_cohort_hash(
+                        hotel_id=h_id,
+                        checkin_date=off.get("checkin_date") or date.today(),
+                        duration_nights=off.get("duration_nights") or 7,
+                        airport_code=off.get("departure_airport") or "WAW",
+                        adults=req_adults,
+                        board_basis=off.get("board_basis") or "All Inclusive",
+                        filter_id=req.filter_id,
+                    )
+                    cohort = existing_cohorts.get(c_hash)
+                    if not cohort:
+                        cohort = OfferCohort(
+                            cohort_hash=c_hash,
+                            filter_id=req.filter_id,
+                            hotel_id=h_id,
+                            destination_code=destination_country.lower(),
+                            checkin_date=off.get("checkin_date") or date.today(),
+                            checkout_date=off.get("checkout_date"),
+                            duration_nights=off.get("duration_nights") or 7,
+                            airport_code=off.get("departure_airport") or "WAW",
+                            board_basis=off.get("board_basis") or "All Inclusive",
+                            adults=req_adults,
+                            children=req_children,
+                            operator=off.get("operator") or "Fly.pl",
+                            offer_url=off.get("offer_url") or "",
+                            is_active=True,
+                        )
+                        db.add(cohort)
+                        existing_cohorts[c_hash] = cohort
+                    else:
+                        cohort.last_seen_at = batch_recorded_at
+                        cohort.is_active = True
+                        if not cohort.filter_id:
+                            cohort.filter_id = req.filter_id
+
+                await db.flush()
+
+                # Insert price snapshots
+                for off in raw_offers:
+                    h_name = off.get("hotel_name")
+                    if not h_name:
+                        continue
+                    h_id = slugify(h_name)
+                    c_hash = compute_cohort_hash(
+                        hotel_id=h_id,
+                        checkin_date=off.get("checkin_date") or date.today(),
+                        duration_nights=off.get("duration_nights") or 7,
+                        airport_code=off.get("departure_airport") or "WAW",
+                        adults=req_adults,
+                        board_basis=off.get("board_basis") or "All Inclusive",
+                        filter_id=req.filter_id,
+                    )
+                    co = existing_cohorts.get(c_hash)
+                    p_val = float(off.get("price") or 0.0)
+                    if co and co.cohort_id and p_val > 0:
+                        n_nights = max(1, off.get("duration_nights") or 7)
+                        snap = PriceSnapshot(
+                            cohort_id=co.cohort_id,
+                            filter_id=req.filter_id,
+                            recorded_at=batch_recorded_at,
+                            total_price_pln=p_val,
+                            price_per_night_per_pax=round(p_val / (n_nights * pax_count), 2),
+                            currency="PLN",
+                            source="fly_pl",
+                        )
+                        db.add(snap)
+
+                await db.commit()
+                logger.info(f"Persisted {len(raw_offers)} price snapshots for filter_id '{req.filter_id}'")
+            except Exception as pe:
+                logger.warning(f"Error persisting snapshots for filter {req.filter_id}: {pe}")
+                await db.rollback()
+        else:
+            # Commit newly discovered hotels if any
+            try:
+                await db.commit()
+            except Exception:
+                pass
 
         return items
 

@@ -125,12 +125,13 @@ class UserMonitorService:
         
         params_dict = json.loads(monitor.filter_params_json)
         search_req = SearchRequest(**params_dict)
+        search_req.filter_id = f"monitor_{monitor.id}"
+        search_req.force_live_refresh = True
         
         monitor.status = "RUNNING"
         await db.commit()
         
         try:
-            search_req.force_live_refresh = True
             search_resp = await SearchService.search(
                 db=db,
                 req=search_req,

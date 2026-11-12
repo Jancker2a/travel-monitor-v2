@@ -1059,16 +1059,24 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
               {/* Cross-Filter callout in Tab 2 */}
               {passport?.other_filters && passport.other_filters.length > 0 && (
-                <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "12px", padding: "12px 16px", marginBottom: "16px" }}>
-                  <div style={{ fontSize: "12px", fontWeight: 700, color: "#166534", marginBottom: "8px" }}>
-                    📂 Отель также отслеживается в других фильтрах:
+                <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "14px 16px", marginBottom: "16px" }}>
+                  <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#1e293b", marginBottom: "4px", display: "flex", alignItems: "center", gap: "6px" }}>
+                    <span>💡</span>
+                    <span>Справочно: история отеля в других фильтрах</span>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <p style={{ fontSize: "11px", color: "#64748b", marginBottom: "10px", lineHeight: "1.4" }}>
+                    В других радарах по этому отелю накоплена подробная история цен, которую можно использовать как рыночный ориентир:
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     {passport.other_filters.map((f, idx) => (
-                      <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #dcfce7" }}>
+                      <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
                         <div>
-                          <div style={{ fontSize: "12px", fontWeight: 600, color: "#0f172a" }}>{f.title || f.filter_id}</div>
-                          <div style={{ fontSize: "11px", color: "#16a34a" }}>Лучшая цена: от {f.min_price_pln.toLocaleString("ru-RU")} zł ({f.snaps_count} замеров)</div>
+                          <div style={{ fontSize: "12px", fontWeight: 700, color: "#0f172a" }}>
+                            {f.title || f.filter_id} <span style={{ fontSize: "10.5px", fontWeight: 600, color: "#64748b" }}>({f.party_str || "Стандарт"} • {f.duration_nights || 7}н)</span>
+                          </div>
+                          <div style={{ fontSize: "11px", color: "#16a34a", fontWeight: 600, marginTop: "2px" }}>
+                            Цены: от {Math.round(f.min_price_pln).toLocaleString("ru-RU")} zł до {Math.round(f.max_price_pln).toLocaleString("ru-RU")} zł <span style={{ color: "#64748b", fontWeight: 400 }}>({f.snaps_count} замеров)</span>
+                          </div>
                         </div>
                         {onSwitchFilter && (
                           <button
@@ -1077,9 +1085,9 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                               onSwitchFilter(f.filter_id);
                               onClose();
                             }}
-                            style={{ background: "#16a34a", color: "#ffffff", border: "none", padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, cursor: "pointer" }}
+                            style={{ background: "#0ea5e9", color: "#ffffff", border: "none", padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, cursor: "pointer" }}
                           >
-                            Перейти в фильтр →
+                            Посмотреть график →
                           </button>
                         )}
                       </div>

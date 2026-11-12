@@ -120,7 +120,7 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
       type: "scatter",
       mode: "lines+markers",
       line: { color: "#A23B72", width: 2.8 },
-      marker: { size: 5, color: "#A23B72" },
+      marker: { size: dataPoints.length === 1 ? 10 : 5, color: "#A23B72" },
       name: "Средняя цена ТОП-10",
       showlegend: false,
       text: hoverTexts,
@@ -288,8 +288,25 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
           label="Построение графика ТОП-10 дешёвых предложений..."
           description="Сбор и агрегация исторических котировок из базы данных"
         />
+      ) : dataPoints.length === 0 ? (
+        <div className="bg-slate-50 border-2 border-dashed border-slate-200/90 rounded-2xl p-8 sm:p-10 text-center space-y-2">
+          <div className="text-3xl">📊</div>
+          <h4 className="text-sm sm:text-base font-extrabold text-slate-800">
+            История этого мониторинга формируется
+          </h4>
+          <p className="text-xs text-slate-500 max-w-lg mx-auto leading-relaxed">
+            Для этого мониторинга запущен регулярный сбор цен. График динамики и коридор цен ТОП-10 строятся по мере накопления истории замеров этого поиска (проверки каждые 3 часа).
+          </p>
+        </div>
       ) : (
-        <div className="relative w-full">
+        <div className="relative w-full space-y-2">
+          {dataPoints.length === 1 && (
+            <div className="flex items-center gap-2 bg-rose-50 border border-rose-200/80 text-rose-900 text-xs px-3.5 py-2 rounded-xl font-bold">
+              <span>⏱️ Зафиксирован 1-й замер цен этого мониторинга ({Math.round(dataPoints[0].avg_price).toLocaleString("ru-RU")} zł)</span>
+              <span className="text-rose-400">•</span>
+              <span className="text-rose-700 font-medium">График ценового коридора ТОП-10 строится по мере накопления истории замеров.</span>
+            </div>
+          )}
           {isLoading && (
             <LoadingSpinner
               variant="overlay"

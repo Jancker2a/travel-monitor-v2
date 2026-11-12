@@ -398,7 +398,10 @@ export const App: React.FC = () => {
     setTableFilters(INITIAL_FILTERS);
     window.location.hash = `#/monitor/${monitor.id}`;
     if (monitor.filter_params) {
-      handleSearch(monitor.filter_params as unknown as SearchRequest);
+      handleSearch({
+        ...(monitor.filter_params as unknown as SearchRequest),
+        filter_id: `monitor_${monitor.id}`,
+      });
     }
     setIsSidebarOpen(false);
   };
@@ -768,12 +771,7 @@ export const App: React.FC = () => {
 
   const dashboardFilterIdForAnalytics = useMemo(() => {
     if (activeUserMonitor) {
-      const dest = (activeUserMonitor.filter_params?.destination || "").toLowerCase();
-      if (dest.includes("egypt")) return "egypt_7_10";
-      if (dest.includes("turkey")) return "turkey_7_10";
-      if (dest.includes("greece")) return "greece_7_10";
-      if (dest.includes("cyprus")) return "filter_cyprus_7_10";
-      return "turkey_7_10";
+      return `monitor_${activeUserMonitor.id}`;
     }
     return activeFilterId;
   }, [activeUserMonitor, activeFilterId]);
@@ -875,7 +873,11 @@ export const App: React.FC = () => {
                     type="button"
                     onClick={() => {
                       if (activeUserMonitor?.filter_params) {
-                        handleSearch({ ...activeUserMonitor.filter_params, force_live_refresh: true } as unknown as SearchRequest);
+                        handleSearch({
+                          ...(activeUserMonitor.filter_params as unknown as SearchRequest),
+                          filter_id: `monitor_${activeUserMonitor.id}`,
+                          force_live_refresh: true,
+                        });
                       }
                     }}
                     className="ml-2 px-2.5 py-1 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 font-bold text-xs border border-sky-500/30 transition-colors flex items-center gap-1 cursor-pointer"
