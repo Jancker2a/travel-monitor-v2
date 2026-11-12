@@ -44,12 +44,12 @@ async def sync_database_sequences():
                 dialect = bind.dialect.name
             if "postgresql" in str(dialect).lower():
                 logger.info("🔧 [PostgreSQL] Synchronizing primary key sequences with MAX(id)...")
-                for table in ["normalized_price_snapshots", "price_snapshots"]:
+                for table, col in [("normalized_price_snapshots", "id"), ("price_snapshots", "id"), ("offer_cohorts", "cohort_id")]:
                     try:
                         await session.execute(text(f"""
                             SELECT setval(
-                                pg_get_serial_sequence('{table}', 'id'),
-                                COALESCE((SELECT MAX(id) FROM {table}), 0) + 1,
+                                pg_get_serial_sequence('{table}', '{col}'),
+                                COALESCE((SELECT MAX({col}) FROM {table}), 0) + 1,
                                 false
                             );
                         """))

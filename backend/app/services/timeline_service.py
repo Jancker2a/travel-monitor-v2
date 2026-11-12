@@ -8,7 +8,7 @@ from sqlalchemy import text
 logger = logging.getLogger("travel_monitor_2.timeline")
 
 _TIMELINE_CACHE: Dict[Tuple[str, str, Optional[float]], Tuple[float, Dict[str, Any]]] = {}
-_CACHE_TTL_SECONDS = 1800  # 30 minutes in-memory cache
+_CACHE_TTL_SECONDS = 60  # 1 minute in-memory cache to ensure fresh scrapers reflect immediately
 
 # Aliases between legacy shorthand and canonical folder/monitor IDs
 ALIAS_MAP = {

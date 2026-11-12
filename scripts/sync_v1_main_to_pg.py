@@ -34,7 +34,8 @@ logger = logging.getLogger("sync_v1_main")
 
 V1_DIR = "/Users/andreiyankouski/travel-price-monitor"
 SQLITE_PATH = PROJECT_DIR / "travel_monitor_v2.db"
-PG_URL = (os.environ.get("DATABASE_URL") or "").replace("postgresql+asyncpg://", "postgresql://")
+from app.config import settings
+PG_URL = (os.environ.get("DATABASE_URL") or settings.DATABASE_URL or "").replace("postgresql+asyncpg://", "postgresql://")
 
 
 def parse_iso_datetime(dt_str: str) -> Optional[datetime]:
@@ -59,6 +60,17 @@ async def run_sync():
     pg_conn = await asyncpg.connect(PG_URL)
     sqlite_conn = sqlite3.connect(str(SQLITE_PATH))
     sqlite_cur = sqlite_conn.cursor()
+
+    # Pre-sync sequences to ensure new inserts never hit stale sequence values
+    for table in ["price_snapshots", "offer_cohorts"]:
+        col = "cohort_id" if table == "offer_cohorts" else "id"
+        await pg_conn.execute(f"""
+            SELECT setval(
+                pg_get_serial_sequence('{table}', '{col}'),
+                COALESCE((SELECT MAX({col}) FROM {table}), 0) + 1,
+                false
+            );
+        """)
 
     cmd = "git ls-tree -d --name-only origin/main:data/filters"
     filters = subprocess.check_output(cmd, shell=True, text=True, cwd=V1_DIR).splitlines()
