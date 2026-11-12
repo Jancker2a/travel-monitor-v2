@@ -100,7 +100,7 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       ],
     },
     {
-      group: "📏 Эталоны (1 взр • +3 нед)",
+      group: "📏 Эталоны (1 взр • вылеты на 3 нед)",
       icon: "📏",
       items: [
         { id: "benchmark_turkey_1p_7_8", title: "Турция 7–8 дн (1 взр)" },

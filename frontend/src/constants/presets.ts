@@ -305,7 +305,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
-      dates: "Сегодня + 3 недели (скользящее)",
+      dates: "Ближайшие 3 недели (T+3 .. T+24)",
       party: "1 взрослый",
       hotelClass: "Все категории (3★ – 5★)",
       budget: "до 15 000 zł / чел",
@@ -327,7 +327,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
-      dates: "Сегодня + 3 недели (скользящее)",
+      dates: "Ближайшие 3 недели (T+3 .. T+24)",
       party: "1 взрослый",
       hotelClass: "Все категории (3★ – 5★)",
       budget: "до 15 000 zł / чел",
@@ -349,7 +349,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
-      dates: "Сегодня + 3 недели (скользящее)",
+      dates: "Ближайшие 3 недели (T+3 .. T+24)",
       party: "1 взрослый",
       hotelClass: "Все категории (3★ – 5★)",
       budget: "до 15 000 zł / чел",
@@ -371,7 +371,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=6:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
-      dates: "Сегодня + 3 недели (скользящее)",
+      dates: "Ближайшие 3 недели (T+3 .. T+24)",
       party: "1 взрослый",
       hotelClass: "Все категории (3★ – 5★)",
       budget: "до 15 000 zł / чел",

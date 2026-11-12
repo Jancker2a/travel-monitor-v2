@@ -49,8 +49,8 @@ class NormalizedCrawlerService:
     async def run_crawler_cycle(cls, max_offers_per_dest: int = 50) -> Dict[str, Any]:
         """Runs 1 crawling pass across all primary destinations."""
         today = date.today()
-        start_min = today + timedelta(days=20)
-        start_max = today + timedelta(days=25)
+        start_min = today + timedelta(days=3)
+        start_max = today + timedelta(days=24)
 
         logger.info(
             f"🚀 [Normalized Crawler] Starting standard benchmark pass (1 pax, 8 nights, dates: {start_min} - {start_max})..."
@@ -86,7 +86,7 @@ class NormalizedCrawlerService:
         return {
             "total_collected": total_collected,
             "destination_breakdown": dest_stats,
-            "benchmark_cohort": "1 adult, 8 nights, today+20d",
+            "benchmark_cohort": "1 adult, 8 nights, today+3d..24d",
             "executed_at": datetime.now(timezone.utc).isoformat(),
         }
 
