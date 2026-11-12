@@ -35,6 +35,7 @@ import {
   getFilterHotelsCatalog,
   getArbitrageDeals,
   getStoredUser,
+  getStoredToken,
   fetchCurrentUser,
   logoutUser,
   listUserMonitors,
@@ -820,6 +821,17 @@ export const App: React.FC = () => {
 
   const isAdmin = currentUser?.role === "ADMIN";
 
+  // Auto-refresh profile on app launch to sync role updates from server
+  useEffect(() => {
+    if (getStoredToken()) {
+      fetchCurrentUser()
+        .then((u) => {
+          setCurrentUser(u);
+        })
+        .catch(() => {});
+    }
+  }, []);
+
   useEffect(() => {
     getAdminStatus().then((st) => setAdminStatus(st)).catch(() => {});
   }, [currentUser]);
@@ -831,6 +843,15 @@ export const App: React.FC = () => {
       setAdminStatus({ has_admin: true, admin_email: updated.email });
       alert("👑 Поздравляем! Ваш аккаунт успешно назначен Администратором системы. Канонические радары теперь доступны вам.");
     } catch (err: any) {
+      try {
+        const u = await fetchCurrentUser();
+        if (u.role === "ADMIN") {
+          setCurrentUser(u);
+          setAdminStatus({ has_admin: true, admin_email: u.email });
+          alert("👑 Статус Администратора подтверждён! Все радары разблокированы.");
+          return;
+        }
+      } catch {}
       alert(err.message || "Ошибка назначения администратора");
     }
   };
@@ -1500,8 +1521,8 @@ export const App: React.FC = () => {
               )}
             </button>
 
-            {/* Admin Onboarding CTA if no admin exists yet */}
-            {currentUser && !isAdmin && !adminStatus.has_admin && (
+            {/* Admin Onboarding CTA if logged in user is not ADMIN yet */}
+            {currentUser && !isAdmin && (
               <button
                 type="button"
                 data-testid="claim-admin-btn"
@@ -1510,7 +1531,7 @@ export const App: React.FC = () => {
                 title="Назначить свой аккаунт Администратором системы"
               >
                 <Crown className="w-3.5 h-3.5 text-slate-950" />
-                <span className="hidden sm:inline">Заонбордить меня админом</span>
+                <span className="hidden sm:inline">👑 Назначить меня админом</span>
               </button>
             )}
 

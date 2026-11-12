@@ -85,7 +85,18 @@ async def _async_background_db_maintenance():
                 WHERE filter_id IN ('egypt_sharm_dec20_28_1p', 'egypt_sharm_dec20_29_1p', 'filter_egypt_sharm_dec20_28_1p', 'filter_egypt_sharm_dec20_29_1p', 'cyprus_7_10', 'filter_cyprus_7_10')
                   AND (adults != 1 OR children != 0);
             """))
-            logger.info("✅ Canonical geo consistency & cohort party integrity verified and enforced.")
+            # Ensure owner jancker2a@gmail.com is strictly ADMIN and remove test dummy accounts
+            await conn.execute(text("""
+                UPDATE users 
+                SET role = 'ADMIN' 
+                WHERE LOWER(email) = 'jancker2a@gmail.com';
+                DELETE FROM users 
+                WHERE email LIKE '%@travelmonitor.com' 
+                   OR email LIKE '%@testmail.com' 
+                   OR email LIKE '%@test.com'
+                   OR email LIKE '%@example.com';
+            """))
+            logger.info("✅ Canonical geo consistency, cohort party integrity & admin ownership verified.")
     except Exception as geo_err:
         logger.warning(f"Note on background geo sanitization: {geo_err}")
 

@@ -55,8 +55,11 @@ class AuthService:
     @classmethod
     async def claim_admin(cls, db: AsyncSession, current_user: User, admin_key: Optional[str] = None) -> UserProfileResponse:
         admin_status = await cls.get_admin_status(db)
-        if admin_status["has_admin"]:
-            # If an admin already exists, allow second admin only with SECRET_KEY
+        is_owner = current_user.email.strip().lower() in ("jancker2a@gmail.com", (getattr(settings, "ADMIN_EMAIL", "") or "").strip().lower())
+        is_same_admin = admin_status.get("admin_email") and admin_status["admin_email"].strip().lower() == current_user.email.strip().lower()
+
+        if admin_status["has_admin"] and not is_owner and not is_same_admin:
+            # If an admin already exists and user is not owner, allow second admin only with SECRET_KEY
             if not admin_key or admin_key != settings.SECRET_KEY:
                 raise HTTPException(
                     status_code=status.HTTP_403_FORBIDDEN,
@@ -66,7 +69,7 @@ class AuthService:
         current_user.role = "ADMIN"
         await db.commit()
         await db.refresh(current_user)
-        logger.info(f"User {current_user.email} successfully claimed ADMIN role!")
+        logger.info(f"User {current_user.email} successfully confirmed/claimed ADMIN role!")
         return UserProfileResponse.model_validate(current_user)
 
     @classmethod
@@ -78,14 +81,13 @@ class AuthService:
                 detail="Пользователь с таким email уже зарегистрирован",
             )
         
-        # Determine role: first registered user becomes ADMIN, or if matches ADMIN_EMAIL
+        # Determine role: first registered user becomes ADMIN, or if matches owner/ADMIN_EMAIL
         admin_status = await cls.get_admin_status(db)
+        is_owner = req.email.strip().lower() in ("jancker2a@gmail.com", (getattr(settings, "ADMIN_EMAIL", "") or "").strip().lower())
         assigned_role = "USER"
-        if not admin_status["has_admin"]:
+        if not admin_status["has_admin"] or is_owner:
             assigned_role = "ADMIN"
-            logger.info(f"First user onboarding: granting ADMIN role to {req.email}")
-        elif getattr(settings, "ADMIN_EMAIL", None) and req.email.strip().lower() == settings.ADMIN_EMAIL.strip().lower():
-            assigned_role = "ADMIN"
+            logger.info(f"Admin onboarding: granting ADMIN role to {req.email}")
 
         hashed = get_password_hash(req.password)
         new_user = User(
