@@ -401,12 +401,16 @@ class CatalogService:
             )
 
             # Knowledge base enrichment (accurate beach line, TripAdvisor rating, and infrastructure)
+            h_obj = active_h_map.get(h_id)
             dossier = HotelKnowledgeService.get_hotel_dossier(
                 hotel_name=disp_name,
                 destination=country,
                 country=country,
                 stars=stars_val or 4,
                 current_price=curr_price,
+                main_image_url=img_url,
+                db_specs=h_obj.specs if h_obj else None,
+                db_reputation=h_obj.reputation if h_obj else None,
             )
             final_ta_rating = (
                 float(ta_rating)

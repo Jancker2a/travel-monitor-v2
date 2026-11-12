@@ -904,6 +904,8 @@ class WatchlistService:
             stars=hotel.stars or 4,
             current_price=curr_p,
             main_image_url=hotel.main_image_url,
+            db_specs=hotel.specs,
+            db_reputation=hotel.reputation,
         )
 
         final_ta_rating = (

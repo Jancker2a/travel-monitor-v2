@@ -19,6 +19,8 @@ class HotelKnowledgeService:
     @classmethod
     def _clean_key(cls, name: str) -> str:
         name = re.sub(r"\(ex[^\)]+\)", "", name, flags=re.IGNORECASE)
+        # Strip geographic suffixes added by travel portals (e.g. 'Egipt, Sharm El Sheikh', 'Turcja, Kemer')
+        name = re.split(r"\b(egipt|turcja|grecja|cypr|bułgaria|hiszpania)\b", name, flags=re.IGNORECASE)[0]
         name = re.sub(r"[^a-zA-Z0-9а-яА-Я]+", " ", name).strip().lower()
         return name
 
@@ -109,13 +111,15 @@ class HotelKnowledgeService:
         current_price: float = 0.0,
         deal_score: int = 70,
         main_image_url: Optional[str] = None,
+        db_specs: Optional[Dict[str, Any]] = None,
+        db_reputation: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         cls.load_kb()
 
-        specs_raw = cls._match_entry(hotel_name, cls._specs_cache or {}) or {}
+        specs_raw = db_specs or cls._match_entry(hotel_name, cls._specs_cache or {}) or {}
         specs = specs_raw.get("specs", specs_raw) if isinstance(specs_raw, dict) else {}
         passport = specs.get("passport", {}) if isinstance(specs, dict) else {}
-        rep = cls._match_entry(hotel_name, cls._rep_cache or {}) or {}
+        rep = db_reputation or cls._match_entry(hotel_name, cls._rep_cache or {}) or {}
         gallery = cls._match_entry(hotel_name, cls._galleries_cache or {}) or []
 
         # Resolve primary image (passed from DB or matched from hotel_images_kb.json)
