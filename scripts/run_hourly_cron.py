@@ -71,6 +71,15 @@ async def main():
     # 0. Sync DB Sequences (PostgreSQL safety)
     await sync_database_sequences()
 
+    # 0.5 Ingest latest canonical V1 data from Git repository into PostgreSQL
+    logger.info(">>> STEP 0.5: Ingesting latest canonical V1 data from Git into PostgreSQL...")
+    try:
+        from scripts.sync_v1_main_to_pg import run_sync
+        await run_sync()
+        logger.info("✅ V1 -> PostgreSQL synchronization completed successfully.")
+    except Exception as e:
+        logger.error(f"⚠️ V1 sync skipped or encountered non-fatal error: {e}", exc_info=True)
+
     # 1. Run Hourly Filter Monitors
     logger.info(">>> STEP 1: Running Hourly Filter Monitors...")
     try:

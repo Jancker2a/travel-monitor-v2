@@ -32,7 +32,22 @@ from scripts.import_full_v1_archives import FOLDER_CONFIG
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("sync_v1_main")
 
-V1_DIR = "/Users/andreiyankouski/travel-price-monitor"
+def get_v1_dir() -> Path:
+    env_dir = os.environ.get("V1_DIR")
+    if env_dir and Path(env_dir).is_dir():
+        return Path(env_dir)
+    local_default = Path("/Users/andreiyankouski/travel-price-monitor")
+    if local_default.is_dir():
+        return local_default
+    tmp_clone = Path("/tmp/travel-price-monitor")
+    if not tmp_clone.is_dir():
+        logger.info("📦 Cloning Jancker2a/travel-monitoring into /tmp/travel-price-monitor for V1 sync...")
+        subprocess.run(["git", "clone", "--depth", "1", "https://github.com/Jancker2a/travel-monitoring.git", str(tmp_clone)], check=True)
+    else:
+        logger.info("🔄 Pulling latest V1 data in /tmp/travel-price-monitor...")
+        subprocess.run(["git", "-C", str(tmp_clone), "pull", "--rebase"], check=False)
+    return tmp_clone
+
 SQLITE_PATH = PROJECT_DIR / "travel_monitor_v2.db"
 from app.config import settings
 PG_URL = (os.environ.get("DATABASE_URL") or settings.DATABASE_URL or "").replace("postgresql+asyncpg://", "postgresql://")
@@ -72,8 +87,10 @@ async def run_sync():
             );
         """)
 
-    cmd = "git ls-tree -d --name-only origin/main:data/filters"
-    filters = subprocess.check_output(cmd, shell=True, text=True, cwd=V1_DIR).splitlines()
+    v1_dir = str(get_v1_dir())
+    logger.info(f"📂 Reading V1 repository at {v1_dir}")
+    cmd = "git ls-tree -d --name-only origin/main:data/filters 2>/dev/null || ls data/filters"
+    filters = subprocess.check_output(cmd, shell=True, text=True, cwd=v1_dir).splitlines()
 
     total_snapshots_synced = 0
     total_cohorts_synced = 0
@@ -88,8 +105,8 @@ async def run_sync():
         filter_id, destination_code, def_adults, def_children = cfg
         country_name = "Турция" if destination_code == "turkey" else ("Египет" if destination_code == "egypt" else "Греция")
 
-        cat_cmd = f"git show origin/main:data/filters/{fdir}/travel_prices.csv"
-        res = subprocess.run(cat_cmd, shell=True, capture_output=True, text=True, cwd=V1_DIR)
+        cat_cmd = f"git show origin/main:data/filters/{fdir}/travel_prices.csv 2>/dev/null || cat data/filters/{fdir}/travel_prices.csv"
+        res = subprocess.run(cat_cmd, shell=True, capture_output=True, text=True, cwd=v1_dir)
         if res.returncode != 0 or not res.stdout.strip():
             continue
 
