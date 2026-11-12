@@ -4,10 +4,12 @@
   "slug": "aska-just-in-beach",
   "hotel_name": "Aska Just in Beach",
   "x": [
-    "2026-06-30 02:08:06"
+    "2026-06-30 02:08:06",
+    "2026-11-12 01:40:28"
   ],
   "y": [
-    9338.0
+    9338.0,
+    5789.0
   ],
   "hover": [
     "Проверка: 30.06.2026 02:08<br>Даты поездки: 22.07.2026 - 29.07.2026"
@@ -25,12 +27,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 9338.0,
-  "min_p": 9338.0,
+  "min_p": 5789.0,
   "max_p": 9338.0,
-  "samples": 1,
+  "samples": 2,
   "alert_threshold": 8.0,
   "trip_dates_label": "22.07.2026 - 29.07.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_turkey_vacation_jul18.html"
+  "back_href": "index_filter_turkey_vacation_jul18.html",
+  "current_price": 5789.0
 }
