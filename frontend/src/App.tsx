@@ -1301,10 +1301,22 @@ export const App: React.FC = () => {
         return (
           <HotelPassportDrawer
             hotelId={activeHotelPassport}
-            filterId={activeTab === "filter" ? activeFilterId : undefined}
+            filterId={
+              activeTab === "filter"
+                ? (activeUserMonitor ? `monitor_${activeUserMonitor.id}` : activeFilterId)
+                : undefined
+            }
             hotelItem={activePassportHotel}
             searchTravelers={
-              activeTab === "search"
+              activeUserMonitor?.filter_params?.travelers
+                ? activeUserMonitor.filter_params.travelers
+                : activeUserMonitor?.filter_params
+                ? {
+                    adults: activeUserMonitor.filter_params.adults || 2,
+                    children: activeUserMonitor.filter_params.children || 0,
+                    children_ages: [],
+                  }
+                : activeTab === "search"
                 ? (lastSearchReq?.travelers || { adults: 1, children: 0, children_ages: [] })
                 : undefined
             }

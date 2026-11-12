@@ -509,6 +509,38 @@ class WatchlistService:
         target_children = int(children) if (children is not None and children >= 0) else (spec.get("children", 0) if spec else 0)
         target_nights = int(duration_nights) if (duration_nights is not None and duration_nights > 0) else (spec.get("min_nights", 7) if spec else 7)
 
+        is_user_monitor = bool(filter_id and (filter_id.startswith("monitor_") or filter_id.startswith("user_")))
+        if is_user_monitor:
+            clean_uid = filter_id.replace("monitor_", "").replace("user_", "").replace("filter_", "")
+            try:
+                u_res = await db.execute(
+                    text("SELECT id, title, filter_params_json FROM user_monitors WHERE id = :uid"),
+                    {"uid": clean_uid},
+                )
+                u_row = u_res.fetchone()
+                if u_row and u_row[2]:
+                    u_params = json.loads(u_row[2])
+                    travelers = u_params.get("travelers")
+                    if isinstance(travelers, dict):
+                        if adults is None:
+                            target_adults = travelers.get("adults", target_adults)
+                        if children is None:
+                            target_children = travelers.get("children", target_children)
+                    else:
+                        if adults is None:
+                            target_adults = u_params.get("adults", 2)
+                        if children is None:
+                            target_children = u_params.get("children", 0)
+
+                    dur_range = u_params.get("duration_range")
+                    if duration_nights is None:
+                        if isinstance(dur_range, list) and len(dur_range) >= 1:
+                            target_nights = dur_range[0]
+                        elif u_params.get("duration_min"):
+                            target_nights = u_params.get("duration_min")
+            except Exception as e:
+                logger.warning(f"Failed to resolve user monitor params for {clean_uid}: {e}")
+
         from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
         canonical_fid = resolve_filter_id(filter_id) if filter_id else None
         filter_variants = set(get_all_filter_id_variants(filter_id)) if filter_id else set()
@@ -516,32 +548,60 @@ class WatchlistService:
         if filter_variants:
             scoped_cohorts = [c for c in all_cohorts if c.filter_id in filter_variants]
 
-        if not scoped_cohorts:
-            if spec:
-                dest_codes = set(spec.get("destination_codes", []))
-                scoped_cohorts = [c for c in all_cohorts if c.destination_code in dest_codes]
-                if not scoped_cohorts:
-                    # Fallback to party composition
-                    scoped_cohorts = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
+        if is_user_monitor:
+            # Strictly isolate user monitor timeline: do NOT mix with other years/filters!
+            if not scoped_cohorts:
+                curr_val = float(current_price or 0.0)
+                dest_str = hotel.country or "egypt"
+                now_dt = datetime.utcnow()
+                checkin_d = (now_dt + timedelta(days=21)).date()
+                checkout_d = checkin_d + timedelta(days=target_nights or 7)
+                syn_cohort = SimpleNamespace(
+                    cohort_id=999999,
+                    cohort_hash=f"syn_{hotel_id[:12]}",
+                    filter_id=filter_id,
+                    hotel_id=hotel.hotel_id,
+                    destination_code=dest_str.lower(),
+                    checkin_date=str(checkin_d),
+                    checkout_date=str(checkout_d),
+                    duration_nights=target_nights or 7,
+                    airport_code="WAW",
+                    board_basis="All Inclusive",
+                    room_type="Standard",
+                    adults=target_adults,
+                    children=target_children,
+                    operator="Touroperator",
+                    offer_url=f"https://fly.pl/szukaj-wycieczek/?hotelName={urllib.parse.quote(hotel.display_name)}",
+                )
+                all_cohorts = [syn_cohort] + [c for c in all_cohorts if c.cohort_id != 999999]
+                scoped_cohorts = [syn_cohort]
+        else:
+            if not scoped_cohorts:
+                if spec:
+                    dest_codes = set(spec.get("destination_codes", []))
+                    scoped_cohorts = [c for c in all_cohorts if c.destination_code in dest_codes]
+                    if not scoped_cohorts:
+                        # Fallback to party composition
+                        scoped_cohorts = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
 
-        # If still no scoped cohorts or no filter_id provided, prefer cohorts matching user party composition
-        if not scoped_cohorts:
-            matching_party = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
-            if matching_party:
-                scoped_cohorts = matching_party
-            else:
-                from collections import Counter
-                party_counter = Counter([(c.adults, c.children) for c in all_cohorts])
-                top_party = party_counter.most_common(1)[0][0] if party_counter else (2, 1)
-                dest_counter = Counter([c.destination_code for c in all_cohorts if (c.adults, c.children) == top_party])
-                top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
-                scoped_cohorts = [
-                    c for c in all_cohorts 
-                    if (c.adults, c.children) == top_party and (not top_dest or c.destination_code == top_dest)
-                ]
+            # If still no scoped cohorts or no filter_id provided, prefer cohorts matching user party composition
+            if not scoped_cohorts:
+                matching_party = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
+                if matching_party:
+                    scoped_cohorts = matching_party
+                else:
+                    from collections import Counter
+                    party_counter = Counter([(c.adults, c.children) for c in all_cohorts])
+                    top_party = party_counter.most_common(1)[0][0] if party_counter else (2, 1)
+                    dest_counter = Counter([c.destination_code for c in all_cohorts if (c.adults, c.children) == top_party])
+                    top_dest = dest_counter.most_common(1)[0][0] if dest_counter else None
+                    scoped_cohorts = [
+                        c for c in all_cohorts 
+                        if (c.adults, c.children) == top_party and (not top_dest or c.destination_code == top_dest)
+                    ]
 
-        if not scoped_cohorts and all_cohorts:
-            scoped_cohorts = all_cohorts
+            if not scoped_cohorts and all_cohorts:
+                scoped_cohorts = all_cohorts
 
         scoped_cohort_ids = {c.cohort_id for c in scoped_cohorts}
         cohort_by_id = {c.cohort_id: c for c in all_cohorts}
