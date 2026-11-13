@@ -447,6 +447,7 @@ class CatalogService:
                     price_col="price",
                     ta_rating=final_ta_rating,
                     ta_review_count=final_ta_reviews,
+                    typical_price=typical_med,
                 )
                 deal_score = int(deal_metrics.get("deal_score", 50))
                 confidence = deal_metrics.get("confidence", "Medium")

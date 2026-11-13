@@ -999,6 +999,7 @@ class WatchlistService:
                 price_col="price",
                 ta_rating=final_ta_rating,
                 ta_review_count=final_ta_reviews,
+                typical_price=med_p,
             )
             deal_score = int(deal_metrics.get("deal_score", 75))
             if deal_score >= 85:

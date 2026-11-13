@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import math
 import re
+import statistics
 from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
@@ -565,6 +566,7 @@ def compute_hotel_deal_metrics(
     price_col: str = "price",
     ta_rating: Any = None,
     ta_review_count: Any = None,
+    typical_price: Optional[float] = None,
 ) -> Dict[str, Any]:
     """Deal Score + Δ к типичной цене (как в дашборде, по истории офферов отеля)."""
     empty = {"deal_score": 0, "avg_delta_pct": 0.0, "confidence": "Low"}
@@ -587,7 +589,22 @@ def compute_hotel_deal_metrics(
     prices = work[price_col].astype(float).tolist()
     samples = len(prices)
     segments = _price_plateau_segments(work, time_col, price_col)
-    typical = time_weighted_price_baseline_from_segments(segments) or latest
+
+    if typical_price is not None and typical_price > 0:
+        typical = float(typical_price)
+    else:
+        tw_typical = time_weighted_price_baseline_from_segments(segments)
+        p_median = float(statistics.median(prices)) if prices else latest
+        if tw_typical is not None and p_median > 0:
+            # If time-weighted plateau diverges heavily (>20%) from the point median due to sparse sampling/data gaps,
+            # use point median to prevent phantom discount spikes
+            if abs(tw_typical - p_median) / p_median > 0.20:
+                typical = p_median
+            else:
+                typical = tw_typical
+        else:
+            typical = p_median or latest
+
     median = float(typical)
     p25 = time_weighted_price_quantile_from_segments(segments, 0.25) or latest
     p10 = time_weighted_price_quantile_from_segments(segments, 0.10) or latest
