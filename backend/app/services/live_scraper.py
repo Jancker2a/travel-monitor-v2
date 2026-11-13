@@ -537,11 +537,17 @@ class LiveScraperService:
             try:
                 placeholders = ",".join(f":h{i}" for i in range(len(all_hids)))
                 h_params = {f"h{i}": hid for i, hid in enumerate(all_hids)}
+                filter_clause = ""
+                if req.filter_id:
+                    filter_clause = "AND (ps.filter_id = :req_fid OR oc.filter_id = :req_fid)"
+                    h_params["req_fid"] = req.filter_id
+
                 h_sql = f"""
                     SELECT oc.hotel_id, ps.total_price_pln, oc.adults, oc.children, oc.duration_nights, ps.recorded_at, oc.checkin_date
                     FROM price_snapshots ps
                     JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                     WHERE oc.hotel_id IN ({placeholders})
+                      {filter_clause}
                     ORDER BY ps.recorded_at DESC
                     LIMIT 1000
                 """

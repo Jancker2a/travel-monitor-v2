@@ -142,6 +142,8 @@ class SearchService:
                 conditions.append(or_(*airport_conds))
         else:
             # Custom / interactive search mode
+            if req.filter_id:
+                conditions.append(OfferCohort.filter_id == req.filter_id)
             if req.duration and req.duration.min_nights:
                 conditions.append(
                     OfferCohort.duration_nights.between(req.duration.min_nights, req.duration.max_nights)
@@ -155,6 +157,7 @@ class SearchService:
                 else:
                     conditions.append(OfferCohort.destination_code.ilike(f"%{dest_keyword}%"))
             if req.airports:
+                from app.services.query_builder import AIRPORT_NAMES
                 airport_conds = []
                 for a in req.airports:
                     a_lower = a.lower()
@@ -167,6 +170,22 @@ class SearchService:
                         ])
                     else:
                         airport_conds.append(OfferCohort.airport_code.ilike(f"%{a}%"))
+                        mapped_name = AIRPORT_NAMES.get(a.upper())
+                        if mapped_name:
+                            airport_conds.append(OfferCohort.airport_code.ilike(f"%{mapped_name}%"))
+                            ascii_name = (
+                                mapped_name.replace("ó", "o")
+                                .replace("ł", "l")
+                                .replace("ń", "n")
+                                .replace("ć", "c")
+                                .replace("ś", "s")
+                                .replace("ź", "z")
+                                .replace("ż", "z")
+                                .replace("ą", "a")
+                                .replace("ę", "e")
+                            )
+                            if ascii_name != mapped_name:
+                                airport_conds.append(OfferCohort.airport_code.ilike(f"%{ascii_name}%"))
                 if airport_conds:
                     conditions.append(or_(*airport_conds))
 
@@ -206,8 +225,10 @@ class SearchService:
         snap_stmt = (
             select(PriceSnapshot)
             .where(PriceSnapshot.cohort_id.in_(cohort_ids))
-            .order_by(PriceSnapshot.recorded_at.desc())
         )
+        if req.filter_id:
+            snap_stmt = snap_stmt.where(PriceSnapshot.filter_id == req.filter_id)
+        snap_stmt = snap_stmt.order_by(PriceSnapshot.recorded_at.desc())
         all_snaps = (await db.execute(snap_stmt)).scalars().all()
         for s in all_snaps:
             if len(snaps_by_cohort[s.cohort_id]) < 20:
