@@ -14,7 +14,11 @@ import os
 import sys
 from datetime import datetime, timezone
 
-# Ensure backend root is on sys.path
+# Ensure backend and repo root are on sys.path
+repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if repo_root not in sys.path:
+    sys.path.insert(0, repo_root)
+
 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
 if backend_path not in sys.path:
     sys.path.insert(0, backend_path)
