@@ -43,3 +43,4 @@ class DashboardSubscriptionTestResponse(BaseModel):
     hotel_name: Optional[str] = None
     price_pln: Optional[float] = None
     simulated: bool = False
+

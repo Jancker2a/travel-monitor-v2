@@ -176,6 +176,7 @@ class CatalogService:
                     oc.duration_nights,
                     oc.airport_code,
                     oc.offer_url,
+                    oc.cohort_hash,
                     ps.total_price_pln as current_price,
                     ps.recorded_at,
                     ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.recorded_at DESC, ps.total_price_pln ASC) as rn
@@ -199,7 +200,8 @@ class CatalogService:
                 airport_code,
                 offer_url,
                 current_price,
-                recorded_at
+                recorded_at,
+                cohort_hash
             FROM ranked_offers
             WHERE rn = 1
             ORDER BY current_price ASC;
@@ -347,6 +349,7 @@ class CatalogService:
                 offer_url,
                 curr_price,
                 last_rec_at,
+                cohort_hash,
             ) = row
 
             curr_price = float(curr_price)
@@ -504,6 +507,7 @@ class CatalogService:
                 "cheapest_duration_nights": dur_nights or 7,
                 "cheapest_airport_code": airport_code or "WAW",
                 "cheapest_offer_url": offer_url,
+                "cohort_hash": cohort_hash,
                 "last_updated": last_updated_str,
             })
 

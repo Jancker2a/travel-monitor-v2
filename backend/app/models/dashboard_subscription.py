@@ -51,3 +51,4 @@ class DashboardAlertSubscription(Base):
 
     def __repr__(self) -> str:
         return f"<DashboardAlertSubscription {self.monitor_id} (User {self.user_id}) - Active: {self.is_active}>"
+

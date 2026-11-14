@@ -415,6 +415,7 @@ export interface HotelCatalogCard {
   cheapest_duration_nights: number;
   cheapest_airport_code: string;
   cheapest_offer_url?: string;
+  cohort_hash?: string;
   last_updated: string;
 }
 

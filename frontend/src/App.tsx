@@ -88,7 +88,7 @@ function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotel
       has_heated_pools: c.has_heated_pools,
     },
     current_offer: {
-      cohort_hash: `${c.hotel_id}_${c.cheapest_checkin_date || "date"}_${nights}`,
+      cohort_hash: c.cohort_hash || `${c.hotel_id}_${c.cheapest_checkin_date || "date"}_${nights}`,
       total_price_pln: c.current_min_price,
       price_per_night_pax: Math.round(c.current_min_price / nights / totalPax),
       departure_date: c.cheapest_checkin_date || "",
@@ -377,18 +377,26 @@ export const App: React.FC = () => {
         loadFilterResults("turkey_7_10");
       }
     } else {
-      if (!hash.includes("arbitrage") && !hash.includes("monitors") && !hash.includes("monitor")) {
+      const hasExplicitView =
+        hash.includes("radar") ||
+        hash.includes("filter") ||
+        hash.includes("arbitrage") ||
+        hash.includes("monitors") ||
+        hash.includes("monitor");
+      if (!hasExplicitView) {
         setActiveTab("search");
         if (!hash.includes("search")) {
           window.location.hash = "#/search";
         }
+      } else if (hash.startsWith("#/radar/") || hash.startsWith("#/filter/")) {
+        const filterIdFromHash = hash.replace("#/radar/", "").replace("#/filter/", "").split("?")[0];
+        if (filterIdFromHash) {
+          setActiveTab("filter");
+          setActiveFilterId(filterIdFromHash);
+          loadFilterResults(filterIdFromHash);
+        }
       }
     }
-
-    // 2. User watchlist (lightweight)
-    getWatchlist(CURRENT_USER_ID)
-      .then((data) => setWatchlistItems(data.items))
-      .catch((err) => console.warn("Watchlist fetch failed:", err));
 
     // 3. Background analytics (non-blocking for main table)
     getTopPriceDrops(10)
@@ -399,6 +407,14 @@ export const App: React.FC = () => {
       .then((stats) => setAirportStats(stats))
       .catch((err) => console.warn("Airport stats fetch failed:", err));
   }, []);
+
+  // Synchronize watchlist whenever currentUser changes or on initial mount
+  useEffect(() => {
+    const activeId = currentUser?.telegram_chat_id || currentUser?.id || CURRENT_USER_ID;
+    getWatchlist(activeId)
+      .then((data) => setWatchlistItems(data.items || []))
+      .catch((err) => console.warn("Watchlist fetch failed:", err));
+  }, [currentUser]);
 
   const dashboardArbitrageScope = useMemo(() => {
     if (activeUserMonitor) {
@@ -587,9 +603,10 @@ export const App: React.FC = () => {
       // Optimistic instant add (<1ms) with sensible 5% drop target
       const tempId = `temp-${Date.now()}`;
       const defaultTarget = Math.round(hotel.current_offer.total_price_pln * 0.95);
+      const activeChatId = currentUser?.telegram_chat_id || currentUser?.id || CURRENT_USER_ID;
       const optimisticItem: WatchlistItem = {
         watch_id: tempId,
-        user_chat_id: CURRENT_USER_ID,
+        user_chat_id: activeChatId,
         cohort_hash: cohortHash,
         hotel_id: hotel.hotel_id,
         hotel_name: hotel.hotel_name,
@@ -611,7 +628,7 @@ export const App: React.FC = () => {
       try {
         const savedItem = await addToWatchlist({
           cohort_hash: cohortHash,
-          user_chat_id: CURRENT_USER_ID,
+          user_chat_id: activeChatId,
           target_price_pln: defaultTarget,
           notify_any_drop: true,
         });
@@ -627,11 +644,20 @@ export const App: React.FC = () => {
   };
 
   const handleDeleteWatchlist = async (watchId: string) => {
-    await deleteWatchlistItem(watchId);
     setWatchlistItems((prev) => prev.filter((w) => w.watch_id !== watchId));
+    if (!watchId.startsWith("temp-")) {
+      await deleteWatchlistItem(watchId).catch((e) => console.warn("Failed to delete:", e));
+    }
   };
 
   const handleUpdateWatchlistItem = async (watchId: string, updates: Partial<WatchlistItem>) => {
+    // Optimistic local update
+    setWatchlistItems((prev) =>
+      prev.map((item) => (item.watch_id === watchId ? { ...item, ...updates } : item))
+    );
+    if (watchId.startsWith("temp-")) {
+      return;
+    }
     try {
       const updated = await updateWatchlistItem(watchId, updates);
       setWatchlistItems((prev) =>

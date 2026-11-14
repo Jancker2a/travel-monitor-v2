@@ -31,6 +31,7 @@ class HotelCatalogCard(BaseModel):
     cheapest_duration_nights: int = 7
     cheapest_airport_code: str = "WAW"
     cheapest_offer_url: Optional[str] = None
+    cohort_hash: Optional[str] = None
     last_updated: Union[str, datetime]
 
 

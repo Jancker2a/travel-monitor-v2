@@ -2,13 +2,14 @@ import uuid
 import logging
 import time
 import re
+import hashlib
 import urllib.parse
 from collections import defaultdict
 from datetime import datetime, date, timedelta
 from typing import List, Optional, Tuple, Dict, Any
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, and_, desc, delete, text
+from sqlalchemy import select, and_, or_, desc, delete, text
 
 from app.models.hotel import Hotel
 from app.models.cohort import OfferCohort
@@ -72,7 +73,7 @@ class WatchlistService:
     async def add_to_watchlist(
         cls, db: AsyncSession, req: WatchlistCreateRequest
     ) -> WatchlistItemResponse:
-        # 1. Verify Cohort exists
+        # 1. Verify Cohort exists (by exact hash, or fallback to hotel_id match)
         c_stmt = (
             select(OfferCohort, Hotel)
             .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
@@ -80,8 +81,47 @@ class WatchlistService:
         )
         c_res = await db.execute(c_stmt)
         row = c_res.first()
+
         if not row:
-            raise HTTPException(status_code=404, detail="Offer cohort not found")
+            # Fallback 1: Extract candidate hotel_id from synthetic hash (e.g. hotelId_date_nights)
+            h_id_guess = req.cohort_hash.split("_")[0] if "_" in req.cohort_hash else req.cohort_hash
+            c_fallback_stmt = (
+                select(OfferCohort, Hotel)
+                .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
+                .where(
+                    or_(
+                        OfferCohort.hotel_id == h_id_guess,
+                        OfferCohort.hotel_id.ilike(f"%{h_id_guess}%"),
+                        Hotel.hotel_id == h_id_guess,
+                    )
+                )
+                .order_by(desc(OfferCohort.cohort_id))
+                .limit(1)
+            )
+            c_res = await db.execute(c_fallback_stmt)
+            row = c_res.first()
+
+        if not row:
+            # Fallback 2: Check if hotel exists in hotels table and create cohort on the fly
+            h_id_guess = req.cohort_hash.split("_")[0] if "_" in req.cohort_hash else req.cohort_hash
+            h_stmt = select(Hotel).where(or_(Hotel.hotel_id == h_id_guess, Hotel.hotel_id.ilike(f"%{h_id_guess}%"))).limit(1)
+            hotel_obj = (await db.execute(h_stmt)).scalar_one_or_none()
+            if hotel_obj:
+                safe_hash = req.cohort_hash if len(req.cohort_hash) <= 32 else hashlib.sha256(req.cohort_hash.encode()).hexdigest()[:32]
+                cohort_obj = OfferCohort(
+                    cohort_hash=safe_hash,
+                    hotel_id=hotel_obj.hotel_id,
+                    destination_code=hotel_obj.country or "EG",
+                    checkin_date=datetime.utcnow().date() + timedelta(days=20),
+                    duration_nights=7,
+                    airport_code="WAW",
+                )
+                db.add(cohort_obj)
+                await db.flush()
+                row = (cohort_obj, hotel_obj)
+
+        if not row:
+            raise HTTPException(status_code=404, detail="Offer cohort or hotel not found")
 
         cohort, hotel = row[0], row[1]
 
@@ -89,13 +129,17 @@ class WatchlistService:
         w_stmt = select(WatchlistItem).where(
             and_(
                 WatchlistItem.user_chat_id == req.user_chat_id,
-                WatchlistItem.cohort_hash == req.cohort_hash,
+                or_(
+                    WatchlistItem.cohort_hash == cohort.cohort_hash,
+                    WatchlistItem.cohort_hash == req.cohort_hash,
+                )
             )
         )
         w_res = await db.execute(w_stmt)
         existing_item = w_res.scalar_one_or_none()
 
         if existing_item:
+            existing_item.cohort_hash = cohort.cohort_hash
             existing_item.target_price_pln = req.target_price_pln
             existing_item.notify_any_drop = req.notify_any_drop
             if req.alert_threshold_pct is not None:
@@ -109,7 +153,7 @@ class WatchlistService:
             watch_item = WatchlistItem(
                 watch_id=watch_id,
                 user_chat_id=req.user_chat_id,
-                cohort_hash=req.cohort_hash,
+                cohort_hash=cohort.cohort_hash,
                 target_price_pln=req.target_price_pln,
                 notify_any_drop=req.notify_any_drop,
                 alert_threshold_pct=req.alert_threshold_pct,
@@ -170,11 +214,25 @@ class WatchlistService:
     async def get_user_watchlist(
         cls, db: AsyncSession, user_chat_id: str
     ) -> WatchlistListResponse:
+        # Match by direct chat_id or linked user profile
+        user_ids = {user_chat_id}
+        try:
+            from app.models.user import User
+            u_stmt = select(User).where(or_(User.id == user_chat_id, User.telegram_chat_id == user_chat_id))
+            u_res = await db.execute(u_stmt)
+            user_obj = u_res.scalars().first()
+            if user_obj:
+                user_ids.add(user_obj.id)
+                if user_obj.telegram_chat_id:
+                    user_ids.add(user_obj.telegram_chat_id)
+        except Exception:
+            pass
+
         stmt = (
             select(WatchlistItem, OfferCohort, Hotel)
             .join(OfferCohort, WatchlistItem.cohort_hash == OfferCohort.cohort_hash)
             .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
-            .where(WatchlistItem.user_chat_id == user_chat_id)
+            .where(WatchlistItem.user_chat_id.in_(list(user_ids)))
             .order_by(WatchlistItem.created_at.desc())
         )
         res = await db.execute(stmt)
