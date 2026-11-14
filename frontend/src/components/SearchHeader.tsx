@@ -1156,28 +1156,31 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
           </label>
 
           <div className="flex items-center gap-2">
-            <span className="text-slate-400 font-semibold">Сортировка:</span>
-            <select
-              value={orderBy}
-              onChange={(e) => setOrderBy(e.target.value)}
-              className="bg-slate-50 text-xs font-semibold text-slate-700 px-2.5 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
-            >
-              <option value="price">Сначала дешёвые (цена ↑)</option>
-              <option value="rating">По рейтингу TripAdvisor</option>
-              <option value="deal_score">По выгодности (Deal Score)</option>
-              <option value="discount">По величине скидки</option>
-            </select>
+            <span className="text-slate-400 font-semibold shrink-0">Сортировка:</span>
+            <div className="relative">
+              <select
+                value={orderBy}
+                onChange={(e) => setOrderBy(e.target.value)}
+                className="appearance-none bg-slate-50 hover:bg-slate-100 text-xs font-semibold text-slate-700 pl-3 pr-8 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              >
+                <option value="price">Сначала дешёвые (цена ↑)</option>
+                <option value="rating">По рейтингу TripAdvisor</option>
+                <option value="deal_score">По выгодности (Deal Score)</option>
+                <option value="discount">По величине скидки</option>
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
           </div>
         </div>
 
         {/* Авто-мониторинг цен */}
         {onSaveMonitor && (
-          <div className="mt-3 p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-            <div className="flex items-center gap-3">
+          <div className="mt-3 p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200/90 flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-xs">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 border border-amber-200 shadow-2xs">
                 <Radio className="w-5 h-5 text-amber-600 animate-pulse" />
               </div>
-              <div className="space-y-0.5">
+              <div className="space-y-0.5 min-w-0">
                 <div className="font-black text-slate-900 text-sm">
                   Автоматический мониторинг цен по этому поиску
                 </div>
@@ -1190,10 +1193,10 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
             <button
               type="button"
               onClick={onSaveMonitor}
-              className="px-4.5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0"
+              className="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0 self-start md:self-auto"
               title="Настроить авто-сканирование и Telegram-уведомления"
             >
-              <BellRing className="w-4 h-4 text-white" />
+              <BellRing className="w-4 h-4 text-white shrink-0" />
               <span>Отслеживать снижение цен</span>
             </button>
           </div>

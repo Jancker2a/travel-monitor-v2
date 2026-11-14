@@ -17,6 +17,7 @@ import {
   X,
   Building2,
   Sparkles,
+  ChevronDown,
 } from "lucide-react";
 import { getArbitrageDeals } from "../services/api";
 import { LoadingSpinner } from "./common/LoadingSpinner";
@@ -376,66 +377,78 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
           </div>
 
           {/* Country Filter */}
-          <select
-            value={selectedCountry}
-            onChange={(e) => setSelectedCountry(e.target.value)}
-            className="text-xs sm:text-sm py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
-          >
-            <option value="all">Все страны</option>
-            {availableCountries.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+            >
+              <option value="all">Все страны</option>
+              {availableCountries.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
 
           {/* Polish Departure Airport Filter */}
-          <select
-            value={selectedAirport}
-            onChange={(e) => setSelectedAirport(e.target.value)}
-            className="text-xs sm:text-sm py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
-          >
-            <option value="all">Все аэропорты Польши</option>
-            {availableAirports.map((ap) => (
-              <option key={ap} value={ap}>
-                🇵🇱 {ap}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              value={selectedAirport}
+              onChange={(e) => setSelectedAirport(e.target.value)}
+              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+            >
+              <option value="all">Все аэропорты Польши</option>
+              {availableAirports.map((ap) => (
+                <option key={ap} value={ap}>
+                  🇵🇱 {ap}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
 
           {/* Stars Filter */}
-          <select
-            value={selectedStars}
-            onChange={(e) => setSelectedStars(e.target.value)}
-            className="text-xs sm:text-sm py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
-          >
-            <option value="all">Все звёзды</option>
-            <option value="5">5★ отели</option>
-            <option value="4">4★ и выше</option>
-            <option value="3">3★ и выше</option>
-          </select>
+          <div className="relative">
+            <select
+              value={selectedStars}
+              onChange={(e) => setSelectedStars(e.target.value)}
+              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+            >
+              <option value="all">Все звёзды</option>
+              <option value="5">5★ отели</option>
+              <option value="4">4★ и выше</option>
+              <option value="3">3★ и выше</option>
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
 
           {/* Sort By Select */}
-          <select
-            value={`${sortField}_${sortAsc ? "asc" : "desc"}`}
-            onChange={(e) => {
-              const [f, d] = e.target.value.split("_");
-              setSortField(f as SortField);
-              setSortAsc(d === "asc");
-            }}
-            className="text-xs sm:text-sm py-2 px-3 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
-          >
-            <option value="savings_pln_desc">💰 Выгода zł (макс сначала)</option>
-            <option value="savings_pln_asc">💰 Выгода zł (мин сначала)</option>
-            <option value="savings_pct_desc">📉 Скидка % (макс сначала)</option>
-            <option value="berlin_price_asc">🇩🇪 Берлин (сначала дешевые)</option>
-            <option value="berlin_price_desc">🇩🇪 Берлин (сначала дорогие)</option>
-            <option value="polish_price_desc">🇵🇱 Польша (сначала дорогие)</option>
-            <option value="polish_price_asc">🇵🇱 Польша (сначала дешевые)</option>
-            <option value="checkin_date_asc">📅 Дата вылета (ранние)</option>
-            <option value="checkin_date_desc">📅 Дата вылета (поздние)</option>
-            <option value="hotel_name_asc">🏨 Название отеля (А-Я)</option>
-          </select>
+          <div className="relative">
+            <select
+              value={`${sortField}_${sortAsc ? "asc" : "desc"}`}
+              onChange={(e) => {
+                const [f, d] = e.target.value.split("_");
+                setSortField(f as SortField);
+                setSortAsc(d === "asc");
+              }}
+              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+            >
+              <option value="savings_pln_desc">💰 Выгода zł (макс сначала)</option>
+              <option value="savings_pln_asc">💰 Выгода zł (мин сначала)</option>
+              <option value="savings_pct_desc">📉 Скидка % (макс сначала)</option>
+              <option value="berlin_price_asc">🇩🇪 Берлин (сначала дешевые)</option>
+              <option value="berlin_price_desc">🇩🇪 Берлин (сначала дорогие)</option>
+              <option value="polish_price_desc">🇵🇱 Польша (сначала дорогие)</option>
+              <option value="polish_price_asc">🇵🇱 Польша (сначала дешевые)</option>
+              <option value="checkin_date_asc">📅 Дата вылета (ранние)</option>
+              <option value="checkin_date_desc">📅 Дата вылета (поздние)</option>
+              <option value="hotel_name_asc">🏨 Название отеля (А-Я)</option>
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
 
           {/* Clear Filters Button */}
           {isFiltered && (
