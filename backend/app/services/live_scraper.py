@@ -543,13 +543,24 @@ class LiveScraperService:
                     h_params["req_fid"] = req.filter_id
 
                 h_sql = f"""
-                    SELECT oc.hotel_id, ps.total_price_pln, oc.adults, oc.children, oc.duration_nights, ps.recorded_at, oc.checkin_date
-                    FROM price_snapshots ps
-                    JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
-                    WHERE oc.hotel_id IN ({placeholders})
-                      {filter_clause}
-                    ORDER BY ps.recorded_at DESC
-                    LIMIT 1000
+                    WITH ranked_hist AS (
+                        SELECT 
+                            oc.hotel_id, 
+                            ps.total_price_pln, 
+                            oc.adults, 
+                            oc.children, 
+                            oc.duration_nights, 
+                            ps.recorded_at, 
+                            oc.checkin_date,
+                            ROW_NUMBER() OVER (PARTITION BY oc.hotel_id ORDER BY ps.recorded_at DESC) as rn
+                        FROM price_snapshots ps
+                        JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+                        WHERE oc.hotel_id IN ({placeholders})
+                          {filter_clause}
+                    )
+                    SELECT hotel_id, total_price_pln, adults, children, duration_nights, recorded_at, checkin_date
+                    FROM ranked_hist
+                    WHERE rn <= 35
                 """
                 h_res = await db.execute(text(h_sql), h_params)
                 for hid, p_val, s_adults, s_children, s_nights, s_time, s_checkin in h_res.fetchall():

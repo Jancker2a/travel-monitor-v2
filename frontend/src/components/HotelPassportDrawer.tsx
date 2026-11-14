@@ -365,8 +365,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     currentTaRating > 0 &&
     currentTaRating < 3.5;
 
-  // Real, meaningful savings vs median (safeguarded against party/duration scale mismatch)
-  const typicalPrice = hotelItem?.intelligence?.typical_median_pln || rangeStats.med;
+  // Real, meaningful savings vs median (safeguarded against party/duration scale mismatch and seasonal bias)
+  const typicalPrice = hotelItem?.intelligence?.typical_median_pln || passport?.typical_median_pln || rangeStats.med;
   const savingsVsMedian =
     !isBudgetQuality && typicalPrice > 0 && currentPrice < typicalPrice
       ? typicalPrice - currentPrice
@@ -936,6 +936,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   filterPreset?.searchReq?.duration?.min_nights ||
                   7;
                 const partyLabel = userAdults === 1 && !userChildren ? "1 взр" : (`${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : ""));
+                const depStr = hotelItem?.current_offer?.departure_date || (passport?.history_points?.length ? passport.history_points[passport.history_points.length - 1].departure_date : null);
+                let targetMonthLabel = "сезон";
+                if (depStr) {
+                  try {
+                    const d = new Date(depStr);
+                    targetMonthLabel = d.toLocaleString("ru-RU", { month: "short" });
+                  } catch {}
+                }
 
                 return (
                   <>
@@ -1037,10 +1045,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
                       <div className="benchmark-card" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", padding: "10px", borderRadius: "10px", textAlign: "center" }}>
                         <div className="lbl" style={{ fontSize: "10px", color: "#64748b", textTransform: "uppercase" }}>
-                          Средняя за период
+                          Сезонная норма ({targetMonthLabel})
                         </div>
                         <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0284c7", marginTop: "2px" }}>
-                          {rangeStats.med > 0 ? `${Math.round(rangeStats.med).toLocaleString("ru-RU")} zł` : "—"}
+                          {(passport?.typical_median_pln || rangeStats.med) > 0 ? `${Math.round(passport?.typical_median_pln || rangeStats.med).toLocaleString("ru-RU")} zł` : "—"}
                         </div>
                       </div>
 
