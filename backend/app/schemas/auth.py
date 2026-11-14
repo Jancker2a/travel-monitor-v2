@@ -21,11 +21,29 @@ class UserProfileResponse(BaseModel):
     full_name: Optional[str] = None
     role: str = "USER"
     telegram_chat_id: Optional[str] = None
+    telegram_notifications_enabled: bool = True
     is_active: bool = True
     created_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True
+
+
+class UserUpdateRequest(BaseModel):
+    full_name: Optional[str] = Field(None, max_length=128)
+    telegram_chat_id: Optional[str] = Field(None, description="Telegram Chat ID or username")
+    telegram_notifications_enabled: Optional[bool] = None
+
+
+class TestTelegramRequest(BaseModel):
+    chat_id: Optional[str] = Field(None, description="Optional override of Telegram Chat ID")
+
+
+class TestTelegramResponse(BaseModel):
+    success: bool
+    message: str
+    chat_id: Optional[str] = None
+    simulated: bool = False
 
 
 class TokenResponse(BaseModel):

@@ -13,6 +13,7 @@ from app.database import engine, Base, get_db, AsyncSessionLocal
 from app.schemas.search import SearchRequest, SearchResponse
 from app.schemas.watchlist import (
     WatchlistCreateRequest,
+    WatchlistUpdateRequest,
     WatchlistItemResponse,
     WatchlistListResponse,
 )
@@ -281,6 +282,16 @@ async def delete_watchlist_item(watch_id: str, db: AsyncSession = Depends(get_db
     if not deleted:
         raise HTTPException(status_code=404, detail="Watchlist item not found")
     return {"status": "ok", "deleted_watch_id": watch_id}
+
+
+@app.patch("/api/v2/watchlist/{watch_id}", response_model=WatchlistItemResponse)
+async def update_watchlist_item(
+    watch_id: str,
+    req: WatchlistUpdateRequest,
+    db: AsyncSession = Depends(get_db),
+):
+    """Updates target price and notification threshold settings for a watched hotel."""
+    return await WatchlistService.update_watchlist_item(db, watch_id, req)
 
 
 @app.post("/api/v2/watchlist/trigger-check")

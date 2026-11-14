@@ -9,6 +9,7 @@ import { HotelTableView } from "./components/HotelTableView";
 import { HotelCard } from "./components/HotelCard";
 import { HotelPassportDrawer } from "./components/HotelPassportDrawer";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
+import { UserSettingsModal } from "./components/UserSettingsModal";
 import { SearchHeader } from "./components/SearchHeader";
 import { GermanArbitrageView } from "./components/GermanArbitrageView";
 import { AuthModal } from "./components/AuthModal";
@@ -30,6 +31,7 @@ import {
   getWatchlist,
   addToWatchlist,
   deleteWatchlistItem,
+  updateWatchlistItem,
   getTopPriceDrops,
   getAirportComparison,
   getFilterHotelsCatalog,
@@ -42,7 +44,7 @@ import {
   getAdminStatus,
   claimAdmin,
 } from "./services/api";
-import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus, Crown, RefreshCw, Layers, ExternalLink, TrendingDown, Clock, ArrowLeft } from "lucide-react";
+import { Bell, Menu, Radio, Sparkles, User as UserIcon, LogOut, Plus, Crown, RefreshCw, Layers, ExternalLink, TrendingDown, Clock, ArrowLeft, Settings } from "lucide-react";
 
 const CURRENT_USER_ID = "user_demo_01";
 
@@ -236,6 +238,7 @@ export const App: React.FC = () => {
 
   const [watchlistItems, setWatchlistItems] = useState<WatchlistItem[]>([]);
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
+  const [isUserSettingsOpen, setIsUserSettingsOpen] = useState(false);
 
   const [topDrops, setTopDrops] = useState<PriceDropItem[]>([]);
   const [airportStats, setAirportStats] = useState<AirportStat[]>([]);
@@ -621,6 +624,17 @@ export const App: React.FC = () => {
   const handleDeleteWatchlist = async (watchId: string) => {
     await deleteWatchlistItem(watchId);
     setWatchlistItems((prev) => prev.filter((w) => w.watch_id !== watchId));
+  };
+
+  const handleUpdateWatchlistItem = async (watchId: string, updates: Partial<WatchlistItem>) => {
+    try {
+      const updated = await updateWatchlistItem(watchId, updates);
+      setWatchlistItems((prev) =>
+        prev.map((item) => (item.watch_id === watchId ? { ...item, ...updated } : item))
+      );
+    } catch (err) {
+      console.error("Failed to update watchlist item:", err);
+    }
   };
 
   const watchedCohortHashes = useMemo(
@@ -1074,9 +1088,9 @@ export const App: React.FC = () => {
                 <button
                   type="button"
                   data-testid="user-profile-btn"
-                  onClick={() => navigateToTab("my_monitors")}
+                  onClick={() => setIsUserSettingsOpen(true)}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-colors cursor-pointer"
-                  title="Мой профиль и мониторинги"
+                  title="Мой профиль и настройки Telegram"
                 >
                   <UserIcon className="w-3.5 h-3.5 text-blue-400" />
                   <span className="max-w-[110px] truncate hidden sm:inline">
@@ -1087,6 +1101,15 @@ export const App: React.FC = () => {
                       👑
                     </span>
                   )}
+                </button>
+                <button
+                  type="button"
+                  data-testid="user-settings-btn"
+                  onClick={() => setIsUserSettingsOpen(true)}
+                  className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors cursor-pointer"
+                  title="Настройки профиля и Telegram"
+                >
+                  <Settings className="w-3.5 h-3.5" />
                 </button>
                 <button
                   type="button"
@@ -1391,7 +1414,32 @@ export const App: React.FC = () => {
         onClose={() => setIsWatchlistOpen(false)}
         items={watchlistItems}
         onDeleteItem={handleDeleteWatchlist}
+        onUpdateItem={handleUpdateWatchlistItem}
+        onOpenPassport={(hotelId) => {
+          setIsWatchlistOpen(false);
+          setActiveHotelPassport(hotelId);
+        }}
+        currentUser={currentUser}
+        onOpenUserSettings={() => {
+          setIsWatchlistOpen(false);
+          if (currentUser) {
+            setIsUserSettingsOpen(true);
+          } else {
+            setAuthModalReason("Для настройки Telegram-уведомлений выполните вход в аккаунт.");
+            setIsAuthModalOpen(true);
+          }
+        }}
       />
+
+      {/* User Profile & Telegram Settings Modal */}
+      {currentUser && (
+        <UserSettingsModal
+          isOpen={isUserSettingsOpen}
+          onClose={() => setIsUserSettingsOpen(false)}
+          currentUser={currentUser}
+          onUserUpdated={(updated) => setCurrentUser(updated)}
+        />
+      )}
 
       {/* Auth Modal */}
       <AuthModal

@@ -11,11 +11,15 @@ from app.schemas.auth import (
     RefreshTokenRequest,
     AdminStatusResponse,
     ClaimAdminRequest,
+    UserUpdateRequest,
+    TestTelegramRequest,
+    TestTelegramResponse,
 )
 from app.services.auth_service import (
     AuthService,
     get_current_user,
 )
+from app.services.telegram_service import TelegramService
 
 router = APIRouter(prefix="/api/v2/auth", tags=["Authentication & Security"])
 
@@ -59,6 +63,46 @@ async def refresh_token(req: RefreshTokenRequest, db: AsyncSession = Depends(get
 async def get_me(current_user: User = Depends(get_current_user)):
     """Returns profile and roles of currently authenticated user."""
     return UserProfileResponse.model_validate(current_user)
+
+
+@router.patch("/me", response_model=UserProfileResponse)
+async def update_me(
+    req: UserUpdateRequest,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Updates user profile information and Telegram alert configuration."""
+    if req.full_name is not None:
+        current_user.full_name = req.full_name.strip()
+    if req.telegram_chat_id is not None:
+        cleaned_chat = req.telegram_chat_id.strip()
+        current_user.telegram_chat_id = cleaned_chat if cleaned_chat else None
+    if req.telegram_notifications_enabled is not None:
+        current_user.telegram_notifications_enabled = req.telegram_notifications_enabled
+
+    await db.commit()
+    await db.refresh(current_user)
+    return UserProfileResponse.model_validate(current_user)
+
+
+@router.post("/test-telegram", response_model=TestTelegramResponse)
+async def test_telegram_connection(
+    req: TestTelegramRequest,
+    current_user: User = Depends(get_current_user),
+):
+    """Sends a sample rich notification card to test Telegram integration."""
+    target_chat = (req.chat_id or current_user.telegram_chat_id or "").strip()
+    if not target_chat:
+        return TestTelegramResponse(
+            success=False,
+            message="Chat ID не указан. Введите ваш Telegram Chat ID перед отправкой теста.",
+            chat_id=None,
+            simulated=False,
+        )
+
+    user_name = current_user.full_name or current_user.email.split("@")[0]
+    res = await TelegramService.send_test_notification(chat_id=target_chat, user_name=user_name)
+    return TestTelegramResponse(**res)
 
 
 @router.post("/logout")

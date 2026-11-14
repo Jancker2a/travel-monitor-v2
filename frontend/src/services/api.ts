@@ -315,10 +315,68 @@ export async function getWatchlist(userId: string): Promise<{ total: number; ite
 export async function deleteWatchlistItem(watchId: string): Promise<void> {
   const resp = await fetch(`${API_BASE}/api/v2/watchlist/${watchId}`, {
     method: "DELETE",
+    headers: getAuthHeaders(),
   });
   if (!resp.ok) {
     throw new Error(`Ошибка удаления из Watchlist (${resp.status})`);
   }
+}
+
+export async function updateWatchlistItem(
+  watchId: string,
+  updates: {
+    target_price_pln?: number | null;
+    alert_threshold_pct?: number | null;
+    min_deal_score?: number | null;
+    notify_any_drop?: boolean;
+    is_active?: boolean;
+  }
+): Promise<WatchlistItem> {
+  const resp = await fetch(`${API_BASE}/api/v2/watchlist/${encodeURIComponent(watchId)}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+    body: JSON.stringify(updates),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка обновления вотчлиста" }));
+    throw new Error(err.detail || `Ошибка обновления (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function updateUserProfile(updates: {
+  full_name?: string;
+  telegram_chat_id?: string;
+  telegram_notifications_enabled?: boolean;
+}): Promise<UserProfile> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/me`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+    body: JSON.stringify(updates),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка сохранения профиля" }));
+    throw new Error(err.detail || `Ошибка сохранения (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function sendTestTelegram(chatId?: string): Promise<{
+  success: boolean;
+  message: string;
+  chat_id?: string;
+  simulated?: boolean;
+}> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/test-telegram`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+    body: JSON.stringify({ chat_id: chatId || null }),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ message: "Ошибка отправки теста" }));
+    throw new Error(err.message || err.detail || `Ошибка (${resp.status})`);
+  }
+  return resp.json();
 }
 
 export async function getTopPriceDrops(limit: number = 12): Promise<PriceDropItem[]> {

@@ -1,5 +1,6 @@
 from sqlalchemy import (
     Column,
+    Integer,
     String,
     Float,
     DateTime,
@@ -19,6 +20,9 @@ class WatchlistItem(Base):
     cohort_hash = Column(String(32), ForeignKey("offer_cohorts.cohort_hash", ondelete="CASCADE"), nullable=False, index=True)
     target_price_pln = Column(Float, nullable=True)
     notify_any_drop = Column(Boolean, default=True)
+    alert_threshold_pct = Column(Float, nullable=True, default=5.0)
+    min_deal_score = Column(Integer, nullable=True, default=None)
+    is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_notified_at = Column(DateTime(timezone=True), nullable=True)
 

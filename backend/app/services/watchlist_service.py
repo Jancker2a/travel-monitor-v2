@@ -16,6 +16,7 @@ from app.models.price_snapshot import PriceSnapshot
 from app.models.watchlist import WatchlistItem
 from app.schemas.watchlist import (
     WatchlistCreateRequest,
+    WatchlistUpdateRequest,
     WatchlistItemResponse,
     WatchlistListResponse,
     WatchlistAlertPayload,
@@ -97,6 +98,11 @@ class WatchlistService:
         if existing_item:
             existing_item.target_price_pln = req.target_price_pln
             existing_item.notify_any_drop = req.notify_any_drop
+            if req.alert_threshold_pct is not None:
+                existing_item.alert_threshold_pct = req.alert_threshold_pct
+            if req.min_deal_score is not None:
+                existing_item.min_deal_score = req.min_deal_score
+            existing_item.is_active = req.is_active
             watch_item = existing_item
         else:
             watch_id = f"w_{uuid.uuid4().hex[:10]}"
@@ -106,6 +112,9 @@ class WatchlistService:
                 cohort_hash=req.cohort_hash,
                 target_price_pln=req.target_price_pln,
                 notify_any_drop=req.notify_any_drop,
+                alert_threshold_pct=req.alert_threshold_pct,
+                min_deal_score=req.min_deal_score,
+                is_active=req.is_active,
                 created_at=datetime.utcnow(),
             )
             db.add(watch_item)
@@ -144,6 +153,9 @@ class WatchlistService:
             duration_nights=cohort.duration_nights,
             airport=cohort.airport_code,
             target_price_pln=watch_item.target_price_pln,
+            alert_threshold_pct=watch_item.alert_threshold_pct,
+            min_deal_score=watch_item.min_deal_score,
+            is_active=watch_item.is_active,
             latest_price_pln=latest_price,
             deal_score=85,
             deal_badge="WATCHING",
@@ -201,6 +213,9 @@ class WatchlistService:
                     duration_nights=cohort.duration_nights,
                     airport=cohort.airport_code,
                     target_price_pln=watch_item.target_price_pln,
+                    alert_threshold_pct=watch_item.alert_threshold_pct if watch_item.alert_threshold_pct is not None else 5.0,
+                    min_deal_score=watch_item.min_deal_score,
+                    is_active=watch_item.is_active if watch_item.is_active is not None else True,
                     latest_price_pln=latest_price,
                     deal_score=90 if target_reached else 70,
                     deal_badge="SUPER_DEAL" if target_reached else "WATCHING",
@@ -213,6 +228,86 @@ class WatchlistService:
             )
 
         return WatchlistListResponse(total=len(items), items=items)
+
+    @classmethod
+    async def update_watchlist_item(
+        cls, db: AsyncSession, watch_id: str, req: WatchlistUpdateRequest
+    ) -> WatchlistItemResponse:
+        """Updates threshold parameters, target prices, and active state of a watchlist item."""
+        w_stmt = select(WatchlistItem).where(WatchlistItem.watch_id == watch_id)
+        w_res = await db.execute(w_stmt)
+        watch_item = w_res.scalar_one_or_none()
+        if not watch_item:
+            raise HTTPException(status_code=404, detail="Watchlist item not found")
+
+        c_stmt = (
+            select(OfferCohort, Hotel)
+            .join(Hotel, OfferCohort.hotel_id == Hotel.hotel_id)
+            .where(OfferCohort.cohort_hash == watch_item.cohort_hash)
+        )
+        c_res = await db.execute(c_stmt)
+        c_row = c_res.first()
+        if not c_row:
+            raise HTTPException(status_code=404, detail="Associated cohort or hotel not found")
+
+        cohort, hotel = c_row[0], c_row[1]
+
+        if req.target_price_pln is not None:
+            watch_item.target_price_pln = req.target_price_pln if req.target_price_pln > 0 else None
+        if req.alert_threshold_pct is not None:
+            watch_item.alert_threshold_pct = req.alert_threshold_pct
+        if req.min_deal_score is not None:
+            watch_item.min_deal_score = req.min_deal_score if req.min_deal_score > 0 else None
+        if req.notify_any_drop is not None:
+            watch_item.notify_any_drop = req.notify_any_drop
+        if req.is_active is not None:
+            watch_item.is_active = req.is_active
+
+        await db.commit()
+        await db.refresh(watch_item)
+
+        snap_stmt = (
+            select(PriceSnapshot)
+            .where(PriceSnapshot.cohort_id == cohort.cohort_id)
+            .order_by(PriceSnapshot.recorded_at.desc())
+            .limit(1)
+        )
+        snap = (await db.execute(snap_stmt)).scalar_one_or_none()
+        latest_price = snap.total_price_pln if snap else 0.0
+
+        target_reached = False
+        if watch_item.target_price_pln and latest_price <= watch_item.target_price_pln:
+            target_reached = True
+
+        checkin_d = (
+            datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
+            if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
+            else datetime.utcnow().date()
+        )
+
+        return WatchlistItemResponse(
+            watch_id=watch_item.watch_id,
+            user_chat_id=watch_item.user_chat_id,
+            cohort_hash=cohort.cohort_hash,
+            hotel_id=hotel.hotel_id,
+            hotel_name=hotel.display_name,
+            country=hotel.country,
+            departure_date=checkin_d,
+            duration_nights=cohort.duration_nights,
+            airport=cohort.airport_code,
+            target_price_pln=watch_item.target_price_pln,
+            alert_threshold_pct=watch_item.alert_threshold_pct if watch_item.alert_threshold_pct is not None else 5.0,
+            min_deal_score=watch_item.min_deal_score,
+            is_active=watch_item.is_active if watch_item.is_active is not None else True,
+            latest_price_pln=latest_price,
+            deal_score=90 if target_reached else 70,
+            deal_badge="SUPER_DEAL" if target_reached else "WATCHING",
+            hopper_verdict="BUY NOW" if target_reached else "WAIT",
+            target_reached=target_reached,
+            booking_url=cohort.offer_url,
+            created_at=watch_item.created_at,
+            last_notified_at=watch_item.last_notified_at,
+        )
 
     @classmethod
     async def delete_watchlist_item(

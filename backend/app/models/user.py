@@ -14,6 +14,7 @@ class User(Base):
     full_name = Column(String(128), nullable=True)
     role = Column(String(32), default="USER", nullable=False)  # USER, PRO, ADMIN
     telegram_chat_id = Column(String(64), nullable=True, index=True)
+    telegram_notifications_enabled = Column(Boolean, default=True, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())

@@ -4,6 +4,7 @@ export interface UserProfile {
   full_name?: string;
   role: string;
   telegram_chat_id?: string;
+  telegram_notifications_enabled?: boolean;
   is_active: boolean;
   created_at?: string;
 }
@@ -157,6 +158,10 @@ export interface WatchlistItem {
   duration_nights: number;
   airport: string;
   target_price_pln?: number;
+  alert_threshold_pct?: number;
+  min_deal_score?: number;
+  is_active?: boolean;
+  notify_any_drop?: boolean;
   latest_price_pln: number;
   deal_score: number;
   deal_badge: string;
