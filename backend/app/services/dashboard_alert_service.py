@@ -222,6 +222,7 @@ class DashboardAlertService:
         # Mock drop for illustration in test alert
         mock_prev = round(price_pln * 1.12, -1)
         mock_drop_pct = round(((mock_prev - price_pln) / mock_prev) * 100, 1)
+        mock_norm = round(price_pln * 1.15, -1)
 
         tg_res = await TelegramService.send_dashboard_alert(
             chat_id=chat_id,
@@ -239,6 +240,9 @@ class DashboardAlertService:
             is_historic_low=True,
             booking_url=offer_url,
             is_test=True,
+            seasonal_norm=float(mock_norm),
+            archetype="LATE_DUMPER",
+            urgency_text="🟢 ПОКУПАТЬ СЕЙЧАС (окно лучшей цены сезона)",
         )
 
         return DashboardSubscriptionTestResponse(

@@ -28,6 +28,7 @@ logger = logging.getLogger("travel_monitor_2.watchlist")
 
 
 _HOTEL_ALIAS_CACHE: Dict[str, List[str]] = {}
+_TOKEN_CLUSTER_MAP: Dict[Tuple[str, str], List[str]] = {}
 _ALIAS_CACHE_TS: float = 0.0
 _ALIAS_CACHE_TTL: float = 3600.0  # 1 hour
 
@@ -49,8 +50,8 @@ def _norm_country(c: Optional[str]) -> str:
 
 
 def _smart_hotel_tokens(title: str) -> str:
-    # 1. Remove all parentheses
-    n = re.sub(r"\s*\([^)]*\)", "", title)
+    # 1. Remove all parentheses (both closed and unclosed like 'Hotel (Ex. Grand Halomy Res')
+    n = re.sub(r"\s*\(.*", "", title)
     # 2. Remove country and common resort/city tokens
     n = re.sub(
         r"\b(?:turcja|egipt|grecja|cypr|hiszpania|turkey|egypt|greece|cyprus|spain|alanya|kemer|side|belek|antalya|sharm|hurghada|türkler|okurcalar|el|sheikh)\b",
@@ -59,9 +60,10 @@ def _smart_hotel_tokens(title: str) -> str:
         flags=re.I,
     )
     n = re.sub(r"[^\w\s]", " ", n.lower())
+    n = n.replace("pickalbatros", "albatros")
     stop = {
         "hotel", "hotels", "resort", "resorts", "spa", "beach", "club",
-        "palace", "deluxe", "aqua", "park", "the", "and", "di", "ex"
+        "palace", "deluxe", "aqua", "park", "the", "and", "di", "ex", "inn", "suites", "village", "residences"
     }
     tokens = [t for t in n.split() if len(t) > 1 and t not in stop]
     return " ".join(sorted(tokens)) if tokens else title.strip().lower()
@@ -459,18 +461,12 @@ class WatchlistService:
         return alerts
 
     @classmethod
-    async def _find_related_hotel_ids(cls, db: AsyncSession, hotel: Hotel) -> List[str]:
-        """
-        Finds all hotel_ids that refer to the same physical property,
-        handling tour operator renames, (ex. ...) additions, regional tags, and trailing 'Hotel/Resort' variations.
-        Uses in-memory cluster caching for <0.1ms lookups.
-        """
-        global _HOTEL_ALIAS_CACHE, _ALIAS_CACHE_TS
+    async def _ensure_alias_cache(cls, db: AsyncSession) -> None:
+        global _HOTEL_ALIAS_CACHE, _TOKEN_CLUSTER_MAP, _ALIAS_CACHE_TS
         now = time.time()
         if _HOTEL_ALIAS_CACHE and (now - _ALIAS_CACHE_TS < _ALIAS_CACHE_TTL):
-            return _HOTEL_ALIAS_CACHE.get(hotel.hotel_id, [hotel.hotel_id])
+            return
 
-        # Rebuild alias clusters across all hotels
         stmt = select(Hotel.hotel_id, Hotel.display_name, Hotel.country)
         rows = (await db.execute(stmt)).all()
 
@@ -490,8 +486,53 @@ class WatchlistService:
                     new_cache[hid] = hids
 
         _HOTEL_ALIAS_CACHE = new_cache
+        _TOKEN_CLUSTER_MAP = dict(clusters)
         _ALIAS_CACHE_TS = now
-        return _HOTEL_ALIAS_CACHE.get(hotel.hotel_id, [hotel.hotel_id])
+
+    @classmethod
+    async def _find_related_hotel_ids(cls, db: AsyncSession, hotel: Hotel) -> List[str]:
+        """
+        Finds all hotel_ids that refer to the same physical property,
+        handling tour operator renames, (ex. ...) additions, regional tags, and trailing 'Hotel/Resort' variations.
+        Uses in-memory cluster caching for <0.1ms lookups.
+        """
+        await cls._ensure_alias_cache(db)
+        if hotel.hotel_id in _HOTEL_ALIAS_CACHE:
+            return _HOTEL_ALIAS_CACHE[hotel.hotel_id]
+
+        c = _norm_country(hotel.country)
+        toks = _smart_hotel_tokens(hotel.display_name)
+        if toks and (c, toks) in _TOKEN_CLUSTER_MAP:
+            matched = _TOKEN_CLUSTER_MAP[(c, toks)]
+            combined = list(set([hotel.hotel_id] + matched))
+            _HOTEL_ALIAS_CACHE[hotel.hotel_id] = combined
+            return combined
+
+        return [hotel.hotel_id]
+
+    @classmethod
+    async def resolve_hotel_aliases_bulk(
+        cls, db: AsyncSession, hotel_queries: List[Tuple[str, str, str]]
+    ) -> Dict[str, List[str]]:
+        """
+        Bulk resolves hotel aliases. Input: [(hotel_id, display_name, country), ...]
+        Returns: {hotel_id: [related_canonical_ids]}
+        """
+        await cls._ensure_alias_cache(db)
+        results: Dict[str, List[str]] = {}
+        for hid, name, country in hotel_queries:
+            if hid in _HOTEL_ALIAS_CACHE:
+                results[hid] = _HOTEL_ALIAS_CACHE[hid]
+                continue
+            c = _norm_country(country)
+            toks = _smart_hotel_tokens(name)
+            if toks and (c, toks) in _TOKEN_CLUSTER_MAP:
+                matched = _TOKEN_CLUSTER_MAP[(c, toks)]
+                combined = list(set([hid] + matched))
+                results[hid] = combined
+            else:
+                results[hid] = [hid]
+        return results
 
     @classmethod
     async def get_hotel_passport(
@@ -811,6 +852,20 @@ class WatchlistService:
         except Exception as of_err:
             logger.warning(f"Failed to query other_filters for {hotel_id}: {of_err}")
 
+        # 4c. Fetch normalized historical snapshots across all related aliases
+        norm_sql = f"""
+            SELECT hotel_id, recorded_at, normalized_price_1p_8n, pure_hotel_night_rate
+            FROM normalized_price_snapshots
+            WHERE hotel_id IN ({placeholders})
+            ORDER BY recorded_at ASC
+        """
+        norm_rows = []
+        try:
+            n_res = await db.execute(text(norm_sql), h_params)
+            norm_rows = n_res.fetchall()
+        except Exception as n_err:
+            logger.warning(f"Failed to query normalized_price_snapshots for {hotel_id}: {n_err}")
+
         snap_sql = f"""
             SELECT 
                 {join_col} as cid,
@@ -988,6 +1043,53 @@ class WatchlistService:
                     "children": pt_children,
                 }
 
+        # Also integrate normalized historical snapshots for all related aliases
+        for n_hid, n_rec_dt, n_norm_price, n_pure_rate in norm_rows:
+            if not n_pure_rate or float(n_pure_rate) <= 0:
+                continue
+            rec_dt = (
+                datetime.fromisoformat(n_rec_dt)
+                if isinstance(n_rec_dt, str)
+                else n_rec_dt or now_dt
+            )
+            dt_raw = rec_dt.replace(tzinfo=None) if rec_dt.tzinfo else rec_dt
+            now_raw = now_dt.replace(tzinfo=None) if now_dt.tzinfo else now_dt
+            days_ago = (now_raw - dt_raw).days
+            if span_days > 20 and days_ago > 14:
+                bucket_key = rec_dt.strftime("%Y-%m-%d")
+            else:
+                bucket_key = rec_dt.strftime("%Y-%m-%d %H:00")
+
+            pure_rate = float(n_pure_rate)
+            scaled_tour_price = CostDecomposer.recompose(
+                pure_hotel_night_per_adult=pure_rate,
+                duration_nights=target_nights,
+                adults=target_adults,
+                children=target_children,
+                destination=dest_name,
+            )
+            norm_price = CostDecomposer.recompose(
+                pure_hotel_night_per_adult=pure_rate,
+                duration_nights=8,
+                adults=1,
+                children=0,
+                destination=dest_name,
+            )
+            if bucket_key not in bucket_map or scaled_tour_price < bucket_map[bucket_key]["scaled_tour_price"]:
+                bucket_map[bucket_key] = {
+                    "recorded_at": rec_dt,
+                    "total_price_pln": scaled_tour_price,
+                    "price_per_night_pax": round(scaled_tour_price / max(1, target_nights * (target_adults + target_children)), 1),
+                    "departure_date": (rec_dt + timedelta(days=21)).date() if hasattr(rec_dt, "date") else now_dt.date(),
+                    "duration_nights": target_nights,
+                    "airport": "WAW",
+                    "normalized_price_1p_8n": round(norm_price, 1),
+                    "pure_hotel_night_rate": round(pure_rate, 1),
+                    "scaled_tour_price": round(scaled_tour_price, 1),
+                    "adults": target_adults,
+                    "children": target_children,
+                }
+
         sorted_buckets = sorted(bucket_map.keys())
         history_points: List[HotelHistoryPoint] = []
         prices: List[float] = []
@@ -1011,12 +1113,12 @@ class WatchlistService:
                 )
             )
 
-        real_snapshots_count = len(s_rows) if s_rows else 0
+        total_points_count = len(prices)
         curr_val = float(current_price) if current_price and float(current_price) > 0 else (prices[-1] if prices else 0.0)
 
-        if not prices or real_snapshots_count <= 1:
+        if total_points_count == 0:
             data_maturity_tier = 0
-            maturity_explanation = "Отель обнаружен через расширенный live-поиск. Зафиксирована первая котировка, почасовой мониторинг запущен."
+            maturity_explanation = "Отель обнаружен через расширенный live-поиск. Зафиксирована первая котировка, регулярный мониторинг цен запущен."
             if curr_val <= 0:
                 pure_bench = 180.0 if (hotel.stars or 4) >= 5 else 125.0
                 curr_val = CostDecomposer.recompose(
@@ -1061,12 +1163,15 @@ class WatchlistService:
             med_p = curr_val
             max_p = round(curr_val * 1.10, 1)
         else:
-            if real_snapshots_count < 10:
+            if total_points_count < 4:
                 data_maturity_tier = 1
-                maturity_explanation = "Первичные замеры за несколько дней. График отражает свежую динамику."
-            else:
+                maturity_explanation = f"Первичные замеры отеля ({total_points_count} точек). График отражает свежую динамику."
+            elif total_points_count < 15:
                 data_maturity_tier = 2
-                maturity_explanation = "Сезонная история наблюдений с выверенной медианой и диапазоном цен."
+                maturity_explanation = "Свежая динамика цен за последние недели."
+            else:
+                data_maturity_tier = 3
+                maturity_explanation = "Выверенная сезонная история наблюдений с медианой и диапазоном цен."
 
             if current_price and float(current_price) > 0:
                 curr_p = float(current_price)
@@ -1285,6 +1390,33 @@ class WatchlistService:
             current_region=hotel.region,
         )
 
+        # Build intelligent AI micro-insight for this hotel passport
+        diff_to_norm = round(((curr_p - med_p) / med_p) * 100.0, 1) if med_p > 0 else 0.0
+        if diff_to_norm <= -15.0:
+            ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
+            ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Это исторически выгодный момент для бронирования."
+        elif diff_to_norm <= -7.0:
+            ai_action_signal = f"⚡ Выгодная цена ({diff_to_norm:+.0f}%)"
+            ai_price_summary = f"Тур стоит {curr_p:.0f} zł при сезонной норме {med_p:.0f} zł ({diff_to_norm:+.1f}%). Рекомендуется фиксировать."
+        elif diff_to_norm <= 7.0:
+            ai_action_signal = "⚖️ Стандартная цена сезона"
+            ai_price_summary = f"Цена {curr_p:.0f} zł находится в пределах сезонной нормы ({med_p:.0f} zł). Спешить не нужно, можно отслеживать динамику."
+        else:
+            ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
+            ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
+
+        ai_hotel_summary = f"{hotel.display_name} ({hotel.stars}★, {hotel.region or hotel.country}). {target_season.get('label', '')}: {target_season.get('risk_expl', '')}."
+
+        ai_insight = {
+            "headline": ai_action_signal,
+            "season_label": target_season.get("label", ""),
+            "season_context": target_season.get("risk_expl", ""),
+            "diff_to_norm_pct": diff_to_norm,
+            "seasonal_norm_pln": med_p,
+            "current_price_pln": curr_p,
+            "summary": ai_price_summary,
+        }
+
         return HotelPassportResponse(
             hotel_id=hotel.hotel_id,
             display_name=hotel.display_name,
@@ -1323,9 +1455,11 @@ class WatchlistService:
             cons=dossier["cons"],
             verdict=dossier["verdict"],
             suitable_for=dossier["suitable_for"],
-            ai_action_signal=dossier["ai_action_signal"],
-            ai_price_summary=dossier["ai_price_summary"],
-            ai_hotel_summary=dossier["ai_hotel_summary"],
+            ai_action_signal=ai_action_signal,
+            ai_price_summary=ai_price_summary,
+            ai_hotel_summary=ai_hotel_summary,
+            seasonal_norm_pln=med_p,
+            ai_insight=ai_insight,
             infra_rich=dossier["infra_rich"],
             german_arbitrage=german_arbitrage,
             available_packages=packages_list,

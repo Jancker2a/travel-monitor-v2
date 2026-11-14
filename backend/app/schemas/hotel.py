@@ -60,6 +60,8 @@ class HotelPassportResponse(BaseModel):
     ai_action_signal: str = ""
     ai_price_summary: str = ""
     ai_hotel_summary: str = ""
+    seasonal_norm_pln: Optional[float] = None
+    ai_insight: Optional[Dict[str, Any]] = None
 
     infra_rich: Optional[Dict[str, Any]] = None
     german_arbitrage: Optional[Dict[str, Any]] = None

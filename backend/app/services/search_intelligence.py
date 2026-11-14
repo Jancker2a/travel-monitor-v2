@@ -72,6 +72,40 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
                 "risk_expl": "офф-сезон из-за жары, высокая вероятность горящих предложений",
             }
 
+    elif any(k in dest for k in ("uae", "оаэ", "dubai", "дубай", "emirates", "эмираты")):
+        if is_ny_christmas:
+            return {
+                "season": "holiday_superpeak",
+                "label": "Новогодний суперпик в ОАЭ",
+                "multiplier": 1.60,
+                "price_drop_risk": "very_low",
+                "risk_expl": "максимальный праздничный спрос, отели и рейсы быстро распродаются",
+            }
+        elif month in (10, 11, 12, 1, 2, 3, 4):
+            return {
+                "season": "peak",
+                "label": "Высокий комфортный сезон в ОАЭ",
+                "multiplier": 1.25,
+                "price_drop_risk": "low",
+                "risk_expl": "идеальная погода для пляжа и прогулок, стабильно высокий спрос",
+            }
+        elif month in (5, 9):
+            return {
+                "season": "shoulder",
+                "label": "Межсезонье в ОАЭ",
+                "multiplier": 0.95,
+                "price_drop_risk": "medium",
+                "risk_expl": "начало жары, умеренные тарифы со скидками",
+            }
+        else:
+            return {
+                "season": "low",
+                "label": "Жаркий летний офф-сезон в ОАЭ",
+                "multiplier": 0.70,
+                "price_drop_risk": "high",
+                "risk_expl": "офф-сезон из-за сильной жары, цены на минимуме",
+            }
+
     elif any(k in dest for k in ("turkey", "турция", "antalya", "side", "kemer", "belek", "alanya", "bodrum")):
         if month in (7, 8):
             return {
@@ -187,8 +221,17 @@ def evaluate_search_intelligence(
     hist_pure_rates: List[float] = []
     hist_prices_raw: List[float] = []
 
-    if hist_snapshots and len(hist_snapshots) >= 2:
+    if hist_snapshots:
         for snap in hist_snapshots:
+            if snap.get("pure_hotel_night_rate") and float(snap["pure_hotel_night_rate"]) > 0:
+                raw_pure = float(snap["pure_hotel_night_rate"])
+                p_val = float(snap.get("price") or snap.get("total_price_pln") or 0.0)
+                if p_val > 0:
+                    hist_prices_raw.append(p_val)
+                # Pure rate from normalized_price_snapshots is already de-seasoned/normalized
+                hist_pure_rates.append(raw_pure)
+                continue
+
             p_val = float(snap.get("price") or snap.get("total_price_pln") or 0.0)
             if p_val <= 0:
                 continue
@@ -223,7 +266,8 @@ def evaluate_search_intelligence(
             snap_mult = snap_season.get("multiplier", 1.0)
             hist_pure_rates.append(raw_pure / max(0.5, snap_mult))
 
-        if len(hist_pure_rates) >= 2:
+        # Strictly require at least 4 observations to consider history mature and reliable
+        if len(hist_pure_rates) >= 4:
             has_history = True
 
     # Baseline comparison metrics
@@ -351,9 +395,9 @@ def evaluate_search_intelligence(
     if typical_median_pln and typical_median_pln > 0:
         delta_vs_typical_pct = round(((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1)
 
-    # 6. Real 48-Hour Price Change (from actual historical snapshots with recorded_at)
+    # 6. Real 48-Hour Price Change (strictly requires mature observations >= 4)
     real_drop_48h_pct: Optional[float] = None
-    if hist_snapshots:
+    if hist_snapshots and has_history:
         now_utc = datetime.now(timezone.utc)
         candidates_48h = []
         for snap in hist_snapshots:

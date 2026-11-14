@@ -508,14 +508,33 @@ class LiveScraperService:
 
         all_hids = list(set(slugify(off["hotel_name"]) for off in raw_offers if off.get("hotel_name")))
 
+        # Cross-reference aliases across all candidate hotels
+        from app.services.watchlist_service import WatchlistService
+        hotel_queries = [
+            (slugify(off["hotel_name"]), off["hotel_name"], destination_country)
+            for off in raw_offers if off.get("hotel_name")
+        ]
+        alias_map = await WatchlistService.resolve_hotel_aliases_bulk(db, hotel_queries)
+        alias_to_cands: Dict[str, Set[str]] = defaultdict(set)
+        expanded_query_hids: Set[str] = set()
+        for cand_hid, a_list in alias_map.items():
+            for a_hid in a_list:
+                expanded_query_hids.add(a_hid)
+                alias_to_cands[a_hid].add(cand_hid)
+
+        all_query_hids = list(expanded_query_hids) if expanded_query_hids else all_hids
+
         # 1. Bulk pre-fetch all known hotels in 1 query
         seen_hotels: Dict[str, Hotel] = {}
-        if all_hids:
+        if all_query_hids:
             try:
-                h_stmt = select(Hotel).where(Hotel.hotel_id.in_(all_hids))
+                h_stmt = select(Hotel).where(Hotel.hotel_id.in_(all_query_hids))
                 h_res = await db.execute(h_stmt)
                 for h in h_res.scalars().all():
-                    seen_hotels[h.hotel_id] = h
+                    target_cands = alias_to_cands.get(h.hotel_id, [h.hotel_id])
+                    for cand_hid in target_cands:
+                        if cand_hid not in seen_hotels:
+                            seen_hotels[cand_hid] = h
             except Exception as e:
                 logger.warning(f"Bulk hotel fetch error: {e}")
 
@@ -532,11 +551,15 @@ class LiveScraperService:
         except Exception:
             pass
 
+        req_adults = req.travelers.adults if req.travelers else 2
+        req_children = req.travelers.children if req.travelers else 0
+        pax_count = max(1, req_adults + req_children)
+
         hist_map: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-        if all_hids:
+        if all_query_hids:
             try:
-                placeholders = ",".join(f":h{i}" for i in range(len(all_hids)))
-                h_params = {f"h{i}": hid for i, hid in enumerate(all_hids)}
+                placeholders = ",".join(f":h{i}" for i in range(len(all_query_hids)))
+                h_params = {f"h{i}": hid for i, hid in enumerate(all_query_hids)}
                 filter_clause = ""
                 if req.filter_id:
                     filter_clause = "AND (ps.filter_id = :req_fid OR oc.filter_id = :req_fid)"
@@ -564,21 +587,43 @@ class LiveScraperService:
                 """
                 h_res = await db.execute(text(h_sql), h_params)
                 for hid, p_val, s_adults, s_children, s_nights, s_time, s_checkin in h_res.fetchall():
-                    if len(hist_map[hid]) < 25:
-                        hist_map[hid].append({
-                            "price": float(p_val),
-                            "adults": int(s_adults or 2),
-                            "children": int(s_children or 0),
-                            "duration_nights": int(s_nights or 8),
-                            "recorded_at": s_time,
-                            "departure_date": s_checkin,
-                        })
+                    target_cands = alias_to_cands.get(hid, [hid])
+                    for cand_hid in target_cands:
+                        if len(hist_map[cand_hid]) < 35:
+                            hist_map[cand_hid].append({
+                                "price": float(p_val),
+                                "adults": int(s_adults or 2),
+                                "children": int(s_children or 0),
+                                "duration_nights": int(s_nights or 8),
+                                "recorded_at": s_time,
+                                "departure_date": s_checkin,
+                            })
+
+                # Also query normalized_price_snapshots for all candidate and alias IDs
+                norm_sql = f"""
+                    SELECT hotel_id, recorded_at, normalized_price_1p_8n, pure_hotel_night_rate
+                    FROM normalized_price_snapshots
+                    WHERE hotel_id IN ({placeholders})
+                    ORDER BY recorded_at DESC
+                """
+                n_res = await db.execute(text(norm_sql), h_params)
+                for hid, s_time, norm_p, pure_r in n_res.fetchall():
+                    if not pure_r or float(pure_r) <= 0:
+                        continue
+                    target_cands = alias_to_cands.get(hid, [hid])
+                    for cand_hid in target_cands:
+                        if len(hist_map[cand_hid]) < 35:
+                            hist_map[cand_hid].append({
+                                "price": float(norm_p or 0),
+                                "adults": req_adults,
+                                "children": req_children,
+                                "duration_nights": 8,
+                                "recorded_at": s_time,
+                                "departure_date": None,
+                                "pure_hotel_night_rate": float(pure_r),
+                            })
             except Exception as e:
                 logger.warning(f"Bulk hist lookup error: {e}")
-
-        req_adults = req.travelers.adults if req.travelers else 2
-        req_children = req.travelers.children if req.travelers else 0
-        pax_count = max(1, req_adults + req_children)
 
         # Pre-compute peer star pure rates within this search batch for fair baseline comparison
         peer_star_pure_rates: Dict[int, List[float]] = defaultdict(list)

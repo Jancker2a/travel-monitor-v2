@@ -133,12 +133,12 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
           </div>
 
           {/* Price Max Filter */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <select
               id="priceFilter"
               value={filters.priceMax}
               onChange={(e) => onFilterChange({ ...filters, priceMax: e.target.value })}
-              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
             >
               <option value="">Все цены</option>
               <option value="5000">до 5 000 zł</option>
@@ -149,64 +149,64 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
               <option value="25000">до 25 000 zł</option>
               <option value="50000">до 50 000 zł</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Forecast / Recommendations Filter */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <select
               id="forecastFilter"
               value={filters.recommendation}
               onChange={(e) => onFilterChange({ ...filters, recommendation: e.target.value })}
-              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
             >
               <option value="">Все рекомендации</option>
               <option value="buy">🟢 Покупать (80+)</option>
               <option value="wait">🟡 Ждать</option>
               <option value="expensive">🔴 Дорого</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* TripAdvisor Filter */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <select
               id="taFilter"
               value={filters.tripAdvisor}
               onChange={(e) => onFilterChange({ ...filters, tripAdvisor: e.target.value })}
-              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
             >
               <option value="">Все рейтинги TripAdvisor</option>
               <option value="4.5">Рейтинг ≥ 4.5</option>
               <option value="4.0">Рейтинг ≥ 4.0</option>
               <option value="3.5">Рейтинг ≥ 3.5</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Price Changes Filter */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <select
               id="changeFilter"
               value={filters.change}
               onChange={(e) => onFilterChange({ ...filters, change: e.target.value })}
-              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
             >
               <option value="">Все изменения</option>
               <option value="decrease">📉 Снижение цен</option>
               <option value="increase">📈 Рост цен</option>
               <option value="stable">Стабильные</option>
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Regions Filter */}
-          <div className="relative">
+          <div className="relative shrink-0">
             <select
               id="regionFilter"
               value={filters.region}
               onChange={(e) => onFilterChange({ ...filters, region: e.target.value })}
-              className="appearance-none text-xs sm:text-sm py-2 pl-3 pr-8 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
             >
               <option value="">Все регионы</option>
               {regions.map((reg) => (

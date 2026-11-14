@@ -237,6 +237,40 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const sortedP = [...pVals].sort((a, b) => a - b);
     const medianPrice = sortedP[Math.floor(sortedP.length / 2)] || minPrice;
 
+    const seasonalNorm = passport.seasonal_norm_pln || passport.typical_median_pln;
+    const shapes: any[] = [
+      {
+        type: "line",
+        y0: minPrice,
+        y1: minPrice,
+        x0: 0,
+        x1: 1,
+        xref: "paper",
+        line: { color: "#10b981", width: 1.5, dash: "dot" },
+      },
+    ];
+    if (seasonalNorm && seasonalNorm > 0) {
+      shapes.push({
+        type: "line",
+        y0: seasonalNorm,
+        y1: seasonalNorm,
+        x0: 0,
+        x1: 1,
+        xref: "paper",
+        line: { color: "#f59e0b", width: 1.5, dash: "dash" },
+      });
+    } else {
+      shapes.push({
+        type: "line",
+        y0: medianPrice,
+        y1: medianPrice,
+        x0: 0,
+        x1: 1,
+        xref: "paper",
+        line: { color: "#f59e0b", width: 1.5, dash: "dot" },
+      });
+    }
+
     const layout = {
       title: {
         text: `Динамика цены тура (${partyLabel} • ${userNights} ночей, с перелётом)`,
@@ -257,26 +291,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         gridcolor: "#f1f5f9",
         tickfont: { size: 10, color: "#64748b" },
       },
-      shapes: [
-        {
-          type: "line",
-          y0: minPrice,
-          y1: minPrice,
-          x0: 0,
-          x1: 1,
-          xref: "paper",
-          line: { color: "#10b981", width: 1.5, dash: "dot" },
-        },
-        {
-          type: "line",
-          y0: medianPrice,
-          y1: medianPrice,
-          x0: 0,
-          x1: 1,
-          xref: "paper",
-          line: { color: "#f59e0b", width: 1.5, dash: "dot" },
-        },
-      ],
+      shapes,
       font: { family: "Inter, sans-serif", size: 11 },
     };
 
@@ -742,6 +757,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                         </span>
                       )}
                     </div>
+                    {passport?.ai_insight?.seasonal_norm_pln && (
+                      <div style={{ marginTop: "4px", fontSize: "11.5px", color: "#475569" }}>
+                        ⚖️ Сезонная норма ({passport.ai_insight.season_label || "сезон"}):{" "}
+                        <strong style={{ color: "#0284c7" }}>
+                          {Math.round(passport.ai_insight.seasonal_norm_pln).toLocaleString("ru-RU")} zł
+                        </strong>
+                      </div>
+                    )}
                     <p className="oracle-body-text" id="drawerAiPriceVerdictText" style={{ fontSize: "12px", color: "#334155", lineHeight: "1.5", marginTop: "4px" }}>
                       {dynamicPriceSummary}
                     </p>
@@ -947,6 +970,76 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
                 return (
                   <>
+                    {/* AI Micro-Insight Banner */}
+                    {passport?.ai_insight && (
+                      <div
+                        style={{
+                          background:
+                            passport.ai_insight.diff_to_norm_pct < -5
+                              ? "linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%)"
+                              : passport.ai_insight.diff_to_norm_pct > 8
+                              ? "linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%)"
+                              : "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
+                          border: `1px solid ${
+                            passport.ai_insight.diff_to_norm_pct < -5
+                              ? "#bbf7d0"
+                              : passport.ai_insight.diff_to_norm_pct > 8
+                              ? "#fecaca"
+                              : "#e2e8f0"
+                          }`,
+                          borderRadius: "12px",
+                          padding: "12px 16px",
+                          marginBottom: "14px",
+                          boxShadow: "0 1px 3px rgba(0,0,0,0.03)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            marginBottom: "6px",
+                            flexWrap: "wrap",
+                            gap: "6px",
+                          }}
+                        >
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <span style={{ fontSize: "16px" }}>🧠</span>
+                            <span
+                              style={{
+                                fontWeight: 800,
+                                fontSize: "13px",
+                                color:
+                                  passport.ai_insight.diff_to_norm_pct < -5
+                                    ? "#15803d"
+                                    : passport.ai_insight.diff_to_norm_pct > 8
+                                    ? "#b91c1c"
+                                    : "#334155",
+                              }}
+                            >
+                              {passport.ai_insight.headline}
+                            </span>
+                          </div>
+                          <div
+                            style={{
+                              background: "rgba(255,255,255,0.85)",
+                              border: "1px solid rgba(0,0,0,0.08)",
+                              borderRadius: "20px",
+                              padding: "3px 10px",
+                              fontSize: "11px",
+                              fontWeight: 700,
+                              color: "#475569",
+                            }}
+                          >
+                            {passport.ai_insight.season_label}: {passport.ai_insight.season_context}
+                          </div>
+                        </div>
+                        <p style={{ fontSize: "12px", color: "#334155", margin: 0, lineHeight: "1.5" }}>
+                          {passport.ai_insight.summary}
+                        </p>
+                      </div>
+                    )}
+
                     <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
                       <div className="stat-pill" style={{ background: "#e0f2fe", color: "#0369a1", padding: "6px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bae6fd" }}>
                         ✈️ Полная цена тура ({partyLabel} • {resolvedNights}н, с перелётом)

@@ -348,6 +348,12 @@ export const App: React.FC = () => {
           setActiveTab("search");
         }
       }
+
+      // Check for hotel deep link in hash or query: e.g. #/hotel/uni-sharm-aqua-hotel or ?hotel=...
+      const hotelMatch = window.location.hash.match(/[?&#]hotel=([^&]+)/i) || window.location.hash.match(/^#\/hotel\/([a-zA-Z0-9_\-]+)/i);
+      if (hotelMatch && hotelMatch[1]) {
+        setActiveHotelPassport(decodeURIComponent(hotelMatch[1]));
+      }
     };
 
     syncFromHash();

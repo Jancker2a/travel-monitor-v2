@@ -310,6 +310,16 @@ export interface HotelPassport {
   ai_action_signal: string;
   ai_price_summary: string;
   ai_hotel_summary: string;
+  seasonal_norm_pln?: number;
+  ai_insight?: {
+    headline: string;
+    season_label: string;
+    season_context: string;
+    diff_to_norm_pct: number;
+    seasonal_norm_pln: number;
+    current_price_pln: number;
+    summary: string;
+  };
 
   infra_rich?: Record<string, any>;
   german_arbitrage?: GermanArbitrageData;

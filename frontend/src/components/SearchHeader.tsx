@@ -205,6 +205,135 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
   const [forceLive, setForceLive] = useState(true);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
+  // AI Natural Language Search Prompt
+  const [aiPrompt, setAiPrompt] = useState("");
+  const [aiFeedback, setAiFeedback] = useState<string | null>(null);
+
+  const handleApplyAiPrompt = () => {
+    if (!aiPrompt.trim()) return;
+    const q = aiPrompt.toLowerCase();
+    const applied: string[] = [];
+
+    // 1. Destination
+    if (q.includes("египет") || q.includes("шарм") || q.includes("хургад") || q.includes("марса") || q.includes("egypt")) {
+      setDestination("egypt");
+      if (q.includes("шарм")) setRegion("sharm");
+      else if (q.includes("хургад")) setRegion("hurghada");
+      else if (q.includes("марса")) setRegion("marsa_alam");
+      else setRegion("egypt");
+      applied.push("🇪🇬 Египет");
+    } else if (q.includes("турци") || q.includes("анталья") || q.includes("кемер") || q.includes("сиде") || q.includes("белек") || q.includes("алань") || q.includes("turkey")) {
+      setDestination("turkey");
+      setRegion("turkey");
+      applied.push("🇹🇷 Турция");
+    } else if (q.includes("греци") || q.includes("крит") || q.includes("родос") || q.includes("корфу") || q.includes("greece")) {
+      setDestination("greece");
+      setRegion("greece");
+      applied.push("🇬🇷 Греция");
+    } else if (q.includes("кипр") || q.includes("cyprus")) {
+      setDestination("cyprus");
+      setRegion("cyprus");
+      applied.push("🇨🇾 Кипр");
+    } else if (q.includes("оаэ") || q.includes("дубай") || q.includes("uae") || q.includes("dubai")) {
+      setDestination("uae");
+      setRegion("uae");
+      applied.push("🇦🇪 ОАЭ");
+    } else if (q.includes("испани") || q.includes("майорк") || q.includes("spain")) {
+      setDestination("spain");
+      setRegion("spain");
+      applied.push("🇪🇸 Испания");
+    }
+
+    // 2. Travelers
+    if (q.includes("2+2") || q.includes("двое детей") || q.includes("2 детей")) {
+      setAdults(2);
+      setChildrenCount(2);
+      setChildrenAges([7, 10]);
+      applied.push("2 взр + 2 реб");
+    } else if (q.includes("2+1") || q.includes("семья с ребенком") || q.includes("1 реб") || q.includes("с ребенком")) {
+      setAdults(2);
+      setChildrenCount(1);
+      setChildrenAges([7]);
+      applied.push("2 взр + 1 реб");
+    } else if (q.includes("1 взр") || q.includes("один") || q.includes("одна") || q.includes("1 человек") || q.includes("соло")) {
+      setAdults(1);
+      setChildrenCount(0);
+      setChildrenAges([]);
+      applied.push("1 взр");
+    } else if (q.includes("2 взр") || q.includes("двоих") || q.includes("вдвоем") || q.includes("паре") || q.includes("пара")) {
+      setAdults(2);
+      setChildrenCount(0);
+      setChildrenAges([]);
+      applied.push("2 взр");
+    }
+
+    // 3. Duration
+    const nightsMatch = q.match(/(\d+)\s*(ноч|дней|дня|ночей)/);
+    if (nightsMatch) {
+      const n = parseInt(nightsMatch[1], 10);
+      setMinNights(n);
+      setMaxNights(n + 1);
+      applied.push(`${n}н`);
+    } else if (q.includes("неделя") || q.includes("неделю")) {
+      setMinNights(7);
+      setMaxNights(8);
+      applied.push("7н");
+    } else if (q.includes("2 недели") || q.includes("две недели")) {
+      setMinNights(14);
+      setMaxNights(15);
+      applied.push("14н");
+    }
+
+    // 4. Budget
+    const priceMatch = q.match(/до\s*(\d+[\s\d]*)/);
+    if (priceMatch) {
+      const p = priceMatch[1].replace(/\s/g, "");
+      setMaxPrice(p);
+      applied.push(`до ${Number(p).toLocaleString("ru-RU")} zł`);
+    }
+
+    // 5. Stars
+    if (q.includes("5 звезд") || q.includes("5*") || q.includes("пятерк")) {
+      setStarsMin(5);
+      applied.push("5★");
+    } else if (q.includes("4 звезд") || q.includes("4*") || q.includes("четверк")) {
+      setStarsMin(4);
+      applied.push("4★+");
+    }
+
+    // 6. Dates / Months
+    if (q.includes("декабр")) {
+      setStartDateMin("2026-12-01");
+      setStartDateMax("2026-12-25");
+      applied.push("Декабрь");
+    } else if (q.includes("новый год") || q.includes("нг") || q.includes("новогод")) {
+      setStartDateMin("2026-12-24");
+      setStartDateMax("2027-01-02");
+      applied.push("Новый Год");
+    } else if (q.includes("январ")) {
+      setStartDateMin("2027-01-05");
+      setStartDateMax("2027-01-25");
+      applied.push("Январь");
+    } else if (q.includes("май")) {
+      setStartDateMin("2027-05-01");
+      setStartDateMax("2027-05-25");
+      applied.push("Май");
+    } else if (q.includes("июн")) {
+      setStartDateMin("2027-06-01");
+      setStartDateMax("2027-06-25");
+      applied.push("Июнь");
+    } else if (q.includes("ноябр")) {
+      setStartDateMin("2026-11-20");
+      setStartDateMax("2026-11-30");
+      applied.push("Ноябрь");
+    }
+
+    if (applied.length > 0) {
+      setAiFeedback(`✓ Настроено: ${applied.join(" • ")}`);
+      setTimeout(() => setAiFeedback(null), 5000);
+    }
+  };
+
   const handleMinPriceChange = (val: string) => {
     const digits = val.replace(/\D/g, "");
     setMinPrice(digits);
@@ -600,6 +729,49 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
       </div>
 
       <form onSubmit={handleSubmit} className="p-5 space-y-4">
+        {/* AI Natural Language Search Prompt Bar */}
+        <div className="bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-sky-50/90 border border-blue-200/90 rounded-2xl p-3 sm:p-3.5 shadow-2xs">
+          <div className="flex items-center justify-between mb-2 flex-wrap gap-1">
+            <span className="text-xs font-black text-blue-950 flex items-center gap-1.5 uppercase tracking-wide">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
+              <span>AI Умный поиск на естественном языке</span>
+            </span>
+            <span className="text-[11px] text-blue-700/80 font-medium">
+              Понимает страну, состав семьи, даты, бюджет и звёзды
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={aiPrompt}
+                onChange={(e) => setAiPrompt(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    handleApplyAiPrompt();
+                  }
+                }}
+                placeholder="Например: Египет в декабре 2 взр 7 ночей 5 звезд до 7000 zł..."
+                className="w-full bg-white border border-blue-200/90 rounded-xl pl-3.5 pr-28 py-2 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-2xs"
+              />
+              {aiFeedback && (
+                <span className="absolute right-2 top-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200 shadow-2xs">
+                  {aiFeedback}
+                </span>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={handleApplyAiPrompt}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow flex items-center gap-1.5 shrink-0 active:scale-95 cursor-pointer"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Распознать</span>
+            </button>
+          </div>
+        </div>
+
         {/* ROW 1: DESTINATIONS */}
         <div>
           <div className="flex items-center justify-between mb-2">
@@ -1157,25 +1329,25 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
 
           <div className="flex items-center gap-2">
             <span className="text-slate-400 font-semibold shrink-0">Сортировка:</span>
-            <div className="relative">
+            <div className="relative shrink-0">
               <select
                 value={orderBy}
                 onChange={(e) => setOrderBy(e.target.value)}
-                className="appearance-none bg-slate-50 hover:bg-slate-100 text-xs font-semibold text-slate-700 pl-3 pr-8 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+                className="appearance-none bg-slate-50 hover:bg-slate-100 text-xs font-semibold text-slate-700 pl-3.5 pr-10 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
               >
                 <option value="price">Сначала дешёвые (цена ↑)</option>
                 <option value="rating">По рейтингу TripAdvisor</option>
                 <option value="deal_score">По выгодности (Deal Score)</option>
                 <option value="discount">По величине скидки</option>
               </select>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
           </div>
         </div>
 
         {/* Авто-мониторинг цен */}
         {onSaveMonitor && (
-          <div className="mt-3 p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200/90 flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-xs">
+          <div className="mt-3 p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200/90 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
             <div className="flex items-center gap-3 min-w-0 flex-1">
               <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 border border-amber-200 shadow-2xs">
                 <Radio className="w-5 h-5 text-amber-600 animate-pulse" />
@@ -1193,7 +1365,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
             <button
               type="button"
               onClick={onSaveMonitor}
-              className="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0 self-start md:self-auto"
+              className="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0 self-start md:self-auto min-w-fit"
               title="Настроить авто-сканирование и Telegram-уведомления"
             >
               <BellRing className="w-4 h-4 text-white shrink-0" />
