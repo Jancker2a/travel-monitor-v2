@@ -550,6 +550,7 @@ class WatchlistService:
         adults: Optional[int] = None,
         children: Optional[int] = None,
         duration_nights: Optional[int] = None,
+        departure_date: Optional[str] = None,
     ) -> HotelPassportResponse:
         from app.services.hotel_knowledge_service import HotelKnowledgeService
         from app.services.canonical_filters import resolve_filter_spec
@@ -1226,7 +1227,15 @@ class WatchlistService:
 
             # Target departure date for the tour being viewed
             target_dep_date = None
-            if history_points and history_points[-1].departure_date:
+            if departure_date:
+                try:
+                    if isinstance(departure_date, str):
+                        target_dep_date = datetime.strptime(departure_date.split("T")[0], "%Y-%m-%d").date()
+                    elif isinstance(departure_date, date):
+                        target_dep_date = departure_date
+                except Exception:
+                    pass
+            if not target_dep_date and history_points and history_points[-1].departure_date:
                 target_dep_date = history_points[-1].departure_date
             if not target_dep_date:
                 target_dep_date = (datetime.utcnow() + timedelta(days=21)).date()

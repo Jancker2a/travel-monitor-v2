@@ -321,6 +321,7 @@ async def get_hotel_history_passport(
     adults: Optional[int] = None,
     children: Optional[int] = None,
     duration_nights: Optional[int] = None,
+    departure_date: Optional[str] = None,
     db: AsyncSession = Depends(get_db)
 ):
     """Retrieves complete Hotel Passport with all-time price history points and stats, dynamically synthesizing profiles for newly discovered hotels."""
@@ -338,6 +339,7 @@ async def get_hotel_history_passport(
         adults=adults,
         children=children,
         duration_nights=duration_nights,
+        departure_date=departure_date,
     )
 
 

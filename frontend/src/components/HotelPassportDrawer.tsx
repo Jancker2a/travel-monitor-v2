@@ -94,6 +94,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
           adults: fallbackAdults,
           children: fallbackChildren,
           duration_nights: fallbackNights,
+          departure_date: hotelItem.current_offer?.departure_date,
         }
       : {
           adults: fallbackAdults,
