@@ -556,42 +556,97 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
               <tbody className="divide-y divide-slate-100 text-xs text-slate-800">
                 {sortedDeals.map((deal, idx) => {
                   const watched = isDealWatched(deal);
+                  const isNearBottom = idx >= sortedDeals.length - 2 && sortedDeals.length > 3;
                   return (
                     <tr
                       key={`${deal.hotel_id}_${deal.checkin_date}_${idx}`}
-                      className="hover:bg-blue-50/30 transition-colors group"
+                      className="hover:bg-blue-50/30 transition-colors group hover:relative hover:z-30"
                     >
                       {/* 1. Hotel thumbnail, name, stars, country */}
                       <td className="pl-4 py-3">
                         <div className="flex items-center gap-3.5">
-                          {/* 104x70 Aspect 16:10 Image with Glass Overlay Star */}
-                          <div className="relative w-[104px] h-[70px] rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs group-hover:shadow transition-shadow">
-                            <img
-                              src={
-                                deal.main_image_url ||
-                                "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80"
-                              }
-                              alt={deal.hotel_name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              loading="lazy"
-                            />
-                            {onToggleWatchlist && (
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  onToggleWatchlist(deal);
-                                }}
-                                className={`absolute top-1.5 left-1.5 p-1 rounded-lg transition-all cursor-pointer shadow-xs ${
-                                  watched
-                                    ? "bg-amber-400 text-slate-950 shadow-xs"
-                                    : "bg-black/40 hover:bg-black/70 backdrop-blur-md text-amber-300 hover:text-amber-200"
-                                }`}
-                                title={watched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
-                              >
-                                <Star className={`w-3.5 h-3.5 ${watched ? "fill-slate-950 text-slate-950" : "fill-current"}`} />
-                              </button>
-                            )}
+                          {/* 104x70 Aspect 16:10 Image with Glass Overlay Star & Hover Zoom Popover */}
+                          <div className="relative group/thumb shrink-0">
+                            <div className="w-[104px] h-[70px] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-2xs group-hover/thumb:shadow transition-shadow">
+                              <img
+                                src={
+                                  deal.main_image_url ||
+                                  "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80"
+                                }
+                                alt={deal.hotel_name}
+                                className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
+                                loading="lazy"
+                              />
+                              {onToggleWatchlist && (
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    onToggleWatchlist(deal);
+                                  }}
+                                  className={`absolute top-1.5 left-1.5 p-1 rounded-lg transition-all cursor-pointer shadow-xs z-10 ${
+                                    watched
+                                      ? "bg-amber-400 text-slate-950 shadow-xs"
+                                      : "bg-black/40 hover:bg-black/70 backdrop-blur-md text-amber-300 hover:text-amber-200"
+                                  }`}
+                                  title={watched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
+                                >
+                                  <Star className={`w-3.5 h-3.5 ${watched ? "fill-slate-950 text-slate-950" : "fill-current"}`} />
+                                </button>
+                              )}
+                            </div>
+
+                            {/* Large Hover Zoom Popover */}
+                            <div
+                              className={`hidden group-hover/thumb:block absolute left-0 ${
+                                isNearBottom ? "bottom-0" : "top-0"
+                              } z-50 w-[360px] sm:w-[400px] rounded-2xl overflow-hidden bg-white shadow-2xl border-2 border-white ring-1 ring-slate-900/15 pointer-events-none transition-all duration-200 animate-in fade-in zoom-in-95`}
+                            >
+                              <div className="relative h-[240px] bg-slate-900">
+                                <img
+                                  src={
+                                    deal.main_image_url ||
+                                    "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80"
+                                  }
+                                  alt={deal.hotel_name}
+                                  className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-black/30 pointer-events-none" />
+
+                                <div className="absolute top-2.5 right-3 bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                                  <span>-{deal.savings_pln.toLocaleString("ru-RU")} zł ({deal.savings_pct}%)</span>
+                                </div>
+
+                                <div className="absolute bottom-3 left-3.5 right-3.5 text-white">
+                                  <div className="flex items-center justify-between text-amber-400 mb-0.5">
+                                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-300">
+                                      {deal.country}
+                                    </span>
+                                    <div className="flex items-center">
+                                      {Array.from({ length: deal.stars || 4 }).map((_, i) => (
+                                        <Star key={i} className="w-3 h-3 fill-current" />
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div className="font-black text-white text-[15px] line-clamp-1 drop-shadow-sm">
+                                    {deal.hotel_name}
+                                  </div>
+                                  {deal.german_hotel_name && (
+                                    <div className="text-[11px] text-slate-300 italic truncate">
+                                      В Германии: {deal.german_hotel_name}
+                                    </div>
+                                  )}
+                                  <div className="flex items-center justify-between text-xs mt-1.5 pt-1.5 border-t border-white/20">
+                                    <span className="text-slate-300">
+                                      🇩🇪 BER: <b className="text-emerald-400 font-extrabold">{deal.berlin_price_pln.toLocaleString("ru-RU")} zł</b>
+                                    </span>
+                                    <span className="text-slate-300 line-through">
+                                      🇵🇱 {deal.polish_price_pln.toLocaleString("ru-RU")} zł
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5 mb-0.5">
