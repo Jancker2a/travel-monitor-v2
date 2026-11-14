@@ -1321,7 +1321,21 @@ export const App: React.FC = () => {
           regions={availableRegions}
           arbitrageCount={activeTab === "filter" ? arbitrageCount : 0}
           showArbitrageTab={activeTab === "filter"}
-          onOpenMonitorAlerts={() => handleOpenMonitorAlerts()}
+          onOpenMonitorAlerts={activeTab === "filter" ? () => handleOpenMonitorAlerts() : undefined}
+          onSaveSearchAsMonitor={
+            activeTab === "search"
+              ? () => {
+                  if (!currentUser) {
+                    setAuthModalReason(
+                      "🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться."
+                    );
+                    setIsAuthModalOpen(true);
+                    return;
+                  }
+                  setIsCreateMonitorOpen(true);
+                }
+              : undefined
+          }
         />
 
         {/* 6. Mode Switch Views */}

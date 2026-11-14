@@ -13,6 +13,8 @@ import {
   Star,
   SlidersHorizontal,
   Compass,
+  Radio,
+  BellRing,
 } from "lucide-react";
 import { SearchRequest } from "../types";
 
@@ -1136,48 +1138,71 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
         </div>
 
         {/* BOTTOM CONTROLS: LIVE REFRESH & SORTING */}
-        <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
           <label className="inline-flex items-center gap-2 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={forceLive}
               onChange={(e) => setForceLive(e.target.checked)}
-              className="rounded text-blue-600 focus:ring-blue-500 w-4 h-4"
+              className="rounded text-blue-600 focus:ring-blue-500 w-4 h-4 cursor-pointer"
             />
             <span className="flex items-center gap-1.5 font-semibold text-slate-700">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               Принудительный LIVE-запрос к Fly.pl
               <span className="text-[10px] text-slate-400 font-normal hidden sm:inline">
-                (обратиться к живому API скрапинга прямо сейчас)
+                (обратиться к живому скраперу прямо сейчас)
               </span>
             </span>
           </label>
 
           <div className="flex items-center gap-2">
-            <span className="text-slate-400 font-medium">Сортировка:</span>
+            <span className="text-slate-400 font-semibold">Сортировка:</span>
             <select
               value={orderBy}
               onChange={(e) => setOrderBy(e.target.value)}
-              className="bg-slate-50 text-xs font-semibold text-slate-700 px-2 py-1 rounded-lg border border-slate-200 focus:outline-none"
+              className="bg-slate-50 text-xs font-semibold text-slate-700 px-2.5 py-1.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer"
             >
               <option value="price">Сначала дешёвые (цена ↑)</option>
               <option value="rating">По рейтингу TripAdvisor</option>
               <option value="deal_score">По выгодности (Deal Score)</option>
               <option value="discount">По величине скидки</option>
             </select>
-
-            {onSaveMonitor && (
-              <button
-                type="button"
-                onClick={onSaveMonitor}
-                className="ml-2 px-3 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
-                title="Поставить этот поиск на непрерывный мониторинг цен"
-              >
-                <span>📡 На мониторинг</span>
-              </button>
-            )}
           </div>
         </div>
+
+        {/* Flagship Feature CTA: Непрерывный авто-мониторинг цен */}
+        {onSaveMonitor && (
+          <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-700 flex items-center justify-center shrink-0 border border-amber-500/40 shadow-xs mt-0.5">
+                <Radio className="w-5 h-5 text-amber-600 animate-pulse" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-black text-slate-900 text-sm">
+                    Поставить этот поиск на авто-мониторинг цен
+                  </span>
+                  <span className="text-[10px] font-black bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
+                    Основная фича
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-medium leading-relaxed max-w-2xl">
+                  Вам не нужно каждый день проверять цены вручную: наш бот будет непрерывно сканировать отели и чартеры каждые 1–3 часа и пришлёт уведомление в Telegram при скидке.
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={onSaveMonitor}
+              className="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-md shadow-amber-500/25 hover:shadow-lg transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0"
+              title="Настроить авто-сканирование и Telegram-уведомления"
+            >
+              <BellRing className="w-4 h-4 text-white" />
+              <span>📡 Поставить на авто-мониторинг</span>
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

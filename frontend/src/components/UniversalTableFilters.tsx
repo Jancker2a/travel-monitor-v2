@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, Star, RotateCcw, LayoutGrid, Table, Globe, BellRing } from "lucide-react";
+import { Search, Star, RotateCcw, LayoutGrid, Table, Globe, BellRing, Radio } from "lucide-react";
 
 export interface FilterState {
   search: string;
@@ -21,6 +21,7 @@ interface UniversalTableFiltersProps {
   arbitrageCount?: number;
   showArbitrageTab?: boolean;
   onOpenMonitorAlerts?: () => void;
+  onSaveSearchAsMonitor?: () => void;
 }
 
 export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
@@ -33,6 +34,7 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
   arbitrageCount,
   showArbitrageTab = true,
   onOpenMonitorAlerts,
+  onSaveSearchAsMonitor,
 }) => {
   return (
     <div className="space-y-3.5" id="globalFiltersWrap">
@@ -92,17 +94,47 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
           </div>
         </div>
 
-        {onOpenMonitorAlerts && (
+        {onSaveSearchAsMonitor ? (
+          <button
+            type="button"
+            onClick={onSaveSearchAsMonitor}
+            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2.5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-600 hover:to-amber-700 text-white cursor-pointer shadow-md shadow-amber-500/25 hover:shadow-lg active:scale-[0.98]"
+            title="Сохранить текущие параметры поиска в персональный мониторинг"
+          >
+            <Radio className="w-4 h-4 text-white animate-pulse" />
+            <div className="text-left">
+              <div className="leading-tight flex items-center gap-1.5">
+                <span>Поставить на мониторинг</span>
+                <span className="text-[9px] font-black bg-white text-amber-700 px-1.5 py-0.2 rounded-md uppercase">
+                  Основная фича
+                </span>
+              </div>
+              <div className="text-[10px] text-amber-100 font-semibold hidden sm:block">
+                Авто-проверка чартеров каждый час
+              </div>
+            </div>
+          </button>
+        ) : onOpenMonitorAlerts ? (
           <button
             type="button"
             onClick={onOpenMonitorAlerts}
-            className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 cursor-pointer shadow-xs"
-            title="Настроить гибкие Telegram-алерты для этого мониторинга"
+            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 bg-gradient-to-r from-amber-500/15 via-amber-500/20 to-amber-500/25 hover:from-amber-500/25 hover:to-amber-500/35 text-amber-900 border border-amber-500/40 cursor-pointer shadow-xs hover:shadow-sm active:scale-[0.98]"
+            title="Настроить гибкие Telegram-алерты, пороги цен и частоту дайджестов"
           >
-            <BellRing className="w-4 h-4 text-amber-500" />
-            <span>🔔 Алерты мониторинга</span>
+            <BellRing className="w-4 h-4 text-amber-600 animate-bounce" />
+            <div className="text-left">
+              <div className="leading-tight flex items-center gap-1.5">
+                <span>Telegram-алерты</span>
+                <span className="text-[10px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.2 rounded-md">
+                  Настройки
+                </span>
+              </div>
+              <div className="text-[10px] text-amber-700/80 font-semibold hidden sm:block">
+                Пороги цен и дайджесты
+              </div>
+            </div>
           </button>
-        )}
+        ) : null}
       </div>
 
       {/* Filter Selects & Search Bar Row - hidden in arbitrage mode because arbitrage has its own specialized toolbar */}
