@@ -643,6 +643,41 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleToggleArbitrageWatchlist = async (deal: any) => {
+    const syntheticCohortHash = `arb_${deal.hotel_id}_${deal.checkin_date}_${deal.duration_nights}`;
+    const syntheticHotel: SearchHotelItem = {
+      hotel_id: deal.hotel_id,
+      hotel_name: deal.hotel_name,
+      country: deal.country,
+      stars: deal.stars,
+      main_image_url: deal.main_image_url || "",
+      history_sparkline: [],
+      current_offer: {
+        cohort_hash: syntheticCohortHash,
+        total_price_pln: deal.polish_price_pln,
+        price_pln: deal.polish_price_pln,
+        departure_date: deal.checkin_date,
+        checkin_date: deal.checkin_date,
+        duration_nights: deal.duration_nights,
+        airport: deal.polish_airport,
+        departure_city: deal.polish_airport,
+        operator: deal.polish_operator,
+        booking_url: deal.polish_booking_url || deal.berlin_booking_url,
+        flight_included: true,
+        room_type: "Standard",
+        board_basis: "All Inclusive",
+      } as any,
+      intelligence: {
+        deal_score: 95,
+        deal_badge: "HOT_DEAL",
+        badge_color: "emerald",
+        explanation: deal.verdict,
+        confidence: "High",
+      } as any,
+    };
+    await handleToggleWatchlist(syntheticHotel);
+  };
+
   const handleDeleteWatchlist = async (watchId: string) => {
     setWatchlistItems((prev) => prev.filter((w) => w.watch_id !== watchId));
     if (!watchId.startsWith("temp-")) {
@@ -1295,6 +1330,9 @@ export const App: React.FC = () => {
             filterId={activeTab === "filter" ? dashboardArbitrageScope.filterId : undefined}
             country={activeTab === "filter" ? dashboardArbitrageScope.country : undefined}
             filterTitle={activeTab === "filter" ? dashboardArbitrageScope.title : undefined}
+            onOpenPassport={(id) => setActiveHotelPassport(id)}
+            onToggleWatchlist={handleToggleArbitrageWatchlist}
+            watchedCohortHashes={watchedCohortHashes}
           />
         ) : viewMode === "table" ? (
           <HotelTableView
