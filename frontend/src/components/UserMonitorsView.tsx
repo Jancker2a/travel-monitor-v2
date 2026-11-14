@@ -27,6 +27,7 @@ interface Props {
   onOpenCreateModal: () => void;
   onRequestAuth: () => void;
   onOpenDashboard: (monitor: UserMonitor) => void;
+  onConfigureAlerts?: (monitor: UserMonitor) => void;
 }
 
 export const UserMonitorsView: React.FC<Props> = ({
@@ -37,6 +38,7 @@ export const UserMonitorsView: React.FC<Props> = ({
   onOpenCreateModal,
   onRequestAuth,
   onOpenDashboard,
+  onConfigureAlerts,
 }) => {
   const [runningId, setRunningId] = useState<string | null>(null);
   const [togglingId, setTogglingId] = useState<string | null>(null);
@@ -312,6 +314,18 @@ export const UserMonitorsView: React.FC<Props> = ({
                         <span>Fly.pl</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
+                    )}
+
+                    {onConfigureAlerts && (
+                      <button
+                        type="button"
+                        onClick={() => onConfigureAlerts(m)}
+                        className="px-2.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 font-bold text-xs border border-amber-500/30 transition-colors flex items-center gap-1 cursor-pointer"
+                        title="Настроить гибкие Telegram-алерты для этого мониторинга"
+                      >
+                        <BellRing className="w-3 h-3 text-amber-600" />
+                        <span>Алерты</span>
+                      </button>
                     )}
 
                     <button

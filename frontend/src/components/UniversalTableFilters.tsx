@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, Star, RotateCcw, LayoutGrid, Table, Globe } from "lucide-react";
+import { Search, Star, RotateCcw, LayoutGrid, Table, Globe, BellRing } from "lucide-react";
 
 export interface FilterState {
   search: string;
@@ -20,6 +20,7 @@ interface UniversalTableFiltersProps {
   regions: string[];
   arbitrageCount?: number;
   showArbitrageTab?: boolean;
+  onOpenMonitorAlerts?: () => void;
 }
 
 export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
@@ -31,62 +32,77 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
   regions,
   arbitrageCount,
   showArbitrageTab = true,
+  onOpenMonitorAlerts,
 }) => {
   return (
     <div className="space-y-3.5" id="globalFiltersWrap">
       {/* View Switcher Row */}
-      <div className="flex items-center gap-2.5">
-        <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">
-          Вид
-        </span>
-        <div className="inline-flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
-          <button
-            type="button"
-            onClick={() => onViewModeChange("cards")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-              viewMode === "cards"
-                ? "bg-white text-slate-900 shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <LayoutGrid className="w-4 h-4" />
-            <span>Карточки</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onViewModeChange("table")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-              viewMode === "table"
-                ? "bg-white text-slate-900 shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Table className="w-4 h-4" />
-            <span>Таблица</span>
-          </button>
-
-          {showArbitrageTab && (
+      <div className="flex items-center justify-between flex-wrap gap-2.5">
+        <div className="flex items-center gap-2.5">
+          <span className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">
+            Вид
+          </span>
+          <div className="inline-flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
             <button
-              id="modeBtnArbitrage"
               type="button"
-              onClick={() => onViewModeChange("arbitrage")}
+              onClick={() => onViewModeChange("cards")}
               className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-                viewMode === "arbitrage"
-                  ? "bg-white text-blue-700 shadow-sm"
+                viewMode === "cards"
+                  ? "bg-white text-slate-900 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
-              <Globe className="w-4 h-4 text-blue-600" />
-              <span>Арбитраж BER</span>
-              {arbitrageCount != null && arbitrageCount > 0 && (
-                <span className="px-2 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700">
-                  {arbitrageCount}
-                </span>
-              )}
+              <LayoutGrid className="w-4 h-4" />
+              <span>Карточки</span>
             </button>
-          )}
+
+            <button
+              type="button"
+              onClick={() => onViewModeChange("table")}
+              className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+                viewMode === "table"
+                  ? "bg-white text-slate-900 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              <Table className="w-4 h-4" />
+              <span>Таблица</span>
+            </button>
+
+            {showArbitrageTab && (
+              <button
+                id="modeBtnArbitrage"
+                type="button"
+                onClick={() => onViewModeChange("arbitrage")}
+                className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
+                  viewMode === "arbitrage"
+                    ? "bg-white text-blue-700 shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <Globe className="w-4 h-4 text-blue-600" />
+                <span>Арбитраж BER</span>
+                {arbitrageCount != null && arbitrageCount > 0 && (
+                  <span className="px-2 py-0.5 rounded-full text-xs font-black bg-blue-100 text-blue-700">
+                    {arbitrageCount}
+                  </span>
+                )}
+              </button>
+            )}
+          </div>
         </div>
+
+        {onOpenMonitorAlerts && (
+          <button
+            type="button"
+            onClick={onOpenMonitorAlerts}
+            className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 cursor-pointer shadow-xs"
+            title="Настроить гибкие Telegram-алерты для этого мониторинга"
+          >
+            <BellRing className="w-4 h-4 text-amber-500" />
+            <span>🔔 Алерты мониторинга</span>
+          </button>
+        )}
       </div>
 
       {/* Filter Selects & Search Bar Row */}

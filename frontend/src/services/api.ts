@@ -344,11 +344,7 @@ export async function updateWatchlistItem(
   return resp.json();
 }
 
-export async function updateUserProfile(updates: {
-  full_name?: string;
-  telegram_chat_id?: string;
-  telegram_notifications_enabled?: boolean;
-}): Promise<UserProfile> {
+export async function updateUserProfile(updates: Partial<UserProfile>): Promise<UserProfile> {
   const resp = await fetch(`${API_BASE}/api/v2/auth/me`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json", ...getAuthHeaders() },
@@ -360,6 +356,89 @@ export async function updateUserProfile(updates: {
   }
   return resp.json();
 }
+
+export async function sendTestDailyDigest(): Promise<{
+  success: boolean;
+  message: string;
+  chat_id?: string;
+  simulated?: boolean;
+}> {
+  const resp = await fetch(`${API_BASE}/api/v2/auth/test-digest`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ message: "Ошибка отправки тестового дайджеста" }));
+    throw new Error(err.message || err.detail || `Ошибка (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getDashboardAlertSubscription(
+  monitorId: string,
+  title?: string
+): Promise<any> {
+  const q = title ? `?title=${encodeURIComponent(title)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/alerts/${encodeURIComponent(monitorId)}${q}`, {
+    headers: { ...getAuthHeaders() },
+  });
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки настроек алертов (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function updateDashboardAlertSubscription(
+  monitorId: string,
+  data: any,
+  title?: string
+): Promise<any> {
+  const q = title ? `?title=${encodeURIComponent(title)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/alerts/${encodeURIComponent(monitorId)}${q}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+    body: JSON.stringify(data),
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ detail: "Ошибка сохранения алертов мониторинга" }));
+    throw new Error(err.detail || `Ошибка сохранения (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function sendTestDashboardAlert(
+  monitorId: string,
+  title?: string
+): Promise<{
+  success: boolean;
+  message: string;
+  offer_found?: boolean;
+  hotel_name?: string;
+  price_pln?: number;
+  simulated?: boolean;
+}> {
+  const q = title ? `?title=${encodeURIComponent(title)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/alerts/${encodeURIComponent(monitorId)}/test${q}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ message: "Ошибка отправки тестового алерта мониторинга" }));
+    throw new Error(err.message || err.detail || `Ошибка (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function listDashboardAlertSubscriptions(): Promise<any[]> {
+  const resp = await fetch(`${API_BASE}/api/v2/monitors/alerts`, {
+    headers: { ...getAuthHeaders() },
+  });
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки подписок (${resp.status})`);
+  }
+  return resp.json();
+}
+
 
 export async function sendTestTelegram(chatId?: string): Promise<{
   success: boolean;

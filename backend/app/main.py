@@ -237,9 +237,12 @@ app.add_middleware(
 )
 
 # Mount feature routers
-from app.routers import auth, user_monitors
+from app.routers import auth, dashboard_subscriptions, user_monitors
 app.include_router(auth.router)
+app.include_router(dashboard_subscriptions.router)
 app.include_router(user_monitors.router)
+
+
 
 
 @app.get("/healthz")

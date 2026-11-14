@@ -6,6 +6,7 @@ from app.models.normalized_snapshot import NormalizedPriceSnapshot
 from app.models.filter_monitor import FilterMonitor
 from app.models.user import User
 from app.models.user_monitor import UserMonitor
+from app.models.dashboard_subscription import DashboardAlertSubscription
 
 __all__ = [
     "Hotel",
@@ -17,5 +18,7 @@ __all__ = [
     "FilterMonitor",
     "User",
     "UserMonitor",
+    "DashboardAlertSubscription",
 ]
+
 

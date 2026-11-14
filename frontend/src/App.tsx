@@ -10,6 +10,7 @@ import { HotelCard } from "./components/HotelCard";
 import { HotelPassportDrawer } from "./components/HotelPassportDrawer";
 import { WatchlistDrawer } from "./components/WatchlistDrawer";
 import { UserSettingsModal } from "./components/UserSettingsModal";
+import { MonitorAlertsModal } from "./components/MonitorAlertsModal";
 import { SearchHeader } from "./components/SearchHeader";
 import { GermanArbitrageView } from "./components/GermanArbitrageView";
 import { AuthModal } from "./components/AuthModal";
@@ -169,6 +170,10 @@ export const App: React.FC = () => {
   const activeUserMonitorRef = useRef<UserMonitor | null>(null);
   activeUserMonitorRef.current = activeUserMonitor;
   const [isLoadingMonitors, setIsLoadingMonitors] = useState(false);
+
+  // Monitor-level Alert Settings Modal
+  const [isMonitorAlertsOpen, setIsMonitorAlertsOpen] = useState(false);
+  const [activeAlertMonitor, setActiveAlertMonitor] = useState<{ id: string; title: string } | null>(null);
 
   const isAdmin = currentUser?.role === "ADMIN";
 
@@ -889,6 +894,20 @@ export const App: React.FC = () => {
     return activeFilterId;
   }, [activeUserMonitor, activeFilterId]);
 
+  const handleOpenMonitorAlerts = (monitorId?: string, title?: string) => {
+    if (monitorId && title) {
+      setActiveAlertMonitor({ id: monitorId, title });
+    } else if (activeUserMonitor) {
+      setActiveAlertMonitor({ id: activeUserMonitor.id, title: activeUserMonitor.title });
+    } else {
+      const curId = activeFilterId || "turkey_7_10";
+      const curTitle = currentPreset?.title || dashboardTitle || "Мониторинг цен";
+      setActiveAlertMonitor({ id: curId, title: curTitle });
+    }
+    setIsMonitorAlertsOpen(true);
+  };
+
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       {/* V1 Collapsible Left Sidebar */}
@@ -1165,6 +1184,7 @@ export const App: React.FC = () => {
               setIsAuthModalOpen(true);
             }}
             onOpenDashboard={handleOpenMonitorDashboard}
+            onConfigureAlerts={(m) => handleOpenMonitorAlerts(m.id, m.title)}
           />
         ) : (
           <>
@@ -1240,6 +1260,7 @@ export const App: React.FC = () => {
           regions={availableRegions}
           arbitrageCount={activeTab === "filter" ? arbitrageCount : 0}
           showArbitrageTab={activeTab === "filter"}
+          onOpenMonitorAlerts={() => handleOpenMonitorAlerts()}
         />
 
         {/* 6. Mode Switch Views */}
@@ -1438,6 +1459,22 @@ export const App: React.FC = () => {
           onClose={() => setIsUserSettingsOpen(false)}
           currentUser={currentUser}
           onUserUpdated={(updated) => setCurrentUser(updated)}
+        />
+      )}
+
+      {/* Monitor Alert Settings Modal */}
+      {activeAlertMonitor && (
+        <MonitorAlertsModal
+          isOpen={isMonitorAlertsOpen}
+          onClose={() => setIsMonitorAlertsOpen(false)}
+          monitorId={activeAlertMonitor.id}
+          monitorTitle={activeAlertMonitor.title}
+          currentUser={currentUser}
+          onRequestAuth={() => {
+            setIsMonitorAlertsOpen(false);
+            setAuthModalReason(`🔒 Войдите или зарегистрируйтесь, чтобы настроить Telegram-алерты для «${activeAlertMonitor.title}».`);
+            setIsAuthModalOpen(true);
+          }}
         />
       )}
 

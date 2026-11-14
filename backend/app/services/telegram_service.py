@@ -167,3 +167,203 @@ class TelegramService:
         except Exception as e:
             logger.error(f"Error dispatching watchlist alert to {chat_id}: {e}")
             return False
+
+    @classmethod
+    async def send_dashboard_alert(
+        cls,
+        chat_id: str,
+        monitor_title: str,
+        hotel_name: str,
+        country: str,
+        current_price: float,
+        previous_price: Optional[float] = None,
+        drop_pct: Optional[float] = None,
+        deal_score: int = 80,
+        deal_badge: str = "Good Deal",
+        dates: str = "Скоро",
+        duration_nights: int = 7,
+        airport: str = "WAW",
+        is_historic_low: bool = False,
+        booking_url: Optional[str] = None,
+        is_test: bool = False,
+    ) -> Dict[str, Any]:
+        """Sends an alert for a specific monitor/dashboard price drop."""
+        token = cls.get_bot_token()
+        prefix = "⚡ <b>ТЕСТОВЫЙ АЛЕРТ МОНИТОРИНГА</b>\n" if is_test else "🔔 <b>АЛЕРТ СНИЖЕНИЯ ЦЕНЫ!</b>\n"
+        hist_low_text = "\n🏆 <b>РЕКОРД: Абсолютный исторический минимум!</b>" if is_historic_low else ""
+
+        if previous_price and drop_pct:
+            diff = previous_price - current_price
+            price_text = f"💰 <s>{previous_price:,.0f} zł</s> ➔ <b>{current_price:,.0f} zł</b> (<b>-{diff:,.0f} zł / -{drop_pct:.1f}%</b>)".replace(",", " ")
+        else:
+            price_text = f"💰 Лучшая цена: <b>{current_price:,.0f} zł</b>".replace(",", " ")
+
+        text = (
+            f"{prefix}"
+            f"📡 Мониторинг: <b>{monitor_title}</b>\n\n"
+            f"🏨 <b>{hotel_name}</b>\n"
+            f"📍 {country} • ✈️ {airport} ({duration_nights} ночей) • 📅 {dates}\n\n"
+            f"{price_text}"
+            f"{hist_low_text}\n"
+            f"🎯 Deal Score: <b>{deal_score}/100</b> ({deal_badge})\n"
+        )
+        if booking_url:
+            text += f"\n🔗 <a href='{booking_url}'>Посмотреть предложение на Fly.pl</a>"
+
+        if not token:
+            logger.info(f"[MOCK DASHBOARD ALERT -> {chat_id}]: {monitor_title} - {hotel_name} @ {current_price:.0f} PLN")
+            return {
+                "success": True,
+                "simulated": True,
+                "message": f"Тестовый алерт для мониторинга '{monitor_title}' сгенерирован (симуляция без токена бота).",
+                "chat_id": chat_id,
+            }
+
+        tg_url = f"https://api.telegram.org/bot{token}/sendMessage"
+        payload = {
+            "chat_id": str(chat_id).strip(),
+            "text": text,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": False,
+        }
+
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                resp = await client.post(tg_url, json=payload)
+                if resp.status_code == 200:
+                    return {
+                        "success": True,
+                        "simulated": False,
+                        "message": f"Алерт мониторинга '{monitor_title}' успешно отправлен в Telegram!",
+                        "chat_id": chat_id,
+                    }
+                err_desc = resp.json().get("description", resp.text)
+                return {
+                    "success": False,
+                    "simulated": False,
+                    "message": f"Ошибка Telegram: {err_desc}",
+                    "chat_id": chat_id,
+                }
+        except Exception as e:
+            return {
+                "success": False,
+                "simulated": False,
+                "message": f"Сетевая ошибка: {str(e)}",
+                "chat_id": chat_id,
+            }
+
+    @classmethod
+    async def send_daily_digest(
+        cls,
+        chat_id: str,
+        user_name: Optional[str],
+        watchlist_items: list,
+        top_drops: list,
+        hot_deals: list,
+        historic_lows: list,
+        max_offers: int = 5,
+        is_test: bool = False,
+    ) -> Dict[str, Any]:
+        """Formats and delivers a comprehensive Daily Market Digest."""
+        token = cls.get_bot_token()
+        title_prefix = "⚡ <b>ТЕСТОВЫЙ ЕЖЕДНЕВНЫЙ ДАЙДЖЕСТ</b>" if is_test else "🌅 <b>TRAVEL MONITOR 2.0 • УТРЕННИЙ ДАЙДЖЕСТ</b>"
+        greeting = f"Привет, {user_name or 'Путешественник'}! 👋\nВот свежая сводка по вашим радарам и рынку:"
+
+        sections = [f"{title_prefix}\n{greeting}\n"]
+
+        # 1. Watchlist Section
+        if watchlist_items:
+            sections.append("🏨 <b>Ваш Watchlist (Избранное):</b>")
+            for item in watchlist_items[:max_offers]:
+                name = item.get("hotel_name", "Отель")
+                country = item.get("country", "")
+                price = item.get("current_price_pln", 0)
+                prev = item.get("initial_price_pln")
+                diff_str = ""
+                if prev and prev > price:
+                    diff_str = f" (<b>-{prev - price:.0f} zł</b>)"
+                score = item.get("deal_score", 0)
+                sections.append(f"• <b>{name}</b> ({country}): <b>{price:,.0f} zł</b>{diff_str} • Score {score}".replace(",", " "))
+            sections.append("")
+
+        # 2. Top Drops Section
+        if top_drops:
+            sections.append("📉 <b>Топ падений за сутки:</b>")
+            for drop in top_drops[:max_offers]:
+                name = drop.get("hotel_name", "Отель")
+                curr = drop.get("current_price_pln", 0)
+                prev = drop.get("previous_price_pln", 0)
+                diff = prev - curr if prev else 0
+                pct = drop.get("drop_pct", 0)
+                sections.append(f"• <b>{name}</b>: <s>{prev:,.0f} zł</s> ➔ <b>{curr:,.0f} zł</b> (<b>-{diff:,.0f} zł / -{pct:.1f}%</b>)".replace(",", " "))
+            sections.append("")
+
+        # 3. Hot Deals Section
+        if hot_deals:
+            sections.append("🔥 <b>Лучшие Hot Deals:</b>")
+            for deal in hot_deals[:max_offers]:
+                name = deal.get("hotel_name", "Отель")
+                price = deal.get("price_pln", 0)
+                score = deal.get("deal_score", 0)
+                country = deal.get("country", "")
+                sections.append(f"• <b>{name}</b> ({country}): <b>{price:,.0f} zł</b> • Score <b>{score}/100</b>".replace(",", " "))
+            sections.append("")
+
+        # 4. Historic Lows
+        if historic_lows:
+            sections.append("🏆 <b>Рекордные исторические минимумы:</b>")
+            for low in historic_lows[:max_offers]:
+                name = low.get("hotel_name", "Отель")
+                price = low.get("price_pln", 0)
+                sections.append(f"• <b>{name}</b>: рекордная цена <b>{price:,.0f} zł</b>!".replace(",", " "))
+            sections.append("")
+
+        if len(sections) == 1:
+            sections.append("ℹ️ На рынке сейчас штиль: новых резких колебаний цен или горящих туров не зафиксировано.\n")
+
+        sections.append("⚙️ <i>Вы всегда можете изменить время и состав дайджеста в настройках профиля.</i>")
+        full_text = "\n".join(sections)
+
+        if not token:
+            logger.info(f"[MOCK DAILY DIGEST -> {chat_id}]: Digest delivered ({len(full_text)} chars)")
+            return {
+                "success": True,
+                "simulated": True,
+                "message": "Ежедневный дайджест успешно сформирован (симуляция без токена бота).",
+                "chat_id": chat_id,
+            }
+
+        tg_url = f"https://api.telegram.org/bot{token}/sendMessage"
+        payload = {
+            "chat_id": str(chat_id).strip(),
+            "text": full_text,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": True,
+        }
+
+        try:
+            async with httpx.AsyncClient(timeout=15.0) as client:
+                resp = await client.post(tg_url, json=payload)
+                if resp.status_code == 200:
+                    return {
+                        "success": True,
+                        "simulated": False,
+                        "message": "Ежедневный дайджест успешно доставлен в ваш Telegram!",
+                        "chat_id": chat_id,
+                    }
+                err_desc = resp.json().get("description", resp.text)
+                return {
+                    "success": False,
+                    "simulated": False,
+                    "message": f"Ошибка Telegram: {err_desc}",
+                    "chat_id": chat_id,
+                }
+        except Exception as e:
+            return {
+                "success": False,
+                "simulated": False,
+                "message": f"Сетевая ошибка: {str(e)}",
+                "chat_id": chat_id,
+            }
+
+

@@ -71,7 +71,7 @@ async def update_me(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ):
-    """Updates user profile information and Telegram alert configuration."""
+    """Updates user profile information, daily digest preferences, and Telegram alert configuration."""
     if req.full_name is not None:
         current_user.full_name = req.full_name.strip()
     if req.telegram_chat_id is not None:
@@ -80,9 +80,50 @@ async def update_me(
     if req.telegram_notifications_enabled is not None:
         current_user.telegram_notifications_enabled = req.telegram_notifications_enabled
 
+    # Daily Digest Preferences
+    if req.digest_enabled is not None:
+        current_user.digest_enabled = req.digest_enabled
+    if req.digest_time is not None:
+        current_user.digest_time = req.digest_time
+    if req.digest_days is not None:
+        current_user.digest_days = req.digest_days
+    if req.digest_include_watchlist is not None:
+        current_user.digest_include_watchlist = req.digest_include_watchlist
+    if req.digest_include_top_drops is not None:
+        current_user.digest_include_top_drops = req.digest_include_top_drops
+    if req.digest_include_hot_deals is not None:
+        current_user.digest_include_hot_deals = req.digest_include_hot_deals
+    if req.digest_include_historic_lows is not None:
+        current_user.digest_include_historic_lows = req.digest_include_historic_lows
+    if req.digest_min_deal_score is not None:
+        current_user.digest_min_deal_score = req.digest_min_deal_score
+    if req.digest_max_offers is not None:
+        current_user.digest_max_offers = req.digest_max_offers
+    if req.digest_only_if_changes is not None:
+        current_user.digest_only_if_changes = req.digest_only_if_changes
+
+    # Quiet Hours
+    if req.quiet_hours_enabled is not None:
+        current_user.quiet_hours_enabled = req.quiet_hours_enabled
+    if req.quiet_hours_start is not None:
+        current_user.quiet_hours_start = req.quiet_hours_start
+    if req.quiet_hours_end is not None:
+        current_user.quiet_hours_end = req.quiet_hours_end
+
     await db.commit()
     await db.refresh(current_user)
     return UserProfileResponse.model_validate(current_user)
+
+
+@router.post("/test-digest")
+async def test_daily_digest(
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Sends a sample Daily Market Digest with live database metrics to user's Telegram."""
+    from app.services.dashboard_alert_service import DashboardAlertService
+    return await DashboardAlertService.send_test_daily_digest(db, current_user)
+
 
 
 @router.post("/test-telegram", response_model=TestTelegramResponse)

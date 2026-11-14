@@ -7,7 +7,43 @@ export interface UserProfile {
   telegram_notifications_enabled?: boolean;
   is_active: boolean;
   created_at?: string;
+
+  // Daily Digest Preferences
+  digest_enabled?: boolean;
+  digest_time?: string;
+  digest_days?: string;
+  digest_include_watchlist?: boolean;
+  digest_include_top_drops?: boolean;
+  digest_include_hot_deals?: boolean;
+  digest_include_historic_lows?: boolean;
+  digest_min_deal_score?: number;
+  digest_max_offers?: number;
+  digest_only_if_changes?: boolean;
+
+  // Quiet Hours
+  quiet_hours_enabled?: boolean;
+  quiet_hours_start?: number;
+  quiet_hours_end?: number;
 }
+
+export interface DashboardAlertSubscription {
+  id: string;
+  user_id: string;
+  monitor_id: string;
+  monitor_title: string;
+  is_active: boolean;
+  notify_mode: "INSTANT" | "DIGEST_ONLY";
+  min_drop_pct: number;
+  min_drop_pln?: number | null;
+  min_deal_score: number;
+  max_budget_pln?: number | null;
+  only_historic_low: boolean;
+  min_ta_rating?: number | null;
+  preferred_airports?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+
 
 export interface AuthTokenResponse {
   access_token: string;
