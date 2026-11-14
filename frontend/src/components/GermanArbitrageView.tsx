@@ -563,16 +563,36 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                     >
                       {/* 1. Hotel thumbnail, name, stars, country */}
                       <td className="pl-4 py-3">
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={
-                              deal.main_image_url ||
-                              "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=200&q=80"
-                            }
-                            alt={deal.hotel_name}
-                            className="w-14 h-11 object-cover rounded-xl shadow-xs shrink-0 border border-slate-200"
-                            loading="lazy"
-                          />
+                        <div className="flex items-center gap-3.5">
+                          {/* 104x70 Aspect 16:10 Image with Glass Overlay Star */}
+                          <div className="relative w-[104px] h-[70px] rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs group-hover:shadow transition-shadow">
+                            <img
+                              src={
+                                deal.main_image_url ||
+                                "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80"
+                              }
+                              alt={deal.hotel_name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                            {onToggleWatchlist && (
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onToggleWatchlist(deal);
+                                }}
+                                className={`absolute top-1.5 left-1.5 p-1 rounded-lg transition-all cursor-pointer shadow-xs ${
+                                  watched
+                                    ? "bg-amber-400 text-slate-950 shadow-xs"
+                                    : "bg-black/40 hover:bg-black/70 backdrop-blur-md text-amber-300 hover:text-amber-200"
+                                }`}
+                                title={watched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
+                              >
+                                <Star className={`w-3.5 h-3.5 ${watched ? "fill-slate-950 text-slate-950" : "fill-current"}`} />
+                              </button>
+                            )}
+                          </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5 mb-0.5">
                               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
@@ -587,14 +607,14 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                             <button
                               type="button"
                               onClick={() => onOpenPassport?.(deal.hotel_id)}
-                              className="font-bold text-slate-900 hover:text-blue-600 transition-colors text-left line-clamp-1 group-hover:underline cursor-pointer"
+                              className="font-black text-slate-900 hover:text-blue-600 transition-colors text-left text-[14px] line-clamp-1 group-hover:underline cursor-pointer tracking-tight"
                               title="Нажмите, чтобы открыть паспорт отеля"
                             >
                               {deal.hotel_name}
                             </button>
                             {deal.german_hotel_name && deal.german_hotel_name !== deal.hotel_name && (
                               <div
-                                className="text-[10px] text-slate-400 italic truncate max-w-[240px]"
+                                className="text-[10.5px] text-slate-400 italic truncate max-w-[240px] mt-0.5"
                                 title={`Check24: ${deal.german_hotel_name}`}
                               >
                                 DE: {deal.german_hotel_name}

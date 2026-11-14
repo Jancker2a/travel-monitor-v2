@@ -231,24 +231,9 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 >
                   {/* Hotel Cell */}
                   <td className="pl-4 py-3">
-                    <div className="flex items-center gap-2.5">
-                      <button
-                        type="button"
-                        data-testid="favorite-name-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onToggleWatchlist(hotel);
-                        }}
-                        className={`p-2 rounded-xl transition-all cursor-pointer shrink-0 ${
-                          isWatched
-                            ? "text-amber-500 hover:text-amber-600 bg-amber-50 border border-amber-300 shadow-2xs"
-                            : "text-slate-300 hover:text-amber-500 hover:bg-amber-50/60 border border-transparent hover:border-amber-200"
-                        }`}
-                        title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
-                      >
-                        <Star className={`w-4.5 h-4.5 ${isWatched ? "fill-amber-400 text-amber-500" : ""}`} />
-                      </button>
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs">
+                    <div className="flex items-center gap-3">
+                      {/* 104x70 Aspect 16:10 Image with Glass Overlay Star */}
+                      <div className="relative w-[104px] h-[70px] rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200/90 shadow-2xs group-hover:shadow transition-shadow">
                         <img
                           src={
                             hotel.main_image_url ||
@@ -258,28 +243,58 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
+                        <button
+                          type="button"
+                          data-testid="favorite-name-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onToggleWatchlist(hotel);
+                          }}
+                          className={`absolute top-1.5 left-1.5 p-1 rounded-lg transition-all cursor-pointer shadow-xs ${
+                            isWatched
+                              ? "bg-amber-400 text-slate-950 shadow-xs"
+                              : "bg-black/40 hover:bg-black/70 backdrop-blur-md text-amber-300 hover:text-amber-200"
+                          }`}
+                          title={isWatched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
+                        >
+                          <Star className={`w-3.5 h-3.5 ${isWatched ? "fill-slate-950 text-slate-950" : "fill-current"}`} />
+                        </button>
                       </div>
+
                       <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          {hotel.country && (
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
+                              {hotel.country}
+                            </span>
+                          )}
+                          <div className="flex items-center text-amber-400">
+                            {Array.from({ length: hotel.stars || 4 }).map((_, i) => (
+                              <Star key={i} className="w-3 h-3 fill-current" />
+                            ))}
+                          </div>
+                        </div>
+
                         <div
-                          className="font-black text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[14.5px] sm:text-[15.5px] leading-snug line-clamp-2 break-words tracking-tight"
+                          className="font-black text-slate-900 group-hover:text-blue-600 transition-colors cursor-pointer text-[14.5px] sm:text-[15.5px] leading-snug line-clamp-1 tracking-tight"
                           title={`${hotel.hotel_name} — открыть паспорт`}
                         >
                           {hotel.hotel_name}
                         </div>
-                        <div className="flex items-center gap-1 text-amber-400 mt-0.5">
-                          {Array.from({ length: hotel.stars || 4 }).map((_, i) => (
-                            <Star key={i} className="w-3 h-3 fill-current" />
-                          ))}
-                        </div>
+
                         <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                          <span className="spec-badge spec-beach text-[11px] font-extrabold px-1.5 py-0.5 rounded-md border border-sky-200">
+                          <span className="spec-badge spec-beach text-[10.5px] font-extrabold px-1.5 py-0.5 rounded-md border border-sky-200">
                             🏖️ {hotel.beach_line || hotel.specs?.beach_line || 1} линия
                           </span>
                           {(hotel.has_aquapark || hotel.specs?.has_aquapark || hotel.hotel_name.toLowerCase().includes("aqua")) && (
-                            <span className="spec-badge spec-aqua text-[11px] font-extrabold px-1.5 py-0.5 rounded-md border border-cyan-200">🎢 Аквапарк</span>
+                            <span className="spec-badge spec-aqua text-[10.5px] font-extrabold px-1.5 py-0.5 rounded-md border border-cyan-200">
+                              🎢 Аквапарк
+                            </span>
                           )}
                           {(hotel.has_heated_pools || hotel.specs?.has_heated_pools) && (
-                            <span className="spec-badge text-[11px] font-extrabold px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200">🔥 Подогрев</span>
+                            <span className="spec-badge text-[10.5px] font-extrabold px-1.5 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200">
+                              🔥 Подогрев
+                            </span>
                           )}
                         </div>
                       </div>
