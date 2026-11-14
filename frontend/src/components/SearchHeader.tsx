@@ -1170,24 +1170,19 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
           </div>
         </div>
 
-        {/* Flagship Feature CTA: Непрерывный авто-мониторинг цен */}
+        {/* Авто-мониторинг цен */}
         {onSaveMonitor && (
-          <div className="mt-3 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-700 flex items-center justify-center shrink-0 border border-amber-500/40 shadow-xs mt-0.5">
+          <div className="mt-3 p-3.5 sm:p-4 rounded-2xl bg-amber-50/80 border border-amber-200/90 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 border border-amber-200 shadow-2xs">
                 <Radio className="w-5 h-5 text-amber-600 animate-pulse" />
               </div>
               <div className="space-y-0.5">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-black text-slate-900 text-sm">
-                    Поставить этот поиск на авто-мониторинг цен
-                  </span>
-                  <span className="text-[10px] font-black bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
-                    Основная фича
-                  </span>
+                <div className="font-black text-slate-900 text-sm">
+                  Автоматический мониторинг цен по этому поиску
                 </div>
                 <p className="text-xs text-slate-600 font-medium leading-relaxed max-w-2xl">
-                  Вам не нужно каждый день проверять цены вручную: наш бот будет непрерывно сканировать отели и чартеры каждые 1–3 часа и пришлёт уведомление в Telegram при скидке.
+                  Бот будет проверять чартеры и отели каждые 1–3 часа и пришлёт уведомление в Telegram, когда цена снизится.
                 </p>
               </div>
             </div>
@@ -1195,11 +1190,11 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
             <button
               type="button"
               onClick={onSaveMonitor}
-              className="px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-md shadow-amber-500/25 hover:shadow-lg transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0"
+              className="px-4.5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap active:scale-[0.98] shrink-0"
               title="Настроить авто-сканирование и Telegram-уведомления"
             >
               <BellRing className="w-4 h-4 text-white" />
-              <span>📡 Поставить на авто-мониторинг</span>
+              <span>Отслеживать снижение цен</span>
             </button>
           </div>
         )}

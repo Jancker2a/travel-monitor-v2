@@ -98,19 +98,16 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
           <button
             type="button"
             onClick={onSaveSearchAsMonitor}
-            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2.5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 hover:from-amber-600 hover:to-amber-700 text-white cursor-pointer shadow-md shadow-amber-500/25 hover:shadow-lg active:scale-[0.98]"
-            title="Сохранить текущие параметры поиска в персональный мониторинг"
+            className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2.5 bg-amber-500 hover:bg-amber-600 text-white cursor-pointer shadow-sm hover:shadow active:scale-[0.98]"
+            title="Отслеживать цены по этому поиску и получать уведомления в Telegram"
           >
-            <Radio className="w-4 h-4 text-white animate-pulse" />
-            <div className="text-left">
-              <div className="leading-tight flex items-center gap-1.5">
-                <span>Поставить на мониторинг</span>
-                <span className="text-[9px] font-black bg-white text-amber-700 px-1.5 py-0.2 rounded-md uppercase">
-                  Основная фича
-                </span>
+            <Radio className="w-4 h-4 text-white animate-pulse shrink-0" />
+            <div className="text-left leading-tight">
+              <div className="font-extrabold text-xs sm:text-sm">
+                Отслеживать цены в Telegram
               </div>
-              <div className="text-[10px] text-amber-100 font-semibold hidden sm:block">
-                Авто-проверка чартеров каждый час
+              <div className="text-[10px] text-amber-100 font-medium hidden sm:block">
+                Авто-проверка туров каждые 1–3 часа
               </div>
             </div>
           </button>
@@ -118,18 +115,15 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
           <button
             type="button"
             onClick={onOpenMonitorAlerts}
-            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 bg-gradient-to-r from-amber-500/15 via-amber-500/20 to-amber-500/25 hover:from-amber-500/25 hover:to-amber-500/35 text-amber-900 border border-amber-500/40 cursor-pointer shadow-xs hover:shadow-sm active:scale-[0.98]"
+            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 cursor-pointer shadow-xs active:scale-[0.98]"
             title="Настроить гибкие Telegram-алерты, пороги цен и частоту дайджестов"
           >
-            <BellRing className="w-4 h-4 text-amber-600 animate-bounce" />
-            <div className="text-left">
-              <div className="leading-tight flex items-center gap-1.5">
-                <span>Telegram-алерты</span>
-                <span className="text-[10px] font-bold bg-amber-500 text-slate-950 px-1.5 py-0.2 rounded-md">
-                  Настройки
-                </span>
+            <BellRing className="w-4 h-4 text-amber-600 shrink-0" />
+            <div className="text-left leading-tight">
+              <div className="font-extrabold text-xs sm:text-sm text-slate-900">
+                Telegram-алерты
               </div>
-              <div className="text-[10px] text-amber-700/80 font-semibold hidden sm:block">
+              <div className="text-[10px] text-slate-500 font-medium hidden sm:block">
                 Пороги цен и дайджесты
               </div>
             </div>
