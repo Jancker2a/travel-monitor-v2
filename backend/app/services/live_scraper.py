@@ -796,6 +796,8 @@ class LiveScraperService:
                     if not h_name:
                         continue
                     h_id = slugify(h_name)
+                    actual_hotel = seen_hotels.get(h_id)
+                    actual_hid = actual_hotel.hotel_id if actual_hotel else h_id
                     c_hash = compute_cohort_hash(
                         hotel_id=h_id,
                         checkin_date=off.get("checkin_date") or date.today(),
@@ -810,7 +812,7 @@ class LiveScraperService:
                         cohort = OfferCohort(
                             cohort_hash=c_hash,
                             filter_id=req.filter_id,
-                            hotel_id=h_id,
+                            hotel_id=actual_hid,
                             destination_code=destination_country.lower(),
                             checkin_date=off.get("checkin_date") or date.today(),
                             checkout_date=off.get("checkout_date"),

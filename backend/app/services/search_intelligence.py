@@ -266,8 +266,8 @@ def evaluate_search_intelligence(
             snap_mult = snap_season.get("multiplier", 1.0)
             hist_pure_rates.append(raw_pure / max(0.5, snap_mult))
 
-        # Strictly require at least 4 observations to consider history mature and reliable
-        if len(hist_pure_rates) >= 4:
+        # Require at least 2 observations to calculate historical baseline
+        if len(hist_pure_rates) >= 2:
             has_history = True
 
     # Baseline comparison metrics
