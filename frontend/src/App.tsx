@@ -17,6 +17,7 @@ import { AuthModal } from "./components/AuthModal";
 import { CreateMonitorModal } from "./components/CreateMonitorModal";
 import { UserMonitorsView } from "./components/UserMonitorsView";
 import { LoadingSpinner } from "./components/common/LoadingSpinner";
+import { resolveFlyTargetUrl } from "./utils/flyUrl";
 import {
   SearchRequest,
   SearchHotelItem,
@@ -923,9 +924,16 @@ export const App: React.FC = () => {
 
   const dashboardTargetUrl = useMemo(() => {
     if (activeUserMonitor) {
-      return activeUserMonitor.fly_source_url || "";
+      const rawUrl = activeUserMonitor.fly_source_url || "";
+      const isRolling = Boolean(activeUserMonitor.filter_params?.dates?.is_rolling);
+      return resolveFlyTargetUrl(rawUrl, isRolling);
     }
-    return currentPreset.targetUrl;
+    return resolveFlyTargetUrl(
+      currentPreset.targetUrl,
+      currentPreset.isRolling,
+      currentPreset.rollingOffsetDays,
+      currentPreset.rollingWindowDays
+    );
   }, [activeUserMonitor, currentPreset]);
 
   const dashboardChips = useMemo(() => {

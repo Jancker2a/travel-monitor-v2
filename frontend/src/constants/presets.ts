@@ -6,6 +6,9 @@ export interface FilterPreset {
   destination: string;
   targetUrl: string;
   displayPriceCeiling?: number;
+  isRolling?: boolean;
+  rollingOffsetDays?: number;
+  rollingWindowDays?: number;
   chips: {
     airports: string;
     dates: string;
@@ -22,7 +25,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇹🇷 ТУРЦИЯ",
     destination: "turkey",
     displayPriceCeiling: 10000,
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2027&startDateMax=23-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, RDO",
       dates: "Июнь 2027",
@@ -44,7 +47,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇹🇷 ТУРЦИЯ",
     destination: "turkey",
     displayPriceCeiling: 10000,
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=01-01-2026&startDateMax=22-01-2026&returnDate=31-01-2026&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=9&durationTo=11&priceFrom=4610&priceTo=20000&order=price",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom,Warszawa+-+Modlin&startDateMin=25-05-2027&startDateMax=21-06-2027&returnDate=30-06-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=9&durationTo=11&priceFrom=4610&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
       dates: "Июнь 2027",
@@ -66,7 +69,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇹🇷 ТУРЦИЯ ДЛИТЕЛЬНЫЙ",
     destination: "turkey",
     displayPriceCeiling: 10000,
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2026&startDateMax=17-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2027&startDateMax=17-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, RDO",
       dates: "Июнь 2027",
@@ -88,7 +91,8 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇪🇬 ЕГИПЕТ 7–10 ДНЕЙ",
     destination: "egypt",
     displayPriceCeiling: 10000,
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=28-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
+    isRolling: true,
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=15-11-2026&startDateMax=08-12-2026&returnDate=15-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
       dates: "Красное море",
@@ -109,7 +113,8 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     title: "🇪🇬 Египет — 13–16 ночей (2 взр + 1 реб)",
     countryBadge: "🇪🇬 ЕГИПЕТ ДЛИТЕЛЬНЫЙ",
     destination: "egypt",
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=28-05-2026&startDateMax=17-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
+    isRolling: true,
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=15-11-2026&startDateMax=02-12-2026&returnDate=15-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
       dates: "Длительный отдых",
@@ -302,6 +307,9 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇹🇷 ЭТАЛОН 1 ВЗР",
     destination: "turkey",
     displayPriceCeiling: 15000,
+    isRolling: true,
+    rollingOffsetDays: 3,
+    rollingWindowDays: 21,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
@@ -324,6 +332,9 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇪🇬 ЭТАЛОН 1 ВЗР",
     destination: "egypt",
     displayPriceCeiling: 15000,
+    isRolling: true,
+    rollingOffsetDays: 3,
+    rollingWindowDays: 21,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
@@ -346,6 +357,9 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇬🇷 ЭТАЛОН 1 ВЗР",
     destination: "greece",
     displayPriceCeiling: 15000,
+    isRolling: true,
+    rollingOffsetDays: 3,
+    rollingWindowDays: 21,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
@@ -368,6 +382,9 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     countryBadge: "🇨🇾 ЭТАЛОН 1 ВЗР",
     destination: "cyprus",
     displayPriceCeiling: 15000,
+    isRolling: true,
+    rollingOffsetDays: 3,
+    rollingWindowDays: 21,
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=6:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=1&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=7&durationTo=8&priceFrom=500&priceTo=15000&order=price",
     chips: {
       airports: "WAW, KTW, KRK, GDN, WRO, POZ",
@@ -620,7 +637,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     title: "🇹🇷 Турция — 7–10 ночей (2 взр + 1 реб)",
     countryBadge: "🇹🇷 ТУРЦИЯ",
     destination: "turkey",
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2026&startDateMax=23-06-2026&returnDate=30-06-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=31-05-2027&startDateMax=23-06-2027&returnDate=30-06-2027&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, RDO",
       dates: "Июнь 2027",
