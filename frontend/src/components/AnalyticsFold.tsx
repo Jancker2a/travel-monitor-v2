@@ -64,12 +64,27 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
 
   // Fetch filter-specific departures radar & late-buy history
   useEffect(() => {
-    if (!filterId) return;
+    if (!filterId) {
+      setDeparturesData(null);
+      return;
+    }
+    let isCancelled = false;
     setLoadingDepartures(true);
+    setDeparturesData(null);
     getFilterDepartures(filterId)
-      .then((data) => setDeparturesData(data))
-      .catch((err) => console.warn("Failed to load filter departures", err))
-      .finally(() => setLoadingDepartures(false));
+      .then((data) => {
+        if (!isCancelled) setDeparturesData(data);
+      })
+      .catch((err) => {
+        if (!isCancelled) console.warn("Failed to load filter departures", err);
+      })
+      .finally(() => {
+        if (!isCancelled) setLoadingDepartures(false);
+      });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [filterId]);
 
   // Multi-phase Plotly resize on accordion toggle

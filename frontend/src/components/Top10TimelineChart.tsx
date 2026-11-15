@@ -25,22 +25,50 @@ export const Top10TimelineChart: React.FC<Top10TimelineChartProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!filterId) return;
+    if (!filterId) {
+      setDataPoints([]);
+      setStats(null);
+      return;
+    }
 
+    let isCancelled = false;
     setIsLoading(true);
+    setDataPoints([]);
+    setStats(null);
+    if (chartRef.current && window.Plotly) {
+      try {
+        window.Plotly.purge(chartRef.current);
+      } catch (_) {}
+    }
+
     getFilterTop10Timeline(filterId, range)
       .then((resp) => {
-        setDataPoints(resp.timeline || []);
-        if (resp.stats) {
-          setStats(resp.stats);
+        if (!isCancelled) {
+          setDataPoints(resp.timeline || []);
+          if (resp.stats) {
+            setStats(resp.stats);
+          }
         }
       })
       .catch((err) => {
-        console.warn("Failed to load Top-10 timeline:", err);
+        if (!isCancelled) {
+          console.warn("Failed to load Top-10 timeline:", err);
+        }
       })
       .finally(() => {
-        setIsLoading(false);
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
       });
+
+    return () => {
+      isCancelled = true;
+      if (chartRef.current && window.Plotly) {
+        try {
+          window.Plotly.purge(chartRef.current);
+        } catch (_) {}
+      }
+    };
   }, [filterId, range]);
 
   useEffect(() => {

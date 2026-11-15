@@ -474,13 +474,19 @@ export const App: React.FC = () => {
       });
   }, [activeTab, dashboardArbitrageScope]);
 
+  const filterRequestIdRef = useRef<number>(0);
+
   const loadFilterResults = async (filterId: string) => {
+    const reqId = ++filterRequestIdRef.current;
     setIsLoading(true);
+    setResults([]);
     try {
       const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
       const catResp = await getFilterHotelsCatalog(filterId, {
         maxPrice: preset?.displayPriceCeiling,
       });
+      if (filterRequestIdRef.current !== reqId) return;
+
       if (catResp.last_updated_at) {
         setDashboardLastUpdated(catResp.last_updated_at);
       } else if (catResp.hotels && catResp.hotels.length > 0 && catResp.hotels[0].last_updated) {
@@ -491,20 +497,25 @@ export const App: React.FC = () => {
         return;
       }
       const resp = await searchTours(preset.searchReq);
+      if (filterRequestIdRef.current !== reqId) return;
       setDashboardLastUpdated(new Date().toISOString());
       setResults(resp.results);
     } catch (err: any) {
+      if (filterRequestIdRef.current !== reqId) return;
       console.warn("Catalog fetch failed, falling back to search:", err);
       try {
         const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
         const resp = await searchTours(preset.searchReq);
+        if (filterRequestIdRef.current !== reqId) return;
         setDashboardLastUpdated(new Date().toISOString());
         setResults(resp.results);
       } catch (e) {
         console.error("Filter search error:", e);
       }
     } finally {
-      setIsLoading(false);
+      if (filterRequestIdRef.current === reqId) {
+        setIsLoading(false);
+      }
     }
   };
 

@@ -21,18 +21,33 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!filterId) return;
+    if (!filterId) {
+      setOracleData(null);
+      return;
+    }
+    let isCancelled = false;
     setIsLoading(true);
+    setOracleData(null);
     getFilterMarketOracle(filterId)
       .then((data) => {
-        setOracleData(data);
+        if (!isCancelled) {
+          setOracleData(data);
+        }
       })
       .catch((err) => {
-        console.warn("Failed to load AI Oracle briefing:", err);
+        if (!isCancelled) {
+          console.warn("Failed to load AI Oracle briefing:", err);
+        }
       })
       .finally(() => {
-        setIsLoading(false);
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
       });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [filterId]);
 
   const hasPicks = Boolean(
