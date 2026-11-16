@@ -417,40 +417,36 @@ class DashboardAlertService:
         results = []
 
         now_utc = datetime.now(timezone.utc)
-        # Warsaw is UTC+1 in winter
-        warsaw_hour = (now_utc.hour + 1) % 24
-        today_date = now_utc.date()
+        try:
+            import zoneinfo
+            tz_warsaw = zoneinfo.ZoneInfo("Europe/Warsaw")
+        except Exception:
+            tz_warsaw = timezone.utc
+
+        now_warsaw = now_utc.astimezone(tz_warsaw)
+        today_date = now_warsaw.date()
+        warsaw_hour = now_warsaw.hour
 
         for user in users:
-            # Check user's preferred digest hour (default 9)
-            user_target_hour = 9
-            if user.digest_time:
-                try:
-                    user_target_hour = int(user.digest_time.split(":")[0])
-                except (ValueError, IndexError):
-                    user_target_hour = 9
-
-            # Check if already sent today
+            # Check if already sent today (Warsaw calendar day)
             if user.last_digest_sent_at and not force:
-                last_sent_date = user.last_digest_sent_at.astimezone(timezone.utc).date()
+                last_sent_date = user.last_digest_sent_at.astimezone(tz_warsaw).date()
                 if last_sent_date == today_date:
                     logger.info(f"ℹ️ User {user.email} already received digest today ({today_date}). Skipping.")
                     continue
 
-            # During automated runs, send if Warsaw hour is >= 8 and not in quiet hours
-            if not force:
-                if warsaw_hour < user_target_hour and warsaw_hour < 8:
-                    logger.info(f"⏭️ Skipping digest for {user.email}: current Warsaw hour {warsaw_hour} < target {user_target_hour}")
+            # Check quiet hours if enabled (unless forced)
+            if not force and user.quiet_hours_enabled:
+                q_start = getattr(user, "quiet_hours_start", 23)
+                q_end = getattr(user, "quiet_hours_end", 7)
+                is_quiet = False
+                if q_start > q_end:
+                    is_quiet = warsaw_hour >= q_start or warsaw_hour < q_end
+                else:
+                    is_quiet = q_start <= warsaw_hour < q_end
+                if is_quiet:
+                    logger.info(f"⏭️ Skipping digest for {user.email}: quiet hours active ({q_start}:00-{q_end}:00). Will send on next daytime run.")
                     continue
-                if user.quiet_hours_enabled:
-                    if user.quiet_hours_start > user.quiet_hours_end:
-                        if warsaw_hour >= user.quiet_hours_start or warsaw_hour < user.quiet_hours_end:
-                            logger.info(f"⏭️ Skipping digest for {user.email}: quiet hours active.")
-                            continue
-                    else:
-                        if user.quiet_hours_start <= warsaw_hour < user.quiet_hours_end:
-                            logger.info(f"⏭️ Skipping digest for {user.email}: quiet hours active.")
-                            continue
 
             logger.info(f"📨 Dispatching Daily Digest to user {user.email} (Chat ID: {user.telegram_chat_id})...")
             payload = await cls.build_digest_payload(db, user)

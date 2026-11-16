@@ -2,9 +2,8 @@ name: Hourly Travel Monitor & Crawler
 
 "on":
   schedule:
-    # Runs 4 times a day during active daytime hours (Warsaw CET: 08:17, 12:17, 16:17, 20:17)
-    # Conserves GitHub Actions quota (~120 runs/mo = ~1400 min/mo out of 2000 free minutes)
-    - cron: "17 7,11,15,19 * * *"
+    # Hourly trigger: accounts for GitHub Actions scheduling delays/skips, ensuring 3-4 real executions per day
+    - cron: "17 * * * *"
   workflow_dispatch:
     inputs:
       crawler_max_offers:
