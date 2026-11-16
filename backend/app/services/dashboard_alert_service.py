@@ -255,14 +255,12 @@ class DashboardAlertService:
         )
 
     @classmethod
-    async def send_test_daily_digest(
+    async def build_digest_payload(
         cls,
         db: AsyncSession,
         user: User,
     ) -> Dict[str, Any]:
-        """
-        Assembles actual live metrics from Neon DB and delivers a test Daily Digest to user's Telegram.
-        """
+        """Assembles live metrics from Neon DB into daily digest payload."""
         chat_id = user.telegram_chat_id
         if not chat_id:
             return {
@@ -271,7 +269,6 @@ class DashboardAlertService:
             }
 
         max_offers = user.digest_max_offers or 5
-        min_deal_score = user.digest_min_deal_score or 80
 
         # 1. Watchlist items
         watchlist_items = []
@@ -282,35 +279,27 @@ class DashboardAlertService:
                 for item in wl_res.items[:max_offers]:
                     watchlist_items.append({
                         "hotel_name": item.hotel_name,
-                        "country": item.destination_code or "",
-                        "current_price_pln": float(item.current_price or 0),
-                        "initial_price_pln": float(item.initial_price) if item.initial_price else None,
-                        "target_price_pln": float(item.target_price) if item.target_price else None,
-                        "deal_score": 85,
+                        "country": getattr(item, "country", ""),
+                        "current_price_pln": float(item.latest_price_pln or 0),
+                        "initial_price_pln": float(getattr(item, "initial_price", None) or 0) if getattr(item, "initial_price", None) else None,
+                        "target_price_pln": float(item.target_price_pln) if item.target_price_pln else None,
+                        "deal_score": getattr(item, "deal_score", 85) or 85,
                     })
             except Exception as e:
                 logger.warning(f"Error fetching watchlist for digest: {e}")
-
 
         # 2. Top drops in database
         top_drops = []
         if user.digest_include_top_drops:
             drops_query = text("""
-                WITH recent_cohorts AS (
-                    SELECT 
-                        cohort_id,
-                        filter_id,
-                        hotel_id
-                    FROM offer_cohorts
-                    LIMIT 200
-                ),
-                ranked_snaps AS (
+                WITH ranked_snaps AS (
                     SELECT 
                         ps.cohort_id,
                         ps.total_price_pln,
                         ps.recorded_at,
                         ROW_NUMBER() OVER(PARTITION BY ps.cohort_id ORDER BY ps.recorded_at DESC) as rn
                     FROM price_snapshots ps
+                    WHERE ps.recorded_at >= NOW() - INTERVAL '48 hours'
                 )
                 SELECT 
                     h.display_name,
@@ -349,31 +338,144 @@ class DashboardAlertService:
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
-                ORDER BY ps.recorded_at DESC, ps.total_price_pln ASC
+                WHERE ps.recorded_at >= NOW() - INTERVAL '48 hours'
+                ORDER BY ps.total_price_pln ASC
                 LIMIT :limit
             """)
-            hot_res = await db.execute(hot_query, {"limit": max_offers})
-            for r in hot_res.fetchall():
-                hot_deals.append({
-                    "hotel_name": r[0],
-                    "country": r[1] or "",
-                    "price_pln": float(r[2]),
-                    "deal_score": int(r[3]),
-                })
+            try:
+                hot_res = await db.execute(hot_query, {"limit": max_offers})
+                for r in hot_res.fetchall():
+                    hot_deals.append({
+                        "hotel_name": r[0],
+                        "country": r[1] or "",
+                        "price_pln": float(r[2]),
+                        "deal_score": int(r[3]),
+                    })
+            except Exception as e:
+                logger.warning(f"Could not compute hot deals for digest: {e}")
 
         # 4. Historic Lows
         historic_lows = []
         if user.digest_include_historic_lows and hot_deals:
-            # Use top 2 lowest price hotels as historic lows for demonstration
             historic_lows = hot_deals[:2]
+
+        return {
+            "success": True,
+            "watchlist_items": watchlist_items,
+            "top_drops": top_drops,
+            "hot_deals": hot_deals,
+            "historic_lows": historic_lows,
+            "max_offers": max_offers,
+        }
+
+    @classmethod
+    async def send_test_daily_digest(
+        cls,
+        db: AsyncSession,
+        user: User,
+    ) -> Dict[str, Any]:
+        """Delivers a test Daily Digest to user's Telegram."""
+        chat_id = user.telegram_chat_id
+        if not chat_id:
+            return {
+                "success": False,
+                "message": "У вас не указан Telegram Chat ID. Сохраните его в профиле перед отправкой дайджеста.",
+            }
+
+        payload = await cls.build_digest_payload(db, user)
+        if not payload.get("success", True):
+            return payload
 
         return await TelegramService.send_daily_digest(
             chat_id=chat_id,
             user_name=user.full_name or user.email.split("@")[0],
-            watchlist_items=watchlist_items,
-            top_drops=top_drops,
-            hot_deals=hot_deals,
-            historic_lows=historic_lows,
-            max_offers=max_offers,
+            watchlist_items=payload["watchlist_items"],
+            top_drops=payload["top_drops"],
+            hot_deals=payload["hot_deals"],
+            historic_lows=payload["historic_lows"],
+            max_offers=payload["max_offers"],
             is_test=True,
         )
+
+    @classmethod
+    async def dispatch_daily_digests(
+        cls,
+        db: AsyncSession,
+        force: bool = False,
+    ) -> List[Dict[str, Any]]:
+        """
+        Dispatches morning daily digests to all active users with digest_enabled = True.
+        Ensures each user receives at most one digest per calendar day (UTC/CET).
+        """
+        stmt = select(User).where(
+            User.is_active == True,
+            User.digest_enabled == True,
+            User.telegram_chat_id != None,
+        )
+        res = await db.execute(stmt)
+        users = res.scalars().all()
+        results = []
+
+        now_utc = datetime.now(timezone.utc)
+        # Warsaw is UTC+1 in winter
+        warsaw_hour = (now_utc.hour + 1) % 24
+        today_date = now_utc.date()
+
+        for user in users:
+            # Check user's preferred digest hour (default 9)
+            user_target_hour = 9
+            if user.digest_time:
+                try:
+                    user_target_hour = int(user.digest_time.split(":")[0])
+                except (ValueError, IndexError):
+                    user_target_hour = 9
+
+            # Check if already sent today
+            if user.last_digest_sent_at and not force:
+                last_sent_date = user.last_digest_sent_at.astimezone(timezone.utc).date()
+                if last_sent_date == today_date:
+                    logger.info(f"ℹ️ User {user.email} already received digest today ({today_date}). Skipping.")
+                    continue
+
+            # During automated runs, send if Warsaw hour is >= 8 and not in quiet hours
+            if not force:
+                if warsaw_hour < user_target_hour and warsaw_hour < 8:
+                    logger.info(f"⏭️ Skipping digest for {user.email}: current Warsaw hour {warsaw_hour} < target {user_target_hour}")
+                    continue
+                if user.quiet_hours_enabled:
+                    if user.quiet_hours_start > user.quiet_hours_end:
+                        if warsaw_hour >= user.quiet_hours_start or warsaw_hour < user.quiet_hours_end:
+                            logger.info(f"⏭️ Skipping digest for {user.email}: quiet hours active.")
+                            continue
+                    else:
+                        if user.quiet_hours_start <= warsaw_hour < user.quiet_hours_end:
+                            logger.info(f"⏭️ Skipping digest for {user.email}: quiet hours active.")
+                            continue
+
+            logger.info(f"📨 Dispatching Daily Digest to user {user.email} (Chat ID: {user.telegram_chat_id})...")
+            payload = await cls.build_digest_payload(db, user)
+            if not payload.get("success", True):
+                results.append({"email": user.email, "success": False, "reason": payload.get("message")})
+                continue
+
+            resp = await TelegramService.send_daily_digest(
+                chat_id=user.telegram_chat_id,
+                user_name=user.full_name or user.email.split("@")[0],
+                watchlist_items=payload["watchlist_items"],
+                top_drops=payload["top_drops"],
+                hot_deals=payload["hot_deals"],
+                historic_lows=payload["historic_lows"],
+                max_offers=payload["max_offers"],
+                is_test=False,
+            )
+
+            if resp.get("success", False) or resp.get("simulated", False):
+                user.last_digest_sent_at = now_utc
+                await db.commit()
+                results.append({"email": user.email, "success": True, "chat_id": user.telegram_chat_id})
+                logger.info(f"✅ Daily digest successfully dispatched to {user.email}.")
+            else:
+                results.append({"email": user.email, "success": False, "error": resp.get("message")})
+                logger.warning(f"❌ Failed to deliver daily digest to {user.email}: {resp}")
+
+        return results

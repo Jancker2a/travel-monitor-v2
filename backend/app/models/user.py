@@ -28,6 +28,7 @@ class User(Base):
     digest_min_deal_score = Column(Integer, default=80, nullable=False)
     digest_max_offers = Column(Integer, default=5, nullable=False)
     digest_only_if_changes = Column(Boolean, default=True, nullable=False)
+    last_digest_sent_at = Column(DateTime(timezone=True), nullable=True)
 
     # Quiet hours settings
     quiet_hours_enabled = Column(Boolean, default=True, nullable=False)

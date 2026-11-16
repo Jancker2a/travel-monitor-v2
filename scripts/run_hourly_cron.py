@@ -29,6 +29,7 @@ from app.services.filter_monitor_service import FilterMonitorService
 from app.services.site_rebuilder import SiteRebuilderService
 from app.services.normalized_crawler import NormalizedCrawlerService
 from app.services.watchlist_service import WatchlistService
+from app.services.dashboard_alert_service import DashboardAlertService
 from app.services.scheduler import scheduler
 
 logging.basicConfig(
@@ -122,6 +123,16 @@ async def main():
                 logger.info("ℹ️ No new price drops below target thresholds.")
     except Exception as e:
         logger.error(f"❌ Error in Watchlist evaluation: {e}", exc_info=True)
+
+    # 5. Dispatch Morning Daily Digest to Telegram Subscribers
+    logger.info(">>> STEP 5: Evaluating & Dispatching Daily Digests to Telegram Subscribers...")
+    try:
+        force_digest = os.environ.get("FORCE_DIGEST", "false").lower() in ("true", "1", "yes")
+        async with AsyncSessionLocal() as db:
+            digest_results = await DashboardAlertService.dispatch_daily_digests(db, force=force_digest)
+            logger.info(f"✅ Daily Digest run completed: {len(digest_results)} processed.")
+    except Exception as e:
+        logger.error(f"❌ Error in Daily Digest dispatch: {e}", exc_info=True)
 
     duration = (datetime.now(timezone.utc) - start_time).total_seconds()
     logger.info("==================================================================")
