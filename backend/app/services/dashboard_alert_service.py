@@ -260,7 +260,7 @@ class DashboardAlertService:
         db: AsyncSession,
         user: User,
     ) -> Dict[str, Any]:
-        """Assembles live metrics from Neon DB into daily digest payload."""
+        """Assembles live metrics from Neon DB into daily digest payload with strict deduplication and full metadata."""
         chat_id = user.telegram_chat_id
         if not chat_id:
             return {
@@ -269,6 +269,8 @@ class DashboardAlertService:
             }
 
         max_offers = user.digest_max_offers or 5
+        cutoff_dt = datetime.now(timezone.utc) - timedelta(hours=48)
+        seen_hotel_ids = set()
 
         # 1. Watchlist items
         watchlist_items = []
@@ -277,18 +279,32 @@ class DashboardAlertService:
                 from app.services.watchlist_service import WatchlistService
                 wl_res = await WatchlistService.get_user_watchlist(db, user.telegram_chat_id)
                 for item in wl_res.items[:max_offers]:
+                    h_id = getattr(item, "hotel_id", "")
+                    if h_id:
+                        seen_hotel_ids.add(h_id)
                     watchlist_items.append({
-                        "hotel_name": item.hotel_name,
-                        "country": getattr(item, "country", ""),
+                        "hotel_id": h_id,
+                        "hotel_name": getattr(item, "hotel_name", "Отель"),
+                        "country": getattr(item, "country", "") or "",
+                        "stars": getattr(item, "stars", 4) or 4,
+                        "ta_rating": getattr(item, "ta_rating", None),
                         "current_price_pln": float(item.latest_price_pln or 0),
                         "initial_price_pln": float(getattr(item, "initial_price", None) or 0) if getattr(item, "initial_price", None) else None,
                         "target_price_pln": float(item.target_price_pln) if item.target_price_pln else None,
                         "deal_score": getattr(item, "deal_score", 85) or 85,
+                        "departure_date": str(getattr(item, "departure_date", "") or ""),
+                        "duration_nights": int(getattr(item, "duration_nights", 7) or 7),
+                        "airport_code": getattr(item, "airport", "") or "",
+                        "adults": getattr(item, "adults", 2) or 2,
+                        "children": getattr(item, "children", 0) or 0,
+                        "drop_48h_pct": getattr(item, "drop_48h_pct", None),
+                        "offer_url": getattr(item, "booking_url", None),
+                        "filter_title": getattr(item, "filter_id", "") or "",
                     })
             except Exception as e:
                 logger.warning(f"Error fetching watchlist for digest: {e}")
 
-        # 2. Top drops in database
+        # 2. Top drops in database (Deduplicated by hotel, min drop >= 150 zł, min pct >= 5%)
         top_drops = []
         if user.digest_include_top_drops:
             drops_query = text("""
@@ -299,65 +315,237 @@ class DashboardAlertService:
                         ps.recorded_at,
                         ROW_NUMBER() OVER(PARTITION BY ps.cohort_id ORDER BY ps.recorded_at DESC) as rn
                     FROM price_snapshots ps
-                    WHERE ps.recorded_at >= NOW() - INTERVAL '48 hours'
+                    WHERE ps.recorded_at >= :cutoff_dt
+                ),
+                drops AS (
+                    SELECT 
+                        h.hotel_id,
+                        h.display_name,
+                        h.country,
+                        h.region,
+                        h.stars,
+                        h.ta_rating,
+                        curr.total_price_pln as curr_price,
+                        prev.total_price_pln as prev_price,
+                        (prev.total_price_pln - curr.total_price_pln) as drop_pln,
+                        ((prev.total_price_pln - curr.total_price_pln) / prev.total_price_pln * 100.0) as drop_pct,
+                        oc.checkin_date,
+                        oc.duration_nights,
+                        oc.airport_code,
+                        oc.adults,
+                        oc.children,
+                        oc.offer_url,
+                        COALESCE(fm.title, oc.filter_id, '') as filter_title,
+                        ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ((prev.total_price_pln - curr.total_price_pln) / prev.total_price_pln) DESC) as hotel_rn
+                    FROM ranked_snaps curr
+                    JOIN ranked_snaps prev ON curr.cohort_id = prev.cohort_id AND prev.rn = 2
+                    JOIN offer_cohorts oc ON curr.cohort_id = oc.cohort_id
+                    JOIN hotels h ON oc.hotel_id = h.hotel_id
+                    LEFT JOIN filter_monitors fm ON oc.filter_id = fm.id
+                    WHERE curr.rn = 1 
+                      AND prev.total_price_pln > curr.total_price_pln
+                      AND ((prev.total_price_pln - curr.total_price_pln) / prev.total_price_pln) >= 0.05
+                      AND (prev.total_price_pln - curr.total_price_pln) >= 150.0
                 )
                 SELECT 
-                    h.display_name,
-                    curr.total_price_pln as curr_price,
-                    prev.total_price_pln as prev_price,
-                    ROUND(((prev.total_price_pln - curr.total_price_pln) / prev.total_price_pln * 100)::numeric, 1) as drop_pct
-                FROM ranked_snaps curr
-                JOIN ranked_snaps prev ON curr.cohort_id = prev.cohort_id AND prev.rn = 2
-                JOIN offer_cohorts oc ON curr.cohort_id = oc.cohort_id
-                JOIN hotels h ON oc.hotel_id = h.hotel_id
-                WHERE curr.rn = 1 AND prev.total_price_pln > curr.total_price_pln
+                    hotel_id, display_name, country, region, stars, ta_rating,
+                    curr_price, prev_price, drop_pln, drop_pct,
+                    checkin_date, duration_nights, airport_code, adults, children,
+                    offer_url, filter_title
+                FROM drops
+                WHERE hotel_rn = 1
                 ORDER BY drop_pct DESC
                 LIMIT :limit
             """)
             try:
-                drops_res = await db.execute(drops_query, {"limit": max_offers})
+                drops_res = await db.execute(drops_query, {"cutoff_dt": cutoff_dt, "limit": max_offers * 2})
                 for r in drops_res.fetchall():
+                    h_id = r[0]
+                    if h_id in seen_hotel_ids:
+                        continue
+                    seen_hotel_ids.add(h_id)
                     top_drops.append({
-                        "hotel_name": r[0],
-                        "current_price_pln": float(r[1]),
-                        "previous_price_pln": float(r[2]),
-                        "drop_pct": float(r[3]),
+                        "hotel_id": h_id,
+                        "hotel_name": r[1],
+                        "country": r[2] or "",
+                        "region": r[3] or "",
+                        "stars": int(r[4] or 4),
+                        "ta_rating": float(r[5]) if r[5] else None,
+                        "current_price_pln": float(r[6]),
+                        "previous_price_pln": float(r[7]),
+                        "drop_pln": float(r[8]),
+                        "drop_pct": round(float(r[9]), 1),
+                        "checkin_date": str(r[10]),
+                        "duration_nights": int(r[11] or 7),
+                        "airport_code": str(r[12] or ""),
+                        "adults": int(r[13] or 2),
+                        "children": int(r[14] or 0),
+                        "offer_url": r[15],
+                        "filter_title": r[16],
                     })
+                    if len(top_drops) >= max_offers:
+                        break
             except Exception as e:
                 logger.warning(f"Could not compute top drops for digest: {e}")
 
-        # 3. Hot Deals
+        # 3. Hot Deals (Distinct hotels across destinations with ta_rating >= 4 or stars >= 4)
         hot_deals = []
         if user.digest_include_hot_deals:
             hot_query = text("""
+                WITH recent_offers AS (
+                    SELECT 
+                        h.hotel_id,
+                        h.display_name,
+                        h.country,
+                        h.region,
+                        h.stars,
+                        h.ta_rating,
+                        ps.total_price_pln,
+                        oc.destination_code,
+                        oc.checkin_date,
+                        oc.duration_nights,
+                        oc.airport_code,
+                        oc.adults,
+                        oc.children,
+                        oc.offer_url,
+                        COALESCE(fm.title, oc.filter_id, '') as filter_title,
+                        ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ps.total_price_pln ASC) as hotel_rn
+                    FROM price_snapshots ps
+                    JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+                    JOIN hotels h ON oc.hotel_id = h.hotel_id
+                    LEFT JOIN filter_monitors fm ON oc.filter_id = fm.id
+                    WHERE ps.recorded_at >= :cutoff_dt
+                      AND (h.stars >= 4 OR COALESCE(h.ta_rating, 0) >= 4.0)
+                )
                 SELECT 
-                    h.display_name,
-                    h.country,
-                    ps.total_price_pln,
-                    88 as deal_score
-                FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
-                JOIN hotels h ON oc.hotel_id = h.hotel_id
-                WHERE ps.recorded_at >= NOW() - INTERVAL '48 hours'
-                ORDER BY ps.total_price_pln ASC
+                    hotel_id, display_name, country, region, stars, ta_rating,
+                    total_price_pln, destination_code, checkin_date, duration_nights,
+                    airport_code, adults, children, offer_url, filter_title
+                FROM recent_offers
+                WHERE hotel_rn = 1
+                ORDER BY destination_code ASC, total_price_pln ASC
                 LIMIT :limit
             """)
             try:
-                hot_res = await db.execute(hot_query, {"limit": max_offers})
+                hot_res = await db.execute(hot_query, {"cutoff_dt": cutoff_dt, "limit": max_offers * 3})
+                dest_counts = {}
                 for r in hot_res.fetchall():
+                    h_id = r[0]
+                    dest = r[7] or "other"
+                    if h_id in seen_hotel_ids:
+                        continue
+                    if dest_counts.get(dest, 0) >= 2:
+                        continue
+                    seen_hotel_ids.add(h_id)
+                    dest_counts[dest] = dest_counts.get(dest, 0) + 1
+                    
+                    stars = int(r[4] or 4)
+                    ta = float(r[5]) if r[5] else None
+                    score = 92 if ta and ta >= 4.5 else (88 if stars >= 5 else 85)
                     hot_deals.append({
-                        "hotel_name": r[0],
-                        "country": r[1] or "",
-                        "price_pln": float(r[2]),
-                        "deal_score": int(r[3]),
+                        "hotel_id": h_id,
+                        "hotel_name": r[1],
+                        "country": r[2] or "",
+                        "region": r[3] or "",
+                        "stars": stars,
+                        "ta_rating": ta,
+                        "price_pln": float(r[6]),
+                        "deal_score": score,
+                        "destination_code": dest,
+                        "checkin_date": str(r[8]),
+                        "duration_nights": int(r[9] or 7),
+                        "airport_code": str(r[10] or ""),
+                        "adults": int(r[11] or 2),
+                        "children": int(r[12] or 0),
+                        "offer_url": r[13],
+                        "filter_title": r[14],
                     })
+                    if len(hot_deals) >= max_offers:
+                        break
             except Exception as e:
                 logger.warning(f"Could not compute hot deals for digest: {e}")
 
-        # 4. Historic Lows
+        # 4. Historic Lows (True all-time records in last 48h, min 2 historical snaps, distinct hotels)
         historic_lows = []
-        if user.digest_include_historic_lows and hot_deals:
-            historic_lows = hot_deals[:2]
+        if user.digest_include_historic_lows:
+            low_query = text("""
+                WITH cohort_min AS (
+                    SELECT 
+                        ps.cohort_id,
+                        MIN(ps.total_price_pln) as min_price,
+                        COUNT(ps.id) as snaps_count
+                    FROM price_snapshots ps
+                    GROUP BY ps.cohort_id
+                    HAVING COUNT(ps.id) >= 2
+                ),
+                latest_snap AS (
+                    SELECT 
+                        ps.cohort_id,
+                        ps.total_price_pln,
+                        ROW_NUMBER() OVER(PARTITION BY ps.cohort_id ORDER BY ps.recorded_at DESC) as rn
+                    FROM price_snapshots ps
+                    WHERE ps.recorded_at >= :cutoff_dt
+                ),
+                historic_candidates AS (
+                    SELECT 
+                        h.hotel_id,
+                        h.display_name,
+                        h.country,
+                        h.region,
+                        h.stars,
+                        h.ta_rating,
+                        ls.total_price_pln,
+                        oc.checkin_date,
+                        oc.duration_nights,
+                        oc.airport_code,
+                        oc.adults,
+                        oc.children,
+                        oc.offer_url,
+                        COALESCE(fm.title, oc.filter_id, '') as filter_title,
+                        ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ls.total_price_pln ASC) as hotel_rn
+                    FROM latest_snap ls
+                    JOIN cohort_min cm ON ls.cohort_id = cm.cohort_id AND ls.total_price_pln <= cm.min_price
+                    JOIN offer_cohorts oc ON ls.cohort_id = oc.cohort_id
+                    JOIN hotels h ON oc.hotel_id = h.hotel_id
+                    LEFT JOIN filter_monitors fm ON oc.filter_id = fm.id
+                    WHERE ls.rn = 1
+                )
+                SELECT 
+                    hotel_id, display_name, country, region, stars, ta_rating,
+                    total_price_pln, checkin_date, duration_nights, airport_code,
+                    adults, children, offer_url, filter_title
+                FROM historic_candidates
+                WHERE hotel_rn = 1
+                ORDER BY total_price_pln ASC
+                LIMIT :limit
+            """)
+            try:
+                low_res = await db.execute(low_query, {"cutoff_dt": cutoff_dt, "limit": max_offers * 2})
+                for r in low_res.fetchall():
+                    h_id = r[0]
+                    if h_id in seen_hotel_ids:
+                        continue
+                    seen_hotel_ids.add(h_id)
+                    historic_lows.append({
+                        "hotel_id": h_id,
+                        "hotel_name": r[1],
+                        "country": r[2] or "",
+                        "region": r[3] or "",
+                        "stars": int(r[4] or 4),
+                        "ta_rating": float(r[5]) if r[5] else None,
+                        "price_pln": float(r[6]),
+                        "checkin_date": str(r[7]),
+                        "duration_nights": int(r[8] or 7),
+                        "airport_code": str(r[9] or ""),
+                        "adults": int(r[10] or 2),
+                        "children": int(r[11] or 0),
+                        "offer_url": r[12],
+                        "filter_title": r[13],
+                    })
+                    if len(historic_lows) >= min(3, max_offers):
+                        break
+            except Exception as e:
+                logger.warning(f"Could not compute historic lows for digest: {e}")
 
         return {
             "success": True,
