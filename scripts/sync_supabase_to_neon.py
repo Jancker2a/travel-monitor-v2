@@ -12,14 +12,8 @@ import asyncpg
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("supabase_to_neon")
 
-SUPABASE_URL = os.environ.get(
-    "SUPABASE_URL",
-    "postgresql://postgres.diwrmsoiyhxbfzwrtumi:5J4VB6%2BiU%25UkCZb@aws-0-eu-west-1.pooler.supabase.com:5432/postgres",
-)
-NEON_URL = os.environ.get(
-    "NEON_URL",
-    "postgresql://neondb_owner:npg_dmYIwkfFK76x@ep-purple-flower-ba6vuyhq-pooler.c-8.eu-central-1.aws.neon.tech/neondb?sslmode=require",
-)
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+NEON_URL = os.environ.get("NEON_URL", "")
 
 
 async def sync_table(c_sub, c_neon, table_name: str, cols: list, batch_size: int = 50000):
