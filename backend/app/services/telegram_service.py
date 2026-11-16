@@ -1,4 +1,5 @@
 import logging
+import os
 import httpx
 from typing import Dict, Any, Optional
 from app.config import settings
@@ -27,6 +28,8 @@ class TelegramService:
     @classmethod
     def get_bot_token(cls) -> Optional[str]:
         token = settings.TELEGRAM_BOT_TOKEN
+        if not token:
+            token = os.environ.get("TELEGRAM_BOT_TOKEN")
         if token and not token.startswith("dummy"):
             return token.strip()
         return None
@@ -388,11 +391,11 @@ class TelegramService:
         full_text = "\n".join(sections)
 
         if not token:
-            logger.info(f"[MOCK DAILY DIGEST -> {chat_id}]: Digest delivered ({len(full_text)} chars)")
+            logger.warning(f"⚠️ [TELEGRAM_BOT_TOKEN MISSING]: Cannot deliver daily digest to {chat_id}. Ensure TELEGRAM_BOT_TOKEN is set in GitHub Secrets.")
             return {
-                "success": True,
+                "success": bool(is_test),
                 "simulated": True,
-                "message": "Ежедневный дайджест успешно сформирован (симуляция без токена бота).",
+                "message": "Ежедневный дайджест сформирован в режиме симуляции (TELEGRAM_BOT_TOKEN не задан).",
                 "chat_id": chat_id,
             }
 

@@ -411,6 +411,7 @@ class DashboardAlertService:
             User.is_active == True,
             User.digest_enabled == True,
             User.telegram_chat_id != None,
+            ~User.email.like("tester_%"),
         )
         res = await db.execute(stmt)
         users = res.scalars().all()
@@ -465,13 +466,14 @@ class DashboardAlertService:
                 is_test=False,
             )
 
-            if resp.get("success", False) or resp.get("simulated", False):
+            if resp.get("success", False) and not resp.get("simulated", False):
                 user.last_digest_sent_at = now_utc
                 await db.commit()
                 results.append({"email": user.email, "success": True, "chat_id": user.telegram_chat_id})
                 logger.info(f"✅ Daily digest successfully dispatched to {user.email}.")
             else:
-                results.append({"email": user.email, "success": False, "error": resp.get("message")})
-                logger.warning(f"❌ Failed to deliver daily digest to {user.email}: {resp}")
+                reason = resp.get("message") or resp.get("error") or "Unknown error"
+                results.append({"email": user.email, "success": False, "error": reason})
+                logger.warning(f"❌ Daily digest NOT delivered to {user.email}: {reason}")
 
         return results
