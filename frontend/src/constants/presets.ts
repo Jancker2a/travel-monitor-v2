@@ -177,7 +177,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     title: "🇪🇬 Египет — Шарм-эль-Шейх 20–29 дек (1 взрослый)",
     countryBadge: "🇪🇬 ШАРМ-ЭЛЬ-ШЕЙХ",
     destination: "egypt",
-    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11_154&departureLocation=Bydgoszcz,Gdańsk,Katowice,Kraków,Lublin,Łódź,Poznań,Rzeszów,Szczecin,Warszawa,Wrocław,ZielonaGóra&startDateMin=20-12-2026&startDateMax=22-12-2026&returnDate=29-12-2026&adults=1&offerTypes=accommodation_flight&durationFrom=7&durationTo=15&priceFrom=0&priceTo=30000&order=price",
+    targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11_154&departureLocation=Bydgoszcz,Gdańsk,Katowice,Kraków,Lublin,Łódź,Poznań,Rzeszów,Szczecin,Warszawa,Warszawa+-+Modlin,Warszawa+-+Radom,Wrocław,ZielonaGóra&startDateMin=20-12-2026&startDateMax=22-12-2026&returnDate=29-12-2026&adults=1&offerTypes=accommodation_flight&durationFrom=7&durationTo=15&priceFrom=0&priceTo=30000&order=price",
     chips: {
       airports: "Любой аэропорт Польши",
       dates: "20.12–29.12.2026",
@@ -191,7 +191,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
       dates: { start_date_min: "2026-12-20", start_date_max: "2026-12-29" },
       duration: { min_nights: 7, max_nights: 15 },
       travelers: { adults: 1, children: 0, children_ages: [] },
-      airports: ["WAW", "KTW", "WRO", "POZ", "GDN"],
+      airports: ["WAW", "WMI", "KTW", "WRO", "POZ", "GDN", "RZE"],
     },
   },
   egypt_ny_dec24_2026_7_10: {

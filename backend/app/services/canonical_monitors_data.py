@@ -22,7 +22,7 @@ CANONICAL_MONITORS = [
         "title": "Египет • Шарм 20–29 дек • 7–15 дн. • 1 взр.",
         "subtitle": "Египет • Шарм 20–29 дек • 7–15 дн. • 1 взр.",
         "destination": "egypt",
-        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11_154&departureLocation=Bydgoszcz,Gdańsk,Katowice,Kraków,Lublin,Łódź,Poznań,Rzeszów,Szczecin,Warszawa,Wrocław,ZielonaGóra&startDateMin=20-12-2026&startDateMax=22-12-2026&returnDate=29-12-2026&adults=1&offerTypes=accommodation_flight&durationFrom=7&durationTo=15&priceFrom=0&priceTo=30000&order=price"
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11_154&departureLocation=Bydgoszcz,Gdańsk,Katowice,Kraków,Lublin,Łódź,Poznań,Rzeszów,Szczecin,Warszawa,Warszawa+-+Modlin,Warszawa+-+Radom,Wrocław,ZielonaGóra&startDateMin=20-12-2026&startDateMax=22-12-2026&returnDate=29-12-2026&adults=1&offerTypes=accommodation_flight&durationFrom=7&durationTo=15&priceFrom=0&priceTo=30000&order=price"
     },
     {
         "id": "egypt_autumn_2026_13_16_days",
