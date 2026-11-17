@@ -232,8 +232,30 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 >
                   {/* Hotel Cell */}
                   <td className="pl-4 py-3">
-                    <div className="flex items-center gap-3">
-                      {/* 104x70 Aspect 16:10 Image with Glass Overlay Star & Hover Zoom Popover */}
+                    <div className="flex items-center gap-2.5">
+                      {/* Standalone Watchlist Star Button (Left of thumbnail, isolated from hover zoom) */}
+                      <button
+                        type="button"
+                        data-testid="favorite-name-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onToggleWatchlist(hotel);
+                        }}
+                        className={`shrink-0 p-2 rounded-xl transition-all cursor-pointer ${
+                          isWatched
+                            ? "bg-amber-100 text-amber-500 hover:bg-amber-200 shadow-2xs"
+                            : "text-slate-300 hover:text-amber-500 hover:bg-slate-100/90"
+                        }`}
+                        title={isWatched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
+                      >
+                        <Star
+                          className={`w-5 h-5 transition-transform active:scale-90 ${
+                            isWatched ? "fill-amber-400 text-amber-500" : "fill-none stroke-current stroke-2"
+                          }`}
+                        />
+                      </button>
+
+                      {/* 104x70 Aspect 16:10 Image with Hover Zoom Popover */}
                       <div className="relative group/thumb shrink-0">
                         <div className="w-[104px] h-[70px] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-2xs group-hover/thumb:shadow transition-shadow">
                           <img
@@ -245,22 +267,6 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                             className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
                             loading="lazy"
                           />
-                          <button
-                            type="button"
-                            data-testid="favorite-name-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onToggleWatchlist(hotel);
-                            }}
-                            className={`absolute top-1.5 left-1.5 p-1 rounded-lg transition-all cursor-pointer shadow-xs z-10 ${
-                              isWatched
-                                ? "bg-amber-400 text-slate-950 shadow-xs"
-                                : "bg-black/40 hover:bg-black/70 backdrop-blur-md text-amber-300 hover:text-amber-200"
-                            }`}
-                            title={isWatched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
-                          >
-                            <Star className={`w-3.5 h-3.5 ${isWatched ? "fill-slate-950 text-slate-950" : "fill-current"}`} />
-                          </button>
                         </div>
 
                         {/* Large Hover Zoom Popover */}

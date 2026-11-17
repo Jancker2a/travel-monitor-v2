@@ -577,8 +577,31 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                     >
                       {/* 1. Hotel thumbnail, name, stars, country */}
                       <td className="pl-4 py-3">
-                        <div className="flex items-center gap-3.5">
-                          {/* 104x70 Aspect 16:10 Image with Glass Overlay Star & Hover Zoom Popover */}
+                        <div className="flex items-center gap-2.5">
+                          {/* Standalone Watchlist Star Button (Left of thumbnail, isolated from hover zoom) */}
+                          {onToggleWatchlist && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onToggleWatchlist(deal);
+                              }}
+                              className={`shrink-0 p-2 rounded-xl transition-all cursor-pointer ${
+                                watched
+                                  ? "bg-amber-100 text-amber-500 hover:bg-amber-200 shadow-2xs"
+                                  : "text-slate-300 hover:text-amber-500 hover:bg-slate-100/90"
+                              }`}
+                              title={watched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
+                            >
+                              <Star
+                                className={`w-5 h-5 transition-transform active:scale-90 ${
+                                  watched ? "fill-amber-400 text-amber-500" : "fill-none stroke-current stroke-2"
+                                }`}
+                              />
+                            </button>
+                          )}
+
+                          {/* 104x70 Aspect 16:10 Image with Hover Zoom Popover */}
                           <div className="relative group/thumb shrink-0">
                             <div className="w-[104px] h-[70px] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/90 shadow-2xs group-hover/thumb:shadow transition-shadow">
                               <img
@@ -590,23 +613,6 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                                 className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
                                 loading="lazy"
                               />
-                              {onToggleWatchlist && (
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    onToggleWatchlist(deal);
-                                  }}
-                                  className={`absolute top-1.5 left-1.5 p-1 rounded-lg transition-all cursor-pointer shadow-xs z-10 ${
-                                    watched
-                                      ? "bg-amber-400 text-slate-950 shadow-xs"
-                                      : "bg-black/40 hover:bg-black/70 backdrop-blur-md text-amber-300 hover:text-amber-200"
-                                  }`}
-                                  title={watched ? "В избранном (нажмите для удаления)" : "Добавить в избранное"}
-                                >
-                                  <Star className={`w-3.5 h-3.5 ${watched ? "fill-slate-950 text-slate-950" : "fill-current"}`} />
-                                </button>
-                              )}
                             </div>
 
                             {/* Large Hover Zoom Popover */}
