@@ -95,7 +95,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=15-11-2026&startDateMax=08-12-2026&returnDate=15-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
-      dates: "Красное море",
+      dates: "Ноябрь – Декабрь 2026",
       party: "2 взр + 1 реб",
       hotelClass: "4★ – 5★ All Inclusive",
       budget: "до 10 000 zł",
@@ -117,7 +117,7 @@ export const FILTER_PRESETS: Record<string, FilterPreset> = {
     targetUrl: "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa+-+Modlin,Warszawa+-+Radom,Warszawa&startDateMin=15-11-2026&startDateMax=02-12-2026&returnDate=15-12-2026&adults=2&children=10-12-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=13&durationTo=16&priceFrom=4000&priceTo=20000&order=price",
     chips: {
       airports: "WAW, WMI, RDO",
-      dates: "Длительный отдых",
+      dates: "Ноябрь – Декабрь 2026",
       party: "2 взр + 1 реб",
       hotelClass: "4★ – 5★ All Inclusive",
       budget: "до 15 000 zł",
