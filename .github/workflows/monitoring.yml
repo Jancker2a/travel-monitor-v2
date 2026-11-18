@@ -1,9 +1,8 @@
 name: Hourly Travel Monitor & Crawler
 
 "on":
-  # Automatic schedule paused to use V1 public unlimited runner
-  # schedule:
-  #   - cron: "17 * * * *"
+  schedule:
+    - cron: "17 * * * *"
   workflow_dispatch:
     inputs:
       crawler_max_offers:
