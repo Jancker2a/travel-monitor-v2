@@ -24,7 +24,7 @@ class HotelPassportResponse(BaseModel):
     region: str
     stars: int
     ta_rating: Optional[float] = None
-    ta_reviews: int = 0
+    ta_reviews: Optional[int] = None
     main_image_url: Optional[str] = None
     all_time_min_pln: float
     all_time_max_pln: float

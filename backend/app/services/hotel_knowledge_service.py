@@ -99,6 +99,37 @@ class HotelKnowledgeService:
             if clean_k and (clean_k == clean_target or clean_k in clean_target or clean_target in clean_k):
                 return val
 
+        # Core token overlap matching (handles variations like "Parrotel Lagoon Waterpark Resort" vs "Parrotel Lagoon Resort")
+        def _get_core_tokens(name: str) -> set:
+            n = re.sub(r"\(ex[^\)]+\)", "", name, flags=re.IGNORECASE)
+            n = re.split(r"\b(egipt|turcja|grecja|cypr|bułgaria|hiszpania)\b", n, flags=re.IGNORECASE)[0]
+            toks = set(re.findall(r"[a-z0-9а-я]+", n.lower()))
+            stopwords = {
+                "hotel", "resort", "resorts", "spa", "and", "the", "park",
+                "aquapark", "waterpark", "aqua", "beach", "club", "village",
+                "suites", "palace", "inn", "ex", "deluxe", "grand"
+            }
+            core = toks - stopwords
+            return core if len(core) >= 1 else toks
+
+        target_core = _get_core_tokens(target_name)
+        if target_core:
+            best_val = None
+            best_score = 0.0
+            for k, val in cache.items():
+                k_core = _get_core_tokens(k)
+                if not k_core:
+                    continue
+                overlap = target_core & k_core
+                if not overlap:
+                    continue
+                score = len(overlap) / max(len(target_core), len(k_core))
+                if score > best_score and (overlap == target_core or overlap == k_core or len(overlap) >= 2):
+                    best_score = score
+                    best_val = val
+            if best_val and best_score >= 0.5:
+                return best_val
+
         return None
 
     @classmethod
@@ -157,13 +188,13 @@ class HotelKnowledgeService:
             passport.get("ta_rating")
             or specs.get("tripadvisor_rating")
             or rep.get("ta_rating")
-            or (specs.get("rating") if specs else 4.5)
+            or (specs.get("rating") if specs else None)
         )
         ta_reviews = (
             passport.get("ta_reviews")
             or specs.get("tripadvisor_reviews")
             or rep.get("ta_review_count")
-            or (specs.get("review_count") if specs else 1250)
+            or (specs.get("review_count") if specs else None)
         )
 
         # Specs details
@@ -309,8 +340,8 @@ class HotelKnowledgeService:
             "tripadvisor_url": tripadvisor_url,
             "google_reviews_url": google_reviews_url,
             "youtube_search_url": youtube_search_url,
-            "ta_rating": float(ta_rating) if ta_rating else 4.5,
-            "ta_reviews": int(ta_reviews) if ta_reviews else 1250,
+            "ta_rating": float(ta_rating) if (ta_rating is not None and float(ta_rating) > 0) else None,
+            "ta_reviews": int(ta_reviews) if (ta_reviews is not None and int(ta_reviews) > 0) else None,
             "beach_line": beach_line,
             "beach_type": beach_type,
             "sea_entry": sea_entry,

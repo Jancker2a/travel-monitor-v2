@@ -695,7 +695,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   {verdictBadgeText}
                 </span>
                 <span className="badge" style={{ background: "#fef3c7", color: "#92400e", padding: "3px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 700 }}>
-                  TripAdvisor {currentTaRating ? `★ ${currentTaRating}` : "★ 4.5"}
+                  TripAdvisor {currentTaRating ? `★ ${currentTaRating}` : "отзывы"}
                 </span>
               </div>
 
@@ -841,7 +841,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     </p>
                   </div>
                   <div className="ext-review-score" id="drawerTaScore">
-                    ★ {passport?.ta_rating || hotelItem?.ta_rating || "4.5"}
+                    {currentTaRating ? `★ ${currentTaRating}` : "—"}
                   </div>
                 </a>
 
