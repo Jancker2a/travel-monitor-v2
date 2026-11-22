@@ -30,7 +30,11 @@ DEFAULT_V2_DB = "/Users/andreiyankouski/travel-monitor-v2/travel_monitor_v2.db"
 FOLDER_CONFIG = {
     "filter_13_16_days": ("13_16_days", "egypt", 2, 1),
     "filter_7_10_days": ("7_10_days", "egypt", 2, 1),
-    "filter_cyprus_7_10": ("cyprus_7_10", "cyprus", 2, 1),
+    "filter_cyprus_7_10": ("cyprus_7_10", "cyprus", 1, 0),
+    "filter_benchmark_cyprus_1p_7_8": ("benchmark_cyprus_1p_7_8", "cyprus", 1, 0),
+    "filter_benchmark_egypt_1p_7_8": ("benchmark_egypt_1p_7_8", "egypt", 1, 0),
+    "filter_benchmark_greece_1p_7_8": ("benchmark_greece_1p_7_8", "greece", 1, 0),
+    "filter_benchmark_turkey_1p_7_8": ("benchmark_turkey_1p_7_8", "turkey", 1, 0),
     "filter_eb_egypt_aug27_7_10": ("eb_egypt_aug27_7_10", "egypt", 2, 1),
     "filter_eb_egypt_jul27_7_10": ("eb_egypt_jul27_7_10", "egypt", 2, 1),
     "filter_eb_egypt_oct27_7_10": ("eb_egypt_oct27_7_10", "egypt", 2, 1),

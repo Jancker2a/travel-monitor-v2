@@ -87,6 +87,40 @@ async def run_sync():
             );
         """)
 
+    # Pre-sync repair: Ensure any benchmark or 1-person cohorts have adults=1, children=0
+    try:
+        await pg_conn.execute("""
+            UPDATE offer_cohorts
+            SET adults = 1, children = 0
+            WHERE filter_id LIKE '%1p%'
+               OR filter_id LIKE '%benchmark%'
+               OR filter_id = 'cyprus_7_10'
+               OR filter_id = 'filter_cyprus_7_10'
+               OR offer_url LIKE '%adults=1%'
+               OR offer_url LIKE '%person%5D=1%'
+               OR offer_url LIKE '%person=1%';
+        """)
+        logger.info("✅ Repaired any mismatched 1-person cohorts in PostgreSQL.")
+    except Exception as e:
+        logger.warning(f"Could not run PG cohort repair query: {e}")
+
+    try:
+        sqlite_cur.execute("""
+            UPDATE offer_cohorts
+            SET adults = 1, children = 0
+            WHERE filter_id LIKE '%1p%'
+               OR filter_id LIKE '%benchmark%'
+               OR filter_id = 'cyprus_7_10'
+               OR filter_id = 'filter_cyprus_7_10'
+               OR offer_url LIKE '%adults=1%'
+               OR offer_url LIKE '%person%5D=1%'
+               OR offer_url LIKE '%person=1%';
+        """)
+        sqlite_conn.commit()
+        logger.info("✅ Repaired any mismatched 1-person cohorts in SQLite.")
+    except Exception as e:
+        logger.warning(f"Could not run SQLite cohort repair query: {e}")
+
     v1_dir = str(get_v1_dir())
     logger.info(f"📂 Reading V1 repository at {v1_dir}")
     cmd = "git ls-tree -d --name-only origin/main:data/filters 2>/dev/null || ls data/filters"
@@ -99,11 +133,16 @@ async def run_sync():
         cfg = FOLDER_CONFIG.get(fdir)
         if not cfg:
             clean_id = fdir.replace("filter_", "")
-            dest = "turkey" if "turkey" in fdir else ("egypt" if "egypt" in fdir else "greece")
-            cfg = (clean_id, dest, 2, 1)
+            spec = resolve_filter_spec(fdir) or resolve_filter_spec(clean_id)
+            if spec:
+                cfg = (clean_id, spec.get("destination", "other"), int(spec.get("adults", 2)), int(spec.get("children", 0)))
+            else:
+                dest = "turkey" if "turkey" in fdir else ("egypt" if "egypt" in fdir else ("greece" if "greece" in fdir else ("cyprus" if "cyprus" in fdir else "other")))
+                is_1p = "_1p" in fdir or "cyprus" in fdir
+                cfg = (clean_id, dest, 1 if is_1p else 2, 0 if is_1p else 1)
 
         filter_id, destination_code, def_adults, def_children = cfg
-        country_name = "Турция" if destination_code == "turkey" else ("Египет" if destination_code == "egypt" else "Греция")
+        country_name = "Турция" if destination_code == "turkey" else ("Египет" if destination_code == "egypt" else ("Кипр" if destination_code == "cyprus" else "Греция"))
 
         cat_cmd = f"git show origin/main:data/filters/{fdir}/travel_prices.csv 2>/dev/null || cat data/filters/{fdir}/travel_prices.csv"
         res = subprocess.run(cat_cmd, shell=True, capture_output=True, text=True, cwd=v1_dir)
@@ -152,6 +191,18 @@ async def run_sync():
             offer_url = row.get("offer_url") or row.get("url") or ""
             img_url = row.get("image_url") or ""
 
+            # Robust traveler composition extraction per offer
+            row_adults = def_adults
+            row_children = def_children
+            url_low = offer_url.lower()
+            if "adults=1" in url_low or "person%5d=1" in url_low or "person=1" in url_low or "_1p" in filter_id or "cyprus" in filter_id:
+                row_adults = 1
+                row_children = 0
+            elif "adults=2" in url_low:
+                row_adults = 2
+                if "children=" not in url_low and "child=" not in url_low and "childage" not in url_low and "2+1" not in filter_id and "7_10_days" not in filter_id and "13_16_days" not in filter_id and "eb_" not in filter_id:
+                    row_children = 0
+
             ta_r = None
             try:
                 if row.get("ta_rating"):
@@ -170,17 +221,17 @@ async def run_sync():
                 checkin_date=checkin_d,
                 duration_nights=nights,
                 airport_code=airport,
-                adults=def_adults,
+                adults=row_adults,
                 board_basis="All Inclusive",
                 filter_id=filter_id,
             )
 
             cohorts_map[cohort_hash] = (
                 cohort_hash, filter_id, hotel_id, destination_code, checkin_d, checkout_d,
-                nights, airport, def_adults, def_children, offer_url, recorded_at
+                nights, airport, row_adults, row_children, offer_url, recorded_at
             )
 
-            pp_night = price_val / max(1, def_adults * nights)
+            pp_night = price_val / max(1, row_adults * nights)
             snapshots_raw.append((cohort_hash, filter_id, recorded_at, price_val, pp_night))
 
         if not snapshots_raw:
@@ -211,16 +262,22 @@ async def run_sync():
             )
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'All Inclusive', $9, $10, '', $11, $12, $12)
             ON CONFLICT (cohort_hash) DO UPDATE
-            SET last_seen_at = GREATEST(offer_cohorts.last_seen_at, EXCLUDED.last_seen_at);
+            SET last_seen_at = GREATEST(offer_cohorts.last_seen_at, EXCLUDED.last_seen_at),
+                adults = EXCLUDED.adults,
+                children = EXCLUDED.children;
         """, cohort_records)
 
         sqlite_cur.executemany("""
-            INSERT OR IGNORE INTO offer_cohorts (
+            INSERT INTO offer_cohorts (
                 cohort_hash, filter_id, hotel_id, destination_code, checkin_date, checkout_date,
                 duration_nights, airport_code, board_basis, adults, children, operator, offer_url,
                 first_seen_at, last_seen_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'All Inclusive', ?, ?, '', ?, ?, ?);
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'All Inclusive', ?, ?, '', ?, ?, ?)
+            ON CONFLICT (cohort_hash) DO UPDATE
+            SET last_seen_at = MAX(offer_cohorts.last_seen_at, excluded.last_seen_at),
+                adults = excluded.adults,
+                children = excluded.children;
         """, [(c[0], c[1], c[2], c[3], str(c[4]), str(c[5]) if c[5] else None, c[6], c[7], c[8], c[9], c[10], c[11].isoformat(), c[11].isoformat()) for c in cohort_records])
 
         # 3. Retrieve PG cohort_id for all hashes

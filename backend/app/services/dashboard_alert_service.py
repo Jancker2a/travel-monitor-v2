@@ -17,8 +17,35 @@ from app.schemas.dashboard_subscription import (
     DashboardSubscriptionTestResponse,
 )
 from app.services.telegram_service import TelegramService
+from app.services.canonical_filters import resolve_filter_spec
 
 logger = logging.getLogger("travel_monitor_2.dashboard_alerts")
+
+
+def normalize_pax(adults: int, children: int, filter_id: Optional[str] = None, filter_title: Optional[str] = None, offer_url: Optional[str] = None) -> tuple:
+    f_id = (filter_id or "").lower()
+    f_title = (filter_title or "").lower()
+    url = (offer_url or "").lower()
+
+    spec = None
+    if f_id:
+        spec = resolve_filter_spec(f_id)
+    if not spec and f_title:
+        spec = resolve_filter_spec(f_title)
+
+    if spec and "adults" in spec:
+        return int(spec["adults"]), int(spec.get("children", 0))
+
+    if any(k in f_id for k in ["1p", "cyprus_7_10", "cyprus_1p"]) or \
+       any(k in f_title for k in ["1 взр", "1p", "1 взрослый", "эталон"]) or \
+       "adults=1" in url or "person%5d=1" in url or "person=1" in url:
+        return 1, 0
+
+    if "adults=2" in url and "children=" not in url and "child=" not in url and "childage" not in url:
+        if children > 0 and ("2+1" not in f_title and "1 реб" not in f_title and "+1" not in f_title and "2+1" not in f_id):
+            return 2, 0
+
+    return adults, children
 
 
 class DashboardAlertService:
@@ -334,6 +361,7 @@ class DashboardAlertService:
                         oc.airport_code,
                         oc.adults,
                         oc.children,
+                        oc.filter_id,
                         oc.offer_url,
                         COALESCE(fm.title, oc.filter_id, '') as filter_title,
                         ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ((prev.total_price_pln - curr.total_price_pln) / prev.total_price_pln) DESC) as hotel_rn
@@ -351,7 +379,7 @@ class DashboardAlertService:
                     hotel_id, display_name, country, region, stars, ta_rating,
                     curr_price, prev_price, drop_pln, drop_pct,
                     checkin_date, duration_nights, airport_code, adults, children,
-                    offer_url, filter_title
+                    filter_id, offer_url, filter_title
                 FROM drops
                 WHERE hotel_rn = 1
                 ORDER BY drop_pct DESC
@@ -364,6 +392,10 @@ class DashboardAlertService:
                     if h_id in seen_hotel_ids:
                         continue
                     seen_hotel_ids.add(h_id)
+                    f_id = str(r[15] or "")
+                    f_url = str(r[16] or "")
+                    f_title = str(r[17] or "")
+                    ad, ch = normalize_pax(int(r[13] or 2), int(r[14] or 0), filter_id=f_id, filter_title=f_title, offer_url=f_url)
                     top_drops.append({
                         "hotel_id": h_id,
                         "hotel_name": r[1],
@@ -378,10 +410,11 @@ class DashboardAlertService:
                         "checkin_date": str(r[10]),
                         "duration_nights": int(r[11] or 7),
                         "airport_code": str(r[12] or ""),
-                        "adults": int(r[13] or 2),
-                        "children": int(r[14] or 0),
-                        "offer_url": r[15],
-                        "filter_title": r[16],
+                        "adults": ad,
+                        "children": ch,
+                        "filter_id": f_id,
+                        "offer_url": f_url,
+                        "filter_title": f_title,
                     })
                     if len(top_drops) >= max_offers:
                         break
@@ -407,6 +440,7 @@ class DashboardAlertService:
                         oc.airport_code,
                         oc.adults,
                         oc.children,
+                        oc.filter_id,
                         oc.offer_url,
                         COALESCE(fm.title, oc.filter_id, '') as filter_title,
                         ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ps.total_price_pln ASC) as hotel_rn
@@ -420,7 +454,7 @@ class DashboardAlertService:
                 SELECT 
                     hotel_id, display_name, country, region, stars, ta_rating,
                     total_price_pln, destination_code, checkin_date, duration_nights,
-                    airport_code, adults, children, offer_url, filter_title
+                    airport_code, adults, children, filter_id, offer_url, filter_title
                 FROM recent_offers
                 WHERE hotel_rn = 1
                 ORDER BY destination_code ASC, total_price_pln ASC
@@ -442,6 +476,10 @@ class DashboardAlertService:
                     stars = int(r[4] or 4)
                     ta = float(r[5]) if r[5] else None
                     score = 92 if ta and ta >= 4.5 else (88 if stars >= 5 else 85)
+                    f_id = str(r[13] or "")
+                    f_url = str(r[14] or "")
+                    f_title = str(r[15] or "")
+                    ad, ch = normalize_pax(int(r[11] or 2), int(r[12] or 0), filter_id=f_id, filter_title=f_title, offer_url=f_url)
                     hot_deals.append({
                         "hotel_id": h_id,
                         "hotel_name": r[1],
@@ -455,10 +493,11 @@ class DashboardAlertService:
                         "checkin_date": str(r[8]),
                         "duration_nights": int(r[9] or 7),
                         "airport_code": str(r[10] or ""),
-                        "adults": int(r[11] or 2),
-                        "children": int(r[12] or 0),
-                        "offer_url": r[13],
-                        "filter_title": r[14],
+                        "adults": ad,
+                        "children": ch,
+                        "filter_id": f_id,
+                        "offer_url": f_url,
+                        "filter_title": f_title,
                     })
                     if len(hot_deals) >= max_offers:
                         break
@@ -500,6 +539,7 @@ class DashboardAlertService:
                         oc.airport_code,
                         oc.adults,
                         oc.children,
+                        oc.filter_id,
                         oc.offer_url,
                         COALESCE(fm.title, oc.filter_id, '') as filter_title,
                         ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ls.total_price_pln ASC) as hotel_rn
@@ -513,7 +553,7 @@ class DashboardAlertService:
                 SELECT 
                     hotel_id, display_name, country, region, stars, ta_rating,
                     total_price_pln, checkin_date, duration_nights, airport_code,
-                    adults, children, offer_url, filter_title
+                    adults, children, filter_id, offer_url, filter_title
                 FROM historic_candidates
                 WHERE hotel_rn = 1
                 ORDER BY total_price_pln ASC
@@ -526,6 +566,10 @@ class DashboardAlertService:
                     if h_id in seen_hotel_ids:
                         continue
                     seen_hotel_ids.add(h_id)
+                    f_id = str(r[12] or "")
+                    f_url = str(r[13] or "")
+                    f_title = str(r[14] or "")
+                    ad, ch = normalize_pax(int(r[10] or 2), int(r[11] or 0), filter_id=f_id, filter_title=f_title, offer_url=f_url)
                     historic_lows.append({
                         "hotel_id": h_id,
                         "hotel_name": r[1],
@@ -537,10 +581,11 @@ class DashboardAlertService:
                         "checkin_date": str(r[7]),
                         "duration_nights": int(r[8] or 7),
                         "airport_code": str(r[9] or ""),
-                        "adults": int(r[10] or 2),
-                        "children": int(r[11] or 0),
-                        "offer_url": r[12],
-                        "filter_title": r[13],
+                        "adults": ad,
+                        "children": ch,
+                        "filter_id": f_id,
+                        "offer_url": f_url,
+                        "filter_title": f_title,
                     })
                     if len(historic_lows) >= min(3, max_offers):
                         break

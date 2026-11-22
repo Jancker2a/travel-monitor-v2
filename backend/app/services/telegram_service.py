@@ -5,6 +5,7 @@ import html
 import httpx
 from typing import Dict, Any, Optional
 from app.config import settings
+from app.services.canonical_filters import resolve_filter_spec
 
 logger = logging.getLogger("travel_monitor_2.telegram")
 
@@ -44,6 +45,11 @@ def clean_filter_title(t: Optional[str]) -> str:
     """Simplifies filter monitor titles for compact Telegram badge display."""
     if not t:
         return ""
+    clean_k = str(t).strip().lower()
+    spec = resolve_filter_spec(clean_k)
+    if spec and "title" in spec:
+        if clean_k.startswith("benchmark_") or clean_k.startswith("filter_") or clean_k.startswith("eb_"):
+            t = spec["title"]
     t = str(t).replace(" • ", " ").replace(" ночей", "н").replace(" дней", "дн").strip()
     return t
 
@@ -396,6 +402,30 @@ class TelegramService:
             nights = item.get("duration_nights", 7) or 7
             adults = item.get("adults", 2) or 2
             children = item.get("children", 0) or 0
+
+            # Guard / Canonical resolution for traveler composition (pax)
+            filter_id_raw = str(item.get("filter_id") or "").lower()
+            filter_title_raw = str(item.get("filter_title") or "").lower()
+            url_raw = str(item.get("offer_url") or "").lower()
+
+            spec = None
+            if filter_id_raw:
+                spec = resolve_filter_spec(filter_id_raw)
+            if not spec and filter_title_raw:
+                spec = resolve_filter_spec(filter_title_raw)
+
+            if spec and "adults" in spec:
+                adults = int(spec["adults"])
+                children = int(spec.get("children", 0))
+            elif any(k in filter_id_raw for k in ["1p", "cyprus_7_10", "cyprus_1p"]) or \
+                 any(k in filter_title_raw for k in ["1 взр", "1p", "1 взрослый", "эталон"]) or \
+                 "adults=1" in url_raw or "person%5d=1" in url_raw or "person=1" in url_raw:
+                adults = 1
+                children = 0
+            elif "adults=2" in url_raw and "children=" not in url_raw and "child=" not in url_raw and "childage" not in url_raw and "2+1" not in filter_title_raw and "2+1" not in filter_id_raw:
+                if children > 0 and ("1 реб" not in filter_title_raw and "+1" not in filter_title_raw):
+                    children = 0
+
             pax = "1 взр." if adults == 1 and children == 0 else f"{adults} взр. + {children} реб." if children else f"{adults} взр."
             dep_date = format_departure_date(item.get("departure_date") or item.get("checkin_date"))
             airport = item.get("airport_code") or item.get("airport") or ""
@@ -488,6 +518,7 @@ class TelegramService:
                 "simulated": True,
                 "message": "Ежедневный дайджест сформирован в режиме симуляции (TELEGRAM_BOT_TOKEN не задан).",
                 "chat_id": chat_id,
+                "text": full_text,
             }
 
         tg_url = f"https://api.telegram.org/bot{token}/sendMessage"
