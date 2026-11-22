@@ -55,7 +55,9 @@ import { FILTER_PRESETS } from "./constants/presets";
 
 const INITIAL_FILTERS: FilterState = {
   search: "",
+  priceMin: "",
   priceMax: "",
+  selectedStars: [],
   stars: "",
   recommendation: "",
   tripAdvisor: "",
@@ -748,20 +750,27 @@ export const App: React.FC = () => {
         if (!match) return false;
       }
 
-      // Max price
+      // Price filter (Min / Max)
+      const price = h.current_offer.total_price_pln;
+      if (tableFilters.priceMin) {
+        const minP = parseFloat(tableFilters.priceMin);
+        if (!isNaN(minP) && price < minP) return false;
+      }
       if (tableFilters.priceMax) {
         if (tableFilters.priceMax === "all" || tableFilters.priceMax === "0") {
-          // Explicitly show all offers, completely bypassing preset ceiling!
+          // Explicitly show all offers, completely bypassing any ceiling
         } else {
           const maxP = parseFloat(tableFilters.priceMax);
-          if (!isNaN(maxP) && h.current_offer.total_price_pln > maxP) return false;
+          if (!isNaN(maxP) && price > maxP) return false;
         }
-      } else if (activeTab === "filter" && currentPreset?.displayPriceCeiling) {
-        if (h.current_offer.total_price_pln > currentPreset.displayPriceCeiling) return false;
       }
 
-      // Stars rating filter
-      if (tableFilters.stars) {
+      // Stars rating filter (multi-select checkboxes or legacy single)
+      if (tableFilters.selectedStars && tableFilters.selectedStars.length > 0 && tableFilters.selectedStars.length < 4) {
+        const s = Math.round(Number(h.stars)) || 0;
+        const starCat = s >= 5 ? 5 : s === 4 ? 4 : s === 3 ? 3 : 2;
+        if (!tableFilters.selectedStars.includes(starCat)) return false;
+      } else if (tableFilters.stars) {
         const s = Number(h.stars) || 0;
         if (tableFilters.stars === "5" && s !== 5) return false;
         if (tableFilters.stars === "4+" && s < 4) return false;
@@ -1376,22 +1385,6 @@ export const App: React.FC = () => {
               : undefined
           }
         />
-
-        {/* Comfortable Ceiling Banner if active */}
-        {activeTab === "filter" && currentPreset?.displayPriceCeiling && !tableFilters.priceMax && (
-          <div className="mb-3 px-4 py-2.5 bg-blue-50/80 border border-blue-200/90 rounded-2xl flex flex-wrap items-center justify-between gap-2 text-xs text-blue-900 shadow-2xs">
-            <span className="flex items-center gap-1.5 font-medium">
-              💡 Применен комфортный ценовой потолок: <b>до {currentPreset.displayPriceCeiling.toLocaleString("ru-RU")} zł</b>.
-            </span>
-            <button
-              type="button"
-              onClick={() => setTableFilters((prev) => ({ ...prev, priceMax: "all" }))}
-              className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-xs transition-colors shadow-2xs cursor-pointer"
-            >
-              Показать все отели (снять потолок)
-            </button>
-          </div>
-        )}
 
         {/* 6. Mode Switch Views */}
         {viewMode === "arbitrage" ? (
