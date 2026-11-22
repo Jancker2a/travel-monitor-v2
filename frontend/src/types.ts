@@ -341,6 +341,21 @@ export interface HorizonArbitrageData {
     };
     verdict_text: string;
   } | null;
+  historical_best_dump?: {
+    has_dump: boolean;
+    price_pln: number;
+    checkin_date: string;
+    checkin_date_formatted: string;
+    recorded_at: string;
+    recorded_at_formatted: string;
+    days_before: number;
+    airport?: string;
+    benchmark_norm_pln: number;
+    savings_pln: number;
+    discount_pct: number;
+    is_record_now: boolean;
+    narrative: string;
+  } | null;
   verdict?: {
     perspective: "LAST_MINUTE" | "REGULAR_OR_EARLY";
     type: string;

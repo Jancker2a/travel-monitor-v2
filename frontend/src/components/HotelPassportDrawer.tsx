@@ -1455,6 +1455,34 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           </div>
                         )}
 
+                        {/* Historical Best Dump Callout Card */}
+                        {passport.horizon_arbitrage.historical_best_dump && (
+                          <div
+                            style={{
+                              background: "#f8fafc",
+                              border: "1px dashed #cbd5e1",
+                              borderRadius: "10px",
+                              padding: "10px 14px",
+                              marginBottom: "12px",
+                            }}
+                          >
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px", flexWrap: "wrap", gap: "6px" }}>
+                              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                                <span style={{ fontSize: "14px" }}>🎯</span>
+                                <span style={{ fontWeight: 800, fontSize: "12px", color: "#334155" }}>
+                                  Исторический рекорд сброса отеля
+                                </span>
+                              </div>
+                              <span style={{ fontSize: "10.5px", fontWeight: 800, background: "#ecfdf5", color: "#047857", padding: "2px 8px", borderRadius: "10px", border: "1px solid #a7f3d0" }}>
+                                Рекордное дно: {passport.horizon_arbitrage.historical_best_dump.price_pln.toLocaleString("ru-RU")} zł ({passport.horizon_arbitrage.historical_best_dump.discount_pct > 0 ? `-${passport.horizon_arbitrage.historical_best_dump.discount_pct}%` : "min"})
+                              </span>
+                            </div>
+                            <div style={{ fontSize: "11.5px", color: "#475569", lineHeight: 1.5 }}>
+                              {passport.horizon_arbitrage.historical_best_dump.narrative}
+                            </div>
+                          </div>
+                        )}
+
                         {/* Verdict & Recommendation */}
                         <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
                           <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}

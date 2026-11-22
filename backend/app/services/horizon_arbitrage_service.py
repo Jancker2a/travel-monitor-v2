@@ -715,6 +715,93 @@ class HorizonArbitrageService:
                     "verdict_text": verdict_text,
                 }
 
+        # Build Historical Best Dump (Рекордный горящий сброс за всю историю наблюдений)
+        historical_best_dump = None
+        if stats_lm and stats_lm.get("best_offer"):
+            best_dump = stats_lm["best_offer"]
+            dump_price = round(best_dump["price_pln"], 0)
+            dump_chk_str = str(best_dump.get("checkin_date", ""))
+            dump_rec_str = str(best_dump.get("recorded_at", ""))
+            dump_apt = str(best_dump.get("airport", ""))
+            dump_days = int(best_dump.get("days_to_dep", 2))
+
+            try:
+                dump_chk_fmt = date.fromisoformat(dump_chk_str[:10]).strftime("%d.%m.%Y")
+            except Exception:
+                dump_chk_fmt = dump_chk_str
+            try:
+                dump_rec_fmt = date.fromisoformat(dump_rec_str[:10]).strftime("%d.%m.%Y")
+            except Exception:
+                dump_rec_fmt = dump_rec_str
+
+            dump_month = None
+            try:
+                dump_month = date.fromisoformat(dump_chk_str[:10]).month
+            except Exception:
+                pass
+
+            matching_period_prices = []
+            for it in (horizons["standard"] + horizons["short_notice"] + horizons["early_booking"]):
+                if it.get("checkin_date"):
+                    try:
+                        im = date.fromisoformat(str(it["checkin_date"])[:10]).month
+                        if dump_month and im == dump_month:
+                            matching_period_prices.append(it["price_pln"])
+                    except Exception:
+                        pass
+            if matching_period_prices:
+                matching_period_prices.sort()
+                norm_bench = matching_period_prices[len(matching_period_prices) // 2]
+                month_names = {
+                    1: "январе", 2: "феврале", 3: "марте", 4: "апреле",
+                    5: "мае", 6: "июне", 7: "июле", 8: "августе",
+                    9: "сентябре", 10: "октябре", 11: "ноябре", 12: "декабре"
+                }
+                m_name = month_names.get(dump_month, "этот сезон")
+                norm_label = f"в {m_name}"
+            else:
+                norm_bench = active_std_price or (stats_eb["median_price_pln"] if stats_eb else dump_price * 1.3)
+                norm_label = "по сезону"
+
+            norm_bench = round(norm_bench, 0)
+            dump_savings = max(0.0, round(norm_bench - dump_price, 0))
+            dump_discount_pct = round((dump_savings / max(1.0, norm_bench)) * 100, 1)
+
+            is_record_now = bool(current_price and current_price <= dump_price + 50.0)
+
+            p_dump_fmt = f"{int(dump_price):_}".replace("_", " ")
+            p_norm_fmt = f"{int(norm_bench):_}".replace("_", " ")
+            p_sav_fmt = f"{int(dump_savings):_}".replace("_", " ")
+
+            if dump_savings >= 300 and dump_discount_pct >= 8.0:
+                narrative = (
+                    f"Этот отель можно было купить за {p_dump_fmt} zł в замере {dump_rec_fmt} "
+                    f"на дату вылета {dump_chk_fmt} (за {dump_days} дн. до рейса) "
+                    f"при средней цене {norm_label} {p_norm_fmt} zł "
+                    f"(чистая скидка -{dump_discount_pct:.0f}% / экономия {p_sav_fmt} zł)."
+                )
+            else:
+                narrative = (
+                    f"Исторический минимум отеля на горящих вылетах (0–4 дня) составлял {p_dump_fmt} zł "
+                    f"(замер {dump_rec_fmt} на дату вылета {dump_chk_fmt})."
+                )
+
+            historical_best_dump = {
+                "has_dump": True,
+                "price_pln": dump_price,
+                "checkin_date": dump_chk_str,
+                "checkin_date_formatted": dump_chk_fmt,
+                "recorded_at": dump_rec_str,
+                "recorded_at_formatted": dump_rec_fmt,
+                "days_before": dump_days,
+                "airport": dump_apt,
+                "benchmark_norm_pln": norm_bench,
+                "savings_pln": dump_savings,
+                "discount_pct": dump_discount_pct,
+                "is_record_now": is_record_now,
+                "narrative": narrative,
+            }
+
         return {
             "available": True,
             "hotel_id": clean_hotel_id,
@@ -730,6 +817,7 @@ class HorizonArbitrageService:
             },
             "direct_comparison": direct_comparison,
             "departure_price_story": departure_price_story,
+            "historical_best_dump": historical_best_dump,
             "all_time_min_pln": round(all_time_min, 0) if all_time_min != float("inf") else None,
             "verdict": verdict,
         }
