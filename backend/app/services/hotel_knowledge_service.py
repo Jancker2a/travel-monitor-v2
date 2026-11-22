@@ -93,26 +93,32 @@ class HotelKnowledgeService:
         if clean_target in cache:
             return cache[clean_target]
 
-        # Normalized search
+        # Normalized exact clean match
         for k, val in cache.items():
             clean_k = cls._clean_key(k)
-            if clean_k and (clean_k == clean_target or clean_k in clean_target or clean_target in clean_k):
+            if clean_k and clean_k == clean_target:
                 return val
 
-        # Core token overlap matching (handles variations like "Parrotel Lagoon Waterpark Resort" vs "Parrotel Lagoon Resort")
+        # Core token overlap matching with strict semantic and identity preservation
         def _get_core_tokens(name: str) -> set:
             n = re.sub(r"\(ex[^\)]+\)", "", name, flags=re.IGNORECASE)
             n = re.split(r"\b(egipt|turcja|grecja|cypr|bułgaria|hiszpania)\b", n, flags=re.IGNORECASE)[0]
             toks = set(re.findall(r"[a-z0-9а-я]+", n.lower()))
+            # Only remove purely generic hotel taxonomy words.
+            # NEVER remove differentiating features: aqua, park, waterpark, beach, palace, club, etc.
             stopwords = {
-                "hotel", "resort", "resorts", "spa", "and", "the", "park",
-                "aquapark", "waterpark", "aqua", "beach", "club", "village",
-                "suites", "palace", "inn", "ex", "deluxe", "grand"
+                "hotel", "resort", "resorts", "spa", "and", "the", "ex", "inn", "a", "an", "of"
             }
             core = toks - stopwords
             return core if len(core) >= 1 else toks
 
         target_core = _get_core_tokens(target_name)
+        has_aqua_t = bool(re.search(r"\b(aqua|aquapark|waterpark|water|slide|neverland|splash|аква)\b", target_name, re.I))
+        has_palace_t = bool(re.search(r"\b(palace)\b", target_name, re.I))
+        has_beach_t = bool(re.search(r"\b(beach)\b", target_name, re.I))
+        has_hrg_t = "hurghada" in target_name.lower() or "хургад" in target_name.lower()
+        has_ssh_t = "sharm" in target_name.lower() or "шарм" in target_name.lower()
+
         if target_core:
             best_val = None
             best_score = 0.0
@@ -120,14 +126,40 @@ class HotelKnowledgeService:
                 k_core = _get_core_tokens(k)
                 if not k_core:
                     continue
+
+                has_aqua_k = bool(re.search(r"\b(aqua|aquapark|waterpark|water|slide|neverland|splash|аква)\b", k, re.I))
+                has_palace_k = bool(re.search(r"\b(palace)\b", k, re.I))
+                has_beach_k = bool(re.search(r"\b(beach)\b", k, re.I))
+                has_hrg_k = "hurghada" in k.lower() or "хургад" in k.lower()
+                has_ssh_k = "sharm" in k.lower() or "шарм" in k.lower()
+
+                # Guard 1: Geographic conflict (Hurghada vs Sharm)
+                if (has_hrg_t and has_ssh_k) or (has_ssh_t and has_hrg_k):
+                    continue
+
+                # Guard 2: Aquatic mismatch (Aqua park hotel cannot match non-aqua hotel and vice versa)
+                if has_aqua_t != has_aqua_k:
+                    continue
+
+                # Guard 3: Palace vs Non-palace if one is aqua or beach
+                if has_palace_t != has_palace_k and (has_aqua_t or has_beach_t):
+                    continue
+
                 overlap = target_core & k_core
                 if not overlap:
                     continue
-                score = len(overlap) / max(len(target_core), len(k_core))
-                if score > best_score and (overlap == target_core or overlap == k_core or len(overlap) >= 2):
+
+                # Multi-token overlap requirement: prevent single brand token (e.g. {'pickalbatros'}) from falsely matching
+                min_overlap = 1 if (len(target_core) == 1 and len(k_core) == 1) else 2
+                if len(overlap) < min_overlap:
+                    continue
+
+                score = (2.0 * len(overlap)) / (len(target_core) + len(k_core))
+                if score > best_score and score >= 0.55:
                     best_score = score
                     best_val = val
-            if best_val and best_score >= 0.5:
+
+            if best_val:
                 return best_val
 
         return None
@@ -204,7 +236,10 @@ class HotelKnowledgeService:
         has_aquapark = (
             passport.get("has_aquapark")
             if "has_aquapark" in passport
-            else bool(specs.get("aquapark") or "aqua" in hotel_name.lower())
+            else bool(
+                specs.get("aquapark")
+                or re.search(r"\b(aqua|aquapark|waterpark|water|slide|neverland|splash|fun city|аква)\b", hotel_name, re.I)
+            )
         )
         has_heated_pools = (
             passport.get("has_heated_pools")
@@ -329,6 +364,29 @@ class HotelKnowledgeService:
                     "distance": f"Ориентировочное время трансфера из аэропорта: ~{transfer_min} минут",
                 },
             }
+
+        # Sanity validation on infra_rich:
+        if isinstance(infra_rich, dict):
+            pools_block = dict(infra_rich.get("pools", {}) if isinstance(infra_rich.get("pools"), dict) else {})
+            aq_text = str(pools_block.get("aquapark", ""))
+
+            # Strict Aquapark Sanity:
+            # If the hotel has an aquapark, never display canned "2 водные горки" or "отсутствуют"
+            if has_aquapark:
+                if "2 водные горки" in aq_text or "отсутствуют" in aq_text.lower():
+                    slides_cnt = specs.get("slides_total") or 8
+                    pools_block["aquapark"] = f"Собственный аквапарк ({slides_cnt} водных горок для взрослых и детей)"
+                    infra_rich["pools"] = pools_block
+
+            # Strict Beach Line Sanity:
+            # If hotel is on 2nd or 3rd line, beach description must never state "1-я линия"
+            beach_block = dict(infra_rich.get("beach", {}) if isinstance(infra_rich.get("beach"), dict) else {})
+            if beach_block:
+                if beach_line >= 2 and "1-я линия" in str(beach_block.get("line", "")):
+                    dist_txt = f"~{specs.get('beach_distance_meters', 500)} м" if specs.get("beach_distance_meters") else "300–600 м"
+                    shuttle_txt = ", регулярный шаттл на пляж" if specs.get("shuttle_bus") != "none" else ""
+                    beach_block["line"] = f"{beach_line}-я линия ({dist_txt}, через променад или дорогу{shuttle_txt})"
+                    infra_rich["beach"] = beach_block
 
         ai_hotel_summary = passport.get("ai_hotel_summary") or verdict
 
