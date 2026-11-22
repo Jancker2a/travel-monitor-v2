@@ -592,12 +592,96 @@ class DashboardAlertService:
             except Exception as e:
                 logger.warning(f"Could not compute historic lows for digest: {e}")
 
+        # 5. Last Minute Flash Section (Urgent departures in the next 0..4 days, isolated from standard horizon)
+        last_minute_deals = []
+        try:
+            today_d = datetime.now(timezone.utc).date()
+            max_lm_d = today_d + timedelta(days=5)
+            lm_query = text("""
+                WITH urgent_candidates AS (
+                    SELECT 
+                        h.hotel_id,
+                        h.display_name,
+                        h.country,
+                        h.region,
+                        h.stars,
+                        h.ta_rating,
+                        ps.total_price_pln,
+                        oc.destination_code,
+                        oc.checkin_date,
+                        oc.duration_nights,
+                        oc.airport_code,
+                        oc.adults,
+                        oc.children,
+                        oc.filter_id,
+                        oc.offer_url,
+                        COALESCE(fm.title, oc.filter_id, '') as filter_title,
+                        ROW_NUMBER() OVER(PARTITION BY oc.hotel_id ORDER BY ps.total_price_pln ASC) as hotel_rn
+                    FROM price_snapshots ps
+                    JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+                    JOIN hotels h ON oc.hotel_id = h.hotel_id
+                    LEFT JOIN filter_monitors fm ON oc.filter_id = fm.id
+                    WHERE ps.recorded_at >= :cutoff_dt
+                      AND oc.checkin_date >= :today_d
+                      AND oc.checkin_date <= :max_lm_d
+                      AND (h.stars >= 4 OR COALESCE(h.ta_rating, 0) >= 4.0)
+                )
+                SELECT 
+                    hotel_id, display_name, country, region, stars, ta_rating,
+                    total_price_pln, destination_code, checkin_date, duration_nights,
+                    airport_code, adults, children, filter_id, offer_url, filter_title
+                FROM urgent_candidates
+                WHERE hotel_rn = 1
+                ORDER BY destination_code ASC, total_price_pln ASC
+                LIMIT :limit
+            """)
+            lm_res = await db.execute(lm_query, {
+                "cutoff_dt": cutoff_dt,
+                "today_d": today_d,
+                "max_lm_d": max_lm_d,
+                "limit": max_offers * 2
+            })
+            for r in lm_res.fetchall():
+                h_id = r[0]
+                dest = r[7] or "other"
+                stars = int(r[4] or 4)
+                ta = float(r[5]) if r[5] else None
+                score = 95 if ta and ta >= 4.5 else (90 if stars >= 5 else 86)
+                f_id = str(r[13] or "")
+                f_url = str(r[14] or "")
+                f_title = str(r[15] or "")
+                ad, ch = normalize_pax(int(r[11] or 2), int(r[12] or 0), filter_id=f_id, filter_title=f_title, offer_url=f_url)
+                last_minute_deals.append({
+                    "hotel_id": h_id,
+                    "hotel_name": r[1],
+                    "country": r[2] or "",
+                    "region": r[3] or "",
+                    "stars": stars,
+                    "ta_rating": ta,
+                    "price_pln": float(r[6]),
+                    "deal_score": score,
+                    "destination_code": dest,
+                    "checkin_date": str(r[8]),
+                    "duration_nights": int(r[9] or 7),
+                    "airport_code": str(r[10] or ""),
+                    "adults": ad,
+                    "children": ch,
+                    "filter_id": f_id,
+                    "offer_url": f_url,
+                    "filter_title": f_title,
+                })
+                if len(last_minute_deals) >= max_offers:
+                    break
+        except Exception as e:
+            logger.warning(f"Could not compute last-minute flash deals for digest: {e}")
+
         return {
             "success": True,
             "watchlist_items": watchlist_items,
             "top_drops": top_drops,
             "hot_deals": hot_deals,
             "historic_lows": historic_lows,
+            "last_minute_deals": last_minute_deals,
             "max_offers": max_offers,
         }
 
@@ -626,6 +710,7 @@ class DashboardAlertService:
             top_drops=payload["top_drops"],
             hot_deals=payload["hot_deals"],
             historic_lows=payload["historic_lows"],
+            last_minute_deals=payload.get("last_minute_deals", []),
             max_offers=payload["max_offers"],
             is_test=True,
         )
@@ -695,6 +780,7 @@ class DashboardAlertService:
                 top_drops=payload["top_drops"],
                 hot_deals=payload["hot_deals"],
                 historic_lows=payload["historic_lows"],
+                last_minute_deals=payload.get("last_minute_deals", []),
                 max_offers=payload["max_offers"],
                 is_test=False,
             )

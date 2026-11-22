@@ -374,6 +374,7 @@ class TelegramService:
         top_drops: list,
         hot_deals: list,
         historic_lows: list,
+        last_minute_deals: Optional[list] = None,
         max_offers: int = 5,
         is_test: bool = False,
     ) -> Dict[str, Any]:
@@ -468,12 +469,23 @@ class TelegramService:
                 score = item.get("deal_score") or 88
                 price_line = f"  💰 <b>{price_str}</b> ({ppn_str}) • Deal Score: <b>{score}/100</b> 🔥"
 
+            elif kind == "last_minute":
+                score = item.get("deal_score") or 90
+                price_line = f"  ⚡ <b>{price_str}</b> ({ppn_str}) • срочный вылет {dep_date}! (Score: <b>{score}</b>) 🔥"
+
             elif kind == "historic_low":
                 price_line = f"  💰 <b>{price_str}</b> ({ppn_str}) — <i>абсолютный ценовой рекорд!</i> 🏆"
             else:
                 price_line = f"  💰 <b>{price_str}</b> ({ppn_str})"
 
             return f"{title_line}\n{subline}\n{price_line}{filter_line}"
+
+        # 0. Last Minute Flash Section (Urgent departures in 0..4 days)
+        if last_minute_deals:
+            sections.append("⚡ <b>Горящие вылеты (ближайшие 72–96 часов):</b>")
+            for deal in last_minute_deals[:max_offers]:
+                sections.append(format_card(deal, "last_minute"))
+            sections.append("")
 
         # 1. Watchlist Section
         if watchlist_items:

@@ -100,6 +100,16 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       ],
     },
     {
+      group: "⚡ Горящие туры (0–4 дня)",
+      icon: "⚡",
+      items: [
+        { id: "lastminute_turkey_0_4", title: "🇹🇷 Турция (0–4 дня)", badge: "Flash" },
+        { id: "lastminute_egypt_0_4", title: "🇪🇬 Египет (0–4 дня)", badge: "Flash" },
+        { id: "lastminute_greece_0_4", title: "🇬🇷 Греция (0–4 дня)", badge: "Flash" },
+        { id: "lastminute_cyprus_0_4", title: "🇨🇾 Кипр (0–4 дня)", badge: "Flash" },
+      ],
+    },
+    {
       group: "📏 Эталоны (1 взр • вылеты на 3 нед)",
       icon: "📏",
       items: [
