@@ -216,7 +216,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const dynamicPartyLabel = userAdults === 1 && !userChildren ? "1 взр" : (`${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : ""));
 
     // Deduplicate timestamps to prevent duplicate x-axis points
-    const uniqueMap = new Map<string, { price: number; perNightPax: number }>();
+    const uniqueMap = new Map<string, { price: number; perNightPax: number; depDate?: string; airport?: string; nights?: number }>();
     const totalPax = Math.max(1, resolvedAdults + resolvedChildren);
     history.forEach((pt) => {
       const isExactParty = pt.adults === resolvedAdults && (pt.children || 0) === resolvedChildren;
@@ -225,16 +225,40 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       uniqueMap.set(pt.recorded_at, {
         price: p,
         perNightPax: perNight,
+        depDate: pt.departure_date ? String(pt.departure_date).split("T")[0] : undefined,
+        airport: pt.airport || undefined,
+        nights: pt.duration_nights || resolvedNights,
       });
     });
 
     const xVals: string[] = [];
     const yVals: number[] = [];
-    const customData: number[] = [];
+    const customData: any[] = [];
     uniqueMap.forEach((val, key) => {
       xVals.push(key);
       yVals.push(val.price);
-      customData.push(val.perNightPax);
+      let depDateFormatted = "—";
+      if (val.depDate) {
+        try {
+          const parts = val.depDate.split("-");
+          if (parts.length === 3) {
+            const months = ["янв", "февр", "мар", "апр", "мая", "июн", "июл", "авг", "сент", "окт", "нояб", "дек"];
+            const mIdx = parseInt(parts[1], 10) - 1;
+            const day = parseInt(parts[2], 10);
+            depDateFormatted = `${day} ${months[mIdx] || parts[1]} (${val.depDate})`;
+          } else {
+            depDateFormatted = val.depDate;
+          }
+        } catch {
+          depDateFormatted = val.depDate;
+        }
+      }
+      const aptPart = val.airport ? ` • ${val.airport}` : "";
+      const nightsPart = val.nights ? ` • ${val.nights}н` : "";
+      customData.push([
+        val.perNightPax,
+        `${depDateFormatted}${nightsPart}${aptPart}`,
+      ]);
     });
 
     const isReferenceActive = resolvedChartSource === "reference";
@@ -263,7 +287,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         color: isReferenceActive ? "#047857" : "#0369a1",
       },
       hovertemplate:
-        "<b>%{y:,.0f} zł</b> (Цена тура)<br>~%{customdata:,.0f} zł / чел / ночь<br>%{x|%d.%m %H:%M}<extra></extra>",
+        "<b>%{y:,.0f} zł</b> (Цена тура)<br>" +
+        "🛫 Вылет: <b>%{customdata[1]}</b><br>" +
+        "~%{customdata[0]:,.0f} zł / чел / ночь<br>" +
+        "📅 Замер: %{x|%d.%m %H:%M}<extra></extra>",
     };
 
     const pVals = yVals.length ? yVals : [passport.current_price_pln];
@@ -1308,6 +1335,63 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                             <span style={{ fontSize: "14px", lineHeight: 1 }}>ℹ️</span>
                             <div>
                               <strong>Учёт сезонности дат:</strong> {passport.horizon_arbitrage.verdict.season_note}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Live Direct Comparison: Hot vs Upcoming Regular Flight */}
+                        {passport.horizon_arbitrage.direct_comparison && (
+                          <div
+                            style={{
+                              background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#fffbeb" : "#ecfdf5",
+                              border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f59e0b" : "#10b981"}`,
+                              borderRadius: "10px",
+                              padding: "10px 14px",
+                              marginBottom: "12px",
+                            }}
+                          >
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "6px" }}>
+                              <div style={{ display: "flex", alignItems: "center", gap: "6px", fontWeight: 700, fontSize: "12px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#b45309" : "#047857" }}>
+                                <span>{passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "⚠️ Регулярный вылет выгоднее горящего!" : "🔥 Реальная выгода горящего вылета"}</span>
+                              </div>
+                              <span style={{ fontSize: "11px", fontWeight: 800, background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#fef3c7" : "#d1fae5", padding: "2px 8px", borderRadius: "12px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#92400e" : "#065f46" }}>
+                                {passport.horizon_arbitrage.direct_comparison.is_std_cheaper
+                                  ? `Разница: +${Math.abs(passport.horizon_arbitrage.direct_comparison.price_diff_pln)} zł (наценка)`
+                                  : `Экономия: -${Math.abs(passport.horizon_arbitrage.direct_comparison.price_diff_pln)} zł`}
+                              </span>
+                            </div>
+
+                            {/* Side-by-side comparison grid */}
+                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "8px" }}>
+                              <div style={{ background: "#ffffff", padding: "8px 10px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+                                <div style={{ fontSize: "10px", color: "#64748b", fontWeight: 600 }}>⚡ Горящий тур (срочный вылет):</div>
+                                <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309" }}>
+                                  {passport.horizon_arbitrage.direct_comparison.hot_offer.price_pln.toLocaleString("ru-RU")} zł
+                                </div>
+                                <div style={{ fontSize: "10.5px", color: "#475569", marginTop: "2px" }}>
+                                  🛫 {passport.horizon_arbitrage.direct_comparison.hot_offer.checkin_date || "—"}
+                                  {passport.horizon_arbitrage.direct_comparison.hot_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.hot_offer.airport})` : ""}
+                                </div>
+                              </div>
+
+                              <div style={{ background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f0fdf4" : "#ffffff", padding: "8px 10px", borderRadius: "8px", border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#22c55e" : "#e2e8f0"}` }}>
+                                <div style={{ fontSize: "10px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#64748b", fontWeight: 700, display: "flex", justifyContent: "space-between" }}>
+                                  <span>📅 Ближайший стандартный рейс:</span>
+                                  {passport.horizon_arbitrage.direct_comparison.is_std_cheaper && <span>★ Выгоднее</span>}
+                                </div>
+                                <div style={{ fontSize: "14px", fontWeight: 800, color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#166534" : "#1e293b" }}>
+                                  {passport.horizon_arbitrage.direct_comparison.standard_offer.price_pln.toLocaleString("ru-RU")} zł
+                                </div>
+                                <div style={{ fontSize: "10.5px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#475569", marginTop: "2px" }}>
+                                  🛫 {passport.horizon_arbitrage.direct_comparison.standard_offer.checkin_date || "—"}
+                                  {passport.horizon_arbitrage.direct_comparison.standard_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.standard_offer.airport})` : ""}
+                                  {passport.horizon_arbitrage.direct_comparison.days_gap ? ` (через ${passport.horizon_arbitrage.direct_comparison.days_gap} дн.)` : ""}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div style={{ fontSize: "11px", color: "#334155", lineHeight: 1.4 }}>
+                              💡 <strong>Вывод:</strong> {passport.horizon_arbitrage.direct_comparison.summary}
                             </div>
                           </div>
                         )}

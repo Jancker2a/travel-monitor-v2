@@ -282,6 +282,31 @@ export interface HorizonArbitrageData {
     last_minute?: HorizonStat | null;
   };
   all_time_min_pln?: number;
+  direct_comparison?: {
+    has_comparison: boolean;
+    is_hot_cheaper: boolean;
+    is_std_cheaper: boolean;
+    price_diff_pln: number;
+    diff_pct: number;
+    days_gap?: number | null;
+    hot_offer: {
+      price_pln: number;
+      checkin_date?: string | null;
+      airport?: string | null;
+    };
+    standard_offer: {
+      price_pln: number;
+      checkin_date?: string | null;
+      airport?: string | null;
+    };
+    early_booking_offer?: {
+      price_pln: number;
+      departure_dates_label?: string | null;
+      season_label?: string | null;
+      is_same_season?: boolean;
+    } | null;
+    summary: string;
+  } | null;
   verdict?: {
     perspective: "LAST_MINUTE" | "REGULAR_OR_EARLY";
     type: string;

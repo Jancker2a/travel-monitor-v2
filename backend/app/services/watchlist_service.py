@@ -68,9 +68,12 @@ def _smart_hotel_tokens(title: str) -> str:
     n = re.sub(resort_pattern, " ", n, flags=re.I)
     n = re.sub(r"[^\w\s]", " ", n.lower())
     n = n.replace("pickalbatros", "albatros")
+    # Normalize common waterpark spellings
+    n = re.sub(r"\b(aquapark|waterpark|akwapark)\b", " ", n)
     stop = {
         "hotel", "hotels", "resort", "resorts", "spa", "beach", "club",
-        "palace", "deluxe", "aqua", "park", "the", "and", "di", "ex", "inn", "suites", "village", "residences"
+        "palace", "deluxe", "aqua", "park", "aquapark", "waterpark", "akwapark",
+        "the", "and", "di", "ex", "inn", "suites", "village", "residences"
     }
     tokens = [t for t in n.split() if len(t) > 1 and t not in stop]
     return " ".join(sorted(tokens)) if tokens else title.strip().lower()
@@ -1527,6 +1530,7 @@ class WatchlistService:
                 duration_nights=target_nights,
                 checkin_date=target_dep_date,
                 current_price=curr_p,
+                related_hotel_ids=related_hotel_ids,
             )
         except Exception as ha_err:
             logger.warning(f"Could not compute horizon arbitrage for {hotel.hotel_id}: {ha_err}")
