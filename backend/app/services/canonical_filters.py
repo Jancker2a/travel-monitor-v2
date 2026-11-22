@@ -453,6 +453,20 @@ def resolve_filter_spec(filter_id: Optional[str]) -> Optional[Dict[str, Any]]:
     for k, spec in CANONICAL_FILTERS.items():
         if k.replace("filter_", "") == key_clean:
             return spec
+        if any(dc.lower().replace("filter_", "") == key_clean for dc in spec.get("destination_codes", [])):
+            return spec
+        title_lower = spec.get("title", "").lower()
+        if key_clean in title_lower or title_lower in key_clean:
+            return spec
+        # Smart keyword matching
+        if "кипр" in key_clean and ("7-10" in key_clean or "7–10" in key_clean) and "cyprus_7_10" in k:
+            return spec
+        if "турция" in key_clean and ("7-10" in key_clean or "7–10" in key_clean) and "turkey_7_10" in k:
+            return spec
+        if "египет" in key_clean and ("7-10" in key_clean or "7–10" in key_clean) and "egypt_7_10" in k:
+            return spec
+        if "греция" in key_clean and ("7-10" in key_clean or "7–10" in key_clean) and "greece_7_10" in k:
+            return spec
     return None
 
 

@@ -56,6 +56,7 @@ import { FILTER_PRESETS } from "./constants/presets";
 const INITIAL_FILTERS: FilterState = {
   search: "",
   priceMax: "",
+  stars: "",
   recommendation: "",
   tripAdvisor: "",
   change: "",
@@ -757,6 +758,15 @@ export const App: React.FC = () => {
         }
       } else if (activeTab === "filter" && currentPreset?.displayPriceCeiling) {
         if (h.current_offer.total_price_pln > currentPreset.displayPriceCeiling) return false;
+      }
+
+      // Stars rating filter
+      if (tableFilters.stars) {
+        const s = Number(h.stars) || 0;
+        if (tableFilters.stars === "5" && s !== 5) return false;
+        if (tableFilters.stars === "4+" && s < 4) return false;
+        if (tableFilters.stars === "4" && s !== 4) return false;
+        if (tableFilters.stars === "3" && s !== 3) return false;
       }
 
       // Recommendation

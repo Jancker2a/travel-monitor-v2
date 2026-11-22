@@ -4,6 +4,7 @@ import { Search, Star, RotateCcw, LayoutGrid, Table, Globe, BellRing, Radio, Che
 export interface FilterState {
   search: string;
   priceMax: string;
+  stars?: string;
   recommendation: string;
   tripAdvisor: string;
   change: string;
@@ -149,6 +150,23 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
               <option value="18000">до 18 000 zł</option>
               <option value="25000">до 25 000 zł</option>
               <option value="50000">до 50 000 zł</option>
+            </select>
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
+
+          {/* Stars Filter */}
+          <div className="relative shrink-0">
+            <select
+              id="starsFilter"
+              value={filters.stars || ""}
+              onChange={(e) => onFilterChange({ ...filters, stars: e.target.value })}
+              className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+            >
+              <option value="">Все категории ★</option>
+              <option value="5">⭐⭐⭐⭐⭐ Только 5★</option>
+              <option value="4+">⭐⭐⭐⭐ 4★ и 5★</option>
+              <option value="4">⭐⭐⭐⭐ Только 4★</option>
+              <option value="3">⭐⭐⭐ 3★</option>
             </select>
             <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
