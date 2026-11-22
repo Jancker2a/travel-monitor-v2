@@ -759,6 +759,72 @@ class HorizonArbitrageService:
 
                 verdict_text = ", ".join(story_parts) + " " + conclusion
 
+                # Construct chronological timeline steps for clean visual cards
+                timeline_steps = []
+                prev_price = None
+
+                if eb_stage:
+                    p = eb_stage["price_pln"]
+                    timeline_steps.append({
+                        "key": "early_booking",
+                        "title": "🏷️ Раннее",
+                        "days_label": f"За {eb_stage['days_before']} дн.",
+                        "checkin_date": eb_stage["checkin_date"].strftime("%d.%m.%Y"),
+                        "price_pln": p,
+                        "delta_prev_pln": None,
+                        "delta_prev_pct": None,
+                        "is_current": False,
+                    })
+                    prev_price = p
+
+                if month_stage:
+                    p = month_stage["price_pln"]
+                    d_pln = round(p - prev_price, 0) if prev_price is not None else None
+                    d_pct = round((d_pln / prev_price) * 100, 1) if (prev_price and d_pln is not None) else None
+                    timeline_steps.append({
+                        "key": "month_before",
+                        "title": "📅 За 3–4 нед.",
+                        "days_label": f"За {month_stage['days_before']} дн.",
+                        "checkin_date": month_stage["checkin_date"].strftime("%d.%m.%Y"),
+                        "price_pln": p,
+                        "delta_prev_pln": d_pln,
+                        "delta_prev_pct": d_pct,
+                        "is_current": False,
+                    })
+                    prev_price = p
+
+                if short_stage and (not month_stage or abs(short_stage["price_pln"] - month_stage["price_pln"]) > 50):
+                    p = short_stage["price_pln"]
+                    d_pln = round(p - prev_price, 0) if prev_price is not None else None
+                    d_pct = round((d_pln / prev_price) * 100, 1) if (prev_price and d_pln is not None) else None
+                    timeline_steps.append({
+                        "key": "two_weeks_before",
+                        "title": "⏳ За 1–2 нед.",
+                        "days_label": f"За {short_stage['days_before']} дн.",
+                        "checkin_date": short_stage["checkin_date"].strftime("%d.%m.%Y"),
+                        "price_pln": p,
+                        "delta_prev_pln": d_pln,
+                        "delta_prev_pct": d_pct,
+                        "is_current": False,
+                    })
+                    prev_price = p
+
+                p_lm = lm_stage["price_pln"]
+                d_lm_pln = round(p_lm - prev_price, 0) if prev_price is not None else None
+                d_lm_pct = round((d_lm_pln / prev_price) * 100, 1) if (prev_price and d_lm_pln is not None) else None
+                timeline_steps.append({
+                    "key": "last_minute",
+                    "title": "⚡ Горящий (сейчас)",
+                    "days_label": f"За {lm_stage['days_before']} дн.",
+                    "checkin_date": lm_stage["checkin_date"].strftime("%d.%m.%Y"),
+                    "price_pln": p_lm,
+                    "delta_prev_pln": d_lm_pln,
+                    "delta_prev_pct": d_lm_pct,
+                    "is_current": True,
+                })
+
+                clean_conclusion = conclusion.lstrip("— ").strip()
+
                 departure_price_story = {
                     "has_story": True,
                     "target_checkin_date": target_dep_date.strftime("%Y-%m-%d"),
@@ -791,6 +857,8 @@ class HorizonArbitrageService:
                             "is_exact_date_match": lm_stage.get("is_exact_date", True),
                         },
                     },
+                    "timeline_steps": timeline_steps,
+                    "conclusion": clean_conclusion,
                     "verdict_text": verdict_text,
                 }
 

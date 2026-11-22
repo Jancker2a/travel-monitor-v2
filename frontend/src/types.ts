@@ -347,6 +347,17 @@ export interface HorizonArbitrageData {
       };
     };
     verdict_text: string;
+    conclusion?: string;
+    timeline_steps?: Array<{
+      key: string;
+      title: string;
+      days_label: string;
+      checkin_date: string;
+      price_pln: number;
+      delta_prev_pln?: number | null;
+      delta_prev_pct?: number | null;
+      is_current: boolean;
+    }>;
   } | null;
   historical_best_dump?: {
     has_dump: boolean;

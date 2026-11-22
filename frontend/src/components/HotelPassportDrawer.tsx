@@ -72,17 +72,17 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const fallbackAdults = is1pExplicit
       ? 1
       : (searchTravelers?.adults ??
-         filterPreset?.searchReq?.travelers?.adults ??
-         passport?.user_query_scope?.adults ??
-         hotelItem?.current_offer?.adults ??
-         2);
+        filterPreset?.searchReq?.travelers?.adults ??
+        passport?.user_query_scope?.adults ??
+        hotelItem?.current_offer?.adults ??
+        2);
     const fallbackChildren = is1pExplicit
       ? 0
       : (searchTravelers?.children ??
-         filterPreset?.searchReq?.travelers?.children ??
-         passport?.user_query_scope?.children ??
-         hotelItem?.current_offer?.children ??
-         0);
+        filterPreset?.searchReq?.travelers?.children ??
+        passport?.user_query_scope?.children ??
+        hotelItem?.current_offer?.children ??
+        0);
     const fallbackNights =
       hotelItem?.current_offer?.duration_nights ??
       filterPreset?.searchReq?.duration?.min_nights ??
@@ -90,23 +90,23 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
     const hints = hotelItem
       ? {
-          name: hotelItem.hotel_name,
-          stars: hotelItem.stars,
-          country: hotelItem.country,
-          region: hotelItem.region,
-          current_price: hotelItem.current_offer?.total_price_pln,
-          ta_rating: hotelItem.ta_rating,
-          main_image_url: hotelItem.main_image_url,
-          adults: fallbackAdults,
-          children: fallbackChildren,
-          duration_nights: fallbackNights,
-          departure_date: hotelItem.current_offer?.departure_date,
-        }
+        name: hotelItem.hotel_name,
+        stars: hotelItem.stars,
+        country: hotelItem.country,
+        region: hotelItem.region,
+        current_price: hotelItem.current_offer?.total_price_pln,
+        ta_rating: hotelItem.ta_rating,
+        main_image_url: hotelItem.main_image_url,
+        adults: fallbackAdults,
+        children: fallbackChildren,
+        duration_nights: fallbackNights,
+        departure_date: hotelItem.current_offer?.departure_date,
+      }
       : {
-          adults: fallbackAdults,
-          children: fallbackChildren,
-          duration_nights: fallbackNights,
-        };
+        adults: fallbackAdults,
+        children: fallbackChildren,
+        duration_nights: fallbackNights,
+      };
 
     getHotelPassport(hotelId, filterId || undefined, hints)
       .then((data) => setPassport(data))
@@ -124,18 +124,18 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const resolvedAdults = is1pExplicit
     ? 1
     : (searchTravelers?.adults ??
-       filterPreset?.searchReq?.travelers?.adults ??
-       passport?.user_query_scope?.adults ??
-       hotelItem?.current_offer?.adults ??
-       2);
+      filterPreset?.searchReq?.travelers?.adults ??
+      passport?.user_query_scope?.adults ??
+      hotelItem?.current_offer?.adults ??
+      2);
 
   const resolvedChildren = is1pExplicit
     ? 0
     : (searchTravelers?.children ??
-       filterPreset?.searchReq?.travelers?.children ??
-       passport?.user_query_scope?.children ??
-       hotelItem?.current_offer?.children ??
-       0);
+      filterPreset?.searchReq?.travelers?.children ??
+      passport?.user_query_scope?.children ??
+      hotelItem?.current_offer?.children ??
+      0);
 
   const resolvedNights =
     hotelItem?.current_offer?.duration_nights ||
@@ -267,8 +267,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const traceName = isReferenceActive
       ? `Канонический радар (${dynamicPartyLabel} • ${userNights}н, 1:1)`
       : isCustomActive
-      ? `${customHistoryTitle} (${dynamicPartyLabel} • ${userNights}н)`
-      : `Цена тура (${dynamicPartyLabel} • ${userNights}н)`;
+        ? `${customHistoryTitle} (${dynamicPartyLabel} • ${userNights}н)`
+        : `Цена тура (${dynamicPartyLabel} • ${userNights}н)`;
 
     const trace = {
       x: xVals,
@@ -364,8 +364,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         text: isReferenceActive
           ? `Каноническая история: ${passport.reference_history?.title || "1:1"} (${dynamicPartyLabel} • ${userNights}н)`
           : isCustomActive
-          ? `История из радара: ${customHistoryTitle} (${dynamicPartyLabel} • ${userNights}н)`
-          : `Динамика цены тура (${dynamicPartyLabel} • ${userNights} ночей, с перелётом)`,
+            ? `История из радара: ${customHistoryTitle} (${dynamicPartyLabel} • ${userNights}н)`
+            : `Динамика цены тура (${dynamicPartyLabel} • ${userNights} ночей, с перелётом)`,
         font: { size: 12.5, family: "Inter, sans-serif", color: "#0f172a" },
         x: 0.05,
       },
@@ -421,8 +421,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const photos = primaryPhoto
     ? [primaryPhoto, ...realGalleryPhotos.filter((p) => p !== primaryPhoto)]
     : realGalleryPhotos.length
-    ? realGalleryPhotos
-    : [genericPlaceholder];
+      ? realGalleryPhotos
+      : [genericPlaceholder];
 
   const handleNextPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -438,7 +438,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const minPrice = hotelItem?.intelligence?.historic_min_pln || passport?.all_time_min_pln || 0;
   const maxPrice = passport?.all_time_max_pln || 0;
 
-// rangeStats uses resolvedAdults and resolvedChildren
+  // rangeStats uses resolvedAdults and resolvedChildren
 
   // Dynamic values depending on active filter range (7d / 30d / all)
   const rangeStats = useMemo(() => {
@@ -531,24 +531,24 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const verdictBadgeText = isBudgetQuality
     ? "🟡 БЮДЖЕТ"
     : isBuySignal
-    ? "🟢 ПОКУПАТЬ"
-    : isOverpricedSignal
-    ? "🔴 ДОРОГО"
-    : "↔ СТАБИЛЬНО";
+      ? "🟢 ПОКУПАТЬ"
+      : isOverpricedSignal
+        ? "🔴 ДОРОГО"
+        : "↔ СТАБИЛЬНО";
   const verdictBadgeBg = isBudgetQuality
     ? "#fef9c3"
     : isBuySignal
-    ? "#ecfdf5"
-    : isOverpricedSignal
-    ? "#fef2f2"
-    : "#f1f5f9";
+      ? "#ecfdf5"
+      : isOverpricedSignal
+        ? "#fef2f2"
+        : "#f1f5f9";
   const verdictBadgeColor = isBudgetQuality
     ? "#854d0e"
     : isBuySignal
-    ? "#065f46"
-    : isOverpricedSignal
-    ? "#991b1b"
-    : "#334155";
+      ? "#065f46"
+      : isOverpricedSignal
+        ? "#991b1b"
+        : "#334155";
 
   return (
     <>
@@ -605,11 +605,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 type="button"
                 onClick={onToggleWatchlist}
                 id="drawerHeaderFavBtn"
-                className={`px-3 py-1.5 rounded-lg border text-[12.5px] font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  isWatched
-                    ? "bg-amber-500 hover:bg-amber-600 text-white border-amber-600 shadow-xs"
-                    : "bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-600 border-slate-200"
-                }`}
+                className={`px-3 py-1.5 rounded-lg border text-[12.5px] font-bold flex items-center gap-1.5 transition-all cursor-pointer ${isWatched
+                  ? "bg-amber-500 hover:bg-amber-600 text-white border-amber-600 shadow-xs"
+                  : "bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-600 border-slate-200"
+                  }`}
                 title={isWatched ? "Удалить из избранного" : "Добавить в избранное"}
               >
                 <Star className={`w-3.5 h-3.5 ${isWatched ? "fill-white text-white" : "text-amber-500 fill-amber-400"}`} />
@@ -876,10 +875,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           (isBudgetQuality
                             ? "Следить за ценой (эконом-класс)"
                             : isBuySignal
-                            ? "Покупать сейчас"
-                            : isOverpricedSignal
-                            ? "Ждать снижения"
-                            : "Следить за ценой")}
+                              ? "Покупать сейчас"
+                              : isOverpricedSignal
+                                ? "Ждать снижения"
+                                : "Следить за ценой")}
                       </span>
                     </div>
                   </div>
@@ -1058,7 +1057,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   try {
                     const d = new Date(depStr);
                     targetMonthLabel = d.toLocaleString("ru-RU", { month: "short" });
-                  } catch {}
+                  } catch { }
                 }
 
                 return (
@@ -1071,15 +1070,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                             passport.ai_insight.diff_to_norm_pct < -5
                               ? "linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%)"
                               : passport.ai_insight.diff_to_norm_pct > 8
-                              ? "linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%)"
-                              : "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
-                          border: `1px solid ${
-                            passport.ai_insight.diff_to_norm_pct < -5
-                              ? "#bbf7d0"
-                              : passport.ai_insight.diff_to_norm_pct > 8
+                                ? "linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%)"
+                                : "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
+                          border: `1px solid ${passport.ai_insight.diff_to_norm_pct < -5
+                            ? "#bbf7d0"
+                            : passport.ai_insight.diff_to_norm_pct > 8
                               ? "#fecaca"
                               : "#e2e8f0"
-                          }`,
+                            }`,
                           borderRadius: "12px",
                           padding: "12px 16px",
                           marginBottom: "14px",
@@ -1106,8 +1104,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                   passport.ai_insight.diff_to_norm_pct < -5
                                     ? "#15803d"
                                     : passport.ai_insight.diff_to_norm_pct > 8
-                                    ? "#b91c1c"
-                                    : "#334155",
+                                      ? "#b91c1c"
+                                      : "#334155",
                               }}
                             >
                               {passport.ai_insight.headline}
@@ -1141,23 +1139,22 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                             passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
                               ? "#f0fdf4"
                               : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                              ? "#faf5ff"
-                              : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                              ? "#f8fafc"
-                              : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                              ? "#fef2f2"
-                              : "#fffbeb",
-                          border: `1px solid ${
-                            passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                              ? "#bbf7d0"
-                              : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                                ? "#faf5ff"
+                                : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                                  ? "#f8fafc"
+                                  : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                                    ? "#fef2f2"
+                                    : "#fffbeb",
+                          border: `1px solid ${passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                            ? "#bbf7d0"
+                            : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
                               ? "#e9d5ff"
                               : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                              ? "#cbd5e1"
-                              : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                              ? "#fecaca"
-                              : "#fef3c7"
-                          }`,
+                                ? "#cbd5e1"
+                                : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                                  ? "#fecaca"
+                                  : "#fef3c7"
+                            }`,
                           borderRadius: "12px",
                           padding: "16px",
                           marginBottom: "16px",
@@ -1176,12 +1173,12 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                 passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
                                   ? "#16a34a"
                                   : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                                  ? "#9333ea"
-                                  : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                                  ? "#475569"
-                                  : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                                  ? "#dc2626"
-                                  : "#d97706",
+                                    ? "#9333ea"
+                                    : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                                      ? "#475569"
+                                      : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                                        ? "#dc2626"
+                                        : "#d97706",
                               color: "#ffffff",
                               padding: "3px 10px",
                               borderRadius: "8px",
@@ -1237,15 +1234,15 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                               {passport.horizon_arbitrage.horizons?.standard
                                 ? `${passport.horizon_arbitrage.horizons.standard.median_price_pln.toLocaleString("ru-RU")} zł`
                                 : passport.horizon_arbitrage.horizons?.short_notice
-                                ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
-                                : "—"}
+                                  ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
+                                  : "—"}
                             </div>
                             <div style={{ fontSize: "10px", color: "#94a3b8" }}>
                               {passport.horizon_arbitrage.horizons?.standard
                                 ? `${passport.horizon_arbitrage.horizons.standard.count} фиксаций`
                                 : passport.horizon_arbitrage.horizons?.short_notice
-                                ? "(за 1–2 нед.)"
-                                : "нет данных"}
+                                  ? "(за 1–2 нед.)"
+                                  : "нет данных"}
                             </div>
                             {(passport.horizon_arbitrage.horizons?.standard?.departure_dates_label || passport.horizon_arbitrage.horizons?.short_notice?.departure_dates_label) && (
                               <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
@@ -1469,15 +1466,14 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                 passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
                                   ? "#f0fdf4"
                                   : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                  ? "#fff7ed"
-                                  : "#f8fafc",
-                              border: `1.5px solid ${
-                                passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
-                                  ? "#bbf7d0"
-                                  : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                    ? "#fff7ed"
+                                    : "#f8fafc",
+                              border: `1.5px solid ${passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                ? "#bbf7d0"
+                                : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
                                   ? "#fed7aa"
                                   : "#e2e8f0"
-                              }`,
+                                }`,
                               borderRadius: "10px",
                               padding: "10px 14px",
                               marginBottom: "12px",
@@ -1500,22 +1496,81 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                     passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
                                       ? "#dcfce7"
                                       : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                      ? "#ffedd5"
-                                      : "#f1f5f9",
+                                        ? "#ffedd5"
+                                        : "#f1f5f9",
                                   color:
                                     passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
                                       ? "#15803d"
                                       : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                      ? "#c2410c"
-                                      : "#475569",
+                                        ? "#c2410c"
+                                        : "#475569",
                                 }}
                               >
                                 {passport.horizon_arbitrage.departure_price_story.trajectory_badge}
                               </span>
                             </div>
 
-                            <div style={{ fontSize: "11.5px", color: "#1e293b", lineHeight: 1.55, background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
-                              {passport.horizon_arbitrage.departure_price_story.verdict_text}
+                            {/* Visual Chronology Steps Cards */}
+                            {passport.horizon_arbitrage.departure_price_story.timeline_steps && passport.horizon_arbitrage.departure_price_story.timeline_steps.length > 0 ? (
+                              <div style={{ display: "grid", gridTemplateColumns: `repeat(${passport.horizon_arbitrage.departure_price_story.timeline_steps.length}, minmax(0, 1fr))`, gap: "8px", marginBottom: "8px" }}>
+                                {passport.horizon_arbitrage.departure_price_story.timeline_steps.map((step) => {
+                                  const isRise = step.delta_prev_pln && step.delta_prev_pln > 0;
+                                  const isDrop = step.delta_prev_pln && step.delta_prev_pln < 0;
+                                  return (
+                                    <div
+                                      key={step.key}
+                                      style={{
+                                        background: step.is_current ? "#ffffff" : "#ffffff",
+                                        border: step.is_current
+                                          ? `1.5px solid ${passport?.horizon_arbitrage?.departure_price_story?.trajectory === "DEEP_DROP" ? "#10b981" : "#f59e0b"}`
+                                          : "1px solid #e2e8f0",
+                                        borderRadius: "8px",
+                                        padding: "8px 6px",
+                                        textAlign: "center",
+                                        boxShadow: step.is_current ? "0 1px 3px rgba(0,0,0,0.06)" : "none",
+                                      }}
+                                    >
+                                      <div style={{ fontSize: "10.5px", fontWeight: 700, color: step.is_current ? "#b45309" : "#475569", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                        {step.title}
+                                      </div>
+                                      <div style={{ fontSize: "9px", color: "#64748b", marginTop: "1px" }}>
+                                        {step.days_label}
+                                      </div>
+                                      <div style={{ fontSize: "8.5px", color: "#94a3b8" }}>
+                                        🛫 {step.checkin_date}
+                                      </div>
+                                      <div style={{ fontSize: "13.5px", fontWeight: 800, color: step.is_current ? "#b45309" : "#1e293b", marginTop: "4px" }}>
+                                        {step.price_pln.toLocaleString("ru-RU")} zł
+                                      </div>
+                                      {step.delta_prev_pln !== null && step.delta_prev_pln !== undefined ? (
+                                        <div
+                                          style={{
+                                            fontSize: "9.5px",
+                                            fontWeight: 700,
+                                            marginTop: "2px",
+                                            color: isRise ? "#dc2626" : isDrop ? "#16a34a" : "#64748b",
+                                          }}
+                                        >
+                                          {isRise ? `+${step.delta_prev_pln.toLocaleString("ru-RU")} zł` : `${step.delta_prev_pln.toLocaleString("ru-RU")} zł`}
+                                          {step.delta_prev_pct !== null && step.delta_prev_pct !== undefined && ` (${step.delta_prev_pct > 0 ? `+${step.delta_prev_pct}%` : `${step.delta_prev_pct}%`})`}
+                                          {isRise ? " ↗" : isDrop ? " ↘" : ""}
+                                        </div>
+                                      ) : (
+                                        <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>база сезона</div>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ) : null}
+
+                            {/* Clean Bottom-line Conclusion Box */}
+                            <div style={{ fontSize: "11px", color: "#1e293b", lineHeight: 1.45, background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #f1f5f9", display: "flex", alignItems: "flex-start", gap: "6px" }}>
+                              <span style={{ fontSize: "12px", lineHeight: 1 }}>💡</span>
+                              <div>
+                                <strong>Итог: </strong>
+                                {passport.horizon_arbitrage.departure_price_story.conclusion || passport.horizon_arbitrage.departure_price_story.verdict_text}
+                              </div>
                             </div>
                           </div>
                         )}
@@ -1658,33 +1713,30 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                         <button
                           type="button"
                           onClick={() => setHistoryRange("7d")}
-                          className={`px-2.5 py-1 rounded-lg transition-all ${
-                            historyRange === "7d"
-                              ? "bg-white text-slate-900 shadow-2xs font-bold"
-                              : "text-slate-600 hover:text-slate-900"
-                          }`}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${historyRange === "7d"
+                            ? "bg-white text-slate-900 shadow-2xs font-bold"
+                            : "text-slate-600 hover:text-slate-900"
+                            }`}
                         >
                           7 дней
                         </button>
                         <button
                           type="button"
                           onClick={() => setHistoryRange("30d")}
-                          className={`px-2.5 py-1 rounded-lg transition-all ${
-                            historyRange === "30d"
-                              ? "bg-white text-slate-900 shadow-2xs font-bold"
-                              : "text-slate-600 hover:text-slate-900"
-                          }`}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${historyRange === "30d"
+                            ? "bg-white text-slate-900 shadow-2xs font-bold"
+                            : "text-slate-600 hover:text-slate-900"
+                            }`}
                         >
                           30 дней
                         </button>
                         <button
                           type="button"
                           onClick={() => setHistoryRange("all")}
-                          className={`px-2.5 py-1 rounded-lg transition-all ${
-                            historyRange === "all"
-                              ? "bg-white text-slate-900 shadow-2xs font-bold"
-                              : "text-slate-600 hover:text-slate-900"
-                          }`}
+                          className={`px-2.5 py-1 rounded-lg transition-all ${historyRange === "all"
+                            ? "bg-white text-slate-900 shadow-2xs font-bold"
+                            : "text-slate-600 hover:text-slate-900"
+                            }`}
                         >
                           Вся история
                         </button>
@@ -1861,55 +1913,55 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 !passport.german_arbitrage.booking_url.includes("/suche/?q=") &&
                 (!passport.german_arbitrage.booking_url.includes("check24") ||
                   !passport.german_arbitrage.booking_url.endsWith("hotelId=")) && (
-                <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "12px", padding: "14px 16px", marginBottom: "16px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
-                    <div>
-                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <span style={{ fontSize: "16px" }}>🇩🇪</span>
-                        <span style={{ fontSize: "13px", fontWeight: 800, color: "#1e40af" }}>
-                          Арбитраж через Берлин (BER)
-                        </span>
-                        <span style={{ background: "#2563eb", color: "#ffffff", padding: "2px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 800 }}>
-                          Выгода {passport.german_arbitrage.savings_pln.toLocaleString("ru-RU")} zł
-                        </span>
+                  <div style={{ background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "12px", padding: "14px 16px", marginBottom: "16px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "10px" }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                          <span style={{ fontSize: "16px" }}>🇩🇪</span>
+                          <span style={{ fontSize: "13px", fontWeight: 800, color: "#1e40af" }}>
+                            Арбитраж через Берлин (BER)
+                          </span>
+                          <span style={{ background: "#2563eb", color: "#ffffff", padding: "2px 8px", borderRadius: "6px", fontSize: "11px", fontWeight: 800 }}>
+                            Выгода {passport.german_arbitrage.savings_pln.toLocaleString("ru-RU")} zł
+                          </span>
+                        </div>
+                        <div style={{ fontSize: "12px", color: "#3b82f6", marginTop: "4px" }}>
+                          Вылет из BER: <strong>{passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł</strong> ({passport.german_arbitrage.berlin_operator || "Check24 / TUI Deutschland"})
+                        </div>
+                        <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
+                          🚆 {passport.german_arbitrage.train_transfer_from_pl || "PKP Intercity Варшава/Познань -> Berlin Hbf"}
+                        </div>
                       </div>
-                      <div style={{ fontSize: "12px", color: "#3b82f6", marginTop: "4px" }}>
-                        Вылет из BER: <strong>{passport.german_arbitrage.berlin_price_pln.toLocaleString("ru-RU")} zł</strong> ({passport.german_arbitrage.berlin_operator || "Check24 / TUI Deutschland"})
+                      <div>
+                        <a
+                          href={passport.german_arbitrage.booking_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px",
+                            background: "#034ea2",
+                            color: "#ffffff",
+                            padding: "8px 14px",
+                            borderRadius: "8px",
+                            fontSize: "12px",
+                            fontWeight: 700,
+                            textDecoration: "none",
+                            boxShadow: "0 2px 4px rgba(3, 78, 162, 0.25)",
+                          }}
+                        >
+                          <span>
+                            {passport.german_arbitrage.booking_url.includes("check24")
+                              ? "🇩🇪 Конкретный тур на Check24 (BER)"
+                              : "🇩🇪 Вылет из Берлина (BER)"}
+                          </span>
+                          <span>↗</span>
+                        </a>
                       </div>
-                      <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
-                        🚆 {passport.german_arbitrage.train_transfer_from_pl || "PKP Intercity Варшава/Познань -> Berlin Hbf"}
-                      </div>
-                    </div>
-                    <div>
-                      <a
-                        href={passport.german_arbitrage.booking_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "6px",
-                          background: "#034ea2",
-                          color: "#ffffff",
-                          padding: "8px 14px",
-                          borderRadius: "8px",
-                          fontSize: "12px",
-                          fontWeight: 700,
-                          textDecoration: "none",
-                          boxShadow: "0 2px 4px rgba(3, 78, 162, 0.25)",
-                        }}
-                      >
-                        <span>
-                          {passport.german_arbitrage.booking_url.includes("check24")
-                            ? "🇩🇪 Конкретный тур на Check24 (BER)"
-                            : "🇩🇪 Вылет из Берлина (BER)"}
-                        </span>
-                        <span>↗</span>
-                      </a>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
           )}
 
@@ -2110,23 +2162,23 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     {(passport?.available_packages && passport.available_packages.length > 0
                       ? passport.available_packages
                       : [
-                          {
-                            checkin_date: "2026-11-14",
-                            checkout_date: "2026-11-24",
-                            duration_nights: 10,
-                            airport_code: "WAW",
-                            total_price_pln: currentPrice,
-                            booking_url: "https://fly.pl",
-                          },
-                          {
-                            checkin_date: "2026-11-17",
-                            checkout_date: "2026-11-24",
-                            duration_nights: 7,
-                            airport_code: "WAW",
-                            total_price_pln: Math.round(currentPrice * 0.82),
-                            booking_url: "https://fly.pl",
-                          },
-                        ]
+                        {
+                          checkin_date: "2026-11-14",
+                          checkout_date: "2026-11-24",
+                          duration_nights: 10,
+                          airport_code: "WAW",
+                          total_price_pln: currentPrice,
+                          booking_url: "https://fly.pl",
+                        },
+                        {
+                          checkin_date: "2026-11-17",
+                          checkout_date: "2026-11-24",
+                          duration_nights: 7,
+                          airport_code: "WAW",
+                          total_price_pln: Math.round(currentPrice * 0.82),
+                          booking_url: "https://fly.pl",
+                        },
+                      ]
                     ).map((pkg: any, idx: number) => {
                       const dep = pkg.checkin_date || pkg.departure_date;
                       const ret = pkg.checkout_date;
