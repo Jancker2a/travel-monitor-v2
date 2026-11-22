@@ -5,11 +5,13 @@
   "hotel_name": "Zeus Eleva Mirabello Bay",
   "x": [
     "2026-10-05 20:41:10",
-    "2026-10-11 15:10:29"
+    "2026-10-11 15:10:29",
+    "2026-11-21 23:17:08"
   ],
   "y": [
     15423.0,
-    13047.0
+    13047.0,
+    16370.0
   ],
   "hover": [
     "Проверка: 05.10.2026 20:41<br>Даты поездки: 18.10.2026 - 01.11.2026",
@@ -29,11 +31,12 @@
   "confidence": "Low",
   "median_p": 14234.999999999998,
   "min_p": 13047.0,
-  "max_p": 15423.0,
-  "samples": 2,
+  "max_p": 16370.0,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "18.10.2026 - 01.11.2026",
   "display_price_ceiling": 10000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_greece_13_16_days.html"
+  "back_href": "index_filter_greece_13_16_days.html",
+  "current_price": 16370.0
 }
