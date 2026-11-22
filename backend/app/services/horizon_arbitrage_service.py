@@ -460,48 +460,85 @@ class HorizonArbitrageService:
                     verdict["savings_vs_eb_pln"] = round(diff_eb, 0)
                     verdict["savings_vs_eb_pct"] = pct_eb
 
-                # Priority 1: Check if the live upcoming regular offer is cheaper than the hot deal
-                if direct_comparison and direct_comparison.get("is_std_cheaper"):
-                    diff_abs = abs(direct_comparison["price_diff_pln"])
-                    pct_abs = direct_comparison["diff_pct"]
+                # Priority 1: When live direct comparison is available, base verdict STRICTLY on the real live flights
+                if direct_comparison:
+                    is_std_cheaper = direct_comparison.get("is_std_cheaper", False)
+                    is_hot_cheaper = direct_comparison.get("is_hot_cheaper", False)
+                    diff_pln = direct_comparison["price_diff_pln"]  # positive: hot cheaper; negative: std cheaper
+                    diff_pct = direct_comparison["diff_pct"]
+                    std_offer = direct_comparison["standard_offer"]
+                    hot_offer = direct_comparison["hot_offer"]
                     days_gap_val = direct_comparison.get("days_gap")
                     days_msg = f"через {days_gap_val} дн. " if (days_gap_val and days_gap_val > 0) else ""
-                    std_d = direct_comparison["standard_offer"]["checkin_date_formatted"] or direct_comparison["standard_offer"]["checkin_date"]
-                    std_apt = f" ({direct_comparison['standard_offer']['airport']})" if direct_comparison["standard_offer"].get("airport") else ""
-                    std_p = direct_comparison["standard_offer"]["price_pln"]
 
-                    hot_d = direct_comparison["hot_offer"]["checkin_date_formatted"] or direct_comparison["hot_offer"]["checkin_date"]
-                    hot_apt = f" ({direct_comparison['hot_offer']['airport']})" if direct_comparison["hot_offer"].get("airport") else ""
+                    std_d = std_offer.get("checkin_date_formatted") or std_offer.get("checkin_date") or ""
+                    std_apt = f" ({std_offer['airport']})" if std_offer.get("airport") else ""
+                    std_p = std_offer["price_pln"]
+
+                    hot_d = hot_offer.get("checkin_date_formatted") or hot_offer.get("checkin_date") or ""
+                    hot_apt = f" ({hot_offer['airport']})" if hot_offer.get("airport") else ""
 
                     is_same_day = (hot_d == std_d)
 
-                    verdict["type"] = "URGENT_SURCHARGE"
-                    verdict["badge"] = f"📈 Вылет {days_msg}дешевле (-{diff_abs:,.0f} zł)".replace(",", " ")
-                    verdict["headline"] = (
-                        f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем регулярный рейс на ту же дату"
-                        if is_same_day
-                        else f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем вылет {days_msg}позже"
-                    ).replace(",", " ")
+                    if is_std_cheaper:
+                        diff_abs = abs(diff_pln)
+                        verdict["type"] = "URGENT_SURCHARGE"
+                        verdict["badge"] = f"📈 Вылет {days_msg}дешевле (-{diff_abs:,.0f} zł)".replace(",", " ") if not is_same_day else f"📈 Регулярный рейс дешевле (-{diff_abs:,.0f} zł)".replace(",", " ")
+                        verdict["headline"] = (
+                            f"Горящий тур дороже на {diff_abs:,.0f} zł (+{diff_pct:.0f}%), чем регулярный рейс на ту же дату"
+                            if is_same_day
+                            else f"Горящий тур дороже на {diff_abs:,.0f} zł (+{diff_pct:.0f}%), чем вылет {days_msg}позже"
+                        ).replace(",", " ")
 
-                    if is_same_day:
+                        if is_same_day:
+                            verdict["description"] = (
+                                f"Срочный вылет на дату {hot_d}{hot_apt} стоит {active_lm_price:,.0f} zł. "
+                                f"Однако на эту же дату ({std_d}{std_apt}) в регулярном радаре доступен вылет "
+                                f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
+                                f"Покупать горящий тур не имеет смысла — регулярный рейс на эту же дату дешевле."
+                            ).replace(",", " ")
+                            verdict["recommendation"] = f"Рекомендуем выбрать регулярный рейс {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
+                        else:
+                            verdict["description"] = (
+                                f"Срочный вылет на дату {hot_d}{hot_apt} стоит {active_lm_price:,.0f} zł. "
+                                f"Однако на дату {std_d}{std_apt} {days_msg}в регулярном радаре доступен вылет "
+                                f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
+                                f"Покупать горящий тур не имеет смысла — туроператор повысил тариф на последние места срочного чартера."
+                            ).replace(",", " ")
+                            verdict["recommendation"] = f"Рекомендуем выбрать вылет {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
+
+                        verdict["savings_vs_standard_pln"] = -diff_abs
+                        verdict["savings_vs_standard_pct"] = -diff_pct
+
+                    elif is_hot_cheaper and diff_pct >= 15.0 and diff_pln >= 800:
+                        # Genuine deep flash dump
+                        verdict["type"] = "REAL_DUMP"
+                        verdict["badge"] = f"🔥 Честный сброс цены (-{diff_pln:,.0f} zł)".replace(",", " ")
+                        verdict["headline"] = f"Горящий вылет дешевле регулярного на {diff_pln:,.0f} zł (-{diff_pct:.0f}%)".replace(",", " ")
                         verdict["description"] = (
                             f"Срочный вылет на дату {hot_d}{hot_apt} стоит {active_lm_price:,.0f} zł. "
-                            f"Однако на эту же дату ({std_d}{std_apt}) в регулярном радаре доступен вылет "
-                            f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
-                            f"Покупать горящий тур не имеет смысла — регулярный рейс на эту же дату дешевле."
+                            f"Ближайший регулярный вылет {std_d}{std_apt} стоит {std_p:,.0f} zł "
+                            f"(чистая экономия от сброса перед рейсом — {diff_pln:,.0f} zł). "
+                            f"Туроператор сбросил цену для заполнения рейса."
                         ).replace(",", " ")
-                        verdict["recommendation"] = f"Рекомендуем выбрать регулярный рейс {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
+                        verdict["recommendation"] = "Максимально выгодный момент для бронирования с чемоданом наготове."
+                        verdict["savings_vs_standard_pln"] = diff_pln
+                        verdict["savings_vs_standard_pct"] = diff_pct
+
                     else:
+                        # Minor difference (< 15% or < 800 zł)
+                        diff_pos = max(0.0, diff_pln)
+                        verdict["type"] = "FAKE_LAST_MINUTE"
+                        verdict["badge"] = f"⚖️ Обычный тариф (разница {diff_pos:,.0f} zł)".replace(",", " ") if diff_pos > 0 else "⚖️ Обычный тариф"
+                        verdict["headline"] = f"Разница со стандартным рейсом незначительна ({diff_pos:,.0f} zł / {diff_pct:.0f}%)".replace(",", " ")
                         verdict["description"] = (
-                            f"Срочный вылет на дату {hot_d}{hot_apt} стоит {active_lm_price:,.0f} zł. "
-                            f"Однако на дату {std_d}{std_apt} {days_msg}в регулярном радаре доступен вылет "
-                            f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
-                            f"Покупать горящий тур не имеет смысла — туроператор повысил тариф на последние места срочного чартера."
+                            f"Срочный вылет на дату {hot_d} ({active_lm_price:,.0f} zł) практически не отличается "
+                            f"от регулярного вылета {std_d} ({std_p:,.0f} zł). "
+                            f"Фактического глубокого горящего дисконта туроператор не предоставил."
                         ).replace(",", " ")
-                        verdict["recommendation"] = f"Рекомендуем выбрать вылет {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
-
-                    verdict["savings_vs_standard_pln"] = -diff_abs
-                    verdict["savings_vs_standard_pct"] = -pct_abs
+                        verdict["recommendation"] = "Бронируйте только если дата критична; глубокой горящей скидки нет."
+                        verdict["savings_vs_standard_pln"] = diff_pos
+                        verdict["savings_vs_standard_pct"] = diff_pct
 
                 elif diff_std < -50.0:
                     diff_abs = abs(diff_std)
@@ -540,8 +577,8 @@ class HorizonArbitrageService:
 
                     verdict["description"] = (
                         f"Отель зафиксирован по цене {active_lm_price:,.0f} zł{lm_dates_str}. "
-                        f"Ближайший регулярный тур{std_dates_str} стоит {active_std_price:,.0f} zł "
-                        f"(чистая экономия от сброса перед рейсом — {diff_std:,.0f} zł){eb_snippet}. "
+                        f"Стандартная цена сезона{std_dates_str} составляет {active_std_price:,.0f} zł "
+                        f"(разница с сезонной планкой — {diff_std:,.0f} zł){eb_snippet}. "
                         f"Туроператор сбросил цену для заполнения рейса."
                     ).replace(",", " ")
                     verdict["recommendation"] = "Максимально выгодный момент для бронирования с чемоданом наготове."

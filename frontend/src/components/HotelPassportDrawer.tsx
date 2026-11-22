@@ -1132,7 +1132,13 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     )}
 
                     {/* Horizon Arbitrage: Early Booking vs Standard vs Last Minute (Placed Prominently at the Top) */}
-                    {passport?.horizon_arbitrage?.available && passport.horizon_arbitrage.verdict && (
+                    {passport?.horizon_arbitrage?.available && passport.horizon_arbitrage.verdict && (() => {
+                      const hasDirectFlights = Boolean(
+                        passport.horizon_arbitrage?.direct_comparison ||
+                        passport.horizon_arbitrage?.departure_price_story
+                      );
+
+                      return (
                       <div
                         style={{
                           background:
@@ -1190,8 +1196,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           </span>
                         </div>
 
-                        {/* 3-column Price Horizon Bar */}
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
+                        {/* 3-column Price Horizon Bar - only shown as fallback when no direct flights or departure timeline exist */}
+                        {!hasDirectFlights && (
+                          <>
+                            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
                           {/* Early Booking */}
                           <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
                             <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>🏷️ Раннее (D 60+дн)</div>
@@ -1348,8 +1356,10 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                             </div>
                           </div>
                         )}
+                      </>
+                    )}
 
-                        {/* Live Direct Comparison: Hot vs Upcoming Regular Flight */}
+                    {/* Live Direct Comparison: Hot vs Upcoming Regular Flight */}
                         {passport.horizon_arbitrage.direct_comparison && (
                           <div
                             style={{
@@ -1603,15 +1613,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           </div>
                         )}
 
-                        {/* Verdict & Recommendation */}
-                        <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
-                          <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
-                        </div>
-                        <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
-                          💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
-                        </div>
+                        {/* Verdict & Recommendation - only shown as fallback when no direct flights or departure timeline exist */}
+                        {!hasDirectFlights && (
+                          <>
+                            <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
+                              <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
+                            </div>
+                            <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
+                              💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
+                            </div>
+                          </>
+                        )}
                       </div>
-                    )}
+                    );
+                  })()}
 
                     {/* Chart source switcher if 1:1 reference history is available */}
                     {passport?.reference_history && (
