@@ -266,12 +266,14 @@ def evaluate_search_intelligence(
             snap_mult = snap_season.get("multiplier", 1.0)
             hist_pure_rates.append(raw_pure / max(0.5, snap_mult))
 
-        # Require at least 2 observations to calculate historical baseline
-        if len(hist_pure_rates) >= 2:
+        # Strictly require at least 3 historical observations for THIS SPECIFIC HOTEL
+        if len(hist_pure_rates) >= 3:
             has_history = True
 
     # Baseline comparison metrics
     hist_diff_pct: Optional[float] = None
+    typical_median_pln: Optional[float] = None
+    hist_min_pln: Optional[float] = None
 
     if has_history:
         sorted_pure = sorted(hist_pure_rates)
@@ -295,92 +297,68 @@ def evaluate_search_intelligence(
             children=children,
             destination=destination,
         )
+        diff_pct = max(-45.0, min(50.0, hist_diff_pct))
     else:
-        typical_median_pln = total_price_pln
+        # Strictly NO fake peer benchmarks or invented discounts!
+        typical_median_pln = None
         hist_min_pln = total_price_pln
-
-    peer_diff_pct: Optional[float] = None
-    if peer_star_pure_rates and len(peer_star_pure_rates) >= 3:
-        sorted_peers = sorted(peer_star_pure_rates)
-        peer_median_pure = sorted_peers[len(sorted_peers) // 2]
-        if peer_median_pure > 0:
-            peer_diff_pct = ((curr_pure_night - peer_median_pure) / peer_median_pure) * 100.0
-            if not has_history:
-                typical_median_pln = CostDecomposer.recompose(
-                    pure_hotel_night_per_adult=peer_median_pure,
-                    duration_nights=nights,
-                    adults=adults,
-                    children=children,
-                    destination=destination,
-                )
-                hist_min_pln = round(typical_median_pln * 0.85, 2)
-
-    if hist_diff_pct is not None and peer_diff_pct is not None:
-        # Blend hotel's own seasonal history (65%) with live market peers of same star level (35%)
-        diff_pct = hist_diff_pct * 0.65 + peer_diff_pct * 0.35
-    elif hist_diff_pct is not None:
-        diff_pct = hist_diff_pct
-    elif peer_diff_pct is not None:
-        diff_pct = peer_diff_pct
-    else:
         diff_pct = 0.0
 
-    # Guard: Clamp diff_pct so extreme anomalies don't distort evaluation
-    diff_pct = max(-45.0, min(50.0, diff_pct))
-
     # 4. Compute Deal Score (0-100)
-    # Neutral starting baseline: 65 points (fair market equilibrium)
     score: float = 65.0
-
-    # (A) Historical / Market Price Deviation Impact
-    if diff_pct < -25.0:
-        score += 24.0  # Exceptional discount (> 25% below norm)
-    elif diff_pct < -15.0:
-        score += 17.0
-    elif diff_pct < -8.0:
-        score += 10.0
-    elif diff_pct <= 5.0:
-        score += 0.0   # Fair market price
-    elif diff_pct <= 18.0:
-        score -= 14.0  # Moderately overpriced
-    elif diff_pct <= 30.0:
-        score -= 24.0  # Overpriced
-    else:
-        score -= 35.0  # Strongly overpriced (> +30% above norm)
-
-    # (B) Seasonality Context
-    # If in peak season / holiday superpeak, getting a normal or discounted price is especially valuable
-    if season_info["season"] in ("holiday_superpeak", "peak"):
-        if diff_pct <= 5.0:
-            score += 6.0  # Holding a stable or low price during high demand is a great deal
-    elif season_info["season"] == "low":
-        # In low season, cheap prices are standard seasonal reality, NOT a rare anomaly.
-        score -= 10.0
-
-    # (C) Departure Timing & Price Drop Probability
-    if 0 <= days_to_dep <= 12:
-        # Last-minute window: if price is already good, urgency is high
-        if diff_pct <= 0.0:
+    if not has_history:
+        # Neutral baseline for newly discovered / sparse hotels: strictly no phantom deal bonuses!
+        score = 50.0
+        ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.0
+        if ta >= 4.5:
             score += 5.0
-    elif days_to_dep > 35:
-        # Far in advance: high probability of later promotional price cuts or adjustments
-        score -= 4.0
+        elif ta < 3.5:
+            score -= 5.0
+    else:
+        # (A) Historical Price Deviation Impact (strictly hotel's own verified history)
+        if diff_pct < -25.0:
+            score += 24.0  # Exceptional discount (> 25% below hotel's own norm)
+        elif diff_pct < -15.0:
+            score += 17.0
+        elif diff_pct < -8.0:
+            score += 10.0
+        elif diff_pct <= 5.0:
+            score += 0.0   # Fair market price
+        elif diff_pct <= 18.0:
+            score -= 14.0  # Moderately overpriced
+        elif diff_pct <= 30.0:
+            score -= 24.0  # Overpriced
+        else:
+            score -= 35.0  # Strongly overpriced (> +30% above hotel's own norm)
 
-    # (D) Hotel Reputation & Quality Tier (TripAdvisor)
-    ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.2
-    if ta >= 4.6:
-        score += 6.0
-    elif ta >= 4.3:
-        score += 3.0
-    elif ta < 3.4:
-        score -= 22.0
-    elif ta < 3.8:
-        score -= 12.0
+        # (B) Seasonality Context
+        if season_info["season"] in ("holiday_superpeak", "peak"):
+            if diff_pct <= 5.0:
+                score += 6.0
+        elif season_info["season"] == "low":
+            score -= 10.0
 
-    # (E) Quality Guardrails:
-    # A hotel with low TripAdvisor rating (< 3.5★) is inherently a budget/poor-quality property.
-    # A low price for poor quality is standard equilibrium, NEVER an 80+ Hot Deal or BUY NOW.
+        # (C) Departure Timing & Price Drop Probability
+        if 0 <= days_to_dep <= 12:
+            if diff_pct <= 0.0:
+                score += 5.0
+        elif days_to_dep > 35:
+            score -= 4.0
+
+        # (D) Hotel Reputation & Quality Tier (TripAdvisor)
+        ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.2
+        if ta >= 4.6:
+            score += 6.0
+        elif ta >= 4.3:
+            score += 3.0
+        elif ta < 3.4:
+            score -= 22.0
+        elif ta < 3.8:
+            score -= 12.0
+
+    # (E) Quality Guardrails
     is_budget_tier = False
+    ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.2
     if ta < 3.5:
         score = min(62.0, score)
         is_budget_tier = True
@@ -392,7 +370,8 @@ def evaluate_search_intelligence(
 
     # 5. Mathematically Exact Delta vs Typical Seasonal Price (Plateau Baseline)
     delta_vs_typical_pct: Optional[float] = None
-    if typical_median_pln and typical_median_pln > 0:
+    if has_history and typical_median_pln and typical_median_pln > 0:
+        delta_vs_typical_pct = round(((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1)
         delta_vs_typical_pct = round(((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1)
 
     # 6. Real 48-Hour Price Change (strictly requires mature observations >= 4)
@@ -462,13 +441,22 @@ def evaluate_search_intelligence(
     # 7. Determine Hopper Forecast & Action Verdict
     display_delta_pct = abs(round(delta_vs_typical_pct)) if delta_vs_typical_pct is not None else abs(round(diff_pct))
 
-    if is_budget_tier:
+    if not has_history:
+        verdict = "WAIT"
+        badge = "FAIR_PRICE"
+        forecast_reason = (
+            f"Первичные замеры отеля (зафиксировано {len(hist_snapshots) if hist_snapshots else 1} точек). "
+            f"Сравнение со средней нормой отключено во избежание неточных выводов до накопления истории."
+        )
+        confidence = 0.50
+    elif is_budget_tier:
         verdict = "WAIT"
         badge = "FAIR_PRICE"
         forecast_reason = (
             f"Бюджетный отель (TripAdvisor {ta:.1f}★). "
             f"Низкий тариф обусловлен скромным уровнем сервиса и комфорта, а не аномальной скидкой."
         )
+        confidence = 0.85
     elif final_score >= 80:
         verdict = "BUY NOW"
         badge = "SUPER_DEAL" if final_score >= 88 else "GOOD_DEAL"
@@ -478,10 +466,12 @@ def evaluate_search_intelligence(
             forecast_reason = f"Отличный тариф для периода «{season_info['label']}». {season_info['risk_expl']}. Рекомендуем фиксировать бронь."
         else:
             forecast_reason = f"Цена на {display_delta_pct}% ниже типичного уровня. Прогноз Hopper: локальное ценовое дно, дальнейшее падение маловероятно."
+        confidence = 0.90
     elif final_score < 48:
         verdict = "OVERPRICED"
         badge = "OVERPRICED"
         forecast_reason = f"Тариф завышен (+{display_delta_pct}% к норме). {season_info['label']}. Высокая вероятность коррекции цен или появления спецпредложений ближе к датам."
+        confidence = 0.85
     else:
         verdict = "WAIT"
         badge = "FAIR_PRICE"
@@ -489,8 +479,7 @@ def evaluate_search_intelligence(
             forecast_reason = f"Стандартная рыночная цена ({season_info['label']}). До вылета {days_to_dep} дн. — рекомендуем поставить в Watchlist и отслеживать ценовые колебания."
         else:
             forecast_reason = f"Справедливый тариф в пределах сезонной нормы. Резких скачков не прогнозируется, можно следить за динамикой."
-
-    confidence = 0.90 if has_history else (0.80 if peer_star_pure_rates else 0.70)
+        confidence = 0.85
 
     return HotelIntelligence(
         deal_score=final_score,

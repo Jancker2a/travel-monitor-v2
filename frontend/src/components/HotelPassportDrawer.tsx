@@ -1142,7 +1142,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           Сезонная норма ({targetMonthLabel})
                         </div>
                         <div className="val" style={{ fontSize: "15px", fontWeight: 800, color: "#0284c7", marginTop: "2px" }}>
-                          {(passport?.typical_median_pln || rangeStats.med) > 0 ? `${Math.round(passport?.typical_median_pln || rangeStats.med).toLocaleString("ru-RU")} zł` : "—"}
+                          {(passport?.typical_median_pln || (rangeStats.count >= 3 ? rangeStats.med : 0)) > 0 ? `${Math.round(passport?.typical_median_pln || rangeStats.med).toLocaleString("ru-RU")} zł` : "—"}
                         </div>
                       </div>
 

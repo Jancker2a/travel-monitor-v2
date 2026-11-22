@@ -367,7 +367,8 @@ class CatalogService:
                 hist_min = curr_price
                 hist_max = curr_price
 
-            if hist_pts:
+            has_sufficient_history = len(hist_pts) >= 3
+            if has_sufficient_history:
                 all_prices = [p[1] for p in hist_pts]
                 typical_med = round(statistics.median(all_prices), 0)
 
@@ -401,17 +402,17 @@ class CatalogService:
                 chg_24h = round((curr_price - p_24h) / p_24h * 100.0, 1) if p_24h else 0.0
                 chg_48h = round((curr_price - p_48h) / p_48h * 100.0, 1) if p_48h else 0.0
                 chg_7d = round((curr_price - p_7d) / p_7d * 100.0, 1) if p_7d else 0.0
+                delta_vs_typical = (
+                    round((curr_price - typical_med) / typical_med * 100.0, 1)
+                    if typical_med and typical_med > 0
+                    else None
+                )
             else:
-                typical_med = curr_price
+                typical_med = None
+                delta_vs_typical = None
                 chg_24h = 0.0
                 chg_48h = 0.0
                 chg_7d = 0.0
-
-            delta_vs_typical = (
-                round((curr_price - typical_med) / typical_med * 100.0, 1)
-                if typical_med > 0
-                else 0.0
-            )
 
             # Knowledge base enrichment (accurate beach line, TripAdvisor rating, and infrastructure)
             h_obj = active_h_map.get(h_id)
@@ -441,7 +442,7 @@ class CatalogService:
             has_heated_pools = dossier.get("has_heated_pools", False)
 
             # Deal Score calculation using mathematical V1 model (plateau segments, volatility, TA blend)
-            if hist_pts:
+            if has_sufficient_history:
                 df_hist = pd.DataFrame(hist_pts, columns=["scraped_at", "price"])
                 deal_metrics = compute_hotel_deal_metrics(
                     df_hist,
@@ -459,16 +460,17 @@ class CatalogService:
             else:
                 deal_score = 50
                 confidence = "Low"
+                delta_vs_typical = None
 
             # Badges
             badges = []
-            if curr_price <= hist_min * 1.01:
+            if has_sufficient_history and curr_price <= hist_min * 1.01:
                 badges.append("Исторический минимум")
-            if chg_48h <= -3.0:
+            if has_sufficient_history and chg_48h <= -3.0:
                 badges.append(f"Снижение за 48ч ({chg_48h}%)")
-            elif chg_24h <= -3.0:
+            elif has_sufficient_history and chg_24h <= -3.0:
                 badges.append(f"Снижение за 24ч ({chg_24h}%)")
-            if deal_score >= 80:
+            if has_sufficient_history and deal_score >= 80:
                 badges.append("Выгодная цена")
 
             # Formatted strings

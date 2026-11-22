@@ -76,10 +76,30 @@ def test_delta_vs_typical_and_real_48h_drop():
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc)
 
-    # 1. Without 48h snapshot: drop_48h_pct must be None, delta_vs_typical_pct must be accurate
+    # 0. Sparse history (< 3 snapshots): delta_vs_typical_pct must be None, verdict WAIT
+    sparse_hist = [
+        {"price": 3000.0, "adults": 1, "children": 0, "duration_nights": 8},
+    ]
+    sparse_intel = evaluate_search_intelligence(
+        destination="egypt",
+        departure_date=date.today() + timedelta(days=20),
+        duration_nights=8,
+        adults=1,
+        children=0,
+        total_price_pln=2500.0,
+        stars=4,
+        ta_rating=4.2,
+        hist_snapshots=sparse_hist,
+    )
+    assert sparse_intel.delta_vs_typical_pct is None
+    assert sparse_intel.typical_median_pln is None
+    assert sparse_intel.hopper_verdict == "WAIT"
+
+    # 1. Mature history (>= 3 snapshots): drop_48h_pct must be None, delta_vs_typical_pct must be accurate
     hist = [
         {"price": 3000.0, "adults": 1, "children": 0, "duration_nights": 8},
         {"price": 3100.0, "adults": 1, "children": 0, "duration_nights": 8},
+        {"price": 3050.0, "adults": 1, "children": 0, "duration_nights": 8},
     ]
     intel = evaluate_search_intelligence(
         destination="egypt",
@@ -94,13 +114,14 @@ def test_delta_vs_typical_and_real_48h_drop():
     )
     assert intel.drop_48h_pct is None  # No recorded_at in snapshots -> no fake 48h drop
     assert intel.delta_vs_typical_pct is not None
-    assert intel.delta_vs_typical_pct < 0  # 2500 vs ~3000 is ~-17%
+    assert intel.delta_vs_typical_pct < 0  # 2500 vs ~3050 is ~-18%
 
     # 2. With 48h snapshot: drop_48h_pct must reflect real drop
     snap_48h_ago = now - timedelta(hours=48)
     hist_with_time = [
         {"price": 3000.0, "adults": 1, "children": 0, "duration_nights": 8, "recorded_at": snap_48h_ago.isoformat()},
         {"price": 3100.0, "adults": 1, "children": 0, "duration_nights": 8, "recorded_at": snap_48h_ago.isoformat()},
+        {"price": 3050.0, "adults": 1, "children": 0, "duration_nights": 8, "recorded_at": snap_48h_ago.isoformat()},
     ]
     intel_48h = evaluate_search_intelligence(
         destination="egypt",

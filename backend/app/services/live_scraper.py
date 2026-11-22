@@ -736,7 +736,7 @@ class LiveScraperService:
                 stars=off["stars"],
                 ta_rating=effective_ta,
                 hist_snapshots=hotel_snaps,
-                peer_star_pure_rates=peer_star_pure_rates.get(off["stars"]),
+                peer_star_pure_rates=None,
             )
 
             current_offer = OfferSummary(

@@ -243,7 +243,7 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
                   <div className="text-xl font-extrabold text-emerald-900 mt-0.5">
                     {viewMode === "normalized" && normalizedData
                       ? `${normalizedData.stats.min_normalized_pln.toLocaleString("ru-RU")} zł`
-                      : `${passport.all_time_min_pln.toLocaleString("ru-RU")} zł`}
+                      : (passport.all_time_min_pln ? `${passport.all_time_min_pln.toLocaleString("ru-RU")} zł` : "—")}
                   </div>
                 </div>
 
@@ -254,7 +254,7 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
                   <div className="text-xl font-extrabold text-blue-900 mt-0.5">
                     {viewMode === "normalized" && normalizedData
                       ? `${normalizedData.stats.median_normalized_pln.toLocaleString("ru-RU")} zł`
-                      : `${passport.typical_median_pln.toLocaleString("ru-RU")} zł`}
+                      : (passport.typical_median_pln ? `${passport.typical_median_pln.toLocaleString("ru-RU")} zł` : "—")}
                   </div>
                 </div>
 
@@ -265,7 +265,7 @@ export const HotelPassportModal: React.FC<Props> = ({ hotelId, onClose }) => {
                   <div className="text-xl font-extrabold text-slate-800 mt-0.5">
                     {viewMode === "normalized" && normalizedData
                       ? `${normalizedData.stats.max_normalized_pln.toLocaleString("ru-RU")} zł`
-                      : `${passport.all_time_max_pln.toLocaleString("ru-RU")} zł`}
+                      : (passport.all_time_max_pln ? `${passport.all_time_max_pln.toLocaleString("ru-RU")} zł` : "—")}
                   </div>
                 </div>
 

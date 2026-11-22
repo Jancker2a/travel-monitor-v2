@@ -58,8 +58,8 @@ class HotelIntelligence(BaseModel):
     recommendation: str
     drop_48h_pct: Optional[float] = None
     delta_vs_typical_pct: Optional[float] = None
-    historic_min_pln: float
-    typical_median_pln: float
+    historic_min_pln: Optional[float] = None
+    typical_median_pln: Optional[float] = None
     german_arbitrage_diff_pln: Optional[float] = None
     is_budget_tier: Optional[bool] = False
 

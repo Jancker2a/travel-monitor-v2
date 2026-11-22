@@ -147,8 +147,8 @@ export interface HotelIntelligence {
   recommendation: string;
   drop_48h_pct?: number | null;
   delta_vs_typical_pct?: number | null;
-  historic_min_pln: number;
-  typical_median_pln: number;
+  historic_min_pln?: number | null;
+  typical_median_pln?: number | null;
   german_arbitrage_diff_pln?: number | null;
   is_budget_tier?: boolean;
 }
@@ -315,9 +315,9 @@ export interface HotelPassport {
   ta_rating?: number;
   ta_reviews: number;
   main_image_url?: string;
-  all_time_min_pln: number;
-  all_time_max_pln: number;
-  typical_median_pln: number;
+  all_time_min_pln?: number | null;
+  all_time_max_pln?: number | null;
+  typical_median_pln?: number | null;
   current_price_pln: number;
   active_cohorts_count: number;
   deal_score: number;
@@ -450,10 +450,10 @@ export interface HotelCatalogCard {
   ta_reviews: number;
   main_image_url?: string;
   current_min_price: number;
-  typical_median_price: number;
-  historical_min_price: number;
-  historical_max_price: number;
-  delta_vs_typical_pct: number;
+  typical_median_price?: number | null;
+  historical_min_price?: number | null;
+  historical_max_price?: number | null;
+  delta_vs_typical_pct?: number | null;
   change_24h_pct: number;
   change_48h_pct?: number;
   change_7d_pct: number;

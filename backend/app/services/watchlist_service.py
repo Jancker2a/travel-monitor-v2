@@ -1252,7 +1252,7 @@ class WatchlistService:
                 rate = (pt.pure_hotel_night_rate or 120.0) / max(0.5, pt_mult)
                 unseasoned_rates.append(rate)
 
-            if unseasoned_rates:
+            if len(unseasoned_rates) >= 3:
                 sorted_unseasoned = sorted(unseasoned_rates)
                 med_unseasoned = sorted_unseasoned[len(sorted_unseasoned) // 2]
                 min_unseasoned = sorted_unseasoned[0]
@@ -1285,9 +1285,10 @@ class WatchlistService:
                     destination=dest_name,
                 ), 1)
             else:
-                med_p = curr_p
-                min_p = round(curr_p * 0.95, 1)
-                max_p = round(curr_p * 1.10, 1)
+                med_p = None
+                p_list = [p.total_price_pln for p in history_points if p.total_price_pln]
+                min_p = min(p_list) if p_list else curr_p
+                max_p = max(p_list) if p_list else curr_p
 
         # Knowledge Base Dossier
         dossier = HotelKnowledgeService.get_hotel_dossier(
@@ -1394,7 +1395,7 @@ class WatchlistService:
                 adults=target_adults,
                 children=target_children,
                 duration_nights=target_nights,
-                checkin_date=active_checkin,
+                checkin_date=target_dep_date,
                 current_price=curr_p,
             )
         except Exception as ha_err:
@@ -1416,19 +1417,24 @@ class WatchlistService:
         )
 
         # Build intelligent AI micro-insight for this hotel passport
-        diff_to_norm = round(((curr_p - med_p) / med_p) * 100.0, 1) if med_p > 0 else 0.0
-        if diff_to_norm <= -15.0:
-            ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
-            ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Это исторически выгодный момент для бронирования."
-        elif diff_to_norm <= -7.0:
-            ai_action_signal = f"⚡ Выгодная цена ({diff_to_norm:+.0f}%)"
-            ai_price_summary = f"Тур стоит {curr_p:.0f} zł при сезонной норме {med_p:.0f} zł ({diff_to_norm:+.1f}%). Рекомендуется фиксировать."
-        elif diff_to_norm <= 7.0:
-            ai_action_signal = "⚖️ Стандартная цена сезона"
-            ai_price_summary = f"Цена {curr_p:.0f} zł находится в пределах сезонной нормы ({med_p:.0f} zł). Спешить не нужно, можно отслеживать динамику."
+        if med_p is not None and med_p > 0 and len(unseasoned_rates) >= 3:
+            diff_to_norm = round(((curr_p - med_p) / med_p) * 100.0, 1)
+            if diff_to_norm <= -15.0:
+                ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
+                ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Это исторически выгодный момент для бронирования."
+            elif diff_to_norm <= -7.0:
+                ai_action_signal = f"⚡ Выгодная цена ({diff_to_norm:+.0f}%)"
+                ai_price_summary = f"Тур стоит {curr_p:.0f} zł при сезонной норме {med_p:.0f} zł ({diff_to_norm:+.1f}%). Рекомендуется фиксировать."
+            elif diff_to_norm <= 7.0:
+                ai_action_signal = "⚖️ Стандартная цена сезона"
+                ai_price_summary = f"Цена {curr_p:.0f} zł находится в пределах сезонной нормы ({med_p:.0f} zł). Спешить не нужно, можно отслеживать динамику."
+            else:
+                ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
+                ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
         else:
-            ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
-            ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
+            diff_to_norm = None
+            ai_action_signal = "📊 Первичные замеры отеля"
+            ai_price_summary = f"Текущая цена {curr_p:.0f} zł. Идёт накопление истории по отелю ({len(unseasoned_rates)} точек). Сравнение с нормой отключено во избежание неточных выводов."
 
         ai_hotel_summary = f"{hotel.display_name} ({hotel.stars}★, {hotel.region or hotel.country}). {target_season.get('label', '')}: {target_season.get('risk_expl', '')}."
 

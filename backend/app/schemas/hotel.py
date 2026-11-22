@@ -26,9 +26,9 @@ class HotelPassportResponse(BaseModel):
     ta_rating: Optional[float] = None
     ta_reviews: Optional[int] = None
     main_image_url: Optional[str] = None
-    all_time_min_pln: float
-    all_time_max_pln: float
-    typical_median_pln: float
+    all_time_min_pln: Optional[float] = None
+    all_time_max_pln: Optional[float] = None
+    typical_median_pln: Optional[float] = None
     current_price_pln: float = 0.0
     active_cohorts_count: int
     deal_score: int = 70
