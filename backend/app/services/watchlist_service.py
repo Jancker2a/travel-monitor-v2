@@ -34,11 +34,17 @@ _ALIAS_CACHE_TTL: float = 3600.0  # 1 hour
 
 COUNTRY_MAP = {
     "египет": "egypt",
+    "egipt": "egypt",
     "турция": "turkey",
+    "turcja": "turkey",
     "греция": "greece",
+    "grecja": "greece",
     "кипр": "cyprus",
+    "cypr": "cyprus",
     "испания": "spain",
+    "hiszpania": "spain",
     "болгария": "bulgaria",
+    "bulgaria": "bulgaria",
 }
 
 
@@ -52,13 +58,14 @@ def _norm_country(c: Optional[str]) -> str:
 def _smart_hotel_tokens(title: str) -> str:
     # 1. Remove all parentheses (both closed and unclosed like 'Hotel (Ex. Grand Halomy Res')
     n = re.sub(r"\s*\(.*", "", title)
-    # 2. Remove country and common resort/city tokens
-    n = re.sub(
-        r"\b(?:turcja|egipt|grecja|cypr|hiszpania|turkey|egypt|greece|cyprus|spain|alanya|kemer|side|belek|antalya|sharm|hurghada|türkler|okurcalar|el|sheikh)\b",
-        " ",
-        n,
-        flags=re.I,
+    # 2. Remove country and common resort/city/article tokens
+    resort_pattern = (
+        r"\b(?:turcja|egipt|grecja|cypr|hiszpania|turkey|egypt|greece|cyprus|spain|"
+        r"alanya|kemer|side|belek|antalya|sharm|hurghada|türkler|okurcalar|"
+        r"el|al|sheikh|gouna|dżuna|dzuna|makadi|sahl|hasheesh|marsa|alam|safaga|"
+        r"dahab|taba|nabq|hadaba|naama|soma|bay|konakli|avsallar|manavgat|lara|kundu)\b"
     )
+    n = re.sub(resort_pattern, " ", n, flags=re.I)
     n = re.sub(r"[^\w\s]", " ", n.lower())
     n = n.replace("pickalbatros", "albatros")
     stop = {
@@ -796,7 +803,7 @@ class WatchlistService:
         c_params = {f"c{i}": cid for i, cid in enumerate(all_cohort_ids)}
 
         # 4b. Find all other monitored filters where this hotel has recorded price snapshots
-        from app.services.canonical_filters import CANONICAL_FILTERS
+        from app.services.canonical_filters import CANONICAL_FILTERS, resolve_filter_spec
         other_filters_sql = f"""
             SELECT 
                 oc.filter_id,
@@ -804,15 +811,15 @@ class WatchlistService:
                 MAX(ps.total_price_pln) as max_p,
                 MAX(ps.recorded_at) as last_seen,
                 COUNT(ps.id) as snaps_count,
-                MAX(oc.adults) as adults,
-                MAX(oc.children) as children,
-                MAX(oc.duration_nights) as nights
+                oc.adults as adults,
+                oc.children as children,
+                oc.duration_nights as nights
             FROM offer_cohorts oc
             JOIN price_snapshots ps ON oc.{join_col} = ps.{join_col}
             WHERE oc.hotel_id IN ({placeholders})
               AND oc.filter_id IS NOT NULL
               AND oc.filter_id != ''
-            GROUP BY oc.filter_id
+            GROUP BY oc.filter_id, oc.adults, oc.children, oc.duration_nights
             ORDER BY snaps_count DESC
         """
         other_filters = []
@@ -830,13 +837,14 @@ class WatchlistService:
                 ch = int(r[6]) if r[6] else 0
                 dur = int(r[7]) if r[7] else 7
 
-                spec = CANONICAL_FILTERS.get(f_id, {})
+                spec = resolve_filter_spec(f_id) or CANONICAL_FILTERS.get(f_id, {})
                 f_title = spec.get("title")
                 if not f_title:
                     clean_name = f_id.replace("filter_", "").replace("_days", "").replace("_", " ").title()
                     f_title = f"Фильтр {clean_name}"
 
                 party_str = f"{ad} взр" + (f" + {ch} реб" if ch else "") if ad else "Стандарт"
+                is_exact = (ad == target_adults and ch == target_children and abs(dur - target_nights) <= 1)
 
                 other_filters.append({
                     "filter_id": f_id,
@@ -849,6 +857,7 @@ class WatchlistService:
                     "children": ch,
                     "party_str": party_str,
                     "duration_nights": dur,
+                    "is_exact_match": is_exact,
                 })
         except Exception as of_err:
             logger.warning(f"Failed to query other_filters for {hotel_id}: {of_err}")
@@ -946,6 +955,111 @@ class WatchlistService:
                     "operator": cohort.operator or "Touroperator",
                     "booking_url": cohort.offer_url or f"https://fly.pl/szukaj-wycieczek/?hotelName={hotel.display_name.replace(' ', '+')}",
                 }
+
+        # 4d. Group snapshots by filter_id for exact 1:1 matching cohorts
+        filter_snaps_map: Dict[str, List[Any]] = {}
+        for snap in snap_rows:
+            cohort = cohort_by_id.get(snap.cohort_id)
+            if not cohort or not cohort.filter_id:
+                continue
+            filter_snaps_map.setdefault(cohort.filter_id, []).append(snap)
+
+        best_ref_filter = None
+        best_ref_points: List[HotelHistoryPoint] = []
+        best_ref_prices: List[float] = []
+
+        exact_match_filters = [
+            f for f in other_filters
+            if f.get("is_exact_match") and f["filter_id"] not in filter_variants
+        ]
+        exact_match_filters.sort(key=lambda x: x["snaps_count"], reverse=True)
+
+        for ef in exact_match_filters:
+            fid = ef["filter_id"]
+            raw_snaps = filter_snaps_map.get(fid, [])
+            if not raw_snaps:
+                continue
+            ref_bmap: Dict[str, Dict[str, Any]] = {}
+            for snap in raw_snaps:
+                cohort = cohort_by_id.get(snap.cohort_id)
+                if not cohort:
+                    continue
+                if not (cohort.adults == target_adults and cohort.children == target_children and abs(cohort.duration_nights - target_nights) <= 1):
+                    continue
+                rec_dt = (
+                    datetime.fromisoformat(snap.recorded_at)
+                    if isinstance(snap.recorded_at, str)
+                    else snap.recorded_at or datetime.utcnow()
+                )
+                dt_raw = rec_dt.replace(tzinfo=None) if rec_dt.tzinfo else rec_dt
+                now_raw = datetime.utcnow().replace(tzinfo=None) if datetime.utcnow().tzinfo else datetime.utcnow()
+                days_ago = (now_raw - dt_raw).days
+                b_key = rec_dt.strftime("%Y-%m-%d") if (days_ago > 14) else rec_dt.strftime("%Y-%m-%d %H:00")
+
+                p = snap.total_price_pln
+                p_pax = snap.price_per_night_per_pax
+                chk_d = (
+                    datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
+                    if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
+                    else datetime.utcnow().date()
+                )
+
+                if b_key not in ref_bmap or p < ref_bmap[b_key]["total_price_pln"]:
+                    ref_bmap[b_key] = {
+                        "recorded_at": rec_dt,
+                        "total_price_pln": p,
+                        "price_per_night_pax": p_pax,
+                        "departure_date": chk_d,
+                        "duration_nights": cohort.duration_nights or target_nights,
+                        "airport": cohort.airport_code or "WAW",
+                        "adults": cohort.adults or target_adults,
+                        "children": cohort.children or target_children,
+                    }
+
+            if ref_bmap:
+                pts: List[HotelHistoryPoint] = []
+                prs: List[float] = []
+                for bk in sorted(ref_bmap.keys()):
+                    it = ref_bmap[bk]
+                    prs.append(it["total_price_pln"])
+                    pts.append(
+                        HotelHistoryPoint(
+                            recorded_at=it["recorded_at"],
+                            total_price_pln=it["total_price_pln"],
+                            price_per_night_per_pax=it["price_per_night_pax"],
+                            departure_date=it["departure_date"],
+                            duration_nights=it["duration_nights"],
+                            airport=it["airport"],
+                            scaled_tour_price=it["total_price_pln"],
+                            adults=it["adults"],
+                            children=it["children"],
+                        )
+                    )
+                ef["history_points"] = [p.model_dump() for p in pts]
+                if not best_ref_filter and len(pts) >= 3:
+                    best_ref_filter = ef
+                    best_ref_points = pts
+                    best_ref_prices = prs
+
+        reference_history = None
+        if best_ref_filter and best_ref_prices:
+            sorted_ref = sorted(best_ref_prices)
+            ref_min = sorted_ref[0]
+            ref_max = sorted_ref[-1]
+            ref_med = sorted_ref[len(sorted_ref) // 2]
+            reference_history = {
+                "filter_id": best_ref_filter["filter_id"],
+                "title": best_ref_filter["title"],
+                "adults": target_adults,
+                "children": target_children,
+                "duration_nights": target_nights,
+                "is_exact_match": True,
+                "snaps_count": len(best_ref_points),
+                "min_price_pln": round(ref_min, 1),
+                "median_price_pln": round(ref_med, 1),
+                "max_price_pln": round(ref_max, 1),
+                "history_points": [p.model_dump() for p in best_ref_points],
+            }
 
         # 5. Build clean, non-oscillating history points for scoped cohorts
         # Decompose every historical snapshot into normalized pure rates and recompose for target user party
@@ -1290,6 +1404,18 @@ class WatchlistService:
                 min_p = min(p_list) if p_list else curr_p
                 max_p = max(p_list) if p_list else curr_p
 
+        # If active filter has few points (<= 3), and reference_history is available:
+        if (not med_p or (data_maturity_tier and data_maturity_tier < 2) or len(history_points) <= 3) and reference_history:
+            med_p = reference_history["median_price_pln"]
+            min_p = reference_history["min_price_pln"]
+            max_p = reference_history["max_price_pln"]
+            data_maturity_tier = 3
+            maturity_explanation = (
+                f"В текущем радаре зафиксированы первые замеры ({len(history_points)} точек). "
+                f"Подключена сезонная история из канонического радара «{reference_history['title']}» "
+                f"({reference_history['snaps_count']} замеров, 1:1 прямое совпадение: {reference_history['adults']} взр + {reference_history['children']} реб • {reference_history['duration_nights']}н без пересчётов)."
+            )
+
         # Knowledge Base Dossier
         dossier = HotelKnowledgeService.get_hotel_dossier(
             hotel_name=hotel.display_name,
@@ -1318,13 +1444,17 @@ class WatchlistService:
         deal_badge = "GOOD_DEAL"
         verdict = "BUY NOW"
 
-        if history_points:
+        hist_for_scoring = history_points if len(history_points) > 3 else (
+            [HotelHistoryPoint(**p) for p in reference_history.get("history_points", [])]
+            if reference_history else history_points
+        )
+        if hist_for_scoring:
             import pandas as pd
             from app.services.hotel_deal_score import compute_hotel_deal_metrics
 
             df_hist = pd.DataFrame([
                 {"scraped_at": p.recorded_at, "price": p.scaled_tour_price or p.total_price_pln}
-                for p in history_points
+                for p in hist_for_scoring
             ])
             deal_metrics = compute_hotel_deal_metrics(
                 df_hist,
@@ -1417,7 +1547,10 @@ class WatchlistService:
         )
 
         # Build intelligent AI micro-insight for this hotel passport
-        if med_p is not None and med_p > 0 and len(unseasoned_rates) >= 3:
+        has_rich_rates = (len(unseasoned_rates) >= 3) or (
+            reference_history and reference_history.get("snaps_count", 0) >= 3
+        )
+        if med_p is not None and med_p > 0 and has_rich_rates:
             diff_to_norm = round(((curr_p - med_p) / med_p) * 100.0, 1)
             if diff_to_norm <= -15.0:
                 ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
@@ -1431,6 +1564,10 @@ class WatchlistService:
             else:
                 ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
                 ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
+
+            if reference_history and len(unseasoned_rates) < 3:
+                party_label = f"{target_adults} взр" + (f" + {target_children} реб" if target_children else "")
+                ai_price_summary += f" Сравнение 1:1 по каноническому радару «{reference_history['title']}» ({party_label} • {target_nights}н)."
         else:
             diff_to_norm = None
             ai_action_signal = "📊 Первичные замеры отеля"
@@ -1494,6 +1631,7 @@ class WatchlistService:
             infra_rich=dossier["infra_rich"],
             german_arbitrage=german_arbitrage,
             horizon_arbitrage=horizon_arbitrage,
+            reference_history=reference_history,
             available_packages=packages_list,
             other_filters=other_filters,
             history_points=history_points,

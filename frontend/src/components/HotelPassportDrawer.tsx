@@ -7,7 +7,7 @@ import {
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
-import { HotelPassport, SearchHotelItem } from "../types";
+import { HotelPassport, SearchHotelItem, HotelHistoryPoint } from "../types";
 import { getHotelPassport, getHotelNormalizedHistory } from "../services/api";
 import { FILTER_PRESETS } from "../constants/presets";
 import { LoadingSpinner } from "./common/LoadingSpinner";
@@ -44,6 +44,9 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"ai" | "history" | "infra" | "packages">("ai");
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [chartSource, setChartSource] = useState<string>("auto");
+  const [customHistoryPoints, setCustomHistoryPoints] = useState<HotelHistoryPoint[] | null>(null);
+  const [customHistoryTitle, setCustomHistoryTitle] = useState<string>("");
 
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
@@ -56,6 +59,9 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     setIsLoading(true);
     setActivePhotoIdx(0);
     setActiveTab("ai");
+    setChartSource("auto");
+    setCustomHistoryPoints(null);
+    setCustomHistoryTitle("");
 
     const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
     const is1pExplicit = Boolean(
@@ -142,6 +148,24 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       ? "1 взр"
       : `${resolvedAdults} взр` + (resolvedChildren > 0 ? ` + ${resolvedChildren} реб` : "");
 
+  const resolvedChartSource = useMemo(() => {
+    if (chartSource !== "auto") return chartSource;
+    if (passport?.reference_history && (!passport.history_points || passport.history_points.length <= 3)) {
+      return "reference";
+    }
+    return "current";
+  }, [chartSource, passport]);
+
+  const activeHistoryPoints: HotelHistoryPoint[] = useMemo(() => {
+    if (resolvedChartSource === "custom" && customHistoryPoints && customHistoryPoints.length > 0) {
+      return customHistoryPoints;
+    }
+    if (resolvedChartSource === "reference" && passport?.reference_history?.history_points) {
+      return passport.reference_history.history_points;
+    }
+    return passport?.history_points || [];
+  }, [resolvedChartSource, customHistoryPoints, passport]);
+
   // Render Plotly Price History Chart when history tab is activated
   useEffect(() => {
     if (activeTab !== "history" || !passport || !chartContainerRef.current || !window.Plotly) {
@@ -149,8 +173,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     }
 
     // Real Tour History
-    const allHistory = passport.history_points || [];
-    if (!allHistory.length || passport.data_maturity_tier === 0) {
+    const allHistory = activeHistoryPoints;
+    if (!allHistory.length || (passport.data_maturity_tier === 0 && resolvedChartSource === "current")) {
       window.Plotly.purge(chartContainerRef.current);
       return;
     }
@@ -189,7 +213,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       passport?.user_query_scope?.duration_nights ||
       filterPreset?.searchReq?.duration?.min_nights ||
       7;
-    const partyLabel = userAdults === 1 && !userChildren ? "1 взр" : (`${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : ""));
+    const dynamicPartyLabel = userAdults === 1 && !userChildren ? "1 взр" : (`${userAdults} взр` + (userChildren > 0 ? ` + ${userChildren} реб` : ""));
 
     // Deduplicate timestamps to prevent duplicate x-axis points
     const uniqueMap = new Map<string, { price: number; perNightPax: number }>();
@@ -213,24 +237,33 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       customData.push(val.perNightPax);
     });
 
+    const isReferenceActive = resolvedChartSource === "reference";
+    const isCustomActive = resolvedChartSource === "custom";
+
+    const traceName = isReferenceActive
+      ? `Канонический радар (${dynamicPartyLabel} • ${userNights}н, 1:1)`
+      : isCustomActive
+      ? `${customHistoryTitle} (${dynamicPartyLabel} • ${userNights}н)`
+      : `Цена тура (${dynamicPartyLabel} • ${userNights}н)`;
+
     const trace = {
       x: xVals,
       y: yVals,
       customdata: customData,
       type: "scatter",
       mode: "lines+markers",
-      name: `Цена тура (${partyLabel} • ${userNights}н)`,
+      name: traceName,
       line: {
-        color: "#0284c7",
+        color: isReferenceActive ? "#059669" : "#0284c7",
         width: 2.5,
         shape: "linear",
       },
       marker: {
         size: 5,
-        color: "#0369a1",
+        color: isReferenceActive ? "#047857" : "#0369a1",
       },
       hovertemplate:
-        "<b>%{y:,.0f} zł</b> (Цена всего тура)<br>~%{customdata:,.0f} zł / чел / ночь<br>%{x|%d.%m %H:%M}<extra></extra>",
+        "<b>%{y:,.0f} zł</b> (Цена тура)<br>~%{customdata:,.0f} zł / чел / ночь<br>%{x|%d.%m %H:%M}<extra></extra>",
     };
 
     const pVals = yVals.length ? yVals : [passport.current_price_pln];
@@ -272,9 +305,40 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
       });
     }
 
+    const annotations: any[] = [];
+    if ((isReferenceActive || isCustomActive) && currentPrice && currentPrice > 0) {
+      shapes.push({
+        type: "line",
+        y0: currentPrice,
+        y1: currentPrice,
+        x0: 0,
+        x1: 1,
+        xref: "paper",
+        line: { color: "#ea580c", width: 2, dash: "dot" },
+      });
+      annotations.push({
+        xref: "paper",
+        yref: "y",
+        x: 0.98,
+        y: currentPrice,
+        xanchor: "right",
+        yanchor: "bottom",
+        text: `⚡ Текущая горящая цена: ${Math.round(currentPrice).toLocaleString("ru-RU")} zł`,
+        showarrow: false,
+        font: { size: 10.5, color: "#ea580c" },
+        bgcolor: "#fff7ed",
+        bordercolor: "#fdba74",
+        borderwidth: 1,
+      });
+    }
+
     const layout = {
       title: {
-        text: `Динамика цены тура (${partyLabel} • ${userNights} ночей, с перелётом)`,
+        text: isReferenceActive
+          ? `Каноническая история: ${passport.reference_history?.title || "1:1"} (${dynamicPartyLabel} • ${userNights}н)`
+          : isCustomActive
+          ? `История из радара: ${customHistoryTitle} (${dynamicPartyLabel} • ${userNights}н)`
+          : `Динамика цены тура (${dynamicPartyLabel} • ${userNights} ночей, с перелётом)`,
         font: { size: 12.5, family: "Inter, sans-serif", color: "#0f172a" },
         x: 0.05,
       },
@@ -293,6 +357,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         tickfont: { size: 10, color: "#64748b" },
       },
       shapes,
+      annotations,
       font: { family: "Inter, sans-serif", size: 11 },
     };
 
@@ -306,7 +371,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     } catch (e) {
       console.warn("Plotly tour chart error:", e);
     }
-  }, [activeTab, passport, historyRange]);
+  }, [activeTab, passport, historyRange, resolvedChartSource, customHistoryPoints, activeHistoryPoints]);
 
   const genericPlaceholder =
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80";
@@ -350,7 +415,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
 
   // Dynamic values depending on active filter range (7d / 30d / all)
   const rangeStats = useMemo(() => {
-    let hist = passport?.history_points || [];
+    let hist = activeHistoryPoints;
     if (historyRange !== "all") {
       const now = Date.now();
       const cutoffDays = historyRange === "7d" ? 7 : 30;
@@ -372,7 +437,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
     const med = sorted.length > 0 ? sorted[Math.floor(sorted.length / 2)] : cur;
     const pureNight = lastPt?.pure_hotel_night_rate || 0;
     return { cur, min, med, max, pureNight, count: hist.length };
-  }, [historyRange, passport?.history_points, currentPrice, resolvedAdults, resolvedChildren]);
+  }, [historyRange, activeHistoryPoints, currentPrice, resolvedAdults, resolvedChildren]);
 
   const currentTaRating = hotelItem?.ta_rating ?? passport?.ta_rating;
   const isBudgetQuality =
@@ -1041,9 +1106,315 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       </div>
                     )}
 
+                    {/* Horizon Arbitrage: Early Booking vs Standard vs Last Minute (Placed Prominently at the Top) */}
+                    {passport?.horizon_arbitrage?.available && passport.horizon_arbitrage.verdict && (
+                      <div
+                        style={{
+                          background:
+                            passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                              ? "#f0fdf4"
+                              : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                              ? "#faf5ff"
+                              : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                              ? "#f8fafc"
+                              : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                              ? "#fef2f2"
+                              : "#fffbeb",
+                          border: `1px solid ${
+                            passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                              ? "#bbf7d0"
+                              : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                              ? "#e9d5ff"
+                              : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                              ? "#cbd5e1"
+                              : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                              ? "#fecaca"
+                              : "#fef3c7"
+                          }`,
+                          borderRadius: "12px",
+                          padding: "16px",
+                          marginBottom: "16px",
+                        }}
+                      >
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                            <span style={{ fontSize: "18px" }}>🧬</span>
+                            <span style={{ fontSize: "14px", fontWeight: 800, color: "#0f172a" }}>
+                              Горизонты цен: Раннее ↔ Стандарт ↔ Горящие
+                            </span>
+                          </div>
+                          <span
+                            style={{
+                              background:
+                                passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                                  ? "#16a34a"
+                                  : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                                  ? "#9333ea"
+                                  : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                                  ? "#475569"
+                                  : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                                  ? "#dc2626"
+                                  : "#d97706",
+                              color: "#ffffff",
+                              padding: "3px 10px",
+                              borderRadius: "8px",
+                              fontSize: "11px",
+                              fontWeight: 800,
+                            }}
+                          >
+                            {passport.horizon_arbitrage.verdict.badge}
+                          </span>
+                        </div>
+
+                        {/* 3-column Price Horizon Bar */}
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
+                          {/* Early Booking */}
+                          <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
+                            <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>🏷️ Раннее (D 60+дн)</div>
+                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
+                              {passport.horizon_arbitrage.horizons?.early_booking
+                                ? `${passport.horizon_arbitrage.horizons.early_booking.median_price_pln.toLocaleString("ru-RU")} zł`
+                                : "—"}
+                            </div>
+                            <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                              {passport.horizon_arbitrage.horizons?.early_booking ? `${passport.horizon_arbitrage.horizons.early_booking.count} фиксаций` : "нет данных"}
+                            </div>
+                            {passport.horizon_arbitrage.horizons?.early_booking?.departure_dates_label && (
+                              <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
+                                <span
+                                  style={{
+                                    display: "inline-block",
+                                    fontSize: "9px",
+                                    fontWeight: 700,
+                                    padding: "1px 6px",
+                                    borderRadius: "4px",
+                                    background: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#ecfdf5" : "#f1f5f9",
+                                    color: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#047857" : "#64748b",
+                                  }}
+                                >
+                                  📅 {passport.horizon_arbitrage.horizons.early_booking.departure_dates_label}
+                                </span>
+                                {passport.horizon_arbitrage.horizons.early_booking.season_label && (
+                                  <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
+                                    {passport.horizon_arbitrage.horizons.early_booking.season_label}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Standard Booking */}
+                          <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
+                            <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>📅 За 2–4 нед. (D 14–45)</div>
+                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
+                              {passport.horizon_arbitrage.horizons?.standard
+                                ? `${passport.horizon_arbitrage.horizons.standard.median_price_pln.toLocaleString("ru-RU")} zł`
+                                : passport.horizon_arbitrage.horizons?.short_notice
+                                ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
+                                : "—"}
+                            </div>
+                            <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                              {passport.horizon_arbitrage.horizons?.standard
+                                ? `${passport.horizon_arbitrage.horizons.standard.count} фиксаций`
+                                : passport.horizon_arbitrage.horizons?.short_notice
+                                ? "(за 1–2 нед.)"
+                                : "нет данных"}
+                            </div>
+                            {(passport.horizon_arbitrage.horizons?.standard?.departure_dates_label || passport.horizon_arbitrage.horizons?.short_notice?.departure_dates_label) && (
+                              <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
+                                <span
+                                  style={{
+                                    display: "inline-block",
+                                    fontSize: "9px",
+                                    fontWeight: 700,
+                                    padding: "1px 6px",
+                                    borderRadius: "4px",
+                                    background: "#ecfdf5",
+                                    color: "#047857",
+                                  }}
+                                >
+                                  📅 {passport.horizon_arbitrage.horizons.standard?.departure_dates_label || passport.horizon_arbitrage.horizons.short_notice?.departure_dates_label}
+                                </span>
+                                <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
+                                  {passport.horizon_arbitrage.horizons.standard?.season_label || passport.horizon_arbitrage.horizons.short_notice?.season_label || "Текущий сезон"}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Last Minute */}
+                          <div
+                            style={{
+                              background: passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#fef3c7" : "#ffffff",
+                              padding: "10px",
+                              borderRadius: "8px",
+                              border: `1px solid ${passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#f59e0b" : "#e2e8f0"}`,
+                              textAlign: "center",
+                            }}
+                          >
+                            <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>⚡ Горящие (D 0–4дн)</div>
+                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309", marginTop: "4px" }}>
+                              {passport.horizon_arbitrage.horizons?.last_minute
+                                ? `${passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł`
+                                : "Не горит"}
+                            </div>
+                            <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                              {passport.horizon_arbitrage.horizons?.last_minute
+                                ? `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
+                                : "0 появлений"}
+                            </div>
+                            {passport.horizon_arbitrage.horizons?.last_minute?.departure_dates_label && (
+                              <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #fde68a" }}>
+                                <span
+                                  style={{
+                                    display: "inline-block",
+                                    fontSize: "9px",
+                                    fontWeight: 700,
+                                    padding: "1px 6px",
+                                    borderRadius: "4px",
+                                    background: "#fef3c7",
+                                    color: "#b45309",
+                                  }}
+                                >
+                                  📅 {passport.horizon_arbitrage.horizons.last_minute.departure_dates_label}
+                                </span>
+                                {passport.horizon_arbitrage.horizons.last_minute.season_label && (
+                                  <div style={{ fontSize: "9px", color: "#92400e", marginTop: "2px" }}>
+                                    {passport.horizon_arbitrage.horizons.last_minute.season_label}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Seasonal Context Alert Banner if Horizons cross seasons */}
+                        {passport.horizon_arbitrage.verdict.season_note && (
+                          <div
+                            style={{
+                              background: "#eff6ff",
+                              border: "1px solid #bfdbfe",
+                              borderRadius: "8px",
+                              padding: "8px 12px",
+                              fontSize: "11px",
+                              color: "#1e40af",
+                              lineHeight: 1.45,
+                              marginBottom: "10px",
+                              display: "flex",
+                              alignItems: "flex-start",
+                              gap: "8px",
+                            }}
+                          >
+                            <span style={{ fontSize: "14px", lineHeight: 1 }}>ℹ️</span>
+                            <div>
+                              <strong>Учёт сезонности дат:</strong> {passport.horizon_arbitrage.verdict.season_note}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Verdict & Recommendation */}
+                        <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
+                          <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
+                        </div>
+                        <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
+                          💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Chart source switcher if 1:1 reference history is available */}
+                    {passport?.reference_history && (
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "10px" }}>
+                        <div style={{ display: "flex", gap: "6px" }}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setChartSource("reference");
+                              setCustomHistoryPoints(null);
+                            }}
+                            style={{
+                              padding: "5px 12px",
+                              borderRadius: "8px",
+                              fontSize: "11.5px",
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              border: resolvedChartSource === "reference" ? "1.5px solid #059669" : "1px solid #cbd5e1",
+                              background: resolvedChartSource === "reference" ? "#ecfdf5" : "#ffffff",
+                              color: resolvedChartSource === "reference" ? "#047857" : "#475569",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "6px",
+                            }}
+                          >
+                            <span>📊 Канонический радар 1:1</span>
+                            <span style={{ fontSize: "10px", background: resolvedChartSource === "reference" ? "#a7f3d0" : "#f1f5f9", padding: "1px 6px", borderRadius: "10px" }}>
+                              {passport.reference_history.snaps_count} замеров
+                            </span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setChartSource("current");
+                              setCustomHistoryPoints(null);
+                            }}
+                            style={{
+                              padding: "5px 12px",
+                              borderRadius: "8px",
+                              fontSize: "11.5px",
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              border: resolvedChartSource === "current" ? "1.5px solid #0284c7" : "1px solid #cbd5e1",
+                              background: resolvedChartSource === "current" ? "#f0f9ff" : "#ffffff",
+                              color: resolvedChartSource === "current" ? "#0369a1" : "#475569",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "6px",
+                            }}
+                          >
+                            <span>⚡ Замеры текущего радара</span>
+                            <span style={{ fontSize: "10px", background: resolvedChartSource === "current" ? "#bae6fd" : "#f1f5f9", padding: "1px 6px", borderRadius: "10px" }}>
+                              {passport?.history_points?.length || 0}
+                            </span>
+                          </button>
+                        </div>
+                        {resolvedChartSource === "reference" && (
+                          <span style={{ fontSize: "11px", color: "#047857", fontWeight: 700, background: "#ecfdf5", padding: "3px 8px", borderRadius: "6px", border: "1px solid #a7f3d0" }}>
+                            ★ Точное совпадение: {partyLabel} • {resolvedNights}н (без пересчётов)
+                          </span>
+                        )}
+                        {resolvedChartSource === "custom" && (
+                          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <span style={{ fontSize: "11px", color: "#0369a1", fontWeight: 700, background: "#f0f9ff", padding: "3px 8px", borderRadius: "6px", border: "1px solid #bae6fd" }}>
+                              📈 Просмотр: {customHistoryTitle}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setChartSource("reference");
+                                setCustomHistoryPoints(null);
+                              }}
+                              style={{ background: "#ffffff", border: "1px solid #cbd5e1", borderRadius: "6px", fontSize: "10px", padding: "2px 6px", cursor: "pointer", color: "#64748b" }}
+                            >
+                              ✕ Сброс
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Explanatory 1:1 Reference Banner */}
+                    {resolvedChartSource === "reference" && passport?.reference_history && (
+                      <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "10px", padding: "9px 12px", fontSize: "11.5px", color: "#166534", lineHeight: 1.45, marginBottom: "12px", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                        <span style={{ fontSize: "14px", lineHeight: 1 }}>🎯</span>
+                        <div>
+                          <strong>Подключена сезонная история 1:1 без пересчётов:</strong> В текущем радаре зафиксированы первые замеры ({passport?.history_points?.length || 0} точек). Для полной картины и точной оценки выгоды отображается график наблюдений из канонического радара <strong>«{passport.reference_history.title}»</strong> на тот же состав <strong>{partyLabel}</strong> и длительность <strong>{resolvedNights} ночей</strong> ({passport.reference_history.snaps_count} замеров).
+                        </div>
+                      </div>
+                    )}
+
                     <div className="chart-controls-bar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px", flexWrap: "wrap", gap: "8px" }}>
-                      <div className="stat-pill" style={{ background: "#e0f2fe", color: "#0369a1", padding: "6px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: "1px solid #bae6fd" }}>
-                        ✈️ Полная цена тура ({partyLabel} • {resolvedNights}н, с перелётом)
+                      <div className="stat-pill" style={{ background: resolvedChartSource === "reference" ? "#ecfdf5" : "#e0f2fe", color: resolvedChartSource === "reference" ? "#047857" : "#0369a1", padding: "6px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, border: `1px solid ${resolvedChartSource === "reference" ? "#a7f3d0" : "#bae6fd"}` }}>
+                        ✈️ {resolvedChartSource === "reference" ? `Сезонная история: ${passport?.reference_history?.title}` : "Полная цена тура"} ({partyLabel} • {resolvedNights}н, с перелётом)
                       </div>
 
                       {/* Range Selector */}
@@ -1097,7 +1468,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                     </div>
 
                     {/* Chart container or friendly empty state */}
-                    {(!passport?.history_points || passport.history_points.length <= 1 || passport?.data_maturity_tier === 0) ? (
+                    {(!activeHistoryPoints || activeHistoryPoints.length <= 1) ? (
                       <div style={{ background: "#f8fafc", border: "1.5px dashed #cbd5e1", borderRadius: "16px", padding: "32px 20px", textAlign: "center", marginBottom: "16px" }}>
                         <div style={{ fontSize: "36px", marginBottom: "8px" }}>📊</div>
                         <h4 style={{ fontSize: "15px", fontWeight: 800, color: "#0f172a", marginBottom: "6px" }}>
@@ -1171,245 +1542,78 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   </p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     {passport.other_filters.map((f, idx) => (
-                      <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+                      <div
+                        key={idx}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          background: f.is_exact_match ? "#f0fdf4" : "#ffffff",
+                          padding: "8px 12px",
+                          borderRadius: "8px",
+                          border: f.is_exact_match ? "1.5px solid #86efac" : "1px solid #e2e8f0",
+                        }}
+                      >
                         <div>
-                          <div style={{ fontSize: "12px", fontWeight: 700, color: "#0f172a" }}>
-                            {f.title || f.filter_id} <span style={{ fontSize: "10.5px", fontWeight: 600, color: "#64748b" }}>({f.party_str || "Стандарт"} • {f.duration_nights || 7}н)</span>
+                          <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
+                            <span style={{ fontSize: "12px", fontWeight: 700, color: "#0f172a" }}>
+                              {f.title || f.filter_id}
+                            </span>
+                            <span style={{ fontSize: "10.5px", fontWeight: 600, color: "#64748b" }}>
+                              ({f.party_str || "Стандарт"} • {f.duration_nights || 7}н)
+                            </span>
+                            {f.is_exact_match && (
+                              <span style={{ fontSize: "9.5px", fontWeight: 800, color: "#15803d", background: "#dcfce7", padding: "1px 6px", borderRadius: "4px" }}>
+                                ★ 1:1 совпадение
+                              </span>
+                            )}
                           </div>
                           <div style={{ fontSize: "11px", color: "#16a34a", fontWeight: 600, marginTop: "2px" }}>
                             Цены: от {Math.round(f.min_price_pln).toLocaleString("ru-RU")} zł до {Math.round(f.max_price_pln).toLocaleString("ru-RU")} zł <span style={{ color: "#64748b", fontWeight: 400 }}>({f.snaps_count} замеров)</span>
                           </div>
                         </div>
-                        {onSwitchFilter && (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              onSwitchFilter(f.filter_id);
-                              onClose();
-                            }}
-                            style={{ background: "#0ea5e9", color: "#ffffff", border: "none", padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, cursor: "pointer" }}
-                          >
-                            Посмотреть график →
-                          </button>
-                        )}
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                          {f.history_points && f.history_points.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCustomHistoryPoints(f.history_points || []);
+                                setCustomHistoryTitle(f.title || f.filter_id);
+                                setChartSource("custom");
+                                const chartEl = document.getElementById("drawerPlotlyChart");
+                                if (chartEl) {
+                                  chartEl.scrollIntoView({ behavior: "smooth", block: "center" });
+                                }
+                              }}
+                              style={{
+                                background: resolvedChartSource === "custom" && customHistoryTitle === (f.title || f.filter_id) ? "#0284c7" : "#f1f5f9",
+                                color: resolvedChartSource === "custom" && customHistoryTitle === (f.title || f.filter_id) ? "#ffffff" : "#334155",
+                                border: "1px solid #cbd5e1",
+                                padding: "5px 10px",
+                                borderRadius: "6px",
+                                fontSize: "11px",
+                                fontWeight: 700,
+                                cursor: "pointer",
+                              }}
+                            >
+                              График 📈
+                            </button>
+                          )}
+                          {onSwitchFilter && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                onSwitchFilter(f.filter_id);
+                                onClose();
+                              }}
+                              style={{ background: "#0ea5e9", color: "#ffffff", border: "none", padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 700, cursor: "pointer" }}
+                            >
+                              В радар →
+                            </button>
+                          )}
+                        </div>
                       </div>
                     ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Horizon Arbitrage: Early Booking vs Standard vs Last Minute */}
-              {passport?.horizon_arbitrage?.available && passport.horizon_arbitrage.verdict && (
-                <div
-                  style={{
-                    background:
-                      passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                        ? "#f0fdf4"
-                        : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                        ? "#faf5ff"
-                        : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                        ? "#f8fafc"
-                        : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                        ? "#fef2f2"
-                        : "#fffbeb",
-                    border: `1px solid ${
-                      passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                        ? "#bbf7d0"
-                        : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                        ? "#e9d5ff"
-                        : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                        ? "#cbd5e1"
-                        : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                        ? "#fecaca"
-                        : "#fef3c7"
-                    }`,
-                    borderRadius: "12px",
-                    padding: "16px",
-                    marginBottom: "16px",
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ fontSize: "18px" }}>🧬</span>
-                      <span style={{ fontSize: "14px", fontWeight: 800, color: "#0f172a" }}>
-                        Горизонты цен: Раннее ↔ Стандарт ↔ Горящие
-                      </span>
-                    </div>
-                    <span
-                      style={{
-                        background:
-                          passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                            ? "#16a34a"
-                            : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                            ? "#9333ea"
-                            : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                            ? "#475569"
-                            : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                            ? "#dc2626"
-                            : "#d97706",
-                        color: "#ffffff",
-                        padding: "3px 10px",
-                        borderRadius: "8px",
-                        fontSize: "11px",
-                        fontWeight: 800,
-                      }}
-                    >
-                      {passport.horizon_arbitrage.verdict.badge}
-                    </span>
-                  </div>
-
-                  {/* 3-column Price Horizon Bar */}
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
-                    {/* Early Booking */}
-                    <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                      <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>🏷️ Раннее (D 60+дн)</div>
-                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
-                        {passport.horizon_arbitrage.horizons?.early_booking
-                          ? `${passport.horizon_arbitrage.horizons.early_booking.median_price_pln.toLocaleString("ru-RU")} zł`
-                          : "—"}
-                      </div>
-                      <div style={{ fontSize: "10px", color: "#94a3b8" }}>
-                        {passport.horizon_arbitrage.horizons?.early_booking ? `${passport.horizon_arbitrage.horizons.early_booking.count} фиксаций` : "нет данных"}
-                      </div>
-                      {passport.horizon_arbitrage.horizons?.early_booking?.departure_dates_label && (
-                        <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
-                          <span
-                            style={{
-                              display: "inline-block",
-                              fontSize: "9px",
-                              fontWeight: 700,
-                              padding: "1px 6px",
-                              borderRadius: "4px",
-                              background: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#ecfdf5" : "#f1f5f9",
-                              color: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#047857" : "#64748b",
-                            }}
-                          >
-                            📅 {passport.horizon_arbitrage.horizons.early_booking.departure_dates_label}
-                          </span>
-                          {passport.horizon_arbitrage.horizons.early_booking.season_label && (
-                            <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
-                              {passport.horizon_arbitrage.horizons.early_booking.season_label}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Standard Booking */}
-                    <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                      <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>📅 За 2–4 нед. (D 14–45)</div>
-                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
-                        {passport.horizon_arbitrage.horizons?.standard
-                          ? `${passport.horizon_arbitrage.horizons.standard.median_price_pln.toLocaleString("ru-RU")} zł`
-                          : passport.horizon_arbitrage.horizons?.short_notice
-                          ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
-                          : "—"}
-                      </div>
-                      <div style={{ fontSize: "10px", color: "#94a3b8" }}>
-                        {passport.horizon_arbitrage.horizons?.standard
-                          ? `${passport.horizon_arbitrage.horizons.standard.count} фиксаций`
-                          : passport.horizon_arbitrage.horizons?.short_notice
-                          ? "(за 1–2 нед.)"
-                          : "нет данных"}
-                      </div>
-                      {(passport.horizon_arbitrage.horizons?.standard?.departure_dates_label || passport.horizon_arbitrage.horizons?.short_notice?.departure_dates_label) && (
-                        <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
-                          <span
-                            style={{
-                              display: "inline-block",
-                              fontSize: "9px",
-                              fontWeight: 700,
-                              padding: "1px 6px",
-                              borderRadius: "4px",
-                              background: "#ecfdf5",
-                              color: "#047857",
-                            }}
-                          >
-                            📅 {passport.horizon_arbitrage.horizons.standard?.departure_dates_label || passport.horizon_arbitrage.horizons.short_notice?.departure_dates_label}
-                          </span>
-                          <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
-                            {passport.horizon_arbitrage.horizons.standard?.season_label || passport.horizon_arbitrage.horizons.short_notice?.season_label || "Текущий сезон"}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Last Minute */}
-                    <div
-                      style={{
-                        background: passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#fef3c7" : "#ffffff",
-                        padding: "10px",
-                        borderRadius: "8px",
-                        border: `1px solid ${passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#f59e0b" : "#e2e8f0"}`,
-                        textAlign: "center",
-                      }}
-                    >
-                      <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>⚡ Горящие (D 0–4дн)</div>
-                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309", marginTop: "4px" }}>
-                        {passport.horizon_arbitrage.horizons?.last_minute
-                          ? `${passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł`
-                          : "Не горит"}
-                      </div>
-                      <div style={{ fontSize: "10px", color: "#94a3b8" }}>
-                        {passport.horizon_arbitrage.horizons?.last_minute
-                          ? `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
-                          : "0 появлений"}
-                      </div>
-                      {passport.horizon_arbitrage.horizons?.last_minute?.departure_dates_label && (
-                        <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #fde68a" }}>
-                          <span
-                            style={{
-                              display: "inline-block",
-                              fontSize: "9px",
-                              fontWeight: 700,
-                              padding: "1px 6px",
-                              borderRadius: "4px",
-                              background: "#fef3c7",
-                              color: "#b45309",
-                            }}
-                          >
-                            📅 {passport.horizon_arbitrage.horizons.last_minute.departure_dates_label}
-                          </span>
-                          {passport.horizon_arbitrage.horizons.last_minute.season_label && (
-                            <div style={{ fontSize: "9px", color: "#92400e", marginTop: "2px" }}>
-                              {passport.horizon_arbitrage.horizons.last_minute.season_label}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Seasonal Context Alert Banner if Horizons cross seasons */}
-                  {passport.horizon_arbitrage.verdict.season_note && (
-                    <div
-                      style={{
-                        background: "#eff6ff",
-                        border: "1px solid #bfdbfe",
-                        borderRadius: "8px",
-                        padding: "8px 12px",
-                        fontSize: "11px",
-                        color: "#1e40af",
-                        lineHeight: 1.45,
-                        marginBottom: "10px",
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "8px",
-                      }}
-                    >
-                      <span style={{ fontSize: "14px", lineHeight: 1 }}>ℹ️</span>
-                      <div>
-                        <strong>Учёт сезонности дат:</strong> {passport.horizon_arbitrage.verdict.season_note}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Verdict & Recommendation */}
-                  <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
-                    <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
-                  </div>
-                  <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
-                    💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
                   </div>
                 </div>
               )}

@@ -309,6 +309,8 @@ export interface HotelOtherFilter {
   party_str?: string;
   duration_nights?: number;
   last_seen?: string;
+  is_exact_match?: boolean;
+  history_points?: HotelHistoryPoint[];
 }
 
 export interface HotelPassport {
@@ -371,6 +373,19 @@ export interface HotelPassport {
   infra_rich?: Record<string, any>;
   german_arbitrage?: GermanArbitrageData;
   horizon_arbitrage?: HorizonArbitrageData;
+  reference_history?: {
+    filter_id: string;
+    title: string;
+    adults: number;
+    children: number;
+    duration_nights: number;
+    is_exact_match: boolean;
+    snaps_count: number;
+    min_price_pln: number;
+    median_price_pln: number;
+    max_price_pln: number;
+    history_points: HotelHistoryPoint[];
+  } | null;
   available_packages?: AvailablePackage[];
   other_filters?: HotelOtherFilter[];
   history_points: HotelHistoryPoint[];
