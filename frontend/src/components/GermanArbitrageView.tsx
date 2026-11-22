@@ -27,6 +27,8 @@ export interface ArbitrageDeal {
   hotel_name: string;
   german_hotel_name?: string;
   similarity_score?: number;
+  match_type?: string;
+  is_verified?: boolean;
   country: string;
   stars: number;
   main_image_url?: string;
@@ -678,20 +680,29 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                                 ))}
                               </div>
                             </div>
-                            <button
-                              type="button"
-                              onClick={() => onOpenPassport?.(deal.hotel_id)}
-                              className="font-black text-slate-900 hover:text-blue-600 transition-colors text-left text-[14px] line-clamp-1 group-hover:underline cursor-pointer tracking-tight"
-                              title="Нажмите, чтобы открыть паспорт отеля"
-                            >
-                              {deal.hotel_name}
-                            </button>
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <button
+                                type="button"
+                                onClick={() => onOpenPassport?.(deal.hotel_id)}
+                                className="font-black text-slate-900 hover:text-blue-600 transition-colors text-left text-[14px] line-clamp-1 group-hover:underline cursor-pointer tracking-tight"
+                                title="Нажмите, чтобы открыть паспорт отеля"
+                              >
+                                {deal.hotel_name}
+                              </button>
+                              <span
+                                className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9.5px] font-bold rounded bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0"
+                                title="Идентичность отеля проверена AI и базой связок туроператоров"
+                              >
+                                ✓ 1:1 Match
+                              </span>
+                            </div>
                             {deal.german_hotel_name && deal.german_hotel_name !== deal.hotel_name && (
                               <div
-                                className="text-[10.5px] text-slate-400 italic truncate max-w-[240px] mt-0.5"
+                                className="text-[10.5px] text-slate-500 font-medium truncate max-w-[260px] mt-0.5 flex items-center gap-1"
                                 title={`Check24: ${deal.german_hotel_name}`}
                               >
-                                DE: {deal.german_hotel_name}
+                                <span className="text-amber-700 bg-amber-50 px-1 py-0.2 rounded text-[9px] font-bold border border-amber-200">В Check24</span>
+                                <span className="truncate italic text-slate-600">{deal.german_hotel_name}</span>
                               </div>
                             )}
                           </div>
@@ -886,20 +897,29 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
                     </div>
                   </div>
 
-                  <h3
-                    onClick={() => onOpenPassport?.(d.hotel_id)}
-                    className="font-bold text-slate-900 text-sm line-clamp-1 mb-1 hover:text-blue-600 cursor-pointer transition-colors"
-                    title={d.hotel_name}
-                  >
-                    {d.hotel_name}
-                  </h3>
+                  <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                    <h3
+                      onClick={() => onOpenPassport?.(d.hotel_id)}
+                      className="font-bold text-slate-900 text-sm line-clamp-1 hover:text-blue-600 cursor-pointer transition-colors"
+                      title={d.hotel_name}
+                    >
+                      {d.hotel_name}
+                    </h3>
+                    <span
+                      className="inline-flex items-center px-1.5 py-0.2 text-[9px] font-bold rounded bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0"
+                      title="Идентичность отеля проверена AI и базой связок туроператоров"
+                    >
+                      ✓ 1:1 Match
+                    </span>
+                  </div>
 
                   {d.german_hotel_name && d.german_hotel_name !== d.hotel_name && (
                     <div
-                      className="text-[10px] text-slate-400 mb-1 italic truncate"
+                      className="text-[10.5px] text-slate-500 font-medium mb-1.5 truncate flex items-center gap-1"
                       title={`В каталоге Check24: ${d.german_hotel_name}`}
                     >
-                      В Check24: {d.german_hotel_name}
+                      <span className="text-amber-700 bg-amber-50 px-1 py-0.2 rounded text-[9px] font-bold border border-amber-200">В Check24</span>
+                      <span className="truncate italic text-slate-600">{d.german_hotel_name}</span>
                     </div>
                   )}
 

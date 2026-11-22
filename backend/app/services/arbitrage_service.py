@@ -103,6 +103,8 @@ def find_check24_offer(
         scoped = [o for o in offers if normalize_dest_key(o.get("destination")) == dest_key]
         if scoped:
             offers = scoped
+        else:
+            return None
 
     if adults is not None:
         scoped = [o for o in offers if o.get("adults") == adults]
@@ -115,7 +117,7 @@ def find_check24_offer(
             offers = scoped
 
     if not offers:
-        offers = kb.get("offers", [])
+        return None
 
     matcher = get_entity_matcher()
     de_hotels = list(set(o["hotel_name"] for o in offers if o.get("hotel_name")))
@@ -477,6 +479,8 @@ class ArbitrageService:
                         "hotel_name": g["hotel_name"],
                         "german_hotel_name": matched_de_name,
                         "similarity_score": sim_score,
+                        "match_type": "AI_CANONICAL" if sim_score == 1.0 else "AI_VERIFIED",
+                        "is_verified": True,
                         "country": g["country"],
                         "stars": g["stars"],
                         "main_image_url": g["main_image_url"],
