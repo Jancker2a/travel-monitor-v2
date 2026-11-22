@@ -1396,6 +1396,65 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           </div>
                         )}
 
+                        {/* Departure Date Price Story: Lifecycle of this departure */}
+                        {passport.horizon_arbitrage.departure_price_story && (
+                          <div
+                            style={{
+                              background:
+                                passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                  ? "#f0fdf4"
+                                  : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                  ? "#fff7ed"
+                                  : "#f8fafc",
+                              border: `1.5px solid ${
+                                passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                  ? "#bbf7d0"
+                                  : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                  ? "#fed7aa"
+                                  : "#e2e8f0"
+                              }`,
+                              borderRadius: "10px",
+                              padding: "10px 14px",
+                              marginBottom: "12px",
+                            }}
+                          >
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "6px" }}>
+                              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                                <span style={{ fontSize: "14px" }}>📜</span>
+                                <span style={{ fontWeight: 800, fontSize: "12px", color: "#1e293b" }}>
+                                  Хронология цены заезда ({passport.horizon_arbitrage.departure_price_story.date_window_label})
+                                </span>
+                              </div>
+                              <span
+                                style={{
+                                  fontSize: "10.5px",
+                                  fontWeight: 800,
+                                  padding: "2px 8px",
+                                  borderRadius: "12px",
+                                  background:
+                                    passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                      ? "#dcfce7"
+                                      : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                      ? "#ffedd5"
+                                      : "#f1f5f9",
+                                  color:
+                                    passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                      ? "#15803d"
+                                      : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                      ? "#c2410c"
+                                      : "#475569",
+                                }}
+                              >
+                                {passport.horizon_arbitrage.departure_price_story.trajectory_badge}
+                              </span>
+                            </div>
+
+                            <div style={{ fontSize: "11.5px", color: "#1e293b", lineHeight: 1.55, background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #f1f5f9" }}>
+                              {passport.horizon_arbitrage.departure_price_story.verdict_text}
+                            </div>
+                          </div>
+                        )}
+
                         {/* Verdict & Recommendation */}
                         <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
                           <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}

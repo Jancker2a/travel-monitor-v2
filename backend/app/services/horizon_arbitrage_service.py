@@ -535,6 +535,186 @@ class HorizonArbitrageService:
                 ).replace(",", " ")
                 verdict["recommendation"] = "Бронируйте в спокойном режиме, ждать горящих ради 3–5% экономии нет смысла."
 
+        # Build departure price story for the specific departure date window (D +/- 4 days)
+        departure_price_story = None
+        if target_dep_date:
+            window_days = 4
+            min_chk = target_dep_date - timedelta(days=window_days)
+            max_chk = target_dep_date + timedelta(days=window_days)
+
+            window_items = []
+            for r in raw_rows:
+                chk_d = r[2]
+                if isinstance(chk_d, str):
+                    try:
+                        chk_d = date.fromisoformat(chk_d[:10])
+                    except Exception:
+                        continue
+                if not isinstance(chk_d, date) or not (min_chk <= chk_d <= max_chk):
+                    continue
+
+                rec_dt = r[1]
+                if isinstance(rec_dt, str):
+                    try:
+                        rec_d = datetime.fromisoformat(rec_dt.replace("Z", "+00:00")).date()
+                    except Exception:
+                        rec_d = date.today()
+                elif isinstance(rec_dt, (datetime,)):
+                    rec_d = rec_dt.date()
+                else:
+                    rec_d = date.today()
+
+                row_nights = int(r[3] or target_nights)
+                norm_p = (float(r[0]) / row_nights) * target_nights
+                days_before = (chk_d - rec_d).days
+
+                window_items.append({
+                    "price_pln": round(norm_p, 0),
+                    "days_before": days_before,
+                    "checkin_date": chk_d,
+                    "recorded_date": rec_d,
+                    "airport": str(r[6] or ""),
+                    "is_exact_date": (chk_d == target_dep_date),
+                })
+
+            eb_candidates = [it for it in window_items if it["days_before"] >= 55]
+            month_candidates = [it for it in window_items if 20 <= it["days_before"] < 55]
+            short_candidates = [it for it in window_items if 5 <= it["days_before"] < 20]
+            lm_candidates = [it for it in window_items if 0 <= it["days_before"] <= 4]
+
+            eb_stage = None
+            if eb_candidates:
+                exact_eb = [it for it in eb_candidates if it["is_exact_date"]]
+                eb_stage = min(exact_eb, key=lambda x: x["price_pln"]) if exact_eb else min(eb_candidates, key=lambda x: x["price_pln"])
+            elif stats_eb and stats_eb.get("best_offer"):
+                eb_bo = stats_eb["best_offer"]
+                try:
+                    c_d = date.fromisoformat(eb_bo["checkin_date"]) if isinstance(eb_bo.get("checkin_date"), str) else target_dep_date
+                except Exception:
+                    c_d = target_dep_date
+                eb_stage = {
+                    "price_pln": round(eb_bo["price_pln"], 0),
+                    "days_before": eb_bo.get("days_to_dep", 90),
+                    "checkin_date": c_d,
+                    "recorded_date": date.today(),
+                    "airport": eb_bo.get("airport", ""),
+                    "is_exact_date": False,
+                    "is_seasonal_fallback": True,
+                }
+
+            month_stage = None
+            if month_candidates:
+                exact_m = [it for it in month_candidates if it["is_exact_date"]]
+                month_stage = min(exact_m, key=lambda x: x["price_pln"]) if exact_m else min(month_candidates, key=lambda x: x["price_pln"])
+
+            short_stage = None
+            if short_candidates:
+                exact_s = [it for it in short_candidates if it["is_exact_date"]]
+                short_stage = min(exact_s, key=lambda x: x["price_pln"]) if exact_s else min(short_candidates, key=lambda x: x["price_pln"])
+
+            lm_stage = None
+            if is_current_lm and current_price:
+                lm_stage = {
+                    "price_pln": round(current_price, 0),
+                    "days_before": days_from_now_to_checkin if days_from_now_to_checkin is not None else 2,
+                    "checkin_date": target_dep_date,
+                    "recorded_date": date.today(),
+                    "airport": "",
+                    "is_exact_date": True,
+                }
+            elif lm_candidates:
+                exact_lm = [it for it in lm_candidates if it["is_exact_date"]]
+                lm_stage = min(exact_lm, key=lambda x: x["price_pln"]) if exact_lm else min(lm_candidates, key=lambda x: x["price_pln"])
+
+            available_stages = [s for s in [eb_stage, month_stage, short_stage, lm_stage] if s is not None]
+            if len(available_stages) >= 2 and lm_stage:
+                def _fmt_p(val: float) -> str:
+                    return f"{int(round(val)):_}".replace("_", " ")
+
+                story_parts = []
+                if eb_stage:
+                    eb_date_fmt = eb_stage["checkin_date"].strftime("%d.%m.%Y")
+                    p_str = _fmt_p(eb_stage['price_pln'])
+                    if eb_stage.get("is_seasonal_fallback"):
+                        story_parts.append(f"Раннее бронирование на сезон стоило {p_str} zł")
+                    else:
+                        story_parts.append(f"Раннее бронирование на {eb_date_fmt} стоило {p_str} zł")
+
+                if month_stage:
+                    m_date_fmt = month_stage["checkin_date"].strftime("%d.%m.%Y")
+                    m_days = month_stage["days_before"]
+                    p_str = _fmt_p(month_stage['price_pln'])
+                    if eb_stage:
+                        story_parts.append(f"за {m_days} дн. до поездки (на вылет {m_date_fmt}) тур можно было купить за {p_str} zł")
+                    else:
+                        story_parts.append(f"За {m_days} дн. до поездки на дату {m_date_fmt} тур стоил {p_str} zł")
+
+                if short_stage and (not month_stage or abs(short_stage["price_pln"] - month_stage["price_pln"]) > 100):
+                    s_date_fmt = short_stage["checkin_date"].strftime("%d.%m.%Y")
+                    s_days = short_stage["days_before"]
+                    p_str = _fmt_p(short_stage['price_pln'])
+                    story_parts.append(f"за {s_days} дн. до старта (вылет {s_date_fmt}) цена составляла {p_str} zł")
+
+                lm_date_fmt = lm_stage["checkin_date"].strftime("%d.%m.%Y")
+                lm_days = lm_stage["days_before"]
+                lm_p_str = _fmt_p(lm_stage['price_pln'])
+                story_parts.append(f"горящий тур за {lm_days} дн. до вылета (на дату {lm_date_fmt}) продается за {lm_p_str} zł")
+
+                pre_prices = [s["price_pln"] for s in [eb_stage, month_stage, short_stage] if s is not None]
+                min_pre = min(pre_prices) if pre_prices else lm_stage["price_pln"]
+                diff_to_min_pre = lm_stage["price_pln"] - min_pre
+                pct_to_min_pre = round((diff_to_min_pre / max(1.0, min_pre)) * 100, 1)
+
+                if diff_to_min_pre <= -200 and pct_to_min_pre <= -8.0:
+                    trajectory = "DEEP_DROP"
+                    badge = "🔥 Предложение очень выгодное"
+                    conclusion = f"— предложение очень выгодное (экономия {_fmt_p(abs(diff_to_min_pre))} zł к предварительной цене)."
+                elif diff_to_min_pre >= 200 or pct_to_min_pre >= 5.0:
+                    trajectory = "SURCHARGE_RISE"
+                    badge = "⚠️ Предложение не выгодное"
+                    conclusion = f"— предложение не выгодное: переплата {_fmt_p(diff_to_min_pre)} zł (+{pct_to_min_pre:.0f}%) из-за наценки на последние места перед вылетом."
+                else:
+                    trajectory = "STABLE"
+                    badge = "⚖️ Стандартная цена"
+                    conclusion = "— цена находится на стандартном уровне без выраженного дисконта."
+
+                verdict_text = ", ".join(story_parts) + " " + conclusion
+
+                departure_price_story = {
+                    "has_story": True,
+                    "target_checkin_date": target_dep_date.strftime("%Y-%m-%d"),
+                    "date_window_label": f"вылеты {min_chk.strftime('%d.%m')} – {max_chk.strftime('%d.%m')}",
+                    "trajectory": trajectory,
+                    "trajectory_badge": badge,
+                    "stages": {
+                        "early_booking": {
+                            "price_pln": eb_stage["price_pln"],
+                            "checkin_date": eb_stage["checkin_date"].strftime("%d.%m.%Y"),
+                            "days_before": eb_stage["days_before"],
+                            "is_exact_date_match": eb_stage.get("is_exact_date", False),
+                        } if eb_stage else None,
+                        "month_before": {
+                            "price_pln": month_stage["price_pln"],
+                            "checkin_date": month_stage["checkin_date"].strftime("%d.%m.%Y"),
+                            "days_before": month_stage["days_before"],
+                            "is_exact_date_match": month_stage.get("is_exact_date", False),
+                        } if month_stage else None,
+                        "two_weeks_before": {
+                            "price_pln": short_stage["price_pln"],
+                            "checkin_date": short_stage["checkin_date"].strftime("%d.%m.%Y"),
+                            "days_before": short_stage["days_before"],
+                            "is_exact_date_match": short_stage.get("is_exact_date", False),
+                        } if short_stage else None,
+                        "last_minute": {
+                            "price_pln": lm_stage["price_pln"],
+                            "checkin_date": lm_stage["checkin_date"].strftime("%d.%m.%Y"),
+                            "days_before": lm_stage["days_before"],
+                            "is_exact_date_match": lm_stage.get("is_exact_date", True),
+                        },
+                    },
+                    "verdict_text": verdict_text,
+                }
+
         return {
             "available": True,
             "hotel_id": clean_hotel_id,
@@ -549,6 +729,7 @@ class HorizonArbitrageService:
                 "last_minute": stats_lm,
             },
             "direct_comparison": direct_comparison,
+            "departure_price_story": departure_price_story,
             "all_time_min_pln": round(all_time_min, 0) if all_time_min != float("inf") else None,
             "verdict": verdict,
         }

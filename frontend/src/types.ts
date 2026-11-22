@@ -307,6 +307,40 @@ export interface HorizonArbitrageData {
     } | null;
     summary: string;
   } | null;
+  departure_price_story?: {
+    has_story: boolean;
+    target_checkin_date: string;
+    date_window_label: string;
+    trajectory: "DEEP_DROP" | "STABLE" | "SURCHARGE_RISE";
+    trajectory_badge: string;
+    stages: {
+      early_booking?: {
+        price_pln: number;
+        checkin_date: string;
+        days_before: number;
+        is_exact_date_match: boolean;
+      } | null;
+      month_before?: {
+        price_pln: number;
+        checkin_date: string;
+        days_before: number;
+        is_exact_date_match: boolean;
+      } | null;
+      two_weeks_before?: {
+        price_pln: number;
+        checkin_date: string;
+        days_before: number;
+        is_exact_date_match: boolean;
+      } | null;
+      last_minute: {
+        price_pln: number;
+        checkin_date: string;
+        days_before: number;
+        is_exact_date_match: boolean;
+      };
+    };
+    verdict_text: string;
+  } | null;
   verdict?: {
     perspective: "LAST_MINUTE" | "REGULAR_OR_EARLY";
     type: string;
