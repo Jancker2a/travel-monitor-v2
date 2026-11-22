@@ -659,6 +659,40 @@ async def get_arbitrage_deals(
     )
 
 
+@app.get("/api/v2/arbitrage/hotel/{hotel_id}/horizons")
+async def get_hotel_horizon_arbitrage(
+    hotel_id: str,
+    db: AsyncSession = Depends(get_db),
+    adults: int = 2,
+    children: int = 1,
+    duration_nights: int = 7,
+    checkin_date: Optional[str] = None,
+    current_price: Optional[float] = None,
+):
+    """
+    Evaluates multi-horizon booking advantage:
+    - Last-Minute (0..4d) vs Pre-Booking (14..45d) vs Early Booking (60d+)
+    - For regular/EB offers: assesses whether the hotel is prone to dumping or sold-out scarcity.
+    """
+    from app.services.horizon_arbitrage_service import HorizonArbitrageService
+    chk_d = None
+    if checkin_date:
+        try:
+            from datetime import date
+            chk_d = date.fromisoformat(checkin_date)
+        except Exception:
+            pass
+    return await HorizonArbitrageService.get_hotel_horizon_arbitrage(
+        db=db,
+        hotel_id=hotel_id,
+        adults=adults,
+        children=children,
+        duration_nights=duration_nights,
+        checkin_date=chk_d,
+        current_price=current_price,
+    )
+
+
 # Mount static site (V1 dashboard & landing) and React SPA frontend
 site_dir = Path(__file__).resolve().parents[2] / "site"
 dist_dir = Path(__file__).resolve().parents[2] / "frontend" / "dist"

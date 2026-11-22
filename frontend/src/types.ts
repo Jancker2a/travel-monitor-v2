@@ -251,6 +251,48 @@ export interface GermanArbitrageData {
   train_transfer_from_pl: string;
 }
 
+export interface HorizonStat {
+  count: number;
+  min_price_pln: number;
+  median_price_pln: number;
+  avg_price_pln: number;
+  best_offer?: {
+    price_pln: number;
+    days_to_dep: number;
+    checkin_date: string;
+    duration_nights: number;
+    airport: string;
+  };
+}
+
+export interface HorizonArbitrageData {
+  available: boolean;
+  hotel_id?: string;
+  target_nights?: number;
+  target_adults?: number;
+  target_children?: number;
+  current_price_pln?: number;
+  horizons?: {
+    early_booking?: HorizonStat | null;
+    standard?: HorizonStat | null;
+    short_notice?: HorizonStat | null;
+    last_minute?: HorizonStat | null;
+  };
+  all_time_min_pln?: number;
+  verdict?: {
+    perspective: "LAST_MINUTE" | "REGULAR_OR_EARLY";
+    type: string;
+    badge: string;
+    headline: string;
+    description: string;
+    recommendation: string;
+    savings_vs_standard_pln?: number | null;
+    savings_vs_standard_pct?: number | null;
+    savings_vs_eb_pln?: number | null;
+    savings_vs_eb_pct?: number | null;
+  };
+}
+
 export interface HotelOtherFilter {
   filter_id: string;
   title: string;
@@ -323,6 +365,7 @@ export interface HotelPassport {
 
   infra_rich?: Record<string, any>;
   german_arbitrage?: GermanArbitrageData;
+  horizon_arbitrage?: HorizonArbitrageData;
   available_packages?: AvailablePackage[];
   other_filters?: HotelOtherFilter[];
   history_points: HotelHistoryPoint[];

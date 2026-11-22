@@ -65,6 +65,7 @@ class HotelPassportResponse(BaseModel):
 
     infra_rich: Optional[Dict[str, Any]] = None
     german_arbitrage: Optional[Dict[str, Any]] = None
+    horizon_arbitrage: Optional[Dict[str, Any]] = None
     available_packages: List[Dict[str, Any]] = Field(default_factory=list)
     other_filters: List[Dict[str, Any]] = Field(default_factory=list)
 

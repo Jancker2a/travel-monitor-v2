@@ -650,7 +650,28 @@ class DashboardAlertService:
                 f_id = str(r[13] or "")
                 f_url = str(r[14] or "")
                 f_title = str(r[15] or "")
+                curr_price = float(r[6])
                 ad, ch = normalize_pax(int(r[11] or 2), int(r[12] or 0), filter_id=f_id, filter_title=f_title, offer_url=f_url)
+                
+                # Compute horizon arbitrage for this urgent deal
+                h_verdict = None
+                try:
+                    from app.services.horizon_arbitrage_service import HorizonArbitrageService
+                    from datetime import date
+                    chk_d = date.fromisoformat(str(r[8])) if r[8] else None
+                    ha = await HorizonArbitrageService.get_hotel_horizon_arbitrage(
+                        db=db,
+                        hotel_id=h_id,
+                        adults=ad,
+                        children=ch,
+                        duration_nights=int(r[9] or 7),
+                        checkin_date=chk_d,
+                        current_price=curr_price,
+                    )
+                    h_verdict = ha.get("verdict")
+                except Exception:
+                    pass
+
                 last_minute_deals.append({
                     "hotel_id": h_id,
                     "hotel_name": r[1],
@@ -658,7 +679,7 @@ class DashboardAlertService:
                     "region": r[3] or "",
                     "stars": stars,
                     "ta_rating": ta,
-                    "price_pln": float(r[6]),
+                    "price_pln": curr_price,
                     "deal_score": score,
                     "destination_code": dest,
                     "checkin_date": str(r[8]),
@@ -669,6 +690,7 @@ class DashboardAlertService:
                     "filter_id": f_id,
                     "offer_url": f_url,
                     "filter_title": f_title,
+                    "horizon_verdict": h_verdict,
                 })
                 if len(last_minute_deals) >= max_offers:
                     break

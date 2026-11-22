@@ -1384,6 +1384,22 @@ class WatchlistService:
                         "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
                     }
 
+        # Horizon Arbitrage (Early Booking vs Standard vs Last Minute)
+        from app.services.horizon_arbitrage_service import HorizonArbitrageService
+        horizon_arbitrage = None
+        try:
+            horizon_arbitrage = await HorizonArbitrageService.get_hotel_horizon_arbitrage(
+                db=db,
+                hotel_id=hotel.hotel_id,
+                adults=target_adults,
+                children=target_children,
+                duration_nights=target_nights,
+                checkin_date=active_checkin,
+                current_price=curr_p,
+            )
+        except Exception as ha_err:
+            logger.warning(f"Could not compute horizon arbitrage for {hotel.hotel_id}: {ha_err}")
+
         packages_list = sorted(list(packages_map.values()), key=lambda x: x["total_price_pln"])
 
         final_main_image = hotel.main_image_url or dossier.get("main_image_url") or (dossier["gallery_photos"][0] if dossier.get("gallery_photos") else None)
@@ -1471,6 +1487,7 @@ class WatchlistService:
             ai_insight=ai_insight,
             infra_rich=dossier["infra_rich"],
             german_arbitrage=german_arbitrage,
+            horizon_arbitrage=horizon_arbitrage,
             available_packages=packages_list,
             other_filters=other_filters,
             history_points=history_points,

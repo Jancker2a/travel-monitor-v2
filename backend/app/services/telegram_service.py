@@ -471,7 +471,18 @@ class TelegramService:
 
             elif kind == "last_minute":
                 score = item.get("deal_score") or 90
-                price_line = f"  ⚡ <b>{price_str}</b> ({ppn_str}) • срочный вылет {dep_date}! (Score: <b>{score}</b>) 🔥"
+                h_verdict = item.get("horizon_verdict") or {}
+                h_line = ""
+                if h_verdict and h_verdict.get("type") == "REAL_DUMP":
+                    saved = h_verdict.get("savings_vs_standard_pln") or 0
+                    pct = h_verdict.get("savings_vs_standard_pct") or 0
+                    h_line = f"\n  ⚖️ <i>Горизонты: на -{pct:.0f}% (-{saved:,.0f} zł) дешевле цены за месяц! Честный сброс!</i> 🔥".replace(",", " ")
+                elif h_verdict and h_verdict.get("type") == "FAKE_LAST_MINUTE":
+                    h_line = "\n  ⚖️ <i>Горизонты: стандартная цена без горящей скидки</i>"
+                elif h_verdict and h_verdict.get("type") == "URGENT_SURCHARGE":
+                    pct = abs(h_verdict.get("savings_vs_standard_pct") or 0)
+                    h_line = f"\n  ⚠️ <i>Горизонты: наценка +{pct:.0f}% за срочность</i>"
+                price_line = f"  ⚡ <b>{price_str}</b> ({ppn_str}) • срочный вылет {dep_date}! (Score: <b>{score}</b>) 🔥{h_line}"
 
             elif kind == "historic_low":
                 price_line = f"  💰 <b>{price_str}</b> ({ppn_str}) — <i>абсолютный ценовой рекорд!</i> 🏆"

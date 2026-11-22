@@ -1198,6 +1198,134 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 </div>
               )}
 
+              {/* Horizon Arbitrage: Early Booking vs Standard vs Last Minute */}
+              {passport?.horizon_arbitrage?.available && passport.horizon_arbitrage.verdict && (
+                <div
+                  style={{
+                    background:
+                      passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                        ? "#f0fdf4"
+                        : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                        ? "#faf5ff"
+                        : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                        ? "#f8fafc"
+                        : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                        ? "#fef2f2"
+                        : "#fffbeb",
+                    border: `1px solid ${
+                      passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                        ? "#bbf7d0"
+                        : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                        ? "#e9d5ff"
+                        : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                        ? "#cbd5e1"
+                        : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                        ? "#fecaca"
+                        : "#fef3c7"
+                    }`,
+                    borderRadius: "12px",
+                    padding: "16px",
+                    marginBottom: "16px",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ fontSize: "18px" }}>🧬</span>
+                      <span style={{ fontSize: "14px", fontWeight: 800, color: "#0f172a" }}>
+                        Горизонты цен: Раннее ↔ Стандарт ↔ Горящие
+                      </span>
+                    </div>
+                    <span
+                      style={{
+                        background:
+                          passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                            ? "#16a34a"
+                            : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                            ? "#9333ea"
+                            : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                            ? "#475569"
+                            : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                            ? "#dc2626"
+                            : "#d97706",
+                        color: "#ffffff",
+                        padding: "3px 10px",
+                        borderRadius: "8px",
+                        fontSize: "11px",
+                        fontWeight: 800,
+                      }}
+                    >
+                      {passport.horizon_arbitrage.verdict.badge}
+                    </span>
+                  </div>
+
+                  {/* 3-column Price Horizon Bar */}
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
+                    {/* Early Booking */}
+                    <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
+                      <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>🏷️ Раннее (D 60+дн)</div>
+                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
+                        {passport.horizon_arbitrage.horizons?.early_booking
+                          ? `${passport.horizon_arbitrage.horizons.early_booking.median_price_pln.toLocaleString("ru-RU")} zł`
+                          : "—"}
+                      </div>
+                      <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                        {passport.horizon_arbitrage.horizons?.early_booking ? `${passport.horizon_arbitrage.horizons.early_booking.count} фиксаций` : "нет данных"}
+                      </div>
+                    </div>
+
+                    {/* Standard Booking */}
+                    <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
+                      <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>📅 За 2–4 нед. (D 14–45)</div>
+                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
+                        {passport.horizon_arbitrage.horizons?.standard
+                          ? `${passport.horizon_arbitrage.horizons.standard.median_price_pln.toLocaleString("ru-RU")} zł`
+                          : passport.horizon_arbitrage.horizons?.short_notice
+                          ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
+                          : "—"}
+                      </div>
+                      <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                        {passport.horizon_arbitrage.horizons?.standard
+                          ? `${passport.horizon_arbitrage.horizons.standard.count} фиксаций`
+                          : passport.horizon_arbitrage.horizons?.short_notice
+                          ? "(за 1–2 нед.)"
+                          : "нет данных"}
+                      </div>
+                    </div>
+
+                    {/* Last Minute */}
+                    <div
+                      style={{
+                        background: passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#fef3c7" : "#ffffff",
+                        padding: "10px",
+                        borderRadius: "8px",
+                        border: `1px solid ${passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#f59e0b" : "#e2e8f0"}`,
+                        textAlign: "center",
+                      }}
+                    >
+                      <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>⚡ Горящие (D 0–4дн)</div>
+                      <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309", marginTop: "4px" }}>
+                        {passport.horizon_arbitrage.horizons?.last_minute
+                          ? `${passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł`
+                          : "Не горит"}
+                      </div>
+                      <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                        {passport.horizon_arbitrage.horizons?.last_minute
+                          ? `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
+                          : "0 появлений"}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Verdict & Recommendation */}
+                  <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
+                    <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
+                  </div>
+                  <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
+                    💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
+                  </div>
+                </div>
+              )}
+
               {/* German Arbitrage highlight: ONLY shown when a verified specific offer URL exists and has real savings */}
               {passport?.german_arbitrage &&
                 passport.german_arbitrage.savings_pln > 0 &&
