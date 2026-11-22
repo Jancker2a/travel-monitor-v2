@@ -103,10 +103,12 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       group: "⚡ Горящие туры (0–4 дня)",
       icon: "⚡",
       items: [
-        { id: "lastminute_turkey_0_4", title: "🇹🇷 Турция (0–4 дня)", badge: "Flash" },
-        { id: "lastminute_egypt_0_4", title: "🇪🇬 Египет (0–4 дня)", badge: "Flash" },
-        { id: "lastminute_greece_0_4", title: "🇬🇷 Греция (0–4 дня)", badge: "Flash" },
-        { id: "lastminute_cyprus_0_4", title: "🇨🇾 Кипр (0–4 дня)", badge: "Flash" },
+        { id: "lastminute_turkey_0_4", title: "🇹🇷 Турция 7–10 дн (2+1)", badge: "Flash" },
+        { id: "lastminute_egypt_0_4", title: "🇪🇬 Египет 7–10 дн (2+1)", badge: "Flash" },
+        { id: "lastminute_turkey_13_16", title: "🇹🇷 Турция 13–16 дн (2+1)", badge: "14н Flash" },
+        { id: "lastminute_egypt_13_16", title: "🇪🇬 Египет 13–16 дн (2+1)", badge: "14н Flash" },
+        { id: "lastminute_greece_0_4", title: "🇬🇷 Греция 7–10 дн (2+1)", badge: "Flash" },
+        { id: "lastminute_cyprus_0_4", title: "🇨🇾 Кипр 7–10 дн (2+1)", badge: "Flash" },
       ],
     },
     {
@@ -114,7 +116,9 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
       icon: "📏",
       items: [
         { id: "benchmark_turkey_1p_7_8", title: "Турция 7–8 дн (1 взр)" },
+        { id: "benchmark_turkey_1p_13_16", title: "Турция 13–16 дн (1 взр)" },
         { id: "benchmark_egypt_1p_7_8", title: "Египет 7–8 дн (1 взр)" },
+        { id: "benchmark_egypt_1p_13_16", title: "Египет 13–16 дн (1 взр)" },
         { id: "benchmark_greece_1p_7_8", title: "Греция 7–8 дн (1 взр)" },
         { id: "benchmark_cyprus_1p_7_8", title: "Кипр 7–8 дн (1 взр)" },
       ],

@@ -140,12 +140,13 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
               onChange={(e) => onFilterChange({ ...filters, priceMax: e.target.value })}
               className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-10 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
             >
-              <option value="">Все цены</option>
-              <option value="5000">до 5 000 zł</option>
-              <option value="7000">до 7 000 zł</option>
+              <option value="all">Все цены (без потолка)</option>
+              <option value="">Потолок фильтра (по умолч.)</option>
+              <option value="8000">до 8 000 zł</option>
               <option value="10000">до 10 000 zł</option>
               <option value="12000">до 12 000 zł</option>
-              <option value="15000">до 15 000 zł</option>
+              <option value="14000">до 14 000 zł</option>
+              <option value="18000">до 18 000 zł</option>
               <option value="25000">до 25 000 zł</option>
               <option value="50000">до 50 000 zł</option>
             </select>

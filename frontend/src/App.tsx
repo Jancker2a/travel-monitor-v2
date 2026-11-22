@@ -483,7 +483,7 @@ export const App: React.FC = () => {
     try {
       const preset = FILTER_PRESETS[filterId] || FILTER_PRESETS["turkey_7_10_days"];
       const catResp = await getFilterHotelsCatalog(filterId, {
-        maxPrice: preset?.displayPriceCeiling,
+        maxPrice: 0, // Retrieve full catalog from backend; client controls comfortable ceiling and full view
       });
       if (filterRequestIdRef.current !== reqId) return;
 
@@ -749,8 +749,12 @@ export const App: React.FC = () => {
 
       // Max price
       if (tableFilters.priceMax) {
-        const maxP = parseFloat(tableFilters.priceMax);
-        if (h.current_offer.total_price_pln > maxP) return false;
+        if (tableFilters.priceMax === "all" || tableFilters.priceMax === "0") {
+          // Explicitly show all offers, completely bypassing preset ceiling!
+        } else {
+          const maxP = parseFloat(tableFilters.priceMax);
+          if (!isNaN(maxP) && h.current_offer.total_price_pln > maxP) return false;
+        }
       } else if (activeTab === "filter" && currentPreset?.displayPriceCeiling) {
         if (h.current_offer.total_price_pln > currentPreset.displayPriceCeiling) return false;
       }
@@ -1362,6 +1366,22 @@ export const App: React.FC = () => {
               : undefined
           }
         />
+
+        {/* Comfortable Ceiling Banner if active */}
+        {activeTab === "filter" && currentPreset?.displayPriceCeiling && !tableFilters.priceMax && (
+          <div className="mb-3 px-4 py-2.5 bg-blue-50/80 border border-blue-200/90 rounded-2xl flex flex-wrap items-center justify-between gap-2 text-xs text-blue-900 shadow-2xs">
+            <span className="flex items-center gap-1.5 font-medium">
+              💡 Применен комфортный ценовой потолок: <b>до {currentPreset.displayPriceCeiling.toLocaleString("ru-RU")} zł</b>.
+            </span>
+            <button
+              type="button"
+              onClick={() => setTableFilters((prev) => ({ ...prev, priceMax: "all" }))}
+              className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-xs transition-colors shadow-2xs cursor-pointer"
+            >
+              Показать все отели (снять потолок)
+            </button>
+          </div>
+        )}
 
         {/* 6. Mode Switch Views */}
         {viewMode === "arbitrage" ? (

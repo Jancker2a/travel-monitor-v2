@@ -177,12 +177,12 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
 
   // 3. Duration
   const [minNights, setMinNights] = useState(7);
-  const [maxNights, setMaxNights] = useState(8);
+  const [maxNights, setMaxNights] = useState(10);
 
-  // 4. Travelers & Children
-  const [adults, setAdults] = useState(1);
-  const [childrenCount, setChildrenCount] = useState(0);
-  const [childrenAges, setChildrenAges] = useState<number[]>([]);
+  // 4. Travelers & Children (Canonical family profile: 2 взр + 1 реб 6 лет)
+  const [adults, setAdults] = useState(2);
+  const [childrenCount, setChildrenCount] = useState(1);
+  const [childrenAges, setChildrenAges] = useState<number[]>([6]);
 
   // 5. Airports
   const [selectedAirports, setSelectedAirports] = useState<string[]>([
@@ -198,8 +198,17 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
   const [catering, setCatering] = useState("all_inclusive");
   const [starsMin, setStarsMin] = useState(4);
   const [minPrice, setMinPrice] = useState<string>("");
-  const [maxPrice, setMaxPrice] = useState<string>("8000");
+  const [maxPrice, setMaxPrice] = useState<string>("14000");
   const [orderBy, setOrderBy] = useState("price");
+
+  // Dynamic budget ceiling calculation based on pax and duration
+  const getAutoCeiling = (ad: number, ch: number, nights: number): number => {
+    if (ad === 1 && ch === 0) return nights > 10 ? 10000 : 7000;
+    if (ad === 2 && ch === 0) return nights > 10 ? 18000 : 12000;
+    if (ad === 2 && ch === 1) return nights > 10 ? 18000 : 14000;
+    if (ch >= 2) return nights > 10 ? 22000 : 18000;
+    return nights > 10 ? 20000 : 14000;
+  };
 
   // Advanced toggles: Default is LIVE mode
   const [forceLive, setForceLive] = useState(true);
@@ -357,6 +366,9 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
       setDestination(initialPreset.destination);
       setRegion(initialPreset.destination);
     }
+    if (initialPreset.displayPriceCeiling) {
+      setMaxPrice(String(initialPreset.displayPriceCeiling));
+    }
     if (initialPreset.searchReq) {
       const s = initialPreset.searchReq;
       if (s.dates?.start_date_min) setStartDateMin(s.dates.start_date_min);
@@ -376,7 +388,14 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
     setRegion(destId);
   };
 
-  // Handle children count change with dynamic ages
+  // Handle adults change with auto ceiling adjustment
+  const handleAdultsChange = (newAdults: number) => {
+    const val = Math.max(1, Math.min(6, newAdults));
+    setAdults(val);
+    setMaxPrice(String(getAutoCeiling(val, childrenCount, maxNights)));
+  };
+
+  // Handle children count change with dynamic ages and auto ceiling adjustment
   const handleChildrenCountChange = (count: number) => {
     const c = Math.max(0, Math.min(4, count));
     setChildrenCount(c);
@@ -388,6 +407,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
       }
       return prev.slice(0, c);
     });
+    setMaxPrice(String(getAutoCeiling(adults, c, maxNights)));
   };
 
   const handleChildAgeChange = (idx: number, age: number) => {
@@ -674,15 +694,15 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
     setStartDateMin(defaultMinDate);
     setStartDateMax(defaultMaxDate);
     setMinNights(7);
-    setMaxNights(8);
-    setAdults(1);
-    setChildrenCount(0);
-    setChildrenAges([]);
+    setMaxNights(10);
+    setAdults(2);
+    setChildrenCount(1);
+    setChildrenAges([6]);
     setSelectedAirports(["WAW", "KTW", "KRK", "GDN", "WRO", "POZ"]);
     setCatering("all_inclusive");
     setStarsMin(4);
     setMinPrice("");
-    setMaxPrice("8000");
+    setMaxPrice("14000");
     setOrderBy("price");
     setForceLive(true);
   };
@@ -1088,7 +1108,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
                 <div className="flex items-center bg-white rounded-lg border border-slate-200 overflow-hidden">
                   <button
                     type="button"
-                    onClick={() => setAdults((prev) => Math.max(1, prev - 1))}
+                    onClick={() => handleAdultsChange(adults - 1)}
                     className="px-2.5 py-1 text-slate-600 hover:bg-slate-100 font-bold"
                   >
                     –
@@ -1098,7 +1118,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
                   </span>
                   <button
                     type="button"
-                    onClick={() => setAdults((prev) => Math.min(6, prev + 1))}
+                    onClick={() => handleAdultsChange(adults + 1)}
                     className="px-2.5 py-1 text-slate-600 hover:bg-slate-100 font-bold"
                   >
                     +
@@ -1260,21 +1280,7 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
             </div>
 
             {/* Quick Presets */}
-            <div className="flex items-center gap-1">
-              {[5000, 8000, 10000, 15000].map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => setMaxPrice(String(p))}
-                  className={`flex-1 py-0.5 text-[10px] font-semibold rounded transition-colors ${
-                    maxPrice === String(p)
-                      ? "bg-emerald-600 text-white font-bold"
-                      : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
-                  }`}
-                >
-                  {p / 1000}k
-                </button>
-              ))}
+            <div className="flex items-center gap-1 flex-wrap">
               <button
                 type="button"
                 onClick={() => {
@@ -1287,8 +1293,22 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
                     : "bg-white hover:bg-slate-100 text-slate-500 border border-slate-200"
                 }`}
               >
-                Все
+                Любой
               </button>
+              {[10000, 12000, 14000, 15000, 18000, 20000].map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setMaxPrice(String(p))}
+                  className={`flex-1 py-0.5 text-[10px] font-semibold rounded transition-colors whitespace-nowrap ${
+                    maxPrice === String(p)
+                      ? "bg-emerald-600 text-white font-bold"
+                      : "bg-white hover:bg-slate-100 text-slate-700 border border-slate-200"
+                  }`}
+                >
+                  {p / 1000}k
+                </button>
+              ))}
             </div>
           </div>
 
