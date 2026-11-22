@@ -1551,23 +1551,42 @@ class WatchlistService:
         )
 
         # Build intelligent AI micro-insight for this hotel passport
+        is_lastminute = False
+        if filter_id and ("lastminute" in filter_id.lower() or "0_4" in filter_id.lower()):
+            is_lastminute = True
+        elif target_dep_date:
+            days_to_dep = (target_dep_date - date.today()).days
+            if 0 <= days_to_dep <= 4:
+                is_lastminute = True
+
         has_rich_rates = (len(unseasoned_rates) >= 3) or (
             reference_history and reference_history.get("snaps_count", 0) >= 3
         )
         if med_p is not None and med_p > 0 and has_rich_rates:
             diff_to_norm = round(((curr_p - med_p) / med_p) * 100.0, 1)
-            if diff_to_norm <= -15.0:
-                ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
-                ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Это исторически выгодный момент для бронирования."
-            elif diff_to_norm <= -7.0:
-                ai_action_signal = f"⚡ Выгодная цена ({diff_to_norm:+.0f}%)"
-                ai_price_summary = f"Тур стоит {curr_p:.0f} zł при сезонной норме {med_p:.0f} zł ({diff_to_norm:+.1f}%). Рекомендуется фиксировать."
-            elif diff_to_norm <= 7.0:
-                ai_action_signal = "⚖️ Стандартная цена сезона"
-                ai_price_summary = f"Цена {curr_p:.0f} zł находится в пределах сезонной нормы ({med_p:.0f} zł). Спешить не нужно, можно отслеживать динамику."
+            if is_lastminute:
+                if diff_to_norm <= -15.0:
+                    ai_action_signal = f"🔥 Честный горящий сброс (-{abs(diff_to_norm):.0f}%)"
+                    ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Реальный горящий дисконт перед вылетом."
+                elif diff_to_norm <= 5.0:
+                    ai_action_signal = "⚖️ Не горящее: реальной скидки нет"
+                    ai_price_summary = f"Цена {curr_p:.0f} zł соответствует обычной сезонной норме ({med_p:.0f} zł). Горящей скидки нет, это стандартная регулярная цена."
+                else:
+                    ai_action_signal = f"📈 Завышена перед вылетом (+{diff_to_norm:.0f}%)"
+                    ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Наценка на последние места перед вылетом."
             else:
-                ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
-                ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
+                if diff_to_norm <= -15.0:
+                    ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
+                    ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Выгодный момент для бронирования."
+                elif diff_to_norm <= -7.0:
+                    ai_action_signal = f"⚡ Выгодная цена ({diff_to_norm:+.0f}%)"
+                    ai_price_summary = f"Тур стоит {curr_p:.0f} zł при норме {med_p:.0f} zł ({diff_to_norm:+.1f}%). Рекомендуется фиксировать."
+                elif diff_to_norm <= 7.0:
+                    ai_action_signal = "⚖️ Стандартная цена сезона"
+                    ai_price_summary = f"Цена {curr_p:.0f} zł в пределах сезонной нормы ({med_p:.0f} zł). Скидки нет, спешить не нужно."
+                else:
+                    ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
+                    ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
 
             if reference_history and len(unseasoned_rates) < 3:
                 party_label = f"{target_adults} взр" + (f" + {target_children} реб" if target_children else "")

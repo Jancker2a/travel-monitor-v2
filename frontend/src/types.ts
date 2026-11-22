@@ -256,6 +256,8 @@ export interface HorizonStat {
   min_price_pln: number;
   median_price_pln: number;
   avg_price_pln: number;
+  display_price_pln?: number;
+  current_price_pln?: number;
   departure_dates_label?: string;
   season_label?: string;
   is_same_season?: boolean;
@@ -286,18 +288,23 @@ export interface HorizonArbitrageData {
     has_comparison: boolean;
     is_hot_cheaper: boolean;
     is_std_cheaper: boolean;
+    is_same_flight_date?: boolean;
     price_diff_pln: number;
     diff_pct: number;
     days_gap?: number | null;
     hot_offer: {
       price_pln: number;
       checkin_date?: string | null;
+      checkin_date_formatted?: string | null;
       airport?: string | null;
+      offer_url?: string | null;
     };
     standard_offer: {
       price_pln: number;
       checkin_date?: string | null;
+      checkin_date_formatted?: string | null;
       airport?: string | null;
+      offer_url?: string | null;
     };
     early_booking_offer?: {
       price_pln: number;

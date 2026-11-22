@@ -1282,14 +1282,27 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                             <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>⚡ Горящие (D 0–4дн)</div>
                             <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309", marginTop: "4px" }}>
                               {passport.horizon_arbitrage.horizons?.last_minute
-                                ? `${passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł`
+                                ? (passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" && passport.horizon_arbitrage.current_price_pln
+                                    ? passport.horizon_arbitrage.current_price_pln
+                                    : passport.horizon_arbitrage.horizons.last_minute.display_price_pln || passport.horizon_arbitrage.horizons.last_minute.min_price_pln
+                                  ).toLocaleString("ru-RU") + " zł"
                                 : "Не горит"}
                             </div>
                             <div style={{ fontSize: "10px", color: "#94a3b8" }}>
                               {passport.horizon_arbitrage.horizons?.last_minute
-                                ? `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
+                                ? passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE"
+                                  ? "Текущий вылет"
+                                  : `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
                                 : "0 появлений"}
                             </div>
+                            {passport.horizon_arbitrage.horizons?.last_minute &&
+                              passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" &&
+                              passport.horizon_arbitrage.current_price_pln &&
+                              passport.horizon_arbitrage.current_price_pln > passport.horizon_arbitrage.horizons.last_minute.min_price_pln && (
+                                <div style={{ fontSize: "9px", color: "#b45309", marginTop: "2px" }}>
+                                  (ист. рекорд: {passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł)
+                                </div>
+                            )}
                             {passport.horizon_arbitrage.horizons?.last_minute?.departure_dates_label && (
                               <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #fde68a" }}>
                                 <span
@@ -1372,10 +1385,36 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                   🛫 {passport.horizon_arbitrage.direct_comparison.hot_offer.checkin_date || "—"}
                                   {passport.horizon_arbitrage.direct_comparison.hot_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.hot_offer.airport})` : ""}
                                 </div>
+                                {passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url && (
+                                  <a
+                                    href={passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                      display: "inline-flex",
+                                      alignItems: "center",
+                                      gap: "4px",
+                                      fontSize: "10px",
+                                      fontWeight: 700,
+                                      color: "#b45309",
+                                      background: "#ffffff",
+                                      padding: "3px 8px",
+                                      borderRadius: "6px",
+                                      border: "1px solid #fde68a",
+                                      marginTop: "6px",
+                                      textDecoration: "none",
+                                      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                                    }}
+                                    title="Открыть горящий тур на Fly.pl"
+                                  >
+                                    <span>Открыть горящий тур</span>
+                                    <ExternalLink style={{ width: "10px", height: "10px" }} />
+                                  </a>
+                                )}
                               </div>
 
                               <div style={{ background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f0fdf4" : "#ffffff", padding: "8px 10px", borderRadius: "8px", border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#22c55e" : "#e2e8f0"}` }}>
-                                <div style={{ fontSize: "10px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#64748b", fontWeight: 700, display: "flex", justifyContent: "space-between" }}>
+                                <div style={{ fontSize: "10px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#64748b", fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                   <span>📅 Ближайший стандартный рейс:</span>
                                   {passport.horizon_arbitrage.direct_comparison.is_std_cheaper && <span>★ Выгоднее</span>}
                                 </div>
@@ -1387,6 +1426,32 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                   {passport.horizon_arbitrage.direct_comparison.standard_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.standard_offer.airport})` : ""}
                                   {passport.horizon_arbitrage.direct_comparison.days_gap ? ` (через ${passport.horizon_arbitrage.direct_comparison.days_gap} дн.)` : ""}
                                 </div>
+                                {passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url && (
+                                  <a
+                                    href={passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                      display: "inline-flex",
+                                      alignItems: "center",
+                                      gap: "4px",
+                                      fontSize: "10px",
+                                      fontWeight: 700,
+                                      color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#2563eb",
+                                      background: "#ffffff",
+                                      padding: "3px 8px",
+                                      borderRadius: "6px",
+                                      border: `1px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#86efac" : "#bfdbfe"}`,
+                                      marginTop: "6px",
+                                      textDecoration: "none",
+                                      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                                    }}
+                                    title="Открыть предложение на Fly.pl"
+                                  >
+                                    <span>Открыть рейс на Fly.pl</span>
+                                    <ExternalLink style={{ width: "10px", height: "10px" }} />
+                                  </a>
+                                )}
                               </div>
                             </div>
 

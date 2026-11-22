@@ -174,6 +174,15 @@ class HorizonArbitrageService:
             elif days_to_dep >= 60:
                 horizons["early_booking"].append(item)
 
+        # Determine current offer perspective: is it Last Minute or Regular/Early Booking?
+        is_current_lm = False
+        today_date = date.today()
+        days_from_now_to_checkin = None
+        if checkin_date:
+            days_from_now_to_checkin = (checkin_date - today_date).days
+            if 0 <= days_from_now_to_checkin <= 4:
+                is_current_lm = True
+
         # Helper functions for seasonal and date range formatting
         MONTHS_SHORT = {1: "янв", 2: "февр", 3: "мар", 4: "апр", 5: "мая", 6: "июн", 7: "июл", 8: "авг", 9: "сент", 10: "окт", 11: "нояб", 12: "дек"}
 
@@ -209,7 +218,10 @@ class HorizonArbitrageService:
         # Determine target departure date and its seasonal bracket
         target_dep_date = checkin_date
         if not target_dep_date and horizons["last_minute"]:
-            target_dep_date = date.fromisoformat(horizons["last_minute"][-1]["checkin_date"])
+            try:
+                target_dep_date = date.fromisoformat(horizons["last_minute"][-1]["checkin_date"])
+            except Exception:
+                pass
         elif not target_dep_date and raw_rows:
             try:
                 target_dep_date = date.fromisoformat(str(raw_rows[0][2]))
@@ -220,7 +232,7 @@ class HorizonArbitrageService:
         target_season_label = get_season_name(target_dep_date.month) if target_dep_date else ""
 
         # Compute summary stats per horizon with explicit departure dates & seasons
-        def summarize(items: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+        def summarize(items: List[Dict[str, Any]], horizon_key: str = "") -> Optional[Dict[str, Any]]:
             if not items:
                 return None
             prices = [it["price_pln"] for it in items]
@@ -237,17 +249,29 @@ class HorizonArbitrageService:
                     except Exception:
                         pass
 
-            dates_label = format_date_range(checkin_dates)
+            # Target date formatting: avoid wide multi-month spans like "июн - нояб" for active view
+            if horizon_key == "last_minute" and is_current_lm and checkin_date:
+                dates_label = f"{checkin_date.day} {MONTHS_SHORT.get(checkin_date.month, '')}"
+                display_p = round(current_price, 0) if current_price else round(median_p, 0)
+            elif target_dep_date and checkin_dates:
+                near_dates = [d for d in checkin_dates if abs((d - target_dep_date).days) <= 45]
+                dates_label = format_date_range(near_dates if near_dates else checkin_dates)
+                display_p = round(median_p, 0)
+            else:
+                dates_label = format_date_range(checkin_dates)
+                display_p = round(median_p, 0)
+
             first_m = checkin_dates[0].month if checkin_dates else (target_dep_date.month if target_dep_date else 11)
             season_label = get_season_name(first_m)
 
-            # Check if departure season matches the target offer's departure season
             is_same_season = True
             if target_season_cat and checkin_dates:
                 is_same_season = any(get_season_category(d.month) == target_season_cat for d in checkin_dates)
 
             return {
                 "count": len(items),
+                "display_price_pln": display_p,
+                "current_price_pln": round(current_price, 0) if (is_current_lm and current_price and horizon_key == "last_minute") else None,
                 "min_price_pln": round(min_p, 0),
                 "median_price_pln": round(median_p, 0),
                 "avg_price_pln": round(avg_p, 0),
@@ -257,22 +281,15 @@ class HorizonArbitrageService:
                 "best_offer": min(items, key=lambda x: x["price_pln"]),
             }
 
-        stats_lm = summarize(horizons["last_minute"])
-        stats_short = summarize(horizons["short_notice"])
-        stats_std = summarize(horizons["standard"])
-        stats_eb = summarize(horizons["early_booking"])
-
-        # Determine current offer perspective: is it Last Minute or Regular/Early Booking?
-        is_current_lm = False
-        today_date = date.today()
-        days_from_now_to_checkin = None
-        if checkin_date:
-            days_from_now_to_checkin = (checkin_date - today_date).days
-            if 0 <= days_from_now_to_checkin <= 4:
-                is_current_lm = True
+        stats_lm = summarize(horizons["last_minute"], horizon_key="last_minute")
+        stats_short = summarize(horizons["short_notice"], horizon_key="short_notice")
+        stats_std = summarize(horizons["standard"], horizon_key="standard")
+        stats_eb = summarize(horizons["early_booking"], horizon_key="early_booking")
 
         # Reference price for comparison
-        active_lm_price = (current_price if is_current_lm and current_price else (stats_lm["min_price_pln"] if stats_lm else None))
+        active_lm_price = (current_price if is_current_lm and current_price else (stats_lm["display_price_pln"] if stats_lm else None))
+        active_std_price = stats_std["median_price_pln"] if stats_std else (stats_short["median_price_pln"] if stats_short else None)
+        active_eb_price = stats_eb["median_price_pln"] if stats_eb else None
         active_std_price = stats_std["median_price_pln"] if stats_std else (stats_short["median_price_pln"] if stats_short else None)
         active_eb_price = stats_eb["median_price_pln"] if stats_eb else None
 
@@ -311,44 +328,69 @@ class HorizonArbitrageService:
                 lm_date_str = str(checkin_date) if checkin_date else (lm_best.get("checkin_date") if lm_best else (str(target_dep_date) if target_dep_date else None))
                 std_date_str = best_std_offer.get("checkin_date")
 
+                def fmt_iso_date(d_val: Optional[str]) -> str:
+                    if not d_val:
+                        return ""
+                    try:
+                        return date.fromisoformat(str(d_val)[:10]).strftime("%d.%m.%Y")
+                    except Exception:
+                        return str(d_val)
+
+                lm_date_fmt = fmt_iso_date(lm_date_str)
+                std_date_fmt = fmt_iso_date(std_date_str)
+
                 days_gap = None
                 if lm_date_str and std_date_str:
                     try:
-                        d1 = date.fromisoformat(lm_date_str)
-                        d2 = date.fromisoformat(std_date_str)
+                        d1 = date.fromisoformat(str(lm_date_str)[:10])
+                        d2 = date.fromisoformat(str(std_date_str)[:10])
                         days_gap = (d2 - d1).days
                     except Exception:
                         pass
 
                 is_hot_cheaper = price_diff > 50.0
                 is_std_cheaper = price_diff < -50.0
+                is_same_flight_date = bool(lm_date_fmt and std_date_fmt and lm_date_fmt == std_date_fmt)
 
                 if is_std_cheaper:
                     surcharge = abs(price_diff)
-                    gap_phrase = f"через {days_gap} дн. ({std_date_str})" if (days_gap and days_gap > 0) else f"на вылет {std_date_str}"
-                    comp_summary = f"Вылет {gap_phrase} на {surcharge:,.0f} zł (-{diff_pct}%) выгоднее срочного тура!"
+                    if is_same_flight_date:
+                        comp_summary = f"На ту же дату ({std_date_fmt}) регулярный рейс на {surcharge:,.0f} zł (-{diff_pct}%) выгоднее срочного тура!"
+                    elif days_gap and days_gap > 0:
+                        comp_summary = f"Вылет {std_date_fmt} (через {days_gap} дн.) на {surcharge:,.0f} zł (-{diff_pct}%) выгоднее вылета {lm_date_fmt}."
+                    else:
+                        comp_summary = f"Вылет {std_date_fmt} на {surcharge:,.0f} zł (-{diff_pct}%) выгоднее вылета {lm_date_fmt}."
                 elif is_hot_cheaper:
-                    gap_phrase = f"вылета через {days_gap} дн. ({std_date_str})" if (days_gap and days_gap > 0) else f"вылета {std_date_str}"
-                    comp_summary = f"Горящий вылет ({lm_date_str}) на {price_diff:,.0f} zł (-{diff_pct}%) дешевле {gap_phrase}."
+                    if is_same_flight_date:
+                        comp_summary = f"Горящий тур на {lm_date_fmt} на {price_diff:,.0f} zł (-{diff_pct}%) дешевле регулярного тарифа."
+                    elif days_gap and days_gap > 0:
+                        comp_summary = f"Горящий вылет ({lm_date_fmt}) на {price_diff:,.0f} zł (-{diff_pct}%) дешевле вылета {std_date_fmt} (через {days_gap} дн.)."
+                    else:
+                        comp_summary = f"Горящий вылет ({lm_date_fmt}) на {price_diff:,.0f} zł (-{diff_pct}%) дешевле вылета {std_date_fmt}."
                 else:
-                    comp_summary = f"Цены горящего ({lm_date_str}) и стандартного ({std_date_str}) вылетов практически идентичны."
+                    comp_summary = f"Цены горящего ({lm_date_fmt}) и стандартного ({std_date_fmt}) вылетов практически идентичны."
 
                 direct_comparison = {
                     "has_comparison": True,
                     "is_hot_cheaper": is_hot_cheaper,
                     "is_std_cheaper": is_std_cheaper,
+                    "is_same_flight_date": is_same_flight_date,
                     "price_diff_pln": price_diff,
                     "diff_pct": diff_pct,
                     "days_gap": days_gap,
                     "hot_offer": {
                         "price_pln": round(lm_price, 0),
                         "checkin_date": lm_date_str,
+                        "checkin_date_formatted": lm_date_fmt,
                         "airport": lm_best.get("airport", "") if lm_best else "",
+                        "offer_url": lm_best.get("offer_url") if lm_best else None,
                     },
                     "standard_offer": {
                         "price_pln": round(std_price, 0),
                         "checkin_date": std_date_str,
+                        "checkin_date_formatted": std_date_fmt,
                         "airport": best_std_offer.get("airport", ""),
+                        "offer_url": best_std_offer.get("offer_url") or None,
                     },
                     "early_booking_offer": {
                         "price_pln": round(stats_eb["median_price_pln"], 0),
@@ -389,8 +431,19 @@ class HorizonArbitrageService:
 
         # SCENARIO A: Evaluating a Last-Minute Deal (Is it a genuine dump?)
         if is_current_lm and active_lm_price:
-            lm_dates_str = f" (вылет {stats_lm.get('departure_dates_label')})" if stats_lm and stats_lm.get("departure_dates_label") else ""
-            std_dates_str = f" на вылет {comp_std.get('departure_dates_label')}" if comp_std and comp_std.get("departure_dates_label") else ""
+            lm_date_disp = (
+                direct_comparison["hot_offer"]["checkin_date_formatted"]
+                if direct_comparison and direct_comparison.get("hot_offer") and direct_comparison["hot_offer"].get("checkin_date_formatted")
+                else (checkin_date.strftime("%d.%m.%Y") if checkin_date else "")
+            )
+            std_date_disp = (
+                direct_comparison["standard_offer"]["checkin_date_formatted"]
+                if direct_comparison and direct_comparison.get("standard_offer") and direct_comparison["standard_offer"].get("checkin_date_formatted")
+                else (comp_std.get("departure_dates_label") or "")
+            )
+
+            lm_dates_str = f" на дату {lm_date_disp}" if lm_date_disp else ""
+            std_dates_str = f" на вылет {std_date_disp}" if std_date_disp else ""
 
             if active_std_price:
                 diff_std = active_std_price - active_lm_price
@@ -411,34 +464,60 @@ class HorizonArbitrageService:
                 if direct_comparison and direct_comparison.get("is_std_cheaper"):
                     diff_abs = abs(direct_comparison["price_diff_pln"])
                     pct_abs = direct_comparison["diff_pct"]
-                    days_msg = f"через {direct_comparison['days_gap']} дн. " if direct_comparison.get("days_gap") else ""
-                    std_d = direct_comparison["standard_offer"]["checkin_date"]
+                    days_gap_val = direct_comparison.get("days_gap")
+                    days_msg = f"через {days_gap_val} дн. " if (days_gap_val and days_gap_val > 0) else ""
+                    std_d = direct_comparison["standard_offer"]["checkin_date_formatted"] or direct_comparison["standard_offer"]["checkin_date"]
                     std_apt = f" ({direct_comparison['standard_offer']['airport']})" if direct_comparison["standard_offer"].get("airport") else ""
                     std_p = direct_comparison["standard_offer"]["price_pln"]
 
+                    hot_d = direct_comparison["hot_offer"]["checkin_date_formatted"] or direct_comparison["hot_offer"]["checkin_date"]
+                    hot_apt = f" ({direct_comparison['hot_offer']['airport']})" if direct_comparison["hot_offer"].get("airport") else ""
+
+                    is_same_day = (hot_d == std_d)
+
                     verdict["type"] = "URGENT_SURCHARGE"
                     verdict["badge"] = f"📈 Вылет {days_msg}дешевле (-{diff_abs:,.0f} zł)".replace(",", " ")
-                    verdict["headline"] = f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем вылет {days_msg}позже".replace(",", " ")
-                    verdict["description"] = (
-                        f"Срочный вылет{lm_dates_str} стоит {active_lm_price:,.0f} zł. "
-                        f"Однако в регулярном радаре доступен вылет {std_d}{std_apt} "
-                        f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
-                        f"Покупать горящий тур не имеет смысла — туроператор повысил тариф на последние места срочного чартера."
+                    verdict["headline"] = (
+                        f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем регулярный рейс на ту же дату"
+                        if is_same_day
+                        else f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем вылет {days_msg}позже"
                     ).replace(",", " ")
-                    verdict["recommendation"] = f"Рекомендуем выбрать вылет {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
+
+                    if is_same_day:
+                        verdict["description"] = (
+                            f"Срочный вылет на дату {hot_d}{hot_apt} стоит {active_lm_price:,.0f} zł. "
+                            f"Однако на эту же дату ({std_d}{std_apt}) в регулярном радаре доступен вылет "
+                            f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
+                            f"Покупать горящий тур не имеет смысла — регулярный рейс на эту же дату дешевле."
+                        ).replace(",", " ")
+                        verdict["recommendation"] = f"Рекомендуем выбрать регулярный рейс {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
+                    else:
+                        verdict["description"] = (
+                            f"Срочный вылет на дату {hot_d}{hot_apt} стоит {active_lm_price:,.0f} zł. "
+                            f"Однако на дату {std_d}{std_apt} {days_msg}в регулярном радаре доступен вылет "
+                            f"за {std_p:,.0f} zł (дешевле на {diff_abs:,.0f} zł). "
+                            f"Покупать горящий тур не имеет смысла — туроператор повысил тариф на последние места срочного чартера."
+                        ).replace(",", " ")
+                        verdict["recommendation"] = f"Рекомендуем выбрать вылет {std_d}{std_apt}: экономия {diff_abs:,.0f} zł без спешки с чемоданом."
+
                     verdict["savings_vs_standard_pln"] = -diff_abs
                     verdict["savings_vs_standard_pct"] = -pct_abs
 
                 elif diff_std < -50.0:
                     diff_abs = abs(diff_std)
                     pct_abs = abs(pct_std)
-                    days_msg = f"через {direct_comparison['days_gap']} дн. " if (direct_comparison and direct_comparison.get("days_gap")) else ""
+                    days_gap_val = direct_comparison.get("days_gap") if direct_comparison else None
+                    days_msg = f"через {days_gap_val} дн. " if (days_gap_val and days_gap_val > 0) else ""
                     std_apt = f" ({direct_comparison['standard_offer']['airport']})" if (direct_comparison and direct_comparison['standard_offer'].get("airport")) else ""
-                    std_d = direct_comparison['standard_offer']['checkin_date'] if direct_comparison else (comp_std.get("departure_dates_label") or "")
+                    std_d = (
+                        direct_comparison['standard_offer']['checkin_date_formatted']
+                        if (direct_comparison and direct_comparison.get('standard_offer') and direct_comparison['standard_offer'].get('checkin_date_formatted'))
+                        else (std_date_disp or "позже")
+                    )
 
                     verdict["type"] = "URGENT_SURCHARGE"
                     verdict["badge"] = f"📈 Вылет {days_msg}дешевле (-{diff_abs:,.0f} zł)".replace(",", " ")
-                    verdict["headline"] = f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем вылет {days_msg}позже".replace(",", " ")
+                    verdict["headline"] = f"Горящий тур дороже на {diff_abs:,.0f} zł (+{pct_abs:.0f}%), чем стандартная цена".replace(",", " ")
                     verdict["description"] = (
                         f"Срочный вылет{lm_dates_str} стоит {active_lm_price:,.0f} zł. "
                         f"Однако в регулярном радаре доступен вылет {std_d}{std_apt} "
@@ -472,8 +551,8 @@ class HorizonArbitrageService:
                     verdict["badge"] = "⚖️ Обычная цена без скидки"
                     verdict["headline"] = "Срочный вылет продается по стандартной цене"
                     verdict["description"] = (
-                        f"Цена горящего тура ({active_lm_price:,.0f} zł) практически не отличается "
-                        f"от стандартного поиска ({active_std_price:,.0f} zł). "
+                        f"Цена горящего тура{lm_dates_str} ({active_lm_price:,.0f} zł) практически не отличается "
+                        f"от стандартного тарифа{std_dates_str} ({active_std_price:,.0f} zł). "
                         f"Фактической горящей скидки туроператор не предоставил."
                     ).replace(",", " ")
                     verdict["recommendation"] = "Хватать только если вам критичны эти даты; реального дисконта нет."
@@ -481,7 +560,7 @@ class HorizonArbitrageService:
                 verdict["type"] = "INSUFFICIENT_STD"
                 verdict["badge"] = "⚡ Горящий вылет"
                 verdict["headline"] = f"Горящая цена: {active_lm_price:,.0f} zł".replace(",", " ")
-                verdict["description"] = "Для этого отеля зафиксирован срочный вылет, но нет свежих точек за 2–4 недели."
+                verdict["description"] = f"Для отеля зафиксирован срочный вылет{lm_dates_str}, но нет свежих точек за 2–4 недели."
                 verdict["recommendation"] = "Сверяйте с общей планкой направления."
 
         # SCENARIO B: Evaluating a Regular / Early Booking Offer (Should I wait for Last Minute?)
