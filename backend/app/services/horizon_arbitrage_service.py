@@ -168,7 +168,52 @@ class HorizonArbitrageService:
             elif days_to_dep >= 60:
                 horizons["early_booking"].append(item)
 
-        # Compute summary stats per horizon
+        # Helper functions for seasonal and date range formatting
+        MONTHS_SHORT = {1: "янв", 2: "февр", 3: "мар", 4: "апр", 5: "мая", 6: "июн", 7: "июл", 8: "авг", 9: "сент", 10: "окт", 11: "нояб", 12: "дек"}
+
+        def format_date_range(dates: List[date]) -> str:
+            if not dates:
+                return ""
+            dates = sorted(dates)
+            min_d, max_d = dates[0], dates[-1]
+            if min_d == max_d:
+                return f"{min_d.day} {MONTHS_SHORT[min_d.month]}"
+            if min_d.month == max_d.month:
+                return f"{min_d.day}–{max_d.day} {MONTHS_SHORT[min_d.month]}"
+            return f"{MONTHS_SHORT[min_d.month]} – {MONTHS_SHORT[max_d.month]}"
+
+        def get_season_category(month: int) -> str:
+            if month in (6, 7, 8):
+                return "summer"
+            if month in (9, 10):
+                return "autumn_velvet"
+            if month in (11, 12, 1, 2):
+                return "winter_low"
+            return "spring"
+
+        def get_season_name(month: int) -> str:
+            if month in (6, 7, 8):
+                return "Лето (высокий сезон)"
+            if month in (9, 10):
+                return "Бархатный сезон"
+            if month in (11, 12, 1, 2):
+                return "Низкий/зимний сезон"
+            return "Весенний сезон"
+
+        # Determine target departure date and its seasonal bracket
+        target_dep_date = checkin_date
+        if not target_dep_date and horizons["last_minute"]:
+            target_dep_date = date.fromisoformat(horizons["last_minute"][-1]["checkin_date"])
+        elif not target_dep_date and raw_rows:
+            try:
+                target_dep_date = date.fromisoformat(str(raw_rows[0][2]))
+            except Exception:
+                pass
+
+        target_season_cat = get_season_category(target_dep_date.month) if target_dep_date else None
+        target_season_label = get_season_name(target_dep_date.month) if target_dep_date else ""
+
+        # Compute summary stats per horizon with explicit departure dates & seasons
         def summarize(items: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
             if not items:
                 return None
@@ -177,11 +222,32 @@ class HorizonArbitrageService:
             median_p = prices[len(prices) // 2]
             min_p = min(prices)
             avg_p = sum(prices) / len(prices)
+
+            checkin_dates = []
+            for it in items:
+                if it.get("checkin_date"):
+                    try:
+                        checkin_dates.append(date.fromisoformat(str(it["checkin_date"])))
+                    except Exception:
+                        pass
+
+            dates_label = format_date_range(checkin_dates)
+            first_m = checkin_dates[0].month if checkin_dates else (target_dep_date.month if target_dep_date else 11)
+            season_label = get_season_name(first_m)
+
+            # Check if departure season matches the target offer's departure season
+            is_same_season = True
+            if target_season_cat and checkin_dates:
+                is_same_season = any(get_season_category(d.month) == target_season_cat for d in checkin_dates)
+
             return {
                 "count": len(items),
                 "min_price_pln": round(min_p, 0),
                 "median_price_pln": round(median_p, 0),
                 "avg_price_pln": round(avg_p, 0),
+                "departure_dates_label": dates_label,
+                "season_label": season_label,
+                "is_same_season": is_same_season,
                 "best_offer": min(items, key=lambda x: x["price_pln"]),
             }
 
@@ -204,7 +270,19 @@ class HorizonArbitrageService:
         active_std_price = stats_std["median_price_pln"] if stats_std else (stats_short["median_price_pln"] if stats_short else None)
         active_eb_price = stats_eb["median_price_pln"] if stats_eb else None
 
-        # Build dual-direction verdict
+        # Detect cross-season comparisons (e.g. Summer Early Booking vs Winter Last Minute)
+        is_cross_season_eb = bool(stats_eb and not stats_eb.get("is_same_season"))
+        is_cross_season_std = bool(stats_std and not stats_std.get("is_same_season"))
+        is_cross_season = is_cross_season_eb or is_cross_season_std
+
+        season_note = None
+        if is_cross_season_eb and active_eb_price and stats_eb:
+            season_note = (
+                f"Внимание: цена раннего бронирования ({active_eb_price:,.0f} zł) указана для летнего высокого сезона ({stats_eb.get('departure_dates_label', 'лето')}), "
+                f"где базовые тарифы отеля выше. Прямое сравнение лета с зимой некорректно — честный дисконт рассчитывается относительно стандартного тарифа на те же даты."
+            ).replace(",", " ")
+
+        # Build dual-direction verdict with seasonal awareness
         verdict = {
             "perspective": "LAST_MINUTE" if is_current_lm else "REGULAR_OR_EARLY",
             "type": "NEUTRAL",
@@ -216,17 +294,25 @@ class HorizonArbitrageService:
             "savings_vs_standard_pct": None,
             "savings_vs_eb_pln": None,
             "savings_vs_eb_pct": None,
+            "is_cross_season_comparison": is_cross_season,
+            "season_note": season_note,
         }
 
         # SCENARIO A: Evaluating a Last-Minute Deal (Is it a genuine dump?)
         if is_current_lm and active_lm_price:
+            lm_dates_str = f" (вылет {stats_lm.get('departure_dates_label')})" if stats_lm and stats_lm.get("departure_dates_label") else ""
+            std_dates_str = f" на аналогичный заезд ({stats_std.get('departure_dates_label')})" if stats_std and stats_std.get("departure_dates_label") else ""
+
             if active_std_price:
                 diff_std = active_std_price - active_lm_price
                 pct_std = round((diff_std / active_std_price) * 100, 1)
                 verdict["savings_vs_standard_pln"] = round(diff_std, 0)
                 verdict["savings_vs_standard_pct"] = pct_std
 
-                if active_eb_price:
+                # Only credit Early Booking savings if it is the SAME season!
+                diff_eb = None
+                pct_eb = None
+                if active_eb_price and not is_cross_season_eb:
                     diff_eb = active_eb_price - active_lm_price
                     pct_eb = round((diff_eb / active_eb_price) * 100, 1)
                     verdict["savings_vs_eb_pln"] = round(diff_eb, 0)
@@ -235,12 +321,20 @@ class HorizonArbitrageService:
                 if pct_std >= 15.0:
                     verdict["type"] = "REAL_DUMP"
                     verdict["badge"] = "🔥 Честный сброс цены"
-                    verdict["headline"] = f"Тур горит на {abs(pct_std):.0f}% дешевле стандартной цены"
-                    eb_str = f" и на {diff_eb:,.0f} zł дешевле раннего бронирования" if active_eb_price and diff_eb > 0 else ""
+                    verdict["headline"] = f"Тур горит на {abs(pct_std):.0f}% дешевле стандартной цены на этот же период"
+                    
+                    if active_eb_price and not is_cross_season_eb and diff_eb and diff_eb > 0:
+                        eb_snippet = f" и на {diff_eb:,.0f} zł дешевле раннего бронирования на эти же даты"
+                    elif active_eb_price and is_cross_season_eb:
+                        eb_snippet = f" (летнее раннее бронирование составляло {active_eb_price:,.0f} zł в высокий сезон)"
+                    else:
+                        eb_snippet = ""
+
                     verdict["description"] = (
-                        f"Отель зафиксирован по цене {active_lm_price:,.0f} zł. "
-                        f"За 2–4 недели до вылета аналогичный тур стоил {active_std_price:,.0f} zł "
-                        f"(экономия {diff_std:,.0f} zł){eb_str}. Туроператор сбросил цену для заполнения рейса."
+                        f"Отель зафиксирован по цене {active_lm_price:,.0f} zł{lm_dates_str}. "
+                        f"За 2–4 недели до вылета тур{std_dates_str} стоил {active_std_price:,.0f} zł "
+                        f"(чистая экономия от сброса перед рейсом — {diff_std:,.0f} zł){eb_snippet}. "
+                        f"Туроператор сбросил цену для заполнения рейса."
                     ).replace(",", " ")
                     verdict["recommendation"] = "Максимально выгодный момент для бронирования с чемоданом наготове."
                 elif abs(pct_std) <= 8.0:
@@ -276,6 +370,9 @@ class HorizonArbitrageService:
             lm_min = stats_lm["min_price_pln"] if stats_lm else None
             curr_target_price = current_price or active_eb_price or active_std_price or 0.0
 
+            # Check if LM points belong to a different season
+            is_cross_season_lm = bool(stats_lm and not stats_lm.get("is_same_season"))
+
             if lm_count == 0:
                 verdict["type"] = "NEVER_DROPS"
                 verdict["badge"] = "🔒 Отель-дефицит (Не горит)"
@@ -288,6 +385,15 @@ class HorizonArbitrageService:
             elif lm_min and curr_target_price > 0 and (curr_target_price - lm_min) / curr_target_price >= 0.20:
                 diff_pot = curr_target_price - lm_min
                 pct_pot = round((diff_pot / curr_target_price) * 100, 1)
+
+                if is_cross_season_lm:
+                    season_note = (
+                        f"Обратите внимание: горящие сбросы ({lm_min:,.0f} zł) зафиксированы в низкий зимний сезон ({stats_lm.get('departure_dates_label', 'зима')}). "
+                        f"Для летнего пикового отдыха ({target_season_label}) отель обычно держит высокую планку и редко доживает до вылета."
+                    ).replace(",", " ")
+                    verdict["season_note"] = season_note
+                    verdict["is_cross_season_comparison"] = True
+
                 verdict["type"] = "REGULAR_DUMPER"
                 verdict["badge"] = "⚡ Отель-сбросник (Часто горит)"
                 verdict["headline"] = f"Перед вылетом сбрасывает до -{pct_pot:.0f}%"

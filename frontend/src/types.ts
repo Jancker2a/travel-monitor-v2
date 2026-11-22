@@ -256,6 +256,9 @@ export interface HorizonStat {
   min_price_pln: number;
   median_price_pln: number;
   avg_price_pln: number;
+  departure_dates_label?: string;
+  season_label?: string;
+  is_same_season?: boolean;
   best_offer?: {
     price_pln: number;
     days_to_dep: number;
@@ -290,6 +293,8 @@ export interface HorizonArbitrageData {
     savings_vs_standard_pct?: number | null;
     savings_vs_eb_pln?: number | null;
     savings_vs_eb_pct?: number | null;
+    is_cross_season_comparison?: boolean;
+    season_note?: string;
   };
 }
 

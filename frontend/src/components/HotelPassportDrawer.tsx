@@ -1271,6 +1271,28 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       <div style={{ fontSize: "10px", color: "#94a3b8" }}>
                         {passport.horizon_arbitrage.horizons?.early_booking ? `${passport.horizon_arbitrage.horizons.early_booking.count} фиксаций` : "нет данных"}
                       </div>
+                      {passport.horizon_arbitrage.horizons?.early_booking?.departure_dates_label && (
+                        <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
+                          <span
+                            style={{
+                              display: "inline-block",
+                              fontSize: "9px",
+                              fontWeight: 700,
+                              padding: "1px 6px",
+                              borderRadius: "4px",
+                              background: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#ecfdf5" : "#f1f5f9",
+                              color: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#047857" : "#64748b",
+                            }}
+                          >
+                            📅 {passport.horizon_arbitrage.horizons.early_booking.departure_dates_label}
+                          </span>
+                          {passport.horizon_arbitrage.horizons.early_booking.season_label && (
+                            <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
+                              {passport.horizon_arbitrage.horizons.early_booking.season_label}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     {/* Standard Booking */}
@@ -1290,6 +1312,26 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           ? "(за 1–2 нед.)"
                           : "нет данных"}
                       </div>
+                      {(passport.horizon_arbitrage.horizons?.standard?.departure_dates_label || passport.horizon_arbitrage.horizons?.short_notice?.departure_dates_label) && (
+                        <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
+                          <span
+                            style={{
+                              display: "inline-block",
+                              fontSize: "9px",
+                              fontWeight: 700,
+                              padding: "1px 6px",
+                              borderRadius: "4px",
+                              background: "#ecfdf5",
+                              color: "#047857",
+                            }}
+                          >
+                            📅 {passport.horizon_arbitrage.horizons.standard?.departure_dates_label || passport.horizon_arbitrage.horizons.short_notice?.departure_dates_label}
+                          </span>
+                          <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
+                            {passport.horizon_arbitrage.horizons.standard?.season_label || passport.horizon_arbitrage.horizons.short_notice?.season_label || "Текущий сезон"}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Last Minute */}
@@ -1313,8 +1355,54 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           ? `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
                           : "0 появлений"}
                       </div>
+                      {passport.horizon_arbitrage.horizons?.last_minute?.departure_dates_label && (
+                        <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #fde68a" }}>
+                          <span
+                            style={{
+                              display: "inline-block",
+                              fontSize: "9px",
+                              fontWeight: 700,
+                              padding: "1px 6px",
+                              borderRadius: "4px",
+                              background: "#fef3c7",
+                              color: "#b45309",
+                            }}
+                          >
+                            📅 {passport.horizon_arbitrage.horizons.last_minute.departure_dates_label}
+                          </span>
+                          {passport.horizon_arbitrage.horizons.last_minute.season_label && (
+                            <div style={{ fontSize: "9px", color: "#92400e", marginTop: "2px" }}>
+                              {passport.horizon_arbitrage.horizons.last_minute.season_label}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
+
+                  {/* Seasonal Context Alert Banner if Horizons cross seasons */}
+                  {passport.horizon_arbitrage.verdict.season_note && (
+                    <div
+                      style={{
+                        background: "#eff6ff",
+                        border: "1px solid #bfdbfe",
+                        borderRadius: "8px",
+                        padding: "8px 12px",
+                        fontSize: "11px",
+                        color: "#1e40af",
+                        lineHeight: 1.45,
+                        marginBottom: "10px",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "8px",
+                      }}
+                    >
+                      <span style={{ fontSize: "14px", lineHeight: 1 }}>ℹ️</span>
+                      <div>
+                        <strong>Учёт сезонности дат:</strong> {passport.horizon_arbitrage.verdict.season_note}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Verdict & Recommendation */}
                   <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
