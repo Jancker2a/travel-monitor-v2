@@ -13,10 +13,10 @@ class HotelCatalogCard(BaseModel):
     ta_reviews: int = 0
     main_image_url: Optional[str] = None
     current_min_price: float
-    typical_median_price: float
-    historical_min_price: float
-    historical_max_price: float
-    delta_vs_typical_pct: float
+    typical_median_price: Optional[float] = None
+    historical_min_price: Optional[float] = None
+    historical_max_price: Optional[float] = None
+    delta_vs_typical_pct: Optional[float] = None
     change_24h_pct: float = 0.0
     change_48h_pct: float = 0.0
     change_7d_pct: float = 0.0

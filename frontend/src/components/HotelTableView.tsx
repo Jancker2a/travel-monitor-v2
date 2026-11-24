@@ -13,6 +13,7 @@ interface HotelTableViewProps {
   sortAsc: boolean;
   onSort: (field: string) => void;
   totalFound?: number;
+  isLastMinute?: boolean;
 }
 
 export const HotelTableView: React.FC<HotelTableViewProps> = ({
@@ -25,6 +26,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
   sortAsc,
   onSort,
   totalFound,
+  isLastMinute = false,
 }) => {
   const renderSortIcon = (field: string) => {
     if (sortField !== field) {
@@ -126,7 +128,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 </div>
               </th>
               <th style={{ width: "8%", textAlign: "center" }} className="py-3 min-w-[95px]">
-                ПРОГНОЗ
+                {isLastMinute ? "СТАТУС СБРОСА" : "ПРОГНОЗ"}
               </th>
               <th
                 onClick={() => onSort("ta_rating")}
@@ -145,10 +147,10 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 onClick={() => onSort("delta48")}
                 className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[75px]"
                 style={{ width: "6%" }}
-                title="Реальное изменение цены отеля за последние 48 часов по данным мониторинга"
+                title={isLastMinute ? "Дней до срочного вылета горящего тура" : "Реальное изменение цены отеля за последние 48 часов по данным мониторинга"}
               >
                 <div className="flex items-center justify-center gap-1.5">
-                  <span>Δ 48Ч</span>
+                  <span>{isLastMinute ? "ДО ВЫЛЕТА" : "Δ 48Ч"}</span>
                   {renderSortIcon("delta48")}
                 </div>
               </th>
@@ -184,45 +186,91 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               const isWatched = watchedCohortHashes.has(offer.cohort_hash);
               const isNearBottom = idx >= hotels.length - 2 && hotels.length > 3;
 
+              // Delta values
+              const delta48 = intel.drop_48h_pct;
+              const deltaAvg = intel.delta_vs_typical_pct;
+
+              // Check if urgent / last minute
+              const daysToDep = (() => {
+                const depStr = offer.departure_date;
+                if (!depStr) return null;
+                try {
+                  const dep = new Date(String(depStr).split("T")[0]);
+                  const now = new Date();
+                  now.setHours(0, 0, 0, 0);
+                  dep.setHours(0, 0, 0, 0);
+                  return Math.round((dep.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+                } catch {
+                  return null;
+                }
+              })();
+
+              const isRowLM = isLastMinute || (daysToDep !== null && daysToDep >= 0 && daysToDep <= 4);
+
               // Deal score pill
               let dealPillClass = "deal-badge-normal";
               let dealText = `${intel.deal_score} Normal`;
               if (intel.deal_score >= 85) {
                 dealPillClass = "deal-badge-hot";
-                dealText = `${intel.deal_score} 🔥 Hot`;
+                dealText = isRowLM ? `${intel.deal_score} 🔥 Сброс` : `${intel.deal_score} 🔥 Hot`;
               } else if (intel.deal_score >= 70) {
                 dealPillClass = "deal-badge-good";
                 dealText = `${intel.deal_score} ✅ Good`;
               } else if (intel.deal_score < 45) {
                 dealPillClass = "deal-badge-bad";
-                dealText = `${intel.deal_score} 📈 Bad`;
+                dealText = isRowLM ? `${intel.deal_score} ⚠️ Наценка` : `${intel.deal_score} 📈 Bad`;
+              } else if (isRowLM) {
+                dealText = `${intel.deal_score} ⚖️ Обычная`;
               }
 
               // Forecast tip & pill
-              const forecastTip = intel.recommendation
-                ? `Прогноз Hopper AI: ${intel.recommendation}`
-                : intel.deal_score >= 80
-                ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
-                : intel.deal_score < 45 || intel.hopper_verdict === "OVERPRICED"
-                ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
-                : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
+              let forecastPill;
+              if (isRowLM) {
+                if (intel.deal_score >= 80 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg <= -12)) {
+                  forecastPill = (
+                    <span className="hopper-pill buy-now font-black" data-tip="🔥 Честный горящий сброс! Выгодный момент для покупки перед вылетом.">
+                      🔥 БРАТЬ
+                    </span>
+                  );
+                } else if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg > 5)) {
+                  forecastPill = (
+                    <span className="hopper-pill overpriced font-black" data-tip="⚠️ Наценка перед вылетом! Обычный регулярный рейс или вылет чуть позже выгоднее.">
+                      ⚠️ НАЦЕНКА
+                    </span>
+                  );
+                } else {
+                  forecastPill = (
+                    <span
+                      className="hopper-pill wait font-black"
+                      style={{ background: "#f8fafc", color: "#475569", border: "1px solid #cbd5e1" }}
+                      data-tip="⚖️ Обычный тариф без скидки. Бронируйте только если дата критична."
+                    >
+                      ⚖️ БЕЗ СКИДКИ
+                    </span>
+                  );
+                }
+              } else {
+                const forecastTip = intel.recommendation
+                  ? `Прогноз Hopper AI: ${intel.recommendation}`
+                  : intel.deal_score >= 80
+                  ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
+                  : intel.deal_score < 45 || intel.hopper_verdict === "OVERPRICED"
+                  ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
+                  : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
 
-              let forecastPill = (
-                <span className="hopper-pill wait" data-tip={forecastTip}>🟡 ЖДАТЬ</span>
-              );
-              if (intel.deal_score >= 80) {
                 forecastPill = (
-                  <span className="hopper-pill buy-now" data-tip={forecastTip}>🟢 ПОКУПАТЬ</span>
+                  <span className="hopper-pill wait" data-tip={forecastTip}>🟡 ЖДАТЬ</span>
                 );
-              } else if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45) {
-                forecastPill = (
-                  <span className="hopper-pill overpriced" data-tip={forecastTip}>🔴 ДОРОГО</span>
-                );
+                if (intel.deal_score >= 80) {
+                  forecastPill = (
+                    <span className="hopper-pill buy-now" data-tip={forecastTip}>🟢 ПОКУПАТЬ</span>
+                  );
+                } else if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45) {
+                  forecastPill = (
+                    <span className="hopper-pill overpriced" data-tip={forecastTip}>🔴 ДОРОГО</span>
+                  );
+                }
               }
-
-              // Delta values
-              const delta48 = intel.drop_48h_pct;
-              const deltaAvg = intel.delta_vs_typical_pct;
 
               return (
                 <tr
@@ -389,9 +437,31 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                     </div>
                   </td>
 
-                  {/* Δ 48ч */}
+                  {/* Δ 48ч / До вылета */}
                   <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
-                    {delta48 !== null && delta48 !== undefined ? (
+                    {isRowLM ? (
+                      daysToDep !== null ? (
+                        daysToDep <= 0 ? (
+                          <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-black px-2.5 py-1 rounded-lg text-rose-700 bg-rose-50 border border-rose-200 shadow-2xs select-none" title="Вылет сегодня!">
+                            <span>⚡ Сегодня</span>
+                          </span>
+                        ) : daysToDep === 1 ? (
+                          <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-black px-2.5 py-1 rounded-lg text-amber-800 bg-amber-50 border border-amber-300 shadow-2xs select-none" title="Вылет завтра!">
+                            <span>⚡ Завтра</span>
+                          </span>
+                        ) : daysToDep === 2 ? (
+                          <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-black px-2.5 py-1 rounded-lg text-amber-700 bg-amber-50/80 border border-amber-200 shadow-2xs select-none" title="Вылет через 2 дня">
+                            <span>⚡ 2 дня</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-black px-2.5 py-1 rounded-lg text-sky-700 bg-sky-50 border border-sky-200 shadow-2xs select-none" title={`Вылет через ${daysToDep} дней`}>
+                            <span>⚡ {daysToDep} дн.</span>
+                          </span>
+                        )
+                      ) : (
+                        <span className="text-[12px] font-bold text-amber-600 select-none">⚡ Срочно</span>
+                      )
+                    ) : delta48 !== null && delta48 !== undefined ? (
                       delta48 < 0 ? (
                         <span className="delta-badge-down inline-flex items-center justify-center gap-1 whitespace-nowrap text-[12.5px] font-black px-2.5 py-1 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 shadow-2xs select-none" title={`Снижение цены на ${Math.abs(delta48).toFixed(1)}% за последние 48 часов`}>
                           <span>↓</span>

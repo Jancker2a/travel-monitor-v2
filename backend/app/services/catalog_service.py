@@ -307,6 +307,44 @@ class CatalogService:
         hist_res = await db.execute(h_stmt, h_params_recent)
         hist_rows = hist_res.fetchall()
 
+        # 3c. Fetch cross-filter benchmark stats for hotels in lastminute filters or sparse history
+        is_lastminute = bool("lastminute" in filter_id.lower() or "0_4" in filter_id.lower())
+        cross_stats: Dict[str, Tuple[float, float, float]] = {}
+        if query_hids_list:
+            cross_cutoff = (max_dt - timedelta(days=90)) if is_pg else (max_dt - timedelta(days=90)).isoformat()
+            c_params = {f"h{i}": hid for i, hid in enumerate(query_hids_list)}
+            c_params["cross_cutoff"] = cross_cutoff
+            cross_sql = f"""
+                SELECT 
+                    oc.hotel_id,
+                    MIN(ps.total_price_pln) as c_min,
+                    MAX(ps.total_price_pln) as c_max,
+                    AVG(ps.total_price_pln) as c_avg
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+                WHERE oc.hotel_id IN ({placeholders})
+                  AND ps.recorded_at >= :cross_cutoff
+                  AND oc.duration_nights BETWEEN 6 AND 10
+                GROUP BY oc.hotel_id;
+            """
+            c_stmt = text(cross_sql)
+            try:
+                c_res = await db.execute(c_stmt, c_params)
+                for r in c_res.fetchall():
+                    row_hid = r[0]
+                    c_min = float(r[1]) if r[1] is not None else None
+                    c_max = float(r[2]) if r[2] is not None else None
+                    c_avg = float(r[3]) if r[3] is not None else None
+                    if c_min is not None and c_avg is not None:
+                        for prim in variant_to_primary.get(row_hid, {row_hid}):
+                            if prim not in cross_stats:
+                                cross_stats[prim] = (c_min, c_max, c_avg)
+                            else:
+                                o_min, o_max, o_avg = cross_stats[prim]
+                                cross_stats[prim] = (min(o_min, c_min), max(o_max, c_max), (o_avg + c_avg) / 2.0)
+            except Exception as e:
+                logger.warning(f"Cross-filter stats lookup failed: {e}")
+
         # Group history points by primary hotel_id
         hotel_history: Dict[str, List[Tuple[datetime, float]]] = {}
         for r_hid, r_at, p_val in hist_rows:
@@ -355,10 +393,14 @@ class CatalogService:
             curr_price = float(curr_price)
             hist_pts = hotel_history.get(h_id, [])
             stats_tuple = hotel_stats.get(h_id)
+            c_tuple = cross_stats.get(h_id)
 
             if stats_tuple:
                 hist_min = round(stats_tuple[0], 0)
                 hist_max = round(stats_tuple[1], 0)
+            elif c_tuple:
+                hist_min = round(c_tuple[0], 0)
+                hist_max = round(c_tuple[1], 0)
             elif hist_pts:
                 all_p = [p[1] for p in hist_pts]
                 hist_min = round(min(all_p), 0)
@@ -366,6 +408,16 @@ class CatalogService:
             else:
                 hist_min = curr_price
                 hist_max = curr_price
+
+            # Detect urgency / lastminute status
+            days_to_dep = None
+            if checkin_dt:
+                try:
+                    c_date = datetime.strptime(str(checkin_dt).split("T")[0], "%Y-%m-%d").date() if isinstance(checkin_dt, str) else checkin_dt
+                    days_to_dep = (c_date - datetime.utcnow().date()).days
+                except Exception:
+                    pass
+            is_lm = is_lastminute or (days_to_dep is not None and 0 <= days_to_dep <= 4)
 
             has_sufficient_history = len(hist_pts) >= 3
             if has_sufficient_history:
@@ -407,6 +459,12 @@ class CatalogService:
                     if typical_med and typical_med > 0
                     else None
                 )
+            elif c_tuple and c_tuple[2] and c_tuple[2] > 0:
+                typical_med = round(c_tuple[2], 0)
+                delta_vs_typical = round((curr_price - typical_med) / typical_med * 100.0, 1)
+                chg_24h = 0.0
+                chg_48h = 0.0
+                chg_7d = 0.0
             else:
                 typical_med = None
                 delta_vs_typical = None
@@ -441,8 +499,30 @@ class CatalogService:
             has_aquapark = dossier.get("has_aquapark", False)
             has_heated_pools = dossier.get("has_heated_pools", False)
 
-            # Deal Score calculation using mathematical V1 model (plateau segments, volatility, TA blend)
-            if has_sufficient_history:
+            # Deal Score & Badges
+            badges = []
+            if is_lm and delta_vs_typical is not None:
+                # Specialized Last-Minute Arbitrage Score
+                if delta_vs_typical <= -20.0:
+                    deal_score = max(88, min(98, int(86 + abs(delta_vs_typical) * 0.4)))
+                    confidence = "High"
+                    badges.append(f"Сброс {abs(delta_vs_typical):.0f}%")
+                elif delta_vs_typical <= -12.0:
+                    deal_score = max(80, min(87, int(78 + abs(delta_vs_typical) * 0.4)))
+                    confidence = "High"
+                    badges.append("Выгодный сброс")
+                elif delta_vs_typical <= -5.0:
+                    deal_score = max(70, min(79, int(70 + abs(delta_vs_typical) * 0.3)))
+                    confidence = "Medium"
+                elif delta_vs_typical <= 5.0:
+                    deal_score = 55
+                    confidence = "Medium"
+                else:
+                    # Urgent surcharge: price before departure is HIGHER than typical
+                    deal_score = max(25, min(44, int(48 - delta_vs_typical)))
+                    confidence = "High"
+                    badges.append(f"Наценка +{delta_vs_typical:.0f}%")
+            elif has_sufficient_history:
                 df_hist = pd.DataFrame(hist_pts, columns=["scraped_at", "price"])
                 deal_metrics = compute_hotel_deal_metrics(
                     df_hist,
@@ -462,16 +542,22 @@ class CatalogService:
                 confidence = "Low"
                 delta_vs_typical = None
 
-            # Badges
-            badges = []
             if has_sufficient_history and curr_price <= hist_min * 1.01:
                 badges.append("Исторический минимум")
             if has_sufficient_history and chg_48h <= -3.0:
                 badges.append(f"Снижение за 48ч ({chg_48h}%)")
             elif has_sufficient_history and chg_24h <= -3.0:
                 badges.append(f"Снижение за 24ч ({chg_24h}%)")
-            if has_sufficient_history and deal_score >= 80:
+            if deal_score >= 80 and not is_lm:
                 badges.append("Выгодная цена")
+
+            if is_lm and days_to_dep is not None:
+                if days_to_dep == 0:
+                    badges.append("⚡ Вылет сегодня")
+                elif days_to_dep == 1:
+                    badges.append("⚡ Вылет завтра")
+                elif days_to_dep <= 4:
+                    badges.append(f"⚡ Вылет через {days_to_dep} дн.")
 
             # Formatted strings
             checkin_str = checkin_dt.strftime("%Y-%m-%d") if hasattr(checkin_dt, "strftime") else str(checkin_dt)

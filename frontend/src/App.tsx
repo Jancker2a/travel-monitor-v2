@@ -72,6 +72,13 @@ function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotel
   const adults = preset?.searchReq?.travelers?.adults ?? (preset?.searchReq?.filter_id?.includes("1p") ? 1 : 2);
   const children = preset?.searchReq?.travelers?.children ?? 0;
   const totalPax = Math.max(1, adults + children);
+
+  const isLM = Boolean(
+    preset?.id?.toLowerCase().includes("lastminute") ||
+    preset?.id?.toLowerCase().includes("0_4") ||
+    c.badges?.some((b) => b.includes("Вылет") || b.includes("Сброс") || b.includes("Наценка"))
+  );
+
   return {
     hotel_id: c.hotel_id,
     hotel_name: c.display_name,
@@ -108,18 +115,22 @@ function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotel
         c.badges && c.badges.length > 0
           ? c.badges[0]
           : c.deal_score >= 80
-          ? "🔥 Hot"
+          ? (isLM ? "🔥 Сброс" : "🔥 Hot")
           : "✅ Good",
       hopper_verdict:
-        c.deal_score >= 80
+        c.deal_score >= 80 || (c.delta_vs_typical_pct !== null && c.delta_vs_typical_pct !== undefined && c.delta_vs_typical_pct <= -12)
           ? "BUY NOW"
-          : c.deal_score < 45
+          : c.deal_score < 45 || (c.delta_vs_typical_pct !== null && c.delta_vs_typical_pct !== undefined && c.delta_vs_typical_pct > 5)
           ? "OVERPRICED"
+          : isLM
+          ? "FAIR_PRICE"
           : "WAIT",
       hopper_confidence: c.deal_confidence === "High" ? 0.9 : 0.7,
       recommendation:
         c.badges && c.badges.length > 0
           ? c.badges.join(" • ")
+          : isLM
+          ? "Стандартная горящая цена"
           : "Стабильная цена",
       drop_48h_pct: c.change_48h_pct !== undefined ? c.change_48h_pct : c.change_24h_pct,
       delta_vs_typical_pct: c.delta_vs_typical_pct,
@@ -728,6 +739,16 @@ export const App: React.FC = () => {
     () => new Set(watchlistItems.map((w) => w.cohort_hash)),
     [watchlistItems]
   );
+
+  const isCurrentLastMinute = useMemo(() => {
+    return Boolean(
+      activeFilterId?.toLowerCase().includes("lastminute") ||
+      activeFilterId?.toLowerCase().includes("0_4") ||
+      activeUserMonitor?.title?.toLowerCase().includes("горящ") ||
+      activeUserMonitor?.filter_params?.filter_id?.toLowerCase().includes("lastminute") ||
+      activeUserMonitor?.filter_params?.filter_id?.toLowerCase().includes("0_4")
+    );
+  }, [activeFilterId, activeUserMonitor]);
 
   // Available regions list
   const availableRegions = useMemo(() => {
@@ -1407,6 +1428,7 @@ export const App: React.FC = () => {
             sortAsc={sortAsc}
             onSort={handleSort}
             totalFound={activeTab === "search" ? totalFound : undefined}
+            isLastMinute={isCurrentLastMinute}
           />
         ) : (
           <div className="space-y-4 relative" id="cardsSection">
@@ -1424,27 +1446,47 @@ export const App: React.FC = () => {
 
             {/* Deal Score Legend */}
             <div className="deal-legend bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 text-xs text-slate-700 leading-relaxed shadow-2xs">
-              <strong className="text-slate-900 font-bold">Как читать Deal Score:</strong>{" "}
-              <span className="inline-flex items-center gap-0.5 font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
-                🔥 Hot
-              </span>{" "}
-              = очень сильная возможность,{" "}
-              <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                ✅ Good
-              </span>{" "}
-              = хороший момент,{" "}
-              <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
-                ↔ Normal
-              </span>{" "}
-              = обычный уровень (~50),{" "}
-              <span className="inline-flex items-center gap-0.5 font-extrabold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">
-                📈 Bad
-              </span>{" "}
-              = подорожало за 48ч и vs средней,{" "}
-              <span className="inline-flex items-center gap-0.5 font-extrabold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
-                ⏳ Warm-up
-              </span>{" "}
-              = пока мало истории. Confidence: Low / Medium / High — степень надежности оценки. TripAdvisor слегка сдвигает Deal Score; без отзывов влияние минимально.
+              <strong className="text-slate-900 font-bold">{isCurrentLastMinute ? "Статусы горящих туров:" : "Как читать Deal Score:"}</strong>{" "}
+              {isCurrentLastMinute ? (
+                <>
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                    🔥 БРАТЬ (СБРОС)
+                  </span>{" "}
+                  = реальный сброс цены перед вылетом (дисконт от сезонной нормы),{" "}
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                    ⚖️ БЕЗ СКИДКИ
+                  </span>{" "}
+                  = стандартная цена сезона (срочной скидки нет),{" "}
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">
+                    ⚠️ НАЦЕНКА
+                  </span>{" "}
+                  = горящий тур дороже обычного регулярного тарифа.{" "}
+                  В колонке <b>ДО ВЫЛЕТА</b> показана срочность: ⚡ Сегодня, ⚡ Завтра, ⚡ 2–4 дн.
+                </>
+              ) : (
+                <>
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+                    🔥 Hot
+                  </span>{" "}
+                  = очень сильная возможность,{" "}
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                    ✅ Good
+                  </span>{" "}
+                  = хороший момент,{" "}
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                    ↔ Normal
+                  </span>{" "}
+                  = обычный уровень (~50),{" "}
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">
+                    📈 Bad
+                  </span>{" "}
+                  = подорожало за 48ч и vs средней,{" "}
+                  <span className="inline-flex items-center gap-0.5 font-extrabold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
+                    ⏳ Warm-up
+                  </span>{" "}
+                  = пока мало истории. Confidence: Low / Medium / High — степень надежности оценки. TripAdvisor слегка сдвигает Deal Score; без отзывов влияние минимально.
+                </>
+              )}
             </div>
 
             {isLoading && filteredHotels.length === 0 ? (
@@ -1473,6 +1515,7 @@ export const App: React.FC = () => {
                       isWatched={watchedCohortHashes.has(
                         hotel.current_offer.cohort_hash
                       )}
+                      isLastMinute={isCurrentLastMinute}
                     />
                   ))}
                 </div>

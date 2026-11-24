@@ -17,6 +17,7 @@ interface Props {
   onOpenPassport: (hotelId: string) => void;
   onToggleWatchlist: (hotel: SearchHotelItem) => void;
   isWatched?: boolean;
+  isLastMinute?: boolean;
 }
 
 export const HotelCard: React.FC<Props> = ({
@@ -24,8 +25,26 @@ export const HotelCard: React.FC<Props> = ({
   onOpenPassport,
   onToggleWatchlist,
   isWatched = false,
+  isLastMinute = false,
 }) => {
   const { current_offer: offer, intelligence } = hotel;
+
+  // Check if urgent / last minute
+  const daysToDep = (() => {
+    const depStr = offer.departure_date;
+    if (!depStr) return null;
+    try {
+      const dep = new Date(String(depStr).split("T")[0]);
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
+      dep.setHours(0, 0, 0, 0);
+      return Math.round((dep.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    } catch {
+      return null;
+    }
+  })();
+
+  const isRowLM = isLastMinute || (daysToDep !== null && daysToDep >= 0 && daysToDep <= 4);
 
   // Deal score badges & styling (aligned with Table view)
   const score = intelligence.deal_score ?? 50;
@@ -33,55 +52,90 @@ export const HotelCard: React.FC<Props> = ({
   let dealBadgeText = `${score} Normal`;
   if (score >= 85) {
     dealBadgeBg = "bg-amber-500 text-white border-amber-400";
-    dealBadgeText = `${score} 🔥 Hot`;
+    dealBadgeText = isRowLM ? `${score} 🔥 Сброс` : `${score} 🔥 Hot`;
   } else if (score >= 70) {
     dealBadgeBg = "bg-emerald-600 text-white border-emerald-500";
     dealBadgeText = `${score} ✅ Good`;
   } else if (score < 45) {
     dealBadgeBg = "bg-rose-600 text-white border-rose-500";
-    dealBadgeText = `${score} 📈 Bad`;
-  }
-
-  // Forecast tip & pill
-  const forecastTip = intelligence.recommendation
-    ? `Прогноз Hopper AI: ${intelligence.recommendation}`
-    : score >= 80
-    ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
-    : score < 45 || intelligence.hopper_verdict === "OVERPRICED"
-    ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
-    : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
-
-  let forecastPill = (
-    <span
-      className="hopper-pill wait text-[11px] font-black px-2 py-0.5 rounded-md"
-      data-tip={forecastTip}
-    >
-      🟡 ЖДАТЬ
-    </span>
-  );
-  if (score >= 80) {
-    forecastPill = (
-      <span
-        className="hopper-pill buy-now text-[11px] font-black px-2 py-0.5 rounded-md"
-        data-tip={forecastTip}
-      >
-        🟢 ПОКУПАТЬ
-      </span>
-    );
-  } else if (intelligence.hopper_verdict === "OVERPRICED" || score < 45) {
-    forecastPill = (
-      <span
-        className="hopper-pill overpriced text-[11px] font-black px-2 py-0.5 rounded-md"
-        data-tip={forecastTip}
-      >
-        🔴 ДОРОГО
-      </span>
-    );
+    dealBadgeText = isRowLM ? `${score} ⚠️ Наценка` : `${score} 📈 Bad`;
+  } else if (isRowLM) {
+    dealBadgeText = `${score} ⚖️ Обычная`;
   }
 
   // Deltas
   const delta48 = intelligence.drop_48h_pct;
   const deltaAvg = intelligence.delta_vs_typical_pct;
+
+  // Forecast tip & pill
+  let forecastPill;
+  if (isRowLM) {
+    if (score >= 80 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg <= -12)) {
+      forecastPill = (
+        <span
+          className="hopper-pill buy-now text-[11px] font-black px-2 py-0.5 rounded-md"
+          data-tip="🔥 Честный горящий сброс! Выгодный момент для покупки перед вылетом."
+        >
+          🔥 БРАТЬ
+        </span>
+      );
+    } else if (intelligence.hopper_verdict === "OVERPRICED" || score < 45 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg > 5)) {
+      forecastPill = (
+        <span
+          className="hopper-pill overpriced text-[11px] font-black px-2 py-0.5 rounded-md"
+          data-tip="⚠️ Наценка перед вылетом! Обычный регулярный рейс или вылет чуть позже выгоднее."
+        >
+          ⚠️ НАЦЕНКА
+        </span>
+      );
+    } else {
+      forecastPill = (
+        <span
+          className="hopper-pill wait text-[11px] font-black px-2 py-0.5 rounded-md"
+          style={{ background: "#f8fafc", color: "#475569", border: "1px solid #cbd5e1" }}
+          data-tip="⚖️ Обычный тариф без скидки. Бронируйте только если дата критична."
+        >
+          ⚖️ БЕЗ СКИДКИ
+        </span>
+      );
+    }
+  } else {
+    const forecastTip = intelligence.recommendation
+      ? `Прогноз Hopper AI: ${intelligence.recommendation}`
+      : score >= 80
+      ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
+      : score < 45 || intelligence.hopper_verdict === "OVERPRICED"
+      ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
+      : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
+
+    forecastPill = (
+      <span
+        className="hopper-pill wait text-[11px] font-black px-2 py-0.5 rounded-md"
+        data-tip={forecastTip}
+      >
+        🟡 ЖДАТЬ
+      </span>
+    );
+    if (score >= 80) {
+      forecastPill = (
+        <span
+          className="hopper-pill buy-now text-[11px] font-black px-2 py-0.5 rounded-md"
+          data-tip={forecastTip}
+        >
+          🟢 ПОКУПАТЬ
+        </span>
+      );
+    } else if (intelligence.hopper_verdict === "OVERPRICED" || score < 45) {
+      forecastPill = (
+        <span
+          className="hopper-pill overpriced text-[11px] font-black px-2 py-0.5 rounded-md"
+          data-tip={forecastTip}
+        >
+          🔴 ДОРОГО
+        </span>
+      );
+    }
+  }
 
   // Sparkline SVG path generation
   const sparklinePts = hotel.history_sparkline || [];
