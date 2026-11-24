@@ -5,6 +5,7 @@ tracks price drops, and allows users to register custom monitor presets.
 """
 import asyncio
 import logging
+import re
 from datetime import datetime, timezone, date, timedelta
 from typing import Dict, Any, List, Optional
 import httpx
@@ -95,12 +96,34 @@ class FilterMonitorService:
 
         try:
             logger.info(f"🛰️ [Hourly Scrape] Running monitor '{monitor.title}' ({monitor.id})...")
+            target_url = monitor.target_url
+
+            # Dynamic rolling date injection for last minute monitors (0–4 days from today)
+            if monitor.id.startswith("lastminute_"):
+                today_d = date.today()
+                s_min = today_d.strftime("%d-%m-%Y")
+                s_max = (today_d + timedelta(days=4)).strftime("%d-%m-%Y")
+                ret_d = (today_d + timedelta(days=20)).strftime("%d-%m-%Y")
+
+                if "startDateMin=" in target_url:
+                    target_url = re.sub(r"(startDateMin=)([^&]*)", rf"\g<1>{s_min}", target_url)
+                else:
+                    target_url += f"&startDateMin={s_min}"
+                if "startDateMax=" in target_url:
+                    target_url = re.sub(r"(startDateMax=)([^&]*)", rf"\g<1>{s_max}", target_url)
+                else:
+                    target_url += f"&startDateMax={s_max}"
+                if "returnDate=" in target_url:
+                    target_url = re.sub(r"(returnDate=)([^&]*)", rf"\g<1>{ret_d}", target_url)
+                else:
+                    target_url += f"&returnDate={ret_d}"
+
             # 1. First attempt: Direct JSON API (multi-page, deep coverage up to 150 offers)
-            raw_offers = await LiveScraperService.fetch_offers_via_api(monitor.target_url, max_offers=150)
+            raw_offers = await LiveScraperService.fetch_offers_via_api(target_url, max_offers=150)
 
             # 2. Second attempt: HTML parsing fallback if API returned 0
             if not raw_offers:
-                html = await LiveScraperService.fetch_page_html(monitor.target_url)
+                html = await LiveScraperService.fetch_page_html(target_url)
                 raw_offers = LiveScraperService.parse_offers_html(html or "", max_offers=150)
 
             if not raw_offers:

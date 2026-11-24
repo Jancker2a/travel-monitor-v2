@@ -175,5 +175,53 @@ CANONICAL_MONITORS = [
         "subtitle": "🏷️ First Minute Tracker • 01.07–31.07.2027 • WAW/RDO • 2+1",
         "destination": "turkey",
         "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Warszawa+-+Radom&startDateMin=01-07-2027&startDateMax=31-07-2027&returnDate=14-08-2027&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&categoryRating=50&durationFrom=7&durationTo=10&priceFrom=4000&priceTo=25000&order=price"
+    },
+    {
+        "id": "lastminute_turkey_0_4",
+        "group_id": "lastminute",
+        "title": "🇹🇷 Турция • Горящие вылеты (0–4 дня)",
+        "subtitle": "Все аэр. • 2 взр + 1 реб • вылет 0–4 дн • All Inclusive",
+        "destination": "turkey",
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=6&durationTo=10&priceFrom=1000&priceTo=18000&order=price"
+    },
+    {
+        "id": "lastminute_egypt_0_4",
+        "group_id": "lastminute",
+        "title": "🇪🇬 Египет • Горящие вылеты (0–4 дня)",
+        "subtitle": "Все аэр. • 2 взр + 1 реб • вылет 0–4 дн • All Inclusive",
+        "destination": "egypt",
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=6&durationTo=10&priceFrom=1000&priceTo=18000&order=price"
+    },
+    {
+        "id": "lastminute_greece_0_4",
+        "group_id": "lastminute",
+        "title": "🇬🇷 Греция • Горящие вылеты (0–4 дня)",
+        "subtitle": "Все аэр. • 2 взр + 1 реб • вылет 0–4 дн • All Inclusive",
+        "destination": "greece",
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=14:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=6&durationTo=10&priceFrom=1000&priceTo=18000&order=price"
+    },
+    {
+        "id": "lastminute_cyprus_0_4",
+        "group_id": "lastminute",
+        "title": "🇨🇾 Кипр • Горящие вылеты (0–4 дня)",
+        "subtitle": "Все аэр. • 2 взр + 1 реб • вылет 0–4 дн • All Inclusive",
+        "destination": "cyprus",
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=6:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=6&durationTo=10&priceFrom=1000&priceTo=18000&order=price"
+    },
+    {
+        "id": "lastminute_turkey_13_16",
+        "group_id": "lastminute",
+        "title": "🇹🇷 Турция • Горящие вылеты (13–16 дн)",
+        "subtitle": "Все аэр. • 2 взр + 1 реб • 13–16 дн • вылет 0–4 дн • All Inclusive",
+        "destination": "turkey",
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=39:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=13&durationTo=16&priceFrom=1000&priceTo=25000&order=price"
+    },
+    {
+        "id": "lastminute_egypt_13_16",
+        "group_id": "lastminute",
+        "title": "🇪🇬 Египет • Горящие вылеты (13–16 дн)",
+        "subtitle": "Все аэр. • 2 взр + 1 реб • 13–16 дн • вылет 0–4 дн • All Inclusive",
+        "destination": "egypt",
+        "target_url": "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&departureLocation=Warszawa,Katowice,Kraków,Gdańsk,Wrocław,Poznań&adults=2&children=12-08-2020&catering=all_inclusive&offerTypes=accommodation_flight&durationFrom=13&durationTo=16&priceFrom=1000&priceTo=25000&order=price"
     }
 ]
