@@ -291,36 +291,75 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
               </span>
             </div>
 
-            {filterGroups.map((grp) => (
-              <div key={grp.group} className="space-y-1">
-                <div className="px-2 py-1 text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
-                  <span>{grp.icon}</span>
-                  <span>{grp.group}</span>
-                </div>
+            {filterGroups.map((grp) => {
+              const isSecondary = grp.group.includes("Эталоны") || grp.group.includes("Архив");
+              if (isSecondary) {
+                return (
+                  <details key={grp.group} className="space-y-1 group/sec">
+                    <summary className="px-2 py-1 text-[11px] font-bold text-slate-400 hover:text-slate-200 flex items-center justify-between cursor-pointer select-none list-none">
+                      <span className="flex items-center gap-1.5">
+                        <span>{grp.icon}</span>
+                        <span>{grp.group}</span>
+                      </span>
+                      <span className="text-[10px] text-slate-500 group-open/sec:rotate-180 transition-transform">⌄</span>
+                    </summary>
+                    <div className="space-y-0.5 pt-0.5">
+                      {grp.items.map((item) => {
+                        const isSelected = activeTab === "filter" && activeFilterId === item.id;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => onSelectFilter(item.id)}
+                            className={`w-full text-left flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors ${
+                              isSelected
+                                ? "bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40"
+                                : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
+                            }`}
+                          >
+                            <span className="truncate">{item.title}</span>
+                            {item.badge && (
+                              <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded border border-amber-500/30 font-bold">
+                                {item.badge}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </details>
+                );
+              }
+              return (
+                <div key={grp.group} className="space-y-1">
+                  <div className="px-2 py-1 text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
+                    <span>{grp.icon}</span>
+                    <span>{grp.group}</span>
+                  </div>
 
-                {grp.items.map((item) => {
-                  const isSelected = activeTab === "filter" && activeFilterId === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => onSelectFilter(item.id)}
-                      className={`w-full text-left flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors ${
-                        isSelected
-                          ? "bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40"
-                          : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
-                      }`}
-                    >
-                      <span className="truncate">{item.title}</span>
-                      {item.badge && (
-                        <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded border border-amber-500/30 font-bold">
-                          {item.badge}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            ))}
+                  {grp.items.map((item) => {
+                    const isSelected = activeTab === "filter" && activeFilterId === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => onSelectFilter(item.id)}
+                        className={`w-full text-left flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors ${
+                          isSelected
+                            ? "bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/40"
+                            : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/60"
+                        }`}
+                      >
+                        <span className="truncate">{item.title}</span>
+                        {item.badge && (
+                          <span className="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded border border-amber-500/30 font-bold">
+                            {item.badge}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
@@ -352,8 +391,8 @@ export const SidebarNavigation: React.FC<SidebarNavigationProps> = ({
         {/* Sidebar Footer */}
         <div className="p-3 border-t border-slate-800 bg-slate-900/90 text-[11px] text-slate-400 space-y-1">
           <div className="flex items-center justify-between">
-            <span>База данных:</span>
-            <span className="font-semibold text-slate-200">43 651 цен</span>
+            <span>Хранилище цен:</span>
+            <span className="font-semibold text-slate-200">PostgreSQL Live</span>
           </div>
           <div className="flex items-center justify-between">
             <span>Почасовой опрос:</span>

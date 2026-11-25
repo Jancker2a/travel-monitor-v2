@@ -3,9 +3,10 @@ import time
 import json
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
-from datetime import datetime
+from datetime import datetime, timedelta, timezone, date
+import statistics
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
+from sqlalchemy import text, bindparam
 
 logger = logging.getLogger("travel_monitor_2.analytics")
 
@@ -14,8 +15,10 @@ _AIRPORT_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
 _TOP10_ANALYTICS_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]]]] = {}
 _OFFERS_COUNT_CACHE: Optional[Tuple[float, List[Dict[str, Any]]]] = None
 _MARKET_OVERVIEW_CACHE: Optional[Tuple[float, Dict[str, Any]]] = None
-_DEPARTURES_KB: Optional[Dict[str, Any]] = None
-_ANALYTICS_CACHE_TTL = 900.0  # 15 minutes cache
+_EB_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
+_FILTER_ANALYTICS_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
+_FILTER_DEPARTURES_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
+_ANALYTICS_CACHE_TTL = 300.0  # 5 minutes cache
 
 
 class AnalyticsService:
@@ -181,11 +184,13 @@ class AnalyticsService:
 
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         cutoff_expr = "NOW() - INTERVAL '48 hours'" if is_pg else "datetime('now', '-48 hours')"
+        join_col = "cohort_id"
 
         from app.services.timeline_service import get_all_filter_id_variants
         fids = get_all_filter_id_variants(dest_clean) if destination else []
 
         if fids:
+            f_clause = "s.filter_id = ANY(:fids)" if is_pg else "s.filter_id IN :fids"
             query = text(f"""
                 SELECT c.airport_code,
                        COUNT(DISTINCT c.hotel_id) as hotel_count,
@@ -193,13 +198,15 @@ class AnalyticsService:
                        AVG(s.total_price_pln) as avg_price,
                        AVG(s.price_per_night_per_pax) as avg_night_pax
                 FROM price_snapshots s
-                JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
-                WHERE s.filter_id = ANY(:fids)
+                JOIN offer_cohorts c ON s.{join_col} = c.{join_col}
+                WHERE {f_clause}
                   AND s.recorded_at >= {cutoff_expr}
                 GROUP BY c.airport_code
                 HAVING COUNT(*) >= 3
                 ORDER BY avg_price ASC
             """)
+            if not is_pg:
+                query = query.bindparams(bindparam("fids", expanding=True))
             res = await db.execute(query, {"fids": fids})
         else:
             filter_clause = ""
@@ -214,7 +221,7 @@ class AnalyticsService:
                        AVG(s.total_price_pln) as avg_price,
                        AVG(s.price_per_night_per_pax) as avg_night_pax
                 FROM price_snapshots s
-                JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
+                JOIN offer_cohorts c ON s.{join_col} = c.{join_col}
                 JOIN hotels h ON c.hotel_id = h.hotel_id
                 WHERE s.recorded_at >= {cutoff_expr}
                 {filter_clause}
@@ -265,34 +272,505 @@ class AnalyticsService:
         _OFFERS_COUNT_CACHE = (now_ts, results)
         return results
 
+    @staticmethod
+    def _parse_dt(val: Any) -> Optional[datetime]:
+        if not val:
+            return None
+        if isinstance(val, datetime):
+            return val if val.tzinfo else val.replace(tzinfo=timezone.utc)
+        try:
+            s = str(val).replace("Z", "+00:00").replace(" ", "T")
+            if "+" not in s and "-" not in s[10:]:
+                s += "+00:00"
+            dt = datetime.fromisoformat(s)
+            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+        except Exception:
+            return None
+
+    @staticmethod
+    def _parse_date(val: Any) -> Optional[date]:
+        if not val:
+            return None
+        if isinstance(val, datetime):
+            return val.date()
+        if isinstance(val, date):
+            return val
+        try:
+            return datetime.strptime(str(val)[:10], "%Y-%m-%d").date()
+        except Exception:
+            return None
+
     @classmethod
-    async def get_early_booking_analytics(cls, db: AsyncSession) -> Dict[str, Any]:
-        """Calculates Early Booking Advantage Score (EBAS) and cohort dynamics."""
-        return {
+    async def get_early_booking_analytics(
+        cls, db: AsyncSession, filter_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """Calculates real DB-backed Early Booking Advantage Score (EBAS), price trajectory & cohort survival."""
+        cache_key = filter_id or "__all__"
+        now_ts = time.time()
+        if cache_key in _EB_CACHE:
+            c_time, c_data = _EB_CACHE[cache_key]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
+
+        from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
+
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        join_col = "cohort_id"
+        fids = get_all_filter_id_variants(resolve_filter_id(filter_id)) if filter_id else []
+
+        where_filter = ("WHERE (" + ("ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids") + ") ") if fids else ""
+        sql = f"""
+            SELECT oc.{join_col} as cid,
+                   oc.checkin_date,
+                   ps.recorded_at,
+                   ps.total_price_pln
+            FROM price_snapshots ps
+            JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+            {where_filter}
+            {"AND" if where_filter else "WHERE"} oc.checkin_date IS NOT NULL
+              AND ps.total_price_pln > 0
+            ORDER BY ps.recorded_at DESC
+            LIMIT 40000
+        """
+        stmt = text(sql)
+        params: Dict[str, Any] = {}
+        if fids:
+            params["fids"] = fids
+            if not is_pg:
+                stmt = stmt.bindparams(bindparam("fids", expanding=True))
+
+        res = await db.execute(stmt, params)
+        rows = res.fetchall()
+
+        bucket_order = [
+            "Early Bird (>120d)",
+            "First Minute (60-120d)",
+            "Mid (30-60d)",
+            "Late (14-30d)",
+            "Last Minute (7-14d)",
+            "Panic Dump (≤7d)",
+        ]
+        bucket_prices: Dict[str, List[float]] = {b: [] for b in bucket_order}
+        cohort_min_lead: Dict[str, int] = {}
+        cohort_max_lead: Dict[str, int] = {}
+        cohort_checkin: Dict[str, date] = {}
+        cohort_first_last: Dict[str, Tuple[datetime, float, datetime, float]] = {}
+        ref_date: Optional[date] = None
+
+        for cid, c_date_raw, rec_raw, price_raw in rows:
+            dt = cls._parse_dt(rec_raw)
+            cd = cls._parse_date(c_date_raw)
+            p = float(price_raw or 0.0)
+            if not dt or not cd or p <= 0:
+                continue
+            if ref_date is None or dt.date() > ref_date:
+                ref_date = dt.date()
+            lead = (cd - dt.date()).days
+            if lead < 0 or lead > 400:
+                continue
+            key = str(cid)
+            cohort_checkin[key] = cd
+            if key not in cohort_min_lead or lead < cohort_min_lead[key]:
+                cohort_min_lead[key] = lead
+            if key not in cohort_max_lead or lead > cohort_max_lead[key]:
+                cohort_max_lead[key] = lead
+
+            prev = cohort_first_last.get(key)
+            if not prev:
+                cohort_first_last[key] = (dt, p, dt, p)
+            else:
+                f_dt, f_p, l_dt, l_p = prev
+                if dt < f_dt:
+                    f_dt, f_p = dt, p
+                if dt > l_dt:
+                    l_dt, l_p = dt, p
+                cohort_first_last[key] = (f_dt, f_p, l_dt, l_p)
+
+            if lead > 120:
+                bucket_prices["Early Bird (>120d)"].append(p)
+            elif lead >= 60:
+                bucket_prices["First Minute (60-120d)"].append(p)
+            elif lead >= 30:
+                bucket_prices["Mid (30-60d)"].append(p)
+            elif lead >= 14:
+                bucket_prices["Late (14-30d)"].append(p)
+            elif lead >= 7:
+                bucket_prices["Last Minute (7-14d)"].append(p)
+            else:
+                bucket_prices["Panic Dump (≤7d)"].append(p)
+
+        total_cohorts = len(cohort_first_last)
+        if total_cohorts < 5:
+            out = {
+                "has_data": False,
+                "filter_id": filter_id,
+                "summary": {
+                    "ebas_score": 50.0,
+                    "verdict": "INSUFFICIENT_DATA",
+                    "title": "Недостаточно длинной истории для расчёта EBAS",
+                    "description": f"По этому фильтру зафиксировано {total_cohorts} когорт. Для расчёта ценовой траектории от раннего бронирования к вылету требуется история по разным горизонтам дат.",
+                    "total_cohorts": total_cohorts,
+                    "lm_delta_pct": 0.0,
+                    "sold_out_risk_pct": 0.0,
+                },
+                "trajectory": {"x": [], "y": []},
+                "survival": {"x": [], "y": []},
+            }
+            _EB_CACHE[cache_key] = (now_ts, out)
+            return out
+
+        non_empty_buckets = [b for b in bucket_order if len(bucket_prices[b]) >= 3]
+        traj_x: List[str] = []
+        traj_y: List[float] = []
+        base_med = None
+        if non_empty_buckets:
+            base_med = statistics.median(bucket_prices[non_empty_buckets[0]])
+            for b in non_empty_buckets:
+                med_b = statistics.median(bucket_prices[b])
+                delta_b = round(((med_b - base_med) / base_med) * 100.0, 1) if base_med > 0 else 0.0
+                traj_x.append(b)
+                traj_y.append(delta_b)
+
+        # Compare Last Minute (<=14d) vs Early (>60d)
+        early_pool = bucket_prices["Early Bird (>120d)"] + bucket_prices["First Minute (60-120d)"]
+        lm_pool = bucket_prices["Last Minute (7-14d)"] + bucket_prices["Panic Dump (≤7d)"]
+        if len(early_pool) >= 5 and len(lm_pool) >= 5:
+            early_med = statistics.median(early_pool)
+            lm_med = statistics.median(lm_pool)
+            lm_delta_pct = round(((lm_med - early_med) / early_med) * 100.0, 1) if early_med > 0 else 0.0
+        elif len(traj_y) >= 2:
+            lm_delta_pct = round(traj_y[-1] - traj_y[0], 1)
+        else:
+            lm_delta_pct = 0.0
+
+        # Real survival curve: ONLY count cohorts whose departure date has ALREADY reached <= th days from ref_date
+        today_ref = ref_date or date.today()
+        thresholds = [160, 140, 120, 100, 80, 60, 40, 25, 20, 10, 0]
+        surv_x: List[int] = []
+        surv_y: List[float] = []
+        for th in thresholds:
+            eligible = [
+                k for k, mx in cohort_max_lead.items()
+                if mx >= th and k in cohort_checkin and (cohort_checkin[k] - today_ref).days <= th
+            ]
+            if len(eligible) >= 5:
+                survived = [k for k in eligible if cohort_min_lead[k] <= th]
+                surv_x.append(th)
+                surv_y.append(round((len(survived) / len(eligible)) * 100.0, 1))
+
+        # Estimate sold-out risk ONLY among mature cohorts whose departure has ALREADY reached <= 14 days
+        mid_eligible = [
+            k for k, mx in cohort_max_lead.items()
+            if mx >= 30 and k in cohort_checkin and (cohort_checkin[k] - today_ref).days <= 14
+        ]
+        has_mature_soldout = len(mid_eligible) >= 5
+        if has_mature_soldout:
+            vanished = [k for k in mid_eligible if cohort_min_lead[k] > 14]
+            sold_out_risk_pct = round((len(vanished) / len(mid_eligible)) * 100.0, 1)
+        else:
+            sold_out_risk_pct = 0.0
+
+        has_mature_eb = len(traj_x) >= 2 and (has_mature_soldout or len(surv_x) >= 2)
+        if not has_mature_eb:
+            ebas_score = 50.0
+            verdict = "INSUFFICIENT_MATURE_HORIZON"
+            title = "Идёт накопление кривой раннего бронирования"
+            description = (
+                f"Вылеты ещё далеко (когорт: {total_cohorts}). Для расчёта разницы между ранним стартом и "
+                "горящим окном требуются завершённые циклы дат вылета."
+            )
+        else:
+            ebas_score = round(max(15.0, min(95.0, 50.0 + lm_delta_pct * 1.4 + sold_out_risk_pct * 0.3)), 1)
+            if ebas_score >= 65.0:
+                verdict = "EARLY_BOOKING_HIGHLY_FAVORABLE"
+                title = "По данным когорт выгоднее фиксировать заранее"
+                description = (
+                    f"На выборке из {total_cohorts} когорт цены ближе к вылету в среднем на "
+                    f"{lm_delta_pct:+.1f}% относительно раннего старта, а ~{sold_out_risk_pct:.0f}% предложений исчезают до горящего окна."
+                )
+            elif ebas_score <= 42.0:
+                verdict = "WAIT_FOR_LAST_MINUTE"
+                title = "По истории чаще срабатывает ожидание скидок"
+                description = (
+                    f"На выборке из {total_cohorts} когорт поздние предложения в среднем "
+                    f"{lm_delta_pct:+.1f}% к ранним тарифам. Жёсткой гонки за остатками не видно."
+                )
+            else:
+                verdict = "BALANCED_MARKET"
+                title = "Сбалансированный рынок без перекоса в пользу EB"
+                description = (
+                    f"Анализ {total_cohorts} когорт показывает умеренную разницу ({lm_delta_pct:+.1f}%) между ранним бронированием и близким вылетом."
+                )
+
+        out = {
+            "has_data": has_mature_eb,
+            "filter_id": filter_id,
             "summary": {
-                "ebas_score": 84.3,
-                "verdict": "EARLY_BOOKING_HIGHLY_FAVORABLE",
-                "title": "Раннее бронирование однозначно выгодно",
-                "description": "Цены большинства отелей растут по мере приближения к вылету, а популярные 4–5★ варианты раскупаются первыми. Ожидание горячих туров несет высокий риск распродажи.",
-                "total_cohorts": 4669,
-                "lm_delta_pct": 16.1,
-                "sold_out_risk_pct": 50.0,
+                "ebas_score": ebas_score,
+                "verdict": verdict,
+                "title": title,
+                "description": description,
+                "total_cohorts": total_cohorts,
+                "lm_delta_pct": lm_delta_pct,
+                "sold_out_risk_pct": sold_out_risk_pct,
             },
-            "trajectory": {
-                "x": [
-                    "Early Bird (>120d)",
-                    "First Minute (60-120d)",
-                    "Late (14-30d)",
-                    "Last Minute (7-14d)",
-                    "Panic Dump (≤7d)",
-                ],
-                "y": [0.0, 0.0, 22.8, 16.1, 11.4],
+            "trajectory": {"x": traj_x, "y": traj_y},
+            "survival": {"x": surv_x, "y": surv_y},
+        }
+        _EB_CACHE[cache_key] = (now_ts, out)
+        return out
+
+    @classmethod
+    async def get_filter_analytics(
+        cls, db: AsyncSession, filter_id: str
+    ) -> Dict[str, Any]:
+        """Computes live DB-driven overview, departure calendar, 24h-72h price moves, and timing stats for a filter."""
+        from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
+        from app.services.canonical_filters import resolve_filter_spec, classify_filter_type
+
+        canonical_fid = resolve_filter_id(filter_id)
+        now_ts = time.time()
+        if canonical_fid in _FILTER_ANALYTICS_CACHE:
+            c_time, c_data = _FILTER_ANALYTICS_CACHE[canonical_fid]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
+
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        join_col = "cohort_id"
+        fids = get_all_filter_id_variants(filter_id)
+        filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
+
+        stmt_max = text(f"SELECT MAX(ps.recorded_at) FROM price_snapshots ps WHERE {filter_expr}")
+        if not is_pg:
+            stmt_max = stmt_max.bindparams(bindparam("fids", expanding=True))
+        max_ts = (await db.execute(stmt_max, {"fids": fids})).scalar()
+
+        spec = resolve_filter_spec(filter_id) or resolve_filter_spec(canonical_fid)
+        if not max_ts:
+            ftype = classify_filter_type(canonical_fid, title=(spec or {}).get("title"))
+            return {
+                "filter_id": filter_id,
+                "filter_type": ftype,
+                "overview": {
+                    "total_hotels": 0,
+                    "total_cohorts": 0,
+                    "total_snapshots": 0,
+                    "avg_price": 0,
+                    "median_price": 0,
+                    "min_price": 0,
+                    "sold_out_7d_lost_count": 0,
+                    "last_updated_at": None,
+                },
+                "calendar_dates": [],
+                "price_changes": {"drops": [], "hikes": [], "history": []},
+                "timing_stats": {"best_window": "—", "best_window_share_pct": 0.0, "total_drops_analyzed": 0, "by_hour": [], "by_weekday": []},
+            }
+
+        max_dt = cls._parse_dt(max_ts) or datetime.now(timezone.utc)
+        cutoff_30d = (max_dt - timedelta(days=30)) if is_pg else (max_dt - timedelta(days=30)).isoformat()
+
+        # Total counts across entire filter history
+        cnt_sql = f"""
+            SELECT COUNT(DISTINCT oc.hotel_id) as h_cnt,
+                   COUNT(DISTINCT ps.{join_col}) as c_cnt,
+                   COUNT(*) as s_cnt
+            FROM price_snapshots ps
+            JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+            WHERE {filter_expr}
+        """
+        stmt_cnt = text(cnt_sql)
+        if not is_pg:
+            stmt_cnt = stmt_cnt.bindparams(bindparam("fids", expanding=True))
+        cnt_row = (await db.execute(stmt_cnt, {"fids": fids})).fetchone()
+
+        # Fetch last 30d snapshots for calendar, 48h moves, timing stats, sold-out lost count
+        snap_sql = f"""
+            SELECT oc.hotel_id,
+                   h.display_name,
+                   oc.{join_col} as cid,
+                   oc.checkin_date,
+                   oc.airport_code,
+                   ps.total_price_pln,
+                   ps.recorded_at
+            FROM price_snapshots ps
+            JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+            JOIN hotels h ON oc.hotel_id = h.hotel_id
+            WHERE {filter_expr}
+              AND ps.recorded_at >= :cutoff_30d
+            ORDER BY ps.recorded_at ASC
+        """
+        stmt_snaps = text(snap_sql)
+        if not is_pg:
+            stmt_snaps = stmt_snaps.bindparams(bindparam("fids", expanding=True))
+        snap_rows = (await db.execute(stmt_snaps, {"fids": fids, "cutoff_30d": cutoff_30d})).fetchall()
+
+        cutoff_24h = max_dt - timedelta(hours=24)
+        cutoff_7d = max_dt - timedelta(days=7)
+        cutoff_48h = max_dt - timedelta(hours=48)
+
+        today_d = date.today()
+        latest_hotel_offers: Dict[str, Dict[str, Any]] = {}
+        hotel_names: Dict[str, str] = {}
+        hotel_pts: Dict[str, List[Tuple[datetime, float, Optional[date], str]]] = {}
+        cohort_pts: Dict[str, List[Tuple[datetime, float]]] = {}
+        calendar_buckets: Dict[str, List[Tuple[str, float]]] = {}
+        seen_recent_hotels: set = set()
+        seen_7d_hotels: set = set()
+
+        for hid, hname, cid, cdate_raw, air, price_raw, rec_raw in snap_rows:
+            dt = cls._parse_dt(rec_raw)
+            p = float(price_raw or 0.0)
+            if not dt or p <= 0:
+                continue
+            cd = cls._parse_date(cdate_raw)
+            hotel_names[hid] = hname
+            hotel_pts.setdefault(hid, []).append((dt, p, cd, air or ""))
+            cohort_pts.setdefault(str(cid), []).append((dt, p))
+
+            if dt >= cutoff_7d:
+                seen_7d_hotels.add(hid)
+            if dt >= cutoff_48h:
+                seen_recent_hotels.add(hid)
+            if dt >= cutoff_24h:
+                if cd:
+                    d_str = cd.isoformat()
+                    calendar_buckets.setdefault(d_str, []).append((hid, p))
+                prev_latest = latest_hotel_offers.get(hid)
+                if not prev_latest or dt > prev_latest["dt"] or (dt == prev_latest["dt"] and p < prev_latest["price"]):
+                    latest_hotel_offers[hid] = {"dt": dt, "price": p, "checkin": cd, "airport": air or ""}
+
+        # Overview stats from latest slice
+        active_prices = [v["price"] for v in latest_hotel_offers.values()]
+        checkins_all = [v["checkin"] for v in latest_hotel_offers.values() if v["checkin"]]
+        filter_type = classify_filter_type(
+            canonical_fid, title=(spec or {}).get("title"), checkin_dates=checkins_all
+        )
+
+        # Departure Calendar sorted chronologically
+        calendar_dates = []
+        for d_str in sorted(calendar_buckets.keys()):
+            cd = cls._parse_date(d_str)
+            if cd and cd < today_d - timedelta(days=1):
+                continue
+            entries = calendar_buckets[d_str]
+            min_by_hotel: Dict[str, float] = {}
+            for hid, p in entries:
+                if hid not in min_by_hotel or p < min_by_hotel[hid]:
+                    min_by_hotel[hid] = p
+            p_vals = list(min_by_hotel.values())
+            if not p_vals:
+                continue
+            calendar_dates.append({
+                "date": d_str,
+                "days_to_dep": (cd - today_d).days if cd else 0,
+                "hotels_count": len(min_by_hotel),
+                "min_price": round(min(p_vals), 0),
+                "median_price": round(statistics.median(p_vals), 0),
+            })
+
+        # Price changes (latest price vs ~24-72h ago)
+        drops: List[Dict[str, Any]] = []
+        hikes: List[Dict[str, Any]] = []
+        history_moves: List[Dict[str, Any]] = []
+        for hid, latest in latest_hotel_offers.items():
+            pts = hotel_pts.get(hid, [])
+            if len(pts) < 2:
+                continue
+            target_prev = latest["dt"] - timedelta(hours=48)
+            prev_cands = [pt for pt in pts if 12 <= (latest["dt"] - pt[0]).total_seconds() / 3600.0 <= 84]
+            if not prev_cands:
+                # Fallback to previous distinct scrape (> 2h older)
+                prev_cands = [pt for pt in pts if (latest["dt"] - pt[0]).total_seconds() >= 7200]
+            if not prev_cands:
+                continue
+            prev_cands.sort(key=lambda pt: abs((pt[0] - target_prev).total_seconds()))
+            prev_pt = prev_cands[0]
+            prev_p = prev_pt[1]
+            curr_p = latest["price"]
+            delta_pln = round(curr_p - prev_p, 0)
+            delta_pct = round(((curr_p - prev_p) / prev_p) * 100.0, 1) if prev_p > 0 else 0.0
+            if abs(delta_pln) < 40:
+                continue
+            move_item = {
+                "hotel_id": hid,
+                "hotel_name": hotel_names.get(hid, hid),
+                "prev_price": round(prev_p, 0),
+                "curr_price": round(curr_p, 0),
+                "delta_pln": delta_pln,
+                "delta_pct": delta_pct,
+                "airport_code": latest["airport"],
+                "checkin_date": latest["checkin"].isoformat() if latest["checkin"] else None,
+                "recorded_at": latest["dt"].isoformat(),
+            }
+            history_moves.append(move_item)
+            if delta_pln < 0:
+                drops.append(move_item)
+            else:
+                hikes.append(move_item)
+
+        drops.sort(key=lambda x: x["delta_pln"])
+        hikes.sort(key=lambda x: x["delta_pln"], reverse=True)
+        history_moves.sort(key=lambda x: abs(x["delta_pln"]), reverse=True)
+
+        # Timing stats: real hour/weekday distribution of price drops across cohorts
+        hour_windows = {"00:00-06:00": 0, "06:00-12:00": 0, "12:00-18:00": 0, "18:00-24:00": 0}
+        weekday_names = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+        weekday_counts = {w: 0 for w in weekday_names}
+        total_drops_analyzed = 0
+        drop_pcts: List[float] = []
+        for _, pts in cohort_pts.items():
+            for i in range(1, len(pts)):
+                prev_dt, prev_p = pts[i - 1]
+                cur_dt, cur_p = pts[i]
+                if cur_p < prev_p - 30:
+                    total_drops_analyzed += 1
+                    if prev_p > 0:
+                        drop_pcts.append(((cur_p - prev_p) / prev_p) * 100.0)
+                    hr = cur_dt.hour
+                    if hr < 6:
+                        hour_windows["00:00-06:00"] += 1
+                    elif hr < 12:
+                        hour_windows["06:00-12:00"] += 1
+                    elif hr < 18:
+                        hour_windows["12:00-18:00"] += 1
+                    else:
+                        hour_windows["18:00-24:00"] += 1
+                    weekday_counts[weekday_names[cur_dt.weekday()]] += 1
+
+        best_win = max(hour_windows.items(), key=lambda kv: kv[1])[0] if total_drops_analyzed > 0 else "—"
+        best_share = round((hour_windows.get(best_win, 0) / total_drops_analyzed) * 100.0, 1) if total_drops_analyzed > 0 else 0.0
+        avg_drop_pct = round(statistics.mean(drop_pcts), 1) if drop_pcts else 0.0
+
+        result = {
+            "filter_id": filter_id,
+            "filter_type": filter_type,
+            "overview": {
+                "total_hotels": len(latest_hotel_offers) or int(cnt_row[0] if cnt_row else 0),
+                "total_cohorts": int(cnt_row[1] if cnt_row else 0),
+                "total_snapshots": int(cnt_row[2] if cnt_row else 0),
+                "avg_price": round(statistics.mean(active_prices), 0) if active_prices else 0,
+                "median_price": round(statistics.median(active_prices), 0) if active_prices else 0,
+                "min_price": round(min(active_prices), 0) if active_prices else 0,
+                "sold_out_7d_lost_count": len(seen_7d_hotels - seen_recent_hotels),
+                "last_updated_at": max_dt.isoformat(),
             },
-            "survival": {
-                "x": [160, 140, 120, 100, 80, 60, 40, 25, 20, 10, 0],
-                "y": [100.0, 80.0, 60.0, 60.0, 60.0, 60.0, 60.0, 52.0, 16.0, 14.0, 12.0],
+            "calendar_dates": calendar_dates,
+            "price_changes": {
+                "drops": drops[:10],
+                "hikes": hikes[:10],
+                "history": history_moves[:12],
+            },
+            "timing_stats": {
+                "best_window": best_win,
+                "best_window_share_pct": best_share,
+                "avg_drop_pct": avg_drop_pct,
+                "total_drops_analyzed": total_drops_analyzed,
+                "by_hour": [{"window": k, "drops": v} for k, v in hour_windows.items()],
+                "by_weekday": [{"day": k, "drops": weekday_counts[k]} for k in weekday_names],
             },
         }
+        _FILTER_ANALYTICS_CACHE[canonical_fid] = (now_ts, result)
+        return result
 
     @classmethod
     async def get_market_overview(cls, db: AsyncSession) -> Dict[str, Any]:
@@ -322,42 +800,144 @@ class AnalyticsService:
         return results
 
     @classmethod
-    def get_filter_departures(cls, filter_id: str) -> Dict[str, Any]:
-        """Returns active upcoming departure radar and historical late-buy cases for the active filter."""
+    async def get_filter_departures(
+        cls, db: AsyncSession, filter_id: str
+    ) -> Dict[str, Any]:
+        """Computes live upcoming departure schedule and real same-destination late-drop evidence from DB."""
+        from app.services.timeline_service import resolve_filter_id, get_all_filter_id_variants
         from app.services.canonical_filters import resolve_filter_spec
 
-        global _DEPARTURES_KB
-        if _DEPARTURES_KB is None:
-            kb_path = Path(__file__).resolve().parent.parent / "knowledge" / "departures_kb.json"
-            if kb_path.exists():
-                try:
-                    with open(kb_path, "r", encoding="utf-8") as f:
-                        _DEPARTURES_KB = json.load(f)
-                except Exception as e:
-                    logger.error(f"Error loading departures_kb.json: {e}")
-                    _DEPARTURES_KB = {}
-            else:
-                _DEPARTURES_KB = {}
+        canonical_fid = resolve_filter_id(filter_id)
+        now_ts = time.time()
+        if canonical_fid in _FILTER_DEPARTURES_CACHE:
+            c_time, c_data = _FILTER_DEPARTURES_CACHE[canonical_fid]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
 
-        spec = resolve_filter_spec(filter_id)
-        candidates = [filter_id]
-        if spec:
-            candidates.extend(spec.get("destination_codes", []))
-            candidates.append(f"filter_{filter_id}")
-        
-        found_data = None
-        for c in candidates:
-            if c in _DEPARTURES_KB:
-                found_data = _DEPARTURES_KB[c]
-                break
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        join_col = "cohort_id"
+        fids = get_all_filter_id_variants(filter_id)
+        filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
-        if not found_data:
-            found_data = {"hot_history": [], "active_departures": [], "stats": {}}
+        stmt_max = text(f"SELECT MAX(ps.recorded_at) FROM price_snapshots ps WHERE {filter_expr}")
+        if not is_pg:
+            stmt_max = stmt_max.bindparams(bindparam("fids", expanding=True))
+        max_ts = (await db.execute(stmt_max, {"fids": fids})).scalar()
 
-        return {
+        active_departures: List[Dict[str, Any]] = []
+        if max_ts:
+            max_dt = cls._parse_dt(max_ts) or datetime.now(timezone.utc)
+            cutoff_48h = (max_dt - timedelta(hours=48)) if is_pg else (max_dt - timedelta(hours=48)).isoformat()
+            dep_sql = f"""
+                SELECT oc.checkin_date,
+                       oc.hotel_id,
+                       oc.airport_code,
+                       ps.total_price_pln
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+                WHERE {filter_expr}
+                  AND ps.recorded_at >= :cutoff_48h
+                  AND oc.checkin_date IS NOT NULL
+                  AND ps.total_price_pln > 0
+            """
+            stmt_dep = text(dep_sql)
+            if not is_pg:
+                stmt_dep = stmt_dep.bindparams(bindparam("fids", expanding=True))
+            dep_rows = (await db.execute(stmt_dep, {"fids": fids, "cutoff_48h": cutoff_48h})).fetchall()
+
+            today_d = date.today()
+            by_date: Dict[str, Dict[str, Any]] = {}
+            for cd_raw, hid, air, p_raw in dep_rows:
+                cd = cls._parse_date(cd_raw)
+                p = float(p_raw or 0.0)
+                if not cd or p <= 0 or cd < today_d - timedelta(days=1):
+                    continue
+                d_str = cd.isoformat()
+                entry = by_date.setdefault(d_str, {"hotels": {}, "airports": {}})
+                if hid not in entry["hotels"] or p < entry["hotels"][hid]:
+                    entry["hotels"][hid] = p
+                if air:
+                    entry["airports"][air] = entry["airports"].get(air, 0) + 1
+
+            for d_str in sorted(by_date.keys()):
+                cd = cls._parse_date(d_str)
+                days_to_dep = (cd - today_d).days if cd else 0
+                prices = list(by_date[d_str]["hotels"].values())
+                top_airports = [
+                    k for k, _ in sorted(by_date[d_str]["airports"].items(), key=lambda kv: kv[1], reverse=True)[:4]
+                ]
+                active_departures.append({
+                    "date": d_str,
+                    "days_to_dep": days_to_dep,
+                    "hotels_count": len(prices),
+                    "min_price": round(min(prices), 0),
+                    "median_price": round(statistics.median(prices), 0),
+                    "airports": top_airports,
+                    "is_hot_window": 0 <= days_to_dep <= 4,
+                })
+
+        # Same-destination & same-party historical real last-minute drops from DB
+        spec = resolve_filter_spec(filter_id) or resolve_filter_spec(canonical_fid)
+        target_country = (spec or {}).get("country") or ""
+        target_ad = int((spec or {}).get("adults", 2))
+        target_ch = int((spec or {}).get("children", 1 if target_ad == 2 else 0))
+
+        hot_history: List[Dict[str, Any]] = []
+        if target_country:
+            hb_sql = f"""
+                SELECT h.display_name,
+                       oc.checkin_date,
+                       MIN(ps.total_price_pln) as min_p,
+                       AVG(ps.total_price_pln) as avg_p,
+                       MAX(ps.total_price_pln) as max_p,
+                       COUNT(*) as cnt
+                FROM price_snapshots ps
+                JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
+                JOIN hotels h ON oc.hotel_id = h.hotel_id
+                WHERE LOWER(h.country) LIKE :ctry
+                  AND oc.adults = :ad
+                  AND oc.children = :ch
+                  AND oc.checkin_date IS NOT NULL
+                GROUP BY h.display_name, oc.checkin_date
+                HAVING COUNT(*) >= 3
+                ORDER BY oc.checkin_date DESC
+                LIMIT 200
+            """
+            hb_rows = (
+                await db.execute(
+                    text(hb_sql),
+                    {"ctry": f"%{target_country.lower()}%", "ad": target_ad, "ch": target_ch},
+                )
+            ).fetchall()
+            for hname, cd_raw, min_p, avg_p, max_p, _ in hb_rows:
+                mp = float(min_p or 0)
+                ap = float(avg_p or 0)
+                if mp <= 0 or ap <= 0:
+                    continue
+                drop_pct = round(((mp - ap) / ap) * 100.0, 1)
+                if drop_pct <= -10.0:
+                    cd = cls._parse_date(cd_raw)
+                    hot_history.append({
+                        "hotel_name": hname,
+                        "checkin_date": cd.isoformat() if cd else str(cd_raw),
+                        "min_price_pln": round(mp, 0),
+                        "avg_price_pln": round(ap, 0),
+                        "drop_pct": drop_pct,
+                    })
+                if len(hot_history) >= 6:
+                    break
+
+        hot_days_cnt = sum(1 for d in active_departures if d["is_hot_window"])
+        out = {
             "filter_id": filter_id,
-            "active_departures": found_data.get("active_departures", []),
-            "hot_history": found_data.get("hot_history", []),
-            "stats": found_data.get("stats", {})
+            "active_departures": active_departures,
+            "hot_history": hot_history,
+            "stats": {
+                "upcoming_dates_count": len(active_departures),
+                "hot_window_dates_count": hot_days_cnt,
+                "nearest_date": active_departures[0]["date"] if active_departures else None,
+            },
         }
+        _FILTER_DEPARTURES_CACHE[canonical_fid] = (now_ts, out)
+        return out
 

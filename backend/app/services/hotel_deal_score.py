@@ -664,3 +664,270 @@ def compute_hotel_deal_metrics(
         "avg_delta_pct": avg_delta_pct,
         "confidence": confidence,
     }
+
+
+def compute_unified_deal_assessment(
+    *,
+    latest_price: float,
+    typical_price: Optional[float],
+    hist_df: Optional[pd.DataFrame] = None,
+    samples_count: int = 0,
+    ta_rating: Any = None,
+    ta_review_count: Any = None,
+    filter_type: str = "rolling",
+    days_to_dep: Optional[int] = None,
+    season_info: Optional[Dict[str, Any]] = None,
+    upcoming_std_price: Optional[float] = None,
+    upcoming_std_date: Optional[str] = None,
+    change_48h_pct: Optional[float] = None,
+    change_30d_pct: Optional[float] = None,
+) -> Dict[str, Any]:
+    """
+    Single source of truth for Deal Score, Verdict, and Filter-Specific Action Signals
+    across Catalog, Live Search, and Hotel Passport.
+
+    Key truthfulness guardrails:
+    - Fewer than 3 historical samples -> neutral Warm-up (~50), never phantom hot deals.
+    - Last-minute offer priced ABOVE an upcoming regular departure (>=5d) -> SURCHARGE / OVERPRICED.
+    - Budget / low-TA hotels (< 3.5★) capped so cheap low quality is never sold as a 'Super Deal'.
+    - Early booking (> 60d) never triggers fake 'seats running out urgently' FOMO.
+    """
+    latest = float(latest_price or 0.0)
+    typ = float(typical_price) if (typical_price and typical_price > 0) else None
+    has_history = samples_count >= 3 or (hist_df is not None and len(hist_df) >= 3)
+
+    ta_val: Optional[float] = None
+    try:
+        if ta_rating is not None and float(ta_rating) > 0:
+            ta_val = float(ta_rating)
+    except (TypeError, ValueError):
+        ta_val = None
+
+    avg_delta_pct: Optional[float] = None
+    if has_history and typ and typ > 0 and latest > 0:
+        avg_delta_pct = round(((latest - typ) / typ) * 100.0, 1)
+
+    # Check live upcoming regular departure comparison for last-minute
+    spread_vs_std_pln: Optional[float] = None
+    spread_vs_std_pct: Optional[float] = None
+    is_lm_surcharge_vs_std = False
+    is_lm_cheaper_vs_std = False
+    if filter_type == "lastminute" and upcoming_std_price and upcoming_std_price > 0 and latest > 0:
+        spread_vs_std_pln = round(latest - float(upcoming_std_price), 0)
+        spread_vs_std_pct = round((spread_vs_std_pln / float(upcoming_std_price)) * 100.0, 1)
+        if spread_vs_std_pln > 50:
+            is_lm_surcharge_vs_std = True
+        elif spread_vs_std_pln < -50:
+            is_lm_cheaper_vs_std = True
+
+    if not has_history:
+        score = 50
+        confidence = "Low"
+        # Small TA nudge only; never claim BUY NOW without price history
+        if ta_val is not None:
+            score, _ = blend_tripadvisor_into_deal_score(score, ta_val, ta_review_count or 25)
+        if is_lm_surcharge_vs_std:
+            score = min(score, 42)
+            verdict = "OVERPRICED"
+            badge = "OVERPRICED"
+            action_label = f"⚠️ Наценка (+{int(abs(spread_vs_std_pln))} zł vs регулярный)"
+            recommendation = (
+                f"Срочный вылет дороже ближайшего регулярного рейса ({upcoming_std_date or 'позже'}) "
+                f"на {int(abs(spread_vs_std_pln))} zł."
+            )
+        else:
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+            action_label = "⏳ Мало истории"
+            recommendation = (
+                f"Зафиксировано мало замеров ({max(1, samples_count)}). "
+                "Сравнение с нормой отключено до накопления истории."
+            )
+        return {
+            "deal_score": int(score),
+            "deal_badge": badge,
+            "hopper_verdict": verdict,
+            "action_label": action_label,
+            "recommendation": recommendation,
+            "avg_delta_pct": avg_delta_pct,
+            "confidence": confidence,
+            "spread_vs_std_pln": spread_vs_std_pln,
+            "spread_vs_std_pct": spread_vs_std_pct,
+        }
+
+    # Base score from canonical plateau engine when hist_df is present
+    if hist_df is not None and not hist_df.empty and len(hist_df) >= 3:
+        base_metrics = compute_hotel_deal_metrics(
+            hist_df,
+            latest_price=latest,
+            time_col="scraped_at",
+            price_col="price",
+            ta_rating=ta_val,
+            ta_review_count=ta_review_count,
+            typical_price=typ,
+        )
+        score = int(base_metrics.get("deal_score", 50))
+        confidence = str(base_metrics.get("confidence", "Medium"))
+        if avg_delta_pct is None and base_metrics.get("avg_delta_pct") is not None:
+            avg_delta_pct = round(float(base_metrics["avg_delta_pct"]), 1)
+    else:
+        d = avg_delta_pct if avg_delta_pct is not None else 0.0
+        raw = 50.0 - d * 2.0
+        score = int(round(_clamp(raw, 25, 95)))
+        if ta_val is not None:
+            score, _ = blend_tripadvisor_into_deal_score(score, ta_val, ta_review_count or 25)
+        confidence = "High" if samples_count >= 15 else "Medium"
+
+    # Specialize score & verdict cleanly by filter_type
+    s_label = (season_info or {}).get("label", "сезон")
+    s_risk = (season_info or {}).get("price_drop_risk", "medium")
+    d_abs = abs(round(avg_delta_pct or 0.0, 1))
+
+    if filter_type == "lastminute":
+        # Re-align score strictly to last-minute reality: real dump vs seasonal norm AND vs regular flight
+        d = avg_delta_pct if avg_delta_pct is not None else 0.0
+        if is_lm_surcharge_vs_std:
+            # Surcharge over upcoming regular departure overrides any stale historical discount
+            score = int(round(_clamp(42 - min(17, (spread_vs_std_pct or 0.0) * 0.5), 25, 43)))
+            verdict = "OVERPRICED"
+            badge = "OVERPRICED"
+            action_label = f"⚠️ Регулярный дешевле (−{int(abs(spread_vs_std_pln))} zł)"
+            recommendation = (
+                f"Горящий вылет на {int(abs(spread_vs_std_pln))} zł дороже ближайшего стандартного рейса "
+                f"({upcoming_std_date or 'через несколько дней'}). Покупать невыгодно."
+            )
+        elif d <= -15.0:
+            score = int(round(_clamp(84 + min(14, (abs(d) - 15.0) * 0.7), 82, 98)))
+            verdict = "BUY NOW"
+            badge = "SUPER_DEAL" if score >= 88 else "GOOD_DEAL"
+            action_label = f"🔥 Сброс −{d_abs:.0f}%"
+            recommendation = (
+                f"Реальный горящий дисконт −{d_abs:.0f}% к сезонной норме ({int(round(typ or latest))} zł)."
+                + (
+                    f" Также на {int(abs(spread_vs_std_pln))} zł дешевле обычного вылета ({upcoming_std_date})."
+                    if is_lm_cheaper_vs_std and spread_vs_std_pln is not None
+                    else ""
+                )
+            )
+        elif d <= -8.0:
+            score = int(round(_clamp(72 + (abs(d) - 8.0) * 1.4, 72, 83)))
+            verdict = "BUY NOW" if score >= 80 else "WAIT"
+            badge = "GOOD_DEAL" if score >= 80 else "FAIR_PRICE"
+            action_label = f"⚡ Скидка −{d_abs:.0f}%"
+            recommendation = (
+                f"Цена на {d_abs:.0f}% ниже сезонной нормы ({int(round(typ or latest))} zł)."
+            )
+        elif d <= 5.0:
+            score = int(round(_clamp(55 - d * 1.5, 46, 68)))
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+            action_label = "⚖️ Без скидки"
+            recommendation = (
+                f"Обычный тариф сезона (норма ~{int(round(typ or latest))} zł). Выраженного горящего сброса нет."
+            )
+        else:
+            score = int(round(_clamp(44 - (d - 5.0) * 0.8, 25, 44)))
+            verdict = "OVERPRICED"
+            badge = "OVERPRICED"
+            action_label = f"📈 Наценка +{d_abs:.0f}%"
+            recommendation = (
+                f"Наценка +{d_abs:.0f}% к сезонной норме ({int(round(typ or latest))} zł) на последние места перед вылетом."
+            )
+    elif filter_type == "early_booking":
+        d = avg_delta_pct if avg_delta_pct is not None else 0.0
+        c30 = change_30d_pct if change_30d_pct is not None else 0.0
+        if (score >= 80 and d <= 0.0) or d <= -10.0:
+            score = max(score, 80)
+            verdict = "BUY NOW"
+            badge = "GOOD_DEAL"
+            action_label = "🟢 Выгодный EB"
+            recommendation = f"Удачный тариф раннего бронирования (−{d_abs:.0f}% к медиане EB). Фиксация оправдана."
+        elif (score < 45 and d >= 5.0) or d >= 10.0:
+            score = min(score, 44)
+            verdict = "OVERPRICED"
+            badge = "OVERPRICED"
+            action_label = f"🔴 Дорого для EB (+{d_abs:.0f}%)"
+            recommendation = "Цена выше обычного старта раннего бронирования. Стоит подождать промо-коррекции."
+        else:
+            score = max(48, min(79, score))
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+            if c30 >= 3.0:
+                action_label = f"📈 Рост +{c30:.0f}% за 30д"
+                recommendation = "Базовый тариф раннего бронирования, заметен плавный рост от старта продаж."
+            elif c30 <= -3.0:
+                action_label = f"📉 Промо {c30:.0f}% за 30д"
+                recommendation = "Цена снизилась за последний месяц, близко к выгодному уровню EB."
+            else:
+                action_label = "⚖️ Базовый EB"
+                recommendation = "Спокойное плато раннего бронирования — резкой спешки нет."
+    elif filter_type == "fixed_dates":
+        d = avg_delta_pct if avg_delta_pct is not None else 0.0
+        if (score >= 80 and d <= 0.0) or d <= -10.0:
+            score = max(score, 80)
+            verdict = "BUY NOW"
+            badge = "SUPER_DEAL" if score >= 88 else "GOOD_DEAL"
+            action_label = "🟢 Брать в окно"
+            recommendation = f"Выгодная цена (−{d_abs:.0f}%) для фиксированных дат ({s_label}). На узких датах хорошие отели быстро уходят."
+        elif (score < 45 and d >= 6.0) or d >= 12.0:
+            score = min(score, 44)
+            verdict = "OVERPRICED"
+            badge = "OVERPRICED"
+            action_label = f"🔴 Дорого (+{d_abs:.0f}%)"
+            recommendation = "Тариф завышен относительно истории этого окна дат. Проверьте соседние даты вылета или BER."
+        else:
+            score = max(48, min(79, score))
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+            if s_risk in ("very_low", "low"):
+                action_label = "⚠️ Риск Sold-Out"
+                recommendation = f"Стандартная цена для пикового окна ({s_label}). Скидки маловероятны — следите за остатком отелей."
+            else:
+                action_label = "⚖️ Обычная цена"
+                recommendation = "Цена в пределах нормы для выбранного окна дат."
+    else:
+        # 'rolling' standard window
+        d = avg_delta_pct if avg_delta_pct is not None else 0.0
+        if score >= 80 and d <= 0.0:
+            verdict = "BUY NOW"
+            badge = "SUPER_DEAL" if score >= 88 else "GOOD_DEAL"
+            action_label = "🟢 Покупать"
+            recommendation = f"Цена ниже сезонной нормы отеля (Δ {avg_delta_pct:+.1f}%). Удачная точка входа." if avg_delta_pct is not None else "Удачная точка входа по истории отеля."
+        elif (score < 45 and d >= 5.0) or d >= 12.0:
+            score = min(score, 44)
+            verdict = "OVERPRICED"
+            badge = "OVERPRICED"
+            action_label = "🔴 Дорого"
+            recommendation = f"Цена выше типичной нормы отеля (Δ {avg_delta_pct:+.1f}%). Лучше подождать снижения." if avg_delta_pct is not None else "Цена выше типичного уровня. Лучше подождать."
+        else:
+            score = max(48, min(79, score))
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+            action_label = "🟡 Следить"
+            recommendation = f"Стандартная рыночная цена ({s_label}). Поставьте в Watchlist для отслеживания сбросов."
+
+    # Quality Guardrail: never label < 3.5★ TripAdvisor as SUPER/GOOD BUY NOW
+    if ta_val is not None and ta_val < 3.5:
+        score = min(score, 62)
+        if verdict == "BUY NOW":
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+            action_label = "🟡 Низкий TA"
+            recommendation = f"Низкий рейтинг TripAdvisor ({ta_val:.1f}★) — низкая цена отражает скромный уровень сервиса."
+    elif ta_val is not None and ta_val < 3.8 and score > 72:
+        score = 72
+        if verdict == "BUY NOW":
+            verdict = "WAIT"
+            badge = "FAIR_PRICE"
+
+    return {
+        "deal_score": int(score),
+        "deal_badge": badge,
+        "hopper_verdict": verdict,
+        "action_label": action_label,
+        "recommendation": recommendation,
+        "avg_delta_pct": avg_delta_pct,
+        "confidence": confidence,
+        "spread_vs_std_pln": spread_vs_std_pln,
+        "spread_vs_std_pct": spread_vs_std_pct,
+    }

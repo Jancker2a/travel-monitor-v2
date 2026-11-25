@@ -19,7 +19,8 @@ import {
   Sparkles,
   ChevronDown,
 } from "lucide-react";
-import { getArbitrageDeals } from "../services/api";
+import { getArbitrageDeals, getArbitrageStatus } from "../services/api";
+import { ArbitrageStatus } from "../types";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
 export interface ArbitrageDeal {
@@ -77,6 +78,7 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
   watchedCohortHashes,
 }) => {
   const [deals, setDeals] = useState<ArbitrageDeal[]>([]);
+  const [arbStatus, setArbStatus] = useState<ArbitrageStatus | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [minSavings, setMinSavings] = useState(300);
 
@@ -107,6 +109,9 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
 
   useEffect(() => {
     loadDeals();
+    getArbitrageStatus()
+      .then((st) => setArbStatus(st))
+      .catch(() => setArbStatus(null));
   }, [minSavings, filterId, country]);
 
   // Dynamically extract unique countries and Polish airports
@@ -275,6 +280,28 @@ export const GermanArbitrageView: React.FC<GermanArbitrageViewProps> = ({
               {filterTitle ? `${filterTitle} • ` : ""}
               Сравнение идентичных отелей, дат вылета и состава туристов при вылете из Берлина (Check24 / TUI) против аэропортов Польши с учетом расходов на дорогу до Берлина (-250 zł).
             </p>
+            {arbStatus && (
+              <div
+                className={`mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-xl text-[11px] font-semibold border ${
+                  arbStatus.is_stale
+                    ? "bg-amber-500/20 text-amber-200 border-amber-400/40"
+                    : "bg-emerald-500/15 text-emerald-200 border-emerald-400/30"
+                }`}
+              >
+                <span>{arbStatus.is_stale ? "⚠️" : "✓"}</span>
+                <span>
+                  Срез Check24 ({arbStatus.total_offers} офф.):{" "}
+                  {arbStatus.kb_updated_at
+                    ? new Date(arbStatus.kb_updated_at).toLocaleDateString("ru-RU", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })
+                    : "нет даты"}
+                  {arbStatus.is_stale && " — данные Check24 старше 48ч, перепроверьте итоговую цену по кнопке"}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="flex items-center gap-3 shrink-0 self-start lg:self-center">

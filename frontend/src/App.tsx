@@ -25,6 +25,7 @@ import {
   PriceDropItem,
   AirportStat,
   HotelCatalogCard,
+  FilterType,
   UserProfile,
   UserMonitor,
 } from "./types";
@@ -63,21 +64,39 @@ const INITIAL_FILTERS: FilterState = {
   tripAdvisor: "",
   change: "",
   region: "",
+  airport: "",
+  firstLineOnly: false,
+  hasAquapark: false,
+  hasHeatedPools: false,
   onlyFavorites: false,
 };
 
-function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotelItem {
+function catalogCardToSearchItem(
+  c: HotelCatalogCard,
+  preset?: any,
+  resolvedFilterType?: FilterType
+): SearchHotelItem {
   const duration = c.cheapest_duration_nights || preset?.searchReq?.duration?.min_nights || 7;
   const nights = duration > 0 ? duration : 7;
   const adults = preset?.searchReq?.travelers?.adults ?? (preset?.searchReq?.filter_id?.includes("1p") ? 1 : 2);
   const children = preset?.searchReq?.travelers?.children ?? 0;
   const totalPax = Math.max(1, adults + children);
 
-  const isLM = Boolean(
-    preset?.id?.toLowerCase().includes("lastminute") ||
-    preset?.id?.toLowerCase().includes("0_4") ||
-    c.badges?.some((b) => b.includes("Вылет") || b.includes("Сброс") || b.includes("Наценка"))
-  );
+  const isLM =
+    resolvedFilterType === "lastminute" ||
+    Boolean(
+      preset?.id?.toLowerCase().includes("lastminute") ||
+      preset?.id?.toLowerCase().includes("0_4") ||
+      c.badges?.some((b) => b.includes("Вылет") || b.includes("Сброс") || b.includes("Наценка"))
+    );
+
+  const verdict =
+    c.hopper_verdict ||
+    (c.deal_score >= 80
+      ? "BUY NOW"
+      : c.deal_score < 45
+      ? "OVERPRICED"
+      : "WAIT");
 
   return {
     hotel_id: c.hotel_id,
@@ -86,7 +105,7 @@ function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotel
     region: c.region || c.country,
     country: c.country,
     main_image_url: c.main_image_url,
-    ta_rating: c.ta_rating,
+    ta_rating: c.ta_rating ?? undefined,
     ta_reviews: c.ta_reviews,
     beach_line: c.beach_line,
     beach_type: c.beach_type,
@@ -117,25 +136,27 @@ function catalogCardToSearchItem(c: HotelCatalogCard, preset?: any): SearchHotel
           : c.deal_score >= 80
           ? (isLM ? "🔥 Сброс" : "🔥 Hot")
           : "✅ Good",
-      hopper_verdict:
-        c.deal_score >= 80 || (c.delta_vs_typical_pct !== null && c.delta_vs_typical_pct !== undefined && c.delta_vs_typical_pct <= -12)
-          ? "BUY NOW"
-          : c.deal_score < 45 || (c.delta_vs_typical_pct !== null && c.delta_vs_typical_pct !== undefined && c.delta_vs_typical_pct > 5)
-          ? "OVERPRICED"
-          : isLM
-          ? "FAIR_PRICE"
-          : "WAIT",
+      hopper_verdict: verdict,
       hopper_confidence: c.deal_confidence === "High" ? 0.9 : 0.7,
+      action_label: c.action_label || undefined,
       recommendation:
-        c.badges && c.badges.length > 0
+        c.recommendation ||
+        (c.badges && c.badges.length > 0
           ? c.badges.join(" • ")
           : isLM
-          ? "Стандартная горящая цена"
-          : "Стабильная цена",
+          ? "Стандартный тариф без выраженного сброса"
+          : "Стандартный рыночный уровень цен"),
       drop_48h_pct: c.change_48h_pct !== undefined ? c.change_48h_pct : c.change_24h_pct,
+      change_30d_pct: c.change_30d_pct ?? null,
       delta_vs_typical_pct: c.delta_vs_typical_pct,
       historic_min_pln: c.historical_min_price,
       typical_median_pln: c.typical_median_price,
+      upcoming_std_price: c.upcoming_std_price ?? null,
+      upcoming_std_date: c.upcoming_std_date ?? null,
+      upcoming_std_airport: c.upcoming_std_airport ?? null,
+      spread_vs_std_pln: c.spread_vs_std_pln ?? null,
+      spread_vs_std_pct: c.spread_vs_std_pct ?? null,
+      filter_type: resolvedFilterType,
     },
     history_sparkline: [],
   };
@@ -170,6 +191,7 @@ export const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"filter" | "search" | "arbitrage" | "my_monitors">("filter");
   const [activeFilterId, setActiveFilterId] = useState<string>("turkey_7_10");
+  const [filterType, setFilterType] = useState<FilterType>("rolling");
   const [viewMode, setViewMode] = useState<"cards" | "table" | "arbitrage">("table");
 
   // Auth & Multi-tenant State
@@ -506,8 +528,16 @@ export const App: React.FC = () => {
       } else if (catResp.hotels && catResp.hotels.length > 0 && catResp.hotels[0].last_updated) {
         setDashboardLastUpdated(catResp.hotels[0].last_updated);
       }
+      const fType: FilterType =
+        catResp.filter_type ||
+        (filterId.includes("lastminute") || filterId.includes("0_4")
+          ? "lastminute"
+          : filterId.startsWith("eb_")
+          ? "early_booking"
+          : "rolling");
+      setFilterType(fType);
       if (catResp.hotels && catResp.hotels.length > 0) {
-        setResults(catResp.hotels.map((h) => catalogCardToSearchItem(h, preset)));
+        setResults(catResp.hotels.map((h) => catalogCardToSearchItem(h, preset, fType)));
         return;
       }
       const resp = await searchTours(preset.searchReq);
@@ -750,7 +780,7 @@ export const App: React.FC = () => {
     );
   }, [activeFilterId, activeUserMonitor]);
 
-  // Available regions list
+  // Available regions & airports lists
   const availableRegions = useMemo(() => {
     const s = new Set<string>();
     results.forEach((h) => {
@@ -759,15 +789,25 @@ export const App: React.FC = () => {
     return Array.from(s).sort();
   }, [results]);
 
+  const availableAirports = useMemo(() => {
+    const s = new Set<string>();
+    results.forEach((h) => {
+      if (h.current_offer?.airport) s.add(h.current_offer.airport);
+    });
+    return Array.from(s).sort();
+  }, [results]);
+
   // Filtered & Sorted Hotels
   const filteredHotels = useMemo(() => {
     let res = results.filter((h) => {
-      // Search
+      // Search (matches hotel name, region, departure date YYYY-MM-DD, or airport)
       if (tableFilters.search) {
-        const q = tableFilters.search.toLowerCase();
+        const q = tableFilters.search.toLowerCase().trim();
         const match =
           h.hotel_name.toLowerCase().includes(q) ||
-          (h.region && h.region.toLowerCase().includes(q));
+          (h.region && h.region.toLowerCase().includes(q)) ||
+          (h.current_offer?.departure_date && h.current_offer.departure_date.toLowerCase().includes(q)) ||
+          (h.current_offer?.airport && h.current_offer.airport.toLowerCase().includes(q));
         if (!match) return false;
       }
 
@@ -799,18 +839,21 @@ export const App: React.FC = () => {
         if (tableFilters.stars === "3" && s !== 3) return false;
       }
 
-      // Recommendation
-      if (tableFilters.recommendation === "buy" && h.intelligence.deal_score < 75) {
-        return false;
+      // Recommendation (matches UI option "buy" >= 80, "wait" 45..79, "expensive" < 45 or OVERPRICED)
+      if (tableFilters.recommendation === "buy") {
+        const isBuy = h.intelligence.deal_score >= 80 || h.intelligence.hopper_verdict === "BUY NOW";
+        if (!isBuy) return false;
       }
-      if (
-        tableFilters.recommendation === "wait" &&
-        (h.intelligence.deal_score >= 75 || h.intelligence.deal_score < 45)
-      ) {
-        return false;
+      if (tableFilters.recommendation === "wait") {
+        const isWait =
+          h.intelligence.deal_score >= 45 &&
+          h.intelligence.deal_score < 80 &&
+          h.intelligence.hopper_verdict !== "OVERPRICED";
+        if (!isWait) return false;
       }
-      if (tableFilters.recommendation === "expensive" && h.intelligence.deal_score >= 45) {
-        return false;
+      if (tableFilters.recommendation === "expensive") {
+        const isExp = h.intelligence.deal_score < 45 || h.intelligence.hopper_verdict === "OVERPRICED";
+        if (!isExp) return false;
       }
 
       // TripAdvisor
@@ -835,6 +878,25 @@ export const App: React.FC = () => {
 
       // Region
       if (tableFilters.region && h.region !== tableFilters.region) {
+        return false;
+      }
+
+      // Airport
+      if (tableFilters.airport && h.current_offer?.airport !== tableFilters.airport) {
+        return false;
+      }
+
+      // Infrastructure quick toggles
+      if (tableFilters.firstLineOnly && (h.beach_line ?? h.specs?.beach_line ?? 2) !== 1) {
+        return false;
+      }
+      if (
+        tableFilters.hasAquapark &&
+        !(h.has_aquapark || h.specs?.has_aquapark || h.hotel_name.toLowerCase().includes("aqua"))
+      ) {
+        return false;
+      }
+      if (tableFilters.hasHeatedPools && !(h.has_heated_pools || h.specs?.has_heated_pools)) {
         return false;
       }
 
@@ -940,7 +1002,7 @@ export const App: React.FC = () => {
   }, [results, effectiveLastUpdated, ticker]);
 
   const activeQuickFilter = useMemo<"buy_now" | "drops" | null>(() => {
-    if (tableFilters.recommendation === "hot") return "buy_now";
+    if (tableFilters.recommendation === "buy") return "buy_now";
     if (tableFilters.change === "decrease") return "drops";
     return null;
   }, [tableFilters.recommendation, tableFilters.change]);
@@ -949,7 +1011,7 @@ export const App: React.FC = () => {
     if (type === "buy_now") {
       setTableFilters((prev) => ({
         ...prev,
-        recommendation: prev.recommendation === "hot" ? "" : "hot",
+        recommendation: prev.recommendation === "buy" ? "" : "buy",
       }));
     } else if (type === "drops") {
       setTableFilters((prev) => ({
@@ -1370,10 +1432,14 @@ export const App: React.FC = () => {
               topDrops={topDrops}
               airportStats={airportStats}
               filterId={dashboardFilterIdForAnalytics}
+              filterType={filterType}
               onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
               onFilterByDeparture={(depDate) => {
                 if (depDate) {
-                  setTableFilters((prev) => ({ ...prev, search: depDate }));
+                  setTableFilters((prev) => ({
+                    ...prev,
+                    search: prev.search === depDate ? "" : depDate,
+                  }));
                 }
               }}
             />
@@ -1388,6 +1454,7 @@ export const App: React.FC = () => {
           onFilterChange={setTableFilters}
           onClear={() => setTableFilters(INITIAL_FILTERS)}
           regions={availableRegions}
+          airports={availableAirports}
           arbitrageCount={activeTab === "filter" ? arbitrageCount : 0}
           showArbitrageTab={activeTab === "filter"}
           onOpenMonitorAlerts={activeTab === "filter" ? () => handleOpenMonitorAlerts() : undefined}
@@ -1429,6 +1496,7 @@ export const App: React.FC = () => {
             onSort={handleSort}
             totalFound={activeTab === "search" ? totalFound : undefined}
             isLastMinute={isCurrentLastMinute}
+            filterType={filterType}
           />
         ) : (
           <div className="space-y-4 relative" id="cardsSection">

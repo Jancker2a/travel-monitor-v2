@@ -514,6 +514,68 @@ DEFAULT_PRICE_CEILINGS: Dict[str, float] = {
 }
 
 
+def classify_filter_type(
+    filter_id: Optional[str],
+    title: Optional[str] = None,
+    checkin_dates: Optional[List[Any]] = None,
+) -> str:
+    """
+    Classifies a filter into one of 4 behavioral scenarios:
+    - 'lastminute': urgent departures 0-4 days out
+    - 'early_booking': far-out season launches 60+ days out
+    - 'fixed_dates': anchored holidays / specific narrow vacation windows
+    - 'rolling': standard rolling window (14-45 days out)
+    """
+    from datetime import date, datetime
+
+    fid = (filter_id or "").lower().strip()
+    ttl = (title or "").lower().strip()
+
+    if "lastminute" in fid or "_0_4" in fid or "горящ" in ttl:
+        return "lastminute"
+    if fid.startswith("eb_") or "filter_eb_" in fid or "раннее" in ttl or "first minute" in ttl:
+        return "early_booking"
+    if (
+        "ny_" in fid
+        or "dec20" in fid
+        or "dec24" in fid
+        or "dec28" in fid
+        or "vacation" in fid
+        or "autumn_2026" in fid
+        or "новый год" in ttl
+        or "отпуск" in ttl
+    ):
+        return "fixed_dates"
+
+    if checkin_dates:
+        parsed_dates: List[date] = []
+        today = date.today()
+        for d in checkin_dates:
+            if isinstance(d, datetime):
+                parsed_dates.append(d.date())
+            elif isinstance(d, date):
+                parsed_dates.append(d)
+            elif isinstance(d, str) and len(d) >= 10:
+                try:
+                    parsed_dates.append(date.fromisoformat(d[:10]))
+                except Exception:
+                    pass
+        future_dates = [d for d in parsed_dates if d >= today]
+        if future_dates:
+            min_days = (min(future_dates) - today).days
+            max_days = (max(future_dates) - today).days
+            span = max_days - min_days
+            # Only treat a single-hotel departure <= 5d as lastminute when there is no explicit rolling/regular filter_id
+            if max_days <= 5 and (not fid or len(future_dates) >= 3):
+                return "lastminute"
+            if min_days >= 60:
+                return "early_booking"
+            if span <= 10 and min_days >= 5 and (not fid or len(future_dates) >= 2):
+                return "fixed_dates"
+
+    return "rolling"
+
+
 def get_filter_display_ceiling(filter_id: Optional[str]) -> Optional[float]:
     """Returns canonical display price ceiling in PLN for the given filter."""
     if not filter_id:

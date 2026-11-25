@@ -261,9 +261,15 @@ export const HotelCard: React.FC<Props> = ({
             </div>
 
             {/* TripAdvisor Rating Pill */}
-            <div className="inline-flex items-center gap-1 text-[11.5px] font-black text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200 shadow-2xs shrink-0">
-              <span>🦉 {hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}</span>
-            </div>
+            {hotel.ta_rating && hotel.ta_rating > 0 ? (
+              <div className="inline-flex items-center gap-1 text-[11.5px] font-black text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200 shadow-2xs shrink-0" title={`TripAdvisor: ${hotel.ta_rating.toFixed(1)}/5`}>
+                <span>🦉 {hotel.ta_rating.toFixed(1)}</span>
+              </div>
+            ) : (
+              <div className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-lg border border-slate-200 shrink-0" title="Рейтинг TripAdvisor не найден">
+                <span>🦉 —</span>
+              </div>
+            )}
           </div>
 
           {/* Hotel Name */}

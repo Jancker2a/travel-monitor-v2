@@ -1,6 +1,6 @@
 import React from "react";
 import { ExternalLink, Star, ArrowUpDown, ArrowUp, ArrowDown, Bell } from "lucide-react";
-import { SearchHotelItem } from "../types";
+import { FilterType, SearchHotelItem } from "../types";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
 interface HotelTableViewProps {
@@ -14,6 +14,7 @@ interface HotelTableViewProps {
   onSort: (field: string) => void;
   totalFound?: number;
   isLastMinute?: boolean;
+  filterType?: FilterType;
 }
 
 export const HotelTableView: React.FC<HotelTableViewProps> = ({
@@ -27,6 +28,7 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
   onSort,
   totalFound,
   isLastMinute = false,
+  filterType = isLastMinute ? "lastminute" : "rolling",
 }) => {
   const renderSortIcon = (field: string) => {
     if (sortField !== field) {
@@ -147,10 +149,22 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
                 onClick={() => onSort("delta48")}
                 className="cursor-pointer hover:text-blue-900 py-3 text-center transition-colors min-w-[75px]"
                 style={{ width: "6%" }}
-                title={isLastMinute ? "Дней до срочного вылета горящего тура" : "Реальное изменение цены отеля за последние 48 часов по данным мониторинга"}
+                title={
+                  isLastMinute || filterType === "lastminute"
+                    ? "Дней до срочного вылета горящего тура"
+                    : filterType === "early_booking"
+                    ? "Изменение цены за 30 дней (или 48ч) по данным мониторинга"
+                    : "Реальное изменение цены отеля за последние 48 часов по данным мониторинга"
+                }
               >
                 <div className="flex items-center justify-center gap-1.5">
-                  <span>{isLastMinute ? "ДО ВЫЛЕТА" : "Δ 48Ч"}</span>
+                  <span>
+                    {isLastMinute || filterType === "lastminute"
+                      ? "ДО ВЫЛЕТА"
+                      : filterType === "early_booking"
+                      ? "Δ 30Д"
+                      : "Δ 48Ч"}
+                  </span>
                   {renderSortIcon("delta48")}
                 </div>
               </th>
@@ -186,8 +200,11 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               const isWatched = watchedCohortHashes.has(offer.cohort_hash);
               const isNearBottom = idx >= hotels.length - 2 && hotels.length > 3;
 
-              // Delta values
-              const delta48 = intel.drop_48h_pct;
+              // Delta values (for early_booking prefer 30d delta when present)
+              const delta48 =
+                filterType === "early_booking" && intel.change_30d_pct !== null && intel.change_30d_pct !== undefined
+                  ? intel.change_30d_pct
+                  : intel.drop_48h_pct;
               const deltaAvg = intel.delta_vs_typical_pct;
 
               // Check if urgent / last minute
@@ -226,48 +243,80 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
               // Forecast tip & pill
               let forecastPill;
               if (isRowLM) {
-                if (intel.deal_score >= 80 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg <= -12)) {
+                const spreadNote =
+                  intel.spread_vs_std_pln !== null && intel.spread_vs_std_pln !== undefined && intel.upcoming_std_date
+                    ? `${intel.spread_vs_std_pln > 0 ? `+${Math.round(intel.spread_vs_std_pln)}` : Math.round(intel.spread_vs_std_pln)} zł vs ${intel.upcoming_std_date.slice(5).replace("-", ".")}`
+                    : null;
+
+                if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45 || (intel.spread_vs_std_pln && intel.spread_vs_std_pln > 50)) {
                   forecastPill = (
-                    <span className="hopper-pill buy-now font-black" data-tip="🔥 Честный горящий сброс! Выгодный момент для покупки перед вылетом.">
-                      🔥 БРАТЬ
-                    </span>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span
+                        className="hopper-pill overpriced font-black"
+                        data-tip={intel.recommendation || "⚠️ Наценка перед вылетом! Обычный регулярный рейс выгоднее."}
+                      >
+                        ⚠️ НАЦЕНКА
+                      </span>
+                      {spreadNote && (
+                        <span className="text-[10px] font-bold text-rose-700">{spreadNote}</span>
+                      )}
+                    </div>
                   );
-                } else if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg > 5)) {
+                } else if (intel.deal_score >= 80 || (deltaAvg !== null && deltaAvg !== undefined && deltaAvg <= -12)) {
                   forecastPill = (
-                    <span className="hopper-pill overpriced font-black" data-tip="⚠️ Наценка перед вылетом! Обычный регулярный рейс или вылет чуть позже выгоднее.">
-                      ⚠️ НАЦЕНКА
-                    </span>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span
+                        className="hopper-pill buy-now font-black"
+                        data-tip={intel.recommendation || "🔥 Честный горящий сброс! Выгодный момент для покупки."}
+                      >
+                        🔥 БРАТЬ
+                      </span>
+                      {spreadNote && (
+                        <span className="text-[10px] font-bold text-emerald-700">{spreadNote}</span>
+                      )}
+                    </div>
                   );
                 } else {
                   forecastPill = (
-                    <span
-                      className="hopper-pill wait font-black"
-                      style={{ background: "#f8fafc", color: "#475569", border: "1px solid #cbd5e1" }}
-                      data-tip="⚖️ Обычный тариф без скидки. Бронируйте только если дата критична."
-                    >
-                      ⚖️ БЕЗ СКИДКИ
-                    </span>
+                    <div className="flex flex-col items-center gap-0.5">
+                      <span
+                        className="hopper-pill wait font-black"
+                        style={{ background: "#f8fafc", color: "#475569", border: "1px solid #cbd5e1" }}
+                        data-tip={intel.recommendation || "⚖️ Обычный тариф без скидки."}
+                      >
+                        {intel.action_label || "⚖️ БЕЗ СКИДКИ"}
+                      </span>
+                      {spreadNote && (
+                        <span className="text-[10px] font-medium text-slate-500">{spreadNote}</span>
+                      )}
+                    </div>
                   );
                 }
               } else {
                 const forecastTip = intel.recommendation
-                  ? `Прогноз Hopper AI: ${intel.recommendation}`
+                  ? intel.recommendation
                   : intel.deal_score >= 80
-                  ? "Прогноз Hopper AI: Рекомендуется покупать сейчас. Цена находится на выгодном уровне."
+                  ? "Рекомендуется покупать сейчас: цена ниже сезонной нормы."
                   : intel.deal_score < 45 || intel.hopper_verdict === "OVERPRICED"
-                  ? "Прогноз Hopper AI: Цена завышена относительно истории. Рекомендуется подождать снижения."
-                  : "Прогноз Hopper AI: Обычный уровень цен. Спешить с бронированием не требуется.";
+                  ? "Цена завышена относительно истории. Лучше подождать снижения."
+                  : "Обычный уровень цен. Спешить с бронированием не требуется.";
 
                 forecastPill = (
-                  <span className="hopper-pill wait" data-tip={forecastTip}>🟡 ЖДАТЬ</span>
+                  <span className="hopper-pill wait" data-tip={forecastTip}>
+                    {intel.action_label || "🟡 ЖДАТЬ"}
+                  </span>
                 );
-                if (intel.deal_score >= 80) {
+                if (intel.deal_score >= 80 || intel.hopper_verdict === "BUY NOW") {
                   forecastPill = (
-                    <span className="hopper-pill buy-now" data-tip={forecastTip}>🟢 ПОКУПАТЬ</span>
+                    <span className="hopper-pill buy-now" data-tip={forecastTip}>
+                      {intel.action_label || "🟢 ПОКУПАТЬ"}
+                    </span>
                   );
                 } else if (intel.hopper_verdict === "OVERPRICED" || intel.deal_score < 45) {
                   forecastPill = (
-                    <span className="hopper-pill overpriced" data-tip={forecastTip}>🔴 ДОРОГО</span>
+                    <span className="hopper-pill overpriced" data-tip={forecastTip}>
+                      {intel.action_label || "🔴 ДОРОГО"}
+                    </span>
                   );
                 }
               }
@@ -431,10 +480,16 @@ export const HotelTableView: React.FC<HotelTableViewProps> = ({
 
                   {/* TripAdvisor */}
                   <td style={{ textAlign: "center" }} className="whitespace-nowrap px-2">
-                    <div className="inline-flex items-center gap-1 text-emerald-900 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-300 font-extrabold text-[12.5px] shadow-2xs" title={`TripAdvisor: ${hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}/5`}>
-                      <span className="text-emerald-600 font-black">★</span>
-                      <span>{hotel.ta_rating ? hotel.ta_rating.toFixed(1) : "4.5"}</span>
-                    </div>
+                    {hotel.ta_rating && hotel.ta_rating > 0 ? (
+                      <div className="inline-flex items-center gap-1 text-emerald-900 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-300 font-extrabold text-[12.5px] shadow-2xs" title={`TripAdvisor: ${hotel.ta_rating.toFixed(1)}/5`}>
+                        <span className="text-emerald-600 font-black">★</span>
+                        <span>{hotel.ta_rating.toFixed(1)}</span>
+                      </div>
+                    ) : (
+                      <span className="inline-flex items-center justify-center text-slate-400 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200 font-bold text-[12px]" title="Рейтинг TripAdvisor не найден">
+                        —
+                      </span>
+                    )}
                   </td>
 
                   {/* Δ 48ч / До вылета */}

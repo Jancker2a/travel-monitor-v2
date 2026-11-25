@@ -196,6 +196,36 @@ def is_offer_comparable(
 
 class ArbitrageService:
     @classmethod
+    def get_arbitrage_status(cls) -> Dict[str, Any]:
+        """Returns freshness & size metadata for the Check24 German offers knowledge base."""
+        kb_path = Path(__file__).resolve().parents[1] / "knowledge" / "check24_offers_kb.json"
+        kb = get_check24_kb()
+        offers = kb.get("offers", []) if isinstance(kb, dict) else []
+        raw_ts = kb.get("generated_at") or kb.get("updated_at") if isinstance(kb, dict) else None
+        kb_dt: Optional[datetime] = None
+        if raw_ts:
+            try:
+                kb_dt = datetime.fromisoformat(str(raw_ts).replace("Z", "+00:00"))
+                if kb_dt.tzinfo is None:
+                    kb_dt = kb_dt.replace(tzinfo=timezone.utc)
+            except Exception:
+                kb_dt = None
+        if kb_dt is None and kb_path.exists():
+            kb_dt = datetime.fromtimestamp(kb_path.stat().st_mtime, tz=timezone.utc)
+
+        age_hours = (
+            round((datetime.now(timezone.utc) - kb_dt).total_seconds() / 3600.0, 1)
+            if kb_dt
+            else None
+        )
+        return {
+            "kb_updated_at": kb_dt.isoformat() if kb_dt else None,
+            "total_offers": len(offers),
+            "age_hours": age_hours,
+            "is_stale": bool(age_hours is None or age_hours > 48.0),
+        }
+
+    @classmethod
     async def get_arbitrage_deals(
         cls,
         db: AsyncSession,

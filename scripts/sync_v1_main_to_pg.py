@@ -88,19 +88,33 @@ async def run_sync():
         """)
 
     # Pre-sync repair: Ensure any benchmark or 1-person cohorts have adults=1, children=0
+    # IMPORTANT: Never use unescaped LIKE '%person%5D=1%' because SQL '%' matches wildcards (corrupted 2+1 URLs with person%5D=2&...&child%5D=1!).
     try:
         await pg_conn.execute("""
             UPDATE offer_cohorts
             SET adults = 1, children = 0
-            WHERE filter_id LIKE '%1p%'
-               OR filter_id LIKE '%benchmark%'
-               OR filter_id = 'cyprus_7_10'
-               OR filter_id = 'filter_cyprus_7_10'
-               OR offer_url LIKE '%adults=1%'
-               OR offer_url LIKE '%person%5D=1%'
-               OR offer_url LIKE '%person=1%';
+            WHERE (
+                filter_id LIKE '%1p%'
+                OR filter_id LIKE '%benchmark%'
+                OR filter_id IN ('cyprus_7_10', 'filter_cyprus_7_10')
+                OR offer_url ~* '(^|[?&])(adults|filter(%5B|\\[)person(%5D|\\])|person)=1(&|$)'
+            )
+            AND (adults != 1 OR children != 0);
         """)
-        logger.info("✅ Repaired any mismatched 1-person cohorts in PostgreSQL.")
+        await pg_conn.execute("""
+            UPDATE offer_cohorts
+            SET adults = 2,
+                children = CASE
+                    WHEN offer_url ~* '(child(%5D|\\])=1|children=[^&0])' THEN 1
+                    ELSE 0
+                END
+            WHERE adults = 1
+              AND filter_id NOT LIKE '%1p%'
+              AND filter_id NOT LIKE '%benchmark%'
+              AND filter_id NOT IN ('cyprus_7_10', 'filter_cyprus_7_10')
+              AND offer_url ~* '(^|[?&])(adults|filter(%5B|\\[)person(%5D|\\])|person)=2(&|$)';
+        """)
+        logger.info("✅ Repaired mismatched 1p and 2+1 cohorts in PostgreSQL.")
     except Exception as e:
         logger.warning(f"Could not run PG cohort repair query: {e}")
 
@@ -108,16 +122,37 @@ async def run_sync():
         sqlite_cur.execute("""
             UPDATE offer_cohorts
             SET adults = 1, children = 0
-            WHERE filter_id LIKE '%1p%'
-               OR filter_id LIKE '%benchmark%'
-               OR filter_id = 'cyprus_7_10'
-               OR filter_id = 'filter_cyprus_7_10'
-               OR offer_url LIKE '%adults=1%'
-               OR offer_url LIKE '%person%5D=1%'
-               OR offer_url LIKE '%person=1%';
+            WHERE (
+                filter_id LIKE '%1p%'
+                OR filter_id LIKE '%benchmark%'
+                OR filter_id IN ('cyprus_7_10', 'filter_cyprus_7_10')
+                OR INSTR(LOWER(offer_url), 'adults=1&') > 0
+                OR LOWER(offer_url) LIKE '%adults=1'
+                OR INSTR(LOWER(offer_url), 'person%5d=1&') > 0
+                OR INSTR(LOWER(offer_url), 'person]=1&') > 0
+                OR INSTR(LOWER(offer_url), 'person=1&') > 0
+            )
+            AND (adults != 1 OR children != 0);
+        """)
+        sqlite_cur.execute("""
+            UPDATE offer_cohorts
+            SET adults = 2,
+                children = CASE
+                    WHEN INSTR(LOWER(offer_url), 'child%5d=1') > 0 OR INSTR(LOWER(offer_url), 'child]=1') > 0 OR INSTR(LOWER(offer_url), 'children=') > 0 THEN 1
+                    ELSE 0
+                END
+            WHERE adults = 1
+              AND filter_id NOT LIKE '%1p%'
+              AND filter_id NOT LIKE '%benchmark%'
+              AND filter_id NOT IN ('cyprus_7_10', 'filter_cyprus_7_10')
+              AND (
+                  INSTR(LOWER(offer_url), 'adults=2') > 0
+                  OR INSTR(LOWER(offer_url), 'person%5d=2') > 0
+                  OR INSTR(LOWER(offer_url), 'person]=2') > 0
+              );
         """)
         sqlite_conn.commit()
-        logger.info("✅ Repaired any mismatched 1-person cohorts in SQLite.")
+        logger.info("✅ Repaired mismatched 1p and 2+1 cohorts in SQLite.")
     except Exception as e:
         logger.warning(f"Could not run SQLite cohort repair query: {e}")
 
@@ -195,12 +230,17 @@ async def run_sync():
             row_adults = def_adults
             row_children = def_children
             url_low = offer_url.lower()
-            if "adults=1" in url_low or "person%5d=1" in url_low or "person=1" in url_low or "_1p" in filter_id or "cyprus" in filter_id:
+            if (
+                "_1p" in filter_id
+                or "benchmark" in filter_id
+                or filter_id in ("cyprus_7_10", "filter_cyprus_7_10")
+                or re.search(r"(?:^|[?&])(?:adults|filter(?:%5b|\[)person(?:%5d|\])|person)=1(?:&|$)", url_low)
+            ):
                 row_adults = 1
                 row_children = 0
-            elif "adults=2" in url_low:
+            elif re.search(r"(?:^|[?&])(?:adults|filter(?:%5b|\[)person(?:%5d|\])|person)=2(?:&|$)", url_low):
                 row_adults = 2
-                if "children=" not in url_low and "child=" not in url_low and "childage" not in url_low and "2+1" not in filter_id and "7_10_days" not in filter_id and "13_16_days" not in filter_id and "eb_" not in filter_id:
+                if "children=" not in url_low and "child=" not in url_low and "child%5d=" not in url_low and "child]=" not in url_low and "childage" not in url_low and "2+1" not in filter_id and "7_10_days" not in filter_id and "13_16_days" not in filter_id and "eb_" not in filter_id:
                     row_children = 0
 
             ta_r = None

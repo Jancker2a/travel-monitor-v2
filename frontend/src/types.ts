@@ -139,18 +139,28 @@ export interface OfferSummary {
   booking_url?: string;
 }
 
+export type FilterType = "lastminute" | "early_booking" | "fixed_dates" | "rolling";
+
 export interface HotelIntelligence {
   deal_score: number;
   deal_badge: string;
   hopper_verdict: "BUY NOW" | "WAIT" | "OVERPRICED" | string;
   hopper_confidence: number;
   recommendation: string;
+  action_label?: string;
   drop_48h_pct?: number | null;
+  change_30d_pct?: number | null;
   delta_vs_typical_pct?: number | null;
   historic_min_pln?: number | null;
   typical_median_pln?: number | null;
   german_arbitrage_diff_pln?: number | null;
   is_budget_tier?: boolean;
+  upcoming_std_price?: number | null;
+  upcoming_std_date?: string | null;
+  upcoming_std_airport?: string | null;
+  spread_vs_std_pln?: number | null;
+  spread_vs_std_pct?: number | null;
+  filter_type?: FilterType;
 }
 
 export interface SearchHotelItem {
@@ -558,7 +568,7 @@ export interface HotelCatalogCard {
   country: string;
   region?: string;
   stars: number;
-  ta_rating?: number;
+  ta_rating?: number | null;
   ta_reviews: number;
   main_image_url?: string;
   current_min_price: number;
@@ -569,8 +579,17 @@ export interface HotelCatalogCard {
   change_24h_pct: number;
   change_48h_pct?: number;
   change_7d_pct: number;
+  change_30d_pct?: number | null;
   deal_score: number;
   deal_confidence: string;
+  hopper_verdict?: string;
+  action_label?: string | null;
+  recommendation?: string | null;
+  upcoming_std_price?: number | null;
+  upcoming_std_date?: string | null;
+  upcoming_std_airport?: string | null;
+  spread_vs_std_pln?: number | null;
+  spread_vs_std_pct?: number | null;
   badges: string[];
   beach_line?: number;
   beach_type?: string;
@@ -586,6 +605,7 @@ export interface HotelCatalogCard {
 
 export interface HotelCatalogResponse {
   filter_id: string;
+  filter_type?: FilterType;
   total_hotels: number;
   hotels: HotelCatalogCard[];
   last_updated_at?: string;
@@ -608,6 +628,7 @@ export interface MarketOracleAnomaly {
 
 export interface MarketOracleData {
   filter_id: string;
+  filter_type?: FilterType;
   title: string;
   headline: string;
   market_phase: string;
@@ -625,38 +646,50 @@ export interface MarketOracleData {
 }
 
 export interface ActiveDepartureItem {
-  departure_key: string;
-  region: string;
-  country: string;
-  departure_date: string;
-  return_date: string;
-  nights: number;
-  days_to_departure: number | null;
-  days_label: string;
-  hotel_count: number;
+  date?: string;
+  days_to_dep?: number;
+  hotels_count?: number;
   min_price: number;
   median_price: number;
-  p10_price: number;
-  hot_score: number;
-  status_label: string;
-  status_cls: "hot" | "warm" | "calm";
-  delta_text: string;
-  avg_deal_score: number;
-  hot_deal_count: number;
+  airports?: string[];
+  is_hot_window?: boolean;
+  // Backward compat fields
+  departure_key?: string;
+  region?: string;
+  country?: string;
+  departure_date?: string;
+  return_date?: string;
+  nights?: number;
+  days_to_departure?: number | null;
+  days_label?: string;
+  hotel_count?: number;
+  p10_price?: number;
+  hot_score?: number;
+  status_label?: string;
+  status_cls?: "hot" | "warm" | "calm";
+  delta_text?: string;
+  avg_deal_score?: number;
+  hot_deal_count?: number;
 }
 
 export interface HotDepartureHistoryItem {
-  departure_key: string;
-  departure: string;
-  dates: string;
-  daysBefore: string;
-  drop: string;
-  seenAt: string;
-  score: number;
-  p10: number;
-  min: number;
-  median: number;
-  hotelsCount: number;
+  hotel_name?: string;
+  checkin_date?: string;
+  min_price_pln?: number;
+  avg_price_pln?: number;
+  drop_pct?: number;
+  // Backward compat fields
+  departure_key?: string;
+  departure?: string;
+  dates?: string;
+  daysBefore?: string;
+  drop?: string;
+  seenAt?: string;
+  score?: number;
+  p10?: number;
+  min?: number;
+  median?: number;
+  hotelsCount?: number;
 }
 
 export interface FilterDeparturesData {
@@ -664,11 +697,68 @@ export interface FilterDeparturesData {
   active_departures: ActiveDepartureItem[];
   hot_history: HotDepartureHistoryItem[];
   stats: {
-    history_count: number;
-    active_count: number;
-    hot_count: number;
-    best_p10: number;
+    upcoming_dates_count?: number;
+    hot_window_dates_count?: number;
+    nearest_date?: string | null;
+    history_count?: number;
+    active_count?: number;
+    hot_count?: number;
+    best_p10?: number;
   };
+}
+
+export interface FilterPriceMoveItem {
+  hotel_id: string;
+  hotel_name: string;
+  prev_price: number;
+  curr_price: number;
+  delta_pln: number;
+  delta_pct: number;
+  airport_code?: string;
+  checkin_date?: string | null;
+  recorded_at: string;
+}
+
+export interface FilterAnalyticsData {
+  filter_id: string;
+  filter_type: FilterType;
+  overview: {
+    total_hotels: number;
+    total_cohorts: number;
+    total_snapshots: number;
+    avg_price: number;
+    median_price: number;
+    min_price: number;
+    sold_out_7d_lost_count: number;
+    last_updated_at?: string | null;
+  };
+  calendar_dates: {
+    date: string;
+    days_to_dep: number;
+    hotels_count: number;
+    min_price: number;
+    median_price: number;
+  }[];
+  price_changes: {
+    drops: FilterPriceMoveItem[];
+    hikes: FilterPriceMoveItem[];
+    history: FilterPriceMoveItem[];
+  };
+  timing_stats: {
+    best_window: string;
+    best_window_share_pct: number;
+    avg_drop_pct?: number;
+    total_drops_analyzed: number;
+    by_hour: { window: string; drops: number }[];
+    by_weekday: { day: string; drops: number }[];
+  };
+}
+
+export interface ArbitrageStatus {
+  kb_updated_at: string | null;
+  total_offers: number;
+  age_hours: number | null;
+  is_stale: boolean;
 }
 
 

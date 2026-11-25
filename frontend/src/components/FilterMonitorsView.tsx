@@ -91,6 +91,12 @@ export const FilterMonitorsView: React.FC<Props> = ({ onSelectMonitor }) => {
 
   const filteredMonitors = monitors.filter((m) => {
     if (activeGroup === "all") return true;
+    if (activeGroup === "lastminute") {
+      return m.group_id === "lastminute" || m.id?.includes("lastminute");
+    }
+    if (activeGroup === "cyprus") {
+      return m.group_id === "cyprus" || m.id?.includes("cyprus");
+    }
     return m.group_id === activeGroup;
   });
 
@@ -135,9 +141,11 @@ export const FilterMonitorsView: React.FC<Props> = ({ onSelectMonitor }) => {
       <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-bold scrollbar-none">
         {[
           { id: "all", label: `Все фильтры (${monitors.length})` },
+          { id: "lastminute", label: "⚡ Горящие (0–4 дня)" },
           { id: "turkey", label: "🇹🇷 Турция" },
           { id: "egypt", label: "🇪🇬 Египет" },
           { id: "greece", label: "🇬🇷 Греция" },
+          { id: "cyprus", label: "🇨🇾 Кипр" },
           { id: "early_booking", label: "🏷️ Раннее бронирование 2027" },
           { id: "arbitrage", label: "🇩🇪 Немецкий арбитраж" },
           { id: "custom", label: "✨ Мои фильтры" },

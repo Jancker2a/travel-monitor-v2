@@ -522,9 +522,11 @@ async def get_offers_count_timeline(db: AsyncSession = Depends(get_db)):
 
 
 @app.get("/api/v2/analytics/early-booking")
-async def get_early_booking(db: AsyncSession = Depends(get_db)):
-    """Early Booking Advantage Score (EBAS), trajectory, and survival curves."""
-    return await AnalyticsService.get_early_booking_analytics(db)
+async def get_early_booking(
+    filter_id: Optional[str] = None, db: AsyncSession = Depends(get_db)
+):
+    """Early Booking Advantage Score (EBAS), trajectory, and survival curves from live DB."""
+    return await AnalyticsService.get_early_booking_analytics(db, filter_id=filter_id)
 
 
 @app.get("/api/v2/analytics/overview")
@@ -568,11 +570,19 @@ async def get_filter_market_oracle(filter_id: str, db: AsyncSession = Depends(ge
 
 
 @app.get("/api/v2/filters/{filter_id}/departures")
-async def get_filter_departures(filter_id: str):
+async def get_filter_departures(filter_id: str, db: AsyncSession = Depends(get_db)):
     """
-    Active upcoming departure radar and historical late-buy cases for the active filter.
+    Active upcoming departure radar and same-destination historical late-buy cases from DB.
     """
-    return AnalyticsService.get_filter_departures(filter_id)
+    return await AnalyticsService.get_filter_departures(db, filter_id=filter_id)
+
+
+@app.get("/api/v2/filters/{filter_id}/analytics")
+async def get_filter_analytics(filter_id: str, db: AsyncSession = Depends(get_db)):
+    """
+    Live DB-backed overview, departure calendar, 24h-72h price moves, and timing stats for a filter.
+    """
+    return await AnalyticsService.get_filter_analytics(db, filter_id=filter_id)
 
 
 @app.get("/api/v2/filters/{filter_id}/hotels", response_model=HotelCatalogResponse)
@@ -641,6 +651,12 @@ async def create_custom_monitor(data: dict, db: AsyncSession = Depends(get_db)):
         user_id=data.get("user_id", "user_demo_01"),
     )
     return {"status": "ok", "monitor_id": m.id, "title": m.title}
+
+
+@app.get("/api/v2/arbitrage/status")
+async def get_arbitrage_status():
+    """Returns Check24 German offers KB freshness metadata."""
+    return ArbitrageService.get_arbitrage_status()
 
 
 @app.get("/api/v2/arbitrage")

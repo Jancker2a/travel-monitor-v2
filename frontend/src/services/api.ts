@@ -10,6 +10,8 @@ import {
   HotelCatalogResponse,
   MarketOracleData,
   FilterDeparturesData,
+  FilterAnalyticsData,
+  ArbitrageStatus,
   UserProfile,
   AuthTokenResponse,
   FlyUrlParseResponse,
@@ -563,10 +565,19 @@ export async function getOffersCountTimeline(): Promise<{ day: string; count: nu
   return resp.json();
 }
 
-export async function getEarlyBookingAnalytics(): Promise<any> {
-  const resp = await fetch(`${API_BASE}/api/v2/analytics/early-booking`);
+export async function getEarlyBookingAnalytics(filterId?: string): Promise<any> {
+  const q = filterId ? `?filter_id=${encodeURIComponent(filterId)}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/early-booking${q}`);
   if (!resp.ok) {
     throw new Error(`Ошибка загрузки раннего бронирования (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getArbitrageStatus(): Promise<ArbitrageStatus> {
+  const resp = await fetch(`${API_BASE}/api/v2/arbitrage/status`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки статуса Check24 (${resp.status})`);
   }
   return resp.json();
 }
@@ -629,6 +640,14 @@ export async function getFilterDepartures(filterId: string): Promise<FilterDepar
   const resp = await fetch(`${API_BASE}/api/v2/filters/${encodeURIComponent(filterId)}/departures`);
   if (!resp.ok) {
     throw new Error(`Ошибка загрузки вылетов фильтра (${resp.status})`);
+  }
+  return resp.json();
+}
+
+export async function getFilterAnalytics(filterId: string): Promise<FilterAnalyticsData> {
+  const resp = await fetch(`${API_BASE}/api/v2/filters/${encodeURIComponent(filterId)}/analytics`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки аналитики фильтра (${resp.status})`);
   }
   return resp.json();
 }

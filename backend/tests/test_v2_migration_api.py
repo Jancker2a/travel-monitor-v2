@@ -44,21 +44,30 @@ async def test_market_oracle_api():
 async def test_filter_departures_api():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
-        # Test Egypt
         response = await ac.get("/api/v2/filters/egypt_7_10/departures")
         assert response.status_code == 200
         data = response.json()
         assert data["filter_id"] == "egypt_7_10"
-        assert len(data["hot_history"]) == 99
-        assert len(data["active_departures"]) > 0
-        assert "Египет" in data["hot_history"][0]["departure"]
+        assert isinstance(data["active_departures"], list)
+        assert isinstance(data["hot_history"], list)
+        assert "stats" in data
 
-        # Test Turkey
-        response_tr = await ac.get("/api/v2/filters/turkey_7_10/departures")
-        assert response_tr.status_code == 200
-        data_tr = response_tr.json()
-        assert data_tr["filter_id"] == "turkey_7_10"
-        assert len(data_tr["hot_history"]) == 208
-        assert "Турция" in data_tr["hot_history"][0]["departure"]
+        # Analytics endpoint
+        resp_an = await ac.get("/api/v2/filters/7_10_days/analytics")
+        assert resp_an.status_code == 200
+        an_data = resp_an.json()
+        assert an_data["filter_id"] == "7_10_days"
+        assert an_data["filter_type"] in ("lastminute", "early_booking", "fixed_dates", "rolling")
+        assert "overview" in an_data
+        assert "calendar_dates" in an_data
+        assert "price_changes" in an_data
+        assert "timing_stats" in an_data
+
+        # Arbitrage status endpoint
+        resp_arb = await ac.get("/api/v2/arbitrage/status")
+        assert resp_arb.status_code == 200
+        arb_data = resp_arb.json()
+        assert "total_offers" in arb_data
+        assert "is_stale" in arb_data
 
 

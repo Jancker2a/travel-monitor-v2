@@ -870,8 +870,8 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                           color: isBudgetQuality ? "#854d0e" : isBuySignal ? "#15803d" : isOverpricedSignal ? "#b91c1c" : "#475569",
                         }}
                       >
-                        {hotelItem?.intelligence?.recommendation ||
-                          passport?.ai_action_signal ||
+                        {passport?.ai_action_signal ||
+                          hotelItem?.intelligence?.action_label ||
                           (isBudgetQuality
                             ? "Следить за ценой (эконом-класс)"
                             : isBuySignal
@@ -1139,494 +1139,494 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       );
 
                       return (
-                      <div
-                        style={{
-                          background:
-                            passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                              ? "#f0fdf4"
+                        <div
+                          style={{
+                            background:
+                              passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                                ? "#f0fdf4"
+                                : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                                  ? "#faf5ff"
+                                  : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                                    ? "#f8fafc"
+                                    : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                                      ? "#fef2f2"
+                                      : "#fffbeb",
+                            border: `1px solid ${passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                              ? "#bbf7d0"
                               : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                                ? "#faf5ff"
+                                ? "#e9d5ff"
                                 : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                                  ? "#f8fafc"
+                                  ? "#cbd5e1"
                                   : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                                    ? "#fef2f2"
-                                    : "#fffbeb",
-                          border: `1px solid ${passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                            ? "#bbf7d0"
-                            : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                              ? "#e9d5ff"
-                              : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                                ? "#cbd5e1"
-                                : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                                  ? "#fecaca"
-                                  : "#fef3c7"
-                            }`,
-                          borderRadius: "12px",
-                          padding: "16px",
-                          marginBottom: "16px",
-                        }}
-                      >
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ fontSize: "18px" }}>🧬</span>
-                            <span style={{ fontSize: "14px", fontWeight: 800, color: "#0f172a" }}>
-                              Горизонты цен: Раннее ↔ Стандарт ↔ Горящие
+                                    ? "#fecaca"
+                                    : "#fef3c7"
+                              }`,
+                            borderRadius: "12px",
+                            padding: "16px",
+                            marginBottom: "16px",
+                          }}
+                        >
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px", marginBottom: "12px" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                              <span style={{ fontSize: "18px" }}>🧬</span>
+                              <span style={{ fontSize: "14px", fontWeight: 800, color: "#0f172a" }}>
+                                Горизонты цен: Раннее ↔ Стандарт ↔ Горящие
+                              </span>
+                            </div>
+                            <span
+                              style={{
+                                background:
+                                  passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
+                                    ? "#16a34a"
+                                    : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
+                                      ? "#9333ea"
+                                      : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
+                                        ? "#475569"
+                                        : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
+                                          ? "#dc2626"
+                                          : "#d97706",
+                                color: "#ffffff",
+                                padding: "3px 10px",
+                                borderRadius: "8px",
+                                fontSize: "11px",
+                                fontWeight: 800,
+                              }}
+                            >
+                              {passport.horizon_arbitrage.verdict.badge}
                             </span>
                           </div>
-                          <span
-                            style={{
-                              background:
-                                passport.horizon_arbitrage.verdict.type === "REAL_DUMP"
-                                  ? "#16a34a"
-                                  : passport.horizon_arbitrage.verdict.type === "REGULAR_DUMPER"
-                                    ? "#9333ea"
-                                    : passport.horizon_arbitrage.verdict.type === "NEVER_DROPS"
-                                      ? "#475569"
-                                      : passport.horizon_arbitrage.verdict.type === "URGENT_SURCHARGE"
-                                        ? "#dc2626"
-                                        : "#d97706",
-                              color: "#ffffff",
-                              padding: "3px 10px",
-                              borderRadius: "8px",
-                              fontSize: "11px",
-                              fontWeight: 800,
-                            }}
-                          >
-                            {passport.horizon_arbitrage.verdict.badge}
-                          </span>
-                        </div>
 
-                        {/* 3-column Price Horizon Bar - only shown as fallback when no direct flights or departure timeline exist */}
-                        {!hasDirectFlights && (
-                          <>
-                            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
-                          {/* Early Booking */}
-                          <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                            <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>🏷️ Раннее (D 60+дн)</div>
-                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
-                              {passport.horizon_arbitrage.horizons?.early_booking
-                                ? `${passport.horizon_arbitrage.horizons.early_booking.median_price_pln.toLocaleString("ru-RU")} zł`
-                                : "—"}
-                            </div>
-                            <div style={{ fontSize: "10px", color: "#94a3b8" }}>
-                              {passport.horizon_arbitrage.horizons?.early_booking ? `${passport.horizon_arbitrage.horizons.early_booking.count} фиксаций` : "нет данных"}
-                            </div>
-                            {passport.horizon_arbitrage.horizons?.early_booking?.departure_dates_label && (
-                              <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
-                                <span
-                                  style={{
-                                    display: "inline-block",
-                                    fontSize: "9px",
-                                    fontWeight: 700,
-                                    padding: "1px 6px",
-                                    borderRadius: "4px",
-                                    background: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#ecfdf5" : "#f1f5f9",
-                                    color: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#047857" : "#64748b",
-                                  }}
-                                >
-                                  📅 {passport.horizon_arbitrage.horizons.early_booking.departure_dates_label}
-                                </span>
-                                {passport.horizon_arbitrage.horizons.early_booking.season_label && (
-                                  <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
-                                    {passport.horizon_arbitrage.horizons.early_booking.season_label}
+                          {/* 3-column Price Horizon Bar - only shown as fallback when no direct flights or departure timeline exist */}
+                          {!hasDirectFlights && (
+                            <>
+                              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", marginBottom: "12px" }}>
+                                {/* Early Booking */}
+                                <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
+                                  <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>🏷️ Раннее (D 60+дн)</div>
+                                  <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
+                                    {passport.horizon_arbitrage.horizons?.early_booking
+                                      ? `${passport.horizon_arbitrage.horizons.early_booking.median_price_pln.toLocaleString("ru-RU")} zł`
+                                      : "—"}
                                   </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Standard Booking */}
-                          <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                            <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>📅 За 2–4 нед. (D 14–45)</div>
-                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
-                              {passport.horizon_arbitrage.horizons?.standard
-                                ? `${passport.horizon_arbitrage.horizons.standard.median_price_pln.toLocaleString("ru-RU")} zł`
-                                : passport.horizon_arbitrage.horizons?.short_notice
-                                  ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
-                                  : "—"}
-                            </div>
-                            <div style={{ fontSize: "10px", color: "#94a3b8" }}>
-                              {passport.horizon_arbitrage.horizons?.standard
-                                ? `${passport.horizon_arbitrage.horizons.standard.count} фиксаций`
-                                : passport.horizon_arbitrage.horizons?.short_notice
-                                  ? "(за 1–2 нед.)"
-                                  : "нет данных"}
-                            </div>
-                            {(passport.horizon_arbitrage.horizons?.standard?.departure_dates_label || passport.horizon_arbitrage.horizons?.short_notice?.departure_dates_label) && (
-                              <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
-                                <span
-                                  style={{
-                                    display: "inline-block",
-                                    fontSize: "9px",
-                                    fontWeight: 700,
-                                    padding: "1px 6px",
-                                    borderRadius: "4px",
-                                    background: "#ecfdf5",
-                                    color: "#047857",
-                                  }}
-                                >
-                                  📅 {passport.horizon_arbitrage.horizons.standard?.departure_dates_label || passport.horizon_arbitrage.horizons.short_notice?.departure_dates_label}
-                                </span>
-                                <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
-                                  {passport.horizon_arbitrage.horizons.standard?.season_label || passport.horizon_arbitrage.horizons.short_notice?.season_label || "Текущий сезон"}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Last Minute */}
-                          <div
-                            style={{
-                              background: passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#fef3c7" : "#ffffff",
-                              padding: "10px",
-                              borderRadius: "8px",
-                              border: `1px solid ${passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#f59e0b" : "#e2e8f0"}`,
-                              textAlign: "center",
-                            }}
-                          >
-                            <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>⚡ Горящие (D 0–4дн)</div>
-                            <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309", marginTop: "4px" }}>
-                              {passport.horizon_arbitrage.horizons?.last_minute
-                                ? (passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" && passport.horizon_arbitrage.current_price_pln
-                                    ? passport.horizon_arbitrage.current_price_pln
-                                    : passport.horizon_arbitrage.horizons.last_minute.display_price_pln || passport.horizon_arbitrage.horizons.last_minute.min_price_pln
-                                  ).toLocaleString("ru-RU") + " zł"
-                                : "Не горит"}
-                            </div>
-                            <div style={{ fontSize: "10px", color: "#94a3b8" }}>
-                              {passport.horizon_arbitrage.horizons?.last_minute
-                                ? passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE"
-                                  ? "Текущий вылет"
-                                  : `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
-                                : "0 появлений"}
-                            </div>
-                            {passport.horizon_arbitrage.horizons?.last_minute &&
-                              passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" &&
-                              passport.horizon_arbitrage.current_price_pln &&
-                              passport.horizon_arbitrage.current_price_pln > passport.horizon_arbitrage.horizons.last_minute.min_price_pln && (
-                                <div style={{ fontSize: "9px", color: "#b45309", marginTop: "2px" }}>
-                                  (ист. рекорд: {passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł)
-                                </div>
-                            )}
-                            {passport.horizon_arbitrage.horizons?.last_minute?.departure_dates_label && (
-                              <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #fde68a" }}>
-                                <span
-                                  style={{
-                                    display: "inline-block",
-                                    fontSize: "9px",
-                                    fontWeight: 700,
-                                    padding: "1px 6px",
-                                    borderRadius: "4px",
-                                    background: "#fef3c7",
-                                    color: "#b45309",
-                                  }}
-                                >
-                                  📅 {passport.horizon_arbitrage.horizons.last_minute.departure_dates_label}
-                                </span>
-                                {passport.horizon_arbitrage.horizons.last_minute.season_label && (
-                                  <div style={{ fontSize: "9px", color: "#92400e", marginTop: "2px" }}>
-                                    {passport.horizon_arbitrage.horizons.last_minute.season_label}
+                                  <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                                    {passport.horizon_arbitrage.horizons?.early_booking ? `${passport.horizon_arbitrage.horizons.early_booking.count} фиксаций` : "нет данных"}
                                   </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Seasonal Context Alert Banner if Horizons cross seasons */}
-                        {passport.horizon_arbitrage.verdict.season_note && (
-                          <div
-                            style={{
-                              background: "#eff6ff",
-                              border: "1px solid #bfdbfe",
-                              borderRadius: "8px",
-                              padding: "8px 12px",
-                              fontSize: "11px",
-                              color: "#1e40af",
-                              lineHeight: 1.45,
-                              marginBottom: "10px",
-                              display: "flex",
-                              alignItems: "flex-start",
-                              gap: "8px",
-                            }}
-                          >
-                            <span style={{ fontSize: "14px", lineHeight: 1 }}>ℹ️</span>
-                            <div>
-                              <strong>Учёт сезонности дат:</strong> {passport.horizon_arbitrage.verdict.season_note}
-                            </div>
-                          </div>
-                        )}
-                      </>
-                    )}
-
-                    {/* Live Direct Comparison: Hot vs Upcoming Regular Flight */}
-                        {passport.horizon_arbitrage.direct_comparison && (
-                          <div
-                            style={{
-                              background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#fffbeb" : "#ecfdf5",
-                              border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f59e0b" : "#10b981"}`,
-                              borderRadius: "10px",
-                              padding: "10px 14px",
-                              marginBottom: "12px",
-                            }}
-                          >
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "6px" }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: "6px", fontWeight: 700, fontSize: "12px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#b45309" : "#047857" }}>
-                                <span>{passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "⚠️ Регулярный вылет выгоднее горящего!" : "🔥 Реальная выгода горящего вылета"}</span>
-                              </div>
-                              <span style={{ fontSize: "11px", fontWeight: 800, background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#fef3c7" : "#d1fae5", padding: "2px 8px", borderRadius: "12px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#92400e" : "#065f46" }}>
-                                {passport.horizon_arbitrage.direct_comparison.is_std_cheaper
-                                  ? `Разница: +${Math.abs(passport.horizon_arbitrage.direct_comparison.price_diff_pln)} zł (наценка)`
-                                  : `Экономия: -${Math.abs(passport.horizon_arbitrage.direct_comparison.price_diff_pln)} zł`}
-                              </span>
-                            </div>
-
-                            {/* Side-by-side comparison grid */}
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "8px" }}>
-                              <div style={{ background: "#ffffff", padding: "8px 10px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
-                                <div style={{ fontSize: "10px", color: "#64748b", fontWeight: 600 }}>⚡ Горящий тур (срочный вылет):</div>
-                                <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309" }}>
-                                  {passport.horizon_arbitrage.direct_comparison.hot_offer.price_pln.toLocaleString("ru-RU")} zł
-                                </div>
-                                <div style={{ fontSize: "10.5px", color: "#475569", marginTop: "2px" }}>
-                                  🛫 {passport.horizon_arbitrage.direct_comparison.hot_offer.checkin_date || "—"}
-                                  {passport.horizon_arbitrage.direct_comparison.hot_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.hot_offer.airport})` : ""}
-                                </div>
-                                {passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url && (
-                                  <a
-                                    href={passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{
-                                      display: "inline-flex",
-                                      alignItems: "center",
-                                      gap: "4px",
-                                      fontSize: "10px",
-                                      fontWeight: 700,
-                                      color: "#b45309",
-                                      background: "#ffffff",
-                                      padding: "3px 8px",
-                                      borderRadius: "6px",
-                                      border: "1px solid #fde68a",
-                                      marginTop: "6px",
-                                      textDecoration: "none",
-                                      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-                                    }}
-                                    title="Открыть горящий тур на Fly.pl"
-                                  >
-                                    <span>Открыть горящий тур</span>
-                                    <ExternalLink style={{ width: "10px", height: "10px" }} />
-                                  </a>
-                                )}
-                              </div>
-
-                              <div style={{ background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f0fdf4" : "#ffffff", padding: "8px 10px", borderRadius: "8px", border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#22c55e" : "#e2e8f0"}` }}>
-                                <div style={{ fontSize: "10px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#64748b", fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                  <span>📅 Ближайший стандартный рейс:</span>
-                                  {passport.horizon_arbitrage.direct_comparison.is_std_cheaper && <span>★ Выгоднее</span>}
-                                </div>
-                                <div style={{ fontSize: "14px", fontWeight: 800, color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#166534" : "#1e293b" }}>
-                                  {passport.horizon_arbitrage.direct_comparison.standard_offer.price_pln.toLocaleString("ru-RU")} zł
-                                </div>
-                                <div style={{ fontSize: "10.5px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#475569", marginTop: "2px" }}>
-                                  🛫 {passport.horizon_arbitrage.direct_comparison.standard_offer.checkin_date || "—"}
-                                  {passport.horizon_arbitrage.direct_comparison.standard_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.standard_offer.airport})` : ""}
-                                  {passport.horizon_arbitrage.direct_comparison.days_gap ? ` (через ${passport.horizon_arbitrage.direct_comparison.days_gap} дн.)` : ""}
-                                </div>
-                                {passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url && (
-                                  <a
-                                    href={passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{
-                                      display: "inline-flex",
-                                      alignItems: "center",
-                                      gap: "4px",
-                                      fontSize: "10px",
-                                      fontWeight: 700,
-                                      color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#2563eb",
-                                      background: "#ffffff",
-                                      padding: "3px 8px",
-                                      borderRadius: "6px",
-                                      border: `1px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#86efac" : "#bfdbfe"}`,
-                                      marginTop: "6px",
-                                      textDecoration: "none",
-                                      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-                                    }}
-                                    title="Открыть предложение на Fly.pl"
-                                  >
-                                    <span>Открыть рейс на Fly.pl</span>
-                                    <ExternalLink style={{ width: "10px", height: "10px" }} />
-                                  </a>
-                                )}
-                              </div>
-                            </div>
-
-                            <div style={{ fontSize: "11px", color: "#334155", lineHeight: 1.4 }}>
-                              💡 <strong>Вывод:</strong> {passport.horizon_arbitrage.direct_comparison.summary}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Departure Date Price Story: Lifecycle of this departure */}
-                        {passport.horizon_arbitrage.departure_price_story && (
-                          <div
-                            style={{
-                              background:
-                                passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
-                                  ? "#f0fdf4"
-                                  : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                    ? "#fff7ed"
-                                    : "#f8fafc",
-                              border: `1.5px solid ${passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
-                                ? "#bbf7d0"
-                                : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                  ? "#fed7aa"
-                                  : "#e2e8f0"
-                                }`,
-                              borderRadius: "10px",
-                              padding: "10px 14px",
-                              marginBottom: "12px",
-                            }}
-                          >
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "6px" }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                                <span style={{ fontSize: "14px" }}>📜</span>
-                                <span style={{ fontWeight: 800, fontSize: "12px", color: "#1e293b" }}>
-                                  Хронология цены заезда ({passport.horizon_arbitrage.departure_price_story.date_window_label})
-                                </span>
-                              </div>
-                              <span
-                                style={{
-                                  fontSize: "10.5px",
-                                  fontWeight: 800,
-                                  padding: "2px 8px",
-                                  borderRadius: "12px",
-                                  background:
-                                    passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
-                                      ? "#dcfce7"
-                                      : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                        ? "#ffedd5"
-                                        : "#f1f5f9",
-                                  color:
-                                    passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
-                                      ? "#15803d"
-                                      : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
-                                        ? "#c2410c"
-                                        : "#475569",
-                                }}
-                              >
-                                {passport.horizon_arbitrage.departure_price_story.trajectory_badge}
-                              </span>
-                            </div>
-
-                            {/* Visual Chronology Steps Cards */}
-                            {passport.horizon_arbitrage.departure_price_story.timeline_steps && passport.horizon_arbitrage.departure_price_story.timeline_steps.length > 0 ? (
-                              <div style={{ display: "grid", gridTemplateColumns: `repeat(${passport.horizon_arbitrage.departure_price_story.timeline_steps.length}, minmax(0, 1fr))`, gap: "8px", marginBottom: "8px" }}>
-                                {passport.horizon_arbitrage.departure_price_story.timeline_steps.map((step) => {
-                                  const isRise = step.delta_prev_pln && step.delta_prev_pln > 0;
-                                  const isDrop = step.delta_prev_pln && step.delta_prev_pln < 0;
-                                  return (
-                                    <div
-                                      key={step.key}
-                                      style={{
-                                        background: step.is_current ? "#ffffff" : "#ffffff",
-                                        border: step.is_current
-                                          ? `1.5px solid ${passport?.horizon_arbitrage?.departure_price_story?.trajectory === "DEEP_DROP" ? "#10b981" : "#f59e0b"}`
-                                          : "1px solid #e2e8f0",
-                                        borderRadius: "8px",
-                                        padding: "8px 6px",
-                                        textAlign: "center",
-                                        boxShadow: step.is_current ? "0 1px 3px rgba(0,0,0,0.06)" : "none",
-                                      }}
-                                    >
-                                      <div style={{ fontSize: "10.5px", fontWeight: 700, color: step.is_current ? "#b45309" : "#475569", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                        {step.title}
-                                      </div>
-                                      <div style={{ fontSize: "9px", color: "#64748b", marginTop: "1px" }}>
-                                        {step.days_label}
-                                      </div>
-                                      <div style={{ fontSize: "8.5px", color: "#94a3b8" }}>
-                                        🛫 {step.checkin_date}
-                                      </div>
-                                      <div style={{ fontSize: "13.5px", fontWeight: 800, color: step.is_current ? "#b45309" : "#1e293b", marginTop: "4px" }}>
-                                        {step.price_pln.toLocaleString("ru-RU")} zł
-                                      </div>
-                                      {step.delta_prev_pln !== null && step.delta_prev_pln !== undefined ? (
-                                        <div
-                                          style={{
-                                            fontSize: "9.5px",
-                                            fontWeight: 700,
-                                            marginTop: "2px",
-                                            color: isRise ? "#dc2626" : isDrop ? "#16a34a" : "#64748b",
-                                          }}
-                                        >
-                                          {isRise ? `+${step.delta_prev_pln.toLocaleString("ru-RU")} zł` : `${step.delta_prev_pln.toLocaleString("ru-RU")} zł`}
-                                          {step.delta_prev_pct !== null && step.delta_prev_pct !== undefined && ` (${step.delta_prev_pct > 0 ? `+${step.delta_prev_pct}%` : `${step.delta_prev_pct}%`})`}
-                                          {isRise ? " ↗" : isDrop ? " ↘" : ""}
+                                  {passport.horizon_arbitrage.horizons?.early_booking?.departure_dates_label && (
+                                    <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
+                                      <span
+                                        style={{
+                                          display: "inline-block",
+                                          fontSize: "9px",
+                                          fontWeight: 700,
+                                          padding: "1px 6px",
+                                          borderRadius: "4px",
+                                          background: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#ecfdf5" : "#f1f5f9",
+                                          color: passport.horizon_arbitrage.horizons.early_booking.is_same_season ? "#047857" : "#64748b",
+                                        }}
+                                      >
+                                        📅 {passport.horizon_arbitrage.horizons.early_booking.departure_dates_label}
+                                      </span>
+                                      {passport.horizon_arbitrage.horizons.early_booking.season_label && (
+                                        <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
+                                          {passport.horizon_arbitrage.horizons.early_booking.season_label}
                                         </div>
-                                      ) : (
-                                        <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>база сезона</div>
                                       )}
                                     </div>
-                                  );
-                                })}
-                              </div>
-                            ) : null}
+                                  )}
+                                </div>
 
-                            {/* Clean Bottom-line Conclusion Box */}
-                            <div style={{ fontSize: "11px", color: "#1e293b", lineHeight: 1.45, background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #f1f5f9", display: "flex", alignItems: "flex-start", gap: "6px" }}>
-                              <span style={{ fontSize: "12px", lineHeight: 1 }}>💡</span>
-                              <div>
-                                <strong>Итог: </strong>
-                                {passport.horizon_arbitrage.departure_price_story.conclusion || passport.horizon_arbitrage.departure_price_story.verdict_text}
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                                {/* Standard Booking */}
+                                <div style={{ background: "#ffffff", padding: "10px", borderRadius: "8px", border: "1px solid #e2e8f0", textAlign: "center" }}>
+                                  <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>📅 За 2–4 нед. (D 14–45)</div>
+                                  <div style={{ fontSize: "14px", fontWeight: 800, color: "#1e293b", marginTop: "4px" }}>
+                                    {passport.horizon_arbitrage.horizons?.standard
+                                      ? `${passport.horizon_arbitrage.horizons.standard.median_price_pln.toLocaleString("ru-RU")} zł`
+                                      : passport.horizon_arbitrage.horizons?.short_notice
+                                        ? `${passport.horizon_arbitrage.horizons.short_notice.median_price_pln.toLocaleString("ru-RU")} zł`
+                                        : "—"}
+                                  </div>
+                                  <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                                    {passport.horizon_arbitrage.horizons?.standard
+                                      ? `${passport.horizon_arbitrage.horizons.standard.count} фиксаций`
+                                      : passport.horizon_arbitrage.horizons?.short_notice
+                                        ? "(за 1–2 нед.)"
+                                        : "нет данных"}
+                                  </div>
+                                  {(passport.horizon_arbitrage.horizons?.standard?.departure_dates_label || passport.horizon_arbitrage.horizons?.short_notice?.departure_dates_label) && (
+                                    <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #f1f5f9" }}>
+                                      <span
+                                        style={{
+                                          display: "inline-block",
+                                          fontSize: "9px",
+                                          fontWeight: 700,
+                                          padding: "1px 6px",
+                                          borderRadius: "4px",
+                                          background: "#ecfdf5",
+                                          color: "#047857",
+                                        }}
+                                      >
+                                        📅 {passport.horizon_arbitrage.horizons.standard?.departure_dates_label || passport.horizon_arbitrage.horizons.short_notice?.departure_dates_label}
+                                      </span>
+                                      <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>
+                                        {passport.horizon_arbitrage.horizons.standard?.season_label || passport.horizon_arbitrage.horizons.short_notice?.season_label || "Текущий сезон"}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
 
-                        {/* Historical Best Dump Callout Card */}
-                        {passport.horizon_arbitrage.historical_best_dump && (
-                          <div
-                            style={{
-                              background: "#f8fafc",
-                              border: "1px dashed #cbd5e1",
-                              borderRadius: "10px",
-                              padding: "10px 14px",
-                              marginBottom: "12px",
-                            }}
-                          >
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px", flexWrap: "wrap", gap: "6px" }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                                <span style={{ fontSize: "14px" }}>🎯</span>
-                                <span style={{ fontWeight: 800, fontSize: "12px", color: "#334155" }}>
-                                  Исторический рекорд сброса отеля
+                                {/* Last Minute */}
+                                <div
+                                  style={{
+                                    background: passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#fef3c7" : "#ffffff",
+                                    padding: "10px",
+                                    borderRadius: "8px",
+                                    border: `1px solid ${passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" ? "#f59e0b" : "#e2e8f0"}`,
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <div style={{ fontSize: "11px", color: "#64748b", fontWeight: 600 }}>⚡ Горящие (D 0–4дн)</div>
+                                  <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309", marginTop: "4px" }}>
+                                    {passport.horizon_arbitrage.horizons?.last_minute
+                                      ? (passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" && passport.horizon_arbitrage.current_price_pln
+                                        ? passport.horizon_arbitrage.current_price_pln
+                                        : passport.horizon_arbitrage.horizons.last_minute.display_price_pln || passport.horizon_arbitrage.horizons.last_minute.min_price_pln
+                                      ).toLocaleString("ru-RU") + " zł"
+                                      : "Не горит"}
+                                  </div>
+                                  <div style={{ fontSize: "10px", color: "#94a3b8" }}>
+                                    {passport.horizon_arbitrage.horizons?.last_minute
+                                      ? passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE"
+                                        ? "Текущий вылет"
+                                        : `${passport.horizon_arbitrage.horizons.last_minute.count} появлений`
+                                      : "0 появлений"}
+                                  </div>
+                                  {passport.horizon_arbitrage.horizons?.last_minute &&
+                                    passport.horizon_arbitrage.verdict.perspective === "LAST_MINUTE" &&
+                                    passport.horizon_arbitrage.current_price_pln &&
+                                    passport.horizon_arbitrage.current_price_pln > passport.horizon_arbitrage.horizons.last_minute.min_price_pln && (
+                                      <div style={{ fontSize: "9px", color: "#b45309", marginTop: "2px" }}>
+                                        (ист. рекорд: {passport.horizon_arbitrage.horizons.last_minute.min_price_pln.toLocaleString("ru-RU")} zł)
+                                      </div>
+                                    )}
+                                  {passport.horizon_arbitrage.horizons?.last_minute?.departure_dates_label && (
+                                    <div style={{ marginTop: "4px", paddingTop: "4px", borderTop: "1px dashed #fde68a" }}>
+                                      <span
+                                        style={{
+                                          display: "inline-block",
+                                          fontSize: "9px",
+                                          fontWeight: 700,
+                                          padding: "1px 6px",
+                                          borderRadius: "4px",
+                                          background: "#fef3c7",
+                                          color: "#b45309",
+                                        }}
+                                      >
+                                        📅 {passport.horizon_arbitrage.horizons.last_minute.departure_dates_label}
+                                      </span>
+                                      {passport.horizon_arbitrage.horizons.last_minute.season_label && (
+                                        <div style={{ fontSize: "9px", color: "#92400e", marginTop: "2px" }}>
+                                          {passport.horizon_arbitrage.horizons.last_minute.season_label}
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Seasonal Context Alert Banner if Horizons cross seasons */}
+                              {passport.horizon_arbitrage.verdict.season_note && (
+                                <div
+                                  style={{
+                                    background: "#eff6ff",
+                                    border: "1px solid #bfdbfe",
+                                    borderRadius: "8px",
+                                    padding: "8px 12px",
+                                    fontSize: "11px",
+                                    color: "#1e40af",
+                                    lineHeight: 1.45,
+                                    marginBottom: "10px",
+                                    display: "flex",
+                                    alignItems: "flex-start",
+                                    gap: "8px",
+                                  }}
+                                >
+                                  <span style={{ fontSize: "14px", lineHeight: 1 }}>ℹ️</span>
+                                  <div>
+                                    <strong>Учёт сезонности дат:</strong> {passport.horizon_arbitrage.verdict.season_note}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          )}
+
+                          {/* Live Direct Comparison: Hot vs Upcoming Regular Flight */}
+                          {passport.horizon_arbitrage.direct_comparison && (
+                            <div
+                              style={{
+                                background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#fffbeb" : "#ecfdf5",
+                                border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f59e0b" : "#10b981"}`,
+                                borderRadius: "10px",
+                                padding: "10px 14px",
+                                marginBottom: "12px",
+                              }}
+                            >
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "6px" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontWeight: 700, fontSize: "12px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#b45309" : "#047857" }}>
+                                  <span>{passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "⚠️ Регулярный вылет выгоднее горящего!" : "🔥 Реальная выгода горящего вылета"}</span>
+                                </div>
+                                <span style={{ fontSize: "11px", fontWeight: 800, background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#fef3c7" : "#d1fae5", padding: "2px 8px", borderRadius: "12px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#92400e" : "#065f46" }}>
+                                  {passport.horizon_arbitrage.direct_comparison.is_std_cheaper
+                                    ? `Разница: +${Math.abs(passport.horizon_arbitrage.direct_comparison.price_diff_pln)} zł (наценка)`
+                                    : `Экономия: -${Math.abs(passport.horizon_arbitrage.direct_comparison.price_diff_pln)} zł`}
                                 </span>
                               </div>
-                              <span style={{ fontSize: "10.5px", fontWeight: 800, background: "#ecfdf5", color: "#047857", padding: "2px 8px", borderRadius: "10px", border: "1px solid #a7f3d0" }}>
-                                Рекордное дно: {passport.horizon_arbitrage.historical_best_dump.price_pln.toLocaleString("ru-RU")} zł ({passport.horizon_arbitrage.historical_best_dump.discount_pct > 0 ? `-${passport.horizon_arbitrage.historical_best_dump.discount_pct}%` : "min"})
-                              </span>
-                            </div>
-                            <div style={{ fontSize: "11.5px", color: "#475569", lineHeight: 1.5 }}>
-                              {passport.horizon_arbitrage.historical_best_dump.narrative}
-                            </div>
-                          </div>
-                        )}
 
-                        {/* Verdict & Recommendation - only shown as fallback when no direct flights or departure timeline exist */}
-                        {!hasDirectFlights && (
-                          <>
-                            <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
-                              <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
+                              {/* Side-by-side comparison grid */}
+                              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "8px" }}>
+                                <div style={{ background: "#ffffff", padding: "8px 10px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+                                  <div style={{ fontSize: "10px", color: "#64748b", fontWeight: 600 }}>⚡ Горящий тур (срочный вылет):</div>
+                                  <div style={{ fontSize: "14px", fontWeight: 800, color: "#b45309" }}>
+                                    {passport.horizon_arbitrage.direct_comparison.hot_offer.price_pln.toLocaleString("ru-RU")} zł
+                                  </div>
+                                  <div style={{ fontSize: "10.5px", color: "#475569", marginTop: "2px" }}>
+                                    🛫 {passport.horizon_arbitrage.direct_comparison.hot_offer.checkin_date || "—"}
+                                    {passport.horizon_arbitrage.direct_comparison.hot_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.hot_offer.airport})` : ""}
+                                  </div>
+                                  {passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url && (
+                                    <a
+                                      href={passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: "4px",
+                                        fontSize: "10px",
+                                        fontWeight: 700,
+                                        color: "#b45309",
+                                        background: "#ffffff",
+                                        padding: "3px 8px",
+                                        borderRadius: "6px",
+                                        border: "1px solid #fde68a",
+                                        marginTop: "6px",
+                                        textDecoration: "none",
+                                        boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                                      }}
+                                      title="Открыть горящий тур на Fly.pl"
+                                    >
+                                      <span>Открыть горящий тур</span>
+                                      <ExternalLink style={{ width: "10px", height: "10px" }} />
+                                    </a>
+                                  )}
+                                </div>
+
+                                <div style={{ background: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#f0fdf4" : "#ffffff", padding: "8px 10px", borderRadius: "8px", border: `1.5px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#22c55e" : "#e2e8f0"}` }}>
+                                  <div style={{ fontSize: "10px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#64748b", fontWeight: 700, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                    <span>📅 Ближайший стандартный рейс:</span>
+                                    {passport.horizon_arbitrage.direct_comparison.is_std_cheaper && <span>★ Выгоднее</span>}
+                                  </div>
+                                  <div style={{ fontSize: "14px", fontWeight: 800, color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#166534" : "#1e293b" }}>
+                                    {passport.horizon_arbitrage.direct_comparison.standard_offer.price_pln.toLocaleString("ru-RU")} zł
+                                  </div>
+                                  <div style={{ fontSize: "10.5px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#475569", marginTop: "2px" }}>
+                                    🛫 {passport.horizon_arbitrage.direct_comparison.standard_offer.checkin_date || "—"}
+                                    {passport.horizon_arbitrage.direct_comparison.standard_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.standard_offer.airport})` : ""}
+                                    {passport.horizon_arbitrage.direct_comparison.days_gap ? ` (через ${passport.horizon_arbitrage.direct_comparison.days_gap} дн.)` : ""}
+                                  </div>
+                                  {passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url && (
+                                    <a
+                                      href={passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        gap: "4px",
+                                        fontSize: "10px",
+                                        fontWeight: 700,
+                                        color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#2563eb",
+                                        background: "#ffffff",
+                                        padding: "3px 8px",
+                                        borderRadius: "6px",
+                                        border: `1px solid ${passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#86efac" : "#bfdbfe"}`,
+                                        marginTop: "6px",
+                                        textDecoration: "none",
+                                        boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                                      }}
+                                      title="Открыть предложение на Fly.pl"
+                                    >
+                                      <span>Открыть рейс на Fly.pl</span>
+                                      <ExternalLink style={{ width: "10px", height: "10px" }} />
+                                    </a>
+                                  )}
+                                </div>
+                              </div>
+
+                              <div style={{ fontSize: "11px", color: "#334155", lineHeight: 1.4 }}>
+                                💡 <strong>Вывод:</strong> {passport.horizon_arbitrage.direct_comparison.summary}
+                              </div>
                             </div>
-                            <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
-                              💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
+                          )}
+
+                          {/* Departure Date Price Story: Lifecycle of this departure */}
+                          {passport.horizon_arbitrage.departure_price_story && (
+                            <div
+                              style={{
+                                background:
+                                  passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                    ? "#f0fdf4"
+                                    : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                      ? "#fff7ed"
+                                      : "#f8fafc",
+                                border: `1.5px solid ${passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                  ? "#bbf7d0"
+                                  : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                    ? "#fed7aa"
+                                    : "#e2e8f0"
+                                  }`,
+                                borderRadius: "10px",
+                                padding: "10px 14px",
+                                marginBottom: "12px",
+                              }}
+                            >
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", flexWrap: "wrap", gap: "6px" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                                  <span style={{ fontSize: "14px" }}>📜</span>
+                                  <span style={{ fontWeight: 800, fontSize: "12px", color: "#1e293b" }}>
+                                    Хронология цены заезда ({passport.horizon_arbitrage.departure_price_story.date_window_label})
+                                  </span>
+                                </div>
+                                <span
+                                  style={{
+                                    fontSize: "10.5px",
+                                    fontWeight: 800,
+                                    padding: "2px 8px",
+                                    borderRadius: "12px",
+                                    background:
+                                      passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                        ? "#dcfce7"
+                                        : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                          ? "#ffedd5"
+                                          : "#f1f5f9",
+                                    color:
+                                      passport.horizon_arbitrage.departure_price_story.trajectory === "DEEP_DROP"
+                                        ? "#15803d"
+                                        : passport.horizon_arbitrage.departure_price_story.trajectory === "SURCHARGE_RISE"
+                                          ? "#c2410c"
+                                          : "#475569",
+                                  }}
+                                >
+                                  {passport.horizon_arbitrage.departure_price_story.trajectory_badge}
+                                </span>
+                              </div>
+
+                              {/* Visual Chronology Steps Cards */}
+                              {passport.horizon_arbitrage.departure_price_story.timeline_steps && passport.horizon_arbitrage.departure_price_story.timeline_steps.length > 0 ? (
+                                <div style={{ display: "grid", gridTemplateColumns: `repeat(${passport.horizon_arbitrage.departure_price_story.timeline_steps.length}, minmax(0, 1fr))`, gap: "8px", marginBottom: "8px" }}>
+                                  {passport.horizon_arbitrage.departure_price_story.timeline_steps.map((step) => {
+                                    const isRise = step.delta_prev_pln && step.delta_prev_pln > 0;
+                                    const isDrop = step.delta_prev_pln && step.delta_prev_pln < 0;
+                                    return (
+                                      <div
+                                        key={step.key}
+                                        style={{
+                                          background: step.is_current ? "#ffffff" : "#ffffff",
+                                          border: step.is_current
+                                            ? `1.5px solid ${passport?.horizon_arbitrage?.departure_price_story?.trajectory === "DEEP_DROP" ? "#10b981" : "#f59e0b"}`
+                                            : "1px solid #e2e8f0",
+                                          borderRadius: "8px",
+                                          padding: "8px 6px",
+                                          textAlign: "center",
+                                          boxShadow: step.is_current ? "0 1px 3px rgba(0,0,0,0.06)" : "none",
+                                        }}
+                                      >
+                                        <div style={{ fontSize: "10.5px", fontWeight: 700, color: step.is_current ? "#b45309" : "#475569", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                          {step.title}
+                                        </div>
+                                        <div style={{ fontSize: "9px", color: "#64748b", marginTop: "1px" }}>
+                                          {step.days_label}
+                                        </div>
+                                        <div style={{ fontSize: "8.5px", color: "#94a3b8" }}>
+                                          🛫 {step.checkin_date}
+                                        </div>
+                                        <div style={{ fontSize: "13.5px", fontWeight: 800, color: step.is_current ? "#b45309" : "#1e293b", marginTop: "4px" }}>
+                                          {step.price_pln.toLocaleString("ru-RU")} zł
+                                        </div>
+                                        {step.delta_prev_pln !== null && step.delta_prev_pln !== undefined ? (
+                                          <div
+                                            style={{
+                                              fontSize: "9.5px",
+                                              fontWeight: 700,
+                                              marginTop: "2px",
+                                              color: isRise ? "#dc2626" : isDrop ? "#16a34a" : "#64748b",
+                                            }}
+                                          >
+                                            {isRise ? `+${step.delta_prev_pln.toLocaleString("ru-RU")} zł` : `${step.delta_prev_pln.toLocaleString("ru-RU")} zł`}
+                                            {step.delta_prev_pct !== null && step.delta_prev_pct !== undefined && ` (${step.delta_prev_pct > 0 ? `+${step.delta_prev_pct}%` : `${step.delta_prev_pct}%`})`}
+                                            {isRise ? " ↗" : isDrop ? " ↘" : ""}
+                                          </div>
+                                        ) : (
+                                          <div style={{ fontSize: "9px", color: "#94a3b8", marginTop: "2px" }}>база сезона</div>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              ) : null}
+
+                              {/* Clean Bottom-line Conclusion Box */}
+                              <div style={{ fontSize: "11px", color: "#1e293b", lineHeight: 1.45, background: "#ffffff", padding: "8px 12px", borderRadius: "8px", border: "1px solid #f1f5f9", display: "flex", alignItems: "flex-start", gap: "6px" }}>
+                                <span style={{ fontSize: "12px", lineHeight: 1 }}>💡</span>
+                                <div>
+                                  <strong>Итог: </strong>
+                                  {passport.horizon_arbitrage.departure_price_story.conclusion || passport.horizon_arbitrage.departure_price_story.verdict_text}
+                                </div>
+                              </div>
                             </div>
-                          </>
-                        )}
-                      </div>
-                    );
-                  })()}
+                          )}
+
+                          {/* Historical Best Dump Callout Card */}
+                          {passport.horizon_arbitrage.historical_best_dump && (
+                            <div
+                              style={{
+                                background: "#f8fafc",
+                                border: "1px dashed #cbd5e1",
+                                borderRadius: "10px",
+                                padding: "10px 14px",
+                                marginBottom: "12px",
+                              }}
+                            >
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px", flexWrap: "wrap", gap: "6px" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                                  <span style={{ fontSize: "14px" }}>🎯</span>
+                                  <span style={{ fontWeight: 800, fontSize: "12px", color: "#334155" }}>
+                                    Исторический рекорд сброса отеля
+                                  </span>
+                                </div>
+                                <span style={{ fontSize: "10.5px", fontWeight: 800, background: "#ecfdf5", color: "#047857", padding: "2px 8px", borderRadius: "10px", border: "1px solid #a7f3d0" }}>
+                                  Рекордное дно: {passport.horizon_arbitrage.historical_best_dump.price_pln.toLocaleString("ru-RU")} zł ({passport.horizon_arbitrage.historical_best_dump.discount_pct > 0 ? `-${passport.horizon_arbitrage.historical_best_dump.discount_pct}%` : "min"})
+                                </span>
+                              </div>
+                              <div style={{ fontSize: "11.5px", color: "#475569", lineHeight: 1.5 }}>
+                                {passport.horizon_arbitrage.historical_best_dump.narrative}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Verdict & Recommendation - only shown as fallback when no direct flights or departure timeline exist */}
+                          {!hasDirectFlights && (
+                            <>
+                              <div style={{ fontSize: "12px", color: "#1e293b", lineHeight: 1.5, marginBottom: "6px" }}>
+                                <strong>{passport.horizon_arbitrage.verdict.headline}:</strong> {passport.horizon_arbitrage.verdict.description}
+                              </div>
+                              <div style={{ fontSize: "11px", color: "#475569", fontStyle: "italic" }}>
+                                💡 <strong>Совет:</strong> {passport.horizon_arbitrage.verdict.recommendation}
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      );
+                    })()}
 
                     {/* Chart source switcher if 1:1 reference history is available */}
                     {passport?.reference_history && (
@@ -2176,24 +2176,38 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                   <tbody id="drawerPackagesTbody">
                     {(passport?.available_packages && passport.available_packages.length > 0
                       ? passport.available_packages
-                      : [
-                        {
-                          checkin_date: "2026-11-14",
-                          checkout_date: "2026-11-24",
-                          duration_nights: 10,
-                          airport_code: "WAW",
-                          total_price_pln: currentPrice,
-                          booking_url: "https://fly.pl",
-                        },
-                        {
-                          checkin_date: "2026-11-17",
-                          checkout_date: "2026-11-24",
-                          duration_nights: 7,
-                          airport_code: "WAW",
-                          total_price_pln: Math.round(currentPrice * 0.82),
-                          booking_url: "https://fly.pl",
-                        },
-                      ]
+                      : hotelItem?.current_offer
+                        ? [
+                          {
+                            checkin_date: hotelItem.current_offer.departure_date,
+                            checkout_date: "",
+                            duration_nights: hotelItem.current_offer.duration_nights,
+                            airport_code: hotelItem.current_offer.airport,
+                            total_price_pln: hotelItem.current_offer.total_price_pln,
+                            booking_url: hotelItem.current_offer.booking_url || "https://fly.pl",
+                          },
+                        ]
+                        : []
+                    ).length === 0 ? (
+                      <tr>
+                        <td colSpan={5} style={{ padding: "16px", textAlign: "center", color: "#64748b", fontSize: "12px" }}>
+                          Варианты пакетов в текущем срезе не найдены.
+                        </td>
+                      </tr>
+                    ) : (passport?.available_packages && passport.available_packages.length > 0
+                      ? passport.available_packages
+                      : hotelItem?.current_offer
+                        ? [
+                          {
+                            checkin_date: hotelItem.current_offer.departure_date,
+                            checkout_date: "",
+                            duration_nights: hotelItem.current_offer.duration_nights,
+                            airport_code: hotelItem.current_offer.airport,
+                            total_price_pln: hotelItem.current_offer.total_price_pln,
+                            booking_url: hotelItem.current_offer.booking_url || "https://fly.pl",
+                          },
+                        ]
+                        : []
                     ).map((pkg: any, idx: number) => {
                       const dep = pkg.checkin_date || pkg.departure_date;
                       const ret = pkg.checkout_date;

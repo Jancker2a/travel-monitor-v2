@@ -227,8 +227,32 @@ def generate_rule_based_briefing(market_context: Dict[str, Any]) -> Dict[str, An
     country_name = dest_ctx.get("country", "")
     weather_note = dest_ctx.get("climate_and_weather_advice", "")
 
-    # Human-friendly phase descriptions and advice
-    if has_today:
+    filter_type = market_context.get("filter_type", "rolling")
+
+    # Human-friendly phase descriptions and advice specialized by filter_type
+    if filter_type == "early_booking":
+        phase_title = f"Раннее бронирование (через {min_d} дн.{dep_label})"
+        phase_desc = (
+            f"До вылета еще {min_d} дн.{dep_label}. Идёт спокойное окно раннего бронирования — резких горящих сбросов нет, "
+            f"медиана сейчас ~{med_price:,.0f} zł (лучшие предложения от {p10_price:,.0f} zł). Популярные отели 4–5★ распродаются заранее."
+        )
+        directive = (
+            "Фиксируйте сейчас только те отели, где цена уже ниже своей истории EB (Δ ≤ −10%). "
+            "По остальным — добавьте в Watchlist и отслеживайте промо-коррекции."
+        )
+        headline = f"Раннее бронирование{dep_label}: медиана {med_price:,.0f} zł, спешки со срочными скидками нет"
+    elif filter_type == "fixed_dates":
+        phase_title = f"Фиксированные даты{dep_label} (через {min_d} дн.)"
+        phase_desc = (
+            f"Узкое окно конкретных дат вылета ({nearest_dep or f'через {min_d} дн.'}). "
+            f"На фиксированные праздничные/каникулярные вылеты главная угроза — невысокое предложение номеров при росте спроса (медиана {med_price:,.0f} zł)."
+        )
+        directive = (
+            "На жёстких датах не ждите глубоких сбросов в последний день: если видите выгодный тариф (ПОКУПАТЬ), "
+            "лучше зафиксировать места до их исчезновения."
+        )
+        headline = f"Фиксированные даты{dep_label}: медиана {med_price:,.0f} zł, отслеживаем остатки и скачки"
+    elif has_today:
         if is_wide_window:
             phase_title = f"Срочные рейсы ({nearest_dep}) и вылеты до {furthest_dep}"
             phase_desc = (
@@ -460,7 +484,7 @@ def generate_rule_based_briefing(market_context: Dict[str, Any]) -> Dict[str, An
             "floor_status": f"{floor_count} отелей ({floor_pct}%) сейчас отдают по минимальной цене за сезон.",
             "strategic_directive": directive,
             "key_anomalies": anomalies,
-            "synthesized_by": "Rule-Based Deterministic Engine (Offline)",
+            "synthesized_by": "Аналитический движок (данные БД)",
         },
         "hotel_dossiers": dossiers,
     }
@@ -571,6 +595,7 @@ def compute_buy_now_recommendation(
 
         if has_real_catalyst and score >= 80:
             scored_candidates.append({
+                "hotel_id": h_info.get("hotel_id", ""),
                 "hotel_name": h_name,
                 "price": cur_p,
                 "score": score,

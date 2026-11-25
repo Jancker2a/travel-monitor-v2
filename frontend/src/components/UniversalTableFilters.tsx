@@ -11,6 +11,10 @@ export interface FilterState {
   tripAdvisor: string;
   change: string;
   region: string;
+  airport?: string;
+  firstLineOnly?: boolean;
+  hasAquapark?: boolean;
+  hasHeatedPools?: boolean;
   onlyFavorites: boolean;
 }
 
@@ -21,6 +25,7 @@ interface UniversalTableFiltersProps {
   onFilterChange: (filters: FilterState) => void;
   onClear: () => void;
   regions: string[];
+  airports?: string[];
   arbitrageCount?: number;
   showArbitrageTab?: boolean;
   onOpenMonitorAlerts?: () => void;
@@ -34,6 +39,7 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
   onFilterChange,
   onClear,
   regions,
+  airports = [],
   arbitrageCount,
   showArbitrageTab = true,
   onOpenMonitorAlerts,
@@ -343,6 +349,66 @@ export const UniversalTableFilters: React.FC<UniversalTableFiltersProps> = ({
             </select>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
+
+          {/* Departure Airport Filter */}
+          {airports.length > 0 && (
+            <div className="relative shrink-0">
+              <select
+                id="airportFilter"
+                value={filters.airport || ""}
+                onChange={(e) => onFilterChange({ ...filters, airport: e.target.value })}
+                className="appearance-none text-xs sm:text-sm py-2 pl-3.5 pr-9 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer transition-colors"
+              >
+                <option value="">Все вылеты</option>
+                {airports.map((a) => (
+                  <option key={a} value={a}>
+                    ✈️ {a}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
+          )}
+
+          {/* Quick Infrastructure Toggles */}
+          <button
+            type="button"
+            onClick={() => onFilterChange({ ...filters, firstLineOnly: !filters.firstLineOnly })}
+            className={`px-2.5 py-2 rounded-xl text-xs font-semibold transition-colors border cursor-pointer ${
+              filters.firstLineOnly
+                ? "bg-sky-100 text-sky-900 border-sky-300 font-bold"
+                : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
+            }`}
+            title="Только 1-я линия у моря"
+          >
+            🏖️ 1-я линия
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onFilterChange({ ...filters, hasAquapark: !filters.hasAquapark })}
+            className={`px-2.5 py-2 rounded-xl text-xs font-semibold transition-colors border cursor-pointer ${
+              filters.hasAquapark
+                ? "bg-cyan-100 text-cyan-900 border-cyan-300 font-bold"
+                : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
+            }`}
+            title="Только отели с аквапарком / горками"
+          >
+            🎢 Аквапарк
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onFilterChange({ ...filters, hasHeatedPools: !filters.hasHeatedPools })}
+            className={`px-2.5 py-2 rounded-xl text-xs font-semibold transition-colors border cursor-pointer ${
+              filters.hasHeatedPools
+                ? "bg-amber-100 text-amber-900 border-amber-300 font-bold"
+                : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
+            }`}
+            title="Только с подогреваемым бассейном"
+          >
+            🔥 Подогрев
+          </button>
 
           {/* Favorites button */}
           <button

@@ -83,7 +83,7 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
   const anomalies = oracleData?.key_anomalies || [];
 
   return (
-    <details className="dashboard-fold ai-oracle-fold" id="aiOracleFold" open>
+    <details className="dashboard-fold ai-oracle-fold" id="aiOracleFold">
       <summary className="cursor-pointer select-none">
         <div className="flex items-center gap-3">
           <div className="ai-oracle-icon-box">
@@ -104,7 +104,7 @@ export const AiMarketBriefing: React.FC<AiMarketBriefingProps> = ({
               </span>
             </div>
             <div className="ai-oracle-subtitle">
-              <strong className="ai-oracle-headline">{headline}</strong> • {oracleData?.title || filterTitle} • {oracleData?.synthesized_by || "Rule-Based Deterministic Engine (Offline)"}
+              <strong className="ai-oracle-headline">{headline}</strong> • {oracleData?.title || filterTitle} • {oracleData?.synthesized_by || "Аналитический движок (данные БД)"}
             </div>
           </div>
         </div>

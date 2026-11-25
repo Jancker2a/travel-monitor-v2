@@ -310,30 +310,50 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
       applied.push("4★+");
     }
 
-    // 6. Dates / Months
+    // 6. Dates / Months (dynamic year resolution relative to current date)
+    const nowDt = new Date();
+    const resolveMonthYear = (targetMonthZeroIndexed: number): number =>
+      nowDt.getMonth() > targetMonthZeroIndexed ? nowDt.getFullYear() + 1 : nowDt.getFullYear();
+
     if (q.includes("декабр")) {
-      setStartDateMin("2026-12-01");
-      setStartDateMax("2026-12-25");
+      const yr = resolveMonthYear(11);
+      setStartDateMin(`${yr}-12-01`);
+      setStartDateMax(`${yr}-12-25`);
       applied.push("Декабрь");
     } else if (q.includes("новый год") || q.includes("нг") || q.includes("новогод")) {
-      setStartDateMin("2026-12-24");
-      setStartDateMax("2027-01-02");
+      const decYr = resolveMonthYear(11);
+      setStartDateMin(`${decYr}-12-24`);
+      setStartDateMax(`${decYr + 1}-01-02`);
       applied.push("Новый Год");
     } else if (q.includes("январ")) {
-      setStartDateMin("2027-01-05");
-      setStartDateMax("2027-01-25");
+      const yr = resolveMonthYear(0);
+      setStartDateMin(`${yr}-01-05`);
+      setStartDateMax(`${yr}-01-25`);
       applied.push("Январь");
     } else if (q.includes("май")) {
-      setStartDateMin("2027-05-01");
-      setStartDateMax("2027-05-25");
+      const yr = resolveMonthYear(4);
+      setStartDateMin(`${yr}-05-01`);
+      setStartDateMax(`${yr}-05-25`);
       applied.push("Май");
     } else if (q.includes("июн")) {
-      setStartDateMin("2027-06-01");
-      setStartDateMax("2027-06-25");
+      const yr = resolveMonthYear(5);
+      setStartDateMin(`${yr}-06-01`);
+      setStartDateMax(`${yr}-06-25`);
       applied.push("Июнь");
+    } else if (q.includes("июл")) {
+      const yr = resolveMonthYear(6);
+      setStartDateMin(`${yr}-07-01`);
+      setStartDateMax(`${yr}-07-25`);
+      applied.push("Июль");
+    } else if (q.includes("август")) {
+      const yr = resolveMonthYear(7);
+      setStartDateMin(`${yr}-08-01`);
+      setStartDateMax(`${yr}-08-25`);
+      applied.push("Август");
     } else if (q.includes("ноябр")) {
-      setStartDateMin("2026-11-20");
-      setStartDateMax("2026-11-30");
+      const yr = resolveMonthYear(10);
+      setStartDateMin(`${yr}-11-20`);
+      setStartDateMax(`${yr}-11-30`);
       applied.push("Ноябрь");
     }
 
@@ -753,8 +773,8 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
         <div className="bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-sky-50/90 border border-blue-200/90 rounded-2xl p-3 sm:p-3.5 shadow-2xs">
           <div className="flex items-center justify-between mb-2 flex-wrap gap-1">
             <span className="text-xs font-black text-blue-950 flex items-center gap-1.5 uppercase tracking-wide">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
-              <span>AI Умный поиск на естественном языке</span>
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span>Быстрое заполнение формы по фразе</span>
             </span>
             <span className="text-[11px] text-blue-700/80 font-medium">
               Понимает страну, состав семьи, даты, бюджет и звёзды

@@ -1407,14 +1407,32 @@ class WatchlistService:
                 min_p = min(p_list) if p_list else curr_p
                 max_p = max(p_list) if p_list else curr_p
 
-        # If active filter has few points (<= 3), and reference_history is available:
-        if (not med_p or (data_maturity_tier and data_maturity_tier < 2) or len(history_points) <= 3) and reference_history:
+        # If active filter has few points (<= 3), short span (< 7d), or is a lastminute radar,
+        # prefer the canonical 1:1 seasonal history so short-lived runs are never benchmarked only against themselves.
+        is_lm_fid = bool(filter_id and ("lastminute" in filter_id.lower() or "0_4" in filter_id.lower()))
+        span_days = 0
+        if len(history_points) >= 2 and history_points[0].recorded_at and history_points[-1].recorded_at:
+            try:
+                span_days = (history_points[-1].recorded_at - history_points[0].recorded_at).days
+            except Exception:
+                span_days = 0
+        use_canon_ref = bool(
+            reference_history
+            and (
+                not med_p
+                or (data_maturity_tier and data_maturity_tier < 2)
+                or len(history_points) <= 3
+                or (is_lm_fid and reference_history.get("snaps_count", 0) >= 10)
+                or (span_days < 7 and reference_history.get("snaps_count", 0) >= 10)
+            )
+        )
+        if use_canon_ref:
             med_p = reference_history["median_price_pln"]
             min_p = reference_history["min_price_pln"]
             max_p = reference_history["max_price_pln"]
             data_maturity_tier = 3
             maturity_explanation = (
-                f"В текущем радаре зафиксированы первые замеры ({len(history_points)} точек). "
+                f"В текущем радаре зафиксированы замеры ({len(history_points)} точек). "
                 f"Подключена сезонная история из канонического радара «{reference_history['title']}» "
                 f"({reference_history['snaps_count']} замеров, 1:1 прямое совпадение: {reference_history['adults']} взр + {reference_history['children']} реб • {reference_history['duration_nights']}н без пересчётов)."
             )
@@ -1434,7 +1452,7 @@ class WatchlistService:
         final_ta_rating = (
             float(hotel.ta_rating)
             if hotel.ta_rating
-            else (float(dossier["ta_rating"]) if dossier.get("ta_rating") else 4.5)
+            else (float(dossier["ta_rating"]) if dossier.get("ta_rating") else None)
         )
         final_ta_reviews = (
             int(hotel.ta_reviews)
@@ -1442,45 +1460,74 @@ class WatchlistService:
             else (int(dossier["ta_reviews"]) if dossier.get("ta_reviews") else 0)
         )
 
-        # Hopper score calculation using canonical V1 statistical engine (hotel_deal_score)
-        deal_score = 75
-        deal_badge = "GOOD_DEAL"
-        verdict = "BUY NOW"
+        # Horizon Arbitrage (Early Booking vs Standard vs Last Minute) computed BEFORE unified scoring
+        from app.services.horizon_arbitrage_service import HorizonArbitrageService
+        horizon_arbitrage = None
+        try:
+            horizon_arbitrage = await HorizonArbitrageService.get_hotel_horizon_arbitrage(
+                db=db,
+                hotel_id=hotel.hotel_id,
+                adults=target_adults,
+                children=target_children,
+                duration_nights=target_nights,
+                checkin_date=target_dep_date,
+                current_price=curr_p,
+                related_hotel_ids=related_hotel_ids,
+            )
+        except Exception as ha_err:
+            logger.warning(f"Could not compute horizon arbitrage for {hotel.hotel_id}: {ha_err}")
 
-        hist_for_scoring = history_points if len(history_points) > 3 else (
-            [HotelHistoryPoint(**p) for p in reference_history.get("history_points", [])]
-            if reference_history else history_points
+        # Unified Deal Score + Action Verdict (100% consistent with Catalog & Search)
+        import pandas as pd
+        from app.services.canonical_filters import classify_filter_type
+        from app.services.hotel_deal_score import compute_unified_deal_assessment
+
+        passport_filter_type = classify_filter_type(
+            filter_id, checkin_dates=[target_dep_date] if target_dep_date else None
         )
-        if hist_for_scoring:
-            import pandas as pd
-            from app.services.hotel_deal_score import compute_hotel_deal_metrics
+        days_to_dep_val = (target_dep_date - date.today()).days if target_dep_date else None
 
-            df_hist = pd.DataFrame([
+        direct_cmp = (horizon_arbitrage or {}).get("direct_comparison") or {}
+        upcoming_std_price = (
+            float(direct_cmp["standard_price"])
+            if direct_cmp.get("standard_price")
+            else None
+        )
+        upcoming_std_date = direct_cmp.get("standard_date")
+
+        hist_for_scoring = (
+            [HotelHistoryPoint(**p) for p in reference_history.get("history_points", [])]
+            if (use_canon_ref and reference_history and reference_history.get("history_points"))
+            else history_points
+        )
+        df_hist = (
+            pd.DataFrame([
                 {"scraped_at": p.recorded_at, "price": p.scaled_tour_price or p.total_price_pln}
                 for p in hist_for_scoring
             ])
-            deal_metrics = compute_hotel_deal_metrics(
-                df_hist,
-                latest_price=curr_p,
-                time_col="scraped_at",
-                price_col="price",
-                ta_rating=final_ta_rating,
-                ta_review_count=final_ta_reviews,
-                typical_price=med_p,
-            )
-            deal_score = int(deal_metrics.get("deal_score", 75))
-            if deal_score >= 85:
-                deal_badge = "SUPER_DEAL"
-                verdict = "BUY NOW"
-            elif deal_score >= 80:
-                deal_badge = "GOOD_DEAL"
-                verdict = "BUY NOW"
-            elif deal_score < 45:
-                deal_badge = "OVERPRICED"
-                verdict = "OVERPRICED"
-            else:
-                deal_badge = "FAIR_PRICE"
-                verdict = "WAIT"
+            if hist_for_scoring
+            else None
+        )
+        eff_samples = max(
+            len(unseasoned_rates),
+            int((reference_history or {}).get("snaps_count", 0)),
+        )
+        assessment = compute_unified_deal_assessment(
+            latest_price=curr_p,
+            typical_price=med_p,
+            hist_df=df_hist,
+            samples_count=eff_samples,
+            ta_rating=final_ta_rating,
+            ta_review_count=final_ta_reviews,
+            filter_type=passport_filter_type,
+            days_to_dep=days_to_dep_val,
+            season_info=target_season,
+            upcoming_std_price=upcoming_std_price,
+            upcoming_std_date=upcoming_std_date,
+        )
+        deal_score = int(assessment["deal_score"])
+        deal_badge = str(assessment["deal_badge"])
+        verdict = str(assessment["hopper_verdict"])
 
         # Update dossier deal score
         dossier["deal_score"] = deal_score
@@ -1518,23 +1565,6 @@ class WatchlistService:
                         "train_transfer_from_pl": "PKP Intercity Варшава/Познань -> Berlin Hbf (~2.5 - 5ч)",
                     }
 
-        # Horizon Arbitrage (Early Booking vs Standard vs Last Minute)
-        from app.services.horizon_arbitrage_service import HorizonArbitrageService
-        horizon_arbitrage = None
-        try:
-            horizon_arbitrage = await HorizonArbitrageService.get_hotel_horizon_arbitrage(
-                db=db,
-                hotel_id=hotel.hotel_id,
-                adults=target_adults,
-                children=target_children,
-                duration_nights=target_nights,
-                checkin_date=target_dep_date,
-                current_price=curr_p,
-                related_hotel_ids=related_hotel_ids,
-            )
-        except Exception as ha_err:
-            logger.warning(f"Could not compute horizon arbitrage for {hotel.hotel_id}: {ha_err}")
-
         packages_list = sorted(list(packages_map.values()), key=lambda x: x["total_price_pln"])
 
         final_main_image = hotel.main_image_url or dossier.get("main_image_url") or (dossier["gallery_photos"][0] if dossier.get("gallery_photos") else None)
@@ -1550,51 +1580,13 @@ class WatchlistService:
             current_region=hotel.region,
         )
 
-        # Build intelligent AI micro-insight for this hotel passport
-        is_lastminute = False
-        if filter_id and ("lastminute" in filter_id.lower() or "0_4" in filter_id.lower()):
-            is_lastminute = True
-        elif target_dep_date:
-            days_to_dep = (target_dep_date - date.today()).days
-            if 0 <= days_to_dep <= 4:
-                is_lastminute = True
-
-        has_rich_rates = (len(unseasoned_rates) >= 3) or (
-            reference_history and reference_history.get("snaps_count", 0) >= 3
-        )
-        if med_p is not None and med_p > 0 and has_rich_rates:
-            diff_to_norm = round(((curr_p - med_p) / med_p) * 100.0, 1)
-            if is_lastminute:
-                if diff_to_norm <= -15.0:
-                    ai_action_signal = f"🔥 Честный горящий сброс (-{abs(diff_to_norm):.0f}%)"
-                    ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Реальный горящий дисконт перед вылетом."
-                elif diff_to_norm <= 5.0:
-                    ai_action_signal = "⚖️ Не горящее: реальной скидки нет"
-                    ai_price_summary = f"Цена {curr_p:.0f} zł соответствует обычной сезонной норме ({med_p:.0f} zł). Горящей скидки нет, это стандартная регулярная цена."
-                else:
-                    ai_action_signal = f"📈 Завышена перед вылетом (+{diff_to_norm:.0f}%)"
-                    ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Наценка на последние места перед вылетом."
-            else:
-                if diff_to_norm <= -15.0:
-                    ai_action_signal = f"🔥 Скидка {abs(diff_to_norm):.0f}% к норме сезона"
-                    ai_price_summary = f"Текущая цена {curr_p:.0f} zł на {abs(diff_to_norm):.0f}% ниже сезонной нормы ({med_p:.0f} zł). Выгодный момент для бронирования."
-                elif diff_to_norm <= -7.0:
-                    ai_action_signal = f"⚡ Выгодная цена ({diff_to_norm:+.0f}%)"
-                    ai_price_summary = f"Тур стоит {curr_p:.0f} zł при норме {med_p:.0f} zł ({diff_to_norm:+.1f}%). Рекомендуется фиксировать."
-                elif diff_to_norm <= 7.0:
-                    ai_action_signal = "⚖️ Стандартная цена сезона"
-                    ai_price_summary = f"Цена {curr_p:.0f} zł в пределах сезонной нормы ({med_p:.0f} zł). Скидки нет, спешить не нужно."
-                else:
-                    ai_action_signal = f"🔴 Выше нормы (+{diff_to_norm:.0f}%)"
-                    ai_price_summary = f"Цена {curr_p:.0f} zł завышена на {diff_to_norm:.0f}% относительно сезонной нормы ({med_p:.0f} zł). Рекомендуется подождать."
-
-            if reference_history and len(unseasoned_rates) < 3:
-                party_label = f"{target_adults} взр" + (f" + {target_children} реб" if target_children else "")
-                ai_price_summary += f" Сравнение 1:1 по каноническому радару «{reference_history['title']}» ({party_label} • {target_nights}н)."
-        else:
-            diff_to_norm = None
-            ai_action_signal = "📊 Первичные замеры отеля"
-            ai_price_summary = f"Текущая цена {curr_p:.0f} zł. Идёт накопление истории по отелю ({len(unseasoned_rates)} точек). Сравнение с нормой отключено во избежание неточных выводов."
+        # Build intelligent AI micro-insight strictly aligned with compute_unified_deal_assessment
+        diff_to_norm = assessment["avg_delta_pct"]
+        ai_action_signal = str(assessment["action_label"])
+        ai_price_summary = str(assessment["recommendation"])
+        if reference_history and len(unseasoned_rates) < 3:
+            party_label = f"{target_adults} взр" + (f" + {target_children} реб" if target_children else "")
+            ai_price_summary += f" Сравнение 1:1 по каноническому радару «{reference_history['title']}» ({party_label} • {target_nights}н)."
 
         ai_hotel_summary = f"{hotel.display_name} ({hotel.stars}★, {hotel.region or hotel.country}). {target_season.get('label', '')}: {target_season.get('risk_expl', '')}."
 

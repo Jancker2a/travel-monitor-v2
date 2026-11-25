@@ -20,8 +20,17 @@ class HotelCatalogCard(BaseModel):
     change_24h_pct: float = 0.0
     change_48h_pct: float = 0.0
     change_7d_pct: float = 0.0
+    change_30d_pct: Optional[float] = None
     deal_score: int = 50
     deal_confidence: str = "Medium"
+    hopper_verdict: str = "WAIT"
+    action_label: Optional[str] = None
+    recommendation: Optional[str] = None
+    upcoming_std_price: Optional[float] = None
+    upcoming_std_date: Optional[str] = None
+    upcoming_std_airport: Optional[str] = None
+    spread_vs_std_pln: Optional[float] = None
+    spread_vs_std_pct: Optional[float] = None
     badges: List[str] = Field(default_factory=list)
     beach_line: Optional[int] = 1
     beach_type: Optional[str] = None
@@ -37,6 +46,7 @@ class HotelCatalogCard(BaseModel):
 
 class HotelCatalogResponse(BaseModel):
     filter_id: str
+    filter_type: str = "rolling"
     total_hotels: int
     hotels: List[HotelCatalogCard]
     last_updated_at: Optional[Union[str, datetime]] = None

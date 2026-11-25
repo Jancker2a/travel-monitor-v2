@@ -1,18 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  TrendingDown,
-  TrendingUp,
   Clock,
   Calendar,
   BarChart3,
   Flame,
-  ChevronDown,
-  Info,
-  CheckCircle2,
-  AlertTriangle,
 } from "lucide-react";
-import { SearchHotelItem, PriceDropItem, AirportStat, FilterDeparturesData } from "../types";
-import { getOffersCountTimeline, getEarlyBookingAnalytics, getFilterDepartures } from "../services/api";
+import {
+  SearchHotelItem,
+  PriceDropItem,
+  AirportStat,
+  FilterDeparturesData,
+  FilterAnalyticsData,
+  FilterPriceMoveItem,
+  FilterType,
+} from "../types";
+import {
+  getOffersCountTimeline,
+  getEarlyBookingAnalytics,
+  getFilterDepartures,
+  getFilterAnalytics,
+} from "../services/api";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
 declare global {
@@ -27,67 +34,81 @@ interface AnalyticsFoldProps {
   airportStats: AirportStat[];
   onSelectHotel: (hotelId: string) => void;
   filterId?: string;
+  filterType?: FilterType;
   onFilterByDeparture?: (departureDate: string) => void;
 }
 
 export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
   hotels,
   topDrops,
-  airportStats,
   onSelectHotel,
   filterId,
+  filterType = "rolling",
   onFilterByDeparture,
 }) => {
   const [activeAlertTab, setActiveAlertTab] = useState<"drops" | "hikes" | "history">("drops");
   const [offersTimeline, setOffersTimeline] = useState<{ day: string; count: number }[]>([]);
   const [earlyBooking, setEarlyBooking] = useState<any>(null);
   const [departuresData, setDeparturesData] = useState<FilterDeparturesData | null>(null);
-  const [loadingDepartures, setLoadingDepartures] = useState(false);
+  const [filterAnalytics, setFilterAnalytics] = useState<FilterAnalyticsData | null>(null);
+  const [loadingAnalytics, setLoadingAnalytics] = useState(false);
 
   const ebTrajRef = useRef<HTMLDivElement>(null);
   const ebSurvRef = useRef<HTMLDivElement>(null);
   const offersCountRef = useRef<HTMLDivElement>(null);
 
-  // Defer secondary heavy analytics so critical hotel table and hero chart load instantly
+  const resolvedType: FilterType = filterAnalytics?.filter_type || filterType;
+
+  // Fetch filter-specific DB analytics, departures, EB metrics & offers timeline
   useEffect(() => {
+    let isCancelled = false;
+
     const timer = setTimeout(() => {
       getOffersCountTimeline()
-        .then((data) => setOffersTimeline(data))
+        .then((data) => {
+          if (!isCancelled) setOffersTimeline(data);
+        })
         .catch((err) => console.warn("Failed to load offers timeline", err));
 
-      getEarlyBookingAnalytics()
-        .then((data) => setEarlyBooking(data))
+      getEarlyBookingAnalytics(filterId)
+        .then((data) => {
+          if (!isCancelled) setEarlyBooking(data);
+        })
         .catch((err) => console.warn("Failed to load early booking analytics", err));
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
+    }, 600);
 
-  // Fetch filter-specific departures radar & late-buy history
-  useEffect(() => {
     if (!filterId) {
       setDeparturesData(null);
-      return;
+      setFilterAnalytics(null);
+      return () => {
+        isCancelled = true;
+        clearTimeout(timer);
+      };
     }
-    let isCancelled = false;
-    setLoadingDepartures(true);
+
+    setLoadingAnalytics(true);
     setDeparturesData(null);
-    getFilterDepartures(filterId)
-      .then((data) => {
-        if (!isCancelled) setDeparturesData(data);
-      })
-      .catch((err) => {
-        if (!isCancelled) console.warn("Failed to load filter departures", err);
+    setFilterAnalytics(null);
+
+    Promise.allSettled([
+      getFilterDepartures(filterId),
+      getFilterAnalytics(filterId),
+    ])
+      .then(([depRes, anRes]) => {
+        if (isCancelled) return;
+        if (depRes.status === "fulfilled") setDeparturesData(depRes.value);
+        if (anRes.status === "fulfilled") setFilterAnalytics(anRes.value);
       })
       .finally(() => {
-        if (!isCancelled) setLoadingDepartures(false);
+        if (!isCancelled) setLoadingAnalytics(false);
       });
 
     return () => {
       isCancelled = true;
+      clearTimeout(timer);
     };
   }, [filterId]);
 
-  // Multi-phase Plotly resize on accordion toggle
   const triggerResize = () => {
     [40, 150, 350].forEach((delay) => {
       setTimeout(() => {
@@ -105,85 +126,87 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
     });
   };
 
-  // Render Early Booking charts
+  // Render Early Booking Plotly charts using real DB trajectory & survival arrays
   useEffect(() => {
-    if (!earlyBooking || !window.Plotly) return;
+    if (!earlyBooking || !earlyBooking.has_data || !window.Plotly) return;
 
-    // 1. Trajectory Bar Chart
-    if (ebTrajRef.current) {
+    if (ebTrajRef.current && earlyBooking.trajectory?.x?.length) {
       const traj = earlyBooking.trajectory;
       const barColors = traj.y.map((v: number) =>
         v > 0 ? "#ef4444" : v < 0 ? "#10b981" : "#94a3b8"
       );
-      const trajTrace = {
-        x: traj.x,
-        y: traj.y,
-        type: "bar",
-        marker: { color: barColors },
-        text: traj.y.map((v: number) => (v > 0 ? "+" : "") + v.toFixed(1) + "%"),
-        textposition: "auto",
-        hovertemplate: "<b>%{x}</b><br>Δ цены к First Minute: %{y:.1f}%<extra></extra>",
-      };
-      const trajLayout = {
-        margin: { t: 20, r: 15, b: 55, l: 48 },
-        yaxis: {
-          title: "Δ цены к FM (%)",
-          zeroline: true,
-          zerolinecolor: "#94a3b8",
-          zerolinewidth: 1.5,
-          gridcolor: "#f1f5f9",
-          tickfont: { size: 10, color: "#64748b" },
+      window.Plotly.react(
+        ebTrajRef.current,
+        [
+          {
+            x: traj.x,
+            y: traj.y,
+            type: "bar",
+            marker: { color: barColors },
+            text: traj.y.map((v: number) => `${v > 0 ? "+" : ""}${v.toFixed(1)}%`),
+            textposition: "auto",
+            hovertemplate: "<b>%{x}</b><br>Δ к стартовому горизонту: %{y:.1f}%<extra></extra>",
+          },
+        ],
+        {
+          margin: { t: 20, r: 15, b: 55, l: 48 },
+          yaxis: {
+            title: "Δ цены (%)",
+            zeroline: true,
+            zerolinecolor: "#94a3b8",
+            zerolinewidth: 1.5,
+            gridcolor: "#f1f5f9",
+            tickfont: { size: 10, color: "#64748b" },
+          },
+          xaxis: {
+            title: "Горизонт до вылета",
+            tickfont: { size: 10, color: "#334155" },
+          },
+          paper_bgcolor: "rgba(0,0,0,0)",
+          plot_bgcolor: "rgba(0,0,0,0)",
+          font: { family: "Inter, sans-serif", size: 11 },
         },
-        xaxis: {
-          title: "Горизонт до вылета",
-          tickfont: { size: 10, color: "#334155" },
-        },
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
-        font: { family: "Inter, sans-serif", size: 11 },
-      };
-      window.Plotly.react(ebTrajRef.current, [trajTrace], trajLayout, {
-        responsive: true,
-        displayModeBar: false,
-      });
+        { responsive: true, displayModeBar: false }
+      );
     }
 
-    // 2. Survival Area Chart
-    if (ebSurvRef.current) {
+    if (ebSurvRef.current && earlyBooking.survival?.x?.length) {
       const surv = earlyBooking.survival;
-      const survTrace = {
-        x: surv.x,
-        y: surv.y,
-        type: "scatter",
-        mode: "lines+markers",
-        fill: "tozeroy",
-        fillcolor: "rgba(37, 99, 235, 0.12)",
-        line: { color: "#2563eb", width: 2.5 },
-        marker: { size: 5, color: "#1d4ed8" },
-        hovertemplate: "<b>%{x} дн. до вылета</b><br>Доступно отелей: %{y:.1f}%<extra></extra>",
-      };
-      const survLayout = {
-        margin: { t: 20, r: 15, b: 55, l: 48 },
-        xaxis: {
-          title: "Дней до вылета (D)",
-          autorange: "reversed",
-          tickfont: { size: 10, color: "#64748b" },
-          gridcolor: "#f1f5f9",
+      window.Plotly.react(
+        ebSurvRef.current,
+        [
+          {
+            x: surv.x,
+            y: surv.y,
+            type: "scatter",
+            mode: "lines+markers",
+            fill: "tozeroy",
+            fillcolor: "rgba(37, 99, 235, 0.12)",
+            line: { color: "#2563eb", width: 2.5 },
+            marker: { size: 5, color: "#1d4ed8" },
+            hovertemplate: "<b>%{x} дн. до вылета</b><br>Сохранилось когорт: %{y:.1f}%<extra></extra>",
+          },
+        ],
+        {
+          margin: { t: 20, r: 15, b: 55, l: 48 },
+          xaxis: {
+            title: "Дней до вылета (D)",
+            autorange: "reversed",
+            tickfont: { size: 10, color: "#64748b" },
+            gridcolor: "#f1f5f9",
+          },
+          yaxis: {
+            title: "% когорт в наличии",
+            range: [0, 105],
+            gridcolor: "#f1f5f9",
+            tickfont: { size: 10, color: "#64748b" },
+          },
+          paper_bgcolor: "rgba(0,0,0,0)",
+          plot_bgcolor: "rgba(0,0,0,0)",
+          font: { family: "Inter, sans-serif", size: 11 },
         },
-        yaxis: {
-          title: "% доступных отелей",
-          range: [0, 105],
-          gridcolor: "#f1f5f9",
-          tickfont: { size: 10, color: "#64748b" },
-        },
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
-        font: { family: "Inter, sans-serif", size: 11 },
-      };
-      window.Plotly.react(ebSurvRef.current, [survTrace], survLayout, {
-        responsive: true,
-        displayModeBar: false,
-      });
+        { responsive: true, displayModeBar: false }
+      );
     }
   }, [earlyBooking]);
 
@@ -191,114 +214,90 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
   useEffect(() => {
     if (!offersTimeline.length || !offersCountRef.current || !window.Plotly) return;
 
-    const xDates = offersTimeline.map((item) => item.day);
-    const yCounts = offersTimeline.map((item) => item.count);
-
-    const trace = {
-      x: xDates,
-      y: yCounts,
-      type: "scatter",
-      mode: "lines+markers",
-      line: { color: "#059669", width: 2 },
-      marker: { size: 5, color: "#059669" },
-      hovertemplate: "<b>%{x}</b><br>Предложений: <b>%{y}</b><extra></extra>",
-    };
-
-    const layout = {
-      margin: { t: 15, r: 20, b: 45, l: 50 },
-      xaxis: {
-        title: "День",
-        type: "date",
-        tickformat: "%d.%m",
-        tickfont: { size: 10, color: "#64748b" },
-        gridcolor: "#f1f5f9",
+    window.Plotly.react(
+      offersCountRef.current,
+      [
+        {
+          x: offersTimeline.map((item) => item.day),
+          y: offersTimeline.map((item) => item.count),
+          type: "scatter",
+          mode: "lines+markers",
+          line: { color: "#059669", width: 2 },
+          marker: { size: 5, color: "#059669" },
+          hovertemplate: "<b>%{x}</b><br>Когорт в замере: <b>%{y}</b><extra></extra>",
+        },
+      ],
+      {
+        margin: { t: 15, r: 20, b: 45, l: 50 },
+        xaxis: {
+          title: "День",
+          type: "date",
+          tickformat: "%d.%m",
+          tickfont: { size: 10, color: "#64748b" },
+          gridcolor: "#f1f5f9",
+        },
+        yaxis: {
+          title: "Когорт",
+          gridcolor: "#f1f5f9",
+          tickfont: { size: 10, color: "#64748b" },
+        },
+        hovermode: "closest",
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(0,0,0,0)",
+        font: { family: "Inter, sans-serif", size: 11 },
       },
-      yaxis: {
-        title: "Предложений",
-        gridcolor: "#f1f5f9",
-        tickfont: { size: 10, color: "#64748b" },
-      },
-      hovermode: "closest",
-      paper_bgcolor: "rgba(0,0,0,0)",
-      plot_bgcolor: "rgba(0,0,0,0)",
-      font: { family: "Inter, sans-serif", size: 11 },
-    };
-
-    window.Plotly.react(offersCountRef.current, [trace], layout, {
-      responsive: true,
-      displayModeBar: false,
-    });
+      { responsive: true, displayModeBar: false }
+    );
   }, [offersTimeline]);
 
-  // Sample hot departure history cases (matching 99 cases in V1)
-  const hotDepartureCases = [
-    {
-      departure: "Турция, Сиде",
-      dates: "14.11.2026 · 10 ночей",
-      daysBefore: "D-5 (за 5 дней)",
-      drop: "-1 450 zł (-18.2%)",
-      seenAt: "2026-11-09 14:00",
-      score: 88,
-      p10: 4250,
-      min: 3890,
-      median: 5400,
-      hotelsCount: 18,
-    },
-    {
-      departure: "Турция, Кемер",
-      dates: "17.11.2026 · 7 ночей",
-      daysBefore: "D-6 (за 6 дней)",
-      drop: "-980 zł (-14.5%)",
-      seenAt: "2026-11-11 08:30",
-      score: 82,
-      p10: 4890,
-      min: 4120,
-      median: 6100,
-      hotelsCount: 24,
-    },
-    {
-      departure: "Турция, Аланья",
-      dates: "21.11.2026 · 8 ночей",
-      daysBefore: "D-4 (за 4 дня)",
-      drop: "-1 120 zł (-16.0%)",
-      seenAt: "2026-11-17 19:15",
-      score: 79,
-      p10: 4500,
-      min: 3950,
-      median: 5850,
-      hotelsCount: 22,
-    },
-    {
-      departure: "Турция, Белек",
-      dates: "25.11.2026 · 10 ночей",
-      daysBefore: "D-7 (за 7 дней)",
-      drop: "-2 100 zł (-21.5%)",
-      seenAt: "2026-11-18 12:00",
-      score: 91,
-      p10: 6200,
-      min: 5400,
-      median: 7800,
-      hotelsCount: 15,
-    },
-  ];
+  // Real price moves for the current filter (fallback to global drops only in standalone search mode)
+  const dropsList: FilterPriceMoveItem[] =
+    filterAnalytics?.price_changes?.drops ||
+    (!filterId
+      ? topDrops.map((d) => ({
+          hotel_id: d.hotel_id,
+          hotel_name: d.hotel_name,
+          prev_price: d.previous_price_pln,
+          curr_price: d.current_price_pln,
+          delta_pln: -Math.abs(d.drop_amount_pln),
+          delta_pct: -Math.abs(d.drop_pct),
+          airport_code: d.airport,
+          checkin_date: d.departure_date,
+          recorded_at: "",
+        }))
+      : []);
+  const hikesList: FilterPriceMoveItem[] = filterAnalytics?.price_changes?.hikes || [];
+  const historyList: FilterPriceMoveItem[] = filterAnalytics?.price_changes?.history || dropsList;
 
-  // Calendar Heatmap dates
-  const calendarDates = [
-    { date: "14.11", minPrice: 4820, status: "hot" },
-    { date: "15.11", minPrice: 5100, status: "good" },
-    { date: "16.11", minPrice: 4650, status: "hot" },
-    { date: "17.11", minPrice: 5398, status: "good" },
-    { date: "18.11", minPrice: 5600, status: "normal" },
-    { date: "19.11", minPrice: 5850, status: "normal" },
-    { date: "20.11", minPrice: 6200, status: "normal" },
-    { date: "21.11", minPrice: 4950, status: "hot" },
-    { date: "22.11", minPrice: 5300, status: "good" },
-    { date: "23.11", minPrice: 5120, status: "good" },
-    { date: "24.11", minPrice: 5900, status: "normal" },
-    { date: "25.11", minPrice: 6400, status: "high" },
-    { date: "26.11", minPrice: 5800, status: "normal" },
-    { date: "27.11", minPrice: 5150, status: "good" },
-  ];
+  const visibleMoves =
+    activeAlertTab === "drops"
+      ? dropsList
+      : activeAlertTab === "hikes"
+      ? hikesList
+      : historyList;
+
+  const calendarDates = filterAnalytics?.calendar_dates || [];
+  const calMinAll = calendarDates.length
+    ? Math.min(...calendarDates.map((d) => d.min_price))
+    : 0;
+  const calMedianAll = calendarDates.length
+    ? [...calendarDates.map((d) => d.min_price)].sort((a, b) => a - b)[
+        Math.floor(calendarDates.length / 2)
+      ]
+    : 0;
+
+  const overview = filterAnalytics?.overview;
+  const timingStats = filterAnalytics?.timing_stats;
+  const bestWeekday = timingStats?.by_weekday?.length
+    ? [...timingStats.by_weekday].sort((a, b) => b.drops - a.drops)[0]
+    : null;
+
+  const ebSummary = earlyBooking?.summary;
+  const showEbSection =
+    resolvedType !== "lastminute" && (Boolean(earlyBooking?.has_data) || resolvedType === "early_booking");
+
+  const activeDepartures = departuresData?.active_departures || [];
+  const hotHistory = departuresData?.hot_history || [];
 
   return (
     <details className="dashboard-fold" id="analyticsFold" onToggle={triggerResize}>
@@ -309,389 +308,370 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
         </div>
         <div className="flex items-center gap-4">
           <span className="text-xs text-slate-500 font-medium hidden sm:inline">
-            Вылеты · Алерты · Календарь · Тренды
+            {resolvedType === "lastminute"
+              ? "Вылеты 0–4д · История сбросов · Движения цен"
+              : resolvedType === "early_booking"
+              ? "Движения цен · Раннее бронирование (EBAS) · Тайминг"
+              : "Вылеты · Движения цен · Календарь · Тайминг"}
           </span>
           <span className="text-slate-400 font-bold text-sm">⌄</span>
         </div>
       </summary>
 
       <div className="p-4 sm:p-6 space-y-4 bg-slate-50/50">
-        {/* 0. ТЕКУЩИЕ И БЛИЖАЙШИЕ ВЫЛЕТЫ (Radar) */}
-        {departuresData && departuresData.active_departures && departuresData.active_departures.length > 0 && (
+        {/* 0. ТЕКУЩИЕ И БЛИЖАЙШИЕ ВЫЛЕТЫ (Live DB Radar) */}
+        {activeDepartures.length > 0 && (
           <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🛫</span>
-                  <h3 className="text-base font-bold text-slate-900 tracking-tight">Ближайшие и горящие вылеты</h3>
+                  <h3 className="text-base font-bold text-slate-900 tracking-tight">
+                    Ближайшие вылеты фильтра (Live БД)
+                  </h3>
                 </div>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Мониторинг ближайших дат вылета. Горящие вылеты с падением цен выделены ярким фоном и огоньком. Нажмите на карточку для фильтрации.
+                  Реальные даты вылета в текущем срезе (последние 48ч). Нажмите на карточку для фильтрации таблицы.
                 </p>
               </div>
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg">
-                  {departuresData.stats.active_count} активных
+                  {activeDepartures.length} дат вылета
                 </span>
-                {departuresData.stats.hot_count > 0 && (
+                {(departuresData?.stats?.hot_window_dates_count ?? 0) > 0 && (
                   <span className="text-xs font-semibold px-2.5 py-1 bg-red-100 text-red-700 rounded-lg flex items-center gap-1">
-                    🔥 {departuresData.stats.hot_count} горящих
-                  </span>
-                )}
-                {departuresData.stats.best_p10 > 0 && (
-                  <span className="text-xs font-semibold px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-lg">
-                    деш. 10% от {departuresData.stats.best_p10.toLocaleString("ru-RU")} zł
+                    🔥 {departuresData?.stats?.hot_window_dates_count} в окне 0–4 дн.
                   </span>
                 )}
               </div>
             </div>
 
-            {/* Departure Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-              {departuresData.active_departures.map((dep, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => onFilterByDeparture?.(dep.departure_date)}
-                  className={`p-3.5 rounded-xl border transition-all cursor-pointer hover:shadow-md ${
-                    dep.status_cls === "hot"
-                      ? "bg-red-50/70 border-red-200 hover:border-red-400 hover:bg-red-50"
-                      : dep.status_cls === "warm"
-                      ? "bg-amber-50/60 border-amber-200 hover:border-amber-400 hover:bg-amber-50"
-                      : "bg-white border-slate-200 hover:border-blue-300 hover:bg-blue-50/20"
-                  }`}
-                  role="button"
-                  tabIndex={0}
-                  title="Нажмите, чтобы отфильтровать отели по этой дате вылета"
-                >
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-bold text-slate-900 text-sm flex items-center gap-1 truncate">
-                      {dep.status_cls === "hot" ? "🔥" : "📍"} {dep.region}
-                    </span>
-                    <span
-                      className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border whitespace-nowrap ${
-                        dep.status_cls === "hot"
-                          ? "bg-red-100 text-red-800 border-red-300"
-                          : dep.status_cls === "warm"
-                          ? "bg-amber-100 text-amber-800 border-amber-300"
-                          : "bg-slate-100 text-slate-700 border-slate-200"
-                      }`}
-                    >
-                      {dep.status_label}
-                    </span>
-                  </div>
-
-                  <div className="text-[11px] text-slate-600 space-y-0.5 mb-2.5">
-                    <div className="font-medium text-slate-800">
-                      {dep.departure_date} {dep.return_date ? `→ ${dep.return_date}` : ""} · {dep.nights} ночей
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {activeDepartures.slice(0, 12).map((dep, idx) => {
+                const depDate = dep.date || dep.departure_date || "";
+                const daysLeft = dep.days_to_dep ?? dep.days_to_departure ?? 0;
+                const hCount = dep.hotels_count ?? dep.hotel_count ?? 0;
+                const isHot = Boolean(dep.is_hot_window || dep.status_cls === "hot");
+                return (
+                  <div
+                    key={depDate || idx}
+                    onClick={() => onFilterByDeparture?.(depDate)}
+                    className={`p-3.5 rounded-xl border transition-all cursor-pointer hover:shadow-md ${
+                      isHot
+                        ? "bg-amber-50/70 border-amber-300 hover:border-amber-500"
+                        : "bg-white border-slate-200 hover:border-blue-300 hover:bg-blue-50/20"
+                    }`}
+                    role="button"
+                    tabIndex={0}
+                    title="Нажмите, чтобы отфильтровать отели по этой дате"
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="font-bold text-slate-900 text-sm">
+                        {isHot ? "⚡" : "📅"} {depDate}
+                      </span>
+                      <span
+                        className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${
+                          isHot
+                            ? "bg-amber-100 text-amber-900 border-amber-300"
+                            : "bg-slate-100 text-slate-700 border-slate-200"
+                        }`}
+                      >
+                        {daysLeft === 0 ? "Сегодня" : `через ${daysLeft} дн.`}
+                      </span>
                     </div>
-                    <div className="text-slate-500 font-semibold">{dep.days_label}</div>
+                    <div className="text-[11px] text-slate-600 mb-2">
+                      {hCount} отелей {dep.airports?.length ? `· ${dep.airports.join(", ")}` : ""}
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-100 text-slate-500">
+                      <span>
+                        мин: <strong className="text-emerald-700">{dep.min_price.toLocaleString("ru-RU")} zł</strong>
+                      </span>
+                      <span>
+                        мед: <strong className="text-slate-800">{dep.median_price.toLocaleString("ru-RU")} zł</strong>
+                      </span>
+                    </div>
                   </div>
-
-                  <div className="text-[11px] text-emerald-700 font-medium bg-emerald-50/80 px-2 py-1 rounded-md mb-2 truncate border border-emerald-100">
-                    {dep.delta_text}
-                  </div>
-
-                  <div className="flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-100 text-slate-500">
-                    <span>
-                      ср: <strong className="text-slate-700">{dep.median_price.toLocaleString("ru-RU")} zł</strong>
-                    </span>
-                    <span>
-                      10%: <strong className="text-slate-900 font-bold">{dep.p10_price.toLocaleString("ru-RU")} zł</strong>
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
 
-        {/* 1. ИСТОРИЯ ГОРЯЧИХ ВЫЛЕТОВ */}
-        <details className="dashboard-fold bg-white border border-slate-200" id="departureHistoryFold">
-          <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
-            <div className="flex items-center gap-2">
-              <Flame className="w-4 h-4 text-orange-500" />
-              <span>
-                История горячих вылетов ({departuresData?.hot_history?.length ?? hotDepartureCases.length})
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-500 font-medium">Только прошедшие hot/late-buy кейсы</span>
+        {/* 1. ИСТОРИЯ ГОРЯЧИХ СБРОСОВ ПО ЭТОМУ НАПРАВЛЕНИЮ (Live DB) */}
+        {hotHistory.length > 0 && (
+          <details className="dashboard-fold bg-white border border-slate-200" id="departureHistoryFold">
+            <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
+              <div className="flex items-center gap-2">
+                <Flame className="w-4 h-4 text-orange-500" />
+                <span>Реальные снижения цен в этом направлении ({hotHistory.length})</span>
+              </div>
               <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
-          </summary>
-          <div className="p-4 text-sm">
-            <p className="text-xs text-slate-500 mb-3">
-              Архив уже наступивших вылетов, где за последнюю неделю до старта заметно падали цены. Нажмите на строку для раскрытия деталей.
-            </p>
-            <div className="overflow-x-auto max-h-[460px] overflow-y-auto scrollbar-thin">
-              <table className="w-full text-left border-collapse text-xs">
-                <thead className="sticky top-0 z-10">
-                  <tr className="border-b border-slate-200 bg-slate-50 text-slate-600 font-semibold uppercase">
-                    <th className="py-2.5 px-3">Вылет</th>
-                    <th className="py-2.5 px-3">За сколько</th>
-                    <th className="py-2.5 px-3">Падение</th>
-                    <th className="py-2.5 px-3">Цена / Сигнал</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {(departuresData?.hot_history && departuresData.hot_history.length > 0
-                    ? departuresData.hot_history
-                    : hotDepartureCases
-                  ).map((c, i) => (
-                    <tr
-                      key={i}
-                      onClick={() => onFilterByDeparture?.(c.dates?.split(" ")[0] || "")}
-                      className="hover:bg-slate-50/80 cursor-pointer transition-colors"
-                      title="Показать предложения по этой дате"
-                    >
-                      <td className="py-2.5 px-3">
-                        <div className="font-bold text-slate-900">{c.departure}</div>
-                        <div className="text-[11px] text-slate-500">{c.dates}</div>
-                      </td>
-                      <td className="py-2.5 px-3 font-semibold text-slate-700">{c.daysBefore}</td>
-                      <td className="py-2.5 px-3">
-                        <span className="font-bold text-emerald-600">{c.drop}</span>
-                        <div className="text-[10px] text-slate-400">{c.seenAt}</div>
-                      </td>
-                      <td className="py-2.5 px-3">
-                        <span className="inline-block bg-orange-100 text-orange-800 font-bold px-1.5 py-0.5 rounded text-[11px] mr-2">
-                          Score {c.score}
-                        </span>
-                        <span>
-                          деш. 10%: <strong>{c.p10.toLocaleString("ru-RU")} zł</strong>
-                        </span>
-                        <div className="text-[10px] text-slate-400">
-                          мин. {c.min} · ср. {c.median} · {c.hotelsCount} отелей
-                        </div>
-                      </td>
+            </summary>
+            <div className="p-4 text-sm">
+              <p className="text-xs text-slate-500 mb-3">
+                Зафиксированные в БД отели с падением от −10% относительно средней цены по аналогичному составу туристов.
+              </p>
+              <div className="overflow-x-auto max-h-[380px] overflow-y-auto scrollbar-thin">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead className="sticky top-0 z-10">
+                    <tr className="border-b border-slate-200 bg-slate-50 text-slate-600 font-semibold uppercase">
+                      <th className="py-2.5 px-3">Отель</th>
+                      <th className="py-2.5 px-3">Дата вылета</th>
+                      <th className="py-2.5 px-3">Мин. / Средняя</th>
+                      <th className="py-2.5 px-3">Сброс</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {hotHistory.map((c, i) => (
+                      <tr key={i} className="hover:bg-slate-50/80">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">
+                          {c.hotel_name || c.departure}
+                        </td>
+                        <td className="py-2.5 px-3 text-slate-700">{c.checkin_date || c.dates}</td>
+                        <td className="py-2.5 px-3">
+                          <strong className="text-emerald-700">
+                            {(c.min_price_pln ?? c.min ?? 0).toLocaleString("ru-RU")} zł
+                          </strong>{" "}
+                          <span className="text-slate-400">
+                            (ср. {(c.avg_price_pln ?? c.median ?? 0).toLocaleString("ru-RU")} zł)
+                          </span>
+                        </td>
+                        <td className="py-2.5 px-3 font-bold text-emerald-600">
+                          {typeof c.drop_pct === "number" ? `${c.drop_pct.toFixed(1)}%` : c.drop}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </details>
+          </details>
+        )}
 
-        {/* 2. ЗАМЕТНЫЕ ИЗМЕНЕНИЯ ЦЕН */}
+        {/* 2. ЗАМЕТНЫЕ ИЗМЕНЕНИЯ ЦЕН (Live DB за 24–72ч) */}
         <details className="dashboard-fold bg-white border border-slate-200" id="alertsSection" open>
           <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
             <div className="flex items-center gap-2">
               <span>📊</span>
-              <span>Заметные изменения цен</span>
+              <span>Заметные изменения цен (24–72ч)</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
+            <span className="text-slate-400 font-bold text-sm">⌄</span>
           </summary>
           <div className="p-4 sm:p-5">
-            <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              Отели, у которых <strong>заметно изменилась цена</strong> (от 8% между проверками или возврат из дорогого сегмента) и <strong>эта цена всё ещё актуальна</strong> — в последнем обновлении она не менялась. Прошлые события — в «Истории».
-            </p>
-
-            {/* Chips */}
             <div className="flex items-center gap-2.5 mb-4 flex-wrap">
               <button
                 type="button"
                 onClick={() => setActiveAlertTab("drops")}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   activeAlertTab === "drops"
                     ? "bg-emerald-100 text-emerald-800 border-2 border-emerald-400 shadow-sm"
                     : "bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100"
                 }`}
               >
-                ↓ 30 подешевело сейчас
+                ↓ {dropsList.length} подешевело
               </button>
               <button
                 type="button"
                 onClick={() => setActiveAlertTab("hikes")}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   activeAlertTab === "hikes"
                     ? "bg-rose-100 text-rose-800 border-2 border-rose-400 shadow-sm"
                     : "bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100"
                 }`}
               >
-                ↑ 1 подорожало сейчас
+                ↑ {hikesList.length} подорожало
               </button>
               <button
                 type="button"
                 onClick={() => setActiveAlertTab("history")}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   activeAlertTab === "history"
                     ? "bg-slate-200 text-slate-800 border-2 border-slate-400 shadow-sm"
                     : "bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200"
                 }`}
               >
-                🕒 257 в истории
+                🕒 {historyList.length} заметных движений
               </button>
             </div>
 
-            {/* Price change list */}
-            {topDrops.length === 0 ? (
-              <LoadingSpinner
-                variant="card"
-                size="sm"
-                label="Поиск недавних изменений цен..."
-                description="Анализируем колебания котировок за 24–48 часов"
-              />
+            {loadingAnalytics && !filterAnalytics ? (
+              <LoadingSpinner variant="card" size="sm" label="Загрузка изменений цен из БД..." />
+            ) : visibleMoves.length === 0 ? (
+              <div className="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl p-4 text-center">
+                За последние 24–72 часа заметных скачков (≥ 40 zł) в этой категории не зафиксировано.
+              </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {topDrops.slice(0, 6).map((drop) => (
-                  <div
-                    key={drop.cohort_hash}
-                    onClick={() => onSelectHotel(drop.hotel_id)}
-                    className="bg-white border border-slate-200 hover:border-emerald-300 rounded-xl p-3 shadow-xs hover:shadow-sm cursor-pointer transition-all"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold text-slate-900 truncate">
-                          {drop.hotel_name}
+                {visibleMoves.slice(0, 9).map((m, idx) => {
+                  const isDrop = m.delta_pln < 0;
+                  return (
+                    <div
+                      key={`${m.hotel_id}-${idx}`}
+                      onClick={() => onSelectHotel(m.hotel_id)}
+                      className={`bg-white border rounded-xl p-3 shadow-xs hover:shadow-sm cursor-pointer transition-all ${
+                        isDrop
+                          ? "border-slate-200 hover:border-emerald-300"
+                          : "border-slate-200 hover:border-rose-300"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <div className="text-xs font-bold text-slate-900 truncate">
+                            {m.hotel_name}
+                          </div>
+                          <div className="text-[11px] text-slate-500 mt-0.5">
+                            {m.airport_code || "WAW"} {m.checkin_date ? `· ${m.checkin_date}` : ""}
+                          </div>
                         </div>
-                        <div className="text-[11px] text-slate-500 mt-0.5">
-                          {drop.airport} · {drop.departure_date} · {drop.duration_nights}н
-                        </div>
+                        <span
+                          className={`shrink-0 text-[11px] font-extrabold px-1.5 py-0.5 rounded ${
+                            isDrop ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"
+                          }`}
+                        >
+                          {m.delta_pct > 0 ? `+${m.delta_pct}%` : `${m.delta_pct}%`}
+                        </span>
                       </div>
-                      <span className="shrink-0 bg-emerald-100 text-emerald-800 text-[11px] font-extrabold px-1.5 py-0.5 rounded">
-                        -{drop.drop_pct}%
-                      </span>
+                      <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
+                        <span className="text-[11px] text-slate-400 line-through">
+                          {m.prev_price.toLocaleString("ru-RU")} zł
+                        </span>
+                        <span className={`text-sm font-extrabold ${isDrop ? "text-emerald-600" : "text-rose-600"}`}>
+                          {m.curr_price.toLocaleString("ru-RU")} zł
+                        </span>
+                      </div>
                     </div>
-                    <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
-                      <span className="text-[11px] text-slate-400 line-through">
-                        {drop.previous_price_pln.toLocaleString("ru-RU")} zł
-                      </span>
-                      <span className="text-sm font-extrabold text-emerald-600">
-                        {drop.current_price_pln.toLocaleString("ru-RU")} zł
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
         </details>
 
-        {/* 3. АНАЛИЗ РАННЕГО БРОНИРОВАНИЯ (FIRST MINUTE VS LAST MINUTE) */}
-        <details className="dashboard-fold bg-white border border-slate-200" id="earlyBookingFold" onToggle={triggerResize}>
-          <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
-            <div className="flex items-center gap-2">
-              <span>🧈</span>
-              <span>Анализ раннего бронирования (First Minute vs Last Minute)</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-blue-600 font-semibold">Выгодно брать заранее (EBAS 84)</span>
-              <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
-          </summary>
+        {/* 3. РАННЕЕ БРОНИРОВАНИЕ (Real EBAS & Survival, hidden if insufficient or lastminute) */}
+        {showEbSection && (
+          <details className="dashboard-fold bg-white border border-slate-200" id="earlyBookingFold" onToggle={triggerResize}>
+            <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
+              <div className="flex items-center gap-2">
+                <span>🏷️</span>
+                <span>Анализ раннего бронирования (First Minute vs Last Minute)</span>
+              </div>
+              <div className="flex items-center gap-3">
+                {ebSummary && (
+                  <span className="text-xs text-blue-600 font-semibold">
+                    EBAS {Math.round(ebSummary.ebas_score)} / 100
+                  </span>
+                )}
+                <span className="text-slate-400 font-bold text-sm">⌄</span>
+              </div>
+            </summary>
 
-          <div className="p-4 sm:p-5">
-            {!earlyBooking ? (
-              <LoadingSpinner
-                variant="card"
-                size="md"
-                label="Загрузка анализа раннего бронирования..."
-                description="Вычисляем индекс EBAS и исторические кривые доступности отелей"
-              />
-            ) : (
-              <>
-                {/* Top EBAS banner */}
-                <div className="bg-emerald-50/80 border border-emerald-200/90 rounded-2xl p-4 sm:p-5 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="space-y-1.5 max-w-xl">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">🏆</span>
-                      <span className="text-base font-extrabold text-emerald-900">
-                        Раннее бронирование однозначно выгодно
-                      </span>
-                    </div>
-                    <div className="text-xs font-semibold text-emerald-700">
-                      Индекс выгоды раннего бронирования (EBAS): <strong>84.3 / 100</strong>
-                    </div>
-                    <p className="text-xs text-slate-600 leading-relaxed pt-1">
-                      Цены большинства отелей растут по мере приближения к вылету, а популярные 4–5★ варианты раскупаются первыми. Ожидание горячих туров несет высокий риск распродажи.
-                    </p>
-                  </div>
-
-                  {/* Stat badges */}
-                  <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
-                    <div className="bg-white border border-emerald-100 rounded-xl px-3 py-2 text-center min-w-[95px] shadow-xs">
-                      <div className="text-[10px] uppercase font-semibold text-slate-500">Когорт в базе</div>
-                      <div className="text-base font-extrabold text-slate-900 mt-0.5">4669</div>
-                    </div>
-                    <div className="bg-white border border-emerald-100 rounded-xl px-3 py-2 text-center min-w-[105px] shadow-xs">
-                      <div className="text-[10px] uppercase font-semibold text-slate-500">Δ к Last Minute</div>
-                      <div className="text-base font-extrabold text-rose-600 mt-0.5">+16.1%</div>
-                    </div>
-                    <div className="bg-white border border-emerald-100 rounded-xl px-3 py-2 text-center min-w-[95px] shadow-xs">
-                      <div className="text-[10px] uppercase font-semibold text-slate-500">Риск Sold Out</div>
-                      <div className="text-base font-extrabold text-rose-600 mt-0.5">50%</div>
-                    </div>
-                  </div>
+            <div className="p-4 sm:p-5">
+              {!earlyBooking ? (
+                <LoadingSpinner variant="card" size="md" label="Расчёт EBAS по когортам БД..." />
+              ) : !earlyBooking.has_data ? (
+                <div className="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                  {ebSummary?.description || "Недостаточно длинной истории горизонтов по этому фильтру для построения кривой EBAS."}
                 </div>
-
-                {/* 2 Side-by-side charts */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                  <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-                    <div className="flex items-center gap-2 text-xs font-bold text-slate-800 mb-1">
-                      <span>📊</span>
-                      <span>Парная динамика цен по горизонтам</span>
+              ) : (
+                <>
+                  <div className="bg-emerald-50/80 border border-emerald-200/90 rounded-2xl p-4 sm:p-5 mb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="space-y-1.5 max-w-xl">
+                      <div className="text-base font-extrabold text-emerald-900">
+                        {ebSummary?.title}
+                      </div>
+                      <div className="text-xs font-semibold text-emerald-700">
+                        Индекс EBAS (по данным БД): <strong>{ebSummary?.ebas_score} / 100</strong>
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                        {ebSummary?.description}
+                      </p>
                     </div>
-                    <p className="text-[11px] text-slate-500 mb-2">
-                      Изменение цены одних и тех же отелей относительно First Minute (базис 0% на D 60–120 дней).
-                    </p>
-                    <div ref={ebTrajRef} id="ebTrajectoryChart" className="w-full h-[260px]" />
+
+                    <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                      <div className="bg-white border border-emerald-100 rounded-xl px-3 py-2 text-center min-w-[95px] shadow-xs">
+                        <div className="text-[10px] uppercase font-semibold text-slate-500">Когорт в выборке</div>
+                        <div className="text-base font-extrabold text-slate-900 mt-0.5">
+                          {(ebSummary?.total_cohorts ?? 0).toLocaleString("ru-RU")}
+                        </div>
+                      </div>
+                      <div className="bg-white border border-emerald-100 rounded-xl px-3 py-2 text-center min-w-[105px] shadow-xs">
+                        <div className="text-[10px] uppercase font-semibold text-slate-500">Δ к Last Minute</div>
+                        <div className="text-base font-extrabold text-slate-900 mt-0.5">
+                          {(ebSummary?.lm_delta_pct ?? 0) > 0 ? "+" : ""}
+                          {ebSummary?.lm_delta_pct ?? 0}%
+                        </div>
+                      </div>
+                      <div className="bg-white border border-emerald-100 rounded-xl px-3 py-2 text-center min-w-[95px] shadow-xs">
+                        <div className="text-[10px] uppercase font-semibold text-slate-500">Исчезло до 14д</div>
+                        <div className="text-base font-extrabold text-rose-600 mt-0.5">
+                          {ebSummary?.sold_out_risk_pct ?? 0}%
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
-                    <div className="flex items-center gap-2 text-xs font-bold text-slate-800 mb-1">
-                      <span>📉</span>
-                      <span>Кривая доступности отелей (Survival Rate)</span>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
+                      <div className="text-xs font-bold text-slate-800 mb-2">📊 Траектория цен по горизонтам</div>
+                      <div ref={ebTrajRef} id="ebTrajectoryChart" className="w-full h-[260px]" />
                     </div>
-                    <p className="text-[11px] text-slate-500 mb-2">
-                      Доля отелей из раннего бронирования, оставшихся в наличии к моменту D дней до вылета.
-                    </p>
-                    <div ref={ebSurvRef} id="ebSurvivalChart" className="w-full h-[260px]" />
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs">
+                      <div className="text-xs font-bold text-slate-800 mb-2">📉 Выживаемость когорт до вылета</div>
+                      <div ref={ebSurvRef} id="ebSurvivalChart" className="w-full h-[260px]" />
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
-          </div>
-        </details>
+                </>
+              )}
+            </div>
+          </details>
+        )}
 
-        {/* 4. ЦЕНОВОЙ КАЛЕНДАРЬ ПО ДАТАМ ВЫЛЕТА */}
+        {/* 4. ЦЕНОВОЙ КАЛЕНДАРЬ ПО ДАТАМ ВЫЛЕТА (Live DB) */}
         <details className="dashboard-fold bg-white border border-slate-200" id="calendarFold">
           <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-purple-600" />
-              <span>Ценовой календарь по датам вылета</span>
+              <span>Ценовой календарь по датам вылета ({calendarDates.length})</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-500 font-medium">Тепловая карта цен</span>
-              <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
+            <span className="text-slate-400 font-bold text-sm">⌄</span>
           </summary>
           <div className="p-4 sm:p-5">
-            <p className="text-xs text-slate-500 mb-3">
-              Показывает минимальную цену предложения на каждую дату вылета. Зелёные ячейки соответствуют наиболее дешёвым датам.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
-              {calendarDates.map((cd, idx) => (
-                <div
-                  key={idx}
-                  className={`p-2.5 rounded-xl border text-center transition-all ${
-                    cd.status === "hot"
-                      ? "bg-emerald-50 border-emerald-300 text-emerald-950 font-bold"
-                      : cd.status === "good"
-                      ? "bg-teal-50/70 border-teal-200 text-slate-900"
-                      : cd.status === "high"
-                      ? "bg-rose-50 border-rose-200 text-rose-950"
-                      : "bg-slate-50 border-slate-200 text-slate-800"
-                  }`}
-                >
-                  <div className="text-[11px] text-slate-500">{cd.date}</div>
-                  <div className="text-xs font-extrabold mt-0.5">
-                    {cd.minPrice.toLocaleString("ru-RU")} zł
-                  </div>
+            {calendarDates.length === 0 ? (
+              <div className="text-xs text-slate-500">Нет активных дат вылета в текущем срезе фильтра.</div>
+            ) : (
+              <>
+                <p className="text-xs text-slate-500 mb-3">
+                  Минимальная цена в текущем 24ч срезе на каждую дату вылета. Клик по ячейке фильтрует таблицу.
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
+                  {calendarDates.slice(0, 28).map((cd) => {
+                    const isCheapest = cd.min_price <= calMinAll * 1.05;
+                    const isExpensive = calMedianAll > 0 && cd.min_price >= calMedianAll * 1.12;
+                    return (
+                      <button
+                        key={cd.date}
+                        type="button"
+                        onClick={() => onFilterByDeparture?.(cd.date)}
+                        className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer hover:shadow-sm ${
+                          isCheapest
+                            ? "bg-emerald-50 border-emerald-300 text-emerald-950 font-bold"
+                            : isExpensive
+                            ? "bg-rose-50 border-rose-200 text-rose-950"
+                            : "bg-slate-50 border-slate-200 text-slate-800 hover:border-blue-300"
+                        }`}
+                      >
+                        <div className="text-[11px] text-slate-500">
+                          {cd.date.slice(5).split("-").reverse().join(".")} · {cd.hotels_count} от.
+                        </div>
+                        <div className="text-xs font-extrabold mt-0.5">
+                          {cd.min_price.toLocaleString("ru-RU")} zł
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </div>
         </details>
 
@@ -700,108 +680,105 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
           <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
             <div className="flex items-center gap-2">
               <span>📈</span>
-              <span>Количество предложений по дням</span>
+              <span>Глубина мониторинга по дням (60 дн.)</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-500 font-medium">Доп. аналитика</span>
-              <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
+            <span className="text-slate-400 font-bold text-sm">⌄</span>
           </summary>
           <div className="p-4 sm:p-5">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-800 mb-1">
-              <span>📈</span>
-              <span>Количество предложений по дням</span>
-            </div>
-            <p className="text-[11px] text-slate-500 mb-3">
-              Одна точка в день — последний скрап за сутки • видимая зона ≤10000 PLN
-            </p>
             {offersTimeline.length === 0 ? (
-              <LoadingSpinner
-                variant="card"
-                size="sm"
-                label="Загрузка динамики числа предложений..."
-                description="Анализируем историческую глубину рынка по дням"
-              />
+              <LoadingSpinner variant="card" size="sm" label="Загрузка динамики когорт..." />
             ) : (
               <div ref={offersCountRef} id="offersCountChart" className="w-full h-[270px]" />
             )}
           </div>
         </details>
 
-        {/* 6. КОГДА ПОКУПАТЬ: СТАТИСТИКА СНИЖЕНИЯ ЦЕН */}
+        {/* 6. КОГДА ПОКУПАТЬ: РЕАЛЬНАЯ СТАТИСТИКА СНИЖЕНИЙ В БД */}
         <details className="dashboard-fold bg-white border border-slate-200" id="timingFold">
           <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-blue-600" />
-              <span>Когда покупать: статистика снижения цен</span>
+              <span>Когда фиксируются снижения цен (Live БД)</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-500 font-medium">Время суток · день недели · часть месяца</span>
-              <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
+            <span className="text-slate-400 font-bold text-sm">⌄</span>
           </summary>
           <div className="p-4 sm:p-5">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="p-3.5 bg-blue-50/60 border border-blue-200/80 rounded-xl">
-                <div className="text-[11px] font-semibold text-blue-800 uppercase">Лучшее время суток</div>
-                <div className="text-base font-extrabold text-blue-950 mt-1">02:00 – 06:00</div>
-                <div className="text-[11px] text-slate-500 mt-1">
-                  Снижение цен на <strong>-3.8%</strong> чаще фиксируется ночью во время пересчёта квот.
+            {!timingStats || timingStats.total_drops_analyzed === 0 ? (
+              <div className="text-xs text-slate-500">
+                Пока недостаточно зафиксированных снижений по этому фильтру (последние 30 дней).
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-3.5 bg-blue-50/60 border border-blue-200/80 rounded-xl">
+                  <div className="text-[11px] font-semibold text-blue-800 uppercase">Окно частых сбросов (UTC)</div>
+                  <div className="text-base font-extrabold text-blue-950 mt-1">{timingStats.best_window}</div>
+                  <div className="text-[11px] text-slate-500 mt-1">
+                    {timingStats.best_window_share_pct}% от всех снижений (ср. шаг {timingStats.avg_drop_pct ?? 0}%).
+                  </div>
+                </div>
+                <div className="p-3.5 bg-emerald-50/60 border border-emerald-200/80 rounded-xl">
+                  <div className="text-[11px] font-semibold text-emerald-800 uppercase">Лидер по дню недели</div>
+                  <div className="text-base font-extrabold text-emerald-950 mt-1">
+                    {bestWeekday ? `${bestWeekday.day} (${bestWeekday.drops} сбросов)` : "—"}
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-1">
+                    Реальная статистика по {timingStats.total_drops_analyzed} снижениям за 30 дней.
+                  </div>
+                </div>
+                <div className="p-3.5 bg-purple-50/60 border border-purple-200/80 rounded-xl">
+                  <div className="text-[11px] font-semibold text-purple-800 uppercase">Уход отелей (Sold-Out 7д)</div>
+                  <div className="text-base font-extrabold text-purple-950 mt-1">
+                    {overview?.sold_out_7d_lost_count ?? 0} отелей
+                  </div>
+                  <div className="text-[11px] text-slate-500 mt-1">
+                    Пропали из выдачи за последние 48ч (из замеченных за 7 дней).
+                  </div>
                 </div>
               </div>
-
-              <div className="p-3.5 bg-emerald-50/60 border border-emerald-200/80 rounded-xl">
-                <div className="text-[11px] font-semibold text-emerald-800 uppercase">Лучший день недели</div>
-                <div className="text-base font-extrabold text-emerald-950 mt-1">Вторник & Среда</div>
-                <div className="text-[11px] text-slate-500 mt-1">
-                  Туроператоры корректируют чартерные остатки после анализа загрузки выходных дней.
-                </div>
-              </div>
-
-              <div className="p-3.5 bg-purple-50/60 border border-purple-200/80 rounded-xl">
-                <div className="text-[11px] font-semibold text-purple-800 uppercase">Фаза месяца</div>
-                <div className="text-base font-extrabold text-purple-950 mt-1">10–20 числа</div>
-                <div className="text-[11px] text-slate-500 mt-1">
-                  Середина месяца традиционно спокойнее по спросу, чем даты зарплат и авансов.
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </details>
 
-        {/* 7. СТАТИСТИКА И СИГНАЛЫ */}
+        {/* 7. СТАТИСТИКА ФИЛЬТРА (Live БД) */}
         <details className="dashboard-fold bg-white border border-slate-200" id="statsFold">
           <summary className="dashboard-fold-summary bg-white hover:bg-slate-50">
             <div className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-slate-600" />
-              <span>Статистика и сигналы</span>
+              <span>Статистика текущего фильтра</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-500 font-medium">Скрыто по умолчанию</span>
-              <span className="text-slate-400 font-bold text-sm">⌄</span>
-            </div>
+            <span className="text-slate-400 font-bold text-sm">⌄</span>
           </summary>
           <div className="p-4 sm:p-5">
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
               <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-center">
-                <div className="text-[11px] text-slate-500 uppercase font-semibold">Отелей в базе</div>
-                <div className="text-lg font-extrabold text-slate-900 mt-0.5">142</div>
+                <div className="text-[11px] text-slate-500 uppercase font-semibold">Активных отелей</div>
+                <div className="text-lg font-extrabold text-slate-900 mt-0.5">
+                  {(overview?.total_hotels ?? hotels.length).toLocaleString("ru-RU")}
+                </div>
               </div>
               <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-center">
-                <div className="text-[11px] text-slate-500 uppercase font-semibold">Когорт туров</div>
-                <div className="text-lg font-extrabold text-slate-900 mt-0.5">4 669</div>
+                <div className="text-[11px] text-slate-500 uppercase font-semibold">Когорт фильтра</div>
+                <div className="text-lg font-extrabold text-slate-900 mt-0.5">
+                  {(overview?.total_cohorts ?? 0).toLocaleString("ru-RU")}
+                </div>
               </div>
               <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-center">
                 <div className="text-[11px] text-slate-500 uppercase font-semibold">Снимков цен</div>
-                <div className="text-lg font-extrabold text-slate-900 mt-0.5">43 651</div>
+                <div className="text-lg font-extrabold text-slate-900 mt-0.5">
+                  {(overview?.total_snapshots ?? 0).toLocaleString("ru-RU")}
+                </div>
               </div>
               <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-center">
                 <div className="text-[11px] text-slate-500 uppercase font-semibold">Средняя цена</div>
-                <div className="text-lg font-extrabold text-slate-900 mt-0.5">8 240 zł</div>
+                <div className="text-lg font-extrabold text-slate-900 mt-0.5">
+                  {(overview?.avg_price ?? 0).toLocaleString("ru-RU")} zł
+                </div>
               </div>
               <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-center">
                 <div className="text-[11px] text-slate-500 uppercase font-semibold">Медиана</div>
-                <div className="text-lg font-extrabold text-slate-900 mt-0.5">7 650 zł</div>
+                <div className="text-lg font-extrabold text-slate-900 mt-0.5">
+                  {(overview?.median_price ?? 0).toLocaleString("ru-RU")} zł
+                </div>
               </div>
             </div>
           </div>

@@ -15,7 +15,9 @@ import math
 from datetime import date, datetime, timezone
 from typing import Any, Dict, List, Optional
 from app.schemas.search import HotelIntelligence
+from app.services.canonical_filters import classify_filter_type
 from app.services.cost_decomposer import CostDecomposer
+from app.services.hotel_deal_score import compute_unified_deal_assessment
 
 
 def get_destination_season_info(destination: str, departure_date: Optional[date] = None) -> Dict[str, Any]:
@@ -304,75 +306,18 @@ def evaluate_search_intelligence(
         hist_min_pln = total_price_pln
         diff_pct = 0.0
 
-    # 4. Compute Deal Score (0-100)
-    score: float = 65.0
-    if not has_history:
-        # Neutral baseline for newly discovered / sparse hotels: strictly no phantom deal bonuses!
-        score = 50.0
-        ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.0
-        if ta >= 4.5:
-            score += 5.0
-        elif ta < 3.5:
-            score -= 5.0
-    else:
-        # (A) Historical Price Deviation Impact (strictly hotel's own verified history)
-        if diff_pct < -25.0:
-            score += 24.0  # Exceptional discount (> 25% below hotel's own norm)
-        elif diff_pct < -15.0:
-            score += 17.0
-        elif diff_pct < -8.0:
-            score += 10.0
-        elif diff_pct <= 5.0:
-            score += 0.0   # Fair market price
-        elif diff_pct <= 18.0:
-            score -= 14.0  # Moderately overpriced
-        elif diff_pct <= 30.0:
-            score -= 24.0  # Overpriced
-        else:
-            score -= 35.0  # Strongly overpriced (> +30% above hotel's own norm)
+    # 4. Compute Unified Deal Score (0-100) using single-source-of-truth engine
+    ta_val = float(ta_rating) if (ta_rating is not None and float(ta_rating) > 0) else None
+    is_budget_tier = bool(ta_val is not None and ta_val < 3.5)
+    search_filter_type = classify_filter_type(
+        None, checkin_dates=[departure_date] if departure_date else None
+    )
 
-        # (B) Seasonality Context
-        if season_info["season"] in ("holiday_superpeak", "peak"):
-            if diff_pct <= 5.0:
-                score += 6.0
-        elif season_info["season"] == "low":
-            score -= 10.0
-
-        # (C) Departure Timing & Price Drop Probability
-        if 0 <= days_to_dep <= 12:
-            if diff_pct <= 0.0:
-                score += 5.0
-        elif days_to_dep > 35:
-            score -= 4.0
-
-        # (D) Hotel Reputation & Quality Tier (TripAdvisor)
-        ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.2
-        if ta >= 4.6:
-            score += 6.0
-        elif ta >= 4.3:
-            score += 3.0
-        elif ta < 3.4:
-            score -= 22.0
-        elif ta < 3.8:
-            score -= 12.0
-
-    # (E) Quality Guardrails
-    is_budget_tier = False
-    ta = float(ta_rating) if ta_rating is not None and ta_rating > 0 else 4.2
-    if ta < 3.5:
-        score = min(62.0, score)
-        is_budget_tier = True
-    elif ta < 3.8:
-        score = min(72.0, score)
-
-    # Final clamping to valid range [25, 98]
-    final_score = int(round(max(25.0, min(98.0, score))))
-
-    # 5. Mathematically Exact Delta vs Typical Seasonal Price (Plateau Baseline)
     delta_vs_typical_pct: Optional[float] = None
     if has_history and typical_median_pln and typical_median_pln > 0:
-        delta_vs_typical_pct = round(((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1)
-        delta_vs_typical_pct = round(((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1)
+        delta_vs_typical_pct = round(
+            ((total_price_pln - typical_median_pln) / typical_median_pln) * 100.0, 1
+        )
 
     # 6. Real 48-Hour Price Change (strictly requires mature observations >= 4)
     real_drop_48h_pct: Optional[float] = None
@@ -380,7 +325,6 @@ def evaluate_search_intelligence(
         now_utc = datetime.now(timezone.utc)
         candidates_48h = []
         for snap in hist_snapshots:
-            # Strictly require comparable departure dates (do NOT compare Nov 2026 departure with June 2027)
             s_dep = snap.get("departure_date")
             if departure_date and s_dep:
                 if isinstance(s_dep, str):
@@ -391,7 +335,6 @@ def evaluate_search_intelligence(
                 elif isinstance(s_dep, datetime):
                     s_dep = s_dep.date()
                 if s_dep and abs((s_dep - departure_date).days) > 21:
-                    # Incompatible travel horizon
                     continue
 
             r_at = snap.get("recorded_at")
@@ -438,48 +381,22 @@ def evaluate_search_intelligence(
                     chg = ((total_price_pln - norm_prev_p) / norm_prev_p) * 100.0
                     real_drop_48h_pct = round(chg, 1)
 
-    # 7. Determine Hopper Forecast & Action Verdict
-    display_delta_pct = abs(round(delta_vs_typical_pct)) if delta_vs_typical_pct is not None else abs(round(diff_pct))
-
-    if not has_history:
-        verdict = "WAIT"
-        badge = "FAIR_PRICE"
-        forecast_reason = (
-            f"Первичные замеры отеля (зафиксировано {len(hist_snapshots) if hist_snapshots else 1} точек). "
-            f"Сравнение со средней нормой отключено во избежание неточных выводов до накопления истории."
-        )
-        confidence = 0.50
-    elif is_budget_tier:
-        verdict = "WAIT"
-        badge = "FAIR_PRICE"
-        forecast_reason = (
-            f"Бюджетный отель (TripAdvisor {ta:.1f}★). "
-            f"Низкий тариф обусловлен скромным уровнем сервиса и комфорта, а не аномальной скидкой."
-        )
-        confidence = 0.85
-    elif final_score >= 80:
-        verdict = "BUY NOW"
-        badge = "SUPER_DEAL" if final_score >= 88 else "GOOD_DEAL"
-        if days_to_dep <= 14:
-            forecast_reason = f"Выгодная цена (на {display_delta_pct}% ниже нормы). До вылета {days_to_dep} дн. — места на рейсах заканчиваются, вероятность снижения минимальна."
-        elif season_info["season"] in ("holiday_superpeak", "peak"):
-            forecast_reason = f"Отличный тариф для периода «{season_info['label']}». {season_info['risk_expl']}. Рекомендуем фиксировать бронь."
-        else:
-            forecast_reason = f"Цена на {display_delta_pct}% ниже типичного уровня. Прогноз Hopper: локальное ценовое дно, дальнейшее падение маловероятно."
-        confidence = 0.90
-    elif final_score < 48:
-        verdict = "OVERPRICED"
-        badge = "OVERPRICED"
-        forecast_reason = f"Тариф завышен (+{display_delta_pct}% к норме). {season_info['label']}. Высокая вероятность коррекции цен или появления спецпредложений ближе к датам."
-        confidence = 0.85
-    else:
-        verdict = "WAIT"
-        badge = "FAIR_PRICE"
-        if days_to_dep > 35:
-            forecast_reason = f"Стандартная рыночная цена ({season_info['label']}). До вылета {days_to_dep} дн. — рекомендуем поставить в Watchlist и отслеживать ценовые колебания."
-        else:
-            forecast_reason = f"Справедливый тариф в пределах сезонной нормы. Резких скачков не прогнозируется, можно следить за динамикой."
-        confidence = 0.85
+    assessment = compute_unified_deal_assessment(
+        latest_price=total_price_pln,
+        typical_price=typical_median_pln,
+        hist_df=None,
+        samples_count=len(hist_pure_rates) if has_history else (len(hist_snapshots or [])),
+        ta_rating=ta_val,
+        filter_type=search_filter_type,
+        days_to_dep=days_to_dep,
+        season_info=season_info,
+        change_48h_pct=real_drop_48h_pct,
+    )
+    final_score = int(assessment["deal_score"])
+    verdict = str(assessment["hopper_verdict"])
+    badge = str(assessment["deal_badge"])
+    forecast_reason = str(assessment["recommendation"])
+    confidence = 0.50 if not has_history else (0.90 if verdict == "BUY NOW" else 0.85)
 
     return HotelIntelligence(
         deal_score=final_score,
