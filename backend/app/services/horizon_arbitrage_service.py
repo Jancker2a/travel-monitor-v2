@@ -776,23 +776,40 @@ class HorizonArbitrageService:
                 lm_p_str = _fmt_p(lm_stage['price_pln'])
                 story_parts.append(f"горящий тур за {lm_days} дн. до вылета (на дату {lm_date_fmt}) продается за {lm_p_str} zł")
 
-                pre_prices = [s["price_pln"] for s in [eb_stage, month_stage, short_stage] if s is not None]
-                min_pre = min(pre_prices) if pre_prices else lm_stage["price_pln"]
+                pre_stage_items = [
+                    ("Раннее", eb_stage),
+                    ("За 3–4 нед.", month_stage),
+                    ("За 1–2 нед.", short_stage),
+                ]
+                valid_pre = [(lbl, st) for lbl, st in pre_stage_items if st is not None]
+                if valid_pre:
+                    min_pre_label, min_pre_stage = min(valid_pre, key=lambda x: x[1]["price_pln"])
+                    min_pre = min_pre_stage["price_pln"]
+                    min_pre_ref = f"({min_pre_label}: {_fmt_p(min_pre)} zł)"
+                else:
+                    min_pre = lm_stage["price_pln"]
+                    min_pre_ref = f"({_fmt_p(min_pre)} zł)"
+
                 diff_to_min_pre = lm_stage["price_pln"] - min_pre
                 pct_to_min_pre = round((diff_to_min_pre / max(1.0, min_pre)) * 100, 1)
 
                 if diff_to_min_pre <= -200 and pct_to_min_pre <= -8.0:
                     trajectory = "DEEP_DROP"
                     badge = "🔥 Предложение очень выгодное"
-                    conclusion = f"— предложение очень выгодное (экономия {_fmt_p(abs(diff_to_min_pre))} zł к предварительной цене)."
+                    conclusion = f"— предложение очень выгодное: экономия {_fmt_p(abs(diff_to_min_pre))} zł ({pct_to_min_pre:.1f}%) к минимальной цене до вылета {min_pre_ref}."
                 elif diff_to_min_pre >= 200 or pct_to_min_pre >= 5.0:
                     trajectory = "SURCHARGE_RISE"
                     badge = "⚠️ Предложение не выгодное"
-                    conclusion = f"— предложение не выгодное: переплата {_fmt_p(diff_to_min_pre)} zł (+{pct_to_min_pre:.0f}%) из-за наценки на последние места перед вылетом."
+                    conclusion = f"— предложение не выгодное: переплата {_fmt_p(diff_to_min_pre)} zł (+{pct_to_min_pre:.0f}%) к минимальной цене до вылета {min_pre_ref} из-за наценки на последние места перед вылетом."
                 else:
                     trajectory = "STABLE"
                     badge = "⚖️ Стандартная цена"
-                    conclusion = "— цена находится на стандартном уровне без выраженного дисконта."
+                    if diff_to_min_pre < 0:
+                        conclusion = f"— текущая цена ({lm_p_str} zł) всего на {_fmt_p(abs(diff_to_min_pre))} zł ({pct_to_min_pre:.1f}%) ниже минимальной цены до вылета {min_pre_ref} — выраженного горящего дисконта нет."
+                    elif diff_to_min_pre > 0:
+                        conclusion = f"— текущая цена ({lm_p_str} zł) на {_fmt_p(diff_to_min_pre)} zł (+{pct_to_min_pre:.1f}%) выше минимальной цены до вылета {min_pre_ref} — цена на стандартном уровне без дисконта."
+                    else:
+                        conclusion = f"— текущая цена ({lm_p_str} zł) совпадает с минимальной ценой до вылета {min_pre_ref} — выраженного горящего дисконта нет."
 
                 verdict_text = ", ".join(story_parts) + " " + conclusion
 
