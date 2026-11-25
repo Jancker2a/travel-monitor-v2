@@ -20,6 +20,12 @@ from app.schemas.search import (
 )
 from app.services.query_builder import UniversalQueryBuilder
 from app.services.cost_decomposer import CostDecomposer
+from app.services.normalization import (
+    normalize_airport_code,
+    normalize_board_basis,
+    extract_offer_url_dates,
+    normalize_dest_slug,
+)
 
 from urllib.parse import urlparse, parse_qs
 
@@ -285,7 +291,13 @@ class LiveScraperService:
                             seen_offers.add(dedup_key)
 
                             checkin_d, checkout_d = parse_departure_date(dates_str)
+                            if not checkin_d and pub_url:
+                                checkin_d, url_ret = extract_offer_url_dates(pub_url)
+                                checkout_d = checkout_d or url_ret
                             nights = int(o.get("nights") or o.get("duration") or 7)
+                            raw_ap = o.get("departureLocation") or o.get("departureCode") or "WAW"
+                            norm_ap = normalize_airport_code(raw_ap, pub_url)
+                            norm_board = normalize_board_basis(o.get("serviceDesc") or "All Inclusive")
                             stars_val = int(o.get("categoryRating", 40)) // 10 if o.get("categoryRating") else 4
                             thumb = o.get("thumbnailUrl") or (o.get("imagesUrl")[0] if o.get("imagesUrl") else "")
                             pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
@@ -300,7 +312,6 @@ class LiveScraperService:
                                 ta_revs = int(ta_revs_val) if ta_revs_val and int(ta_revs_val) > 0 else None
                             except (ValueError, TypeError):
                                 ta_revs = None
-                            board = o.get("serviceDesc") or "All Inclusive"
                             results.append({
                                 "hotel_name": hotel_name,
                                 "price": price_num,
@@ -309,8 +320,8 @@ class LiveScraperService:
                                 "checkout_date": checkout_d,
                                 "duration": f"{nights} nocy",
                                 "duration_nights": nights,
-                                "departure_airport": o.get("departureLocation") or o.get("departureCode") or "WAW",
-                                "board_basis": board,
+                                "departure_airport": norm_ap,
+                                "board_basis": norm_board,
                                 "stars": stars_val,
                                 "main_image_url": thumb,
                                 "image_url": thumb,
@@ -419,6 +430,9 @@ class LiveScraperService:
                 raw_duration = m_dur.group(0) if m_dur else "7 nocy"
 
             checkin_d, checkout_d = parse_departure_date(raw_dates)
+            if not checkin_d and offer_url:
+                checkin_d, url_ret = extract_offer_url_dates(offer_url)
+                checkout_d = checkout_d or url_ret
             nights = parse_duration_nights(raw_duration)
 
             # Airport
@@ -430,6 +444,7 @@ class LiveScraperService:
                 m_flight = re.search(r'(?:Warszawa|Katowice|Kraków|Gdańsk|Wrocław|Poznań)', card, re.I)
                 if m_flight:
                     airport = m_flight.group(0)
+            airport = normalize_airport_code(airport, offer_url)
 
             # Stars
             stars = 4
@@ -460,13 +475,15 @@ class LiveScraperService:
             m_op = re.search(r'data-operator="([^"]+)"', card, re.I) or re.search(r'operator=([^&"\'\s]+)', card)
             operator = m_op.group(1).strip() if m_op else "Touroperator"
 
-            board = "All Inclusive"
+            board = normalize_board_basis("All Inclusive")
             if re.search(r'All\s*Inclusive', card, re.I):
-                board = "All Inclusive"
+                board = normalize_board_basis("All Inclusive")
             elif re.search(r'HB|dwa\s*posiłki|śniadania\s*i\s*obiadokolacje', card, re.I):
                 board = "HB (Half Board)"
             elif re.search(r'BB|śniadania', card, re.I):
-                board = "BB (Bed & Breakfast)"
+                board = "BB (Śniadania)"
+            elif re.search(r'bez\s*wyżywienia|room\s*only|self\s*catering', card, re.I):
+                board = "RO (Bez wyżywienia)"
 
             offers.append({
                 "hotel_name": name,
@@ -672,8 +689,29 @@ class LiveScraperService:
                 )
                 db.add(hotel_entity)
                 seen_hotels[hotel_id] = hotel_entity
+            elif geo_c and hotel_entity.country and normalize_dest_slug(hotel_entity.country) != normalize_dest_slug(geo_c):
+                # Avoid cross-country slug collision (e.g. Sandy Beach in Turkey vs Cyprus): namespace by country slug
+                scoped_hid = f"{normalize_dest_slug(geo_c)[:2]}-{hotel_id}"[:128]
+                hotel_entity = seen_hotels.get(scoped_hid)
+                if not hotel_entity:
+                    res_scoped = await db.execute(select(Hotel).where(Hotel.hotel_id == scoped_hid))
+                    hotel_entity = res_scoped.scalar_one_or_none()
+                if not hotel_entity:
+                    hotel_entity = Hotel(
+                        hotel_id=scoped_hid,
+                        display_name=off["hotel_name"],
+                        country=geo_c,
+                        region=geo_r,
+                        stars=off["stars"],
+                        ta_rating=off_ta,
+                        ta_reviews=off_reviews,
+                        main_image_url=off["main_image_url"],
+                    )
+                    db.add(hotel_entity)
+                seen_hotels[hotel_id] = hotel_entity
+                hotel_id = scoped_hid
             else:
-                if geo_c and (not hotel_entity.country or hotel_entity.country != geo_c):
+                if geo_c and not hotel_entity.country:
                     hotel_entity.country = geo_c
                 if geo_r and (not hotel_entity.region or hotel_entity.region != geo_r):
                     hotel_entity.region = geo_r
@@ -684,13 +722,16 @@ class LiveScraperService:
                 if off_reviews and not hotel_entity.ta_reviews:
                     hotel_entity.ta_reviews = off_reviews
 
+            resolved_hid = hotel_entity.hotel_id
+            norm_air = normalize_airport_code(off.get("departure_airport"), off.get("offer_url"))
+            norm_brd = normalize_board_basis(off.get("board_basis"))
             cohort_hash = compute_cohort_hash(
-                hotel_id=hotel_id,
+                hotel_id=resolved_hid,
                 checkin_date=off["checkin_date"],
                 duration_nights=off["duration_nights"],
-                airport_code=off["departure_airport"],
+                airport_code=norm_air,
                 adults=req_adults,
-                board_basis=off["board_basis"],
+                board_basis=norm_brd,
                 filter_id=req.filter_id,
             )
 
@@ -771,19 +812,23 @@ class LiveScraperService:
         # 4. If running for a filter or user monitor, persist OfferCohort and PriceSnapshot
         if req.filter_id and raw_offers:
             try:
-                # Pre-fetch existing cohorts for these offers
-                all_cohort_hashes = [
-                    compute_cohort_hash(
-                        hotel_id=slugify(off.get("hotel_name")),
+                # Pre-fetch existing cohorts for these offers using resolved hotel_id & canonical airport/board
+                all_cohort_hashes = []
+                for off in raw_offers:
+                    if not off.get("hotel_name"):
+                        continue
+                    h_id = slugify(off.get("hotel_name"))
+                    actual_h = seen_hotels.get(h_id)
+                    actual_hid = actual_h.hotel_id if actual_h else h_id
+                    all_cohort_hashes.append(compute_cohort_hash(
+                        hotel_id=actual_hid,
                         checkin_date=off.get("checkin_date") or date.today(),
                         duration_nights=off.get("duration_nights") or 7,
-                        airport_code=off.get("departure_airport") or "WAW",
+                        airport_code=normalize_airport_code(off.get("departure_airport"), off.get("offer_url")),
                         adults=req_adults,
-                        board_basis=off.get("board_basis") or "All Inclusive",
+                        board_basis=normalize_board_basis(off.get("board_basis")),
                         filter_id=req.filter_id,
-                    )
-                    for off in raw_offers if off.get("hotel_name")
-                ]
+                    ))
                 existing_cohorts: Dict[str, OfferCohort] = {}
                 if all_cohort_hashes:
                     c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash.in_(list(set(all_cohort_hashes))))
@@ -798,13 +843,15 @@ class LiveScraperService:
                     h_id = slugify(h_name)
                     actual_hotel = seen_hotels.get(h_id)
                     actual_hid = actual_hotel.hotel_id if actual_hotel else h_id
+                    norm_air = normalize_airport_code(off.get("departure_airport"), off.get("offer_url"))
+                    norm_brd = normalize_board_basis(off.get("board_basis"))
                     c_hash = compute_cohort_hash(
-                        hotel_id=h_id,
+                        hotel_id=actual_hid,
                         checkin_date=off.get("checkin_date") or date.today(),
                         duration_nights=off.get("duration_nights") or 7,
-                        airport_code=off.get("departure_airport") or "WAW",
+                        airport_code=norm_air,
                         adults=req_adults,
-                        board_basis=off.get("board_basis") or "All Inclusive",
+                        board_basis=norm_brd,
                         filter_id=req.filter_id,
                     )
                     cohort = existing_cohorts.get(c_hash)
@@ -817,8 +864,8 @@ class LiveScraperService:
                             checkin_date=off.get("checkin_date") or date.today(),
                             checkout_date=off.get("checkout_date"),
                             duration_nights=off.get("duration_nights") or 7,
-                            airport_code=off.get("departure_airport") or "WAW",
-                            board_basis=off.get("board_basis") or "All Inclusive",
+                            airport_code=norm_air,
+                            board_basis=norm_brd,
                             adults=req_adults,
                             children=req_children,
                             operator=off.get("operator") or "Fly.pl",
@@ -841,13 +888,15 @@ class LiveScraperService:
                     if not h_name:
                         continue
                     h_id = slugify(h_name)
+                    actual_hotel = seen_hotels.get(h_id)
+                    actual_hid = actual_hotel.hotel_id if actual_hotel else h_id
                     c_hash = compute_cohort_hash(
-                        hotel_id=h_id,
+                        hotel_id=actual_hid,
                         checkin_date=off.get("checkin_date") or date.today(),
                         duration_nights=off.get("duration_nights") or 7,
-                        airport_code=off.get("departure_airport") or "WAW",
+                        airport_code=normalize_airport_code(off.get("departure_airport"), off.get("offer_url")),
                         adults=req_adults,
-                        board_basis=off.get("board_basis") or "All Inclusive",
+                        board_basis=normalize_board_basis(off.get("board_basis")),
                         filter_id=req.filter_id,
                     )
                     co = existing_cohorts.get(c_hash)

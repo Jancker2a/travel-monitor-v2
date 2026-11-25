@@ -547,6 +547,12 @@ def classify_filter_type(
     ):
         return "fixed_dates"
 
+    # Known rolling canonical radars (e.g. cyprus_7_10, turkey_7_10, greece_7_10) must never
+    # be misclassified as 'fixed_dates' if seasonal flight availability temporarily spans <=10d.
+    base_fid = fid[7:] if fid.startswith("filter_") else fid
+    if fid in CANONICAL_FILTERS or base_fid in CANONICAL_FILTERS:
+        return "rolling"
+
     if checkin_dates:
         parsed_dates: List[date] = []
         today = date.today()

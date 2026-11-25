@@ -106,8 +106,11 @@ class AnalyticsService:
                 return c_data
 
         spec = resolve_filter_spec(filter_id)
+        is_user_mon = bool(filter_id and (filter_id.startswith("monitor_") or filter_id.startswith("user_")))
         if spec:
             dest_codes = list(spec["destination_codes"])
+        elif is_user_mon:
+            dest_codes = []
         elif destination:
             dest_lower = destination.lower()
             if "турц" in dest_lower or "turkey" in dest_lower:
@@ -126,36 +129,66 @@ class AnalyticsService:
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         date_expr = "TO_CHAR(s.recorded_at, 'YYYY-MM-DD HH24:00')" if is_pg else "strftime('%Y-%m-%d %H:00', s.recorded_at)"
 
-        query = text(f"""
-            WITH hotel_hourly_min AS (
-                SELECT 
-                    {date_expr} as snap_bucket,
-                    c.hotel_id,
-                    MIN(s.total_price_pln) as hotel_min_price
-                FROM price_snapshots s
-                JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
-                WHERE c.destination_code IN :dest_codes
-                GROUP BY {date_expr}, c.hotel_id
-            ),
-            ranked_top10 AS (
+        if is_user_mon:
+            query = text(f"""
+                WITH hotel_hourly_min AS (
+                    SELECT 
+                        {date_expr} as snap_bucket,
+                        c.hotel_id,
+                        MIN(s.total_price_pln) as hotel_min_price
+                    FROM price_snapshots s
+                    JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
+                    WHERE s.filter_id = :fid
+                    GROUP BY {date_expr}, c.hotel_id
+                ),
+                ranked_top10 AS (
+                    SELECT 
+                        snap_bucket,
+                        hotel_min_price,
+                        ROW_NUMBER() OVER (PARTITION BY snap_bucket ORDER BY hotel_min_price ASC) as rn
+                    FROM hotel_hourly_min
+                )
                 SELECT 
                     snap_bucket,
-                    hotel_min_price,
-                    ROW_NUMBER() OVER (PARTITION BY snap_bucket ORDER BY hotel_min_price ASC) as rn
-                FROM hotel_hourly_min
-            )
-            SELECT 
-                snap_bucket,
-                AVG(hotel_min_price) as avg_price,
-                MIN(hotel_min_price) as min_price,
-                MAX(hotel_min_price) as max_price
-            FROM ranked_top10
-            WHERE rn <= 10
-            GROUP BY snap_bucket
-            ORDER BY snap_bucket ASC
-        """).bindparams(bindparam("dest_codes", expanding=True))
-
-        res = await db.execute(query, {"dest_codes": dest_codes})
+                    AVG(hotel_min_price) as avg_price,
+                    MIN(hotel_min_price) as min_price,
+                    MAX(hotel_min_price) as max_price
+                FROM ranked_top10
+                WHERE rn <= 10
+                GROUP BY snap_bucket
+                ORDER BY snap_bucket ASC
+            """)
+            res = await db.execute(query, {"fid": filter_id})
+        else:
+            query = text(f"""
+                WITH hotel_hourly_min AS (
+                    SELECT 
+                        {date_expr} as snap_bucket,
+                        c.hotel_id,
+                        MIN(s.total_price_pln) as hotel_min_price
+                    FROM price_snapshots s
+                    JOIN offer_cohorts c ON s.cohort_id = c.cohort_id
+                    WHERE c.destination_code IN :dest_codes
+                    GROUP BY {date_expr}, c.hotel_id
+                ),
+                ranked_top10 AS (
+                    SELECT 
+                        snap_bucket,
+                        hotel_min_price,
+                        ROW_NUMBER() OVER (PARTITION BY snap_bucket ORDER BY hotel_min_price ASC) as rn
+                    FROM hotel_hourly_min
+                )
+                SELECT 
+                    snap_bucket,
+                    AVG(hotel_min_price) as avg_price,
+                    MIN(hotel_min_price) as min_price,
+                    MAX(hotel_min_price) as max_price
+                FROM ranked_top10
+                WHERE rn <= 10
+                GROUP BY snap_bucket
+                ORDER BY snap_bucket ASC
+            """).bindparams(bindparam("dest_codes", expanding=True))
+            res = await db.execute(query, {"dest_codes": dest_codes})
         rows = res.mappings().all()
 
         results = []
@@ -234,15 +267,44 @@ class AnalyticsService:
 
         rows = res.mappings().all()
 
-        results = []
+        from app.services.normalization import normalize_airport_code
+        grouped_airports: Dict[str, Dict[str, Any]] = {}
         for r in rows:
+            code = normalize_airport_code(r["airport_code"])
+            h_cnt = int(r["hotel_count"] or 0)
+            min_p = float(r["min_price"]) if r["min_price"] is not None else 0.0
+            avg_p = float(r["avg_price"]) if r["avg_price"] is not None else 0.0
+            avg_np = float(r["avg_night_pax"]) if r["avg_night_pax"] is not None else 0.0
+            if code not in grouped_airports:
+                grouped_airports[code] = {
+                    "airport_code": code,
+                    "hotel_count": h_cnt,
+                    "min_price_pln": min_p,
+                    "weighted_avg_sum": avg_p * max(1, h_cnt),
+                    "weighted_np_sum": avg_np * max(1, h_cnt),
+                    "weight": max(1, h_cnt),
+                }
+            else:
+                g = grouped_airports[code]
+                g["hotel_count"] += h_cnt
+                if min_p > 0 and (g["min_price_pln"] <= 0 or min_p < g["min_price_pln"]):
+                    g["min_price_pln"] = min_p
+                w = max(1, h_cnt)
+                g["weighted_avg_sum"] += avg_p * w
+                g["weighted_np_sum"] += avg_np * w
+                g["weight"] += w
+
+        results = []
+        for g in grouped_airports.values():
+            w = max(1, g["weight"])
             results.append({
-                "airport_code": r["airport_code"],
-                "hotel_count": int(r["hotel_count"]),
-                "min_price_pln": round(float(r["min_price"]), 0) if r["min_price"] is not None else 0.0,
-                "avg_price_pln": round(float(r["avg_price"]), 0) if r["avg_price"] is not None else 0.0,
-                "avg_night_pax": round(float(r["avg_night_pax"]), 0) if r["avg_night_pax"] is not None else 0.0,
+                "airport_code": g["airport_code"],
+                "hotel_count": g["hotel_count"],
+                "min_price_pln": round(g["min_price_pln"], 0),
+                "avg_price_pln": round(g["weighted_avg_sum"] / w, 0),
+                "avg_night_pax": round(g["weighted_np_sum"] / w, 0),
             })
+        results.sort(key=lambda x: x["avg_price_pln"])
         _AIRPORT_CACHE[cache_key] = (now_ts, results)
         return results
 

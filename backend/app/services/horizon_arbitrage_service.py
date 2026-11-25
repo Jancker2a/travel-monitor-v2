@@ -78,35 +78,6 @@ class HorizonArbitrageService:
         res = await db.execute(text(query_sql), q_params)
         raw_rows = res.fetchall()
 
-        # Fallback if no exact pax matches: try general matches across all aliases
-        if not raw_rows and target_children > 0:
-            fb_sql = f"""
-                SELECT 
-                    ps.total_price_pln,
-                    ps.recorded_at,
-                    oc.checkin_date,
-                    oc.duration_nights,
-                    oc.adults,
-                    oc.children,
-                    oc.airport_code,
-                    oc.filter_id,
-                    oc.offer_url
-                FROM price_snapshots ps
-                JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
-                WHERE oc.hotel_id IN ({h_placeholders})
-                  AND oc.checkin_date IS NOT NULL
-                  AND oc.duration_nights BETWEEN :min_nights AND :max_nights
-                ORDER BY ps.recorded_at DESC
-                LIMIT 200
-            """
-            fb_params = {
-                **base_params,
-                "min_nights": max(1, target_nights - 2),
-                "max_nights": target_nights + 2,
-            }
-            res_fb = await db.execute(text(fb_sql), fb_params)
-            raw_rows = res_fb.fetchall()
-
         if not raw_rows:
             return {
                 "available": False,

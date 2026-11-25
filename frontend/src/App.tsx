@@ -124,6 +124,7 @@ function catalogCardToSearchItem(
       departure_date: c.cheapest_checkin_date || "",
       duration_nights: nights,
       airport: c.cheapest_airport_code || "WAW",
+      board_basis: c.board_basis || "All Inclusive",
       booking_url: c.cheapest_offer_url,
       adults: adults,
       children: children,
@@ -920,9 +921,19 @@ export const App: React.FC = () => {
       } else if (sortField === "hotel") {
         diff = a.hotel_name.localeCompare(b.hotel_name);
       } else if (sortField === "delta48") {
-        const a48 = a.intelligence.drop_48h_pct ?? 0;
-        const b48 = b.intelligence.drop_48h_pct ?? 0;
-        diff = a48 - b48;
+        if (filterType === "lastminute") {
+          const aDep = a.current_offer?.departure_date || "9999-99-99";
+          const bDep = b.current_offer?.departure_date || "9999-99-99";
+          diff = aDep.localeCompare(bDep);
+        } else if (filterType === "early_booking") {
+          const a30 = a.intelligence.change_30d_pct ?? a.intelligence.drop_48h_pct ?? 0;
+          const b30 = b.intelligence.change_30d_pct ?? b.intelligence.drop_48h_pct ?? 0;
+          diff = a30 - b30;
+        } else {
+          const a48 = a.intelligence.drop_48h_pct ?? 0;
+          const b48 = b.intelligence.drop_48h_pct ?? 0;
+          diff = a48 - b48;
+        }
       } else if (sortField === "delta_avg") {
         const aAvg = a.intelligence.delta_vs_typical_pct ?? 0;
         const bAvg = b.intelligence.delta_vs_typical_pct ?? 0;
@@ -975,8 +986,9 @@ export const App: React.FC = () => {
     const droppedHotels = results
       .filter((h) => (h.intelligence.drop_48h_pct ?? 0) <= -0.5)
       .map((h) => {
-        const pct = Math.abs(h.intelligence.drop_48h_pct ?? 0);
-        const savingPln = Math.round(h.current_offer.total_price_pln * (pct / 100));
+        const pct = Math.min(95, Math.abs(h.intelligence.drop_48h_pct ?? 0));
+        // pct = ((prev - curr) / prev) * 100 => (prev - curr) = curr * (pct / (100 - pct))
+        const savingPln = Math.round(h.current_offer.total_price_pln * (pct / (100 - pct)));
         return {
           hotel: h,
           pct,

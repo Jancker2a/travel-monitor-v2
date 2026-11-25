@@ -27,6 +27,11 @@ sys.path.insert(0, str(BACKEND_DIR))
 from app.models.cohort import compute_cohort_hash
 from app.services.canonical_filters import resolve_filter_spec
 from app.services.live_scraper import parse_departure_date, parse_duration_nights, slugify
+from app.services.normalization import (
+    normalize_airport_code,
+    normalize_board_basis,
+    extract_offer_url_dates,
+)
 from scripts.import_full_v1_archives import FOLDER_CONFIG
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -211,20 +216,29 @@ async def run_sync():
             if min_recorded_at is None or recorded_at < min_recorded_at:
                 min_recorded_at = recorded_at
 
+            offer_url = row.get("offer_url") or row.get("url") or ""
+            img_url = row.get("image_url") or ""
+
             hotel_id = slugify(hotel_raw)
             dates_str = row.get("dates") or ""
+            url_checkin_d, url_checkout_d = extract_offer_url_dates(offer_url)
             checkin_d, checkout_d = parse_departure_date(dates_str)
+            if url_checkin_d:
+                checkin_d = url_checkin_d
+            if url_checkout_d:
+                checkout_d = url_checkout_d
             if not checkin_d:
                 checkin_d = recorded_at.date()
+            elif checkin_d < recorded_at.date() and "27" in filter_id and checkin_d.year == 2026:
+                try:
+                    checkin_d = checkin_d.replace(year=2027)
+                except ValueError:
+                    checkin_d = checkin_d.replace(year=2027, day=28)
 
             duration_raw = row.get("duration") or ""
             nights = parse_duration_nights(duration_raw)
-            airport = (row.get("departure_airport") or "WAW").replace("Warszawa - ", "").strip()
-            if not airport:
-                airport = "WAW"
-
-            offer_url = row.get("offer_url") or row.get("url") or ""
-            img_url = row.get("image_url") or ""
+            airport = normalize_airport_code(row.get("departure_airport") or "WAW", offer_url)
+            board_basis = normalize_board_basis(row.get("board_basis") or row.get("catering") or "All Inclusive")
 
             # Robust traveler composition extraction per offer
             row_adults = def_adults
@@ -262,16 +276,16 @@ async def run_sync():
                 duration_nights=nights,
                 airport_code=airport,
                 adults=row_adults,
-                board_basis="All Inclusive",
+                board_basis=board_basis,
                 filter_id=filter_id,
             )
 
             cohorts_map[cohort_hash] = (
                 cohort_hash, filter_id, hotel_id, destination_code, checkin_d, checkout_d,
-                nights, airport, row_adults, row_children, offer_url, recorded_at
+                nights, airport, board_basis, row_adults, row_children, offer_url, recorded_at
             )
 
-            pp_night = price_val / max(1, row_adults * nights)
+            pp_night = round(price_val / max(1, (row_adults + row_children) * nights), 2)
             snapshots_raw.append((cohort_hash, filter_id, recorded_at, price_val, pp_night))
 
         if not snapshots_raw:
@@ -300,7 +314,7 @@ async def run_sync():
                 duration_nights, airport_code, board_basis, adults, children, operator, offer_url,
                 first_seen_at, last_seen_at
             )
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'All Inclusive', $9, $10, '', $11, $12, $12)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, '', $12, $13, $13)
             ON CONFLICT (cohort_hash) DO UPDATE
             SET last_seen_at = GREATEST(offer_cohorts.last_seen_at, EXCLUDED.last_seen_at),
                 adults = EXCLUDED.adults,
@@ -313,12 +327,12 @@ async def run_sync():
                 duration_nights, airport_code, board_basis, adults, children, operator, offer_url,
                 first_seen_at, last_seen_at
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'All Inclusive', ?, ?, '', ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '', ?, ?, ?)
             ON CONFLICT (cohort_hash) DO UPDATE
             SET last_seen_at = MAX(offer_cohorts.last_seen_at, excluded.last_seen_at),
                 adults = excluded.adults,
                 children = excluded.children;
-        """, [(c[0], c[1], c[2], c[3], str(c[4]), str(c[5]) if c[5] else None, c[6], c[7], c[8], c[9], c[10], c[11].isoformat(), c[11].isoformat()) for c in cohort_records])
+        """, [(c[0], c[1], c[2], c[3], str(c[4]), str(c[5]) if c[5] else None, c[6], c[7], c[8], c[9], c[10], c[11], c[12].isoformat(), c[12].isoformat()) for c in cohort_records])
 
         # 3. Retrieve PG cohort_id for all hashes
         cohort_hashes = list(cohorts_map.keys())

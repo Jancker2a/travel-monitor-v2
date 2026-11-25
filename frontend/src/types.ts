@@ -174,6 +174,7 @@ export interface OfferSummary {
   adults?: number;
   children?: number;
   operator?: string;
+  board_basis?: string | null;
   booking_url?: string;
 }
 
@@ -640,6 +641,7 @@ export interface HotelCatalogCard {
   cheapest_duration_nights: number;
   cheapest_airport_code: string;
   cheapest_offer_url?: string;
+  board_basis?: string | null;
   cohort_hash?: string;
   last_updated: string;
 }

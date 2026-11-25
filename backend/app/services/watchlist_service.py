@@ -733,23 +733,28 @@ class WatchlistService:
             )
             for r in c_rows
         ]
+        spec = resolve_filter_spec(filter_id) if filter_id else None
+        target_adults = int(adults) if (adults is not None and adults > 0) else (spec.get("adults", 1) if spec else 1)
+        target_children = int(children) if (children is not None and children >= 0) else (spec.get("children", 0) if spec else 0)
+        target_nights = int(duration_nights) if (duration_nights is not None and duration_nights > 0) else (spec.get("duration_min", 7) if spec else 7)
+
         if not all_cohorts:
-            # Dynamically synthesize a live baseline cohort for newly discovered hotel
+            # Dynamically synthesize a live baseline cohort matching the exact requested party composition
             curr_val = float(current_price or 0.0)
             dest_str = hotel.country or "turkey"
             if curr_val <= 0:
                 pure_bench = 180.0 if (hotel.stars or 4) >= 5 else 125.0
                 curr_val = CostDecomposer.recompose(
                     pure_hotel_night_per_adult=pure_bench,
-                    duration_nights=8,
-                    adults=2,
-                    children=1,
+                    duration_nights=target_nights,
+                    adults=target_adults,
+                    children=target_children,
                     destination=dest_str,
                 )
 
             now_dt = datetime.utcnow()
             checkin_d = (now_dt + timedelta(days=21)).date()
-            checkout_d = checkin_d + timedelta(days=8)
+            checkout_d = checkin_d + timedelta(days=target_nights)
             syn_cohort = SimpleNamespace(
                 cohort_id=999999,
                 cohort_hash=f"syn_{hotel_id[:12]}",
@@ -758,22 +763,18 @@ class WatchlistService:
                 destination_code=(dest_str).lower(),
                 checkin_date=str(checkin_d),
                 checkout_date=str(checkout_d),
-                duration_nights=8,
+                duration_nights=target_nights,
                 airport_code="WAW",
                 board_basis="All Inclusive",
                 room_type="Standard",
-                adults=2,
-                children=1,
+                adults=target_adults,
+                children=target_children,
                 operator="Touroperator",
                 offer_url=f"https://fly.pl/szukaj-wycieczek/?hotelName={urllib.parse.quote(hotel.display_name)}",
             )
             all_cohorts = [syn_cohort]
 
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
-        spec = resolve_filter_spec(filter_id) if filter_id else None
-        target_adults = int(adults) if (adults is not None and adults > 0) else (spec.get("adults", 1) if spec else 1)
-        target_children = int(children) if (children is not None and children >= 0) else (spec.get("children", 0) if spec else 0)
-        target_nights = int(duration_nights) if (duration_nights is not None and duration_nights > 0) else (spec.get("min_nights", 7) if spec else 7)
 
         is_user_monitor = bool(filter_id and (filter_id.startswith("monitor_") or filter_id.startswith("user_")))
         if is_user_monitor:
@@ -1338,9 +1339,9 @@ class WatchlistService:
                 )
             ]
             curr_p = curr_val
-            min_p = round(curr_val * 0.95, 1)
+            min_p = curr_val
             med_p = curr_val
-            max_p = round(curr_val * 1.10, 1)
+            max_p = curr_val
         else:
             if total_points_count < 4:
                 data_maturity_tier = 1
@@ -1593,32 +1594,46 @@ class WatchlistService:
         # Update dossier deal score
         dossier["deal_score"] = deal_score
 
-        # German Arbitrage direct offer lookup with strict entity matching
-        from app.services.arbitrage_service import find_check24_offer
+        # German Arbitrage direct offer lookup with strict entity, party, duration, date & friction comparability
+        from app.services.arbitrage_service import (
+            find_check24_offer,
+            is_offer_comparable,
+            DEFAULT_FRICTION_COST_PLN,
+        )
         c24 = find_check24_offer(
             name=hotel.display_name,
             destination=hotel.country,
+            adults=target_adults,
+            children=target_children,
         )
 
         german_arbitrage = None
         if c24 and c24.get("price_pln") and c24["price_pln"] > 0:
+            comparable_ok, _ = is_offer_comparable(
+                pl_checkin=target_dep_date,
+                pl_nights=target_nights,
+                pl_adults=target_adults,
+                pl_children=target_children,
+                de_offer=c24,
+                max_duration_diff=1,
+            )
             ber_url = str(c24.get("offer_url") or "").strip()
-            # Strict validation: must lead to a specific offer page, NOT generic /suche/?q= search and not empty hotelId=
             is_specific_offer = bool(
-                ber_url
+                comparable_ok
+                and ber_url
                 and "/suche/?q=" not in ber_url
                 and ("check24" not in ber_url or ("hotelId=" in ber_url and not ber_url.endswith("hotelId=")))
             )
             if is_specific_offer:
                 ber_price = float(c24["price_pln"])
-                savings_pln = max(0.0, round(curr_p - ber_price, 0))
-                # Only show arbitrage if there is real, positive savings (> 0)
-                if savings_pln > 0:
-                    savings_pct = round((savings_pln / curr_p) * 100.0, 1) if curr_p > 0 else 0.0
+                net_savings_pln = round(curr_p - (ber_price + DEFAULT_FRICTION_COST_PLN), 0)
+                if net_savings_pln > 0:
+                    savings_pct = round((net_savings_pln / curr_p) * 100.0, 1) if curr_p > 0 else 0.0
                     german_arbitrage = {
                         "berlin_price_pln": ber_price,
                         "polish_price_pln": curr_p,
-                        "savings_pln": savings_pln,
+                        "friction_pln": DEFAULT_FRICTION_COST_PLN,
+                        "savings_pln": net_savings_pln,
                         "savings_pct": savings_pct,
                         "berlin_operator": c24.get("operator", "Check24 / TUI Deutschland"),
                         "departure_airport": c24.get("departure_airport", "BER (Берлин-Бранденбург)"),

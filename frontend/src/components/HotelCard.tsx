@@ -64,7 +64,18 @@ export const HotelCard: React.FC<Props> = ({
   }
 
   // Deltas
-  const delta48 = intelligence.drop_48h_pct;
+  const delta48 =
+    intelligence.filter_type === "early_booking" &&
+    intelligence.change_30d_pct !== null &&
+    intelligence.change_30d_pct !== undefined
+      ? intelligence.change_30d_pct
+      : intelligence.drop_48h_pct;
+  const deltaWindowLabel =
+    intelligence.filter_type === "early_booking" &&
+    intelligence.change_30d_pct !== null &&
+    intelligence.change_30d_pct !== undefined
+      ? "за 30д"
+      : "за 48ч";
   const deltaAvg = intelligence.delta_vs_typical_pct;
 
   // Forecast tip & pill
@@ -195,7 +206,7 @@ export const HotelCard: React.FC<Props> = ({
                   : "bg-rose-600/90 text-white border-rose-400"
               }`}
             >
-              {delta48 < 0 ? `↓ ${Math.abs(delta48).toFixed(1)}% за 48ч` : `↑ +${delta48.toFixed(1)}% за 48ч`}
+              {delta48 < 0 ? `↓ ${Math.abs(delta48).toFixed(1)}% ${deltaWindowLabel}` : `↑ +${delta48.toFixed(1)}% ${deltaWindowLabel}`}
             </span>
           )}
         </div>
@@ -294,7 +305,7 @@ export const HotelCard: React.FC<Props> = ({
 
             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-50 border border-slate-200/80 font-medium text-slate-700 text-[11.5px]">
               <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />
-              <span>All Inclusive</span>
+              <span>{offer.board_basis || "All Inclusive"}</span>
             </span>
           </div>
 

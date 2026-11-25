@@ -97,6 +97,7 @@ class OracleService:
             max_dt = max_dt.replace(tzinfo=timezone.utc)
 
         cutoff = (max_dt - timedelta(hours=4)) if is_pg else (max_dt - timedelta(hours=4)).isoformat()
+        today_val = date.today() if is_pg else date.today().isoformat()
 
         offers_sql = f"""
             WITH ranked_offers AS (
@@ -118,6 +119,7 @@ class OracleService:
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
                 WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
+                  AND (oc.checkin_date IS NULL OR oc.checkin_date >= :today_val)
             )
             SELECT 
                 hotel_id,
@@ -138,13 +140,13 @@ class OracleService:
         if not is_pg:
             o_stmt = o_stmt.bindparams(bindparam("fids", expanding=True))
 
-        res = await db.execute(o_stmt, {"fids": fids, "cutoff": cutoff})
+        res = await db.execute(o_stmt, {"fids": fids, "cutoff": cutoff, "today_val": today_val})
         rows = res.fetchall()
 
         if not rows:
             # Fallback to 24h cutoff
             cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
-            res = await db.execute(o_stmt, {"fids": fids, "cutoff": cutoff_24h})
+            res = await db.execute(o_stmt, {"fids": fids, "cutoff": cutoff_24h, "today_val": today_val})
             rows = res.fetchall()
 
         if not rows:
@@ -238,11 +240,16 @@ class OracleService:
             "climate_and_weather_advice": "Стабильные курортные условия для пакетного отдыха.",
         })
 
-        # Full historical stats per hotel in this filter (min, avg/med, count)
+        # Full historical stats per hotel in this filter (min, median, max, count)
+        med_expr = (
+            "PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY ps.total_price_pln)"
+            if is_pg
+            else "AVG(ps.total_price_pln)"
+        )
         hist_stats_sql = f"""
             SELECT oc.hotel_id,
                    MIN(ps.total_price_pln) as hist_min,
-                   AVG(ps.total_price_pln) as hist_avg,
+                   {med_expr} as hist_avg,
                    MAX(ps.total_price_pln) as hist_max,
                    COUNT(ps.id) as snaps_cnt
             FROM price_snapshots ps
@@ -277,12 +284,13 @@ class OracleService:
             c_params["dl"] = dur_lo
             c_params["dh"] = dur_hi
             c_sql = f"""
-                SELECT oc.hotel_id, MIN(ps.total_price_pln), AVG(ps.total_price_pln), COUNT(ps.id)
+                SELECT oc.hotel_id, MIN(ps.total_price_pln), {med_expr}, COUNT(ps.id)
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.{cohort_col} = oc.{cohort_col}
                 WHERE oc.hotel_id IN ({c_ph})
                   AND oc.adults = :ad AND oc.children = :ch
                   AND oc.duration_nights BETWEEN :dl AND :dh
+                  AND oc.filter_id NOT LIKE '%lastminute%'
                 GROUP BY oc.hotel_id
                 HAVING COUNT(ps.id) >= 3
             """
@@ -308,7 +316,27 @@ class OracleService:
         if not is_pg:
             apt_stmt = apt_stmt.bindparams(bindparam("fids", expanding=True))
         c48_val = (max_dt - timedelta(hours=48)) if is_pg else (max_dt - timedelta(hours=48)).isoformat()
-        apt_rows = (await db.execute(apt_stmt, {"fids": fids, "cutoff_48h": c48_val})).fetchall()
+        raw_apt_rows = (await db.execute(apt_stmt, {"fids": fids, "cutoff_48h": c48_val})).fetchall()
+        from app.services.normalization import normalize_airport_code
+        apt_agg: Dict[str, Dict[str, Any]] = {}
+        for raw_ap, h_cnt_r, avg_p_r, min_p_r in raw_apt_rows:
+            code = normalize_airport_code(raw_ap)
+            hc = int(h_cnt_r or 0)
+            ap = float(avg_p_r or 0)
+            mp = float(min_p_r or 0)
+            if code not in apt_agg:
+                apt_agg[code] = {"ap": code, "hc": hc, "wsum": ap * max(1, hc), "w": max(1, hc), "min": mp}
+            else:
+                g = apt_agg[code]
+                g["hc"] += hc
+                g["wsum"] += ap * max(1, hc)
+                g["w"] += max(1, hc)
+                if mp > 0 and (g["min"] <= 0 or mp < g["min"]):
+                    g["min"] = mp
+        apt_rows = sorted(
+            [(v["ap"], v["hc"], v["wsum"] / max(1, v["w"]), v["min"]) for v in apt_agg.values()],
+            key=lambda x: x[2],
+        )
         airports_comparison: Dict[str, Any] = {"multi_airport": False}
         if len(apt_rows) >= 2:
             cheapest = apt_rows[0]

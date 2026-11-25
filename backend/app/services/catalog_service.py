@@ -17,6 +17,7 @@ from app.services.canonical_filters import (
     classify_filter_type,
 )
 from app.services.hotel_deal_score import compute_hotel_deal_metrics, compute_unified_deal_assessment
+from app.services.normalization import normalize_airport_code, normalize_board_basis
 from app.services.search_intelligence import get_destination_season_info
 from app.services.hotel_knowledge_service import HotelKnowledgeService
 
@@ -171,6 +172,7 @@ class CatalogService:
         cutoff = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
 
         # 2. Query active hotels and their cheapest offer in the latest scrape run (using window partition)
+        checkin_guard = "" if archive_cutoff else "AND (oc.checkin_date IS NULL OR oc.checkin_date >= :today_date)"
         active_sql = f"""
             WITH ranked_offers AS (
                 SELECT 
@@ -189,12 +191,14 @@ class CatalogService:
                     oc.cohort_hash,
                     ps.total_price_pln as current_price,
                     ps.recorded_at,
+                    oc.board_basis,
                     ROW_NUMBER() OVER (PARTITION BY h.hotel_id ORDER BY ps.recorded_at DESC, ps.total_price_pln ASC) as rn
                 FROM price_snapshots ps
                 JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                 JOIN hotels h ON oc.hotel_id = h.hotel_id
                 WHERE {filter_expr}
                   AND ps.recorded_at >= :cutoff
+                  {checkin_guard}
             )
             SELECT 
                 hotel_id,
@@ -211,7 +215,8 @@ class CatalogService:
                 offer_url,
                 current_price,
                 recorded_at,
-                cohort_hash
+                cohort_hash,
+                board_basis
             FROM ranked_offers
             WHERE rn = 1
             ORDER BY current_price ASC;
@@ -221,13 +226,19 @@ class CatalogService:
             from sqlalchemy import bindparam
             a_stmt = a_stmt.bindparams(bindparam("fids", expanding=True))
 
-        active_res = await db.execute(a_stmt, {"fids": fids, "cutoff": cutoff})
+        active_params = {"fids": fids, "cutoff": cutoff}
+        if not archive_cutoff:
+            from datetime import date as _date
+            active_params["today_date"] = _date.today() if is_pg else _date.today().isoformat()
+
+        active_res = await db.execute(a_stmt, active_params)
         active_rows = active_res.fetchall()
 
         if not active_rows:
             # Wider window fallback if last scrape was slightly sparse
             cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
-            active_res = await db.execute(a_stmt, {"fids": fids, "cutoff": cutoff_24h})
+            active_params["cutoff"] = cutoff_24h
+            active_res = await db.execute(a_stmt, active_params)
             active_rows = active_res.fetchall()
 
         if not active_rows:
@@ -348,6 +359,7 @@ class CatalogService:
             cross_sql = f"""
                 SELECT 
                     oc.hotel_id,
+                    CASE WHEN LOWER(COALESCE(oc.board_basis, 'All Inclusive')) LIKE '%all%' THEN 'AI' ELSE 'NON_AI' END as brd_tier,
                     MIN(ps.total_price_pln) as c_min,
                     MAX(ps.total_price_pln) as c_max,
                     {med_expr} as c_med,
@@ -360,25 +372,27 @@ class CatalogService:
                   AND oc.children = :t_ch
                   AND oc.duration_nights BETWEEN :dur_lo AND :dur_hi
                   AND oc.filter_id NOT LIKE '%lastminute%'
-                GROUP BY oc.hotel_id;
+                GROUP BY oc.hotel_id, brd_tier;
             """
             try:
                 c_res = await db.execute(text(cross_sql), c_params)
                 for r in c_res.fetchall():
                     row_hid = r[0]
-                    c_min = float(r[1]) if r[1] is not None else None
-                    c_max = float(r[2]) if r[2] is not None else None
-                    c_med = float(r[3]) if r[3] is not None else None
-                    c_cnt = int(r[4] or 0)
+                    brd_tier = r[1]
+                    c_min = float(r[2]) if r[2] is not None else None
+                    c_max = float(r[3]) if r[3] is not None else None
+                    c_med = float(r[4]) if r[4] is not None else None
+                    c_cnt = int(r[5] or 0)
                     if c_min is not None and c_med is not None and c_cnt >= 3:
                         for prim in variant_to_primary.get(row_hid, {row_hid}):
-                            if prim not in cross_stats:
-                                cross_stats[prim] = (c_min, c_max, c_med, c_cnt)
+                            key = (prim, brd_tier)
+                            if key not in cross_stats:
+                                cross_stats[key] = (c_min, c_max, c_med, c_cnt)
                             else:
-                                o_min, o_max, o_med, o_cnt = cross_stats[prim]
+                                o_min, o_max, o_med, o_cnt = cross_stats[key]
                                 tot = o_cnt + c_cnt
                                 weighted_med = (o_med * o_cnt + c_med * c_cnt) / max(1, tot)
-                                cross_stats[prim] = (min(o_min, c_min), max(o_max, c_max), weighted_med, tot)
+                                cross_stats[key] = (min(o_min, c_min), max(o_max, c_max), weighted_med, tot)
             except Exception as e:
                 logger.warning(f"Cross-filter stats lookup failed: {e}")
 
@@ -470,12 +484,16 @@ class CatalogService:
                 curr_price,
                 last_rec_at,
                 cohort_hash,
+                raw_board_basis,
             ) = row
+            norm_air = normalize_airport_code(airport_code, offer_url)
+            norm_brd = normalize_board_basis(raw_board_basis)
 
             curr_price = float(curr_price)
             hist_pts = hotel_history.get(h_id, [])
             stats_tuple = hotel_stats.get(h_id)
-            c_tuple = cross_stats.get(h_id)
+            row_brd_tier = "AI" if "all" in norm_brd.lower() else "NON_AI"
+            c_tuple = cross_stats.get((h_id, row_brd_tier))
 
             if stats_tuple:
                 hist_min = round(stats_tuple[0], 0)
@@ -531,10 +549,12 @@ class CatalogService:
                 p_7d = None
 
                 win_48h = [pt for pt in hist_pts if pt[0] >= dt_48h_target]
-                if len(win_48h) >= 2:
+                if len(win_48h) >= 2 and (latest_dt - win_48h[0][0]).total_seconds() >= 10 * 3600:
                     p_48h = win_48h[0][1]
-                elif len(hist_pts) >= 2:
-                    p_48h = hist_pts[-2][1]
+                else:
+                    older_10h = [pt for pt in hist_pts if (latest_dt - pt[0]).total_seconds() >= 10 * 3600]
+                    if older_10h:
+                        p_48h = older_10h[-1][1]
 
                 for dt, p in reversed(hist_pts):
                     if p_24h is None and dt <= dt_24h_target:
@@ -685,7 +705,8 @@ class CatalogService:
                 "has_heated_pools": has_heated_pools,
                 "cheapest_checkin_date": checkin_str,
                 "cheapest_duration_nights": dur_nights or 7,
-                "cheapest_airport_code": airport_code or "WAW",
+                "cheapest_airport_code": norm_air or "WAW",
+                "board_basis": norm_brd,
                 "cheapest_offer_url": offer_url,
                 "cohort_hash": cohort_hash,
                 "last_updated": last_updated_str,

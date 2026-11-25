@@ -160,7 +160,7 @@ def is_offer_comparable(
     if abs(pl_nights - de_nights) > max_duration_diff:
         return False, f"Nights mismatch: PL {pl_nights} vs DE {de_nights}"
 
-    # 3. Departure Date parity
+    # 3. Departure Date parity + reject expired German Check24 offers
     if pl_checkin:
         try:
             pl_dt = (
@@ -168,6 +168,8 @@ def is_offer_comparable(
                 if isinstance(pl_checkin, date)
                 else datetime.strptime(str(pl_checkin)[:10], "%Y-%m-%d").date()
             )
+            if pl_dt < date.today():
+                return False, f"Expired Polish departure {pl_dt}"
             de_start = de_offer.get("departure_date_start")
             de_end = de_offer.get("departure_date_end")
             if de_start:
@@ -183,6 +185,8 @@ def is_offer_comparable(
                     if de_end
                     else s_dt
                 )
+                if e_dt < date.today():
+                    return False, f"Expired Check24 window ending {e_dt}"
                 # Ensure checkin is within the German search window or +-7 days
                 if not (s_dt - timedelta(days=7) <= pl_dt <= e_dt + timedelta(days=7)):
                     diff_days = abs((pl_dt - s_dt).days)
@@ -328,17 +332,32 @@ class ArbitrageService:
                 if (target_dur_min - 1) <= o.get("duration_nights", 7) <= (target_dur_max + 1)
             ]
 
+        # Exclude expired German Check24 offers before DB lookup or matching
+        today_d = date.today()
+        active_de = []
+        for o in de_candidates:
+            de_end = o.get("departure_date_end") or o.get("departure_date_start")
+            if de_end:
+                try:
+                    e_dt = de_end if isinstance(de_end, date) else datetime.strptime(str(de_end)[:10], "%Y-%m-%d").date()
+                    if e_dt < today_d:
+                        continue
+                except Exception:
+                    pass
+            active_de.append(o)
+        de_candidates = active_de
+
         # If no German offers exist for this strict scope, return clean empty list
         if not de_candidates:
             _ARBITRAGE_CACHE[cache_key] = (now_ts, [])
             return []
 
-        # 3. Query Polish Offers with DB-Agnostic Query
+        # 3. Query Latest Polish Offers (past 5 days, latest snapshot per cohort)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
         recent_cutoff = (
-            datetime.now(timezone.utc) - timedelta(days=21)
+            datetime.now(timezone.utc) - timedelta(days=5)
             if is_pg
-            else (datetime.utcnow() - timedelta(days=21)).isoformat()
+            else (datetime.utcnow() - timedelta(days=5)).isoformat()
         )
 
         join_col = "cohort_id"
@@ -373,8 +392,24 @@ class ArbitrageService:
             where_clauses.append("c.adults = :adults")
             params["adults"] = target_adults
 
+        if target_children is not None:
+            where_clauses.append("c.children = :children")
+            params["children"] = target_children
+
+        today_bound = date.today() if is_pg else date.today().isoformat()
+        where_clauses.append("c.checkin_date >= :today_bound")
+        params["today_bound"] = today_bound
+
         where_sql = " AND ".join(where_clauses)
         arb_sql = f"""
+            WITH latest_cohort_snap AS (
+                SELECT ps.{join_col} as cid,
+                       ps.total_price_pln,
+                       ps.recorded_at,
+                       ROW_NUMBER() OVER (PARTITION BY ps.{join_col} ORDER BY ps.recorded_at DESC) as rn
+                FROM price_snapshots ps
+                WHERE ps.recorded_at >= :cutoff
+            )
             SELECT 
                 c.hotel_id,
                 h.display_name,
@@ -392,8 +427,8 @@ class ArbitrageService:
                 ps.recorded_at
             FROM offer_cohorts c
             JOIN hotels h ON c.hotel_id = h.hotel_id
-            JOIN price_snapshots ps ON c.{join_col} = ps.{join_col}
-            WHERE {where_sql}
+            JOIN latest_cohort_snap ps ON c.{join_col} = ps.cid AND ps.rn = 1
+            WHERE {where_sql.replace('ps.recorded_at >= :cutoff AND ', '').replace('ps.recorded_at >= :cutoff', '1=1')}
             ORDER BY ps.recorded_at DESC
         """
 
@@ -425,7 +460,7 @@ class ArbitrageService:
             airport_clean = str(airport or "").upper()
             is_berlin = "BER" in airport_clean or "BERLIN" in airport_clean
 
-            key = f"{hotel_id}_{checkin}_{nights}"
+            key = f"{hotel_id}_{checkin}_{nights}_{adults_val}_{children_val}"
             if key not in grouped:
                 grouped[key] = {
                     "hotel_id": hotel_id,
@@ -455,7 +490,21 @@ class ArbitrageService:
         deals: List[Dict[str, Any]] = []
         seen_hotels = set()
         matcher = get_entity_matcher()
-        de_hotels = list(set(o["hotel_name"] for o in de_candidates if o.get("hotel_name")))
+        de_by_dest_name: Dict[Tuple[Optional[str], str], List[Dict[str, Any]]] = {}
+        de_hotels_by_dest: Dict[Optional[str], List[str]] = {}
+        for o in de_candidates:
+            hnm = o.get("hotel_name")
+            if not hnm:
+                continue
+            dk = normalize_dest_key(o.get("destination"))
+            de_by_dest_name.setdefault((dk, hnm), []).append(o)
+            de_by_dest_name.setdefault((None, hnm), []).append(o)
+            de_hotels_by_dest.setdefault(dk, [])
+            de_hotels_by_dest.setdefault(None, [])
+        for k_dest in list(de_hotels_by_dest.keys()):
+            de_hotels_by_dest[k_dest] = sorted({o["hotel_name"] for o in de_candidates if o.get("hotel_name") and (k_dest is None or normalize_dest_key(o.get("destination")) == k_dest)})
+
+        hotel_match_cache: Dict[Tuple[Optional[str], str], Optional[Tuple[str, float]]] = {}
 
         # 4. Strict Matching & Comparability
         for key, g in grouped.items():
@@ -465,14 +514,18 @@ class ArbitrageService:
             cheapest_pl = min(g["polish_offers"], key=lambda x: x["price_pln"])
             pl_name = g["hotel_name"]
             pl_price = cheapest_pl["price_pln"]
+            pl_dest_key = normalize_dest_key(g.get("country"))
 
-            # Match German Hotel
-            match_res = matcher.match_hotel(pl_name, de_hotels)
+            m_key = (pl_dest_key, pl_name)
+            if m_key not in hotel_match_cache:
+                cand_names = de_hotels_by_dest.get(pl_dest_key) or de_hotels_by_dest.get(None, [])
+                hotel_match_cache[m_key] = matcher.match_hotel(pl_name, cand_names) if cand_names else None
+            match_res = hotel_match_cache[m_key]
             if not match_res:
                 continue
 
             matched_de_name, sim_score = match_res
-            matching_de_offers = [o for o in de_candidates if o["hotel_name"] == matched_de_name]
+            matching_de_offers = de_by_dest_name.get((pl_dest_key, matched_de_name)) or de_by_dest_name.get((None, matched_de_name), [])
 
             # Find best comparable German offer
             best_deal_item = None

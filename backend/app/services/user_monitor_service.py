@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, desc
+from sqlalchemy import select, desc, text
 from fastapi import HTTPException, status
 from app.models.user_monitor import UserMonitor
 from app.schemas.monitor import UserMonitorCreate, UserMonitorUpdate, UserMonitorResponse
@@ -101,7 +101,16 @@ class UserMonitorService:
         cls, db: AsyncSession, user_id: str, monitor_id: str
     ) -> bool:
         monitor = await cls.get_user_monitor(db, user_id, monitor_id)
+        fid = f"monitor_{monitor.id}"
         await db.delete(monitor)
+        await db.execute(
+            text("DELETE FROM price_snapshots WHERE filter_id = :fid"),
+            {"fid": fid},
+        )
+        await db.execute(
+            text("DELETE FROM offer_cohorts WHERE filter_id = :fid"),
+            {"fid": fid},
+        )
         await db.commit()
         logger.info(f"Deleted UserMonitor {monitor_id} of user {user_id}")
         return True
