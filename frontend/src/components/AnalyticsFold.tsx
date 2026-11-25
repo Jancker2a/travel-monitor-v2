@@ -13,12 +13,14 @@ import {
   FilterAnalyticsData,
   FilterPriceMoveItem,
   FilterType,
+  SeasonalityOutlookData,
 } from "../types";
 import {
   getOffersCountTimeline,
   getEarlyBookingAnalytics,
   getFilterDepartures,
   getFilterAnalytics,
+  getSeasonalityOutlook,
 } from "../services/api";
 import { LoadingSpinner } from "./common/LoadingSpinner";
 
@@ -35,6 +37,9 @@ interface AnalyticsFoldProps {
   onSelectHotel: (hotelId: string) => void;
   filterId?: string;
   filterType?: FilterType;
+  destination?: string;
+  adults?: number;
+  childrenCount?: number;
   onFilterByDeparture?: (departureDate: string) => void;
 }
 
@@ -44,11 +49,15 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
   onSelectHotel,
   filterId,
   filterType = "rolling",
+  destination,
+  adults = 2,
+  childrenCount = 0,
   onFilterByDeparture,
 }) => {
   const [activeAlertTab, setActiveAlertTab] = useState<"drops" | "hikes" | "history">("drops");
   const [offersTimeline, setOffersTimeline] = useState<{ day: string; count: number }[]>([]);
   const [earlyBooking, setEarlyBooking] = useState<any>(null);
+  const [seasonality, setSeasonality] = useState<SeasonalityOutlookData | null>(null);
   const [departuresData, setDeparturesData] = useState<FilterDeparturesData | null>(null);
   const [filterAnalytics, setFilterAnalytics] = useState<FilterAnalyticsData | null>(null);
   const [loadingAnalytics, setLoadingAnalytics] = useState(false);
@@ -75,6 +84,17 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
           if (!isCancelled) setEarlyBooking(data);
         })
         .catch((err) => console.warn("Failed to load early booking analytics", err));
+
+      getSeasonalityOutlook({
+        destination,
+        adults,
+        children: childrenCount,
+        filterId,
+      })
+        .then((data) => {
+          if (!isCancelled) setSeasonality(data);
+        })
+        .catch((err) => console.warn("Failed to load seasonality outlook", err));
     }, 600);
 
     if (!filterId) {
@@ -107,7 +127,7 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
       isCancelled = true;
       clearTimeout(timer);
     };
-  }, [filterId]);
+  }, [filterId, destination, adults, childrenCount]);
 
   const triggerResize = () => {
     [40, 150, 350].forEach((delay) => {
@@ -543,6 +563,121 @@ export const AnalyticsFold: React.FC<AnalyticsFoldProps> = ({
                   );
                 })}
               </div>
+            )}
+          </div>
+        </details>
+
+        {/* 2.5 РАЗВЕДКА НА БУДУЩЕЕ: КАРТА ЦЕН ПО МЕСЯЦАМ И ШАНСЫ ОХОТЫ */}
+        <details className="dashboard-fold bg-white border border-indigo-200/80" id="seasonalityFold">
+          <summary className="dashboard-fold-summary bg-indigo-50/40 hover:bg-indigo-50/70">
+            <div className="flex items-center gap-2">
+              <span>🎯</span>
+              <span>Разведка на будущее: карта цен по месяцам и шансы поймать сброс</span>
+            </div>
+            <div className="flex items-center gap-2">
+              {seasonality?.has_data && seasonality.hunt_odds?.cheapest_month_label && (
+                <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-lg">
+                  Дешевле: {seasonality.hunt_odds.cheapest_month_label}
+                </span>
+              )}
+              <span className="text-slate-400 font-bold text-sm">⌄</span>
+            </div>
+          </summary>
+          <div className="p-4 sm:p-5 space-y-4">
+            {!seasonality ? (
+              <LoadingSpinner variant="card" size="sm" label="Анализ сезонности и вероятности сброса..." />
+            ) : !seasonality.has_data ? (
+              <div className="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                Пока недостаточно исторических замеров по составу группы ({seasonality.party_label}) для помесячной карты цен.
+              </div>
+            ) : (
+              <>
+                <div className="bg-indigo-50/60 border border-indigo-200/90 rounded-2xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                  <div className="space-y-1 max-w-xl">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-sm font-extrabold text-indigo-950">
+                        {seasonality.hunt_odds?.headline}
+                      </span>
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white border border-indigo-200 text-indigo-700">
+                        {seasonality.party_label}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {seasonality.hunt_odds?.advice}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 shrink-0">
+                    <div className="bg-white border border-slate-200 rounded-xl px-2.5 py-2 text-center">
+                      <div className="text-[10px] font-semibold text-slate-500">Норма рынка</div>
+                      <div className="text-xs font-extrabold text-slate-900 mt-0.5">
+                        {(seasonality.anchors?.seasonal_median_pln ?? 0).toLocaleString("ru-RU")} zł
+                      </div>
+                    </div>
+                    <div className="bg-white border border-indigo-200 rounded-xl px-2.5 py-2 text-center">
+                      <div className="text-[10px] font-semibold text-indigo-700">Цель охоты</div>
+                      <div className="text-xs font-extrabold text-indigo-900 mt-0.5">
+                        ≤ {(seasonality.anchors?.good_deal_target_pln ?? 0).toLocaleString("ru-RU")} zł
+                      </div>
+                    </div>
+                    <div className="bg-white border border-emerald-200 rounded-xl px-2.5 py-2 text-center">
+                      <div className="text-[10px] font-semibold text-emerald-700">Рекорд дна</div>
+                      <div className="text-xs font-extrabold text-emerald-800 mt-0.5">
+                        {(seasonality.anchors?.snipe_record_pln ?? 0).toLocaleString("ru-RU")} zł
+                      </div>
+                    </div>
+                    <div className="bg-white border border-amber-200 rounded-xl px-2.5 py-2 text-center">
+                      <div className="text-[10px] font-semibold text-amber-700">Шанс сброса</div>
+                      <div className="text-xs font-extrabold text-amber-800 mt-0.5">
+                        {seasonality.hunt_odds?.dump_probability_pct ?? 0}%
+                      </div>
+                    </div>
+                    <div className="bg-white border border-rose-200 rounded-xl px-2.5 py-2 text-center">
+                      <div className="text-[10px] font-semibold text-rose-700">Sold-Out ≤7д</div>
+                      <div className="text-xs font-extrabold text-rose-700 mt-0.5">
+                        {seasonality.hunt_odds?.sold_out_scarcity_pct ?? 0}%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {seasonality.months.length > 0 && (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                    {seasonality.months.map((m) => (
+                      <button
+                        key={m.month}
+                        type="button"
+                        onClick={() => onFilterByDeparture?.(m.month)}
+                        className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer hover:shadow-sm ${
+                          m.is_cheaper_month
+                            ? "bg-emerald-50/70 border-emerald-300"
+                            : "bg-slate-50/70 border-slate-200 hover:border-indigo-300"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-1">
+                          <span className="text-xs font-extrabold text-slate-900">{m.label}</span>
+                          {m.is_cheaper_month && (
+                            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
+                              выгодно
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-xs font-extrabold text-indigo-900 mt-1">
+                          от {m.min_price.toLocaleString("ru-RU")} zł
+                        </div>
+                        <div className="text-[10px] text-slate-500 mt-0.5">
+                          мед: {m.median_price.toLocaleString("ru-RU")} zł · {m.hotels_count} от.
+                        </div>
+                        {m.hot_share_pct !== null && m.hot_share_pct !== undefined && (
+                          <div className="text-[10px] font-bold text-amber-700 mt-0.5">
+                            🔥 Горящих: {m.hot_share_pct}%
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </details>

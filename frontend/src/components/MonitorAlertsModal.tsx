@@ -63,6 +63,9 @@ export const MonitorAlertsModal: React.FC<Props> = ({
   const [minDealScore, setMinDealScore] = useState<number>(80);
   const [maxBudgetPln, setMaxBudgetPln] = useState<number | "">("");
   const [onlyHistoricLow, setOnlyHistoricLow] = useState(false);
+  const [minDaysToDep, setMinDaysToDep] = useState<number>(0);
+  const [onlyCheaperThanStd, setOnlyCheaperThanStd] = useState<boolean>(true);
+  const [whitelistOnly, setWhitelistOnly] = useState<boolean>(false);
   const [minTaRating, setMinTaRating] = useState<number | null>(4.0);
   const [selectedAirports, setSelectedAirports] = useState<string[]>([]);
 
@@ -96,6 +99,9 @@ export const MonitorAlertsModal: React.FC<Props> = ({
         setMinDealScore(sub.min_deal_score ?? 80);
         setMaxBudgetPln(sub.max_budget_pln ?? "");
         setOnlyHistoricLow(Boolean(sub.only_historic_low));
+        setMinDaysToDep(Number(sub.min_days_to_dep ?? 0));
+        setOnlyCheaperThanStd(sub.only_cheaper_than_std ?? true);
+        setWhitelistOnly(Boolean(sub.whitelist_only));
         setMinTaRating(sub.min_ta_rating ?? 4.0);
         if (sub.preferred_airports) {
           setSelectedAirports(sub.preferred_airports.split(",").map((s) => s.trim()).filter(Boolean));
@@ -175,6 +181,9 @@ export const MonitorAlertsModal: React.FC<Props> = ({
           min_deal_score: Number(minDealScore) || 0,
           max_budget_pln: maxBudgetPln !== "" ? Number(maxBudgetPln) : null,
           only_historic_low: onlyHistoricLow,
+          min_days_to_dep: Number(minDaysToDep) || 0,
+          only_cheaper_than_std: onlyCheaperThanStd,
+          whitelist_only: whitelistOnly,
           min_ta_rating: minTaRating !== null ? Number(minTaRating) : null,
           preferred_airports: selectedAirports.length > 0 ? selectedAirports.join(",") : null,
           monitor_title: monitorTitle,
@@ -452,6 +461,75 @@ export const MonitorAlertsModal: React.FC<Props> = ({
                   </button>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Future Hunter Anti-Noise Filters */}
+          <div className="p-3.5 rounded-2xl border border-indigo-200/80 dark:border-indigo-900/60 bg-indigo-50/40 dark:bg-indigo-950/20 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-extrabold text-indigo-950 dark:text-indigo-200">
+                🎯 Фильтры «Охотника на будущее» (анти-шум)
+              </span>
+            </div>
+            <div>
+              <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Запас дней до вылета (успеть собрать чемоданы и отпуск)
+              </label>
+              <div className="grid grid-cols-4 gap-1.5">
+                {[
+                  { val: 0, label: "0+ Хоть завтра" },
+                  { val: 3, label: "3+ дн." },
+                  { val: 5, label: "5+ дн." },
+                  { val: 14, label: "14+ дн." },
+                ].map((opt) => (
+                  <button
+                    key={opt.val}
+                    type="button"
+                    onClick={() => setMinDaysToDep(opt.val)}
+                    className={`py-1.5 px-1 rounded-xl text-[11px] font-bold border transition-all ${
+                      minDaysToDep === opt.val
+                        ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
+                        : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <label className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 flex items-center justify-between gap-2 cursor-pointer">
+                <div>
+                  <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 block">
+                    Без ложных «горящих»
+                  </span>
+                  <span className="text-[10px] text-slate-500">
+                    Только дешевле медианы
+                  </span>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={onlyCheaperThanStd}
+                  onChange={(e) => setOnlyCheaperThanStd(e.target.checked)}
+                  className="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4 shrink-0"
+                />
+              </label>
+              <label className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 flex items-center justify-between gap-2 cursor-pointer">
+                <div>
+                  <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 block">
+                    Только мой Watchlist
+                  </span>
+                  <span className="text-[10px] text-slate-500">
+                    Белый список отелей
+                  </span>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={whitelistOnly}
+                  onChange={(e) => setWhitelistOnly(e.target.checked)}
+                  className="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4 shrink-0"
+                />
+              </label>
             </div>
           </div>
 

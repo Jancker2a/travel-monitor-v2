@@ -38,10 +38,48 @@ export interface DashboardAlertSubscription {
   min_deal_score: number;
   max_budget_pln?: number | null;
   only_historic_low: boolean;
+  min_days_to_dep?: number;
+  only_cheaper_than_std?: boolean;
+  whitelist_only?: boolean;
   min_ta_rating?: number | null;
   preferred_airports?: string | null;
   created_at?: string;
   updated_at?: string;
+}
+
+export interface SeasonalityMonthItem {
+  month: string;
+  label: string;
+  min_price: number;
+  p10_price: number;
+  median_price: number;
+  hotels_count: number;
+  cohorts_count: number;
+  hot_share_pct?: number | null;
+  season_tier: string;
+  season_label: string;
+  is_cheaper_month: boolean;
+}
+
+export interface SeasonalityOutlookData {
+  has_data: boolean;
+  destination: string;
+  party_label: string;
+  anchors: {
+    seasonal_median_pln?: number;
+    good_deal_target_pln?: number;
+    snipe_record_pln?: number;
+  };
+  hunt_odds: {
+    dump_probability_pct?: number;
+    sold_out_scarcity_pct?: number;
+    strategy_verdict?: string;
+    headline?: string;
+    advice?: string;
+    cheapest_month?: string | null;
+    cheapest_month_label?: string | null;
+  };
+  months: SeasonalityMonthItem[];
 }
 
 
@@ -206,6 +244,9 @@ export interface WatchlistItem {
   target_price_pln?: number;
   alert_threshold_pct?: number;
   min_deal_score?: number;
+  min_days_to_dep?: number;
+  typical_median_pln?: number | null;
+  historical_min_pln?: number | null;
   is_active?: boolean;
   notify_any_drop?: boolean;
   latest_price_pln: number;

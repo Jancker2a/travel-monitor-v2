@@ -22,6 +22,7 @@ class WatchlistItem(Base):
     notify_any_drop = Column(Boolean, default=True)
     alert_threshold_pct = Column(Float, nullable=True, default=5.0)
     min_deal_score = Column(Integer, nullable=True, default=None)
+    min_days_to_dep = Column(Integer, nullable=True, default=0)
     is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_notified_at = Column(DateTime(timezone=True), nullable=True)

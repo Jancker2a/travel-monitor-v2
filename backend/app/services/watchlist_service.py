@@ -158,6 +158,8 @@ class WatchlistService:
                 existing_item.alert_threshold_pct = req.alert_threshold_pct
             if req.min_deal_score is not None:
                 existing_item.min_deal_score = req.min_deal_score
+            if req.min_days_to_dep is not None:
+                existing_item.min_days_to_dep = req.min_days_to_dep
             existing_item.is_active = req.is_active
             watch_item = existing_item
         else:
@@ -170,6 +172,7 @@ class WatchlistService:
                 notify_any_drop=req.notify_any_drop,
                 alert_threshold_pct=req.alert_threshold_pct,
                 min_deal_score=req.min_deal_score,
+                min_days_to_dep=req.min_days_to_dep or 0,
                 is_active=req.is_active,
                 created_at=datetime.utcnow(),
             )
@@ -211,6 +214,7 @@ class WatchlistService:
             target_price_pln=watch_item.target_price_pln,
             alert_threshold_pct=watch_item.alert_threshold_pct,
             min_deal_score=watch_item.min_deal_score,
+            min_days_to_dep=watch_item.min_days_to_dep or 0,
             is_active=watch_item.is_active,
             latest_price_pln=latest_price,
             deal_score=85,
@@ -261,14 +265,35 @@ class WatchlistService:
             snap = (await db.execute(snap_stmt)).scalar_one_or_none()
             latest_price = snap.total_price_pln if snap else 0.0
 
+            # Compute 1:1 historical min & median across matching hotel cohorts so Future Hunters can set realistic -15% / record targets
+            hist_rows = (
+                await db.execute(
+                    text("""
+                        SELECT ps.total_price_pln
+                        FROM price_snapshots ps
+                        JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+                        WHERE oc.hotel_id = :hid
+                          AND oc.adults = :ad
+                          AND oc.children = :ch
+                          AND ps.total_price_pln > 0
+                        ORDER BY ps.recorded_at DESC
+                        LIMIT 200
+                    """),
+                    {"hid": hotel.hotel_id, "ad": int(cohort.adults or 2), "ch": int(cohort.children or 0)},
+                )
+            ).fetchall()
+            hist_vals = [float(r[0]) for r in hist_rows] if hist_rows else []
+            typ_med = round(sorted(hist_vals)[len(hist_vals) // 2], 0) if len(hist_vals) >= 3 else None
+            hist_min = round(min(hist_vals), 0) if hist_vals else (round(latest_price, 0) if latest_price > 0 else None)
+
             target_reached = False
-            if watch_item.target_price_pln and latest_price <= watch_item.target_price_pln:
+            if watch_item.target_price_pln and latest_price > 0 and latest_price <= watch_item.target_price_pln:
                 target_reached = True
 
             checkin_d = (
                 datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
                 if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
-                else datetime.utcnow().date()
+                else (cohort.checkin_date if isinstance(cohort.checkin_date, date) else datetime.utcnow().date())
             )
 
             items.append(
@@ -285,8 +310,11 @@ class WatchlistService:
                     target_price_pln=watch_item.target_price_pln,
                     alert_threshold_pct=watch_item.alert_threshold_pct if watch_item.alert_threshold_pct is not None else 5.0,
                     min_deal_score=watch_item.min_deal_score,
+                    min_days_to_dep=watch_item.min_days_to_dep or 0,
                     is_active=watch_item.is_active if watch_item.is_active is not None else True,
                     latest_price_pln=latest_price,
+                    typical_median_pln=typ_med,
+                    historical_min_pln=hist_min,
                     deal_score=90 if target_reached else 70,
                     deal_badge="SUPER_DEAL" if target_reached else "WATCHING",
                     hopper_verdict="BUY NOW" if target_reached else "WAIT",
@@ -328,6 +356,8 @@ class WatchlistService:
             watch_item.alert_threshold_pct = req.alert_threshold_pct
         if req.min_deal_score is not None:
             watch_item.min_deal_score = req.min_deal_score if req.min_deal_score > 0 else None
+        if req.min_days_to_dep is not None:
+            watch_item.min_days_to_dep = max(0, int(req.min_days_to_dep))
         if req.notify_any_drop is not None:
             watch_item.notify_any_drop = req.notify_any_drop
         if req.is_active is not None:
@@ -368,6 +398,7 @@ class WatchlistService:
             target_price_pln=watch_item.target_price_pln,
             alert_threshold_pct=watch_item.alert_threshold_pct if watch_item.alert_threshold_pct is not None else 5.0,
             min_deal_score=watch_item.min_deal_score,
+            min_days_to_dep=watch_item.min_days_to_dep or 0,
             is_active=watch_item.is_active if watch_item.is_active is not None else True,
             latest_price_pln=latest_price,
             deal_score=90 if target_reached else 70,
@@ -408,12 +439,29 @@ class WatchlistService:
         now_dt = datetime.utcnow()
 
         for watch_item, cohort, hotel in rows:
-            # Get last 2 snapshots
+            # Skip paused items
+            if watch_item.is_active is False:
+                continue
+
+            # Respect Future Hunter lead-time guard (min_days_to_dep)
+            try:
+                chk_d = (
+                    datetime.strptime(cohort.checkin_date, "%Y-%m-%d").date()
+                    if isinstance(cohort.checkin_date, str) and "-" in cohort.checkin_date
+                    else cohort.checkin_date
+                )
+                if chk_d and watch_item.min_days_to_dep and watch_item.min_days_to_dep > 0:
+                    if (chk_d - now_dt.date()).days < int(watch_item.min_days_to_dep):
+                        continue
+            except Exception:
+                pass
+
+            # Get last snapshots (latest 20 for lightweight deal_score/norm check + comparison)
             snap_stmt = (
                 select(PriceSnapshot)
                 .where(PriceSnapshot.cohort_id == cohort.cohort_id)
                 .order_by(PriceSnapshot.recorded_at.desc())
-                .limit(2)
+                .limit(20)
             )
             snaps = (await db.execute(snap_stmt)).scalars().all()
             if not snaps:
@@ -429,11 +477,24 @@ class WatchlistService:
             if watch_item.target_price_pln and curr_price <= watch_item.target_price_pln:
                 target_reached = True
 
-            should_alert = False
-            if target_reached:
-                should_alert = True
-            elif watch_item.notify_any_drop and drop_amount >= 50.0:  # significant drop >= 50 PLN
-                should_alert = True
+            # Respect alert_threshold_pct & min_deal_score
+            thresh_pct = float(watch_item.alert_threshold_pct or 0.0)
+            meets_drop_rule = False
+            if watch_item.notify_any_drop and drop_amount >= 50.0:
+                meets_drop_rule = True
+            elif thresh_pct > 0 and drop_pct >= thresh_pct and drop_amount >= 50.0:
+                meets_drop_rule = True
+
+            if watch_item.min_deal_score and watch_item.min_deal_score > 0 and not target_reached:
+                all_ps = sorted(float(s.total_price_pln) for s in snaps if s.total_price_pln)
+                med_est = all_ps[len(all_ps) // 2] if len(all_ps) >= 3 else None
+                if med_est:
+                    est_delta = ((curr_price - med_est) / med_est) * 100.0
+                    est_score = max(25, min(98, int(round(50.0 - est_delta * 2.0))))
+                    if est_score < int(watch_item.min_deal_score):
+                        meets_drop_rule = False
+
+            should_alert = target_reached or meets_drop_rule
 
             if should_alert:
                 msg = (

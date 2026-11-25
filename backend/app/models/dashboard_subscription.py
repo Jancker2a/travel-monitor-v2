@@ -39,6 +39,9 @@ class DashboardAlertSubscription(Base):
     only_historic_low = Column(Boolean, default=False, nullable=False)
     min_ta_rating = Column(Float, nullable=True)  # e.g. 4.0, 4.5
     preferred_airports = Column(String(128), nullable=True)  # comma separated: "WAW,KTW"
+    min_days_to_dep = Column(Integer, default=0, nullable=False)  # 0=any, 3/5/14=lead time buffer
+    only_cheaper_than_std = Column(Boolean, default=True, nullable=False)  # ignore urgent surcharges
+    whitelist_only = Column(Boolean, default=False, nullable=False)  # alert only for watchlist hotels
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())

@@ -19,6 +19,9 @@ class DashboardSubscriptionResponse(BaseModel):
     only_historic_low: bool = False
     min_ta_rating: Optional[float] = None
     preferred_airports: Optional[str] = None  # e.g. "WAW,KTW"
+    min_days_to_dep: int = 0
+    only_cheaper_than_std: bool = True
+    whitelist_only: bool = False
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
 
@@ -33,6 +36,9 @@ class DashboardSubscriptionUpdateRequest(BaseModel):
     only_historic_low: Optional[bool] = None
     min_ta_rating: Optional[float] = Field(None, ge=1.0, le=5.0)
     preferred_airports: Optional[str] = None
+    min_days_to_dep: Optional[int] = Field(None, ge=0, le=90)
+    only_cheaper_than_std: Optional[bool] = None
+    whitelist_only: Optional[bool] = None
     monitor_title: Optional[str] = None
 
 

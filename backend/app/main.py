@@ -34,6 +34,13 @@ async def _async_background_db_maintenance():
     try:
         if engine.dialect.name == "postgresql":
             async with engine.begin() as conn:
+                for col_ddl in (
+                    "ALTER TABLE dashboard_alert_subscriptions ADD COLUMN IF NOT EXISTS min_days_to_dep INTEGER NOT NULL DEFAULT 0;",
+                    "ALTER TABLE dashboard_alert_subscriptions ADD COLUMN IF NOT EXISTS only_cheaper_than_std BOOLEAN NOT NULL DEFAULT TRUE;",
+                    "ALTER TABLE dashboard_alert_subscriptions ADD COLUMN IF NOT EXISTS whitelist_only BOOLEAN NOT NULL DEFAULT FALSE;",
+                    "ALTER TABLE watchlists ADD COLUMN IF NOT EXISTS min_days_to_dep INTEGER DEFAULT 0;",
+                ):
+                    await conn.execute(text(col_ddl))
                 has_cohort_nulls = (await conn.execute(text(
                     "SELECT 1 FROM offer_cohorts WHERE filter_id IS NULL OR filter_id = '' LIMIT 1;"
                 ))).scalar()
@@ -533,6 +540,24 @@ async def get_early_booking(
 async def get_market_overview(db: AsyncSession = Depends(get_db)):
     """High-level platform market counters (total hotels, cohorts, snapshots)."""
     return await AnalyticsService.get_market_overview(db)
+
+
+@app.get("/api/v2/analytics/seasonality-outlook")
+async def get_seasonality_outlook(
+    destination: Optional[str] = None,
+    adults: int = 2,
+    children: int = 1,
+    filter_id: Optional[str] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    """Future Hunter monthly seasonality outlook, price anchors, and dump odds."""
+    return await AnalyticsService.get_seasonality_outlook(
+        db,
+        destination=destination,
+        adults=adults,
+        children=children,
+        filter_id=filter_id,
+    )
 
 
 from app.services.filter_monitor_service import FilterMonitorService

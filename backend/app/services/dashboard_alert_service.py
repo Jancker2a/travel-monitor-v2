@@ -93,6 +93,9 @@ class DashboardAlertService:
                 only_historic_low=False,
                 min_ta_rating=4.0,
                 preferred_airports=None,
+                min_days_to_dep=0,
+                only_cheaper_than_std=True,
+                whitelist_only=False,
             )
         return sub
 
@@ -131,6 +134,9 @@ class DashboardAlertService:
                 only_historic_low=bool(data.only_historic_low),
                 min_ta_rating=data.min_ta_rating,
                 preferred_airports=data.preferred_airports,
+                min_days_to_dep=data.min_days_to_dep if data.min_days_to_dep is not None else 0,
+                only_cheaper_than_std=bool(data.only_cheaper_than_std) if data.only_cheaper_than_std is not None else True,
+                whitelist_only=bool(data.whitelist_only),
             )
             db.add(sub)
         else:
@@ -152,6 +158,12 @@ class DashboardAlertService:
                 sub.min_ta_rating = data.min_ta_rating
             if data.preferred_airports is not None:
                 sub.preferred_airports = data.preferred_airports
+            if data.min_days_to_dep is not None:
+                sub.min_days_to_dep = data.min_days_to_dep
+            if data.only_cheaper_than_std is not None:
+                sub.only_cheaper_than_std = data.only_cheaper_than_std
+            if data.whitelist_only is not None:
+                sub.whitelist_only = data.whitelist_only
             if data.monitor_title:
                 sub.monitor_title = data.monitor_title
 
@@ -194,9 +206,43 @@ class DashboardAlertService:
 
         clean_id = cls.normalize_monitor_id(monitor_id)
         display_title = monitor_title or f"Мониторинг {clean_id}"
+        sub = await cls.get_subscription(db, user.id, clean_id, display_title)
 
+        # Build filter clauses respecting user's Future Hunter preferences (lead time, budget, TA, airports, whitelist)
+        where_extra = []
+        q_params: Dict[str, Any] = {"id1": clean_id, "id2": f"filter_{clean_id}"}
+        if sub.min_days_to_dep and sub.min_days_to_dep > 0:
+            min_chk_d = (datetime.now(timezone.utc).date() + timedelta(days=int(sub.min_days_to_dep)))
+            where_extra.append("oc.checkin_date >= :min_chk_d")
+            q_params["min_chk_d"] = min_chk_d
+        if sub.max_budget_pln and sub.max_budget_pln > 0:
+            where_extra.append("ps.total_price_pln <= :max_budget")
+            q_params["max_budget"] = float(sub.max_budget_pln)
+        if sub.min_ta_rating and sub.min_ta_rating > 0:
+            where_extra.append("h.ta_rating >= :min_ta")
+            q_params["min_ta"] = float(sub.min_ta_rating)
+        if sub.preferred_airports:
+            airports = [a.strip().upper() for a in sub.preferred_airports.split(",") if a.strip()]
+            if airports:
+                a_ph = ",".join(f":ap{i}" for i in range(len(airports)))
+                where_extra.append(f"UPPER(oc.airport_code) IN ({a_ph})")
+                for i, ap in enumerate(airports):
+                    q_params[f"ap{i}"] = ap
+        if sub.whitelist_only:
+            wl_res = await db.execute(
+                text("SELECT DISTINCT oc2.hotel_id FROM watchlists w JOIN offer_cohorts oc2 ON w.cohort_hash = oc2.cohort_hash WHERE w.user_chat_id = :uchat AND w.is_active = TRUE"),
+                {"uchat": str(chat_id)},
+            )
+            wl_hids = [r[0] for r in wl_res.fetchall()]
+            if wl_hids:
+                w_ph = ",".join(f":wh{i}" for i in range(len(wl_hids)))
+                where_extra.append(f"h.hotel_id IN ({w_ph})")
+                for i, hid in enumerate(wl_hids):
+                    q_params[f"wh{i}"] = hid
+
+        extra_sql = (" AND " + " AND ".join(where_extra)) if where_extra else ""
         # Find best offer for this monitor from price_snapshots + offer_cohorts
-        query = text("""
+        query = text(f"""
             SELECT 
                 h.display_name,
                 h.country,
@@ -210,10 +256,11 @@ class DashboardAlertService:
             JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
             JOIN hotels h ON oc.hotel_id = h.hotel_id
             WHERE (oc.filter_id = :id1 OR oc.filter_id = :id2 OR ps.filter_id = :id1 OR ps.filter_id = :id2)
+              {extra_sql}
             ORDER BY ps.recorded_at DESC, ps.total_price_pln ASC
             LIMIT 1
         """)
-        res = await db.execute(query, {"id1": clean_id, "id2": f"filter_{clean_id}"})
+        res = await db.execute(query, q_params)
         row = res.fetchone()
 
         if not row:

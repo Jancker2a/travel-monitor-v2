@@ -18,6 +18,7 @@ _MARKET_OVERVIEW_CACHE: Optional[Tuple[float, Dict[str, Any]]] = None
 _EB_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
 _FILTER_ANALYTICS_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
 _FILTER_DEPARTURES_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
+_SEASONALITY_CACHE: Dict[str, Tuple[float, Dict[str, Any]]] = {}
 _ANALYTICS_CACHE_TTL = 300.0  # 5 minutes cache
 
 
@@ -939,5 +940,266 @@ class AnalyticsService:
             },
         }
         _FILTER_DEPARTURES_CACHE[canonical_fid] = (now_ts, out)
+        return out
+
+    @classmethod
+    async def get_seasonality_outlook(
+        cls,
+        db: AsyncSession,
+        destination: Optional[str] = None,
+        adults: int = 2,
+        children: int = 1,
+        filter_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """
+        Future Hunter Intelligence: Computes monthly price seasonality, honest price anchors
+        (seasonal norm, -15% good deal, historical snipe minimum), drop probability, and
+        sold-out risk strictly matched to party composition (adults + children).
+        """
+        from app.services.timeline_service import resolve_filter_id
+        from app.services.canonical_filters import resolve_filter_spec
+        from app.services.search_intelligence import get_destination_season_info
+
+        spec = resolve_filter_spec(filter_id) if filter_id else None
+        if not spec and filter_id:
+            spec = resolve_filter_spec(resolve_filter_id(filter_id))
+
+        target_country = (spec or {}).get("country") or destination or ""
+        t_adults = int((spec or {}).get("adults", adults))
+        t_children = int((spec or {}).get("children", children))
+        dur_min = int((spec or {}).get("duration_min", 6))
+        dur_max = int((spec or {}).get("duration_max", 11))
+        dur_lo = max(1, dur_min - 1)
+        dur_hi = dur_max + 2
+
+        norm_dest = target_country.strip().lower()
+        dest_aliases = {norm_dest} if norm_dest else set()
+        if any(k in norm_dest for k in ("турц", "turk")):
+            dest_aliases.update(["турция", "turkey"])
+        elif any(k in norm_dest for k in ("егип", "egypt")):
+            dest_aliases.update(["египет", "egypt"])
+        elif any(k in norm_dest for k in ("грец", "gree")):
+            dest_aliases.update(["греция", "greece"])
+        elif any(k in norm_dest for k in ("кипр", "cypr")):
+            dest_aliases.update(["кипр", "cyprus"])
+
+        cache_key = f"{filter_id or ''}_{norm_dest}_{t_adults}_{t_children}_{dur_lo}_{dur_hi}"
+        now_ts = time.time()
+        if cache_key in _SEASONALITY_CACHE:
+            c_time, c_data = _SEASONALITY_CACHE[cache_key]
+            if now_ts - c_time < _ANALYTICS_CACHE_TTL:
+                return c_data
+
+        params: Dict[str, Any] = {
+            "ad": t_adults,
+            "ch": t_children,
+            "dl": dur_lo,
+            "dh": dur_hi,
+        }
+        dest_clause = ""
+        if dest_aliases:
+            d_ph = " OR ".join(f"LOWER(h.country) LIKE :d{i} OR LOWER(oc.destination_code) LIKE :d{i}" for i in range(len(dest_aliases)))
+            dest_clause = f"AND ({d_ph})"
+            for i, d_val in enumerate(sorted(dest_aliases)):
+                params[f"d{i}"] = f"%{d_val}%"
+
+        sql = f"""
+            SELECT oc.cohort_id,
+                   oc.hotel_id,
+                   oc.checkin_date,
+                   ps.recorded_at,
+                   ps.total_price_pln
+            FROM price_snapshots ps
+            JOIN offer_cohorts oc ON ps.cohort_id = oc.cohort_id
+            JOIN hotels h ON oc.hotel_id = h.hotel_id
+            WHERE oc.adults = :ad
+              AND oc.children = :ch
+              AND oc.duration_nights BETWEEN :dl AND :dh
+              AND oc.checkin_date IS NOT NULL
+              AND ps.total_price_pln > 0
+              {dest_clause}
+            ORDER BY ps.recorded_at DESC
+            LIMIT 50000
+        """
+        rows = (await db.execute(text(sql), params)).fetchall()
+
+        MONTH_LABELS = {
+            "01": "Январь", "02": "Февраль", "03": "Март", "04": "Апрель",
+            "05": "Май", "06": "Июнь", "07": "Июль", "08": "Август",
+            "09": "Сентябрь", "10": "Октябрь", "11": "Ноябрь", "12": "Декабрь",
+        }
+
+        all_prices: List[float] = []
+        month_data: Dict[str, Dict[str, Any]] = {}
+        cohort_stats: Dict[str, Dict[str, Any]] = {}
+        ref_date: Optional[date] = None
+
+        for cid, hid, cd_raw, rec_raw, p_raw in rows:
+            dt = cls._parse_dt(rec_raw)
+            cd = cls._parse_date(cd_raw)
+            p = float(p_raw or 0.0)
+            if not dt or not cd or p <= 0:
+                continue
+            if ref_date is None or dt.date() > ref_date:
+                ref_date = dt.date()
+            lead = (cd - dt.date()).days
+            if lead < 0 or lead > 400:
+                continue
+            all_prices.append(p)
+
+            m_key = cd.strftime("%Y-%m")
+            m_entry = month_data.setdefault(
+                m_key, {"prices": [], "lm_prices": [], "hotels": set(), "cohorts": set(), "sample_date": cd}
+            )
+            m_entry["prices"].append(p)
+            m_entry["hotels"].add(hid)
+            m_entry["cohorts"].add(str(cid))
+            if lead <= 5:
+                m_entry["lm_prices"].append(p)
+
+            c_key = str(cid)
+            c_entry = cohort_stats.setdefault(
+                c_key, {"cd": cd, "min_lead": lead, "max_lead": lead, "prices": []}
+            )
+            c_entry["min_lead"] = min(c_entry["min_lead"], lead)
+            c_entry["max_lead"] = max(c_entry["max_lead"], lead)
+            c_entry["prices"].append(p)
+
+        today_ref = ref_date or date.today()
+        party_label = (
+            "1 взр"
+            if (t_adults == 1 and t_children == 0)
+            else ("2 взр" if t_children == 0 else f"{t_adults} взр + {t_children} реб")
+        )
+
+        if len(all_prices) < 5:
+            out = {
+                "has_data": False,
+                "destination": target_country or "all",
+                "party_label": party_label,
+                "anchors": {
+                    "seasonal_median_pln": 0,
+                    "good_deal_target_pln": 0,
+                    "snipe_record_pln": 0,
+                },
+                "hunt_odds": {
+                    "dump_probability_pct": 0.0,
+                    "sold_out_scarcity_pct": 0.0,
+                    "strategy_verdict": "INSUFFICIENT_DATA",
+                    "headline": "Пока недостаточно данных для прогноза сезонности",
+                    "advice": "По мере накопления замеров для этого состава туристов здесь появится прогноз по месяцам.",
+                },
+                "months": [],
+            }
+            return out
+
+        sorted_all = sorted(all_prices)
+        seasonal_median = round(statistics.median(sorted_all), 0)
+        good_deal_target = round(seasonal_median * 0.85, 0)
+        p5_idx = max(0, int(len(sorted_all) * 0.05))
+        snipe_record = round(sorted_all[p5_idx], 0)
+
+        # Evaluate mature cohorts that have already crossed the last-minute threshold (<= 3 days to departure)
+        # so future departures 8-14 days away are NEVER miscounted as "vanished before D-7".
+        mature_cohorts = [
+            c for c in cohort_stats.values()
+            if c["max_lead"] >= 14 and (c["cd"] - today_ref).days <= 3
+        ]
+        if len(mature_cohorts) >= 5:
+            vanished_cnt = sum(1 for c in mature_cohorts if c["min_lead"] > 7)
+            sold_out_pct = round((vanished_cnt / len(mature_cohorts)) * 100.0, 1)
+            dropped_cnt = sum(
+                1 for c in mature_cohorts
+                if len(c["prices"]) >= 2 and min(c["prices"]) <= statistics.median(c["prices"]) * 0.88
+            )
+            dump_prob_pct = round((dropped_cnt / len(mature_cohorts)) * 100.0, 1)
+        else:
+            # Cross-sectional proxy from low-priced LM vs seasonal norm when mature history is young
+            lm_all = [p for m in month_data.values() for p in m["lm_prices"]]
+            if len(lm_all) >= 10:
+                dump_prob_pct = round(sum(1 for p in lm_all if p <= seasonal_median * 0.85) / len(lm_all) * 100.0, 1)
+            else:
+                dump_prob_pct = 0.0
+            sold_out_pct = 0.0
+
+        # Build sorted monthly outlook (keep recent/future months)
+        cutoff_month = (today_ref - timedelta(days=35)).strftime("%Y-%m")
+        months_list: List[Dict[str, Any]] = []
+        for m_key in sorted(month_data.keys()):
+            if m_key < cutoff_month:
+                continue
+            md = month_data[m_key]
+            ps_m = sorted(md["prices"])
+            if len(ps_m) < 3:
+                continue
+            m_med = round(statistics.median(ps_m), 0)
+            m_min = round(ps_m[0], 0)
+            m_p10 = round(ps_m[max(0, int(len(ps_m) * 0.1))], 0)
+            lm_cnt = len(md["lm_prices"])
+            hot_share = (
+                round(sum(1 for p in md["lm_prices"] if p <= m_med * 0.88) / lm_cnt * 100.0, 1)
+                if lm_cnt >= 3
+                else None
+            )
+            yr, mm = m_key.split("-")
+            s_info = get_destination_season_info(target_country or "turkey", md["sample_date"])
+            months_list.append({
+                "month": m_key,
+                "label": f"{MONTH_LABELS.get(mm, mm)} {yr}",
+                "min_price": m_min,
+                "p10_price": m_p10,
+                "median_price": m_med,
+                "hotels_count": len(md["hotels"]),
+                "cohorts_count": len(md["cohorts"]),
+                "hot_share_pct": hot_share,
+                "season_tier": s_info.get("season", "standard"),
+                "season_label": s_info.get("label", ""),
+                "is_cheaper_month": m_med <= seasonal_median * 0.93,
+            })
+
+        cheapest_m = min(months_list, key=lambda x: x["median_price"]) if months_list else None
+        if sold_out_pct >= 55.0:
+            verdict = "EARLY_BOOKING_SAFER"
+            headline = f"Для {party_label} высокий риск Sold-Out ({sold_out_pct:.0f}%)"
+            advice = (
+                f"В этом направлении ({target_country or 'курорт'}) {sold_out_pct:.0f}% вариантов для состава {party_label} "
+                f"исчезают до последней недели. Лучше поставить алерт заранее на целевую цену ≤ {int(good_deal_target):,} zł и не тянуть до D-2."
+            )
+        elif dump_prob_pct >= 28.0:
+            verdict = "WAIT_FOR_DROP"
+            headline = f"Хорошие шансы поймать сброс (~{dump_prob_pct:.0f}% кейсов)"
+            advice = (
+                f"Наблюдается заметная доля сбросов ≥ −12% ({dump_prob_pct:.0f}%). "
+                f"Соберите шорт-лист в Watchlist и ждите целевой цены ≤ {int(good_deal_target):,} zł (рекордное дно около {int(snipe_record):,} zł)."
+            )
+        else:
+            verdict = "BALANCED_HUNT"
+            headline = "Умеренная динамика — ловите конкретные отели по целевой цене"
+            advice = (
+                f"Норма рынка для {party_label} — ~{int(seasonal_median):,} zł. Удачной сделкой считается уровень ≤ {int(good_deal_target):,} zł"
+                + (f", а самым доступным месяцем выходит {cheapest_m['label']} (~{int(cheapest_m['median_price']):,} zł)." if cheapest_m else ".")
+            )
+
+        out = {
+            "has_data": True,
+            "destination": target_country or "all",
+            "party_label": party_label,
+            "anchors": {
+                "seasonal_median_pln": seasonal_median,
+                "good_deal_target_pln": good_deal_target,
+                "snipe_record_pln": snipe_record,
+            },
+            "hunt_odds": {
+                "dump_probability_pct": dump_prob_pct,
+                "sold_out_scarcity_pct": sold_out_pct,
+                "strategy_verdict": verdict,
+                "headline": headline,
+                "advice": advice,
+                "cheapest_month": cheapest_m["month"] if cheapest_m else None,
+                "cheapest_month_label": cheapest_m["label"] if cheapest_m else None,
+            },
+            "months": months_list,
+        }
+        _SEASONALITY_CACHE[cache_key] = (now_ts, out)
         return out
 

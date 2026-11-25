@@ -574,6 +574,25 @@ export async function getEarlyBookingAnalytics(filterId?: string): Promise<any> 
   return resp.json();
 }
 
+export async function getSeasonalityOutlook(params: {
+  destination?: string;
+  adults?: number;
+  children?: number;
+  filterId?: string;
+}): Promise<import("../types").SeasonalityOutlookData> {
+  const qs = new URLSearchParams();
+  if (params.destination) qs.set("destination", params.destination);
+  if (params.adults !== undefined) qs.set("adults", String(params.adults));
+  if (params.children !== undefined) qs.set("children", String(params.children));
+  if (params.filterId) qs.set("filter_id", params.filterId);
+  const q = qs.toString() ? `?${qs.toString()}` : "";
+  const resp = await fetch(`${API_BASE}/api/v2/analytics/seasonality-outlook${q}`);
+  if (!resp.ok) {
+    throw new Error(`Ошибка загрузки сезонности и шансов охоты (${resp.status})`);
+  }
+  return resp.json();
+}
+
 export async function getArbitrageStatus(): Promise<ArbitrageStatus> {
   const resp = await fetch(`${API_BASE}/api/v2/arbitrage/status`);
   if (!resp.ok) {

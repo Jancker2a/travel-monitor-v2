@@ -45,6 +45,8 @@ export const CreateMonitorModal: React.FC<Props> = ({
   const [maxBudget, setMaxBudget] = useState<string>("");
   const [notifyTelegram, setNotifyTelegram] = useState(true);
   const [notifyEmail, setNotifyEmail] = useState(false);
+  const [futureHuntMode, setFutureHuntMode] = useState(false);
+  const [minLeadDays, setMinLeadDays] = useState(5);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -94,12 +96,32 @@ export const CreateMonitorModal: React.FC<Props> = ({
       let filterParams: Record<string, any> = {};
 
       if (sourceType === "CUSTOM_FILTER") {
-        filterParams = currentSearchReq || {
+        const baseParams = currentSearchReq || {
           destination: "turkey",
           airports: ["WAW", "KTW"],
           duration: { min_nights: 7, max_nights: 10 },
           travelers: { adults: 2, children: 0, children_ages: [] },
         };
+        if (futureHuntMode) {
+          const dStart = new Date();
+          dStart.setDate(dStart.getDate() + Math.max(0, minLeadDays));
+          const dEnd = new Date();
+          dEnd.setDate(dEnd.getDate() + 60);
+          filterParams = {
+            ...baseParams,
+            min_days_to_dep: minLeadDays,
+            dates: {
+              ...(baseParams as any).dates,
+              is_rolling: true,
+              rolling_offset_days: minLeadDays,
+              rolling_window_days: 60,
+              start_date_min: dStart.toISOString().slice(0, 10),
+              start_date_max: dEnd.toISOString().slice(0, 10),
+            },
+          };
+        } else {
+          filterParams = baseParams;
+        }
       } else {
         if (!parsedData || !parsedData.is_valid) {
           throw new Error("Сначала вставьте и распознайте корректную ссылку с Fly.pl");
@@ -360,6 +382,58 @@ export const CreateMonitorModal: React.FC<Props> = ({
               ))}
             </div>
           </div>
+
+          {/* Future Hunter Rolling Mode */}
+          {sourceType === "CUSTOM_FILTER" && (
+            <div className="p-3.5 rounded-2xl border border-indigo-200 bg-indigo-50/70 space-y-2.5">
+              <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={futureHuntMode}
+                  onChange={(e) => {
+                    const next = e.target.checked;
+                    setFutureHuntMode(next);
+                    if (next) setMinDropPct((prev) => (prev < 10 ? 10.0 : prev));
+                  }}
+                  className="mt-0.5 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500"
+                />
+                <span className="text-xs leading-snug">
+                  <b className="text-indigo-950 block">🎯 Охота на будущее (скользящее окно на 60 дн.)</b>
+                  <span className="text-slate-600 text-[11px]">
+                    Мониторить будущие вылеты с запасом на сборы и порогом сброса от −10% без спама.
+                  </span>
+                </span>
+              </label>
+              {futureHuntMode && (
+                <div>
+                  <label className="block text-[11px] font-bold text-indigo-900 mb-1">
+                    Минимум дней до вылета:
+                  </label>
+                  <div className="grid grid-cols-4 gap-1.5">
+                    {[
+                      { val: 3, label: "3+ дн." },
+                      { val: 5, label: "5+ дн." },
+                      { val: 7, label: "7+ дн." },
+                      { val: 14, label: "14+ дн." },
+                    ].map((opt) => (
+                      <button
+                        key={opt.val}
+                        type="button"
+                        onClick={() => setMinLeadDays(opt.val)}
+                        className={`py-1.5 rounded-xl text-[11px] font-extrabold border transition-all cursor-pointer ${
+                          minLeadDays === opt.val
+                            ? "bg-indigo-600 text-white border-indigo-600"
+                            : "bg-white text-slate-700 border-indigo-200 hover:bg-indigo-50"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Max Budget (Optional) */}
           <div>

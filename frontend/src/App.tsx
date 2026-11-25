@@ -1433,6 +1433,17 @@ export const App: React.FC = () => {
               airportStats={airportStats}
               filterId={dashboardFilterIdForAnalytics}
               filterType={filterType}
+              destination={dashboardDestination}
+              adults={
+                activeUserMonitor?.filter_params?.travelers?.adults ??
+                currentPreset?.searchReq?.travelers?.adults ??
+                (dashboardFilterIdForAnalytics?.includes("1p") ? 1 : 2)
+              }
+              childrenCount={
+                activeUserMonitor?.filter_params?.travelers?.children ??
+                currentPreset?.searchReq?.travelers?.children ??
+                0
+              }
               onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
               onFilterByDeparture={(depDate) => {
                 if (depDate) {

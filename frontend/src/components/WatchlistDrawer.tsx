@@ -318,6 +318,31 @@ export const WatchlistDrawer: React.FC<Props> = ({
                             ОК
                           </button>
                         </div>
+                        <div className="flex flex-wrap gap-1.5 mt-1.5">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const base = item.typical_median_pln || item.latest_price_pln;
+                              const target = Math.round(base * 0.85);
+                              setEditingTargetPrice((prev) => ({ ...prev, [item.watch_id]: String(target) }));
+                              onUpdateItem?.(item.watch_id, { target_price_pln: target });
+                            }}
+                            className="px-2 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold hover:bg-indigo-100 transition-colors"
+                          >
+                            Цель −15% ({Math.round((item.typical_median_pln || item.latest_price_pln) * 0.85).toLocaleString("ru-RU")} zł)
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const floorTarget = Math.round(item.historical_min_pln || item.latest_price_pln * 0.78);
+                              setEditingTargetPrice((prev) => ({ ...prev, [item.watch_id]: String(floorTarget) }));
+                              onUpdateItem?.(item.watch_id, { target_price_pln: floorTarget });
+                            }}
+                            className="px-2 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold hover:bg-emerald-100 transition-colors"
+                          >
+                            Ловить дно ({Math.round(item.historical_min_pln || item.latest_price_pln * 0.78).toLocaleString("ru-RU")} zł)
+                          </button>
+                        </div>
                       </div>
 
                       {/* 2. Drop % threshold chips */}
@@ -374,6 +399,37 @@ export const WatchlistDrawer: React.FC<Props> = ({
                                 className={`py-1 rounded-lg text-[10px] font-bold transition-all border ${
                                   isSelected
                                     ? "bg-amber-500 text-white border-amber-500"
+                                    : "bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:bg-slate-100"
+                                }`}
+                              >
+                                {chip.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* 4. Lead time before departure */}
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">
+                          ⏰ Запас дней до вылета:
+                        </label>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {[
+                            { label: "Любой", val: 0 },
+                            { label: "≥ 3 дн.", val: 3 },
+                            { label: "≥ 5 дн.", val: 5 },
+                            { label: "≥ 14 дн.", val: 14 },
+                          ].map((chip) => {
+                            const isSelected = (item.min_days_to_dep ?? 0) === chip.val;
+                            return (
+                              <button
+                                key={chip.label}
+                                type="button"
+                                onClick={() => onUpdateItem?.(item.watch_id, { min_days_to_dep: chip.val })}
+                                className={`py-1 rounded-lg text-[10px] font-bold transition-all border ${
+                                  isSelected
+                                    ? "bg-indigo-600 text-white border-indigo-600"
                                     : "bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:bg-slate-100"
                                 }`}
                               >
