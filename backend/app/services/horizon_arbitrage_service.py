@@ -316,8 +316,20 @@ class HorizonArbitrageService:
         candidates = fresh_pool if fresh_pool else upcoming_pool
         best_std_offer = min(candidates, key=lambda x: x["price_pln"]) if candidates else (comp_std.get("best_offer") if comp_std else None)
 
-        if (is_current_lm or stats_lm) and best_std_offer:
-            lm_best = stats_lm.get("best_offer") if stats_lm else None
+        # Select live upcoming last-minute offer (0..4 days from today, recorded within last 7 days)
+        live_lm_candidates = []
+        for it in horizons["last_minute"]:
+            try:
+                chk_d = date.fromisoformat(str(it.get("checkin_date") or "")[:10])
+                rec_d = date.fromisoformat(str(it.get("recorded_at") or "").split()[0])
+                if 0 <= (chk_d - today_date).days <= 4 and rec_d >= fresh_cutoff:
+                    live_lm_candidates.append(it)
+            except Exception:
+                pass
+        live_lm_best = min(live_lm_candidates, key=lambda x: x["price_pln"]) if live_lm_candidates else None
+
+        if (is_current_lm or live_lm_best) and best_std_offer:
+            lm_best = live_lm_best
             lm_price = current_price if (is_current_lm and current_price) else (lm_best["price_pln"] if lm_best else None)
             std_price = best_std_offer["price_pln"]
 
@@ -325,7 +337,11 @@ class HorizonArbitrageService:
                 price_diff = round(std_price - lm_price, 0)  # positive: hot cheaper; negative: regular cheaper
                 diff_pct = round((abs(price_diff) / max(1.0, std_price)) * 100, 1)
 
-                lm_date_str = str(checkin_date) if checkin_date else (lm_best.get("checkin_date") if lm_best else (str(target_dep_date) if target_dep_date else None))
+                lm_date_str = (
+                    str(checkin_date)
+                    if (is_current_lm and checkin_date)
+                    else (lm_best.get("checkin_date") if lm_best else None)
+                )
                 std_date_str = best_std_offer.get("checkin_date")
 
                 def fmt_iso_date(d_val: Optional[str]) -> str:
