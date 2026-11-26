@@ -51,19 +51,43 @@ class CatalogService:
         TripAdvisor ratings, and badges calculated directly against historical database.
         """
         canonical_fid = resolve_filter_id(filter_id)
+        fids = get_all_filter_id_variants(filter_id)
+        is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
+        filter_expr = "ps.filter_id = ANY(:fids)" if is_pg else "ps.filter_id IN :fids"
 
-        # Check in-memory cache
+        from app.services.timeline_service import ARCHIVED_FILTER_CUTOFFS
+        archive_clause = ""
+        archive_cutoff = None
+        for v in [filter_id, canonical_fid] + fids:
+            if v in ARCHIVED_FILTER_CUTOFFS:
+                archive_cutoff = ARCHIVED_FILTER_CUTOFFS[v]
+                break
+        ts_params: Dict[str, Any] = {"fids": fids}
+        if archive_cutoff:
+            cutoff_dt = datetime.fromisoformat(archive_cutoff.replace("Z", "+00:00"))
+            archive_clause = "AND ps.recorded_at <= :archive_cutoff"
+            ts_params["archive_cutoff"] = cutoff_dt if is_pg else archive_cutoff
+
+        ts_stmt = text(f"SELECT ps.recorded_at FROM price_snapshots ps WHERE {filter_expr} {archive_clause} ORDER BY ps.recorded_at DESC LIMIT 1")
+        if not is_pg:
+            from sqlalchemy import bindparam
+            ts_stmt = ts_stmt.bindparams(bindparam("fids", expanding=True))
+        latest_db_ts = (await db.execute(ts_stmt, ts_params)).scalar()
+
+        # Check in-memory cache ONLY if DB latest_db_ts has NOT advanced (prevents multi-worker drift)
         now_ts = time.time()
         cards: Optional[List[Dict[str, Any]]] = None
         max_ts_val = None
         if canonical_fid in _CATALOG_CACHE:
             c_time, c_cards, c_max_ts = _CATALOG_CACHE[canonical_fid]
-            if now_ts - c_time < _CACHE_TTL_SECONDS:
+            if now_ts - c_time < _CACHE_TTL_SECONDS and str(c_max_ts or "") == str(latest_db_ts or ""):
                 cards = c_cards
                 max_ts_val = c_max_ts
 
         if cards is None:
-            cards, max_ts_val = await cls._compute_catalog_cards(db, filter_id, canonical_fid)
+            cards, max_ts_val = await cls._compute_catalog_cards(
+                db, filter_id, canonical_fid, prefetched_max_ts=latest_db_ts
+            )
             _CATALOG_CACHE[canonical_fid] = (now_ts, cards, max_ts_val)
 
         # 5. Apply filters
@@ -125,6 +149,7 @@ class CatalogService:
         db: AsyncSession,
         filter_id: str,
         canonical_fid: str,
+        prefetched_max_ts: Any = None,
     ) -> Tuple[List[Dict[str, Any]], Any]:
         fids = get_all_filter_id_variants(filter_id)
         is_pg = (db.bind.dialect.name == "postgresql") if db.bind else False
@@ -141,19 +166,21 @@ class CatalogService:
                 archive_cutoff = ARCHIVED_FILTER_CUTOFFS[v]
                 break
 
-        params: Dict[str, Any] = {"fids": fids}
-        if archive_cutoff:
-            cutoff_dt = datetime.fromisoformat(archive_cutoff.replace("Z", "+00:00"))
-            archive_clause = "AND ps.recorded_at <= :archive_cutoff"
-            params["archive_cutoff"] = cutoff_dt if is_pg else archive_cutoff
+        max_ts = prefetched_max_ts
+        if max_ts is None:
+            params: Dict[str, Any] = {"fids": fids}
+            if archive_cutoff:
+                cutoff_dt = datetime.fromisoformat(archive_cutoff.replace("Z", "+00:00"))
+                archive_clause = "AND ps.recorded_at <= :archive_cutoff"
+                params["archive_cutoff"] = cutoff_dt if is_pg else archive_cutoff
 
-        # 1. Find the latest recorded scrape time for this filter using fast index scan
-        stmt = text(f"SELECT ps.recorded_at FROM price_snapshots ps WHERE {filter_expr} {archive_clause} ORDER BY ps.recorded_at DESC LIMIT 1")
-        if not is_pg:
-            from sqlalchemy import bindparam
-            stmt = stmt.bindparams(bindparam("fids", expanding=True))
-        time_res = await db.execute(stmt, params)
-        max_ts = time_res.scalar()
+            # 1. Find the latest recorded scrape time for this filter using fast index scan
+            stmt = text(f"SELECT ps.recorded_at FROM price_snapshots ps WHERE {filter_expr} {archive_clause} ORDER BY ps.recorded_at DESC LIMIT 1")
+            if not is_pg:
+                from sqlalchemy import bindparam
+                stmt = stmt.bindparams(bindparam("fids", expanding=True))
+            time_res = await db.execute(stmt, params)
+            max_ts = time_res.scalar()
 
         if not max_ts:
             return [], None
@@ -169,7 +196,14 @@ class CatalogService:
         if max_dt.tzinfo is None:
             max_dt = max_dt.replace(tzinfo=timezone.utc)
 
-        cutoff = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
+        def _sql_ts(dt_val: datetime) -> Any:
+            if is_pg:
+                return dt_val
+            return dt_val.astimezone(timezone.utc).replace(tzinfo=None).isoformat(sep=" ")
+
+        # Prefer the latest scrape run (60 min) so sold-out / renamed offers from hours ago
+        # do not linger as ghost rows with stale timestamps; fall back to 24h if sparse.
+        cutoff = _sql_ts(max_dt - timedelta(minutes=60))
 
         # 2. Query active hotels and their cheapest offer in the latest scrape run (using window partition)
         checkin_guard = "" if archive_cutoff else "AND (oc.checkin_date IS NULL OR oc.checkin_date >= :today_date)"
@@ -234,12 +268,14 @@ class CatalogService:
         active_res = await db.execute(a_stmt, active_params)
         active_rows = active_res.fetchall()
 
-        if not active_rows:
-            # Wider window fallback if last scrape was slightly sparse
-            cutoff_24h = (max_dt - timedelta(hours=24)) if is_pg else (max_dt - timedelta(hours=24)).isoformat()
+        if len(active_rows) < 5:
+            # Wider 24h fallback if the latest scrape was unusually sparse (<5 hotels)
+            cutoff_24h = _sql_ts(max_dt - timedelta(hours=24))
             active_params["cutoff"] = cutoff_24h
-            active_res = await db.execute(a_stmt, active_params)
-            active_rows = active_res.fetchall()
+            fallback_res = await db.execute(a_stmt, active_params)
+            fallback_rows = fallback_res.fetchall()
+            if len(fallback_rows) > len(active_rows):
+                active_rows = fallback_rows
 
         if not active_rows:
             return [], None

@@ -1522,7 +1522,7 @@ export const App: React.FC = () => {
                 onSort={handleSort}
                 totalFound={activeTab === "search" ? totalFound : undefined}
                 isLastMinute={isCurrentLastMinute}
-                filterType={filterType}
+                filterType={effectiveTableFilterType}
               />
             ) : (
               <div className="space-y-4 relative" id="cardsSection">
@@ -1538,43 +1538,50 @@ export const App: React.FC = () => {
                   </span>
                 </div>
 
-        {/* 6. Mode Switch Views */}
-        {viewMode === "arbitrage" ? (
-          <GermanArbitrageView
-            filterId={activeTab === "filter" ? dashboardArbitrageScope.filterId : undefined}
-            country={activeTab === "filter" ? dashboardArbitrageScope.country : undefined}
-            filterTitle={activeTab === "filter" ? dashboardArbitrageScope.title : undefined}
-            onOpenPassport={(id) => setActiveHotelPassport(id)}
-            onToggleWatchlist={handleToggleArbitrageWatchlist}
-            watchedCohortHashes={watchedCohortHashes}
-          />
-        ) : viewMode === "table" ? (
-          <HotelTableView
-            hotels={filteredHotels}
-            isLoading={isLoading}
-            onOpenPassport={(id) => setActiveHotelPassport(id)}
-            onToggleWatchlist={handleToggleWatchlist}
-            watchedCohortHashes={watchedCohortHashes}
-            sortField={sortField}
-            sortAsc={sortAsc}
-            onSort={handleSort}
-            totalFound={activeTab === "search" ? totalFound : undefined}
-            isLastMinute={isCurrentLastMinute}
-            filterType={effectiveTableFilterType}
-          />
-        ) : (
-          <div className="space-y-4 relative" id="cardsSection">
-            {/* Cards Section Header */}
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <span>🏨</span>
-                <span>Все отели • клик по карточке откроет паспорт справа</span>
-              </h3>
-              <span className="text-sm text-slate-500 font-semibold">
-                Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b>
-                {activeTab === "search" && totalFound > filteredHotels.length ? ` из ${totalFound}` : ""} отелей
-              </span>
-            </div>
+                {/* Deal Score Legend */}
+                <div className="deal-legend bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 text-xs text-slate-700 leading-relaxed shadow-2xs">
+                  <strong className="text-slate-900 font-bold">{isCurrentLastMinute ? "Статусы горящих туров:" : "Как читать Deal Score:"}</strong>{" "}
+                  {isCurrentLastMinute ? (
+                    <>
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                        🔥 БРАТЬ (СБРОС)
+                      </span>{" "}
+                      = реальный сброс цены перед вылетом (дисконт от сезонной нормы),{" "}
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                        ⚖️ БЕЗ СКИДКИ
+                      </span>{" "}
+                      = стандартная цена сезона (срочной скидки нет),{" "}
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">
+                        ⚠️ НАЦЕНКА
+                      </span>{" "}
+                      = горящий тур дороже обычного регулярного тарифа.{" "}
+                      В колонке <b>ДО ВЫЛЕТА</b> показана срочность: ⚡ Сегодня, ⚡ Завтра, ⚡ 2–4 дн.
+                    </>
+                  ) : (
+                    <>
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+                        🔥 Hot
+                      </span>{" "}
+                      = очень сильная возможность,{" "}
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                        ✅ Good
+                      </span>{" "}
+                      = хороший момент,{" "}
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                        ↔ Normal
+                      </span>{" "}
+                      = обычный уровень (~50),{" "}
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">
+                        📈 Bad
+                      </span>{" "}
+                      = подорожало за 48ч и vs средней,{" "}
+                      <span className="inline-flex items-center gap-0.5 font-extrabold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
+                        ⏳ Warm-up
+                      </span>{" "}
+                      = пока мало истории. Confidence: Low / Medium / High — степень надежности оценки. TripAdvisor слегка сдвигает Deal Score; без отзывов влияние минимально.
+                    </>
+                  )}
+                </div>
 
                 {isLoading && filteredHotels.length === 0 ? (
                   <LoadingSpinner
@@ -1582,197 +1589,231 @@ export const App: React.FC = () => {
                     label="Загрузка карточек отелей..."
                     description="Синхронизация котировок и фотографий"
                   />
+                ) : viewMode === "table" ? (
+                  <HotelTableView
+                    hotels={filteredHotels}
+                    isLoading={isLoading}
+                    onOpenPassport={(id) => setActiveHotelPassport(id)}
+                    onToggleWatchlist={handleToggleWatchlist}
+                    watchedCohortHashes={watchedCohortHashes}
+                    sortField={sortField}
+                    sortAsc={sortAsc}
+                    onSort={handleSort}
+                    totalFound={activeTab === "search" ? totalFound : undefined}
+                    isLastMinute={isCurrentLastMinute}
+                    filterType={effectiveTableFilterType}
+                  />
                 ) : (
-                  <>
-                    {isLoading && (
-                      <LoadingSpinner
-                        variant="overlay"
-                        size="lg"
-                        label="Обновление карточек отелей..."
-                        description="Синхронизация актуальных котировок"
-                      />
-                    )}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
-                      {filteredHotels.map((hotel) => (
-                        <HotelCard
-                          key={hotel.current_offer.cohort_hash}
-                          hotel={hotel}
-                          onOpenPassport={(id) => setActiveHotelPassport(id)}
-                          onToggleWatchlist={handleToggleWatchlist}
-                          isWatched={watchedCohortHashes.has(
-                            hotel.current_offer.cohort_hash
-                          )}
-                          isLastMinute={isCurrentLastMinute}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-            )}
-
-            {/* Load More Button for Interactive Search */}
-            {activeTab === "search" && (hasMore || (totalFound > 0 && results.length < totalFound)) && (
-              <div className="flex flex-col items-center justify-center py-6 gap-2">
-                <button
-                  type="button"
-                  onClick={handleLoadMore}
-                  disabled={isLoadingMore}
-                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
-                >
-                  {isLoadingMore ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Подгружаем следующие предложения с Fly.pl...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>🔄 Загрузить ещё предложения</span>
-                      <span className="bg-blue-700 px-2.5 py-0.5 rounded-full text-xs font-black">
-                        +{Math.min(100, Math.max(1, totalFound - results.length))}
+                  <div className="space-y-4 relative" id="cardsSection">
+                    {/* Cards Section Header */}
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                        <span>🏨</span>
+                        <span>Все отели • клик по карточке откроет паспорт справа</span>
+                      </h3>
+                      <span className="text-sm text-slate-500 font-semibold">
+                        Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b>
+                        {activeTab === "search" && totalFound > filteredHotels.length ? ` из ${totalFound}` : ""} отелей
                       </span>
-                    </>
-                  )}
-                </button>
-                <span className="text-xs text-slate-500 font-medium">
-                  Показано {results.length} из {totalFound} найденных отелей
-                </span>
-              </div>
+                    </div>
+
+                    {isLoading && filteredHotels.length === 0 ? (
+                      <LoadingSpinner
+                        variant="skeleton-cards"
+                        label="Загрузка карточек отелей..."
+                        description="Синхронизация котировок и фотографий"
+                      />
+                    ) : (
+                      <>
+                        {isLoading && (
+                          <LoadingSpinner
+                            variant="overlay"
+                            size="lg"
+                            label="Обновление карточек отелей..."
+                            description="Синхронизация актуальных котировок"
+                          />
+                        )}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+                          {filteredHotels.map((hotel) => (
+                            <HotelCard
+                              key={hotel.current_offer.cohort_hash}
+                              hotel={hotel}
+                              onOpenPassport={(id) => setActiveHotelPassport(id)}
+                              onToggleWatchlist={handleToggleWatchlist}
+                              isWatched={watchedCohortHashes.has(
+                                hotel.current_offer.cohort_hash
+                              )}
+                              isLastMinute={isCurrentLastMinute}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {/* Load More Button for Interactive Search */}
+                {activeTab === "search" && (hasMore || (totalFound > 0 && results.length < totalFound)) && (
+                  <div className="flex flex-col items-center justify-center py-6 gap-2">
+                    <button
+                      type="button"
+                      onClick={handleLoadMore}
+                      disabled={isLoadingMore}
+                      className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+                    >
+                      {isLoadingMore ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Подгружаем следующие предложения с Fly.pl...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>🔄 Загрузить ещё предложения</span>
+                          <span className="bg-blue-700 px-2.5 py-0.5 rounded-full text-xs font-black">
+                            +{Math.min(100, Math.max(1, totalFound - results.length))}
+                          </span>
+                        </>
+                      )}
+                    </button>
+                    <span className="text-xs text-slate-500 font-medium">
+                      Показано {results.length} из {totalFound} найденных отелей
+                    </span>
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
-      </main>
+          </main>
 
-      {/* 7. Hotel AI Passport Drawer (Slides out from RIGHT) */}
-      {(() => {
-        const activePassportHotel = results.find(
-          (h) =>
-            h.hotel_id === activeHotelPassport ||
-            (activeHotelPassport &&
-              h.hotel_name.trim().toLowerCase() === activeHotelPassport.trim().toLowerCase())
-        ) || null;
-        const isPassportWatched = activePassportHotel
-          ? watchedCohortHashes.has(activePassportHotel.current_offer.cohort_hash)
-          : false;
+        {/* 7. Hotel AI Passport Drawer (Slides out from RIGHT) */}
+        {(() => {
+          const activePassportHotel = results.find(
+            (h) =>
+              h.hotel_id === activeHotelPassport ||
+              (activeHotelPassport &&
+                h.hotel_name.trim().toLowerCase() === activeHotelPassport.trim().toLowerCase())
+          ) || null;
+          const isPassportWatched = activePassportHotel
+            ? watchedCohortHashes.has(activePassportHotel.current_offer.cohort_hash)
+            : false;
 
-        return (
-          <HotelPassportDrawer
-            hotelId={activeHotelPassport}
-            filterId={
-              activeTab === "filter"
-                ? (activeUserMonitor ? `monitor_${activeUserMonitor.id}` : activeFilterId)
-                : undefined
-            }
-            hotelItem={activePassportHotel}
-            searchTravelers={
-              activeUserMonitor?.filter_params?.travelers
-                ? activeUserMonitor.filter_params.travelers
-                : activeUserMonitor?.filter_params
-                  ? {
-                    adults: activeUserMonitor.filter_params.adults || 2,
-                    children: activeUserMonitor.filter_params.children || 0,
-                    children_ages: [],
-                  }
-                  : activeTab === "search"
-                    ? (lastSearchReq?.travelers || { adults: 1, children: 0, children_ages: [] })
-                    : undefined
-            }
-            searchAirports={
-              activeTab === "search"
-                ? lastSearchReq?.airports
-                : activeUserMonitor?.filter_params?.airports || currentPreset?.searchReq?.airports
-            }
-            isWatched={isPassportWatched}
-            onToggleWatchlist={activePassportHotel ? () => handleToggleWatchlist(activePassportHotel) : undefined}
-            onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}
-            onClose={() => setActiveHotelPassport(null)}
-          />
-        );
-      })()}
+          return (
+            <HotelPassportDrawer
+              hotelId={activeHotelPassport}
+              filterId={
+                activeTab === "filter"
+                  ? (activeUserMonitor ? `monitor_${activeUserMonitor.id}` : activeFilterId)
+                  : undefined
+              }
+              hotelItem={activePassportHotel}
+              searchTravelers={
+                activeUserMonitor?.filter_params?.travelers
+                  ? activeUserMonitor.filter_params.travelers
+                  : activeUserMonitor?.filter_params
+                    ? {
+                      adults: activeUserMonitor.filter_params.adults || 2,
+                      children: activeUserMonitor.filter_params.children || 0,
+                      children_ages: [],
+                    }
+                    : activeTab === "search"
+                      ? (lastSearchReq?.travelers || { adults: 1, children: 0, children_ages: [] })
+                      : undefined
+              }
+              searchAirports={
+                activeTab === "search"
+                  ? lastSearchReq?.airports
+                  : activeUserMonitor?.filter_params?.airports || currentPreset?.searchReq?.airports
+              }
+              isWatched={isPassportWatched}
+              onToggleWatchlist={activePassportHotel ? () => handleToggleWatchlist(activePassportHotel) : undefined}
+              onSwitchFilter={(newFilterId) => handleSelectFilter(newFilterId)}
+              onClose={() => setActiveHotelPassport(null)}
+            />
+          );
+        })()}
 
-      {/* Watchlist Drawer */}
-      <WatchlistDrawer
-        isOpen={isWatchlistOpen}
-        onClose={() => setIsWatchlistOpen(false)}
-        items={watchlistItems}
-        onDeleteItem={handleDeleteWatchlist}
-        onUpdateItem={handleUpdateWatchlistItem}
-        onOpenPassport={(hotelId) => {
-          setIsWatchlistOpen(false);
-          setActiveHotelPassport(hotelId);
-        }}
-        currentUser={currentUser}
-        onOpenUserSettings={() => {
-          setIsWatchlistOpen(false);
-          if (currentUser) {
-            setIsUserSettingsOpen(true);
-          } else {
-            setAuthModalReason("Для настройки Telegram-уведомлений выполните вход в аккаунт.");
-            setIsAuthModalOpen(true);
-          }
-        }}
-      />
-
-      {/* User Profile & Telegram Settings Modal */}
-      {currentUser && (
-        <UserSettingsModal
-          isOpen={isUserSettingsOpen}
-          onClose={() => setIsUserSettingsOpen(false)}
+        {/* Watchlist Drawer */}
+        <WatchlistDrawer
+          isOpen={isWatchlistOpen}
+          onClose={() => setIsWatchlistOpen(false)}
+          items={watchlistItems}
+          onDeleteItem={handleDeleteWatchlist}
+          onUpdateItem={handleUpdateWatchlistItem}
+          onOpenPassport={(hotelId) => {
+            setIsWatchlistOpen(false);
+            setActiveHotelPassport(hotelId);
+          }}
           currentUser={currentUser}
-          onUserUpdated={(updated) => setCurrentUser(updated)}
+          onOpenUserSettings={() => {
+            setIsWatchlistOpen(false);
+            if (currentUser) {
+              setIsUserSettingsOpen(true);
+            } else {
+              setAuthModalReason("Для настройки Telegram-уведомлений выполните вход в аккаунт.");
+              setIsAuthModalOpen(true);
+            }
+          }}
         />
-      )}
 
-      {/* Monitor Alert Settings Modal */}
-      {activeAlertMonitor && (
-        <MonitorAlertsModal
-          isOpen={isMonitorAlertsOpen}
-          onClose={() => setIsMonitorAlertsOpen(false)}
-          monitorId={activeAlertMonitor.id}
-          monitorTitle={activeAlertMonitor.title}
+        {/* User Profile & Telegram Settings Modal */}
+        {currentUser && (
+          <UserSettingsModal
+            isOpen={isUserSettingsOpen}
+            onClose={() => setIsUserSettingsOpen(false)}
+            currentUser={currentUser}
+            onUserUpdated={(updated) => setCurrentUser(updated)}
+          />
+        )}
+
+        {/* Monitor Alert Settings Modal */}
+        {activeAlertMonitor && (
+          <MonitorAlertsModal
+            isOpen={isMonitorAlertsOpen}
+            onClose={() => setIsMonitorAlertsOpen(false)}
+            monitorId={activeAlertMonitor.id}
+            monitorTitle={activeAlertMonitor.title}
+            currentUser={currentUser}
+            onRequestAuth={() => {
+              setIsMonitorAlertsOpen(false);
+              setAuthModalReason(`🔒 Войдите или зарегистрируйтесь, чтобы настроить Telegram-алерты для «${activeAlertMonitor.title}».`);
+              setIsAuthModalOpen(true);
+            }}
+          />
+        )}
+
+        {/* Auth Modal */}
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => {
+            setIsAuthModalOpen(false);
+            setAuthModalReason(null);
+          }}
+          reasonMessage={authModalReason}
+          hasAdmin={adminStatus.has_admin}
+          onAuthSuccess={(u) => {
+            setCurrentUser(u);
+            if (u.role === "ADMIN") {
+              setAdminStatus({ has_admin: true, admin_email: u.email });
+            }
+            loadUserMonitors();
+            setAuthModalReason(null);
+          }}
+        />
+
+        {/* Create User Monitor Modal */}
+        <CreateMonitorModal
+          isOpen={isCreateMonitorOpen}
+          onClose={() => setIsCreateMonitorOpen(false)}
+          onCreated={(m) => {
+            setUserMonitors((prev) => [m, ...prev]);
+            handleOpenMonitorDashboard(m);
+          }}
+          currentSearchReq={lastSearchReq || undefined}
           currentUser={currentUser}
           onRequestAuth={() => {
-            setIsMonitorAlertsOpen(false);
-            setAuthModalReason(`🔒 Войдите или зарегистрируйтесь, чтобы настроить Telegram-алерты для «${activeAlertMonitor.title}».`);
+            setIsCreateMonitorOpen(false);
             setIsAuthModalOpen(true);
           }}
         />
-      )}
-
-      {/* Auth Modal */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => {
-          setIsAuthModalOpen(false);
-          setAuthModalReason(null);
-        }}
-        reasonMessage={authModalReason}
-        hasAdmin={adminStatus.has_admin}
-        onAuthSuccess={(u) => {
-          setCurrentUser(u);
-          if (u.role === "ADMIN") {
-            setAdminStatus({ has_admin: true, admin_email: u.email });
-          }
-          loadUserMonitors();
-          setAuthModalReason(null);
-        }}
-      />
-
-      {/* Create User Monitor Modal */}
-      <CreateMonitorModal
-        isOpen={isCreateMonitorOpen}
-        onClose={() => setIsCreateMonitorOpen(false)}
-        onCreated={(m) => {
-          setUserMonitors((prev) => [m, ...prev]);
-          handleOpenMonitorDashboard(m);
-        }}
-        currentSearchReq={lastSearchReq || undefined}
-        currentUser={currentUser}
-        onRequestAuth={() => {
-          setIsCreateMonitorOpen(false);
-          setIsAuthModalOpen(true);
-        }}
-      />
     </div>
   );
 };
