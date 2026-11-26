@@ -1589,68 +1589,34 @@ export const App: React.FC = () => {
                     label="Загрузка карточек отелей..."
                     description="Синхронизация котировок и фотографий"
                   />
-                ) : viewMode === "table" ? (
-                  <HotelTableView
-                    hotels={filteredHotels}
-                    isLoading={isLoading}
-                    onOpenPassport={(id) => setActiveHotelPassport(id)}
-                    onToggleWatchlist={handleToggleWatchlist}
-                    watchedCohortHashes={watchedCohortHashes}
-                    sortField={sortField}
-                    sortAsc={sortAsc}
-                    onSort={handleSort}
-                    totalFound={activeTab === "search" ? totalFound : undefined}
-                    isLastMinute={isCurrentLastMinute}
-                    filterType={effectiveTableFilterType}
-                  />
                 ) : (
-                  <div className="space-y-4 relative" id="cardsSection">
-                    {/* Cards Section Header */}
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                        <span>🏨</span>
-                        <span>Все отели • клик по карточке откроет паспорт справа</span>
-                      </h3>
-                      <span className="text-sm text-slate-500 font-semibold">
-                        Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b>
-                        {activeTab === "search" && totalFound > filteredHotels.length ? ` из ${totalFound}` : ""} отелей
-                      </span>
-                    </div>
-
-                    {isLoading && filteredHotels.length === 0 ? (
+                  <>
+                    {isLoading && (
                       <LoadingSpinner
-                        variant="skeleton-cards"
-                        label="Загрузка карточек отелей..."
-                        description="Синхронизация котировок и фотографий"
+                        variant="overlay"
+                        size="lg"
+                        label="Обновление карточек отелей..."
+                        description="Синхронизация актуальных котировок"
                       />
-                    ) : (
-                      <>
-                        {isLoading && (
-                          <LoadingSpinner
-                            variant="overlay"
-                            size="lg"
-                            label="Обновление карточек отелей..."
-                            description="Синхронизация актуальных котировок"
-                          />
-                        )}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
-                          {filteredHotels.map((hotel) => (
-                            <HotelCard
-                              key={hotel.current_offer.cohort_hash}
-                              hotel={hotel}
-                              onOpenPassport={(id) => setActiveHotelPassport(id)}
-                              onToggleWatchlist={handleToggleWatchlist}
-                              isWatched={watchedCohortHashes.has(
-                                hotel.current_offer.cohort_hash
-                              )}
-                              isLastMinute={isCurrentLastMinute}
-                            />
-                          ))}
-                        </div>
-                      </>
                     )}
-                  </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+                      {filteredHotels.map((hotel) => (
+                        <HotelCard
+                          key={hotel.current_offer.cohort_hash}
+                          hotel={hotel}
+                          onOpenPassport={(id) => setActiveHotelPassport(id)}
+                          onToggleWatchlist={handleToggleWatchlist}
+                          isWatched={watchedCohortHashes.has(
+                            hotel.current_offer.cohort_hash
+                          )}
+                          isLastMinute={isCurrentLastMinute}
+                        />
+                      ))}
+                    </div>
+                  </>
                 )}
+              </div>
+            )}
 
                 {/* Load More Button for Interactive Search */}
                 {activeTab === "search" && (hasMore || (totalFound > 0 && results.length < totalFound)) && (
