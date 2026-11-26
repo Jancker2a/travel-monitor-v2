@@ -290,6 +290,7 @@ class LiveScraperService:
                                 continue
                             seen_offers.add(dedup_key)
 
+                            pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
                             checkin_d, checkout_d = parse_departure_date(dates_str)
                             if not checkin_d and pub_url:
                                 checkin_d, url_ret = extract_offer_url_dates(pub_url)
@@ -300,7 +301,6 @@ class LiveScraperService:
                             norm_board = normalize_board_basis(o.get("serviceDesc") or "All Inclusive")
                             stars_val = int(o.get("categoryRating", 40)) // 10 if o.get("categoryRating") else 4
                             thumb = o.get("thumbnailUrl") or (o.get("imagesUrl")[0] if o.get("imagesUrl") else "")
-                            pub_url = f"https://fly.pl{o.get('publicUrl')}" if o.get("publicUrl") else ""
                             cms_data = o.get("cmsData") or {}
                             ta_val = cms_data.get("tripadvisorRating") or o.get("rating")
                             try:

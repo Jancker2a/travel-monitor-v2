@@ -166,3 +166,57 @@ async def test_live_scraper_deduplicates_renamed_operator_offers_keeping_cheapes
         snaps = (await db.execute(select(PriceSnapshot))).scalars().all()
         assert len(snaps) == 1
         assert snaps[0].total_price_pln == 6450.0
+
+
+@pytest.mark.asyncio
+async def test_fetch_offers_via_api_parses_pub_url_without_unbound_error(monkeypatch):
+    from unittest.mock import MagicMock
+    from app.services.live_scraper import LiveScraperService
+
+    class FakeResp:
+        status_code = 200
+
+        def json(self):
+            return {
+                "data": {
+                    "count": 1,
+                    "offers": [
+                        {
+                            "name": "Serenity Alma Heights",
+                            "total": 6850.0,
+                            "departureDate": "",
+                            "returnDate": "",
+                            "nights": 7,
+                            "departureLocation": "ВСЕ АЭРОПО",
+                            "serviceDesc": "All Inclusive",
+                            "categoryRating": 50,
+                            "publicUrl": "/wycieczka/egipt,hurghada,makadi-bay/serenity-fun-city/p1?departureDate=2027-01-03&returnDate=2027-01-10&departureLocation=Warszawa",
+                            "operatorName": "EXIM",
+                        }
+                    ],
+                }
+            }
+
+    class FakeAsyncClient:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, exc_type, exc, tb):
+            return False
+
+        async def get(self, url, params=None):
+            return FakeResp()
+
+    monkeypatch.setattr("app.services.live_scraper.httpx.AsyncClient", FakeAsyncClient)
+    offers, cnt = await LiveScraperService.fetch_offers_via_api(
+        "https://fly.pl/szukaj-wycieczek/?destinationLocation=11:&adults=2",
+        max_offers=50,
+        return_meta=True,
+    )
+    assert cnt == 1
+    assert len(offers) == 1
+    assert offers[0]["departure_airport"] == "WAW"
+    assert offers[0]["checkin_date"].isoformat() == "2027-01-03"
