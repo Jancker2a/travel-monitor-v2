@@ -662,10 +662,16 @@ class LiveScraperService:
         from app.services.geo_resolver import GeoResolver
         from app.services.hotel_entity_matcher import HotelEntityMatcher
 
-        alias_matcher = HotelEntityMatcher(similarity_threshold=0.82)
+        alias_matcher = HotelEntityMatcher(similarity_threshold=0.88)
+        best_items_by_hid: Dict[str, SearchHotelItem] = {}
+        batch_names_by_country: Dict[str, Dict[str, Hotel]] = defaultdict(dict)
+        for existing_ent in seen_hotels.values():
+            if existing_ent and existing_ent.country and existing_ent.display_name:
+                batch_names_by_country[existing_ent.country.lower()][existing_ent.display_name] = existing_ent
 
         for off in raw_offers:
-            hotel_id = slugify(off["hotel_name"])
+            raw_slug = slugify(off["hotel_name"])
+            hotel_id = raw_slug
             canon_cluster_hid = alias_matcher.resolve_canonical_cluster_id(
                 off["hotel_name"],
                 country=destination_country,
@@ -681,6 +687,21 @@ class LiveScraperService:
                         seen_hotels[canon_cluster_hid] = canon_ent
                         hotel_id = canon_cluster_hid
             hotel_entity = seen_hotels.get(hotel_id)
+
+            # In-batch deduplication across different operator renamings in the same scrape
+            if not hotel_entity:
+                c_pool = batch_names_by_country.get(destination_country.lower(), {})
+                if c_pool:
+                    m_in_batch = alias_matcher.match_hotel(
+                        off["hotel_name"],
+                        list(c_pool.keys()),
+                        destination=destination_country,
+                        target_stars=off.get("stars"),
+                        offer_url=off.get("offer_url"),
+                    )
+                    if m_in_batch and m_in_batch[1] >= 0.90:
+                        hotel_entity = c_pool[m_in_batch[0]]
+                        hotel_id = hotel_entity.hotel_id
 
             off_ta = off.get("ta_rating")
             off_reviews = off.get("ta_reviews")
@@ -706,6 +727,7 @@ class LiveScraperService:
                 )
                 db.add(hotel_entity)
                 seen_hotels[hotel_id] = hotel_entity
+                batch_names_by_country[geo_c.lower()][hotel_entity.display_name] = hotel_entity
             elif geo_c and hotel_entity.country and normalize_dest_slug(hotel_entity.country) != normalize_dest_slug(geo_c):
                 # Avoid cross-country slug collision (e.g. Sandy Beach in Turkey vs Cyprus): namespace by country slug
                 scoped_hid = f"{normalize_dest_slug(geo_c)[:2]}-{hotel_id}"[:128]
@@ -725,7 +747,7 @@ class LiveScraperService:
                         main_image_url=off["main_image_url"],
                     )
                     db.add(hotel_entity)
-                seen_hotels[hotel_id] = hotel_entity
+                seen_hotels[scoped_hid] = hotel_entity
                 hotel_id = scoped_hid
             else:
                 if geo_c and not hotel_entity.country:
@@ -738,8 +760,18 @@ class LiveScraperService:
                     hotel_entity.ta_rating = off_ta
                 if off_reviews and not hotel_entity.ta_reviews:
                     hotel_entity.ta_reviews = off_reviews
+                # Accumulate newly seen alias name onto canonical entity specs['aliases']
+                if off["hotel_name"] and off["hotel_name"].strip().lower() != (hotel_entity.display_name or "").strip().lower():
+                    specs_cur = dict(hotel_entity.specs) if isinstance(hotel_entity.specs, dict) else {}
+                    al_list = list(specs_cur.get("aliases") or [])
+                    if off["hotel_name"] not in al_list:
+                        al_list.append(off["hotel_name"])
+                        specs_cur["aliases"] = al_list[:20]
+                        hotel_entity.specs = specs_cur
 
             resolved_hid = hotel_entity.hotel_id
+            seen_hotels[raw_slug] = hotel_entity
+            off["_resolved_hid"] = resolved_hid
             norm_air = normalize_airport_code(off.get("departure_airport"), off.get("offer_url"))
             norm_brd = normalize_board_basis(off.get("board_basis"))
             cohort_hash = compute_cohort_hash(
@@ -753,7 +785,7 @@ class LiveScraperService:
             )
 
             curr_price = float(off["price"])
-            hotel_snaps = hist_map.get(hotel_id, [])
+            hotel_snaps = hist_map.get(resolved_hid, []) or hist_map.get(raw_slug, [])
             spark_pts = []
             if hotel_snaps:
                 for s in hotel_snaps[:12]:
@@ -803,20 +835,21 @@ class LiveScraperService:
                 price_per_night_pax=round(curr_price / (max(1, off["duration_nights"]) * pax_count), 2),
                 departure_date=off["checkin_date"],
                 duration_nights=off["duration_nights"],
-                airport=off["departure_airport"],
+                airport=norm_air,
                 operator=off["operator"],
+                board_basis=norm_brd,
                 booking_url=off["offer_url"],
                 adults=req_adults,
                 children=req_children,
             )
 
             item = SearchHotelItem(
-                hotel_id=hotel_id,
-                hotel_name=off["hotel_name"],
+                hotel_id=resolved_hid,
+                hotel_name=hotel_entity.display_name or off["hotel_name"],
                 stars=off["stars"],
                 region=hotel_entity.region or destination_country,
                 country=hotel_entity.country or destination_country,
-                main_image_url=off["main_image_url"],
+                main_image_url=hotel_entity.main_image_url or off["main_image_url"],
                 ta_rating=effective_ta,
                 ta_reviews=effective_reviews,
                 specs=hotel_entity.specs if hotel_entity else None,
@@ -824,42 +857,21 @@ class LiveScraperService:
                 intelligence=intelligence,
                 history_sparkline=sparkline,
             )
-            items.append(item)
+            prev_item = best_items_by_hid.get(resolved_hid)
+            if prev_item is None or curr_price < prev_item.current_offer.total_price_pln:
+                best_items_by_hid[resolved_hid] = item
+
+        items = list(best_items_by_hid.values())
 
         # 4. If running for a filter or user monitor, persist OfferCohort and PriceSnapshot
         if req.filter_id and raw_offers:
             try:
-                # Pre-fetch existing cohorts for these offers using resolved hotel_id & canonical airport/board
-                all_cohort_hashes = []
+                # Deduplicate offers per cohort_hash within this batch, keeping the cheapest operator offer
+                best_offer_by_chash: Dict[str, Dict[str, Any]] = {}
                 for off in raw_offers:
                     if not off.get("hotel_name"):
                         continue
-                    h_id = slugify(off.get("hotel_name"))
-                    actual_h = seen_hotels.get(h_id)
-                    actual_hid = actual_h.hotel_id if actual_h else h_id
-                    all_cohort_hashes.append(compute_cohort_hash(
-                        hotel_id=actual_hid,
-                        checkin_date=off.get("checkin_date") or date.today(),
-                        duration_nights=off.get("duration_nights") or 7,
-                        airport_code=normalize_airport_code(off.get("departure_airport"), off.get("offer_url")),
-                        adults=req_adults,
-                        board_basis=normalize_board_basis(off.get("board_basis")),
-                        filter_id=req.filter_id,
-                    ))
-                existing_cohorts: Dict[str, OfferCohort] = {}
-                if all_cohort_hashes:
-                    c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash.in_(list(set(all_cohort_hashes))))
-                    c_res = await db.execute(c_stmt)
-                    for c in c_res.scalars().all():
-                        existing_cohorts[c.cohort_hash] = c
-
-                for off in raw_offers:
-                    h_name = off.get("hotel_name")
-                    if not h_name:
-                        continue
-                    h_id = slugify(h_name)
-                    actual_hotel = seen_hotels.get(h_id)
-                    actual_hid = actual_hotel.hotel_id if actual_hotel else h_id
+                    actual_hid = off.get("_resolved_hid") or slugify(off.get("hotel_name"))
                     norm_air = normalize_airport_code(off.get("departure_airport"), off.get("offer_url"))
                     norm_brd = normalize_board_basis(off.get("board_basis"))
                     c_hash = compute_cohort_hash(
@@ -871,6 +883,23 @@ class LiveScraperService:
                         board_basis=norm_brd,
                         filter_id=req.filter_id,
                     )
+                    p_val = float(off.get("price") or 0.0)
+                    prev_off = best_offer_by_chash.get(c_hash)
+                    if prev_off is None or (p_val > 0 and p_val < float(prev_off.get("price") or 1e12)):
+                        best_offer_by_chash[c_hash] = off
+
+                all_cohort_hashes = list(best_offer_by_chash.keys())
+                existing_cohorts: Dict[str, OfferCohort] = {}
+                if all_cohort_hashes:
+                    c_stmt = select(OfferCohort).where(OfferCohort.cohort_hash.in_(all_cohort_hashes))
+                    c_res = await db.execute(c_stmt)
+                    for c in c_res.scalars().all():
+                        existing_cohorts[c.cohort_hash] = c
+
+                for c_hash, off in best_offer_by_chash.items():
+                    actual_hid = off.get("_resolved_hid") or slugify(off.get("hotel_name"))
+                    norm_air = normalize_airport_code(off.get("departure_airport"), off.get("offer_url"))
+                    norm_brd = normalize_board_basis(off.get("board_basis"))
                     cohort = existing_cohorts.get(c_hash)
                     if not cohort:
                         cohort = OfferCohort(
@@ -894,28 +923,17 @@ class LiveScraperService:
                     else:
                         cohort.last_seen_at = batch_recorded_at
                         cohort.is_active = True
+                        if off.get("operator"):
+                            cohort.operator = off.get("operator")
+                        if off.get("offer_url"):
+                            cohort.offer_url = off.get("offer_url")
                         if not cohort.filter_id:
                             cohort.filter_id = req.filter_id
 
                 await db.flush()
 
-                # Insert price snapshots
-                for off in raw_offers:
-                    h_name = off.get("hotel_name")
-                    if not h_name:
-                        continue
-                    h_id = slugify(h_name)
-                    actual_hotel = seen_hotels.get(h_id)
-                    actual_hid = actual_hotel.hotel_id if actual_hotel else h_id
-                    c_hash = compute_cohort_hash(
-                        hotel_id=actual_hid,
-                        checkin_date=off.get("checkin_date") or date.today(),
-                        duration_nights=off.get("duration_nights") or 7,
-                        airport_code=normalize_airport_code(off.get("departure_airport"), off.get("offer_url")),
-                        adults=req_adults,
-                        board_basis=normalize_board_basis(off.get("board_basis")),
-                        filter_id=req.filter_id,
-                    )
+                # Insert one best-price snapshot per cohort for this scrape batch
+                for c_hash, off in best_offer_by_chash.items():
                     co = existing_cohorts.get(c_hash)
                     p_val = float(off.get("price") or 0.0)
                     if co and co.cohort_id and p_val > 0:
@@ -932,7 +950,7 @@ class LiveScraperService:
                         db.add(snap)
 
                 await db.commit()
-                logger.info(f"Persisted {len(raw_offers)} price snapshots for filter_id '{req.filter_id}'")
+                logger.info(f"Persisted {len(best_offer_by_chash)} deduplicated price snapshots for filter_id '{req.filter_id}'")
             except Exception as pe:
                 logger.warning(f"Error persisting snapshots for filter {req.filter_id}: {pe}")
                 await db.rollback()

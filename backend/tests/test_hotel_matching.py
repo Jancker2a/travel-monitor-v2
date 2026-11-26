@@ -98,3 +98,71 @@ def test_transitive_rename_resolution_and_knowledge_lookup():
     assert found == {"ta_rating": 4.6}
     # Must NOT leak Charmillion Club Aquapark onto Charmillion Club Resort
     assert HotelKnowledgeService._match_entry("Charmillion Club Resort", mock_kb) is None
+
+
+@pytest.mark.asyncio
+async def test_live_scraper_deduplicates_renamed_operator_offers_keeping_cheapest(setup_test_db):
+    from datetime import date, timedelta
+    from sqlalchemy import select
+    from app.models.cohort import OfferCohort
+    from app.models.hotel import Hotel
+    from app.models.price_snapshot import PriceSnapshot
+    from app.schemas.search import SearchDates, SearchDuration, SearchRequest, SearchTravelers
+    from app.services.live_scraper import LiveScraperService
+
+    async with setup_test_db() as db:
+        dep = date.today() + timedelta(days=10)
+        ret = dep + timedelta(days=7)
+        req = SearchRequest(
+            destination="egypt",
+            filter_id="egypt_7_10",
+            dates=SearchDates(start_date_min=dep, start_date_max=dep + timedelta(days=3)),
+            duration=SearchDuration(min_nights=7, max_nights=10),
+            travelers=SearchTravelers(adults=2, children=1),
+        )
+        raw_offers = [
+            {
+                "hotel_name": "Serenity Alma Heights Ross Park Collection",
+                "price": 7200.0,
+                "checkin_date": dep,
+                "checkout_date": ret,
+                "duration_nights": 7,
+                "departure_airport": "WAW",
+                "stars": 5,
+                "ta_rating": 4.5,
+                "main_image_url": "",
+                "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-fun-city/p1?operator=OREX",
+                "operator": "OREX",
+                "board_basis": "All Inclusive",
+            },
+            {
+                "hotel_name": "SRNTY Sun Ray X Serenity Alma Heights",
+                "price": 6450.0,
+                "checkin_date": dep,
+                "checkout_date": ret,
+                "duration_nights": 7,
+                "departure_airport": "WAW",
+                "stars": 5,
+                "ta_rating": 4.5,
+                "main_image_url": "",
+                "offer_url": "https://fly.pl/wycieczka/egipt,hurghada,makadi-bay/serenity-fun-city/p2?operator=EXIM",
+                "operator": "EXIM",
+                "board_basis": "All Inclusive",
+            },
+        ]
+
+        items = await LiveScraperService.process_and_persist_offers(db, req, raw_offers)
+        # Same hotel under two operator renamings MUST collapse to 1 item with the cheapest price (6450 PLN)
+        assert len(items) == 1
+        assert items[0].current_offer.total_price_pln == 6450.0
+        assert items[0].current_offer.operator == "EXIM"
+        assert "p2" in (items[0].current_offer.booking_url or "")
+
+        hotels = (await db.execute(select(Hotel))).scalars().all()
+        assert len(hotels) == 1
+        cohorts = (await db.execute(select(OfferCohort))).scalars().all()
+        assert len(cohorts) == 1
+        assert cohorts[0].operator == "EXIM"
+        snaps = (await db.execute(select(PriceSnapshot))).scalars().all()
+        assert len(snaps) == 1
+        assert snaps[0].total_price_pln == 6450.0

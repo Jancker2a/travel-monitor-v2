@@ -47,6 +47,7 @@ class OfferSummary(BaseModel):
     adults: Optional[int] = None
     children: Optional[int] = None
     operator: Optional[str] = None
+    board_basis: Optional[str] = None
     booking_url: Optional[str] = None
 
 
