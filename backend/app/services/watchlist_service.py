@@ -1567,12 +1567,17 @@ class WatchlistService:
         days_to_dep_val = (target_dep_date - date.today()).days if target_dep_date else None
 
         direct_cmp = (horizon_arbitrage or {}).get("direct_comparison") or {}
+        std_offer_cmp = direct_cmp.get("standard_offer") or {}
         upcoming_std_price = (
-            float(direct_cmp["standard_price"])
-            if direct_cmp.get("standard_price")
+            float(std_offer_cmp["price_pln"])
+            if (passport_filter_type == "lastminute" and std_offer_cmp.get("price_pln"))
             else None
         )
-        upcoming_std_date = direct_cmp.get("standard_date")
+        upcoming_std_date = (
+            (std_offer_cmp.get("checkin_date_formatted") or std_offer_cmp.get("checkin_date"))
+            if passport_filter_type == "lastminute"
+            else None
+        )
 
         hist_for_scoring = (
             [HotelHistoryPoint(**p) for p in reference_history.get("history_points", [])]

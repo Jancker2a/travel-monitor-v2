@@ -1400,6 +1400,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                   <div style={{ fontSize: "10.5px", color: "#475569", marginTop: "2px" }}>
                                     🛫 {passport.horizon_arbitrage.direct_comparison.hot_offer.checkin_date || "—"}
                                     {passport.horizon_arbitrage.direct_comparison.hot_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.hot_offer.airport})` : ""}
+                                    {passport.horizon_arbitrage.direct_comparison.hot_offer.duration_nights ? ` • ${passport.horizon_arbitrage.direct_comparison.hot_offer.duration_nights}н` : ""}
                                   </div>
                                   {passport.horizon_arbitrage.direct_comparison.hot_offer.offer_url && (
                                     <a
@@ -1440,6 +1441,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                                   <div style={{ fontSize: "10.5px", color: passport.horizon_arbitrage.direct_comparison.is_std_cheaper ? "#15803d" : "#475569", marginTop: "2px" }}>
                                     🛫 {passport.horizon_arbitrage.direct_comparison.standard_offer.checkin_date || "—"}
                                     {passport.horizon_arbitrage.direct_comparison.standard_offer.airport ? ` (${passport.horizon_arbitrage.direct_comparison.standard_offer.airport})` : ""}
+                                    {passport.horizon_arbitrage.direct_comparison.standard_offer.duration_nights ? ` • ${passport.horizon_arbitrage.direct_comparison.standard_offer.duration_nights}н` : ""}
                                     {passport.horizon_arbitrage.direct_comparison.days_gap ? ` (через ${passport.horizon_arbitrage.direct_comparison.days_gap} дн.)` : ""}
                                   </div>
                                   {passport.horizon_arbitrage.direct_comparison.standard_offer.offer_url && (

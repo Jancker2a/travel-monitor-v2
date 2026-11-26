@@ -348,6 +348,7 @@ export interface HorizonArbitrageData {
       price_pln: number;
       checkin_date?: string | null;
       checkin_date_formatted?: string | null;
+      duration_nights?: number | null;
       airport?: string | null;
       offer_url?: string | null;
     };
@@ -355,6 +356,7 @@ export interface HorizonArbitrageData {
       price_pln: number;
       checkin_date?: string | null;
       checkin_date_formatted?: string | null;
+      duration_nights?: number | null;
       airport?: string | null;
       offer_url?: string | null;
     };

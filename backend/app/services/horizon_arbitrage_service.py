@@ -130,20 +130,21 @@ class HorizonArbitrageService:
                 continue
 
             row_nights = int(r[3] or target_nights)
-            # Normalize price to target duration (e.g. 7 nights)
-            norm_price = (price / row_nights) * target_nights
+            # Keep REAL observed offer price without artificial linear duration rescaling
+            real_price = float(price)
 
-            if norm_price < all_time_min:
-                all_time_min = norm_price
+            if real_price < all_time_min:
+                all_time_min = real_price
 
             days_to_dep = (chk_d - rec_d).days
 
             item = {
-                "price_pln": norm_price,
-                "raw_price_pln": price,
+                "price_pln": round(real_price, 0),
+                "raw_price_pln": real_price,
                 "days_to_dep": days_to_dep,
                 "checkin_date": str(chk_d),
                 "recorded_at": str(rec_d),
+                "recorded_ts": str(rec_dt),
                 "duration_nights": row_nights,
                 "airport": str(r[6] or ""),
                 "filter_id": str(r[7] or ""),
@@ -282,36 +283,65 @@ class HorizonArbitrageService:
         direct_comparison = None
         comp_std = stats_std or stats_short
 
-        # Select the best upcoming regular offer (D >= 5 days) from short_notice or standard
-        # Prefer fresh snapshots (recorded in the last 7 days) to reflect live market options
-        fresh_cutoff = (today_date - timedelta(days=7))
-        upcoming_pool = [
-            it for it in (horizons["short_notice"] + horizons["standard"])
-            if it.get("checkin_date") and it.get("recorded_at")
-        ]
-        fresh_pool = []
-        for it in upcoming_pool:
+        # Select the best LIVE upcoming regular offer (D >= 5 days FROM TODAY, non-lastminute, fresh within 48h).
+        # raw_rows is ordered by ps.recorded_at DESC, so the first entry per offer slot is its latest real price.
+        fresh_cutoff = (today_date - timedelta(days=2))
+        min_future_std_dep = (today_date + timedelta(days=5))
+
+        seen_std_slots = set()
+        fresh_std_pool = []
+        for it in (horizons["short_notice"] + horizons["standard"]):
+            fid_low = str(it.get("filter_id") or "").lower()
+            if "lastminute" in fid_low or "_0_4" in fid_low:
+                continue
             try:
-                rec_d = date.fromisoformat(str(it["recorded_at"]).split()[0])
-                if rec_d >= fresh_cutoff:
-                    fresh_pool.append(it)
+                chk_d = date.fromisoformat(str(it.get("checkin_date") or "")[:10])
+                rec_d = date.fromisoformat(str(it.get("recorded_at") or "").split()[0])
             except Exception:
-                pass
+                continue
+            if chk_d < min_future_std_dep or rec_d < fresh_cutoff:
+                continue
+            slot_key = (str(chk_d), int(it.get("duration_nights") or target_nights), str(it.get("airport") or ""), fid_low)
+            if slot_key in seen_std_slots:
+                continue
+            seen_std_slots.add(slot_key)
+            fresh_std_pool.append(it)
 
-        candidates = fresh_pool if fresh_pool else upcoming_pool
-        best_std_offer = min(candidates, key=lambda x: x["price_pln"]) if candidates else (comp_std.get("best_offer") if comp_std else None)
+        exact_dur_std = [it for it in fresh_std_pool if int(it.get("duration_nights") or target_nights) == target_nights]
+        near_dur_std = [it for it in fresh_std_pool if abs(int(it.get("duration_nights") or target_nights) - target_nights) <= 1]
+        std_candidates = exact_dur_std if exact_dur_std else near_dur_std
+        best_std_offer = min(std_candidates, key=lambda x: x["price_pln"]) if std_candidates else None
 
-        # Select live upcoming last-minute offer (0..4 days from today, recorded within last 7 days)
+        # Select live upcoming last-minute offer (0..4 days from today, fresh within 48h, latest per slot)
+        seen_lm_slots = set()
         live_lm_candidates = []
         for it in horizons["last_minute"]:
             try:
                 chk_d = date.fromisoformat(str(it.get("checkin_date") or "")[:10])
                 rec_d = date.fromisoformat(str(it.get("recorded_at") or "").split()[0])
-                if 0 <= (chk_d - today_date).days <= 4 and rec_d >= fresh_cutoff:
-                    live_lm_candidates.append(it)
             except Exception:
-                pass
-        live_lm_best = min(live_lm_candidates, key=lambda x: x["price_pln"]) if live_lm_candidates else None
+                continue
+            if not (0 <= (chk_d - today_date).days <= 4) or rec_d < fresh_cutoff:
+                continue
+            slot_key = (str(chk_d), int(it.get("duration_nights") or target_nights), str(it.get("airport") or ""))
+            if slot_key in seen_lm_slots:
+                continue
+            seen_lm_slots.add(slot_key)
+            live_lm_candidates.append(it)
+
+        live_lm_best = None
+        if live_lm_candidates:
+            if is_current_lm and checkin_date:
+                same_date_lm = [it for it in live_lm_candidates if str(it.get("checkin_date")) == str(checkin_date)]
+                if same_date_lm and current_price:
+                    live_lm_best = min(
+                        same_date_lm,
+                        key=lambda x: (abs(float(x["price_pln"]) - float(current_price)), abs(int(x.get("duration_nights") or target_nights) - target_nights)),
+                    )
+                elif same_date_lm:
+                    live_lm_best = min(same_date_lm, key=lambda x: x["price_pln"])
+            if live_lm_best is None:
+                live_lm_best = min(live_lm_candidates, key=lambda x: x["price_pln"])
 
         is_target_near_lm = (days_from_now_to_checkin is None) or (0 <= days_from_now_to_checkin <= 7)
         if is_target_near_lm and (is_current_lm or live_lm_best) and best_std_offer:
@@ -372,6 +402,7 @@ class HorizonArbitrageService:
                 else:
                     comp_summary = f"Цены горящего ({lm_date_fmt}) и стандартного ({std_date_fmt}) вылетов практически идентичны."
 
+                lm_matches_meta = bool(lm_best and (not lm_date_str or str(lm_best.get("checkin_date")) == str(lm_date_str)))
                 direct_comparison = {
                     "has_comparison": True,
                     "is_hot_cheaper": is_hot_cheaper,
@@ -384,13 +415,15 @@ class HorizonArbitrageService:
                         "price_pln": round(lm_price, 0),
                         "checkin_date": lm_date_str,
                         "checkin_date_formatted": lm_date_fmt,
-                        "airport": lm_best.get("airport", "") if lm_best else "",
-                        "offer_url": lm_best.get("offer_url") if lm_best else None,
+                        "duration_nights": int(lm_best.get("duration_nights") or target_nights) if lm_matches_meta else target_nights,
+                        "airport": lm_best.get("airport", "") if lm_matches_meta else "",
+                        "offer_url": lm_best.get("offer_url") if lm_matches_meta else None,
                     },
                     "standard_offer": {
                         "price_pln": round(std_price, 0),
                         "checkin_date": std_date_str,
                         "checkin_date_formatted": std_date_fmt,
+                        "duration_nights": int(best_std_offer.get("duration_nights") or target_nights),
                         "airport": best_std_offer.get("airport", ""),
                         "offer_url": best_std_offer.get("offer_url") or None,
                     },
@@ -683,17 +716,24 @@ class HorizonArbitrageService:
                     rec_d = date.today()
 
                 row_nights = int(r[3] or target_nights)
-                norm_p = (float(r[0]) / row_nights) * target_nights
+                if abs(row_nights - target_nights) > 1:
+                    continue
+                real_p = float(r[0])
                 days_before = (chk_d - rec_d).days
 
                 window_items.append({
-                    "price_pln": round(norm_p, 0),
+                    "price_pln": round(real_p, 0),
+                    "duration_nights": row_nights,
                     "days_before": days_before,
                     "checkin_date": chk_d,
                     "recorded_date": rec_d,
                     "airport": str(r[6] or ""),
                     "is_exact_date": (chk_d == target_dep_date),
                 })
+
+            exact_dur_window = [it for it in window_items if it["duration_nights"] == target_nights]
+            if len(exact_dur_window) >= 2:
+                window_items = exact_dur_window
 
             eb_candidates = [it for it in window_items if it["days_before"] >= 55]
             month_candidates = [it for it in window_items if 20 <= it["days_before"] < 55]

@@ -378,7 +378,7 @@ class CatalogService:
         is_lastminute = filter_type == "lastminute"
 
         cross_stats: Dict[str, Tuple[float, float, float, int]] = {}
-        upcoming_std_by_hotel: Dict[str, Dict[str, Any]] = {}
+        upcoming_std_by_hotel: Dict[str, List[Dict[str, Any]]] = {}
         if query_hids_list:
             cross_cutoff = (max_dt - timedelta(days=180)) if is_pg else (max_dt - timedelta(days=180)).isoformat()
             c_params = {f"h{i}": hid for i, hid in enumerate(query_hids_list)}
@@ -432,12 +432,12 @@ class CatalogService:
             except Exception as e:
                 logger.warning(f"Cross-filter stats lookup failed: {e}")
 
-            # Batched lookup of live upcoming standard departures (D >= 5 days, fresh within 7 days) for lastminute
+            # Batched lookup of live upcoming standard departures (D >= 5 days from today, fresh within 48h, latest per cohort)
             if is_lastminute:
-                fresh_rec = (datetime.now(timezone.utc) - timedelta(days=7))
+                fresh_rec = (datetime.now(timezone.utc) - timedelta(hours=48))
                 min_std_dep = (datetime.utcnow().date() + timedelta(days=5))
                 std_params = {f"h{i}": hid for i, hid in enumerate(query_hids_list)}
-                std_params["fresh_rec"] = fresh_rec if is_pg else fresh_rec.isoformat()
+                std_params["fresh_rec"] = fresh_rec if is_pg else fresh_rec.astimezone(timezone.utc).replace(tzinfo=None).isoformat(sep=" ")
                 std_params["min_std_dep"] = min_std_dep if is_pg else min_std_dep.isoformat()
                 std_params["t_ad"] = target_adults
                 std_params["t_ch"] = target_children
@@ -446,9 +446,11 @@ class CatalogService:
                 std_sql = f"""
                     SELECT
                         oc.hotel_id,
+                        oc.cohort_id,
                         ps.total_price_pln,
                         oc.checkin_date,
-                        oc.airport_code
+                        oc.airport_code,
+                        oc.duration_nights
                     FROM price_snapshots ps
                     JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                     WHERE oc.hotel_id IN ({placeholders})
@@ -457,23 +459,28 @@ class CatalogService:
                       AND oc.adults = :t_ad
                       AND oc.children = :t_ch
                       AND oc.duration_nights BETWEEN :dur_lo AND :dur_hi
-                      AND oc.filter_id NOT LIKE '%lastminute%'
+                      AND COALESCE(oc.filter_id, '') NOT LIKE '%lastminute%'
+                      AND COALESCE(oc.filter_id, '') NOT LIKE '%_0_4%'
+                    ORDER BY ps.recorded_at DESC
                 """
                 try:
                     std_res = await db.execute(text(std_sql), std_params)
-                    for row_hid, s_price, s_dep, s_air in std_res.fetchall():
+                    seen_std_cohorts: Set[int] = set()
+                    for row_hid, coh_id, s_price, s_dep, s_air, s_dur in std_res.fetchall():
+                        if coh_id in seen_std_cohorts:
+                            continue
+                        seen_std_cohorts.add(coh_id)
                         sp = float(s_price or 0.0)
                         if sp <= 0:
                             continue
                         s_dep_str = str(s_dep)[:10] if s_dep else None
                         for prim in variant_to_primary.get(row_hid, {row_hid}):
-                            cur = upcoming_std_by_hotel.get(prim)
-                            if not cur or sp < cur["price"]:
-                                upcoming_std_by_hotel[prim] = {
-                                    "price": round(sp, 0),
-                                    "date": s_dep_str,
-                                    "airport": s_air or "",
-                                }
+                            upcoming_std_by_hotel.setdefault(prim, []).append({
+                                "price": round(sp, 0),
+                                "date": s_dep_str,
+                                "airport": s_air or "",
+                                "duration_nights": int(s_dur or target_nights),
+                            })
                 except Exception as std_err:
                     logger.warning(f"Upcoming standard departure batch lookup failed: {std_err}")
 
@@ -648,7 +655,15 @@ class CatalogService:
             has_sufficient_history = effective_samples >= 3 and (typical_med is not None and typical_med > 0)
             df_hist = pd.DataFrame(hist_pts, columns=["scraped_at", "price"]) if len(hist_pts) >= 3 else None
             season_info = get_destination_season_info(country, c_date)
-            std_info = upcoming_std_by_hotel.get(h_id) if is_lm else None
+            std_info = None
+            if is_lm:
+                std_cands = upcoming_std_by_hotel.get(h_id) or []
+                row_n = int(dur_nights or 7)
+                exact_std = [s for s in std_cands if s["duration_nights"] == row_n]
+                near_std = [s for s in std_cands if abs(s["duration_nights"] - row_n) <= 1]
+                pool_std = exact_std if exact_std else near_std
+                if pool_std:
+                    std_info = min(pool_std, key=lambda x: x["price"])
 
             assessment = compute_unified_deal_assessment(
                 latest_price=curr_price,
