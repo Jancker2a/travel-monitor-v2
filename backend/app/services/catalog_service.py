@@ -22,7 +22,7 @@ from app.services.search_intelligence import get_destination_season_info
 from app.services.hotel_knowledge_service import HotelKnowledgeService
 
 _CATALOG_CACHE: Dict[str, Tuple[float, List[Dict[str, Any]], Any]] = {}
-_CACHE_TTL_SECONDS = 900  # 15 minutes in-memory cache
+_CACHE_TTL_SECONDS = 180  # 3 minutes in-memory cache so CI/cron updates surface promptly
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:

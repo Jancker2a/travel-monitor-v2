@@ -87,9 +87,15 @@ async def main():
 
     # 1. Run Hourly Filter Monitors
     logger.info(">>> STEP 1: Running Hourly Filter Monitors...")
+    monitor_results = []
+    monitor_success_count = 0
     try:
         monitor_results = await FilterMonitorService.run_all_hourly_monitors()
-        logger.info(f"✅ Filter Monitors completed: {len(monitor_results)} filters processed.")
+        monitor_success_count = sum(1 for r in monitor_results if r.get("status") == "SUCCESS")
+        logger.info(
+            f"✅ Filter Monitors completed: {len(monitor_results)} filters processed "
+            f"({monitor_success_count} SUCCESS)."
+        )
     except Exception as e:
         logger.error(f"❌ Error in Filter Monitors: {e}", exc_info=True)
 
@@ -136,8 +142,13 @@ async def main():
 
     duration = (datetime.now(timezone.utc) - start_time).total_seconds()
     logger.info("==================================================================")
-    logger.info(f"🏁 [TRAVEL MONITOR 2.0] Hourly Cron Completed successfully in {duration:.1f}s")
+    logger.info(f"🏁 [TRAVEL MONITOR 2.0] Hourly Cron Completed in {duration:.1f}s")
     logger.info("==================================================================")
+
+    if monitor_results and monitor_success_count == 0:
+        raise RuntimeError(
+            f"All {len(monitor_results)} filter monitors failed or returned NO_OFFERS!"
+        )
 
 
 if __name__ == "__main__":
