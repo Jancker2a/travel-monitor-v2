@@ -460,6 +460,7 @@ export interface HotelOtherFilter {
 export interface HotelPassport {
   hotel_id: string;
   display_name: string;
+  aliases?: string[];
   country: string;
   region: string;
   stars: number;

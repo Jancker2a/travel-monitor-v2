@@ -32,6 +32,16 @@ from app.services.normalization import (
     normalize_board_basis,
     extract_offer_url_dates,
 )
+from app.services.hotel_entity_matcher import HotelEntityMatcher
+
+_SYNC_MATCHER: Optional[HotelEntityMatcher] = None
+
+
+def _get_sync_matcher() -> HotelEntityMatcher:
+    global _SYNC_MATCHER
+    if _SYNC_MATCHER is None:
+        _SYNC_MATCHER = HotelEntityMatcher(similarity_threshold=0.82)
+    return _SYNC_MATCHER
 from scripts.import_full_v1_archives import FOLDER_CONFIG
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -267,6 +277,14 @@ async def run_sync():
             stars = 4
             if "categoryRating=50" in offer_url or "5*" in hotel_raw:
                 stars = 5
+
+            canon_hid = _get_sync_matcher().resolve_canonical_cluster_id(
+                hotel_raw,
+                country=country_name,
+                offer_url=offer_url,
+            )
+            if canon_hid:
+                hotel_id = canon_hid
 
             hotels_map[hotel_id] = (hotel_id, hotel_raw, country_name, stars, ta_r, img_url)
 

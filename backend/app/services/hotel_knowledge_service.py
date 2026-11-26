@@ -3,11 +3,26 @@ import logging
 import re
 import urllib.parse
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
+
+from app.services.hotel_entity_matcher import (
+    HotelEntityMatcher,
+    _canonicalize_for_key,
+    calculate_hotel_similarity,
+    fold_unicode,
+)
 
 logger = logging.getLogger("travel_monitor_2.knowledge")
 
 KB_DIR = Path(__file__).resolve().parent.parent / "knowledge"
+_KB_MATCHER: Optional[HotelEntityMatcher] = None
+
+
+def _get_kb_matcher() -> HotelEntityMatcher:
+    global _KB_MATCHER
+    if _KB_MATCHER is None:
+        _KB_MATCHER = HotelEntityMatcher(similarity_threshold=0.82)
+    return _KB_MATCHER
 
 
 class HotelKnowledgeService:
@@ -15,13 +30,13 @@ class HotelKnowledgeService:
     _rep_cache: Optional[Dict[str, Any]] = None
     _galleries_cache: Optional[Dict[str, Any]] = None
     _images_cache: Optional[Dict[str, Any]] = None
+    _clean_index_cache: Dict[int, Tuple[Dict[str, str], List[str]]] = {}
 
     @classmethod
     def _clean_key(cls, name: str) -> str:
-        name = re.sub(r"\(ex[^\)]+\)", "", name, flags=re.IGNORECASE)
-        # Strip geographic suffixes added by travel portals (e.g. 'Egipt, Sharm El Sheikh', 'Turcja, Kemer')
-        name = re.split(r"\b(egipt|turcja|grecja|cypr|bułgaria|hiszpania)\b", name, flags=re.IGNORECASE)[0]
-        name = re.sub(r"[^a-zA-Z0-9а-яА-Я]+", " ", name).strip().lower()
+        name = re.sub(r"\(ex[^\)]*(?:\)|$)", "", fold_unicode(name), flags=re.IGNORECASE)
+        name = re.split(r"\b(?:egipt|turcja|grecja|cypr|bulgaria|hiszpania)\b", name, flags=re.IGNORECASE)[0]
+        name = re.sub(r"[^a-z0-9а-я]+", " ", name).strip().lower()
         return name
 
     @classmethod
@@ -82,85 +97,48 @@ class HotelKnowledgeService:
                 cls._images_cache = {}
 
     @classmethod
+    def _get_cache_index(cls, cache: Dict[str, Any]) -> Tuple[Dict[str, str], List[str]]:
+        cid = id(cache)
+        if cid in cls._clean_index_cache:
+            return cls._clean_index_cache[cid]
+        clean_map: Dict[str, str] = {}
+        keys_list = list(cache.keys())
+        for k in keys_list:
+            ck = cls._clean_key(k)
+            if ck and ck not in clean_map:
+                clean_map[ck] = k
+            canon_k = _canonicalize_for_key(k)
+            if canon_k and canon_k not in clean_map:
+                clean_map[canon_k] = k
+        cls._clean_index_cache[cid] = (clean_map, keys_list)
+        return clean_map, keys_list
+
+    @classmethod
     def _match_entry(cls, target_name: str, cache: Dict[str, Any]) -> Optional[Any]:
         if not cache or not target_name:
             return None
-        # Exact match
         if target_name in cache:
             return cache[target_name]
 
-        clean_target = cls._clean_key(target_name)
-        if clean_target in cache:
-            return cache[clean_target]
+        matcher = _get_kb_matcher()
+        clean_map, keys_list = cls._get_cache_index(cache)
+        variants = matcher.get_alias_variants(target_name)
 
-        # Normalized exact clean match
-        for k, val in cache.items():
-            clean_k = cls._clean_key(k)
-            if clean_k and clean_k == clean_target:
-                return val
+        # 1. Exact / canonical normalized lookup across ALL rename aliases
+        for v in variants:
+            if v in cache:
+                return cache[v]
+            cv = cls._clean_key(v)
+            if cv in clean_map:
+                return cache[clean_map[cv]]
+            canon_v = _canonicalize_for_key(v)
+            if canon_v in clean_map:
+                return cache[clean_map[canon_v]]
 
-        # Core token overlap matching with strict semantic and identity preservation
-        def _get_core_tokens(name: str) -> set:
-            n = re.sub(r"\(ex[^\)]+\)", "", name, flags=re.IGNORECASE)
-            n = re.split(r"\b(egipt|turcja|grecja|cypr|bułgaria|hiszpania)\b", n, flags=re.IGNORECASE)[0]
-            toks = set(re.findall(r"[a-z0-9а-я]+", n.lower()))
-            # Only remove purely generic hotel taxonomy words.
-            # NEVER remove differentiating features: aqua, park, waterpark, beach, palace, club, etc.
-            stopwords = {
-                "hotel", "resort", "resorts", "spa", "and", "the", "ex", "inn", "a", "an", "of"
-            }
-            core = toks - stopwords
-            return core if len(core) >= 1 else toks
-
-        target_core = _get_core_tokens(target_name)
-        has_aqua_t = bool(re.search(r"\b(aqua|aquapark|waterpark|water|slide|neverland|splash|аква)\b", target_name, re.I))
-        has_palace_t = bool(re.search(r"\b(palace)\b", target_name, re.I))
-        has_beach_t = bool(re.search(r"\b(beach)\b", target_name, re.I))
-        has_hrg_t = "hurghada" in target_name.lower() or "хургад" in target_name.lower()
-        has_ssh_t = "sharm" in target_name.lower() or "шарм" in target_name.lower()
-
-        if target_core:
-            best_val = None
-            best_score = 0.0
-            for k, val in cache.items():
-                k_core = _get_core_tokens(k)
-                if not k_core:
-                    continue
-
-                has_aqua_k = bool(re.search(r"\b(aqua|aquapark|waterpark|water|slide|neverland|splash|аква)\b", k, re.I))
-                has_palace_k = bool(re.search(r"\b(palace)\b", k, re.I))
-                has_beach_k = bool(re.search(r"\b(beach)\b", k, re.I))
-                has_hrg_k = "hurghada" in k.lower() or "хургад" in k.lower()
-                has_ssh_k = "sharm" in k.lower() or "шарм" in k.lower()
-
-                # Guard 1: Geographic conflict (Hurghada vs Sharm)
-                if (has_hrg_t and has_ssh_k) or (has_ssh_t and has_hrg_k):
-                    continue
-
-                # Guard 2: Aquatic mismatch (Aqua park hotel cannot match non-aqua hotel and vice versa)
-                if has_aqua_t != has_aqua_k:
-                    continue
-
-                # Guard 3: Palace vs Non-palace if one is aqua or beach
-                if has_palace_t != has_palace_k and (has_aqua_t or has_beach_t):
-                    continue
-
-                overlap = target_core & k_core
-                if not overlap:
-                    continue
-
-                # Multi-token overlap requirement: prevent single brand token (e.g. {'pickalbatros'}) from falsely matching
-                min_overlap = 1 if (len(target_core) == 1 and len(k_core) == 1) else 2
-                if len(overlap) < min_overlap:
-                    continue
-
-                score = (2.0 * len(overlap)) / (len(target_core) + len(k_core))
-                if score > best_score and score >= 0.55:
-                    best_score = score
-                    best_val = val
-
-            if best_val:
-                return best_val
+        # 2. High-precision entity matcher across aliases (geo & sub-property guarded)
+        res = matcher.match_hotel(target_name, keys_list)
+        if res:
+            return cache.get(res[0])
 
         return None
 

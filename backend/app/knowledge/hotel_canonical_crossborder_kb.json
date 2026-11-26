@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "description": "Canonical 1:1 cross-border hotel entity mappings between Check24 (DE) and Fly.pl (PL)",
-  "total_mappings": 353,
+  "total_mappings": 343,
   "pl_to_de": {
     "V Hotel Sharm": {
       "polish_name": "V Hotel Sharm",
@@ -786,15 +786,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "Cleopatra Luxury Resort": {
-      "polish_name": "Cleopatra Luxury Resort",
-      "german_name": "Cleopatra Luxury Resort Makadi Bay",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "Club Hotel Sera": {
       "polish_name": "Club Hotel Sera",
       "german_name": "Club Hotel Sera",
@@ -1032,15 +1023,6 @@
     "Ethno Belek": {
       "polish_name": "Ethno Belek",
       "german_name": "Ethno Belek",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Fame Residence (Göynük)": {
-      "polish_name": "Fame Residence (Göynük)",
-      "german_name": "Fame Residence Lara & Spa",
       "country": "Турция",
       "stars": 4,
       "similarity_score": 1.0,
@@ -1632,15 +1614,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "Liberty Kusadasi (ex. Seven Seas Sealight Elite)": {
-      "polish_name": "Liberty Kusadasi (ex. Seven Seas Sealight Elite)",
-      "german_name": "Liberty Lara",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "Lido Sharm": {
       "polish_name": "Lido Sharm",
       "german_name": "Lido Sharm Hotel",
@@ -1680,15 +1653,6 @@
     "Limosa Luxury Residences Crete": {
       "polish_name": "Limosa Luxury Residences Crete",
       "german_name": "Limosa Luxury Residences Crete",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Long Beach (Avsallar)": {
-      "polish_name": "Long Beach (Avsallar)",
-      "german_name": "Long Beach Resort Hurghada",
       "country": "Турция",
       "stars": 4,
       "similarity_score": 1.0,
@@ -1924,15 +1888,6 @@
       "polish_name": "Onira Suite Dreams",
       "german_name": "Onira Suite Dreams",
       "country": "Греция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Orange County (Kemer)": {
-      "polish_name": "Orange County (Kemer)",
-      "german_name": "Orange County Belek",
-      "country": "Турция",
       "stars": 4,
       "similarity_score": 1.0,
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
@@ -2784,15 +2739,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "SWISS INN RESORT HURGHADA": {
-      "polish_name": "SWISS INN RESORT HURGHADA",
-      "german_name": "Swiss Inn Resort Dahab",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "TUI BLUE Belek": {
       "polish_name": "TUI BLUE Belek",
       "german_name": "TUI BLUE Belek",
@@ -3155,22 +3101,22 @@
       "verification_method": "AI_CURATED_1_TO_1",
       "is_verified": true
     },
-    "Pickalbatros Royal Grand Resort Sharm": {
+    "Pickalbatros Royal Grand Resort": {
       "polish_name": "Pickalbatros Royal Grand Resort",
-      "german_name": "Pickalbatros Royal Grand Resort Sharm",
-      "country": "Египет",
-      "stars": 5,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CURATED_1_TO_1",
-      "is_verified": true
-    },
-    "Pickalbatros Aqua Blu Resort - Hurghada": {
-      "polish_name": "Pickalbatros Aqua Blu Resort",
-      "german_name": "Pickalbatros Aqua Blu Resort - Hurghada",
+      "german_name": "Pickalbatros Royal Grand Resort",
       "country": "Египет",
       "stars": 4,
       "similarity_score": 1.0,
-      "verification_method": "AI_CURATED_1_TO_1",
+      "verification_method": "AI_CORE_TOKEN_VERIFIED",
+      "is_verified": true
+    },
+    "Pickalbatros Aqua Blu Resort - Sharm El Sheikh": {
+      "polish_name": "Pickalbatros Aqua Blu Resort",
+      "german_name": "Pickalbatros Aqua Blu Resort - Sharm El Sheikh",
+      "country": "Египет",
+      "stars": 4,
+      "similarity_score": 1.0,
+      "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
     "Pickalbatros Aqua Park Resort - Hurghada": {
@@ -3200,13 +3146,13 @@
       "verification_method": "AI_CURATED_1_TO_1",
       "is_verified": true
     },
-    "Pickalbatros Palace Resort - Hurghada": {
+    "Pickalbatros Palace Resort - Sharm El Sheikh": {
       "polish_name": "Pickalbatros Palace Resort",
-      "german_name": "Pickalbatros Palace Resort - Hurghada",
+      "german_name": "Pickalbatros Palace Resort - Sharm El Sheikh",
       "country": "Египет",
-      "stars": 5,
+      "stars": 4,
       "similarity_score": 1.0,
-      "verification_method": "AI_CURATED_1_TO_1",
+      "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
     "Pickalbatros Citadel Resort": {
@@ -3920,15 +3866,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "Cleopatra Luxury Resort Makadi Bay": {
-      "polish_name": "Cleopatra Luxury Resort",
-      "german_name": "Cleopatra Luxury Resort Makadi Bay",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "Club Hotel Sera": {
       "polish_name": "Club Hotel Sera",
       "german_name": "Club Hotel Sera",
@@ -4166,15 +4103,6 @@
     "Ethno Belek": {
       "polish_name": "Ethno Belek",
       "german_name": "Ethno Belek",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Fame Residence Lara & Spa": {
-      "polish_name": "Fame Residence (Göynük)",
-      "german_name": "Fame Residence Lara & Spa",
       "country": "Турция",
       "stars": 4,
       "similarity_score": 1.0,
@@ -4568,15 +4496,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "JAZ Elite Palace - Adults Only": {
-      "polish_name": "JAZ Elite Palace – Adults Only",
-      "german_name": "JAZ Elite Palace - Adults Only",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "JAZ Elite Palace – Adults Only": {
       "polish_name": "JAZ Elite Palace – Adults Only",
       "german_name": "JAZ Elite Palace – Adults Only",
@@ -4775,15 +4694,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "Liberty Lara": {
-      "polish_name": "Liberty Kusadasi (ex. Seven Seas Sealight Elite)",
-      "german_name": "Liberty Lara",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "Lido Sharm Hotel": {
       "polish_name": "Lido Sharm",
       "german_name": "Lido Sharm Hotel",
@@ -4823,15 +4733,6 @@
     "Limosa Luxury Residences Crete": {
       "polish_name": "Limosa Luxury Residences Crete",
       "german_name": "Limosa Luxury Residences Crete",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Long Beach Resort Hurghada": {
-      "polish_name": "Long Beach (Avsallar)",
-      "german_name": "Long Beach Resort Hurghada",
       "country": "Турция",
       "stars": 4,
       "similarity_score": 1.0,
@@ -5072,15 +4973,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "Orange County Belek": {
-      "polish_name": "Orange County (Kemer)",
-      "german_name": "Orange County Belek",
-      "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "Palazzo Greco Boutique Hotel": {
       "polish_name": "Palazzo Greco Boutique Hotel",
       "german_name": "Palazzo Greco Boutique Hotel",
@@ -5207,15 +5099,6 @@
       "verification_method": "AI_CORE_TOKEN_VERIFIED",
       "is_verified": true
     },
-    "Pickalbatros Aqua Blu Resort - Sharm El Sheikh": {
-      "polish_name": "Pickalbatros Aqua Blu Resort",
-      "german_name": "Pickalbatros Aqua Blu Resort - Sharm El Sheikh",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
     "Pickalbatros Aqua Vista Resort powered by Playitas": {
       "polish_name": "Pickalbatros Aqua Vista Resort powered by Playitas",
       "german_name": "Pickalbatros Aqua Vista Resort powered by Playitas",
@@ -5255,24 +5138,6 @@
     "Pickalbatros Luxury Suites": {
       "polish_name": "Pickalbatros Luxury Suites",
       "german_name": "Pickalbatros Luxury Suites",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Pickalbatros Palace Resort - Sharm El Sheikh": {
-      "polish_name": "Pickalbatros Palace Resort",
-      "german_name": "Pickalbatros Palace Resort - Sharm El Sheikh",
-      "country": "Египет",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Pickalbatros Royal Grand Resort": {
-      "polish_name": "Pickalbatros Royal Grand Resort",
-      "german_name": "Pickalbatros Royal Grand Resort",
       "country": "Египет",
       "stars": 4,
       "similarity_score": 1.0,
@@ -5949,15 +5814,6 @@
       "polish_name": "Swandor Hotels & Resorts Topkapi Palace",
       "german_name": "Swandor Hotels & Resorts Topkapi Palace",
       "country": "Турция",
-      "stars": 4,
-      "similarity_score": 1.0,
-      "verification_method": "AI_CORE_TOKEN_VERIFIED",
-      "is_verified": true
-    },
-    "Swiss Inn Resort Dahab": {
-      "polish_name": "SWISS INN RESORT HURGHADA",
-      "german_name": "Swiss Inn Resort Dahab",
-      "country": "Египет",
       "stars": 4,
       "similarity_score": 1.0,
       "verification_method": "AI_CORE_TOKEN_VERIFIED",

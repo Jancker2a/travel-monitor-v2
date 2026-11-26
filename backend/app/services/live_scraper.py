@@ -660,9 +660,26 @@ class LiveScraperService:
 
         from app.services.search_intelligence import evaluate_search_intelligence
         from app.services.geo_resolver import GeoResolver
+        from app.services.hotel_entity_matcher import HotelEntityMatcher
+
+        alias_matcher = HotelEntityMatcher(similarity_threshold=0.82)
 
         for off in raw_offers:
             hotel_id = slugify(off["hotel_name"])
+            canon_cluster_hid = alias_matcher.resolve_canonical_cluster_id(
+                off["hotel_name"],
+                country=destination_country,
+                offer_url=off.get("offer_url"),
+            )
+            if canon_cluster_hid:
+                if canon_cluster_hid in seen_hotels:
+                    hotel_id = canon_cluster_hid
+                else:
+                    res_canon = await db.execute(select(Hotel).where(Hotel.hotel_id == canon_cluster_hid))
+                    canon_ent = res_canon.scalar_one_or_none()
+                    if canon_ent:
+                        seen_hotels[canon_cluster_hid] = canon_ent
+                        hotel_id = canon_cluster_hid
             hotel_entity = seen_hotels.get(hotel_id)
 
             off_ta = off.get("ta_rating")

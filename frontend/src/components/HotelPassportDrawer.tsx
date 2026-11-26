@@ -597,6 +597,11 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                 return `${c} • ${r}`;
               })()}
             </p>
+            {passport?.aliases && passport.aliases.length > 0 && (
+              <p className="text-[11px] text-slate-500 mt-0.5 truncate max-w-xl" title={passport.aliases.join(" • ")}>
+                Ранее / также известен как: <span className="font-semibold text-slate-700">{passport.aliases.slice(0, 3).join(" • ")}</span>
+              </p>
+            )}
           </div>
 
           <div className="drawer-header-actions">

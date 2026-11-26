@@ -1676,9 +1676,29 @@ class WatchlistService:
             "summary": ai_price_summary,
         }
 
+        aliases_set: List[str] = []
+        raw_aliases = []
+        if isinstance(hotel.specs, dict) and isinstance(hotel.specs.get("aliases"), list):
+            raw_aliases.extend(hotel.specs["aliases"])
+        try:
+            from app.services.hotel_entity_matcher import HotelEntityMatcher, fold_unicode as _fu
+            _matcher_p = HotelEntityMatcher()
+            raw_aliases.extend(_matcher_p.get_alias_variants(hotel.display_name or "", country=canon_c))
+        except Exception:
+            def _fu(x: str) -> str:
+                return (x or "").lower().strip()
+        seen_alias_low = {_fu(hotel.display_name or "")} if hotel.display_name else set()
+        for al in raw_aliases:
+            al_s = str(al or "").strip()
+            al_k = _fu(al_s)
+            if al_s and len(al_s) >= 3 and al_k not in seen_alias_low and not (len(al_s) == 40 and not al_s.endswith(")")):
+                seen_alias_low.add(al_k)
+                aliases_set.append(al_s)
+
         return HotelPassportResponse(
             hotel_id=hotel.hotel_id,
             display_name=hotel.display_name,
+            aliases=aliases_set[:6],
             country=canon_c,
             region=canon_r or "",
             stars=hotel.stars or 4,

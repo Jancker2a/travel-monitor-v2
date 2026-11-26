@@ -60,7 +60,7 @@ def get_check24_kb() -> Dict[str, Any]:
 def get_entity_matcher() -> HotelEntityMatcher:
     global _ENTITY_MATCHER
     if _ENTITY_MATCHER is None:
-        _ENTITY_MATCHER = HotelEntityMatcher(similarity_threshold=0.78)
+        _ENTITY_MATCHER = HotelEntityMatcher(similarity_threshold=0.80)
     return _ENTITY_MATCHER
 
 
@@ -414,6 +414,7 @@ class ArbitrageService:
                 c.hotel_id,
                 h.display_name,
                 h.country,
+                h.region,
                 h.stars,
                 h.main_image_url,
                 c.airport_code,
@@ -442,6 +443,7 @@ class ArbitrageService:
                 hotel_id,
                 name,
                 country_val,
+                region_val,
                 stars,
                 img,
                 airport,
@@ -466,6 +468,7 @@ class ArbitrageService:
                     "hotel_id": hotel_id,
                     "hotel_name": name,
                     "country": country_val,
+                    "region": region_val,
                     "stars": stars or 4,
                     "main_image_url": img,
                     "checkin_date": checkin,
@@ -492,6 +495,7 @@ class ArbitrageService:
         matcher = get_entity_matcher()
         de_by_dest_name: Dict[Tuple[Optional[str], str], List[Dict[str, Any]]] = {}
         de_hotels_by_dest: Dict[Optional[str], List[str]] = {}
+        de_meta: Dict[str, Dict[str, Any]] = {}
         for o in de_candidates:
             hnm = o.get("hotel_name")
             if not hnm:
@@ -501,6 +505,8 @@ class ArbitrageService:
             de_by_dest_name.setdefault((None, hnm), []).append(o)
             de_hotels_by_dest.setdefault(dk, [])
             de_hotels_by_dest.setdefault(None, [])
+            if hnm not in de_meta:
+                de_meta[hnm] = {"offer_url": o.get("offer_url")}
         for k_dest in list(de_hotels_by_dest.keys()):
             de_hotels_by_dest[k_dest] = sorted({o["hotel_name"] for o in de_candidates if o.get("hotel_name") and (k_dest is None or normalize_dest_key(o.get("destination")) == k_dest)})
 
@@ -519,7 +525,19 @@ class ArbitrageService:
             m_key = (pl_dest_key, pl_name)
             if m_key not in hotel_match_cache:
                 cand_names = de_hotels_by_dest.get(pl_dest_key) or de_hotels_by_dest.get(None, [])
-                hotel_match_cache[m_key] = matcher.match_hotel(pl_name, cand_names) if cand_names else None
+                hotel_match_cache[m_key] = (
+                    matcher.match_hotel(
+                        pl_name,
+                        cand_names,
+                        destination=g.get("country"),
+                        target_stars=g.get("stars"),
+                        region_hint=g.get("region"),
+                        offer_url=cheapest_pl.get("offer_url"),
+                        candidate_meta=de_meta,
+                    )
+                    if cand_names
+                    else None
+                )
             match_res = hotel_match_cache[m_key]
             if not match_res:
                 continue

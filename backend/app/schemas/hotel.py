@@ -20,6 +20,7 @@ class HotelHistoryPoint(BaseModel):
 class HotelPassportResponse(BaseModel):
     hotel_id: str
     display_name: str
+    aliases: List[str] = Field(default_factory=list)
     country: str
     region: str
     stars: int
