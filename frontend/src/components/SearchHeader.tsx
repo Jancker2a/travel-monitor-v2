@@ -1412,14 +1412,6 @@ export const SearchHeader: React.FC<Props> = ({ onSearch, isLoading, initialPres
                 <BellRing className="w-4 h-4 text-white shrink-0" />
                 <span>Отслеживать снижение цен</span>
               </button>
-              <button
-                type="button"
-                onClick={onSaveMonitor}
-                className="px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-sm hover:shadow transition-all cursor-pointer whitespace-nowrap active:scale-[0.98]"
-                title="Поставить скользящее окно на будущее с запасом до вылета"
-              >
-                <span>Охотиться позже 🎯</span>
-              </button>
             </div>
           </div>
         )}
