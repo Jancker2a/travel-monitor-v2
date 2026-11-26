@@ -5,11 +5,13 @@
   "hotel_name": "Jaz Elite Amara",
   "x": [
     "2026-11-03 06:36:04",
-    "2026-11-03 19:40:10"
+    "2026-11-03 19:40:10",
+    "2026-11-26 11:08:31"
   ],
   "y": [
     13723.0,
-    13723.0
+    13723.0,
+    13044.0
   ],
   "hover": [
     "Проверка: 03.11.2026 06:36<br>Даты поездки: 10.07.2027 - 17.07.2027",
@@ -28,12 +30,13 @@
   "delta_avg": "—",
   "confidence": "Low",
   "median_p": 13723.0,
-  "min_p": 13723.0,
+  "min_p": 13044.0,
   "max_p": 13723.0,
-  "samples": 2,
+  "samples": 3,
   "alert_threshold": 8.0,
   "trip_dates_label": "03.07.2027 - 10.07.2027",
   "display_price_ceiling": 12000.0,
   "history_price_ceiling": 20000.0,
-  "back_href": "index_filter_eb_egypt_jul27_7_10.html"
+  "back_href": "index_filter_eb_egypt_jul27_7_10.html",
+  "current_price": 13044.0
 }
