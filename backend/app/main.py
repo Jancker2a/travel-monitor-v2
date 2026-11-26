@@ -329,9 +329,11 @@ async def get_hotel_history_passport(
     children: Optional[int] = None,
     duration_nights: Optional[int] = None,
     departure_date: Optional[str] = None,
+    airports: Optional[str] = None,
     db: AsyncSession = Depends(get_db)
 ):
     """Retrieves complete Hotel Passport with all-time price history points and stats, dynamically synthesizing profiles for newly discovered hotels."""
+    airports_list = [a.strip() for a in airports.split(",") if a.strip()] if airports else None
     return await WatchlistService.get_hotel_passport(
         db,
         hotel_id,
@@ -347,6 +349,7 @@ async def get_hotel_history_passport(
         children=children,
         duration_nights=duration_nights,
         departure_date=departure_date,
+        airports=airports_list,
     )
 
 

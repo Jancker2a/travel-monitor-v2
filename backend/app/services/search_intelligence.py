@@ -29,15 +29,17 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
     day = departure_date.day
     dest = (destination or "").lower()
 
-    is_ny_christmas = (month == 12 and day >= 20) or (month == 1 and day <= 8)
+    # True Christmas / New Year superpeak applies to departures spanning Dec 24..Jan 1.
+    # Jan 3+ departures return to regular winter pricing right after Polish Trzech Kroli (Jan 6).
+    is_ny_christmas = (month == 12 and day >= 20) or (month == 1 and day <= 2)
 
     if any(k in dest for k in ("egypt", "египет", "sharm", "hurghada", "marsa")):
-        # Egypt: Winter/spring/autumn is peak sun season. Summer is low due to heat.
+        # Egypt: Winter/spring/autumn is main sun season; summer school holidays stay close to baseline.
         if is_ny_christmas:
             return {
                 "season": "holiday_superpeak",
                 "label": "Новогодний суперпик в Египте",
-                "multiplier": 1.55,
+                "multiplier": 1.35,
                 "price_drop_risk": "very_low",
                 "risk_expl": "перед праздниками чартеры и лучшие номера распродаются, действуют праздничные надбавки",
             }
@@ -45,7 +47,7 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             return {
                 "season": "peak",
                 "label": "Высокий бархатный сезон в Египте",
-                "multiplier": 1.20,
+                "multiplier": 1.12,
                 "price_drop_risk": "low",
                 "risk_expl": "высокий спрос на комфортную погоду, тарифы стабильны или растут ближе к вылету",
             }
@@ -61,7 +63,7 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             return {
                 "season": "shoulder",
                 "label": "Межсезонье в Египте",
-                "multiplier": 0.95,
+                "multiplier": 0.98,
                 "price_drop_risk": "medium",
                 "risk_expl": "стабильные тарифы, регулярные спецпредложения туроператоров",
             }
@@ -69,9 +71,9 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             return {
                 "season": "low",
                 "label": "Летний жаркий сезон в Египте",
-                "multiplier": 0.80,
+                "multiplier": 0.95,
                 "price_drop_risk": "high",
-                "risk_expl": "офф-сезон из-за жары, высокая вероятность горящих предложений",
+                "risk_expl": "офф-сезон из-за жары, частые промо-тарифы и горящие предложения",
             }
 
     elif any(k in dest for k in ("uae", "оаэ", "dubai", "дубай", "emirates", "эмираты")):
@@ -79,7 +81,7 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             return {
                 "season": "holiday_superpeak",
                 "label": "Новогодний суперпик в ОАЭ",
-                "multiplier": 1.60,
+                "multiplier": 1.40,
                 "price_drop_risk": "very_low",
                 "risk_expl": "максимальный праздничный спрос, отели и рейсы быстро распродаются",
             }
@@ -87,7 +89,7 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             return {
                 "season": "peak",
                 "label": "Высокий комфортный сезон в ОАЭ",
-                "multiplier": 1.25,
+                "multiplier": 1.20,
                 "price_drop_risk": "low",
                 "risk_expl": "идеальная погода для пляжа и прогулок, стабильно высокий спрос",
             }
@@ -103,7 +105,7 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             return {
                 "season": "low",
                 "label": "Жаркий летний офф-сезон в ОАЭ",
-                "multiplier": 0.70,
+                "multiplier": 0.78,
                 "price_drop_risk": "high",
                 "risk_expl": "офф-сезон из-за сильной жары, цены на минимуме",
             }
@@ -177,6 +179,152 @@ def get_destination_season_info(destination: str, departure_date: Optional[date]
             }
 
 
+def _parse_dep_date(val: Any) -> Optional[date]:
+    if isinstance(val, datetime):
+        return val.date()
+    if isinstance(val, date):
+        return val
+    if isinstance(val, str) and len(val) >= 10:
+        try:
+            return date.fromisoformat(val[:10])
+        except ValueError:
+            return None
+    return None
+
+
+def get_season_bracket(destination: str, departure_date: Optional[date]) -> str:
+    """Coarse seasonal regime bracket used to prioritize apples-to-apples historical pricing."""
+    if not departure_date:
+        return "unknown"
+    info = get_destination_season_info(destination, departure_date)
+    if info.get("season") == "holiday_superpeak":
+        return "holiday_superpeak"
+    m = departure_date.month
+    if m in (11, 12, 1, 2):
+        return "winter"
+    if m in (6, 7, 8):
+        return "summer"
+    return "shoulder_peak"
+
+
+def compute_seasonal_baseline_metrics(
+    *,
+    destination: str,
+    target_dep_date: Optional[date],
+    duration_nights: int,
+    adults: int,
+    children: int,
+    rate_samples: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Computes truthful seasonal baseline (median / min / max PLN) for target departure & party.
+
+    Prioritizes historical snapshots from the same seasonal regime (e.g. winter vs winter) when at
+    least 3 explicit-date observations exist, preventing cross-season holiday/summer distortion.
+    Falls back to clamped cross-season scaling only when same-season history is sparse.
+    """
+    target_season = get_destination_season_info(destination, target_dep_date)
+    target_mult = max(0.5, float(target_season.get("multiplier", 1.0)))
+    target_bracket = get_season_bracket(destination, target_dep_date)
+
+    same_bracket_scaled_rates: List[float] = []
+    all_scaled_rates: List[float] = []
+
+    for sample in rate_samples:
+        pure_rate = float(sample.get("pure_hotel_night_rate") or 0.0)
+        if pure_rate <= 0:
+            continue
+
+        is_pre_unseasoned = bool(sample.get("is_already_unseasoned"))
+        s_date = _parse_dep_date(sample.get("departure_date"))
+        has_explicit_date = s_date is not None
+        eff_date = s_date or target_dep_date
+
+        if is_pre_unseasoned:
+            # Normalized snapshot already represents de-seasoned base rate
+            ratio = max(0.75, min(1.35, target_mult))
+            scaled_rate = pure_rate * ratio
+            all_scaled_rates.append(scaled_rate)
+            continue
+
+        snap_season = get_destination_season_info(destination, eff_date)
+        snap_mult = max(0.5, float(snap_season.get("multiplier", 1.0)))
+        ratio = max(0.75, min(1.35, target_mult / snap_mult))
+        scaled_rate = pure_rate * ratio
+        all_scaled_rates.append(scaled_rate)
+
+        if has_explicit_date and target_bracket != "unknown":
+            snap_bracket = get_season_bracket(destination, s_date)
+            near_target = bool(
+                target_dep_date
+                and s_date
+                and abs((s_date - target_dep_date).days) <= 45
+                and target_bracket != "holiday_superpeak"
+                and snap_bracket != "holiday_superpeak"
+            )
+            if snap_bracket == target_bracket or near_target:
+                same_bracket_scaled_rates.append(scaled_rate)
+
+    used_same_season = len(same_bracket_scaled_rates) >= 3
+    chosen_rates = same_bracket_scaled_rates if used_same_season else all_scaled_rates
+
+    if len(chosen_rates) < 3:
+        return {
+            "has_baseline": False,
+            "used_same_season": False,
+            "samples_used": len(chosen_rates),
+            "season_info": target_season,
+            "typical_median_pln": None,
+            "hist_min_pln": None,
+            "hist_max_pln": None,
+        }
+
+    sorted_rates = sorted(chosen_rates)
+    med_rate = sorted_rates[len(sorted_rates) // 2]
+    min_rate = sorted_rates[0]
+    max_rate = sorted_rates[-1]
+
+    typical_median_pln = round(
+        CostDecomposer.recompose(
+            pure_hotel_night_per_adult=med_rate,
+            duration_nights=duration_nights,
+            adults=adults,
+            children=children,
+            destination=destination,
+        ),
+        1,
+    )
+    hist_min_pln = round(
+        CostDecomposer.recompose(
+            pure_hotel_night_per_adult=min_rate,
+            duration_nights=duration_nights,
+            adults=adults,
+            children=children,
+            destination=destination,
+        ),
+        1,
+    )
+    hist_max_pln = round(
+        CostDecomposer.recompose(
+            pure_hotel_night_per_adult=max_rate,
+            duration_nights=duration_nights,
+            adults=adults,
+            children=children,
+            destination=destination,
+        ),
+        1,
+    )
+
+    return {
+        "has_baseline": True,
+        "used_same_season": used_same_season,
+        "samples_used": len(chosen_rates),
+        "season_info": target_season,
+        "typical_median_pln": typical_median_pln,
+        "hist_min_pln": hist_min_pln,
+        "hist_max_pln": hist_max_pln,
+    }
+
+
 def evaluate_search_intelligence(
     destination: str,
     departure_date: Optional[date],
@@ -199,45 +347,27 @@ def evaluate_search_intelligence(
     nights = max(1, duration_nights)
     adults = max(1, adults)
     children = max(0, children)
-    pax_total = adults + children
 
-    # 1. Decompose current offer
-    decomp = CostDecomposer.decompose(
-        total_price_pln=total_price_pln,
-        duration_nights=nights,
-        adults=adults,
-        children=children,
-        destination=destination,
-    )
-    curr_pure_night = decomp.get("pure_hotel_night_per_adult", 150.0)
-
-    # 2. Season info & timing
+    # 1. Decompose current offer & season info
     season_info = get_destination_season_info(destination, departure_date)
     today = date.today()
     days_to_dep = (departure_date - today).days if departure_date else 30
-    curr_season_mult = season_info.get("multiplier", 1.0)
-    curr_pure_unseasoned = curr_pure_night / max(0.5, curr_season_mult)
 
-    # 3. Analyze normalized history for this specific hotel
-    has_history = False
-    hist_pure_rates: List[float] = []
-    hist_prices_raw: List[float] = []
-
+    # 2. Prepare pure rate samples for this specific hotel
+    rate_samples: List[Dict[str, Any]] = []
     if hist_snapshots:
         for snap in hist_snapshots:
             if snap.get("pure_hotel_night_rate") and float(snap["pure_hotel_night_rate"]) > 0:
-                raw_pure = float(snap["pure_hotel_night_rate"])
-                p_val = float(snap.get("price") or snap.get("total_price_pln") or 0.0)
-                if p_val > 0:
-                    hist_prices_raw.append(p_val)
-                # Pure rate from normalized_price_snapshots is already de-seasoned/normalized
-                hist_pure_rates.append(raw_pure)
+                rate_samples.append({
+                    "pure_hotel_night_rate": float(snap["pure_hotel_night_rate"]),
+                    "departure_date": snap.get("departure_date"),
+                    "is_already_unseasoned": True,
+                })
                 continue
 
             p_val = float(snap.get("price") or snap.get("total_price_pln") or 0.0)
             if p_val <= 0:
                 continue
-            hist_prices_raw.append(p_val)
             s_adults = snap.get("adults") or adults
             s_children = snap.get("children") or children
             s_nights = snap.get("duration_nights") or nights
@@ -250,61 +380,24 @@ def evaluate_search_intelligence(
                 destination=destination,
             )
             raw_pure = s_decomp.get("pure_hotel_night_per_adult", 150.0)
+            rate_samples.append({
+                "pure_hotel_night_rate": float(raw_pure),
+                "departure_date": snap.get("departure_date"),
+                "is_already_unseasoned": False,
+            })
 
-            # De-season snapshot using actual departure checkin date
-            s_date = snap.get("departure_date")
-            if isinstance(s_date, str):
-                try:
-                    s_date = date.fromisoformat(s_date[:10])
-                except Exception:
-                    s_date = None
-            elif isinstance(s_date, datetime):
-                s_date = s_date.date()
-
-            # Fallback to query departure date if snapshot departure date is unknown
-            if not s_date:
-                s_date = departure_date
-            snap_season = get_destination_season_info(destination, s_date)
-            snap_mult = snap_season.get("multiplier", 1.0)
-            hist_pure_rates.append(raw_pure / max(0.5, snap_mult))
-
-        # Strictly require at least 3 historical observations for THIS SPECIFIC HOTEL
-        if len(hist_pure_rates) >= 3:
-            has_history = True
-
-    # Baseline comparison metrics
-    hist_diff_pct: Optional[float] = None
-    typical_median_pln: Optional[float] = None
-    hist_min_pln: Optional[float] = None
-
-    if has_history:
-        sorted_pure = sorted(hist_pure_rates)
-        hist_median_pure = sorted_pure[len(sorted_pure) // 2]
-        hist_min_pure = sorted_pure[0]
-        if hist_median_pure > 0:
-            hist_diff_pct = ((curr_pure_unseasoned - hist_median_pure) / hist_median_pure) * 100.0
-
-        # Mathematically reconstruct typical median and historic min scaled like-for-like to current search
-        typical_median_pln = CostDecomposer.recompose(
-            pure_hotel_night_per_adult=hist_median_pure * curr_season_mult,
-            duration_nights=nights,
-            adults=adults,
-            children=children,
-            destination=destination,
-        )
-        hist_min_pln = CostDecomposer.recompose(
-            pure_hotel_night_per_adult=hist_min_pure * curr_season_mult,
-            duration_nights=nights,
-            adults=adults,
-            children=children,
-            destination=destination,
-        )
-        diff_pct = max(-45.0, min(50.0, hist_diff_pct))
-    else:
-        # Strictly NO fake peer benchmarks or invented discounts!
-        typical_median_pln = None
-        hist_min_pln = total_price_pln
-        diff_pct = 0.0
+    baseline = compute_seasonal_baseline_metrics(
+        destination=destination,
+        target_dep_date=departure_date,
+        duration_nights=nights,
+        adults=adults,
+        children=children,
+        rate_samples=rate_samples,
+    )
+    has_history = bool(baseline["has_baseline"])
+    typical_median_pln = baseline["typical_median_pln"]
+    hist_min_pln = baseline["hist_min_pln"] if has_history else total_price_pln
+    samples_used = int(baseline["samples_used"])
 
     # 4. Compute Unified Deal Score (0-100) using single-source-of-truth engine
     ta_val = float(ta_rating) if (ta_rating is not None and float(ta_rating) > 0) else None
@@ -385,7 +478,7 @@ def evaluate_search_intelligence(
         latest_price=total_price_pln,
         typical_price=typical_median_pln,
         hist_df=None,
-        samples_count=len(hist_pure_rates) if has_history else (len(hist_snapshots or [])),
+        samples_count=samples_used if has_history else len(rate_samples),
         ta_rating=ta_val,
         filter_type=search_filter_type,
         days_to_dep=days_to_dep,

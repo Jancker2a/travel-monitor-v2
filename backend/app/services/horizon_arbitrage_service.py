@@ -12,6 +12,8 @@ from datetime import date, datetime, timezone, timedelta
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.services.normalization import matches_requested_airports, normalize_requested_airports
+
 logger = logging.getLogger("travel_monitor_2.horizon_arbitrage")
 
 
@@ -29,6 +31,7 @@ class HorizonArbitrageService:
         checkin_date: Optional[date] = None,
         current_price: Optional[float] = None,
         related_hotel_ids: Optional[List[str]] = None,
+        airports: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         """
         Analyzes historical snapshots for the hotel across four canonical booking horizons:
@@ -78,11 +81,22 @@ class HorizonArbitrageService:
         res = await db.execute(text(query_sql), q_params)
         raw_rows = res.fetchall()
 
+        req_airports = normalize_requested_airports(airports)
+        if req_airports and raw_rows:
+            raw_rows = [
+                r for r in raw_rows
+                if matches_requested_airports(r[6], req_airports, r[8])
+            ]
+
         if not raw_rows:
             return {
                 "available": False,
                 "hotel_id": clean_hotel_id,
-                "message": "Недостаточно исторических данных по горизонтам для данного отеля.",
+                "message": (
+                    "Недостаточно исторических данных по выбранным аэропортам для данного отеля."
+                    if req_airports
+                    else "Недостаточно исторических данных по горизонтам для данного отеля."
+                ),
             }
 
         # Buckets for horizons
@@ -299,7 +313,8 @@ class HorizonArbitrageService:
                 pass
         live_lm_best = min(live_lm_candidates, key=lambda x: x["price_pln"]) if live_lm_candidates else None
 
-        if (is_current_lm or live_lm_best) and best_std_offer:
+        is_target_near_lm = (days_from_now_to_checkin is None) or (0 <= days_from_now_to_checkin <= 7)
+        if is_target_near_lm and (is_current_lm or live_lm_best) and best_std_offer:
             lm_best = live_lm_best
             lm_price = current_price if (is_current_lm and current_price) else (lm_best["price_pln"] if lm_best else None)
             std_price = best_std_offer["price_pln"]

@@ -23,6 +23,7 @@ interface HotelPassportDrawerProps {
   filterId?: string | null;
   hotelItem?: SearchHotelItem | null;
   searchTravelers?: { adults: number; children: number; children_ages?: number[] };
+  searchAirports?: string[];
   isWatched?: boolean;
   onToggleWatchlist?: () => void;
   onClose: () => void;
@@ -34,6 +35,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
   filterId,
   hotelItem,
   searchTravelers,
+  searchAirports,
   isWatched,
   onToggleWatchlist,
   onClose,
@@ -101,18 +103,20 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
         children: fallbackChildren,
         duration_nights: fallbackNights,
         departure_date: hotelItem.current_offer?.departure_date,
+        airports: searchAirports,
       }
       : {
         adults: fallbackAdults,
         children: fallbackChildren,
         duration_nights: fallbackNights,
+        airports: searchAirports,
       };
 
     getHotelPassport(hotelId, filterId || undefined, hints)
       .then((data) => setPassport(data))
       .catch((err) => console.error("Failed to load hotel passport:", err))
       .finally(() => setIsLoading(false));
-  }, [hotelId, filterId, hotelItem, searchTravelers]);
+  }, [hotelId, filterId, hotelItem, searchTravelers, searchAirports]);
 
   const filterPreset = filterId ? FILTER_PRESETS[filterId] : undefined;
   const is1pExplicit = Boolean(
@@ -1682,7 +1686,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                               gap: "6px",
                             }}
                           >
-                            <span>⚡ Замеры текущего радара</span>
+                            <span>{filterId ? "⚡ Замеры текущего радара" : "📈 Вся история отеля"}</span>
                             <span style={{ fontSize: "10px", background: resolvedChartSource === "current" ? "#bae6fd" : "#f1f5f9", padding: "1px 6px", borderRadius: "10px" }}>
                               {passport?.history_points?.length || 0}
                             </span>
@@ -1718,7 +1722,7 @@ export const HotelPassportDrawer: React.FC<HotelPassportDrawerProps> = ({
                       <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "10px", padding: "9px 12px", fontSize: "11.5px", color: "#166534", lineHeight: 1.45, marginBottom: "12px", display: "flex", gap: "8px", alignItems: "flex-start" }}>
                         <span style={{ fontSize: "14px", lineHeight: 1 }}>🎯</span>
                         <div>
-                          <strong>Подключена сезонная история 1:1 без пересчётов:</strong> В текущем радаре зафиксированы первые замеры ({passport?.history_points?.length || 0} точек). Для полной картины и точной оценки выгоды отображается график наблюдений из канонического радара <strong>«{passport.reference_history.title}»</strong> на тот же состав <strong>{partyLabel}</strong> и длительность <strong>{resolvedNights} ночей</strong> ({passport.reference_history.snaps_count} замеров).
+                          <strong>Подключена сезонная история 1:1 без пересчётов:</strong> {filterId ? "В текущем радаре" : "По данному поиску"} зафиксировано {passport?.history_points?.length || 0} замеров. Для полной картины и точной оценки выгоды отображается график наблюдений из канонического радара <strong>«{passport.reference_history.title}»</strong> на тот же состав <strong>{partyLabel}</strong> и длительность <strong>{resolvedNights} ночей</strong> ({passport.reference_history.snaps_count} замеров).
                         </div>
                       </div>
                     )}

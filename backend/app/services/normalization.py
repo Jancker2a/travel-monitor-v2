@@ -8,7 +8,7 @@ from __future__ import annotations
 import re
 import urllib.parse
 from datetime import date
-from typing import Optional, Tuple
+from typing import Iterable, Optional, Set, Tuple
 
 _AIRPORT_MAP = {
     "waw": "WAW",
@@ -176,3 +176,36 @@ def extract_offer_url_dates(offer_url: Optional[str]) -> Tuple[Optional[date], O
         except ValueError:
             pass
     return dep_d, ret_d
+
+
+def normalize_requested_airports(requested_airports: Optional[Iterable[str]]) -> Set[str]:
+    """Converts a list/iterable of airport codes or city names into canonical 3-letter IATA codes.
+    Returns an empty set when no specific restriction applies (None, empty, ALL/ВСЕ).
+    """
+    if not requested_airports:
+        return set()
+    codes: Set[str] = set()
+    for raw in requested_airports:
+        s = str(raw or "").strip()
+        if not s:
+            continue
+        low = s.lower()
+        if low in ("all", "any", "все", "wszystkie", "-"):
+            return set()
+        code = normalize_airport_code(s)
+        if code and code != "ALL":
+            codes.add(code)
+    return codes
+
+
+def matches_requested_airports(
+    raw_airport: Optional[str],
+    requested_airports: Optional[Iterable[str]],
+    offer_url: Optional[str] = None,
+) -> bool:
+    """Returns True if raw_airport matches any canonical IATA code in requested_airports (or no filter)."""
+    req_codes = normalize_requested_airports(requested_airports)
+    if not req_codes:
+        return True
+    ap_code = normalize_airport_code(raw_airport, offer_url)
+    return ap_code in req_codes

@@ -592,21 +592,22 @@ class LiveScraperService:
                             oc.duration_nights, 
                             ps.recorded_at, 
                             oc.checkin_date,
+                            oc.airport_code,
                             ROW_NUMBER() OVER (PARTITION BY oc.hotel_id ORDER BY ps.recorded_at DESC) as rn
                         FROM price_snapshots ps
                         JOIN offer_cohorts oc ON ps.{join_col} = oc.{join_col}
                         WHERE oc.hotel_id IN ({placeholders})
                           {filter_clause}
                     )
-                    SELECT hotel_id, total_price_pln, adults, children, duration_nights, recorded_at, checkin_date
+                    SELECT hotel_id, total_price_pln, adults, children, duration_nights, recorded_at, checkin_date, airport_code
                     FROM ranked_hist
-                    WHERE rn <= 35
+                    WHERE rn <= 60
                 """
                 h_res = await db.execute(text(h_sql), h_params)
-                for hid, p_val, s_adults, s_children, s_nights, s_time, s_checkin in h_res.fetchall():
+                for hid, p_val, s_adults, s_children, s_nights, s_time, s_checkin, s_airport in h_res.fetchall():
                     target_cands = alias_to_cands.get(hid, [hid])
                     for cand_hid in target_cands:
-                        if len(hist_map[cand_hid]) < 35:
+                        if len(hist_map[cand_hid]) < 60:
                             hist_map[cand_hid].append({
                                 "price": float(p_val),
                                 "adults": int(s_adults or 2),
@@ -614,9 +615,29 @@ class LiveScraperService:
                                 "duration_nights": int(s_nights or 8),
                                 "recorded_at": s_time,
                                 "departure_date": s_checkin,
+                                "airport": s_airport or "",
                             })
 
-                # Also query normalized_price_snapshots for all candidate and alias IDs
+                # Filter each hotel's history toward requested airports and exact party when >= 3 points exist
+                from app.services.normalization import matches_requested_airports
+                for cand_hid, cand_snaps in list(hist_map.items()):
+                    filtered = cand_snaps
+                    if req.airports:
+                        ap_matched = [
+                            s for s in filtered
+                            if s.get("airport") and matches_requested_airports(s.get("airport"), req.airports)
+                        ]
+                        if len(ap_matched) >= 3:
+                            filtered = ap_matched
+                    party_matched = [
+                        s for s in filtered
+                        if s.get("adults") == req_adults and s.get("children") == req_children
+                    ]
+                    if len(party_matched) >= 3:
+                        filtered = party_matched
+                    hist_map[cand_hid] = filtered[:35]
+
+                # Also query normalized_price_snapshots for all candidate and alias IDs only when raw history is sparse
                 norm_sql = f"""
                     SELECT hotel_id, recorded_at, normalized_price_1p_8n, pure_hotel_night_rate
                     FROM normalized_price_snapshots
@@ -629,7 +650,7 @@ class LiveScraperService:
                         continue
                     target_cands = alias_to_cands.get(hid, [hid])
                     for cand_hid in target_cands:
-                        if len(hist_map[cand_hid]) < 35:
+                        if len(hist_map[cand_hid]) < 3:
                             hist_map[cand_hid].append({
                                 "price": float(norm_p or 0),
                                 "adults": req_adults,

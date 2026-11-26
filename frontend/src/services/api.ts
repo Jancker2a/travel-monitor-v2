@@ -267,6 +267,7 @@ export async function getHotelPassport(
     children?: number;
     duration_nights?: number;
     departure_date?: string;
+    airports?: string[];
   }
 ): Promise<HotelPassport> {
   const params = new URLSearchParams();
@@ -282,6 +283,7 @@ export async function getHotelPassport(
   if (hints?.children !== undefined) params.set("children", String(hints.children));
   if (hints?.duration_nights !== undefined) params.set("duration_nights", String(hints.duration_nights));
   if (hints?.departure_date) params.set("departure_date", hints.departure_date);
+  if (hints?.airports && hints.airports.length > 0) params.set("airports", hints.airports.join(","));
 
   const qs = params.toString() ? `?${params.toString()}` : "";
   const resp = await fetch(`${API_BASE}/api/v2/hotels/${encodeURIComponent(hotelId)}/history${qs}`);

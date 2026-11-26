@@ -139,3 +139,36 @@ def test_delta_vs_typical_and_real_48h_drop():
     assert intel_48h.drop_48h_pct == -20.0
 
 
+def test_post_ny_jan7_uses_winter_baseline_without_cross_season_inflation():
+    # Post-New Year Jan 7 must NOT be classified as holiday_superpeak
+    jan7_info = get_destination_season_info("egypt", date(2027, 1, 7))
+    assert jan7_info["season"] != "holiday_superpeak"
+
+    # Mixed history: summer expensive wakacje + winter Nov/Dec offers
+    hist = [
+        {"price": 11053.0, "adults": 2, "children": 1, "duration_nights": 7, "departure_date": "2027-07-29"},
+        {"price": 10060.0, "adults": 2, "children": 1, "duration_nights": 7, "departure_date": "2027-08-29"},
+        {"price": 11261.0, "adults": 2, "children": 1, "duration_nights": 7, "departure_date": "2027-10-03"},
+        {"price": 7439.0, "adults": 2, "children": 1, "duration_nights": 7, "departure_date": "2026-12-06"},
+        {"price": 7904.0, "adults": 2, "children": 1, "duration_nights": 7, "departure_date": "2026-12-13"},
+        {"price": 8311.0, "adults": 2, "children": 1, "duration_nights": 7, "departure_date": "2026-11-26"},
+    ]
+    intel = evaluate_search_intelligence(
+        destination="egypt",
+        departure_date=date(2027, 1, 7),
+        duration_nights=7,
+        adults=2,
+        children=1,
+        total_price_pln=8492.0,
+        stars=5,
+        ta_rating=4.7,
+        hist_snapshots=hist,
+    )
+    # Benchmark must reflect real winter level (~7900-8300 PLN), NOT ~12500 PLN
+    assert intel.typical_median_pln is not None
+    assert intel.typical_median_pln < 9200.0
+    assert intel.hopper_verdict != "BUY NOW"
+    assert intel.deal_score < 80
+
+
+

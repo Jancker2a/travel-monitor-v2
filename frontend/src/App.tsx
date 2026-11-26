@@ -95,8 +95,8 @@ function catalogCardToSearchItem(
     (c.deal_score >= 80
       ? "BUY NOW"
       : c.deal_score < 45
-      ? "OVERPRICED"
-      : "WAIT");
+        ? "OVERPRICED"
+        : "WAIT");
 
   return {
     hotel_id: c.hotel_id,
@@ -135,8 +135,8 @@ function catalogCardToSearchItem(
         c.badges && c.badges.length > 0
           ? c.badges[0]
           : c.deal_score >= 80
-          ? (isLM ? "🔥 Сброс" : "🔥 Hot")
-          : "✅ Good",
+            ? (isLM ? "🔥 Сброс" : "🔥 Hot")
+            : "✅ Good",
       hopper_verdict: verdict,
       hopper_confidence: c.deal_confidence === "High" ? 0.9 : 0.7,
       action_label: c.action_label || undefined,
@@ -145,8 +145,8 @@ function catalogCardToSearchItem(
         (c.badges && c.badges.length > 0
           ? c.badges.join(" • ")
           : isLM
-          ? "Стандартный тариф без выраженного сброса"
-          : "Стандартный рыночный уровень цен"),
+            ? "Стандартный тариф без выраженного сброса"
+            : "Стандартный рыночный уровень цен"),
       drop_48h_pct: c.change_48h_pct !== undefined ? c.change_48h_pct : c.change_24h_pct,
       change_30d_pct: c.change_30d_pct ?? null,
       delta_vs_typical_pct: c.delta_vs_typical_pct,
@@ -222,12 +222,12 @@ export const App: React.FC = () => {
         .then((u) => {
           setCurrentUser(u);
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   }, []);
 
   useEffect(() => {
-    getAdminStatus().then((st) => setAdminStatus(st)).catch(() => {});
+    getAdminStatus().then((st) => setAdminStatus(st)).catch(() => { });
   }, [currentUser]);
 
   const handleClaimAdmin = async () => {
@@ -245,7 +245,7 @@ export const App: React.FC = () => {
           alert("👑 Статус Администратора подтверждён! Все радары разблокированы.");
           return;
         }
-      } catch {}
+      } catch { }
       alert(err.message || "Ошибка назначения администратора");
     }
   };
@@ -481,12 +481,12 @@ export const App: React.FC = () => {
       preset?.destination === "turkey"
         ? "Турция"
         : preset?.destination === "egypt"
-        ? "Египет"
-        : preset?.destination === "greece"
-        ? "Греция"
-        : preset?.destination === "cyprus"
-        ? "Кипр"
-        : undefined;
+          ? "Египет"
+          : preset?.destination === "greece"
+            ? "Греция"
+            : preset?.destination === "cyprus"
+              ? "Кипр"
+              : undefined;
 
     return {
       filterId: activeFilterId,
@@ -534,8 +534,8 @@ export const App: React.FC = () => {
         (filterId.includes("lastminute") || filterId.includes("0_4")
           ? "lastminute"
           : filterId.startsWith("eb_")
-          ? "early_booking"
-          : "rolling");
+            ? "early_booking"
+            : "rolling");
       setFilterType(fType);
       if (catResp.hotels && catResp.hotels.length > 0) {
         setResults(catResp.hotels.map((h) => catalogCardToSearchItem(h, preset, fType)));
@@ -772,6 +772,7 @@ export const App: React.FC = () => {
   );
 
   const isCurrentLastMinute = useMemo(() => {
+    if (activeTab !== "filter") return false;
     return Boolean(
       activeFilterId?.toLowerCase().includes("lastminute") ||
       activeFilterId?.toLowerCase().includes("0_4") ||
@@ -779,7 +780,12 @@ export const App: React.FC = () => {
       activeUserMonitor?.filter_params?.filter_id?.toLowerCase().includes("lastminute") ||
       activeUserMonitor?.filter_params?.filter_id?.toLowerCase().includes("0_4")
     );
-  }, [activeFilterId, activeUserMonitor]);
+  }, [activeTab, activeFilterId, activeUserMonitor]);
+
+  const effectiveTableFilterType: FilterType = useMemo(() => {
+    if (activeTab === "filter") return filterType;
+    return "rolling";
+  }, [activeTab, filterType]);
 
   // Available regions & airports lists
   const availableRegions = useMemo(() => {
@@ -1237,11 +1243,10 @@ export const App: React.FC = () => {
                     navigateToTab("filter");
                     setViewMode("table");
                   }}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                    activeTab === "filter" && viewMode !== "arbitrage"
-                      ? "bg-amber-500 text-slate-950 shadow-sm"
-                      : "text-amber-400 hover:text-white hover:bg-slate-700/50"
-                  }`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${activeTab === "filter" && viewMode !== "arbitrage"
+                    ? "bg-amber-500 text-slate-950 shadow-sm"
+                    : "text-amber-400 hover:text-white hover:bg-slate-700/50"
+                    }`}
                 >
                   <Radio className="w-3.5 h-3.5" />
                   <span>👑 Радары админа</span>
@@ -1251,11 +1256,10 @@ export const App: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigateToTab("search")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  activeTab === "search"
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${activeTab === "search"
+                  ? "bg-blue-600 text-white shadow-sm"
+                  : "text-slate-300 hover:text-white hover:bg-slate-700/50"
+                  }`}
               >
                 <span>🔍 Интерактивный поиск</span>
               </button>
@@ -1263,11 +1267,10 @@ export const App: React.FC = () => {
               <button
                 type="button"
                 onClick={() => navigateToTab("my_monitors")}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                  activeTab === "my_monitors"
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-slate-300 hover:text-white hover:bg-slate-700/50"
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${activeTab === "my_monitors"
+                  ? "bg-blue-600 text-white shadow-sm"
+                  : "text-slate-300 hover:text-white hover:bg-slate-700/50"
+                  }`}
               >
                 <span>📡 Мои мониторинги</span>
                 {userMonitors.length > 0 && (
@@ -1410,92 +1413,130 @@ export const App: React.FC = () => {
               </div>
             )}
 
-        {/* Filter dashboard headers & folds: in BOTH canonical radars and user monitors */}
-        {activeTab === "filter" && (
-          <>
-            {/* 1. Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
-            <HeroTerminal
-              title={dashboardTitle}
-              countryBadge={dashboardCountryBadge}
-              targetUrl={dashboardTargetUrl}
-              chips={dashboardChips}
-              kpi={heroKpi}
-              activeQuickFilter={activeQuickFilter}
-              onQuickFilter={handleQuickFilter}
-            />
+            {/* Filter dashboard headers & folds: in BOTH canonical radars and user monitors */}
+            {activeTab === "filter" && (
+              <>
+                {/* 1. Hero Terminal Banner with Metadata Chips & 4 White KPI Cards */}
+                <HeroTerminal
+                  title={dashboardTitle}
+                  countryBadge={dashboardCountryBadge}
+                  targetUrl={dashboardTargetUrl}
+                  chips={dashboardChips}
+                  kpi={heroKpi}
+                  activeQuickFilter={activeQuickFilter}
+                  onQuickFilter={handleQuickFilter}
+                />
 
-            {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
-            <AiMarketBriefing
-              filterId={dashboardFilterIdForAnalytics}
-              filterTitle={dashboardTitle}
-              buyNowCount={heroKpi.buyNowCount}
-              onOpenPassport={(hotelId) => setActiveHotelPassport(hotelId)}
-            />
+                {/* 2. Top Fold: 🧠 AI-анализ рынка и прогноз цен */}
+                <AiMarketBriefing
+                  filterId={dashboardFilterIdForAnalytics}
+                  filterTitle={dashboardTitle}
+                  buyNowCount={heroKpi.buyNowCount}
+                  onOpenPassport={(hotelId) => setActiveHotelPassport(hotelId)}
+                />
 
-            {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
-            <Top10TimelineChart
-              filterId={dashboardFilterIdForAnalytics}
-              destination={dashboardDestination}
-            />
+                {/* 3. Time Series Chart: 📉 Средняя цена ТОП-10 дешёвых предложений */}
+                <Top10TimelineChart
+                  filterId={dashboardFilterIdForAnalytics}
+                  destination={dashboardDestination}
+                />
 
-            {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
-            <AnalyticsFold
-              hotels={results}
-              topDrops={topDrops}
-              airportStats={airportStats}
-              filterId={dashboardFilterIdForAnalytics}
-              filterType={filterType}
-              destination={dashboardDestination}
-              adults={
-                activeUserMonitor?.filter_params?.travelers?.adults ??
-                currentPreset?.searchReq?.travelers?.adults ??
-                (dashboardFilterIdForAnalytics?.includes("1p") ? 1 : 2)
-              }
-              childrenCount={
-                activeUserMonitor?.filter_params?.travelers?.children ??
-                currentPreset?.searchReq?.travelers?.children ??
-                0
-              }
-              onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
-              onFilterByDeparture={(depDate) => {
-                if (depDate) {
-                  setTableFilters((prev) => ({
-                    ...prev,
-                    search: prev.search === depDate ? "" : depDate,
-                  }));
-                }
-              }}
-            />
-          </>
-        )}
-
-        {/* 5. Universal Toolbar: Вид (Карточки / Таблица / Арбитраж) + Фильтры */}
-        <UniversalTableFilters
-          viewMode={viewMode}
-          onViewModeChange={setViewMode}
-          filters={tableFilters}
-          onFilterChange={setTableFilters}
-          onClear={() => setTableFilters(INITIAL_FILTERS)}
-          regions={availableRegions}
-          airports={availableAirports}
-          arbitrageCount={activeTab === "filter" ? arbitrageCount : 0}
-          showArbitrageTab={activeTab === "filter"}
-          onOpenMonitorAlerts={activeTab === "filter" ? () => handleOpenMonitorAlerts() : undefined}
-          onSaveSearchAsMonitor={
-            activeTab === "search"
-              ? () => {
-                  if (!currentUser) {
-                    setAuthModalReason(
-                      "🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться."
-                    );
-                    setIsAuthModalOpen(true);
-                    return;
+                {/* 4. Second Fold: 📊 Расширенная аналитика и тренды рынка */}
+                <AnalyticsFold
+                  hotels={results}
+                  topDrops={topDrops}
+                  airportStats={airportStats}
+                  filterId={dashboardFilterIdForAnalytics}
+                  filterType={filterType}
+                  destination={dashboardDestination}
+                  adults={
+                    activeUserMonitor?.filter_params?.travelers?.adults ??
+                    currentPreset?.searchReq?.travelers?.adults ??
+                    (dashboardFilterIdForAnalytics?.includes("1p") ? 1 : 2)
                   }
-                  setIsCreateMonitorOpen(true);
-                }
-              : undefined
-          }
-        />
+                  childrenCount={
+                    activeUserMonitor?.filter_params?.travelers?.children ??
+                    currentPreset?.searchReq?.travelers?.children ??
+                    0
+                  }
+                  onSelectHotel={(hotelId) => setActiveHotelPassport(hotelId)}
+                  onFilterByDeparture={(depDate) => {
+                    if (depDate) {
+                      setTableFilters((prev) => ({
+                        ...prev,
+                        search: prev.search === depDate ? "" : depDate,
+                      }));
+                    }
+                  }}
+                />
+              </>
+            )}
+
+            {/* 5. Universal Toolbar: Вид (Карточки / Таблица / Арбитраж) + Фильтры */}
+            <UniversalTableFilters
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
+              filters={tableFilters}
+              onFilterChange={setTableFilters}
+              onClear={() => setTableFilters(INITIAL_FILTERS)}
+              regions={availableRegions}
+              airports={availableAirports}
+              arbitrageCount={activeTab === "filter" ? arbitrageCount : 0}
+              showArbitrageTab={activeTab === "filter"}
+              onOpenMonitorAlerts={activeTab === "filter" ? () => handleOpenMonitorAlerts() : undefined}
+              onSaveSearchAsMonitor={
+                activeTab === "search"
+                  ? () => {
+                    if (!currentUser) {
+                      setAuthModalReason(
+                        "🔒 Для сохранения текущего поиска в персональный мониторинг цен необходимо войти или зарегистрироваться."
+                      );
+                      setIsAuthModalOpen(true);
+                      return;
+                    }
+                    setIsCreateMonitorOpen(true);
+                  }
+                  : undefined
+              }
+            />
+
+            {/* 6. Mode Switch Views */}
+            {viewMode === "arbitrage" ? (
+              <GermanArbitrageView
+                filterId={activeTab === "filter" ? dashboardArbitrageScope.filterId : undefined}
+                country={activeTab === "filter" ? dashboardArbitrageScope.country : undefined}
+                filterTitle={activeTab === "filter" ? dashboardArbitrageScope.title : undefined}
+                onOpenPassport={(id) => setActiveHotelPassport(id)}
+                onToggleWatchlist={handleToggleArbitrageWatchlist}
+                watchedCohortHashes={watchedCohortHashes}
+              />
+            ) : viewMode === "table" ? (
+              <HotelTableView
+                hotels={filteredHotels}
+                isLoading={isLoading}
+                onOpenPassport={(id) => setActiveHotelPassport(id)}
+                onToggleWatchlist={handleToggleWatchlist}
+                watchedCohortHashes={watchedCohortHashes}
+                sortField={sortField}
+                sortAsc={sortAsc}
+                onSort={handleSort}
+                totalFound={activeTab === "search" ? totalFound : undefined}
+                isLastMinute={isCurrentLastMinute}
+                filterType={filterType}
+              />
+            ) : (
+              <div className="space-y-4 relative" id="cardsSection">
+                {/* Cards Section Header */}
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                    <span>🏨</span>
+                    <span>Все отели • клик по карточке откроет паспорт справа</span>
+                  </h3>
+                  <span className="text-sm text-slate-500 font-semibold">
+                    Показано <b className="text-slate-900 font-black">{filteredHotels.length}</b>
+                    {activeTab === "search" && totalFound > filteredHotels.length ? ` из ${totalFound}` : ""} отелей
+                  </span>
+                </div>
 
         {/* 6. Mode Switch Views */}
         {viewMode === "arbitrage" ? (
@@ -1519,7 +1560,7 @@ export const App: React.FC = () => {
             onSort={handleSort}
             totalFound={activeTab === "search" ? totalFound : undefined}
             isLastMinute={isCurrentLastMinute}
-            filterType={filterType}
+            filterType={effectiveTableFilterType}
           />
         ) : (
           <div className="space-y-4 relative" id="cardsSection">
@@ -1535,114 +1576,69 @@ export const App: React.FC = () => {
               </span>
             </div>
 
-            {/* Deal Score Legend */}
-            <div className="deal-legend bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 text-xs text-slate-700 leading-relaxed shadow-2xs">
-              <strong className="text-slate-900 font-bold">{isCurrentLastMinute ? "Статусы горящих туров:" : "Как читать Deal Score:"}</strong>{" "}
-              {isCurrentLastMinute ? (
-                <>
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                    🔥 БРАТЬ (СБРОС)
-                  </span>{" "}
-                  = реальный сброс цены перед вылетом (дисконт от сезонной нормы),{" "}
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
-                    ⚖️ БЕЗ СКИДКИ
-                  </span>{" "}
-                  = стандартная цена сезона (срочной скидки нет),{" "}
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">
-                    ⚠️ НАЦЕНКА
-                  </span>{" "}
-                  = горящий тур дороже обычного регулярного тарифа.{" "}
-                  В колонке <b>ДО ВЫЛЕТА</b> показана срочность: ⚡ Сегодня, ⚡ Завтра, ⚡ 2–4 дн.
-                </>
-              ) : (
-                <>
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
-                    🔥 Hot
-                  </span>{" "}
-                  = очень сильная возможность,{" "}
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                    ✅ Good
-                  </span>{" "}
-                  = хороший момент,{" "}
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
-                    ↔ Normal
-                  </span>{" "}
-                  = обычный уровень (~50),{" "}
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200">
-                    📈 Bad
-                  </span>{" "}
-                  = подорожало за 48ч и vs средней,{" "}
-                  <span className="inline-flex items-center gap-0.5 font-extrabold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">
-                    ⏳ Warm-up
-                  </span>{" "}
-                  = пока мало истории. Confidence: Low / Medium / High — степень надежности оценки. TripAdvisor слегка сдвигает Deal Score; без отзывов влияние минимально.
-                </>
-              )}
-            </div>
-
-            {isLoading && filteredHotels.length === 0 ? (
-              <LoadingSpinner
-                variant="skeleton-cards"
-                label="Загрузка карточек отелей..."
-                description="Синхронизация котировок и фотографий"
-              />
-            ) : (
-              <>
-                {isLoading && (
+                {isLoading && filteredHotels.length === 0 ? (
                   <LoadingSpinner
-                    variant="overlay"
-                    size="lg"
-                    label="Обновление карточек отелей..."
-                    description="Синхронизация актуальных котировок"
+                    variant="skeleton-cards"
+                    label="Загрузка карточек отелей..."
+                    description="Синхронизация котировок и фотографий"
                   />
+                ) : (
+                  <>
+                    {isLoading && (
+                      <LoadingSpinner
+                        variant="overlay"
+                        size="lg"
+                        label="Обновление карточек отелей..."
+                        description="Синхронизация актуальных котировок"
+                      />
+                    )}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+                      {filteredHotels.map((hotel) => (
+                        <HotelCard
+                          key={hotel.current_offer.cohort_hash}
+                          hotel={hotel}
+                          onOpenPassport={(id) => setActiveHotelPassport(id)}
+                          onToggleWatchlist={handleToggleWatchlist}
+                          isWatched={watchedCohortHashes.has(
+                            hotel.current_offer.cohort_hash
+                          )}
+                          isLastMinute={isCurrentLastMinute}
+                        />
+                      ))}
+                    </div>
+                  </>
                 )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
-                  {filteredHotels.map((hotel) => (
-                    <HotelCard
-                      key={hotel.current_offer.cohort_hash}
-                      hotel={hotel}
-                      onOpenPassport={(id) => setActiveHotelPassport(id)}
-                      onToggleWatchlist={handleToggleWatchlist}
-                      isWatched={watchedCohortHashes.has(
-                        hotel.current_offer.cohort_hash
-                      )}
-                      isLastMinute={isCurrentLastMinute}
-                    />
-                  ))}
-                </div>
-              </>
+              </div>
             )}
-          </div>
-        )}
 
-        {/* Load More Button for Interactive Search */}
-        {activeTab === "search" && (hasMore || (totalFound > 0 && results.length < totalFound)) && (
-          <div className="flex flex-col items-center justify-center py-6 gap-2">
-            <button
-              type="button"
-              onClick={handleLoadMore}
-              disabled={isLoadingMore}
-              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
-            >
-              {isLoadingMore ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  <span>Подгружаем следующие предложения с Fly.pl...</span>
-                </>
-              ) : (
-                <>
-                  <span>🔄 Загрузить ещё предложения</span>
-                  <span className="bg-blue-700 px-2.5 py-0.5 rounded-full text-xs font-black">
-                    +{Math.min(100, Math.max(1, totalFound - results.length))}
-                  </span>
-                </>
-              )}
-            </button>
-            <span className="text-xs text-slate-500 font-medium">
-              Показано {results.length} из {totalFound} найденных отелей
-            </span>
-          </div>
-        )}
+            {/* Load More Button for Interactive Search */}
+            {activeTab === "search" && (hasMore || (totalFound > 0 && results.length < totalFound)) && (
+              <div className="flex flex-col items-center justify-center py-6 gap-2">
+                <button
+                  type="button"
+                  onClick={handleLoadMore}
+                  disabled={isLoadingMore}
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+                >
+                  {isLoadingMore ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span>Подгружаем следующие предложения с Fly.pl...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>🔄 Загрузить ещё предложения</span>
+                      <span className="bg-blue-700 px-2.5 py-0.5 rounded-full text-xs font-black">
+                        +{Math.min(100, Math.max(1, totalFound - results.length))}
+                      </span>
+                    </>
+                  )}
+                </button>
+                <span className="text-xs text-slate-500 font-medium">
+                  Показано {results.length} из {totalFound} найденных отелей
+                </span>
+              </div>
+            )}
           </>
         )}
       </main>
@@ -1672,14 +1668,19 @@ export const App: React.FC = () => {
               activeUserMonitor?.filter_params?.travelers
                 ? activeUserMonitor.filter_params.travelers
                 : activeUserMonitor?.filter_params
-                ? {
+                  ? {
                     adults: activeUserMonitor.filter_params.adults || 2,
                     children: activeUserMonitor.filter_params.children || 0,
                     children_ages: [],
                   }
-                : activeTab === "search"
-                ? (lastSearchReq?.travelers || { adults: 1, children: 0, children_ages: [] })
-                : undefined
+                  : activeTab === "search"
+                    ? (lastSearchReq?.travelers || { adults: 1, children: 0, children_ages: [] })
+                    : undefined
+            }
+            searchAirports={
+              activeTab === "search"
+                ? lastSearchReq?.airports
+                : activeUserMonitor?.filter_params?.airports || currentPreset?.searchReq?.airports
             }
             isWatched={isPassportWatched}
             onToggleWatchlist={activePassportHotel ? () => handleToggleWatchlist(activePassportHotel) : undefined}

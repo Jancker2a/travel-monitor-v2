@@ -622,6 +622,7 @@ class WatchlistService:
         children: Optional[int] = None,
         duration_nights: Optional[int] = None,
         departure_date: Optional[str] = None,
+        airports: Optional[List[str]] = None,
     ) -> HotelPassportResponse:
         from app.services.hotel_knowledge_service import HotelKnowledgeService
         from app.services.canonical_filters import resolve_filter_spec
@@ -777,6 +778,7 @@ class WatchlistService:
         # 3. Determine scoped cohorts for the active filter to ensure a clean, smooth, non-oscillating curve
 
         is_user_monitor = bool(filter_id and (filter_id.startswith("monitor_") or filter_id.startswith("user_")))
+        effective_airports = list(airports) if airports else (list(spec.get("airports")) if spec and spec.get("airports") else None)
         if is_user_monitor:
             clean_uid = filter_id.replace("monitor_", "").replace("user_", "").replace("filter_", "")
             try:
@@ -787,6 +789,8 @@ class WatchlistService:
                 u_row = u_res.fetchone()
                 if u_row and u_row[2]:
                     u_params = json.loads(u_row[2])
+                    if not effective_airports and isinstance(u_params.get("airports"), list) and u_params.get("airports"):
+                        effective_airports = list(u_params["airports"])
                     travelers = u_params.get("travelers")
                     if isinstance(travelers, dict):
                         if adults is None:
@@ -852,9 +856,18 @@ class WatchlistService:
                         scoped_cohorts = [c for c in all_cohorts if c.adults == target_adults and c.children == target_children]
 
             # If still no scoped cohorts or no filter_id provided (e.g. Interactive Search / all history),
-            # DO NOT discard other cohorts! Include ALL cohorts for this property and normalize them!
+            # prefer matching requested airports when available, otherwise include all cohorts for this property!
             if not scoped_cohorts:
-                scoped_cohorts = all_cohorts
+                if effective_airports:
+                    from app.services.normalization import matches_requested_airports
+                    ap_cohorts = [
+                        c for c in all_cohorts
+                        if matches_requested_airports(c.airport_code, effective_airports, c.offer_url)
+                    ]
+                    if ap_cohorts:
+                        scoped_cohorts = ap_cohorts
+                if not scoped_cohorts:
+                    scoped_cohorts = all_cohorts
 
             if not scoped_cohorts and all_cohorts:
                 scoped_cohorts = all_cohorts
@@ -1129,7 +1142,10 @@ class WatchlistService:
         # 5. Build clean, non-oscillating history points for scoped cohorts
         # Decompose every historical snapshot into normalized pure rates and recompose for target user party
         from app.services.cost_decomposer import CostDecomposer
-        from app.services.search_intelligence import get_destination_season_info
+        from app.services.search_intelligence import (
+            compute_seasonal_baseline_metrics,
+            get_destination_season_info,
+        )
 
         dest_name = hotel.country or "turkey"
         dest_lower = dest_name.lower()
@@ -1342,6 +1358,14 @@ class WatchlistService:
             min_p = curr_val
             med_p = curr_val
             max_p = curr_val
+            target_dep_date = None
+            if departure_date:
+                try:
+                    target_dep_date = datetime.strptime(str(departure_date).split("T")[0], "%Y-%m-%d").date()
+                except Exception:
+                    target_dep_date = None
+            target_season = get_destination_season_info(dest_name, target_dep_date)
+            unseasoned_rates = []
         else:
             if total_points_count < 4:
                 data_maturity_tier = 1
@@ -1420,49 +1444,41 @@ class WatchlistService:
                 target_dep_date = (datetime.utcnow() + timedelta(days=21)).date()
 
             target_season = get_destination_season_info(dest_name, target_dep_date)
-            target_mult = target_season.get("multiplier", 1.0)
 
-            # De-season each history point's pure night rate by the season of its departure date
-            unseasoned_rates = []
-            for pt in history_points:
-                pt_dep = pt.departure_date or target_dep_date
-                pt_season = get_destination_season_info(dest_name, pt_dep)
-                pt_mult = pt_season.get("multiplier", 1.0)
-                rate = (pt.pure_hotel_night_rate or 120.0) / max(0.5, pt_mult)
-                unseasoned_rates.append(rate)
+            # Exclude synthetic live-search point (same timestamp as now) from historical baseline
+            hist_rate_samples = [
+                {
+                    "pure_hotel_night_rate": float(pt.pure_hotel_night_rate),
+                    "departure_date": pt.departure_date,
+                    "is_already_unseasoned": False,
+                }
+                for pt in history_points[:-1] if current_price and float(current_price) > 0 and not is_recent
+                for _ in [1]
+                if pt.pure_hotel_night_rate and float(pt.pure_hotel_night_rate) > 0
+            ] if (current_price and float(current_price) > 0 and not is_recent) else [
+                {
+                    "pure_hotel_night_rate": float(pt.pure_hotel_night_rate),
+                    "departure_date": pt.departure_date,
+                    "is_already_unseasoned": False,
+                }
+                for pt in history_points
+                if pt.pure_hotel_night_rate and float(pt.pure_hotel_night_rate) > 0
+            ]
 
-            if len(unseasoned_rates) >= 3:
-                sorted_unseasoned = sorted(unseasoned_rates)
-                med_unseasoned = sorted_unseasoned[len(sorted_unseasoned) // 2]
-                min_unseasoned = sorted_unseasoned[0]
-                max_unseasoned = sorted_unseasoned[-1]
+            unseasoned_rates = [s["pure_hotel_night_rate"] for s in hist_rate_samples]
+            baseline = compute_seasonal_baseline_metrics(
+                destination=dest_name,
+                target_dep_date=target_dep_date,
+                duration_nights=target_nights,
+                adults=target_adults,
+                children=target_children,
+                rate_samples=hist_rate_samples,
+            )
 
-                # Re-season specifically for the TARGET departure month/season!
-                seasonal_med_pure = med_unseasoned * target_mult
-                seasonal_min_pure = min_unseasoned * target_mult
-                seasonal_max_pure = max_unseasoned * target_mult
-
-                med_p = round(CostDecomposer.recompose(
-                    pure_hotel_night_per_adult=seasonal_med_pure,
-                    duration_nights=target_nights,
-                    adults=target_adults,
-                    children=target_children,
-                    destination=dest_name,
-                ), 1)
-                min_p = round(CostDecomposer.recompose(
-                    pure_hotel_night_per_adult=seasonal_min_pure,
-                    duration_nights=target_nights,
-                    adults=target_adults,
-                    children=target_children,
-                    destination=dest_name,
-                ), 1)
-                max_p = round(CostDecomposer.recompose(
-                    pure_hotel_night_per_adult=seasonal_max_pure,
-                    duration_nights=target_nights,
-                    adults=target_adults,
-                    children=target_children,
-                    destination=dest_name,
-                ), 1)
+            if baseline["has_baseline"]:
+                med_p = baseline["typical_median_pln"]
+                min_p = baseline["hist_min_pln"]
+                max_p = baseline["hist_max_pln"]
             else:
                 med_p = None
                 p_list = [p.total_price_pln for p in history_points if p.total_price_pln]
@@ -1535,6 +1551,7 @@ class WatchlistService:
                 checkin_date=target_dep_date,
                 current_price=curr_p,
                 related_hotel_ids=related_hotel_ids,
+                airports=effective_airports,
             )
         except Exception as ha_err:
             logger.warning(f"Could not compute horizon arbitrage for {hotel.hotel_id}: {ha_err}")
