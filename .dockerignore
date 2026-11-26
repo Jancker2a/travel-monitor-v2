@@ -1,0 +1,15 @@
+.git
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+node_modules
+frontend/node_modules
+frontend/dist
+travel_monitor.db
+travel_monitor_v2.db
+travel_monitor_v2.db-shm
+travel_monitor_v2.db-wal
+backend/travel_monitor.db
+backend/travel_monitor_v2.db
+.env
